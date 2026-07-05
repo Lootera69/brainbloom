@@ -45,7 +45,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh">
       <XPToast />
-      <Toaster />
+      <Toaster position="top-center" />
       <AnimatedBackground />
       <Sidebar />
       <main

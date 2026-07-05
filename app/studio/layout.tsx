@@ -125,7 +125,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
           </div>
         </div>
       </header>
-      <Toaster />
+      <Toaster position="top-center" />
       {children}
     </div>
   );
