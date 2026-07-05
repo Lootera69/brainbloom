@@ -1,4 +1,4 @@
-import { type Puzzle, type PuzzleFormData } from "@/types/puzzle";
+import { type Puzzle, type PuzzleFormData, type CrosswordData } from "@/types/puzzle";
 import { getFirebase } from "@/services/firebase";
 import {
   collection,
@@ -41,15 +41,15 @@ function saveLocalPuzzles(puzzles: Puzzle[]) {
 }
 
 function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle {
-  return {
+  const puzzle: Puzzle = {
     id,
     type: data.type as Puzzle["type"],
     category: data.category as string,
     difficulty: data.difficulty as Puzzle["difficulty"],
     title: data.title as string,
-    question: data.question as string,
-    choices: data.choices as string[],
-    correctAnswer: data.correctAnswer as string,
+    question: (data.question as string) ?? "",
+    choices: (data.choices as string[]) ?? [],
+    correctAnswer: (data.correctAnswer as string) ?? "",
     xpReward: data.xpReward as number,
     published: data.published as boolean,
     createdBy: data.createdBy as string,
@@ -57,10 +57,14 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
     lastModifiedBy: data.lastModifiedBy as string,
     updatedAt: (data.updatedAt as Timestamp)?.toMillis?.() ?? (data.updatedAt as number),
   };
+  if (data.crosswordData) {
+    puzzle.crosswordData = data.crosswordData as CrosswordData;
+  }
+  return puzzle;
 }
 
 function puzzleToFirestore(puzzle: Puzzle) {
-  return {
+  const data: Record<string, unknown> = {
     type: puzzle.type,
     category: puzzle.category,
     difficulty: puzzle.difficulty,
@@ -75,6 +79,10 @@ function puzzleToFirestore(puzzle: Puzzle) {
     lastModifiedBy: puzzle.lastModifiedBy,
     updatedAt: Timestamp.fromMillis(puzzle.updatedAt),
   };
+  if (puzzle.crosswordData) {
+    data.crosswordData = puzzle.crosswordData;
+  }
+  return data;
 }
 
 function isFirestoreAvailable() {

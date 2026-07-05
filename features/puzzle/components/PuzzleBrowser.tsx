@@ -158,7 +158,7 @@ export function PuzzleBrowser({ onStartPuzzle }: Props) {
                 </div>
                 <p className="mt-0.5 text-xs text-muted-foreground">
                   {diffLabel(puzzle.difficulty)} &middot; {puzzle.xpReward} XP &middot;{" "}
-                  {puzzle.type === "true-false" ? "True / False" : "Multiple Choice"}
+                  {puzzle.type === "true-false" ? "True / False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : "Multiple Choice"}
                 </p>
               </div>
               <ArrowRight className="size-4 shrink-0 text-muted-foreground" />

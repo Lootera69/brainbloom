@@ -5,7 +5,14 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Save, Loader2 } from "lucide-react";
 import { createPuzzle, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
-import { type PuzzleFormData, type PuzzleType } from "@/types/puzzle";
+import { type PuzzleFormData, type PuzzleType, type CrosswordData } from "@/types/puzzle";
+import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
+
+const defaultCrossword: CrosswordData = {
+  size: 10,
+  grid: Array.from({ length: 10 }, () => Array(10).fill("")),
+  clues: [],
+};
 
 export default function CreatePuzzlePage() {
   const router = useRouter();
@@ -25,13 +32,16 @@ export default function CreatePuzzlePage() {
     setForm((f) => ({ ...f, [key]: value }));
 
   const updateChoice = (i: number, value: string) => {
-    const choices = [...form.choices];
+    const choices = [...(form.choices || ["", "", "", ""])];
     choices[i] = value;
     update("choices", choices);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (form.type === "crossword" && (!form.crosswordData || form.crosswordData.clues.length === 0)) {
+      return;
+    }
     setSaving(true);
     await createPuzzle(form);
     setSaving(false);
@@ -39,9 +49,15 @@ export default function CreatePuzzlePage() {
   };
 
   const handleTypeChange = (type: PuzzleType) => {
-    const choices = type === "true-false" ? ["True", "False"] : ["", "", "", ""];
-    setForm((f) => ({ ...f, type, choices, correctAnswer: "" }));
+    if (type === "crossword") {
+      setForm((f) => ({ ...f, type, crosswordData: defaultCrossword }));
+    } else {
+      const choices = type === "true-false" ? ["True", "False"] : ["", "", "", ""];
+      setForm((f) => ({ ...f, type, choices, correctAnswer: "", crosswordData: undefined }));
+    }
   };
+
+  const isQuiz = form.type === "multiple-choice" || form.type === "true-false";
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-6">
@@ -62,7 +78,7 @@ export default function CreatePuzzlePage() {
         <div>
           <label className="mb-1.5 block text-sm font-medium">Type</label>
           <div className="flex gap-2">
-            {(["multiple-choice", "true-false"] as const).map((t) => (
+            {(["multiple-choice", "true-false", "crossword"] as const).map((t) => (
               <button
                 key={t}
                 type="button"
@@ -73,7 +89,7 @@ export default function CreatePuzzlePage() {
                     : "hover:bg-muted"
                 }`}
               >
-                {t === "multiple-choice" ? "Multiple Choice" : "True / False"}
+                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : "Crossword"}
               </button>
             ))}
           </div>
@@ -115,60 +131,75 @@ export default function CreatePuzzlePage() {
           <input
             value={form.title}
             onChange={(e) => update("title", e.target.value)}
-            placeholder="e.g. What comes next in the sequence?"
+            placeholder={isQuiz ? "e.g. What comes next in the sequence?" : "e.g. Sunday Crossword"}
             className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
             required
           />
         </div>
 
-        <div>
-          <label className="mb-1.5 block text-sm font-medium">Question</label>
-          <textarea
-            value={form.question}
-            onChange={(e) => update("question", e.target.value)}
-            placeholder="Write the full question here..."
-            rows={4}
-            className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
-            required
-          />
-        </div>
+        {isQuiz ? (
+          <>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Question</label>
+              <textarea
+                value={form.question}
+                onChange={(e) => update("question", e.target.value)}
+                placeholder="Write the full question here..."
+                rows={4}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                required
+              />
+            </div>
 
-        <div>
-          <label className="mb-1.5 block text-sm font-medium">Choices</label>
-          <div className="space-y-2">
-            {form.choices.map((choice, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-muted text-xs font-medium text-muted-foreground">
-                  {String.fromCharCode(65 + i)}
-                </span>
-                <input
-                  value={choice}
-                  onChange={(e) => updateChoice(i, e.target.value)}
-                  placeholder={`Choice ${String.fromCharCode(65 + i)}`}
-                  className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
-                  required
-                />
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Choices</label>
+              <div className="space-y-2">
+                {(form.choices || ["", "", "", ""]).map((choice, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-muted text-xs font-medium text-muted-foreground">
+                      {String.fromCharCode(65 + i)}
+                    </span>
+                    <input
+                      value={choice}
+                      onChange={(e) => updateChoice(i, e.target.value)}
+                      placeholder={`Choice ${String.fromCharCode(65 + i)}`}
+                      className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                      required
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
 
-        <div>
-          <label className="mb-1.5 block text-sm font-medium">Correct Answer</label>
-          <select
-            value={form.correctAnswer}
-            onChange={(e) => update("correctAnswer", e.target.value)}
-            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
-            required
-          >
-            <option value="">Select correct answer</option>
-            {form.choices.map((choice, i) => (
-              <option key={i} value={choice} disabled={!choice.trim()}>
-                {String.fromCharCode(65 + i)}. {choice || "(empty)"}
-              </option>
-            ))}
-          </select>
-        </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Correct Answer</label>
+              <select
+                value={form.correctAnswer}
+                onChange={(e) => update("correctAnswer", e.target.value)}
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                required
+              >
+                <option value="">Select correct answer</option>
+                {(form.choices || []).map((choice, i) => (
+                  <option key={i} value={choice} disabled={!choice.trim()}>
+                    {String.fromCharCode(65 + i)}. {choice || "(empty)"}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </>
+        ) : (
+          <div>
+            <label className="mb-1.5 block text-sm font-medium">Crossword Grid</label>
+            <p className="mb-3 text-xs text-muted-foreground">
+              Click cells to toggle blocked/open. Select an open cell to add a clue.
+            </p>
+            <CrosswordForm
+              value={form.crosswordData || defaultCrossword}
+              onChange={(cd) => update("crosswordData", cd)}
+            />
+          </div>
+        )}
 
         <button
           type="submit"

@@ -110,7 +110,7 @@ export default function StudioPage() {
                   <span>&middot;</span>
                   <span>{diffLabel(puzzle.difficulty)}</span>
                   <span>&middot;</span>
-                  <span>{puzzle.type === "true-false" ? "True/False" : "Multiple Choice"}</span>
+                  <span>{puzzle.type === "true-false" ? "True/False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : "Multiple Choice"}</span>
                   <span>&middot;</span>
                   <span>{puzzle.xpReward} XP</span>
                 </div>

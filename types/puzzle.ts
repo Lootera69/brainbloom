@@ -1,5 +1,20 @@
-export type PuzzleType = "multiple-choice" | "true-false";
+export type PuzzleType = "multiple-choice" | "true-false" | "crossword";
 export type Difficulty = "easy" | "medium" | "hard";
+
+export interface CrosswordClue {
+  number: number;
+  clue: string;
+  answer: string;
+  startRow: number;
+  startCol: number;
+  direction: "across" | "down";
+}
+
+export interface CrosswordData {
+  size: number;
+  grid: (string | null)[][];
+  clues: CrosswordClue[];
+}
 
 export interface Puzzle {
   id: string;
@@ -10,6 +25,7 @@ export interface Puzzle {
   question: string;
   choices: string[];
   correctAnswer: string;
+  crosswordData?: CrosswordData;
   xpReward: number;
   published: boolean;
   createdBy: string;
@@ -26,5 +42,6 @@ export interface PuzzleFormData {
   question: string;
   choices: string[];
   correctAnswer: string;
+  crosswordData?: CrosswordData;
   xpReward: number;
 }
