@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Sidebar } from "@/components/navigation/sidebar";
 import { BottomNav } from "@/components/navigation/bottom-nav";
@@ -29,6 +29,24 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       router.replace("/login");
     }
   }, [mounted, isAuthenticated, router]);
+
+  const syncTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => {
+    const unsub = useUserStore.subscribe((state, prev) => {
+      if (state.isGuest || !state.userId) return;
+      const changed =
+        state.xp !== prev.xp ||
+        state.streak !== prev.streak ||
+        state.hearts !== prev.hearts ||
+        state.gems !== prev.gems ||
+        state.completedPuzzleIds.length !== prev.completedPuzzleIds.length;
+      if (changed) {
+        if (syncTimer.current) clearTimeout(syncTimer.current);
+        syncTimer.current = setTimeout(() => state.syncToFirestore(), 3000);
+      }
+    });
+    return () => { unsub(); if (syncTimer.current) clearTimeout(syncTimer.current); };
+  }, []);
 
   if (!mounted || !isAuthenticated) {
     return (

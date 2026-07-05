@@ -116,7 +116,8 @@ export async function getPuzzles(): Promise<Puzzle[]> {
       }
     }
     return merged;
-  } catch {
+  } catch (e) {
+    console.error("Firestore getPuzzles failed:", e);
     return local;
   }
 }
@@ -134,8 +135,8 @@ export async function getPuzzle(id: string): Promise<Puzzle | null> {
       const ref = doc(db, "puzzles", id);
       const snap = await getDoc(ref);
       if (snap.exists()) return puzzleFromFirestore(snap.id, snap.data() as Record<string, unknown>);
-    } catch {
-      // fall through to localStorage
+    } catch (e) {
+      console.error("Firestore getPuzzle failed:", e);
     }
   }
   return getLocalPuzzles().find((p) => p.id === id) ?? null;
@@ -198,8 +199,8 @@ export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): P
           updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
         }
       }
-    } catch {
-      // fall through
+    } catch (e) {
+      console.error("Firestore updatePuzzle failed:", e);
     }
   }
 
@@ -223,8 +224,8 @@ export async function deletePuzzle(id: string): Promise<boolean> {
       if (db) {
         await deleteDoc(doc(db, "puzzles", id));
       }
-    } catch {
-      // fall through
+    } catch (e) {
+      console.error("Firestore deletePuzzle failed:", e);
     }
   }
 
@@ -256,8 +257,8 @@ export async function togglePublish(id: string): Promise<Puzzle | null> {
           updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
         }
       }
-    } catch {
-      // fall through
+    } catch (e) {
+      console.error("Firestore togglePublish failed:", e);
     }
   }
 

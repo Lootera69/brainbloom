@@ -58,6 +58,8 @@ interface UserState {
   loginAsGuest: () => void;
   loginWithGoogle: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
   logout: () => void;
+  syncToFirestore: () => void;
+  loadFromFirestore: () => Promise<void>;
   addXp: (amount: number) => void;
   addGems: (amount: number) => void;
   useHeart: () => void;
@@ -141,6 +143,7 @@ export const useUserStore = create<UserState>()(
       },
 
       loginWithGoogle: (user) => {
+        const state = get();
         set({
           userId: user.uid,
           displayName: user.displayName,
@@ -149,6 +152,37 @@ export const useUserStore = create<UserState>()(
           isGuest: false,
           isAuthenticated: true,
         });
+        setTimeout(() => get().loadFromFirestore(), 100);
+      },
+
+      syncToFirestore: () => {
+        const { userId, isGuest, xp, streak, hearts, nextHeartAt, gems, completedPuzzleIds, questsRewarded, streakFreezes, lastActiveDate } = get();
+        if (!userId || isGuest) return;
+        import("@/services/user-service").then(({ saveUserData }) =>
+          saveUserData(userId, { xp, streak, hearts, nextHeartAt, gems, completedPuzzleIds, questsRewarded, streakFreezes, lastActiveDate }),
+        );
+      },
+
+      loadFromFirestore: async () => {
+        const { userId, isGuest } = get();
+        if (!userId || isGuest) return;
+        try {
+          const { loadUserData } = await import("@/services/user-service");
+          const data = await loadUserData(userId);
+          if (data) {
+            set({
+              xp: data.xp,
+              streak: data.streak,
+              hearts: data.hearts,
+              nextHeartAt: data.nextHeartAt,
+              gems: data.gems,
+              completedPuzzleIds: data.completedPuzzleIds,
+              questsRewarded: data.questsRewarded,
+              streakFreezes: data.streakFreezes,
+              lastActiveDate: data.lastActiveDate,
+            });
+          }
+        } catch {}
       },
 
       logout: () => {
