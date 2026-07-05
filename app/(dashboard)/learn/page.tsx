@@ -50,9 +50,10 @@ export default function LearnPage() {
 
   const handleStartPuzzle = useCallback((puzzle: Puzzle) => {
     if (hearts <= 0) return;
+    useHeart();
     setCurrentPuzzle(puzzle);
     setView("play");
-  }, [hearts]);
+  }, [hearts, useHeart]);
 
   const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
     setLastResult({ correct, xp: xpEarned });
@@ -148,6 +149,7 @@ export default function LearnPage() {
             <PuzzlePlay
               puzzle={currentPuzzle}
               onComplete={handleComplete}
+              onRetry={() => useHeart()}
               isRepeat={hasCompletedPuzzle(currentPuzzle.id)}
             />
           </motion.div>

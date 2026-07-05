@@ -11,6 +11,7 @@ import { CrosswordPlay } from "./CrosswordPlay";
 interface Props {
   puzzle: Puzzle;
   onComplete: (correct: boolean, xpEarned: number) => void;
+  onRetry?: () => void;
   isRepeat?: boolean;
 }
 
@@ -122,9 +123,9 @@ function QuizPlay({ puzzle, onComplete, isRepeat }: Props) {
   );
 }
 
-export function PuzzlePlay({ puzzle, onComplete, isRepeat }: Props) {
+export function PuzzlePlay({ puzzle, onComplete, onRetry, isRepeat }: Props) {
   if (puzzle.type === "crossword") {
-    return <CrosswordPlay puzzle={puzzle} onComplete={onComplete} isRepeat={isRepeat} />;
+    return <CrosswordPlay puzzle={puzzle} onComplete={onComplete} onRetry={onRetry} isRepeat={isRepeat} />;
   }
   return <QuizPlay puzzle={puzzle} onComplete={onComplete} isRepeat={isRepeat} />;
 }
