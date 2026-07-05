@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 interface Props {
   puzzle: Puzzle;
   onComplete: (correct: boolean, xpEarned: number) => void;
-  onRetry?: () => void;
+  onWrongAttempt?: () => void;
   isRepeat?: boolean;
 }
 
@@ -31,7 +31,7 @@ function clueNumbers(grid: (string | null)[][]): number[][] {
   return nums;
 }
 
-export function CrosswordPlay({ puzzle, onComplete, onRetry, isRepeat }: Props) {
+export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
   const cd = puzzle.crosswordData;
   if (!cd) return null;
 
@@ -200,7 +200,11 @@ export function CrosswordPlay({ puzzle, onComplete, onRetry, isRepeat }: Props) 
     );
     setResults(newResults);
     setSubmitted(true);
-  }, [playerGrid, answerGrid, cd.clues]);
+    const hasWrong = newResults.some((row, r) =>
+      row.some((result, c) => !result && clueCells.has(`${r},${c}`)),
+    );
+    if (hasWrong) onWrongAttempt?.();
+  }, [playerGrid, answerGrid, cd.clues, clueCells, onWrongAttempt]);
 
   const allCorrect = useMemo(() => {
     if (!submitted) return false;
@@ -380,7 +384,7 @@ export function CrosswordPlay({ puzzle, onComplete, onRetry, isRepeat }: Props) 
         )}
         {submitted && !allCorrect && (
           <motion.button
-            onClick={() => { onRetry?.(); setSubmitted(false); }}
+            onClick={() => setSubmitted(false)}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-2xl border text-sm font-semibold transition-all hover:bg-muted active:scale-[0.98]"

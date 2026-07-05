@@ -11,11 +11,11 @@ import { CrosswordPlay } from "./CrosswordPlay";
 interface Props {
   puzzle: Puzzle;
   onComplete: (correct: boolean, xpEarned: number) => void;
-  onRetry?: () => void;
+  onWrongAttempt?: () => void;
   isRepeat?: boolean;
 }
 
-function QuizPlay({ puzzle, onComplete, isRepeat }: Props) {
+function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
@@ -25,6 +25,7 @@ function QuizPlay({ puzzle, onComplete, isRepeat }: Props) {
   const handleSubmit = () => {
     if (!selected || submitted) return;
     setSubmitted(true);
+    if (selected !== puzzle.correctAnswer) onWrongAttempt?.();
   };
 
   const handleChoicePick = (choice: string) => {
@@ -123,9 +124,9 @@ function QuizPlay({ puzzle, onComplete, isRepeat }: Props) {
   );
 }
 
-export function PuzzlePlay({ puzzle, onComplete, onRetry, isRepeat }: Props) {
+export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
   if (puzzle.type === "crossword") {
-    return <CrosswordPlay puzzle={puzzle} onComplete={onComplete} onRetry={onRetry} isRepeat={isRepeat} />;
+    return <CrosswordPlay puzzle={puzzle} onComplete={onComplete} onWrongAttempt={onWrongAttempt} isRepeat={isRepeat} />;
   }
-  return <QuizPlay puzzle={puzzle} onComplete={onComplete} isRepeat={isRepeat} />;
+  return <QuizPlay puzzle={puzzle} onComplete={onComplete} onWrongAttempt={onWrongAttempt} isRepeat={isRepeat} />;
 }
