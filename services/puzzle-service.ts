@@ -297,7 +297,7 @@ export const CATEGORIES = [
   { value: "logic", label: "Logic" },
   { value: "riddles", label: "Riddles" },
   { value: "science", label: "Science" },
-  { value: "sudoku", label: "Sudoku" },
+  { value: "puzzles", label: "Puzzles" },
 ];
 
 export const DIFFICULTIES = [

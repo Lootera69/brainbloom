@@ -166,13 +166,22 @@ export function CrosswordPlay({ puzzle, onComplete, isRepeat }: Props) {
   const handleCheck = useCallback(() => {
     const newResults = playerGrid.map((row, r) =>
       row.map((cell, c) => {
-        if (answerGrid[r][c] === null) return true;
-        return cell.toUpperCase() === answerGrid[r][c].toUpperCase();
+        if (answerGrid[r]?.[c] === null) return true;
+        for (const clue of cd.clues) {
+          for (let i = 0; i < clue.answer.length; i++) {
+            const cr = clue.direction === "across" ? clue.startRow : clue.startRow + i;
+            const cc = clue.direction === "across" ? clue.startCol + i : clue.startCol;
+            if (cr === r && cc === c) {
+              return cell.toUpperCase() === clue.answer[i].toUpperCase();
+            }
+          }
+        }
+        return true;
       }),
     );
     setResults(newResults);
     setSubmitted(true);
-  }, [playerGrid, answerGrid]);
+  }, [playerGrid, answerGrid, cd.clues]);
 
   const allCorrect = useMemo(() => {
     if (!submitted) return false;
@@ -224,7 +233,7 @@ export function CrosswordPlay({ puzzle, onComplete, isRepeat }: Props) {
                       onClick={() => handleCellClick(r, c)}
                       className={cn(
                         "relative flex items-center justify-center border border-foreground/10 text-sm font-bold transition-colors",
-                        cell === null ? "bg-foreground/20" : "cursor-pointer",
+                        cell === null ? "bg-foreground/30 pointer-events-none" : "cursor-pointer",
                         isSelected && "ring-2 ring-primary",
                         isHighlighted && !isSelected && "bg-primary/8",
                         hasError && "bg-destructive/20",
@@ -248,7 +257,10 @@ export function CrosswordPlay({ puzzle, onComplete, isRepeat }: Props) {
                             {playerGrid[r]?.[c] || "-"}
                           </span>
                           <input
-                            ref={(el) => { inputRefs.current[r][c] = el; }}
+                            ref={(el) => {
+                              if (!inputRefs.current[r]) inputRefs.current[r] = [];
+                              inputRefs.current[r][c] = el;
+                            }}
                             className="absolute inset-0 cursor-pointer opacity-0"
                             onKeyDown={(e) => handleKeyDown(e, r, c)}
                             onFocus={() => handleCellClick(r, c)}

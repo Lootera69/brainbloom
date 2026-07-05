@@ -2,11 +2,12 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Edit3, Trash2, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X } from "lucide-react";
+import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
 import { useUserStore } from "@/store/user-store";
 import { type Puzzle } from "@/types/puzzle";
+import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { toast } from "sonner";
 
 function fmtDate(ts: number) {
@@ -22,6 +23,7 @@ export default function StudioPage() {
   const [deleteTarget, setDeleteTarget] = useState<Puzzle | null>(null);
   const [confirmText, setConfirmText] = useState("");
   const [deleting, setDeleting] = useState(false);
+  const [testPuzzle, setTestPuzzle] = useState<Puzzle | null>(null);
   const completedPuzzleIds = useUserStore((s) => s.completedPuzzleIds);
 
   const load = async () => {
@@ -138,13 +140,13 @@ export default function StudioPage() {
                 </div>
               </div>
 
-              <div className="flex shrink-0 items-center gap-1">
+              <div className="flex shrink-0 items-center gap-1.5">
                 <button
-                  onClick={() => handleTogglePublish(puzzle.id)}
+                  onClick={() => { setTestPuzzle(puzzle); }}
                   className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                  title={puzzle.published ? "Unpublish" : "Publish"}
+                  title="Test"
                 >
-                  {puzzle.published ? <Globe className="size-4" /> : <Lock className="size-4" />}
+                  <Play className="size-4" />
                 </button>
                 <button
                   onClick={() => router.push(`/studio/edit/${puzzle.id}`)}
@@ -159,6 +161,17 @@ export default function StudioPage() {
                   title="Delete"
                 >
                   <Trash2 className="size-4" />
+                </button>
+                <button
+                  onClick={() => handleTogglePublish(puzzle.id)}
+                  className={`flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-all active:scale-[0.98] ${
+                    puzzle.published
+                      ? "bg-muted text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                      : "bg-success/10 text-success hover:bg-success/20"
+                  }`}
+                >
+                  {puzzle.published ? <Lock className="size-3.5" /> : <Globe className="size-3.5" />}
+                  {puzzle.published ? "Unpublish" : "Go Live"}
                 </button>
               </div>
             </motion.div>
@@ -243,6 +256,37 @@ export default function StudioPage() {
                   Delete
                 </button>
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* Test/Preview modal */}
+      <AnimatePresence>
+        {testPuzzle && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm"
+            onClick={() => setTestPuzzle(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl border bg-card p-6 shadow-xl"
+            >
+              <button
+                onClick={() => setTestPuzzle(null)}
+                className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted"
+              >
+                <X className="size-4" />
+              </button>
+              <PuzzlePlay
+                puzzle={testPuzzle}
+                onComplete={() => setTestPuzzle(null)}
+              />
             </motion.div>
           </motion.div>
         )}
