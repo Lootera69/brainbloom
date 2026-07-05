@@ -104,11 +104,16 @@ export async function getPuzzles(): Promise<Puzzle[]> {
 
   try {
     const firestore = await getFirestorePuzzles();
-    // Merge: Firestore is primary, localStorage fills any gaps
+    // Merge: prefer whichever version is newer by updatedAt
     const merged = [...firestore];
-    const fsIds = new Set(merged.map((p) => p.id));
+    const fsMap = new Map(merged.map((p) => [p.id, true]));
     for (const lp of local) {
-      if (!fsIds.has(lp.id)) merged.push(lp);
+      const idx = merged.findIndex((p) => p.id === lp.id);
+      if (idx >= 0) {
+        if (lp.updatedAt > merged[idx].updatedAt) merged[idx] = lp;
+      } else {
+        merged.push(lp);
+      }
     }
     return merged;
   } catch {
@@ -130,7 +135,7 @@ export async function getPuzzle(id: string): Promise<Puzzle | null> {
       const snap = await getDoc(ref);
       if (snap.exists()) return puzzleFromFirestore(snap.id, snap.data() as Record<string, unknown>);
     } catch {
-      return getLocalPuzzles().find((p) => p.id === id) ?? null;
+      // fall through to localStorage
     }
   }
   return getLocalPuzzles().find((p) => p.id === id) ?? null;
@@ -167,8 +172,8 @@ export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
         const ref = await addDoc(collection(db, "puzzles"), puzzleToFirestore(puzzle));
         puzzle = { ...puzzle, id: ref.id };
       }
-    } catch {
-      // Firestore failed, using localStorage
+    } catch (e) {
+      console.error("Firestore createPuzzle failed:", e);
     }
   }
 
@@ -187,10 +192,11 @@ export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): P
       if (db) {
         const ref = doc(db, "puzzles", id);
         const snap = await getDoc(ref);
-        if (!snap.exists()) return null;
-        await updateDoc(ref, { ...data, lastModifiedBy: user, updatedAt: Timestamp.fromMillis(now) });
-        const snap2 = await getDoc(ref);
-        updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
+        if (snap.exists()) {
+          await updateDoc(ref, { ...data, lastModifiedBy: user, updatedAt: Timestamp.fromMillis(now) });
+          const snap2 = await getDoc(ref);
+          updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
+        }
       }
     } catch {
       // fall through
@@ -239,15 +245,16 @@ export async function togglePublish(id: string): Promise<Puzzle | null> {
       if (db) {
         const ref = doc(db, "puzzles", id);
         const snap = await getDoc(ref);
-        if (!snap.exists()) return null;
-        const current = snap.data() as { published: boolean };
-        await updateDoc(ref, {
-          published: !current.published,
-          lastModifiedBy: user,
-          updatedAt: Timestamp.fromMillis(now),
-        });
-        const snap2 = await getDoc(ref);
-        updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
+        if (snap.exists()) {
+          const current = snap.data() as { published: boolean };
+          await updateDoc(ref, {
+            published: !current.published,
+            lastModifiedBy: user,
+            updatedAt: Timestamp.fromMillis(now),
+          });
+          const snap2 = await getDoc(ref);
+          updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
+        }
       }
     } catch {
       // fall through
