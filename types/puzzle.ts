@@ -32,6 +32,7 @@ export interface Puzzle {
   createdAt: number;
   lastModifiedBy: string;
   updatedAt: number;
+  completedBy: number;
 }
 
 export interface PuzzleFormData {

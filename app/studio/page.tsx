@@ -115,6 +115,12 @@ export default function StudioPage() {
                   <span>{puzzle.type === "true-false" ? "True/False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : "Multiple Choice"}</span>
                   <span>&middot;</span>
                   <span>{puzzle.xpReward} XP</span>
+                  {(puzzle.completedBy ?? 0) > 0 && (
+                    <>
+                      <span>&middot;</span>
+                      <span className="text-success">{puzzle.completedBy} completed</span>
+                    </>
+                  )}
                 </div>
                 <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-muted-foreground/70">
                   <span className="flex items-center gap-1">
@@ -211,13 +217,13 @@ export default function StudioPage() {
               </p>
               <p className="text-xs text-muted-foreground">This action cannot be undone.</p>
 
-              {completedCount(deleteTarget) > 0 && (
+              {(deleteTarget.completedBy ?? 0) > 0 && (
                 <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-destructive/20 bg-destructive/5 p-3">
                   <AlertTriangle className="mt-0.5 size-4 shrink-0 text-destructive" />
                   <div>
                     <p className="text-sm font-medium text-destructive">Completed by users</p>
                     <p className="text-xs text-muted-foreground">
-                      This puzzle has been completed {completedCount(deleteTarget)} time{completedCount(deleteTarget) !== 1 ? "s" : ""}.
+                      This puzzle has been completed {(deleteTarget.completedBy ?? 0)} time{(deleteTarget.completedBy ?? 0) !== 1 ? "s" : ""}.
                       Consider editing it instead to keep progress intact.
                     </p>
                   </div>

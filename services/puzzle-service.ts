@@ -11,6 +11,7 @@ import {
   query,
   orderBy,
   Timestamp,
+  increment,
 } from "firebase/firestore";
 
 const STORAGE_KEY = "brainbloom-puzzles";
@@ -56,6 +57,7 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
     createdAt: (data.createdAt as Timestamp)?.toMillis?.() ?? (data.createdAt as number),
     lastModifiedBy: data.lastModifiedBy as string,
     updatedAt: (data.updatedAt as Timestamp)?.toMillis?.() ?? (data.updatedAt as number),
+    completedBy: (data.completedBy as number) ?? 0,
   };
   if (data.crosswordData) {
     puzzle.crosswordData = data.crosswordData as CrosswordData;
@@ -78,6 +80,7 @@ function puzzleToFirestore(puzzle: Puzzle) {
     createdAt: Timestamp.fromMillis(puzzle.createdAt),
     lastModifiedBy: puzzle.lastModifiedBy,
     updatedAt: Timestamp.fromMillis(puzzle.updatedAt),
+    completedBy: puzzle.completedBy ?? 0,
   };
   if (puzzle.crosswordData) {
     data.crosswordData = puzzle.crosswordData;
@@ -160,6 +163,7 @@ export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
     id: generateId(),
     ...data,
     published: false,
+    completedBy: 0,
     createdBy: user,
     createdAt: now,
     lastModifiedBy: user,
@@ -273,6 +277,26 @@ export async function togglePublish(id: string): Promise<Puzzle | null> {
   local[idx] = { ...local[idx], published: !local[idx].published, lastModifiedBy: user, updatedAt: now };
   saveLocalPuzzles(local);
   return local[idx];
+}
+
+export async function incrementCompleted(id: string): Promise<void> {
+  if (isFirestoreAvailable()) {
+    try {
+      const { db } = getFirebase();
+      if (db) {
+        const ref = doc(db, "puzzles", id);
+        await updateDoc(ref, { completedBy: increment(1) });
+      }
+    } catch (e) {
+      console.error("Firestore incrementCompleted failed:", e);
+    }
+  }
+  const local = getLocalPuzzles();
+  const idx = local.findIndex((p) => p.id === id);
+  if (idx >= 0) {
+    local[idx] = { ...local[idx], completedBy: (local[idx].completedBy ?? 0) + 1 };
+    saveLocalPuzzles(local);
+  }
 }
 
 export function verifyStudioCredentials(inviteCode: string, password: string): boolean {

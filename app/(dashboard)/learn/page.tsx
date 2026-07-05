@@ -64,6 +64,9 @@ export default function LearnPage() {
       const firstTime = markPuzzleCompleted(currentPuzzle.id);
       if (firstTime) {
         addXp(xpEarned);
+        import("@/services/puzzle-service").then(({ incrementCompleted }) =>
+          incrementCompleted(currentPuzzle.id),
+        );
       }
     }
 
