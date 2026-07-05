@@ -56,7 +56,7 @@ interface UserState {
   nextHeartAt: number | null;
 
   loginAsGuest: () => void;
-  loginWithGoogle: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
+  setUser: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
   logout: () => void;
   syncToFirestore: () => void;
   loadFromFirestore: () => Promise<void>;
@@ -142,8 +142,7 @@ export const useUserStore = create<UserState>()(
         });
       },
 
-      loginWithGoogle: (user) => {
-        const state = get();
+      setUser: (user) => {
         set({
           userId: user.uid,
           displayName: user.displayName,
@@ -152,35 +151,78 @@ export const useUserStore = create<UserState>()(
           isGuest: false,
           isAuthenticated: true,
         });
-        setTimeout(() => get().loadFromFirestore(), 100);
+        setTimeout(async () => {
+          await get().loadFromFirestore();
+          setTimeout(() => get().syncToFirestore(), 200);
+        }, 100);
       },
 
       syncToFirestore: () => {
-        const { userId, isGuest, xp, streak, hearts, nextHeartAt, gems, completedPuzzleIds, questsRewarded, streakFreezes, lastActiveDate } = get();
-        if (!userId || isGuest) return;
+        const s = get();
+        if (!s.userId || s.isGuest) return;
         import("@/services/user-service").then(({ saveUserData }) =>
-          saveUserData(userId, { xp, streak, hearts, nextHeartAt, gems, completedPuzzleIds, questsRewarded, streakFreezes, lastActiveDate }),
+          saveUserData(s.userId, {
+            displayName: s.displayName,
+            email: s.email,
+            photoURL: s.photoURL,
+            xp: s.xp,
+            xpToday: s.xpToday,
+            streak: s.streak,
+            lastActiveDate: s.lastActiveDate,
+            hearts: s.hearts,
+            nextHeartAt: s.nextHeartAt,
+            level: s.level,
+            gems: s.gems,
+            dailyGoal: s.dailyGoal,
+            lastPlayedCategory: s.lastPlayedCategory,
+            history: s.history,
+            achievements: s.achievements,
+            lastRewardClaim: s.lastRewardClaim,
+            streakFreezes: s.streakFreezes,
+            practiceHeartsToday: s.practiceHeartsToday,
+            lastPracticeDate: s.lastPracticeDate,
+            dailyQuests: s.dailyQuests,
+            lastQuestRefresh: s.lastQuestRefresh,
+            completedPuzzleIds: s.completedPuzzleIds,
+            questsRewarded: s.questsRewarded,
+          }),
         );
       },
 
       loadFromFirestore: async () => {
-        const { userId, isGuest } = get();
-        if (!userId || isGuest) return;
+        const s = get();
+        if (!s.userId || s.isGuest) return;
         try {
           const { loadUserData } = await import("@/services/user-service");
-          const data = await loadUserData(userId);
+          const data = await loadUserData(s.userId);
           if (data) {
             set({
-              xp: data.xp,
-              streak: data.streak,
-              hearts: data.hearts,
-              nextHeartAt: data.nextHeartAt,
-              gems: data.gems,
-              completedPuzzleIds: data.completedPuzzleIds,
-              questsRewarded: data.questsRewarded,
-              streakFreezes: data.streakFreezes,
-              lastActiveDate: data.lastActiveDate,
+              displayName: data.displayName ?? s.displayName,
+              email: data.email ?? s.email,
+              photoURL: data.photoURL ?? s.photoURL,
+              xp: data.xp ?? s.xp,
+              xpToday: data.xpToday ?? s.xpToday,
+              streak: data.streak ?? s.streak,
+              lastActiveDate: data.lastActiveDate ?? s.lastActiveDate,
+              hearts: data.hearts ?? s.hearts,
+              nextHeartAt: data.nextHeartAt ?? s.nextHeartAt,
+              level: data.level ?? s.level,
+              gems: data.gems ?? s.gems,
+              dailyGoal: data.dailyGoal ?? s.dailyGoal,
+              lastPlayedCategory: data.lastPlayedCategory ?? s.lastPlayedCategory,
+              history: data.history ?? s.history,
+              achievements: data.achievements ?? s.achievements,
+              lastRewardClaim: data.lastRewardClaim ?? s.lastRewardClaim,
+              streakFreezes: data.streakFreezes ?? s.streakFreezes,
+              practiceHeartsToday: data.practiceHeartsToday ?? s.practiceHeartsToday,
+              lastPracticeDate: data.lastPracticeDate ?? s.lastPracticeDate,
+              dailyQuests: data.dailyQuests ?? s.dailyQuests,
+              lastQuestRefresh: data.lastQuestRefresh ?? s.lastQuestRefresh,
+              completedPuzzleIds: data.completedPuzzleIds ?? s.completedPuzzleIds,
+              questsRewarded: data.questsRewarded ?? s.questsRewarded,
             });
+          } else {
+            get().syncToFirestore();
           }
         } catch {}
       },

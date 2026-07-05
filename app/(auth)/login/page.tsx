@@ -25,7 +25,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [taglineIndex, setTaglineIndex] = useState(0);
   const loginAsGuest = useUserStore((s) => s.loginAsGuest);
-  const loginWithGoogle = useUserStore((s) => s.loginWithGoogle);
+  const setUser = useUserStore((s) => s.setUser);
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function LoginPage() {
     try {
       const user = await signInWithGoogle();
       if (user) {
-        loginWithGoogle({
+        setUser({
           uid: user.uid,
           displayName: user.displayName ?? "User",
           email: user.email,
