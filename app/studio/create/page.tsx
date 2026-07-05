@@ -7,6 +7,7 @@ import { ArrowLeft, Save, Loader2 } from "lucide-react";
 import { createPuzzle, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
 import { type PuzzleFormData, type PuzzleType, type CrosswordData } from "@/types/puzzle";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
+import { toast } from "sonner";
 
 const defaultCrossword: CrosswordData = {
   size: 10,
@@ -40,6 +41,7 @@ export default function CreatePuzzlePage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (form.type === "crossword" && (!form.crosswordData || form.crosswordData.clues.length === 0)) {
+      toast.error("Add at least one clue before saving.");
       return;
     }
     setSaving(true);

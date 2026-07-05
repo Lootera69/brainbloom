@@ -129,10 +129,25 @@ export async function getPuzzle(id: string): Promise<Puzzle | null> {
   return getLocalPuzzles().find((p) => p.id === id) ?? null;
 }
 
+function syncToLocal(puzzle: Puzzle) {
+  const local = getLocalPuzzles();
+  const idx = local.findIndex((p) => p.id === puzzle.id);
+  if (idx >= 0) {
+    local[idx] = puzzle;
+  } else {
+    local.unshift(puzzle);
+  }
+  saveLocalPuzzles(local);
+}
+
+function removeFromLocal(id: string) {
+  saveLocalPuzzles(getLocalPuzzles().filter((p) => p.id !== id));
+}
+
 export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
   const user = getStudioSession() || "unknown";
   const now = Date.now();
-  const puzzle: Puzzle = {
+  let puzzle: Puzzle = {
     id: generateId(),
     ...data,
     published: false,
@@ -147,22 +162,21 @@ export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
       const { db } = getFirebase();
       if (db) {
         const ref = await addDoc(collection(db, "puzzles"), puzzleToFirestore(puzzle));
-        return { ...puzzle, id: ref.id };
+        puzzle = { ...puzzle, id: ref.id };
       }
     } catch {
-      // fall through to localStorage
+      // Firestore failed, using localStorage
     }
   }
 
-  const local = getLocalPuzzles();
-  local.unshift(puzzle);
-  saveLocalPuzzles(local);
+  syncToLocal(puzzle);
   return puzzle;
 }
 
 export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): Promise<Puzzle | null> {
   const user = getStudioSession() || "unknown";
   const now = Date.now();
+  let updated: Puzzle | null = null;
 
   if (isFirestoreAvailable()) {
     try {
@@ -172,12 +186,17 @@ export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): P
         const snap = await getDoc(ref);
         if (!snap.exists()) return null;
         await updateDoc(ref, { ...data, lastModifiedBy: user, updatedAt: Timestamp.fromMillis(now) });
-        const updated = await getDoc(ref);
-        return puzzleFromFirestore(updated.id, updated.data() as Record<string, unknown>);
+        const snap2 = await getDoc(ref);
+        updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
       }
     } catch {
-      // fall through to localStorage
+      // fall through
     }
+  }
+
+  if (updated) {
+    syncToLocal(updated);
+    return updated;
   }
 
   const local = getLocalPuzzles();
@@ -193,25 +212,21 @@ export async function deletePuzzle(id: string): Promise<boolean> {
     try {
       const { db } = getFirebase();
       if (db) {
-        const ref = doc(db, "puzzles", id);
-        await deleteDoc(ref);
-        return true;
+        await deleteDoc(doc(db, "puzzles", id));
       }
     } catch {
-      // fall through to localStorage
+      // fall through
     }
   }
 
-  const local = getLocalPuzzles();
-  const filtered = local.filter((p) => p.id !== id);
-  if (filtered.length === local.length) return false;
-  saveLocalPuzzles(filtered);
+  removeFromLocal(id);
   return true;
 }
 
 export async function togglePublish(id: string): Promise<Puzzle | null> {
   const user = getStudioSession() || "unknown";
   const now = Date.now();
+  let updated: Puzzle | null = null;
 
   if (isFirestoreAvailable()) {
     try {
@@ -226,12 +241,17 @@ export async function togglePublish(id: string): Promise<Puzzle | null> {
           lastModifiedBy: user,
           updatedAt: Timestamp.fromMillis(now),
         });
-        const updated = await getDoc(ref);
-        return puzzleFromFirestore(updated.id, updated.data() as Record<string, unknown>);
+        const snap2 = await getDoc(ref);
+        updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
       }
     } catch {
-      // fall through to localStorage
+      // fall through
     }
+  }
+
+  if (updated) {
+    syncToLocal(updated);
+    return updated;
   }
 
   const local = getLocalPuzzles();
