@@ -99,14 +99,21 @@ async function getFirestorePuzzles(): Promise<Puzzle[]> {
 }
 
 export async function getPuzzles(): Promise<Puzzle[]> {
-  if (isFirestoreAvailable()) {
-    try {
-      return await getFirestorePuzzles();
-    } catch {
-      return getLocalPuzzles();
+  const local = getLocalPuzzles();
+  if (!isFirestoreAvailable()) return local;
+
+  try {
+    const firestore = await getFirestorePuzzles();
+    // Merge: Firestore is primary, localStorage fills any gaps
+    const merged = [...firestore];
+    const fsIds = new Set(merged.map((p) => p.id));
+    for (const lp of local) {
+      if (!fsIds.has(lp.id)) merged.push(lp);
     }
+    return merged;
+  } catch {
+    return local;
   }
-  return getLocalPuzzles();
 }
 
 export async function getPublishedPuzzles(): Promise<Puzzle[]> {
@@ -138,10 +145,6 @@ function syncToLocal(puzzle: Puzzle) {
     local.unshift(puzzle);
   }
   saveLocalPuzzles(local);
-}
-
-function removeFromLocal(id: string) {
-  saveLocalPuzzles(getLocalPuzzles().filter((p) => p.id !== id));
 }
 
 export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
@@ -219,8 +222,10 @@ export async function deletePuzzle(id: string): Promise<boolean> {
     }
   }
 
-  removeFromLocal(id);
-  return true;
+  const local = getLocalPuzzles();
+  const before = local.length;
+  saveLocalPuzzles(local.filter((p) => p.id !== id));
+  return local.length !== before;
 }
 
 export async function togglePublish(id: string): Promise<Puzzle | null> {
