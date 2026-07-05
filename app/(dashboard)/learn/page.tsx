@@ -2,13 +2,14 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, ArrowLeft } from "lucide-react";
+import { Heart, HeartCrack, ArrowLeft } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { PuzzleBrowser } from "@/features/puzzle/components/PuzzleBrowser";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { SectionHeader } from "@/features/home/components/SectionHeader";
 import { GlassCard } from "@/components/ui/glass-card";
 import { type Puzzle } from "@/types/puzzle";
+import { toast } from "sonner";
 
 type View = "browse" | "play" | "result";
 
@@ -146,7 +147,33 @@ export default function LearnPage() {
             <PuzzlePlay
               puzzle={currentPuzzle}
               onComplete={handleComplete}
-              onWrongAttempt={() => useHeart()}
+              onWrongAttempt={() => {
+                useHeart();
+                toast.custom(
+                  (t) => (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                      className="flex items-center gap-3 rounded-xl border border-red-500/20 bg-card px-4 py-3 shadow-lg"
+                    >
+                      <motion.span
+                        initial={{ scale: 1 }}
+                        animate={{ scale: [1, 1.3, 1] }}
+                        transition={{ duration: 0.4 }}
+                        className="flex size-8 items-center justify-center rounded-lg bg-destructive/10"
+                      >
+                        <HeartCrack className="size-4 text-destructive" />
+                      </motion.span>
+                      <div>
+                        <p className="text-sm font-semibold text-destructive">-1 Heart</p>
+                        <p className="text-xs text-muted-foreground">Wrong answer!</p>
+                      </div>
+                    </motion.div>
+                  ),
+                  { duration: 1500 },
+                );
+              }}
               isRepeat={hasCompletedPuzzle(currentPuzzle.id)}
             />
           </motion.div>
