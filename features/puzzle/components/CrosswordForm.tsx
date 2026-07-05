@@ -166,7 +166,7 @@ export function CrosswordForm({ value, onChange }: Props) {
                   }}
                   className={cn(
                     "relative flex items-center justify-center border border-foreground/10 text-sm font-bold transition-colors",
-                    cell === null ? "bg-foreground/20" : "bg-card hover:bg-primary/5 cursor-pointer",
+                    cell === null ? "bg-foreground/40" : "bg-card hover:bg-primary/5 cursor-pointer",
                     preview && cell !== null && "bg-background",
                   )}
                   style={{ width: "2.25rem", height: "2.25rem" }}

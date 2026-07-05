@@ -233,7 +233,7 @@ export function CrosswordPlay({ puzzle, onComplete, isRepeat }: Props) {
                       onClick={() => handleCellClick(r, c)}
                       className={cn(
                         "relative flex items-center justify-center border border-foreground/10 text-sm font-bold transition-colors",
-                        cell === null ? "bg-foreground/30 pointer-events-none" : "cursor-pointer",
+                        cell === null ? "bg-foreground/40 pointer-events-none" : "cursor-pointer",
                         isSelected && "ring-2 ring-primary",
                         isHighlighted && !isSelected && "bg-primary/8",
                         hasError && "bg-destructive/20",
