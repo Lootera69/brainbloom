@@ -8,6 +8,7 @@ import { PageTransition } from "@/components/common/page-transition";
 import { AnimatedBackground } from "@/features/home/components/AnimatedBackground";
 import { XPToast } from "@/features/home/components/XPToast";
 import { useUserStore } from "@/store/user-store";
+import { Toaster } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
@@ -44,6 +45,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh">
       <XPToast />
+      <Toaster />
       <AnimatedBackground />
       <Sidebar />
       <main
