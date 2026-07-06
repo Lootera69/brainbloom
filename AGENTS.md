@@ -36,6 +36,8 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   requiresExplanation?: boolean,
   explanation?: string,
   completedBy?: number,                // incremented via Firestore increment(1)
+  lessonContent?: string,               // numbered facts, one per line, shown before quiz
+  lessonOrder?: number,                 // position in Learning Path
 }
 ```
 
@@ -120,31 +122,27 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
    f. Type Answer puzzles with acceptedAnswers
    g. Role-based review workflow
    h. Image upload, invite codes, focus mode, heart mechanics
-3. ⬜ Content: seed 30-50 puzzles via Studio or LLM-generated JSON
-4. ⬜ Polish: analytics, sound effects, PWA manifest, offline support, bulk JSON import/export
+3. ✅ **Learning Path (Duolingo-style)**:
+   - `lessonContent?: string` and `lessonOrder?: number` added to Puzzle data model
+   - `LessonView` component: shows numbered facts + image before the quiz
+   - `CurriculumPath` component: lesson tree with locked/available/completed states
+   - Learn page shows Learning Path toggle for categories with lessons
+   - `PuzzleBrowser` emits category changes to detect lesson-enabled categories
+4. ⬜ Content: seed 30-50 puzzles via Studio or LLM-generated JSON
+5. ⬜ Polish: analytics, sound effects, PWA manifest, offline support, bulk JSON import/export
 
 ## Recent Changes (Session: Jul 2026)
-- Fixed admin invite code deletion: delete button disabled for admin role codes
-- Fixed type-answer result screen to show "Also accepted: ..." list
-- Confirmed `checkAnswer()` properly checks `acceptedAnswers[0], acceptedAnswers[1], ...`
-- Comma-separated input in Studio form field now correctly preserves all values
-- Added 5-second timer confirmation dialog for publish/unpublish and delete actions
-- Blocked contributors from deleting live puzzles (3 layers: UI disable + service guard)
-- Fixed player app showing "Multiple Choice" for type-answer puzzles
-- **Puzzle of the Day** feature (Option B + gamification):
-  - `services/daily-puzzle.ts`: auto-picks published puzzle deterministically (hash date → index), stores in Firestore `settings/daily-puzzle` doc with race-condition-safe transaction, localStorage fallback
-  - Admin can override via Studio dashboard "Set as Daily" button (Sparkles icon)
-  - Daily badge on Studio puzzle rows showing which puzzle is today's pick
-  - `DailyChallengeCard` is now dynamic: shows actual puzzle title, category, difficulty, type, 2x XP bonus, streak flame
-  - "Completed" state when user solved today's puzzle
-  - Learn page handles `?daily=true` query param to auto-start daily puzzle
-  - 2x XP + 5 gems bonus on daily puzzle completion
-  - Separate daily puzzle streak tracked in user store (`dailyPuzzleStreak`, `dailyPuzzleCompletedDate`, `dailyPuzzleLastDate`)
-  - Cross-device sync via Firestore `UserDocument` fields
-  - Edge cases handled: no published puzzles, midnight rollover, admin changes mid-day, guest fallback, Firestore race conditions, published check on pick
-- **Session (Jul 2026) — Bugfixes & polish:**
-  - Added "Submit for Approval" button on Studio dashboard list for contributors (draft/rejected/needs-discussion)
-  - Added "Discuss" filter tab to Studio dashboard with blue count badge
-  - Added "Note" badge next to status when admin left review comments
-  - Contributors can re-submit puzzles after admin marked as "needs-discussion"
-  - Admin codes cannot be deleted from settings page (delete button disabled for admin role codes)
+- Added admin code deletion prevention, confirmed acceptedAnswers checking, comma-split fix
+- Added 5-second timer confirmation for publish/unpublish/delete
+- Blocked contributors from deleting live puzzles
+- Fixed type-answer display in player app
+- **Puzzle of the Day** with auto-pick, admin override, streak tracking, 2x XP bonus
+- **Studio improvements**: Submit button on dashboard, Discuss filter tab, Note badge, re-submit needs-discussion
+- **Learning Path (Duolingo-style)**:
+  - `lessonContent` + `lessonOrder` fields on Puzzle type
+  - `LessonView` component — teaches facts before quiz, with image support
+  - `CurriculumPath` component — lesson tree with lock/unlock/completed states, sequential progression
+  - Learn page detects categories with lessons, shows toggle between All and Learning Path
+  - `PuzzleBrowser` now accepts `onCategoryChange` for lesson detection
+  - Studio create/edit forms include Lesson Content (one fact per line) and Lesson Order fields
+  - Edge cases: puzzles without lesson content skip lesson view; extras shown as bonus puzzles
