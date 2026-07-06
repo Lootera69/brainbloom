@@ -44,7 +44,7 @@ export function PuzzleBrowser({ onStartPuzzle }: Props) {
   const categoryData = CATEGORIES.map((c) => ({
     ...c,
     count: puzzles.filter((p) => p.category === c.value).length,
-    icon: (iconMap[c.value === "riddles" ? "lightbulb" : c.value === "science" ? "atom" : c.value === "sudoku" ? "grid" : "brain"]),
+    icon: (iconMap[c.value === "riddles" ? "lightbulb" : c.value === "science" ? "atom" : c.value === "puzzles" ? "grid" : "brain"]),
   }));
 
   const diffLabel = (v: string) => DIFFICULTIES.find((d) => d.value === v)?.label ?? v;

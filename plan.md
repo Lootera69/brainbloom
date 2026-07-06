@@ -141,7 +141,7 @@ Animated reveal.
 
 ---
 
-## 🔢 Sudoku
+## 🔢 Puzzles
 
 Mini Sudoku.
 

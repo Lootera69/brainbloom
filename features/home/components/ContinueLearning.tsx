@@ -11,7 +11,7 @@ export function ContinueLearning() {
 
   if (!lastPlayedCategory) return null;
 
-  const category = categories.find((c) => c.id.toString() === lastPlayedCategory);
+  const category = categories.find((c) => c.id === lastPlayedCategory);
   if (!category) return null;
 
   return (

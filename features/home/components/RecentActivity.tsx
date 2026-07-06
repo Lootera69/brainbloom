@@ -10,7 +10,7 @@ const categoryIcons: Record<string, typeof Brain> = {
   logic: Brain,
   riddle: Lightbulb,
   science: Atom,
-  sudoku: Grid2x2,
+  puzzles: Grid2x2,
 };
 
 function getIcon(category: string) {

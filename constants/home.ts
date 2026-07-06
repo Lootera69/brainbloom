@@ -1,13 +1,6 @@
-export const dailyChallenge = {
-  title: "Today's Puzzle",
-  description: "A fresh logic challenge awaits. Solve it to earn bonus XP and keep your streak alive.",
-  xp: 50,
-  category: "logic",
-};
-
 export const categories = [
   {
-    id: 1,
+    id: "logic",
     title: "Logic",
     icon: "brain",
     progress: 32,
@@ -17,7 +10,7 @@ export const categories = [
     description: "Reason your way through",
   },
   {
-    id: 2,
+    id: "riddles",
     title: "Riddles",
     icon: "lightbulb",
     progress: 54,
@@ -27,7 +20,7 @@ export const categories = [
     description: "Think outside the box",
   },
   {
-    id: 3,
+    id: "science",
     title: "Science",
     icon: "atom",
     progress: 12,
@@ -37,13 +30,13 @@ export const categories = [
     description: "Discover how things work",
   },
   {
-    id: 4,
-    title: "Sudoku",
+    id: "puzzles",
+    title: "Puzzles",
     icon: "grid",
     progress: 70,
     color: "#22c55e",
     gradient: "from-[#22c55e] to-[#10b981]",
     lightBg: "bg-emerald-50 dark:bg-emerald-950/30",
-    description: "Numbers meet logic",
+    description: "Solve brain-teasers and puzzles",
   },
 ] as const;

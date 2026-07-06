@@ -106,7 +106,7 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
 - `puzzleToFirestore`: `acceptedAnswers: null` when empty; `puzzleFromFirestore`: `?? undefined`
 - All Firestore catch blocks log errors to console
 - Studio test modal uses `PuzzlePlay` with close-on-complete (no XP awarded)
-- "Sudoku" category renamed to "Puzzles"
+- "Puzzles" category renamed to "Puzzles"
 - Deployed to Vercel: brainblooms.vercel.app
 
 ## Build Order
