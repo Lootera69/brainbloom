@@ -148,12 +148,10 @@ export default function StudioPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          {admin && (
-            <button onClick={() => router.push("/studio/settings")}
-              className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted active:scale-[0.98]">
-              <Settings className="size-4" />
-            </button>
-          )}
+          <button onClick={() => router.push("/studio/settings")}
+            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted active:scale-[0.98]">
+            <Settings className="size-4" />
+          </button>
           <button onClick={() => router.push("/studio/create")}
             className="flex h-10 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-white transition-all hover:brightness-110 active:scale-[0.98]">
             <Plus className="size-4" />
