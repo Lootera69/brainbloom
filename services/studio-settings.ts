@@ -32,10 +32,11 @@ function getLocalCodes(): InviteCodeEntry[] {
       const parsed = JSON.parse(raw);
       // Handle legacy object format { code: password }
       if (!Array.isArray(parsed)) {
+        const defaultMap = new Map(DEFAULT_CODES.map((d) => [d.code, d.role]));
         const migrated: InviteCodeEntry[] = Object.entries(parsed).map(([code, password]) => ({
           code,
           password: password as string,
-          role: "contributor" as const,
+          role: (defaultMap.get(code) ?? "contributor") as "admin" | "contributor",
         }));
         saveLocalCodes(migrated);
         return migrated;
@@ -61,7 +62,12 @@ async function getFirestoreCodes(): Promise<InviteCodeEntry[]> {
     const snap = await getDoc(ref);
     if (snap.exists()) {
       const data = snap.data() as { codes: InviteCodeEntry[] };
-      return data.codes ?? [];
+      const codes = data.codes ?? [];
+      const defaultMap = new Map(DEFAULT_CODES.map((d) => [d.code, d.role]));
+      return codes.map((c) => ({
+        ...c,
+        role: (c.role ?? defaultMap.get(c.code) ?? "contributor") as "admin" | "contributor",
+      }));
     }
     // Seed defaults on first access
     await setDoc(ref, {
