@@ -32,6 +32,7 @@ const FILTER_TABS = [
   { value: "pending", label: "Pending" },
   { value: "approved", label: "Approved" },
   { value: "rejected", label: "Rejected" },
+  { value: "needs-discussion", label: "Discuss" },
 ] as const;
 
 function fmtDate(ts: number) {
