@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X } from "lucide-react";
+import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
 import { useUserStore } from "@/store/user-store";
@@ -63,13 +63,21 @@ export default function StudioPage() {
             {puzzles.length} total &middot; {puzzles.filter((p) => p.published).length} published
           </p>
         </div>
-        <button
-          onClick={() => router.push("/studio/create")}
-          className="flex h-10 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-white transition-all hover:brightness-110 active:scale-[0.98]"
-        >
-          <Plus className="size-4" />
-          New Puzzle
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => router.push("/studio/settings")}
+            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted active:scale-[0.98]"
+          >
+            <Settings className="size-4" />
+          </button>
+          <button
+            onClick={() => router.push("/studio/create")}
+            className="flex h-10 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-white transition-all hover:brightness-110 active:scale-[0.98]"
+          >
+            <Plus className="size-4" />
+            New Puzzle
+          </button>
+        </div>
       </div>
 
       {loading ? (

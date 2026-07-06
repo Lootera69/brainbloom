@@ -16,12 +16,6 @@ import {
 
 const STORAGE_KEY = "brainbloom-puzzles";
 
-const STUDIO_CREDENTIALS: Record<string, string> = {
-  "alpha-2026": "bloom@123",
-  "beta-2026": "bloom@456",
-  "gamma-2026": "bloom@789",
-};
-
 function generateId() {
   return crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 }
@@ -308,10 +302,6 @@ export async function incrementCompleted(id: string): Promise<void> {
     local[idx] = { ...local[idx], completedBy: (local[idx].completedBy ?? 0) + 1 };
     saveLocalPuzzles(local);
   }
-}
-
-export function verifyStudioCredentials(inviteCode: string, password: string): boolean {
-  return STUDIO_CREDENTIALS[inviteCode] === password;
 }
 
 export function getStudioSession(): string | null {

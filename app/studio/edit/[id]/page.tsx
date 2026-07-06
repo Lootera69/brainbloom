@@ -179,13 +179,23 @@ export default function EditPuzzlePage() {
           </div>
           <div>
             <label className="mb-1.5 block text-sm font-medium">Difficulty</label>
-            <select value={form.difficulty} onChange={(e) => {
-              const diff = DIFFICULTIES.find((d) => d.value === e.target.value)!;
-              update("difficulty", diff.value as "easy" | "medium" | "hard"); update("xpReward", diff.xp);
-            }} className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary">
-              {DIFFICULTIES.map((d) => <option key={d.value} value={d.value}>{d.label} ({d.xp} XP)</option>)}
+            <select value={form.difficulty} onChange={(e) => update("difficulty", e.target.value as "easy" | "medium" | "hard")}
+              className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary">
+              {DIFFICULTIES.map((d) => <option key={d.value} value={d.value}>{d.label}</option>)}
             </select>
           </div>
+        </div>
+
+        <div>
+          <label className="mb-1.5 block text-sm font-medium">XP Reward</label>
+          <input value={form.xpReward} onChange={(e) => update("xpReward", Number(e.target.value) || 0)}
+            type="number" min={0} max={999} list="xp-presets"
+            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary" />
+          <datalist id="xp-presets">
+            {[10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((v) => (
+              <option key={v} value={v} />
+            ))}
+          </datalist>
         </div>
 
         {(isQuiz || isTypeAnswer) && (

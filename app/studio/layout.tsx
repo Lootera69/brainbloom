@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Sparkles, Lock, LogOut, Key, User } from "lucide-react";
-import { getStudioSession, setStudioSession, clearStudioSession, verifyStudioCredentials } from "@/services/puzzle-service";
+import { getStudioSession, setStudioSession, clearStudioSession } from "@/services/puzzle-service";
+import { verifyStudioCredentials } from "@/services/studio-settings";
 import { Toaster } from "sonner";
 
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
