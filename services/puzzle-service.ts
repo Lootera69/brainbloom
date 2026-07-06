@@ -347,9 +347,10 @@ export async function updatePuzzleReview(
         const ref = doc(db, "puzzles", id);
         const snap = await getDoc(ref);
         if (snap.exists()) {
+          const isReview = reviewStatus === "approved" || reviewStatus === "rejected" || reviewStatus === "needs-discussion";
           await updateDoc(ref, {
             reviewStatus,
-            reviewedBy: user,
+            reviewedBy: isReview ? user : null,
             reviewNote: reviewNote ?? null,
             lastModifiedBy: user,
             updatedAt: Timestamp.fromMillis(now),
@@ -371,10 +372,11 @@ export async function updatePuzzleReview(
   const local = getLocalPuzzles();
   const idx = local.findIndex((p) => p.id === id);
   if (idx === -1) return null;
+  const isReview = reviewStatus === "approved" || reviewStatus === "rejected" || reviewStatus === "needs-discussion";
   local[idx] = {
     ...local[idx],
     reviewStatus,
-    reviewedBy: user,
+    reviewedBy: isReview ? user : undefined,
     reviewNote: reviewNote ?? undefined,
     lastModifiedBy: user,
     updatedAt: now,
