@@ -135,6 +135,7 @@ export default function StudioPage() {
   const diffLabel = (v: string) => DIFFICULTIES.find((d) => d.value === v)?.label ?? v;
 
   const pendingCount = puzzles.filter((p) => p.reviewStatus === "pending").length;
+  const discussCount = puzzles.filter((p) => p.reviewStatus === "needs-discussion").length;
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-6">
@@ -173,6 +174,9 @@ export default function StudioPage() {
             {tab.label}
             {tab.value === "pending" && pendingCount > 0 && (
               <span className="ml-1.5 rounded-full bg-amber-500/20 px-1.5 text-[10px] text-amber-600 dark:text-amber-400">{pendingCount}</span>
+            )}
+            {tab.value === "needs-discussion" && discussCount > 0 && (
+              <span className="ml-1.5 rounded-full bg-blue-500/20 px-1.5 text-[10px] text-blue-600 dark:text-blue-400">{discussCount}</span>
             )}
           </button>
         ))}
