@@ -28,7 +28,20 @@ function getLocalCodes(): InviteCodeEntry[] {
   if (typeof window === "undefined") return [...DEFAULT_CODES];
   try {
     const raw = localStorage.getItem(CODES_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      // Handle legacy object format { code: password }
+      if (!Array.isArray(parsed)) {
+        const migrated: InviteCodeEntry[] = Object.entries(parsed).map(([code, password]) => ({
+          code,
+          password: password as string,
+          role: "contributor" as const,
+        }));
+        saveLocalCodes(migrated);
+        return migrated;
+      }
+      return parsed;
+    }
   } catch {
     /* ignore */
   }
