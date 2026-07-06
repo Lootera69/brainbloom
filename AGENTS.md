@@ -142,3 +142,9 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   - Separate daily puzzle streak tracked in user store (`dailyPuzzleStreak`, `dailyPuzzleCompletedDate`, `dailyPuzzleLastDate`)
   - Cross-device sync via Firestore `UserDocument` fields
   - Edge cases handled: no published puzzles, midnight rollover, admin changes mid-day, guest fallback, Firestore race conditions, published check on pick
+- **Session (Jul 2026) — Bugfixes & polish:**
+  - Added "Submit for Approval" button on Studio dashboard list for contributors (draft/rejected/needs-discussion)
+  - Added "Discuss" filter tab to Studio dashboard with blue count badge
+  - Added "Note" badge next to status when admin left review comments
+  - Contributors can re-submit puzzles after admin marked as "needs-discussion"
+  - Admin codes cannot be deleted from settings page (delete button disabled for admin role codes)
