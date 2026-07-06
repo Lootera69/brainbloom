@@ -19,12 +19,13 @@ const iconMap: Record<string, typeof Brain> = {
 interface Props {
   onStartPuzzle: (puzzle: Puzzle) => void;
   onCategoryChange?: (category: string | null) => void;
+  category?: string;
+  hideFilters?: boolean;
 }
 
-export function PuzzleBrowser({ onStartPuzzle, onCategoryChange }: Props) {
+export function PuzzleBrowser({ onStartPuzzle, onCategoryChange, category, hideFilters }: Props) {
   const [puzzles, setPuzzles] = useState<Puzzle[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCat, setSelectedCat] = useState<string | null>(null);
   const [selectedDiff, setSelectedDiff] = useState<string | null>(null);
   const completedPuzzleIds = useUserStore((s) => s.completedPuzzleIds);
 
@@ -37,7 +38,7 @@ export function PuzzleBrowser({ onStartPuzzle, onCategoryChange }: Props) {
   }, []);
 
   const filtered = puzzles.filter((p) => {
-    if (selectedCat && p.category !== selectedCat) return false;
+    if (category && p.category !== category) return false;
     if (selectedDiff && p.difficulty !== selectedDiff) return false;
     return true;
   });
@@ -49,6 +50,11 @@ export function PuzzleBrowser({ onStartPuzzle, onCategoryChange }: Props) {
   }));
 
   const diffLabel = (v: string) => DIFFICULTIES.find((d) => d.value === v)?.label ?? v;
+
+  // Notify parent of initial category
+  useEffect(() => {
+    if (category) onCategoryChange?.(category);
+  }, [category]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (loading) {
     return (
@@ -67,57 +73,71 @@ export function PuzzleBrowser({ onStartPuzzle, onCategoryChange }: Props) {
     );
   }
 
+  if (category && filtered.length === 0) {
+    const catLabel = CATEGORIES.find((c) => c.value === category)?.label ?? category;
+    return (
+      <div className="rounded-2xl border border-dashed py-20 text-center">
+        <p className="text-sm text-muted-foreground">No puzzles in {catLabel} yet.</p>
+        <p className="mt-1 text-xs text-muted-foreground">Check back soon!</p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
-      {/* Category filter */}
-      <div className="flex flex-wrap gap-2">
-        <button
-          onClick={() => { setSelectedCat(null); onCategoryChange?.(null); }}
-          className={cn(
-            "shrink-0 rounded-xl border px-4 py-2 text-xs font-medium transition-all",
-            !selectedCat ? "border-primary bg-primary/10 text-primary" : "hover:bg-muted",
-          )}
-        >
-          All
-        </button>
-        {categoryData.map((cat) => {
-          const Icon = cat.icon;
-          return (
+      {!hideFilters && (
+        <>
+          {/* Category filter */}
+          <div className="flex flex-wrap gap-2">
             <button
-              key={cat.value}
-              onClick={() => { const next = selectedCat === cat.value ? null : cat.value; setSelectedCat(next); onCategoryChange?.(next); }}
+              onClick={() => { onCategoryChange?.(null); }}
               className={cn(
-                "flex shrink-0 items-center gap-1.5 rounded-xl border px-4 py-2 text-xs font-medium transition-all",
-                selectedCat === cat.value
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "hover:bg-muted",
+                "shrink-0 rounded-xl border px-4 py-2 text-xs font-medium transition-all",
+                !category ? "border-primary bg-primary/10 text-primary" : "hover:bg-muted",
               )}
             >
-              <Icon className="size-3.5" />
-              {cat.label}
-              <span className="text-muted-foreground">({cat.count})</span>
+              All
             </button>
-          );
-        })}
-      </div>
+            {categoryData.map((cat) => {
+              const Icon = cat.icon;
+              return (
+                <button
+                  key={cat.value}
+                  onClick={() => { const next = category === cat.value ? null : cat.value; onCategoryChange?.(next); }}
+                  className={cn(
+                    "flex shrink-0 items-center gap-1.5 rounded-xl border px-4 py-2 text-xs font-medium transition-all",
+                    category === cat.value
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "hover:bg-muted",
+                  )}
+                >
+                  <Icon className="size-3.5" />
+                  {cat.label}
+                  <span className="text-muted-foreground">({cat.count})</span>
+                </button>
+              );
+            })}
+          </div>
 
-      {/* Difficulty filter */}
-      <div className="flex gap-2 flex-wrap">
-        {DIFFICULTIES.map((d) => (
-          <button
-            key={d.value}
-            onClick={() => setSelectedDiff(selectedDiff === d.value ? null : d.value)}
-            className={cn(
-              "rounded-lg px-3 py-1.5 text-xs font-medium transition-all",
-              selectedDiff === d.value
-                ? "bg-primary/10 text-primary"
-                : "text-muted-foreground hover:bg-muted",
-            )}
-          >
-            {d.label}
-          </button>
-        ))}
-      </div>
+          {/* Difficulty filter */}
+          <div className="flex gap-2 flex-wrap">
+            {DIFFICULTIES.map((d) => (
+              <button
+                key={d.value}
+                onClick={() => setSelectedDiff(selectedDiff === d.value ? null : d.value)}
+                className={cn(
+                  "rounded-lg px-3 py-1.5 text-xs font-medium transition-all",
+                  selectedDiff === d.value
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-muted",
+                )}
+              >
+                {d.label}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
 
       {/* Puzzle list */}
       <div className="space-y-3">

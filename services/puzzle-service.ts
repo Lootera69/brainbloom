@@ -61,6 +61,8 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
     reviewNote: (data.reviewNote as string) ?? undefined,
     lessonContent: (data.lessonContent as string) ?? undefined,
     lessonOrder: (data.lessonOrder as number) ?? undefined,
+    lessonGroup: (data.lessonGroup as string) ?? undefined,
+    lessonGroupOrder: (data.lessonGroupOrder as number) ?? undefined,
   };
   if (data.crosswordData) {
     puzzle.crosswordData = data.crosswordData as CrosswordData;
@@ -93,6 +95,8 @@ function puzzleToFirestore(puzzle: Puzzle) {
     reviewNote: puzzle.reviewNote ?? null,
     lessonContent: puzzle.lessonContent ?? null,
     lessonOrder: puzzle.lessonOrder ?? null,
+    lessonGroup: puzzle.lessonGroup ?? null,
+    lessonGroupOrder: puzzle.lessonGroupOrder ?? null,
   };
   if (puzzle.crosswordData) {
     data.crosswordData = puzzle.crosswordData;
@@ -150,7 +154,11 @@ export async function categoryHasLessons(category: string): Promise<boolean> {
 export async function getPublishedByCategory(category: string): Promise<Puzzle[]> {
   const all = await getPublishedPuzzles();
   return all.filter((p) => p.category === category)
-    .sort((a, b) => (a.lessonOrder ?? 999) - (b.lessonOrder ?? 999));
+    .sort((a, b) => {
+      const go = (a.lessonGroupOrder ?? 999) - (b.lessonGroupOrder ?? 999);
+      if (go !== 0) return go;
+      return (a.lessonOrder ?? 999) - (b.lessonOrder ?? 999);
+    });
 }
 
 export async function getPuzzle(id: string): Promise<Puzzle | null> {
@@ -433,3 +441,10 @@ export const DIFFICULTIES = [
   { value: "medium", label: "Medium", xp: 25 },
   { value: "hard", label: "Hard", xp: 50 },
 ];
+
+export async function getUsedLessonOrders(category: string, lessonGroup: string): Promise<number[]> {
+  const all = await getPublishedPuzzles();
+  return all
+    .filter((p) => p.category === category && p.lessonGroup === lessonGroup && p.lessonOrder != null)
+    .map((p) => p.lessonOrder as number);
+}

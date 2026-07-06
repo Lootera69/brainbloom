@@ -5,8 +5,9 @@ import { useRouter, useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Save, Loader2, Trash2, ImageUp, X, Loader as Spinner, Send, CheckCircle2, XCircle, MessageSquare } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
-import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
+import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
+import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
 import { type PuzzleFormData, type PuzzleType, type CrosswordData, type ReviewStatus } from "@/types/puzzle";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
 import { toast } from "sonner";
@@ -91,6 +92,8 @@ export default function EditPuzzlePage() {
         acceptedAnswers: puzzle.acceptedAnswers ?? undefined,
         lessonContent: puzzle.lessonContent ?? undefined,
         lessonOrder: puzzle.lessonOrder ?? undefined,
+        lessonGroup: puzzle.lessonGroup ?? undefined,
+        lessonGroupOrder: puzzle.lessonGroupOrder ?? undefined,
       });
       setPuzzleStatus(puzzle.reviewStatus ?? "draft");
       setPuzzlePublished(puzzle.published);
@@ -102,6 +105,33 @@ export default function EditPuzzlePage() {
 
   const update = <K extends keyof PuzzleFormData>(key: K, value: PuzzleFormData[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
+
+  // Lesson group state
+  const [lessonGroups, setLessonGroups] = useState<LessonGroupEntry[]>([]);
+  const [availableOrders, setAvailableOrders] = useState<number[]>([]);
+
+  const isQuiz = form.type === "multiple-choice" || form.type === "true-false";
+  const isTypeAnswer = form.type === "type-answer";
+  const isCrossword = form.type === "crossword";
+
+  useEffect(() => {
+    if (form.category && (isQuiz || isTypeAnswer)) {
+      getLessonGroups(form.category).then(setLessonGroups);
+    } else {
+      setLessonGroups([]);
+    }
+  }, [form.category]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (form.category && form.lessonGroup) {
+      getUsedLessonOrders(form.category, form.lessonGroup).then((used) => {
+        const all = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        setAvailableOrders(all.filter((o) => !used.includes(o) || o === form.lessonOrder));
+      });
+    } else {
+      setAvailableOrders([]);
+    }
+  }, [form.category, form.lessonGroup]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateChoice = (i: number, value: string) => {
     const choices = [...(form.choices || ["", "", "", ""])];
@@ -192,10 +222,6 @@ export default function EditPuzzlePage() {
       setForm((f) => ({ ...f, type, choices, correctAnswer: "", crosswordData: undefined }));
     }
   };
-
-  const isQuiz = form.type === "multiple-choice" || form.type === "true-false";
-  const isTypeAnswer = form.type === "type-answer";
-  const isCrossword = form.type === "crossword";
 
   if (loading) {
     return (
@@ -397,6 +423,77 @@ export default function EditPuzzlePage() {
         {(isQuiz || isTypeAnswer) && (
           <>
             <hr className="border-muted" />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="col-span-2 sm:col-span-1">
+                <label className="mb-1.5 block text-sm font-medium">
+                  Lesson Group <span className="text-muted-foreground font-normal">(optional)</span>
+                </label>
+                {lessonGroups.length > 0 ? (
+                  <select
+                    value={form.lessonGroup ?? ""}
+                    onChange={(e) => {
+                      const selected = lessonGroups.find((g) => g.name === e.target.value);
+                      update("lessonGroup", e.target.value || undefined);
+                      if (selected) update("lessonGroupOrder", selected.order);
+                    }}
+                    className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                  >
+                    <option value="">-- Select lesson group --</option>
+                    {lessonGroups.map((g) => (
+                      <option key={g.name} value={g.name}>Lesson {g.order}: {g.name}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    value={form.lessonGroup ?? ""}
+                    onChange={(e) => update("lessonGroup", e.target.value)}
+                    placeholder="e.g. Counting"
+                    className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                  />
+                )}
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {lessonGroups.length > 0
+                    ? "Select from the configured lesson groups."
+                    : "Configure lesson groups in Settings first."}
+                </p>
+              </div>
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">
+                Sub-lesson Order <span className="text-muted-foreground font-normal">(optional)</span>
+              </label>
+              {form.lessonGroup && availableOrders.length > 0 ? (
+                <select
+                  value={form.lessonOrder ?? ""}
+                  onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
+                  className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                >
+                  <option value="">-- Select order --</option>
+                  {availableOrders.map((o) => (
+                    <option key={o} value={o}>Sub-lesson {o}</option>
+                  ))}
+                </select>
+              ) : form.lessonGroup && availableOrders.length === 0 ? (
+                <div className="rounded-xl border bg-card px-4 py-2.5 text-sm text-muted-foreground">
+                  All orders 1–10 are taken for this group. Edit another puzzle to free one up.
+                </div>
+              ) : (
+                <input
+                  value={form.lessonOrder ?? ""}
+                  onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
+                  type="number"
+                  min={1}
+                  max={10}
+                  placeholder="e.g. 1"
+                  className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                />
+              )}
+              <p className="mt-1 text-xs text-muted-foreground">
+                {form.lessonGroup
+                  ? "Position within the lesson group. Only available orders are shown."
+                  : "Select a lesson group first to see available orders."}
+              </p>
+            </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">
                 Lesson Content <span className="text-muted-foreground font-normal">(optional)</span>
@@ -410,23 +507,6 @@ export default function EditPuzzlePage() {
               />
               <p className="mt-1 text-xs text-muted-foreground">
                 Each line becomes a numbered fact shown before the quiz.
-              </p>
-            </div>
-            <div>
-              <label className="mb-1.5 block text-sm font-medium">
-                Lesson Order <span className="text-muted-foreground font-normal">(optional)</span>
-              </label>
-              <input
-                value={form.lessonOrder ?? ""}
-                onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
-                type="number"
-                min={1}
-                max={999}
-                placeholder="e.g. 1"
-                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
-              />
-              <p className="mt-1 text-xs text-muted-foreground">
-                Puzzles with lesson order appear in the Learning Path.
               </p>
             </div>
           </>

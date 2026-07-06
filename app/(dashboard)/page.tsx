@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   categories,
 } from "@/constants/home";
@@ -47,7 +48,9 @@ export default function HomePage() {
       </section>
 
       <div className="mb-8 sm:mb-10">
-        <ContinueLearning />
+        <Link href="/learn">
+          <ContinueLearning />
+        </Link>
       </div>
 
       <section className="mb-8 sm:mb-10">
@@ -55,11 +58,12 @@ export default function HomePage() {
 
         <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {categories.map((category, i) => (
-            <CategoryCard
-              key={category.id}
-              {...category}
-              index={i}
-            />
+            <Link key={category.id} href={`/learn?category=${category.id}`}>
+              <CategoryCard
+                {...category}
+                index={i}
+              />
+            </Link>
           ))}
         </div>
       </section>

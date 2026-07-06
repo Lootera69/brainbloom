@@ -43,6 +43,8 @@ export interface Puzzle {
   completedBy: number;
   lessonContent?: string;
   lessonOrder?: number;
+  lessonGroup?: string;
+  lessonGroupOrder?: number;
 }
 
 export interface PuzzleFormData {
@@ -62,4 +64,6 @@ export interface PuzzleFormData {
   explanation: string;
   lessonContent?: string;
   lessonOrder?: number;
+  lessonGroup?: string;
+  lessonGroupOrder?: number;
 }

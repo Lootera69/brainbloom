@@ -128,8 +128,16 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
    - `CurriculumPath` component: lesson tree with locked/available/completed states
    - Learn page shows Learning Path toggle for categories with lessons
    - `PuzzleBrowser` emits category changes to detect lesson-enabled categories
-4. ⬜ Content: seed 30-50 puzzles via Studio or LLM-generated JSON
-5. ⬜ Polish: analytics, sound effects, PWA manifest, offline support, bulk JSON import/export
+4. ✅ **Sub-lesson Groups + Hierarchy Management**:
+   - `lessonGroup?: string` and `lessonGroupOrder?: number` added to Puzzle data model
+   - `services/lesson-service.ts`: CRUD for lesson groups per category (Firestore + localStorage)
+   - Settings page: Lesson Hierarchy section (add/edit/delete groups), admin-only invite codes
+   - CurriculumPath shows collapsible Lesson groups with numbered sub-lessons (1.1, 1.2, etc.)
+   - Sequential unlock: complete all sub-lessons in a group → next group unlocks
+   - Studio create/edit: Lesson Group picklist from settings; Sub-lesson Order picklist (1-10, excludes taken orders)
+   - `getUsedLessonOrders()` helper prevents duplicate sub-lesson orders per group
+5. ⬜ Content: seed 30-50 puzzles via Studio or LLM-generated JSON
+6. ⬜ Polish: analytics, sound effects, PWA manifest, offline support, bulk JSON import/export
 
 ## Recent Changes (Session: Jul 2026)
 - Added admin code deletion prevention, confirmed acceptedAnswers checking, comma-split fix
@@ -146,3 +154,8 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   - `PuzzleBrowser` now accepts `onCategoryChange` for lesson detection
   - Studio create/edit forms include Lesson Content (one fact per line) and Lesson Order fields
   - Edge cases: puzzles without lesson content skip lesson view; extras shown as bonus puzzles
+- **Learn page redesign**: categories grid first (like home page), click → puzzles view, linked from home page cards
+- **Sub-lesson Groups**: `lessonGroup` + `lessonGroupOrder` fields, groups defined in Settings, auto-filled on puzzle creation
+- **Settings page**: Lesson Hierarchy section (both admin/contributor), invite codes section (admin-only)
+- **Dynamic picklists**: Lesson Group picklist from settings, Sub-lesson Order picklist (1-10, excludes taken orders)
+- **CurriculumPath rewrite**: collapsible lesson groups with numbered sub-lessons, sequential unlock per group

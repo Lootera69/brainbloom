@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, HeartCrack, ArrowLeft, Sparkles, BookOpen, List } from "lucide-react";
+import { Heart, HeartCrack, ArrowLeft, Sparkles, Brain, Lightbulb, Atom, Grid2x2, ArrowRight } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
-import { PuzzleBrowser } from "@/features/puzzle/components/PuzzleBrowser";
 import { CurriculumPath } from "@/features/puzzle/components/CurriculumPath";
 import { LessonView } from "@/features/puzzle/components/LessonView";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
@@ -14,9 +14,16 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { type Puzzle } from "@/types/puzzle";
 import { toast } from "sonner";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
-import { categoryHasLessons } from "@/services/puzzle-service";
+import { categories } from "@/constants/home";
 
-type View = "browse" | "lesson" | "play";
+type View = "categories" | "browse" | "lesson" | "play";
+
+const iconMap: Record<string, typeof Brain> = {
+  brain: Brain,
+  lightbulb: Lightbulb,
+  atom: Atom,
+  grid: Grid2x2,
+};
 
 function formatHeartTimer(ms: number): string {
   if (ms <= 0) return "Full";
@@ -29,13 +36,12 @@ function formatHeartTimer(ms: number): string {
 }
 
 export default function LearnPage() {
-  const [view, setView] = useState<View>("browse");
+  const router = useRouter();
+  const [view, setView] = useState<View>("categories");
   const [currentPuzzle, setCurrentPuzzle] = useState<Puzzle | null>(null);
   const [timer, setTimer] = useState(0);
   const [isDaily, setIsDaily] = useState(false);
   const [selectedCat, setSelectedCat] = useState<string | null>(null);
-  const [showCurriculum, setShowCurriculum] = useState(false);
-  const [catHasLessons, setCatHasLessons] = useState(false);
 
   const hearts = useUserStore((s) => s.hearts);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
@@ -50,6 +56,7 @@ export default function LearnPage() {
   const hasCompletedPuzzle = useUserStore((s) => s.hasCompletedPuzzle);
   const completeDailyPuzzle = useUserStore((s) => s.completeDailyPuzzle);
   const hasCompletedDailyPuzzle = useUserStore((s) => s.hasCompletedDailyPuzzle);
+  const setLastPlayedCategory = useUserStore((s) => s.setLastPlayedCategory);
 
   useEffect(() => {
     const tick = () => {
@@ -61,7 +68,7 @@ export default function LearnPage() {
     return () => clearInterval(interval);
   }, [processHeartRefill, getHeartTimer]);
 
-  // Handle ?daily=true
+  // Handle ?daily=true and ?category=id
   useEffect(() => {
     (async () => {
       const params = new URLSearchParams(window.location.search);
@@ -73,24 +80,31 @@ export default function LearnPage() {
           setView("play");
           setFocusMode(true);
         }
+      } else if (params.get("category")) {
+        const cat = params.get("category");
+        setSelectedCat(cat);
+        setView("browse");
       }
     })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Check if selected category has lessons
-  useEffect(() => {
-    if (!selectedCat) { setShowCurriculum(false); setCatHasLessons(false); return; }
-    (async () => {
-      const h = await categoryHasLessons(selectedCat);
-      setCatHasLessons(h);
-    })();
-  }, [selectedCat]);
+  const handleSelectCategory = (catId: string) => {
+    setSelectedCat(catId);
+    setView("browse");
+    router.push(`/learn?category=${catId}`, { scroll: false });
+  };
+
+  const handleBackToCategories = () => {
+    setSelectedCat(null);
+    setView("categories");
+    router.push("/learn", { scroll: false });
+  };
 
   const handleStartPuzzle = useCallback((puzzle: Puzzle) => {
     if (hearts <= 0) return;
     setIsDaily(false);
+    setLastPlayedCategory(puzzle.category);
 
-    // If puzzle has lesson content, show lesson view first
     if (puzzle.lessonContent?.trim()) {
       setCurrentPuzzle(puzzle);
       setView("lesson");
@@ -100,7 +114,7 @@ export default function LearnPage() {
       setView("play");
       setFocusMode(true);
     }
-  }, [hearts, setFocusMode]);
+  }, [hearts, setFocusMode, setLastPlayedCategory]);
 
   const handleStartQuiz = useCallback(() => {
     setView("play");
@@ -154,21 +168,22 @@ export default function LearnPage() {
   };
 
   const handleCategoryChange = (cat: string | null) => {
-    setSelectedCat(cat);
-    setShowCurriculum(false);
+    if (cat === null) {
+      handleBackToCategories();
+    }
   };
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-5 sm:p-6">
       <AnimatePresence mode="wait">
-        {view === "browse" && (
+        {view === "categories" && (
           <motion.div
-            key="browse"
+            key="categories"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, y: -10 }}
           >
-            <SectionHeader title="Learn" subtitle="Pick a puzzle to solve" />
+            <SectionHeader title="Learn" subtitle="Pick a category to explore" />
             {hearts <= 0 ? (
               <GlassCard intensity="light" className="mx-auto mt-6 max-w-md p-6 text-center">
                 <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-destructive/10">
@@ -199,35 +214,150 @@ export default function LearnPage() {
                   </div>
                 )}
 
-                {/* Curriculum toggle */}
-                {catHasLessons && (
-                  <div className="mb-4 flex items-center gap-2">
-                    <button
-                      onClick={() => setShowCurriculum(false)}
-                      className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
-                        !showCurriculum ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted"
-                      }`}
-                    >
-                      <List className="size-3.5" />
-                      All
-                    </button>
-                    <button
-                      onClick={() => setShowCurriculum(true)}
-                      className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
-                        showCurriculum ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted"
-                      }`}
-                    >
-                      <BookOpen className="size-3.5" />
-                      Learning Path
-                    </button>
+                <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
+                  {categories.map((cat, i) => {
+                    const Icon = iconMap[cat.icon];
+                    return (
+                      <motion.div
+                        key={cat.id}
+                        className="h-full"
+                        initial={{ opacity: 0, y: 40, rotateX: 10 }}
+                        animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                        transition={{
+                          delay: 0.2 + i * 0.08,
+                          type: "spring",
+                          stiffness: 100,
+                          damping: 16,
+                        }}
+                      >
+                        <GlassCard
+                          tint={cat.color}
+                          hover
+                          onClick={() => handleSelectCategory(cat.id)}
+                          className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl p-5"
+                        >
+                          <div
+                            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            style={{
+                              background: `radial-gradient(500px circle at 50% 50%, ${cat.color}15, transparent 60%)`,
+                            }}
+                          />
+
+                          <div className="relative z-10 flex items-center gap-3">
+                            <motion.span
+                              initial={{ scale: 0, rotate: -90 }}
+                              animate={{ scale: 1, rotate: 0 }}
+                              transition={{
+                                delay: 0.3 + i * 0.08,
+                                type: "spring",
+                                stiffness: 200,
+                              }}
+                              className="relative flex size-11 shrink-0 items-center justify-center rounded-xl sm:size-12"
+                              style={{ backgroundColor: `${cat.color}18` }}
+                            >
+                              <span
+                                className="absolute inset-0 rounded-xl opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-60"
+                                style={{ backgroundColor: cat.color }}
+                              />
+                              <Icon className="relative size-5 sm:size-6" style={{ color: cat.color }} />
+                            </motion.span>
+                            <div className="min-w-0">
+                              <h3 className="font-heading text-base font-semibold sm:text-lg">
+                                {cat.title}
+                              </h3>
+                              <p className="text-xs text-muted-foreground sm:text-sm">
+                                {cat.description}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="relative z-10 mt-auto">
+                            <div className="flex items-center justify-end">
+                              <motion.span
+                                initial={{ x: 0 }}
+                                whileHover={{ x: 3 }}
+                                className="flex items-center gap-1 text-xs text-muted-foreground transition-colors group-hover:text-foreground"
+                              >
+                                Explore
+                                <ArrowRight className="size-3.5" />
+                              </motion.span>
+                            </div>
+                          </div>
+                        </GlassCard>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
+          </motion.div>
+        )}
+
+        {view === "browse" && (
+          <motion.div
+            key="browse"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+          >
+            <button
+              onClick={handleBackToCategories}
+              className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ArrowLeft className="size-4" />
+              All categories
+            </button>
+
+            {selectedCat && (
+              <div className="mb-5 flex items-center gap-3">
+                {(() => {
+                  const cat = categories.find((c) => c.id === selectedCat);
+                  if (!cat) return null;
+                  const Icon = iconMap[cat.icon];
+                  return (
+                    <>
+                      <span className="flex size-9 items-center justify-center rounded-xl" style={{ backgroundColor: `${cat.color}18` }}>
+                        <Icon className="size-5" style={{ color: cat.color }} />
+                      </span>
+                      <h2 className="font-heading text-xl font-bold">{cat.title}</h2>
+                    </>
+                  );
+                })()}
+              </div>
+            )}
+
+            {hearts <= 0 ? (
+              <GlassCard intensity="light" className="mx-auto mt-6 max-w-md p-6 text-center">
+                <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-destructive/10">
+                  <Heart className="size-7 text-destructive" />
+                </div>
+                <h3 className="text-lg font-bold">No Hearts Left</h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Wait for a heart to refill to continue practicing.
+                </p>
+                <div className="mt-4">
+                  <span className="text-2xl font-mono font-bold tabular-nums">
+                    {formatHeartTimer(timer)}
+                  </span>
+                  <p className="mt-1 text-xs text-muted-foreground">until next heart</p>
+                </div>
+              </GlassCard>
+            ) : (
+              <>
+                {hearts < 5 && timer > 0 && (
+                  <div className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-primary/5 px-4 py-2 text-sm">
+                    <Heart className="size-4 fill-primary text-primary" />
+                    <span className="text-muted-foreground">
+                      Next heart in{" "}
+                    </span>
+                    <span className="font-mono font-bold tabular-nums">
+                      {formatHeartTimer(timer)}
+                    </span>
                   </div>
                 )}
 
-                {showCurriculum && selectedCat ? (
-                  <CurriculumPath category={selectedCat} onStartPuzzle={handleStartPuzzle} />
-                ) : (
-                  <PuzzleBrowser onStartPuzzle={handleStartPuzzle} onCategoryChange={handleCategoryChange} />
-                )}
+                {/* Curriculum */}
+                <CurriculumPath category={selectedCat!} onStartPuzzle={handleStartPuzzle} />
               </>
             )}
           </motion.div>
