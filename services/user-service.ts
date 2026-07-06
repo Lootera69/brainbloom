@@ -40,6 +40,9 @@ export interface UserDocument {
   lastQuestRefresh: string | null;
   completedPuzzleIds: string[];
   questsRewarded: string[];
+  dailyPuzzleCompletedDate: string | null;
+  dailyPuzzleStreak: number;
+  dailyPuzzleLastDate: string | null;
 }
 
 export async function saveUserData(uid: string, data: UserDocument): Promise<void> {
@@ -85,6 +88,9 @@ export async function loadUserData(uid: string): Promise<Partial<UserDocument> |
       lastQuestRefresh: d.lastQuestRefresh as string | null ?? null,
       completedPuzzleIds: (d.completedPuzzleIds as string[]) ?? [],
       questsRewarded: (d.questsRewarded as string[]) ?? [],
+      dailyPuzzleCompletedDate: d.dailyPuzzleCompletedDate as string | null ?? null,
+      dailyPuzzleStreak: (d.dailyPuzzleStreak as number) ?? 0,
+      dailyPuzzleLastDate: d.dailyPuzzleLastDate as string | null ?? null,
     };
   } catch (e) {
     console.error("Failed to load user data from Firestore:", e);

@@ -128,3 +128,17 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
 - Fixed type-answer result screen to show "Also accepted: ..." list
 - Confirmed `checkAnswer()` properly checks `acceptedAnswers[0], acceptedAnswers[1], ...`
 - Comma-separated input in Studio form field now correctly preserves all values
+- Added 5-second timer confirmation dialog for publish/unpublish and delete actions
+- Blocked contributors from deleting live puzzles (3 layers: UI disable + service guard)
+- Fixed player app showing "Multiple Choice" for type-answer puzzles
+- **Puzzle of the Day** feature (Option B + gamification):
+  - `services/daily-puzzle.ts`: auto-picks published puzzle deterministically (hash date → index), stores in Firestore `settings/daily-puzzle` doc with race-condition-safe transaction, localStorage fallback
+  - Admin can override via Studio dashboard "Set as Daily" button (Sparkles icon)
+  - Daily badge on Studio puzzle rows showing which puzzle is today's pick
+  - `DailyChallengeCard` is now dynamic: shows actual puzzle title, category, difficulty, type, 2x XP bonus, streak flame
+  - "Completed" state when user solved today's puzzle
+  - Learn page handles `?daily=true` query param to auto-start daily puzzle
+  - 2x XP + 5 gems bonus on daily puzzle completion
+  - Separate daily puzzle streak tracked in user store (`dailyPuzzleStreak`, `dailyPuzzleCompletedDate`, `dailyPuzzleLastDate`)
+  - Cross-device sync via Firestore `UserDocument` fields
+  - Edge cases handled: no published puzzles, midnight rollover, admin changes mid-day, guest fallback, Firestore race conditions, published check on pick

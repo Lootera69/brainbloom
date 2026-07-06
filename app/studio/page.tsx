@@ -2,10 +2,11 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings, CheckCircle2, XCircle, MessageSquare, Send, Filter } from "lucide-react";
+import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
+import { getTodayDailyPuzzleId, setDailyPuzzle } from "@/services/daily-puzzle";
 import { type Puzzle, type ReviewStatus } from "@/types/puzzle";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { toast } from "sonner";
@@ -52,12 +53,15 @@ export default function StudioPage() {
   const [publishTarget, setPublishTarget] = useState<Puzzle | null>(null);
   const [publishing, setPublishing] = useState(false);
   const [filterTab, setFilterTab] = useState<string>("all");
+  const [dailyPuzzleId, setDailyPuzzleId] = useState<string | null>(null);
+  const [settingDaily, setSettingDaily] = useState(false);
   const admin = isAdmin();
 
   const load = async () => {
     setLoading(true);
-    const data = await getPuzzles();
+    const [data, dailyId] = await Promise.all([getPuzzles(), getTodayDailyPuzzleId()]);
     setPuzzles(data);
+    setDailyPuzzleId(dailyId);
     setLoading(false);
   };
 
@@ -88,6 +92,18 @@ export default function StudioPage() {
     if (filterTab === "all") return true;
     return p.reviewStatus === filterTab;
   });
+
+  const handleSetDaily = async (puzzleId: string) => {
+    setSettingDaily(true);
+    const success = await setDailyPuzzle(puzzleId, getStudioSession() ?? undefined);
+    if (success) {
+      setDailyPuzzleId(puzzleId);
+      toast.success("Set as today's daily puzzle!");
+    } else {
+      toast.error("Puzzle must be published to set as daily.");
+    }
+    setSettingDaily(false);
+  };
 
   const handleDelete = async () => {
     if (!deleteTarget || confirmText !== deleteTarget.title) return;
@@ -188,6 +204,12 @@ export default function StudioPage() {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <h3 className="truncate text-sm font-semibold">{puzzle.title}</h3>
+                  {dailyPuzzleId === puzzle.id && (
+                    <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase text-amber-500 flex items-center gap-1">
+                      <Sparkles className="size-3" />
+                      Daily
+                    </span>
+                  )}
                   {puzzle.published ? (
                     <span className="rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-semibold uppercase text-success">Live</span>
                   ) : (
@@ -261,6 +283,17 @@ export default function StudioPage() {
                     }`}>
                     {puzzle.published ? <Lock className="size-3.5" /> : <Globe className="size-3.5" />}
                     {puzzle.published ? "Unpublish" : "Go Live"}
+                  </button>
+                )}
+                {admin && puzzle.published && (
+                  <button onClick={() => handleSetDaily(puzzle.id)} disabled={settingDaily}
+                    title="Set as today's daily puzzle"
+                    className={`flex size-8 items-center justify-center rounded-lg transition-all disabled:opacity-40 ${
+                      dailyPuzzleId === puzzle.id
+                        ? "bg-amber-500/15 text-amber-500"
+                        : "text-muted-foreground hover:bg-amber-500/10 hover:text-amber-500"
+                    }`}>
+                    <Sparkles className="size-4" />
                   </button>
                 )}
               </div>

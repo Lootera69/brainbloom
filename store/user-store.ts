@@ -54,6 +54,9 @@ interface UserState {
   completedPuzzleIds: string[];
   questsRewarded: string[];
   nextHeartAt: number | null;
+  dailyPuzzleCompletedDate: string | null;
+  dailyPuzzleStreak: number;
+  dailyPuzzleLastDate: string | null;
 
   loginAsGuest: () => void;
   setUser: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
@@ -78,6 +81,8 @@ interface UserState {
   hasCompletedPuzzle: (id: string) => boolean;
   processHeartRefill: () => void;
   getHeartTimer: () => number;
+  completeDailyPuzzle: () => void;
+  hasCompletedDailyPuzzle: () => boolean;
 }
 
 function generateId() {
@@ -130,6 +135,9 @@ export const useUserStore = create<UserState>()(
       completedPuzzleIds: [],
       questsRewarded: [],
       nextHeartAt: null,
+      dailyPuzzleCompletedDate: null,
+      dailyPuzzleStreak: 0,
+      dailyPuzzleLastDate: null,
 
       loginAsGuest: () => {
         set({
@@ -185,6 +193,9 @@ export const useUserStore = create<UserState>()(
             lastQuestRefresh: s.lastQuestRefresh,
             completedPuzzleIds: s.completedPuzzleIds,
             questsRewarded: s.questsRewarded,
+            dailyPuzzleCompletedDate: s.dailyPuzzleCompletedDate,
+            dailyPuzzleStreak: s.dailyPuzzleStreak,
+            dailyPuzzleLastDate: s.dailyPuzzleLastDate,
           }),
         );
       },
@@ -220,6 +231,9 @@ export const useUserStore = create<UserState>()(
               lastQuestRefresh: data.lastQuestRefresh ?? s.lastQuestRefresh,
               completedPuzzleIds: data.completedPuzzleIds ?? s.completedPuzzleIds,
               questsRewarded: data.questsRewarded ?? s.questsRewarded,
+              dailyPuzzleCompletedDate: data.dailyPuzzleCompletedDate ?? s.dailyPuzzleCompletedDate,
+              dailyPuzzleStreak: data.dailyPuzzleStreak ?? s.dailyPuzzleStreak,
+              dailyPuzzleLastDate: data.dailyPuzzleLastDate ?? s.dailyPuzzleLastDate,
             });
           } else {
             get().syncToFirestore();
@@ -256,6 +270,9 @@ export const useUserStore = create<UserState>()(
           completedPuzzleIds: [],
           questsRewarded: [],
           nextHeartAt: null,
+          dailyPuzzleCompletedDate: null,
+          dailyPuzzleStreak: 0,
+          dailyPuzzleLastDate: null,
         });
       },
 
@@ -422,6 +439,32 @@ export const useUserStore = create<UserState>()(
 
       hasCompletedPuzzle: (id) => {
         return get().completedPuzzleIds.includes(id);
+      },
+
+      completeDailyPuzzle: () => {
+        const today = new Date().toDateString();
+        const yesterday = new Date(Date.now() - 86400000).toDateString();
+        const { dailyPuzzleCompletedDate, dailyPuzzleStreak, dailyPuzzleLastDate } = get();
+
+        if (dailyPuzzleCompletedDate === today) return;
+
+        let newStreak = dailyPuzzleStreak;
+        if (dailyPuzzleLastDate === yesterday) {
+          newStreak += 1;
+        } else {
+          newStreak = 1;
+        }
+
+        set({
+          dailyPuzzleCompletedDate: today,
+          dailyPuzzleStreak: newStreak,
+          dailyPuzzleLastDate: today,
+        });
+      },
+
+      hasCompletedDailyPuzzle: () => {
+        const today = new Date().toDateString();
+        return get().dailyPuzzleCompletedDate === today;
       },
 
       processHeartRefill: () => {

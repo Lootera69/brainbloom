@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, HeartCrack, ArrowLeft } from "lucide-react";
+import { Heart, HeartCrack, ArrowLeft, Sparkles } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
 import { PuzzleBrowser } from "@/features/puzzle/components/PuzzleBrowser";
@@ -11,6 +11,7 @@ import { SectionHeader } from "@/features/home/components/SectionHeader";
 import { GlassCard } from "@/components/ui/glass-card";
 import { type Puzzle } from "@/types/puzzle";
 import { toast } from "sonner";
+import { getDailyPuzzle } from "@/services/daily-puzzle";
 
 type View = "browse" | "play" | "result";
 
@@ -29,17 +30,21 @@ export default function LearnPage() {
   const [currentPuzzle, setCurrentPuzzle] = useState<Puzzle | null>(null);
   const [lastResult, setLastResult] = useState<{ correct: boolean; xp: number } | null>(null);
   const [timer, setTimer] = useState(0);
+  const [isDaily, setIsDaily] = useState(false);
 
   const hearts = useUserStore((s) => s.hearts);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const setFocusMode = useUIStore((s) => s.setFocusMode);
   const addXp = useUserStore((s) => s.addXp);
+  const addGems = useUserStore((s) => s.addGems);
   const useHeart = useUserStore((s) => s.useHeart);
   const logActivity = useUserStore((s) => s.logActivity);
   const checkStreak = useUserStore((s) => s.checkStreak);
   const markPuzzleCompleted = useUserStore((s) => s.markPuzzleCompleted);
   const hasCompletedPuzzle = useUserStore((s) => s.hasCompletedPuzzle);
+  const completeDailyPuzzle = useUserStore((s) => s.completeDailyPuzzle);
+  const hasCompletedDailyPuzzle = useUserStore((s) => s.hasCompletedDailyPuzzle);
 
   useEffect(() => {
     const tick = () => {
@@ -51,9 +56,26 @@ export default function LearnPage() {
     return () => clearInterval(interval);
   }, [processHeartRefill, getHeartTimer]);
 
+  // Handle ?daily=true to auto-start daily puzzle
+  useEffect(() => {
+    (async () => {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("daily") === "true") {
+        const puzzle = await getDailyPuzzle();
+        if (puzzle && hearts > 0 && !hasCompletedDailyPuzzle()) {
+          setCurrentPuzzle(puzzle);
+          setIsDaily(true);
+          setView("play");
+          setFocusMode(true);
+        }
+      }
+    })();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleStartPuzzle = useCallback((puzzle: Puzzle) => {
     if (hearts <= 0) return;
     setCurrentPuzzle(puzzle);
+    setIsDaily(false);
     setView("play");
     setFocusMode(true);
   }, [hearts, setFocusMode]);
@@ -65,7 +87,20 @@ export default function LearnPage() {
 
     if (correct) {
       const firstTime = markPuzzleCompleted(currentPuzzle.id);
-      if (firstTime) {
+
+      if (isDaily) {
+        const bonusXp = currentPuzzle.xpReward;
+        const totalXp = bonusXp * 2;
+        addXp(totalXp);
+        addGems(5);
+        completeDailyPuzzle();
+        toast.success(`Daily Puzzle completed! +${totalXp} XP (2x bonus) +5 gems`, { position: "top-center" });
+        if (firstTime) {
+          import("@/services/puzzle-service").then(({ incrementCompleted }) =>
+            incrementCompleted(currentPuzzle.id),
+          );
+        }
+      } else if (firstTime) {
         addXp(xpEarned);
         import("@/services/puzzle-service").then(({ incrementCompleted }) =>
           incrementCompleted(currentPuzzle.id),
@@ -78,17 +113,19 @@ export default function LearnPage() {
       type: "daily",
       category: currentPuzzle.category || "general",
       title: currentPuzzle.title || "Puzzle",
-      xp: xpEarned,
+      xp: isDaily ? (currentPuzzle.xpReward * 2) : xpEarned,
     });
 
     setView("browse");
     setCurrentPuzzle(null);
+    setIsDaily(false);
     setFocusMode(false);
-  }, [addXp, checkStreak, logActivity, markPuzzleCompleted, currentPuzzle, setFocusMode]);
+  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, setFocusMode]);
 
   const handleBack = () => {
     setView("browse");
     setCurrentPuzzle(null);
+    setIsDaily(false);
     setFocusMode(false);
   };
 
@@ -152,6 +189,16 @@ export default function LearnPage() {
               <ArrowLeft className="size-4" />
               Back to puzzles
             </button>
+            {isDaily && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary/10 to-purple-500/10 px-4 py-2.5 text-sm font-semibold"
+              >
+                <Sparkles className="size-4 text-primary" />
+                Daily Puzzle &middot; 2x XP &middot; +5 gems
+              </motion.div>
+            )}
             <PuzzlePlay
               puzzle={currentPuzzle}
               onComplete={handleComplete}
