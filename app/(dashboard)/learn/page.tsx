@@ -2,18 +2,21 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, HeartCrack, ArrowLeft, Sparkles } from "lucide-react";
+import { Heart, HeartCrack, ArrowLeft, Sparkles, BookOpen, List } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
 import { PuzzleBrowser } from "@/features/puzzle/components/PuzzleBrowser";
+import { CurriculumPath } from "@/features/puzzle/components/CurriculumPath";
+import { LessonView } from "@/features/puzzle/components/LessonView";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { SectionHeader } from "@/features/home/components/SectionHeader";
 import { GlassCard } from "@/components/ui/glass-card";
 import { type Puzzle } from "@/types/puzzle";
 import { toast } from "sonner";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
+import { categoryHasLessons } from "@/services/puzzle-service";
 
-type View = "browse" | "play" | "result";
+type View = "browse" | "lesson" | "play";
 
 function formatHeartTimer(ms: number): string {
   if (ms <= 0) return "Full";
@@ -28,9 +31,11 @@ function formatHeartTimer(ms: number): string {
 export default function LearnPage() {
   const [view, setView] = useState<View>("browse");
   const [currentPuzzle, setCurrentPuzzle] = useState<Puzzle | null>(null);
-  const [lastResult, setLastResult] = useState<{ correct: boolean; xp: number } | null>(null);
   const [timer, setTimer] = useState(0);
   const [isDaily, setIsDaily] = useState(false);
+  const [selectedCat, setSelectedCat] = useState<string | null>(null);
+  const [showCurriculum, setShowCurriculum] = useState(false);
+  const [catHasLessons, setCatHasLessons] = useState(false);
 
   const hearts = useUserStore((s) => s.hearts);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
@@ -56,7 +61,7 @@ export default function LearnPage() {
     return () => clearInterval(interval);
   }, [processHeartRefill, getHeartTimer]);
 
-  // Handle ?daily=true to auto-start daily puzzle
+  // Handle ?daily=true
   useEffect(() => {
     (async () => {
       const params = new URLSearchParams(window.location.search);
@@ -72,17 +77,36 @@ export default function LearnPage() {
     })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Check if selected category has lessons
+  useEffect(() => {
+    if (!selectedCat) { setShowCurriculum(false); setCatHasLessons(false); return; }
+    (async () => {
+      const h = await categoryHasLessons(selectedCat);
+      setCatHasLessons(h);
+    })();
+  }, [selectedCat]);
+
   const handleStartPuzzle = useCallback((puzzle: Puzzle) => {
     if (hearts <= 0) return;
-    setCurrentPuzzle(puzzle);
     setIsDaily(false);
-    setView("play");
-    setFocusMode(true);
+
+    // If puzzle has lesson content, show lesson view first
+    if (puzzle.lessonContent?.trim()) {
+      setCurrentPuzzle(puzzle);
+      setView("lesson");
+      setFocusMode(true);
+    } else {
+      setCurrentPuzzle(puzzle);
+      setView("play");
+      setFocusMode(true);
+    }
   }, [hearts, setFocusMode]);
 
-  const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
-    setLastResult({ correct, xp: xpEarned });
+  const handleStartQuiz = useCallback(() => {
+    setView("play");
+  }, []);
 
+  const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
     if (!currentPuzzle) return;
 
     if (correct) {
@@ -129,6 +153,11 @@ export default function LearnPage() {
     setFocusMode(false);
   };
 
+  const handleCategoryChange = (cat: string | null) => {
+    setSelectedCat(cat);
+    setShowCurriculum(false);
+  };
+
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-5 sm:p-6">
       <AnimatePresence mode="wait">
@@ -169,9 +198,56 @@ export default function LearnPage() {
                     </span>
                   </div>
                 )}
-                <PuzzleBrowser onStartPuzzle={handleStartPuzzle} />
+
+                {/* Curriculum toggle */}
+                {catHasLessons && (
+                  <div className="mb-4 flex items-center gap-2">
+                    <button
+                      onClick={() => setShowCurriculum(false)}
+                      className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+                        !showCurriculum ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted"
+                      }`}
+                    >
+                      <List className="size-3.5" />
+                      All
+                    </button>
+                    <button
+                      onClick={() => setShowCurriculum(true)}
+                      className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+                        showCurriculum ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted"
+                      }`}
+                    >
+                      <BookOpen className="size-3.5" />
+                      Learning Path
+                    </button>
+                  </div>
+                )}
+
+                {showCurriculum && selectedCat ? (
+                  <CurriculumPath category={selectedCat} onStartPuzzle={handleStartPuzzle} />
+                ) : (
+                  <PuzzleBrowser onStartPuzzle={handleStartPuzzle} onCategoryChange={handleCategoryChange} />
+                )}
               </>
             )}
+          </motion.div>
+        )}
+
+        {view === "lesson" && currentPuzzle && (
+          <motion.div
+            key="lesson"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+          >
+            <button
+              onClick={handleBack}
+              className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ArrowLeft className="size-4" />
+              Back
+            </button>
+            <LessonView puzzle={currentPuzzle} onStartQuiz={handleStartQuiz} />
           </motion.div>
         )}
 
@@ -187,7 +263,7 @@ export default function LearnPage() {
               className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft className="size-4" />
-              Back to puzzles
+              Back
             </button>
             {isDaily && (
               <motion.div

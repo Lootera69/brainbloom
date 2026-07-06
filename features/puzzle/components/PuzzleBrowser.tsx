@@ -18,9 +18,10 @@ const iconMap: Record<string, typeof Brain> = {
 
 interface Props {
   onStartPuzzle: (puzzle: Puzzle) => void;
+  onCategoryChange?: (category: string | null) => void;
 }
 
-export function PuzzleBrowser({ onStartPuzzle }: Props) {
+export function PuzzleBrowser({ onStartPuzzle, onCategoryChange }: Props) {
   const [puzzles, setPuzzles] = useState<Puzzle[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCat, setSelectedCat] = useState<string | null>(null);
@@ -71,7 +72,7 @@ export function PuzzleBrowser({ onStartPuzzle }: Props) {
       {/* Category filter */}
       <div className="flex flex-wrap gap-2">
         <button
-          onClick={() => setSelectedCat(null)}
+          onClick={() => { setSelectedCat(null); onCategoryChange?.(null); }}
           className={cn(
             "shrink-0 rounded-xl border px-4 py-2 text-xs font-medium transition-all",
             !selectedCat ? "border-primary bg-primary/10 text-primary" : "hover:bg-muted",
@@ -84,7 +85,7 @@ export function PuzzleBrowser({ onStartPuzzle }: Props) {
           return (
             <button
               key={cat.value}
-              onClick={() => setSelectedCat(selectedCat === cat.value ? null : cat.value)}
+              onClick={() => { const next = selectedCat === cat.value ? null : cat.value; setSelectedCat(next); onCategoryChange?.(next); }}
               className={cn(
                 "flex shrink-0 items-center gap-1.5 rounded-xl border px-4 py-2 text-xs font-medium transition-all",
                 selectedCat === cat.value

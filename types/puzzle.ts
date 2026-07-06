@@ -41,6 +41,8 @@ export interface Puzzle {
   lastModifiedBy: string;
   updatedAt: number;
   completedBy: number;
+  lessonContent?: string;
+  lessonOrder?: number;
 }
 
 export interface PuzzleFormData {
@@ -58,4 +60,6 @@ export interface PuzzleFormData {
   reviewStatus?: ReviewStatus;
   requiresExplanation: boolean;
   explanation: string;
+  lessonContent?: string;
+  lessonOrder?: number;
 }

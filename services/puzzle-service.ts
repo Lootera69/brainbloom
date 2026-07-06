@@ -59,6 +59,8 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
     reviewStatus: (data.reviewStatus as ReviewStatus) ?? "draft",
     reviewedBy: (data.reviewedBy as string) ?? undefined,
     reviewNote: (data.reviewNote as string) ?? undefined,
+    lessonContent: (data.lessonContent as string) ?? undefined,
+    lessonOrder: (data.lessonOrder as number) ?? undefined,
   };
   if (data.crosswordData) {
     puzzle.crosswordData = data.crosswordData as CrosswordData;
@@ -89,6 +91,8 @@ function puzzleToFirestore(puzzle: Puzzle) {
     reviewStatus: puzzle.reviewStatus ?? "draft",
     reviewedBy: puzzle.reviewedBy ?? null,
     reviewNote: puzzle.reviewNote ?? null,
+    lessonContent: puzzle.lessonContent ?? null,
+    lessonOrder: puzzle.lessonOrder ?? null,
   };
   if (puzzle.crosswordData) {
     data.crosswordData = puzzle.crosswordData;
@@ -136,6 +140,17 @@ export async function getPuzzles(): Promise<Puzzle[]> {
 export async function getPublishedPuzzles(): Promise<Puzzle[]> {
   const all = await getPuzzles();
   return all.filter((p) => p.published);
+}
+
+export async function categoryHasLessons(category: string): Promise<boolean> {
+  const puzzles = await getPublishedByCategory(category);
+  return puzzles.some((p) => p.lessonContent && p.lessonContent.trim().length > 0);
+}
+
+export async function getPublishedByCategory(category: string): Promise<Puzzle[]> {
+  const all = await getPublishedPuzzles();
+  return all.filter((p) => p.category === category)
+    .sort((a, b) => (a.lessonOrder ?? 999) - (b.lessonOrder ?? 999));
 }
 
 export async function getPuzzle(id: string): Promise<Puzzle | null> {

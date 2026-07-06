@@ -300,6 +300,45 @@ export default function CreatePuzzlePage() {
           </>
         )}
 
+        {/* Lesson fields */}
+        {(isQuiz || isTypeAnswer) && (
+          <>
+            <hr className="border-muted" />
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">
+                Lesson Content <span className="text-muted-foreground font-normal">(optional)</span>
+              </label>
+              <textarea
+                value={form.lessonContent ?? ""}
+                onChange={(e) => update("lessonContent", e.target.value)}
+                placeholder="One fact per line&#10;e.g.&#10;The sun is a star at the center of our solar system.&#10;It provides light and heat that makes life on Earth possible.&#10;The sun is about 4.6 billion years old."
+                rows={5}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+              />
+              <p className="mt-1 text-xs text-muted-foreground">
+                Each line becomes a numbered fact shown before the quiz. Add an image above to illustrate the lesson.
+              </p>
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">
+                Lesson Order <span className="text-muted-foreground font-normal">(optional)</span>
+              </label>
+              <input
+                value={form.lessonOrder ?? ""}
+                onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
+                type="number"
+                min={1}
+                max={999}
+                placeholder="e.g. 1"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+              />
+              <p className="mt-1 text-xs text-muted-foreground">
+                Puzzles with lesson order appear in the Learning Path. Lower numbers come first.
+              </p>
+            </div>
+          </>
+        )}
+
         <button
           type="submit"
           disabled={saving}
