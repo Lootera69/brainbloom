@@ -285,7 +285,7 @@ export default function StudioPage() {
                   </div>
                 )}
 
-                {!puzzle.published && !admin && (puzzle.reviewStatus === "draft" || puzzle.reviewStatus === "rejected") && (
+                {!puzzle.published && !admin && (puzzle.reviewStatus === "draft" || puzzle.reviewStatus === "rejected" || puzzle.reviewStatus === "needs-discussion") && (
                   <button onClick={async () => { await updatePuzzleReview(puzzle.id, "pending"); toast.success("Submitted for approval."); load(); }}
                     className="flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-all active:scale-[0.98] bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 dark:text-amber-400">
                     <Send className="size-3.5" />

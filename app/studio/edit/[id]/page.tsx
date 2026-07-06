@@ -415,7 +415,7 @@ export default function EditPuzzlePage() {
         )}
 
         {/* Contributor: Submit for review */}
-        {!puzzlePublished && !isAdmin() && puzzleStatus && ["draft", "rejected"].includes(puzzleStatus) && (
+        {!puzzlePublished && !isAdmin() && puzzleStatus && ["draft", "rejected", "needs-discussion"].includes(puzzleStatus) && (
           <button type="button" onClick={handleSubmitForReview} disabled={submitting}
             className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-amber-500/10 text-sm font-semibold text-amber-600 transition-all hover:bg-amber-500/20 active:scale-[0.98] disabled:opacity-50 dark:text-amber-400">
             {submitting ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
