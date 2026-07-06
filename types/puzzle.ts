@@ -1,5 +1,6 @@
 export type PuzzleType = "multiple-choice" | "true-false" | "crossword" | "type-answer";
 export type Difficulty = "easy" | "medium" | "hard";
+export type ReviewStatus = "draft" | "pending" | "approved" | "rejected" | "needs-discussion";
 
 export interface CrosswordClue {
   number: number;
@@ -30,6 +31,9 @@ export interface Puzzle {
   crosswordData?: CrosswordData;
   xpReward: number;
   published: boolean;
+  reviewStatus: ReviewStatus;
+  reviewedBy?: string;
+  reviewNote?: string;
   requiresExplanation: boolean;
   explanation: string;
   createdBy: string;
@@ -51,6 +55,7 @@ export interface PuzzleFormData {
   imageUrl?: string;
   crosswordData?: CrosswordData;
   xpReward: number;
+  reviewStatus?: ReviewStatus;
   requiresExplanation: boolean;
   explanation: string;
 }

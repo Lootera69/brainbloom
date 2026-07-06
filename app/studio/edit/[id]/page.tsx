@@ -3,12 +3,34 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowLeft, Save, Loader2, Trash2, ImageUp, X, Loader as Spinner } from "lucide-react";
-import { getPuzzle, updatePuzzle, deletePuzzle, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
+import { ArrowLeft, Save, Loader2, Trash2, ImageUp, X, Loader as Spinner, Send, CheckCircle2, XCircle, MessageSquare } from "lucide-react";
+import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
-import { type PuzzleFormData, type PuzzleType, type CrosswordData } from "@/types/puzzle";
+import { type PuzzleFormData, type PuzzleType, type CrosswordData, type ReviewStatus } from "@/types/puzzle";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
 import { toast } from "sonner";
+
+const STATUS_LABELS: Record<ReviewStatus, string> = {
+  draft: "Draft",
+  pending: "Pending Review",
+  approved: "Approved",
+  rejected: "Rejected",
+  "needs-discussion": "Needs Discussion",
+};
+
+const STATUS_COLORS: Record<ReviewStatus, string> = {
+  draft: "bg-muted text-muted-foreground",
+  pending: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+  approved: "bg-success/10 text-success",
+  rejected: "bg-destructive/10 text-destructive",
+  "needs-discussion": "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+};
+
+const REVIEW_ACTIONS: { value: ReviewStatus; label: string }[] = [
+  { value: "approved", label: "Approve" },
+  { value: "rejected", label: "Reject" },
+  { value: "needs-discussion", label: "Needs Discussion" },
+];
 
 const defaultCrossword: CrosswordData = {
   size: 10,
@@ -25,6 +47,13 @@ export default function EditPuzzlePage() {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [notFound, setNotFound] = useState(false);
+  const [puzzleStatus, setPuzzleStatus] = useState<ReviewStatus | null>(null);
+  const [puzzlePublished, setPuzzlePublished] = useState(false);
+  const [puzzleReviewedBy, setPuzzleReviewedBy] = useState<string | undefined>();
+  const [puzzleReviewNote, setPuzzleReviewNote] = useState<string | undefined>();
+  const [reviewNoteInput, setReviewNoteInput] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [publishing, setPublishing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState<PuzzleFormData>({
     type: "multiple-choice",
@@ -58,6 +87,10 @@ export default function EditPuzzlePage() {
         imageUrl: puzzle.imageUrl ?? undefined,
         acceptedAnswers: puzzle.acceptedAnswers ?? undefined,
       });
+      setPuzzleStatus(puzzle.reviewStatus ?? "draft");
+      setPuzzlePublished(puzzle.published);
+      setPuzzleReviewedBy(puzzle.reviewedBy);
+      setPuzzleReviewNote(puzzle.reviewNote);
       setLoading(false);
     })();
   }, [id]);
@@ -97,9 +130,45 @@ export default function EditPuzzlePage() {
       return;
     }
     setSaving(true);
-    await updatePuzzle(id, form);
+    const updated = await updatePuzzle(id, form);
+    if (updated) {
+      setPuzzleStatus(updated.reviewStatus ?? puzzleStatus);
+    }
     setSaving(false);
-    router.push("/studio");
+    toast.success("Saved.");
+  };
+
+  const handleSubmitForReview = async () => {
+    setSubmitting(true);
+    const updated = await updatePuzzleReview(id, "pending");
+    if (updated) {
+      setPuzzleStatus("pending");
+      toast.success("Submitted for review.");
+    }
+    setSubmitting(false);
+  };
+
+  const handleReviewAction = async (status: ReviewStatus) => {
+    setSubmitting(true);
+    const updated = await updatePuzzleReview(id, status, reviewNoteInput || undefined);
+    if (updated) {
+      setPuzzleStatus(status);
+      setPuzzleReviewedBy(getStudioSession() ?? undefined);
+      setPuzzleReviewNote(reviewNoteInput || undefined);
+      setReviewNoteInput("");
+      toast.success(`Marked as "${STATUS_LABELS[status]}".`);
+    }
+    setSubmitting(false);
+  };
+
+  const handleTogglePublish = async () => {
+    setPublishing(true);
+    const updated = await togglePublish(id);
+    if (updated) {
+      setPuzzlePublished(updated.published);
+      toast.success(updated.published ? "Published!" : "Unpublished.");
+    }
+    setPublishing(false);
   };
 
   const handleDelete = async () => {
@@ -317,6 +386,78 @@ export default function EditPuzzlePage() {
               <CrosswordForm value={form.crosswordData || defaultCrossword} onChange={(cd) => update("crosswordData", cd)} />
             </div>
           </>
+        )}
+
+        {/* Review status */}
+        <div className="flex flex-wrap items-center gap-2 rounded-xl border bg-card p-4">
+          <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase ${STATUS_COLORS[puzzleStatus ?? "draft"]}`}>
+            {STATUS_LABELS[puzzleStatus ?? "draft"]}
+          </span>
+          {puzzlePublished && (
+            <span className="rounded-full bg-success/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase text-success">
+              Published
+            </span>
+          )}
+          {puzzleReviewedBy && (
+            <span className="text-xs text-muted-foreground">
+              Reviewed by {puzzleReviewedBy}
+            </span>
+          )}
+        </div>
+
+        {puzzleReviewNote && (
+          <div className="flex items-start gap-2 rounded-xl bg-muted/50 p-3">
+            <MessageSquare className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
+            <p className="text-xs text-muted-foreground">{puzzleReviewNote}</p>
+          </div>
+        )}
+
+        {/* Contributor: Submit for review */}
+        {!isAdmin() && puzzleStatus && ["draft", "rejected"].includes(puzzleStatus) && (
+          <button type="button" onClick={handleSubmitForReview} disabled={submitting}
+            className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-amber-500/10 text-sm font-semibold text-amber-600 transition-all hover:bg-amber-500/20 active:scale-[0.98] disabled:opacity-50 dark:text-amber-400">
+            {submitting ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
+            Submit for Approval
+          </button>
+        )}
+
+        {/* Admin: Review actions */}
+        {isAdmin() && puzzleStatus && puzzleStatus !== "approved" && (
+          <div className="space-y-3 rounded-xl border bg-card p-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Review</p>
+            <div className="flex gap-2">
+              {REVIEW_ACTIONS.map((action) => (
+                <button key={action.value} type="button" onClick={() => handleReviewAction(action.value)}
+                  disabled={submitting}
+                  className={`flex-1 rounded-xl border px-3 py-2 text-xs font-semibold transition-all active:scale-[0.98] disabled:opacity-50 ${
+                    action.value === "approved"
+                      ? "border-success/30 text-success hover:bg-success/10"
+                      : action.value === "rejected"
+                      ? "border-destructive/30 text-destructive hover:bg-destructive/10"
+                      : "border-blue-500/30 text-blue-600 hover:bg-blue-500/10 dark:text-blue-400"
+                  }`}>
+                  {action.value === "approved" ? <CheckCircle2 className="mr-1 inline size-3.5" /> : action.value === "rejected" ? <XCircle className="mr-1 inline size-3.5" /> : <MessageSquare className="mr-1 inline size-3.5" />}
+                  {action.label}
+                </button>
+              ))}
+            </div>
+            <textarea value={reviewNoteInput} onChange={(e) => setReviewNoteInput(e.target.value)}
+              placeholder="Add a review note (optional)..."
+              rows={2}
+              className="w-full resize-none rounded-xl border bg-background px-3 py-2 text-xs outline-none transition-colors focus:border-primary" />
+          </div>
+        )}
+
+        {/* Admin: Publish toggle */}
+        {isAdmin() && (
+          <button type="button" onClick={handleTogglePublish} disabled={publishing}
+            className={`flex h-11 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all active:scale-[0.98] disabled:opacity-50 ${
+              puzzlePublished
+                ? "border border-destructive/30 text-destructive hover:bg-destructive/10"
+                : "bg-success text-white hover:brightness-110"
+            }`}>
+            {publishing ? <Loader2 className="size-4 animate-spin" /> : puzzlePublished ? "Unpublish" : "Go Live"}
+          </button>
         )}
 
         <div className="flex gap-3">

@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Sparkles, Lock, LogOut, Key, User } from "lucide-react";
+import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool } from "lucide-react";
 import { getStudioSession, setStudioSession, clearStudioSession } from "@/services/puzzle-service";
 import { verifyStudioCredentials } from "@/services/studio-settings";
+import { setStudioRole, getStudioRole, clearStudioRole } from "@/services/puzzle-service";
 import { Toaster } from "sonner";
 
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
@@ -15,17 +16,25 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [role, setRole] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
-    setAuthed(!!getStudioSession());
+    const session = getStudioSession();
+    if (session) {
+      setAuthed(true);
+      setRole(getStudioRole());
+    }
   }, []);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (verifyStudioCredentials(inviteCode, password)) {
+    const entry = await verifyStudioCredentials(inviteCode, password);
+    if (entry) {
       setStudioSession(inviteCode);
+      setStudioRole(entry.role);
       setAuthed(true);
+      setRole(entry.role);
       setError(false);
     } else {
       setError(true);
@@ -34,7 +43,9 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
 
   const handleLogout = () => {
     clearStudioSession();
+    clearStudioRole();
     setAuthed(false);
+    setRole(null);
   };
 
   if (!mounted) return null;
@@ -116,6 +127,16 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
               <User className="size-3.5" />
               {getStudioSession()}
             </span>
+            {role && (
+              <span className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase ${
+                role === "admin"
+                  ? "bg-primary/10 text-primary"
+                  : "bg-muted text-muted-foreground"
+              }`}>
+                {role === "admin" ? <Shield className="size-3" /> : <PenTool className="size-3" />}
+                {role}
+              </span>
+            )}
             <button
               onClick={handleLogout}
               className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted"

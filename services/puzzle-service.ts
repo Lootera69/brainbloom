@@ -1,4 +1,4 @@
-import { type Puzzle, type PuzzleFormData, type CrosswordData } from "@/types/puzzle";
+import { type Puzzle, type PuzzleFormData, type CrosswordData, type ReviewStatus } from "@/types/puzzle";
 import { getFirebase } from "@/services/firebase";
 import {
   collection,
@@ -56,6 +56,9 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
     explanation: (data.explanation as string) ?? "",
     imageUrl: (data.imageUrl as string) ?? undefined,
     acceptedAnswers: (data.acceptedAnswers as string[]) ?? undefined,
+    reviewStatus: (data.reviewStatus as ReviewStatus) ?? "draft",
+    reviewedBy: (data.reviewedBy as string) ?? undefined,
+    reviewNote: (data.reviewNote as string) ?? undefined,
   };
   if (data.crosswordData) {
     puzzle.crosswordData = data.crosswordData as CrosswordData;
@@ -83,6 +86,9 @@ function puzzleToFirestore(puzzle: Puzzle) {
     explanation: puzzle.explanation ?? "",
     imageUrl: puzzle.imageUrl ?? null,
     acceptedAnswers: puzzle.acceptedAnswers ?? null,
+    reviewStatus: puzzle.reviewStatus ?? "draft",
+    reviewedBy: puzzle.reviewedBy ?? null,
+    reviewNote: puzzle.reviewNote ?? null,
   };
   if (puzzle.crosswordData) {
     data.crosswordData = puzzle.crosswordData;
@@ -160,11 +166,13 @@ function syncToLocal(puzzle: Puzzle) {
 
 export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
   const user = getStudioSession() || "unknown";
+  const role = getStudioRole() || "contributor";
   const now = Date.now();
   let puzzle: Puzzle = {
     id: generateId(),
     ...data,
     published: false,
+    reviewStatus: role === "admin" ? "approved" : "draft",
     completedBy: 0,
     requiresExplanation: data.requiresExplanation ?? false,
     explanation: data.explanation ?? "",
@@ -304,6 +312,77 @@ export async function incrementCompleted(id: string): Promise<void> {
   }
 }
 
+export function isAdmin(): boolean {
+  return getStudioRole() === "admin";
+}
+
+export function getStudioRole(): string | null {
+  if (typeof sessionStorage === "undefined") return null;
+  return sessionStorage.getItem("studio-role");
+}
+
+export function setStudioRole(role: string) {
+  if (typeof sessionStorage === "undefined") return;
+  sessionStorage.setItem("studio-role", role);
+}
+
+export function clearStudioRole() {
+  if (typeof sessionStorage === "undefined") return;
+  sessionStorage.removeItem("studio-role");
+}
+
+export async function updatePuzzleReview(
+  id: string,
+  reviewStatus: ReviewStatus,
+  reviewNote?: string,
+): Promise<Puzzle | null> {
+  const user = getStudioSession() || "unknown";
+  const now = Date.now();
+  let updated: Puzzle | null = null;
+
+  if (isFirestoreAvailable()) {
+    try {
+      const { db } = getFirebase();
+      if (db) {
+        const ref = doc(db, "puzzles", id);
+        const snap = await getDoc(ref);
+        if (snap.exists()) {
+          await updateDoc(ref, {
+            reviewStatus,
+            reviewedBy: user,
+            reviewNote: reviewNote ?? null,
+            lastModifiedBy: user,
+            updatedAt: Timestamp.fromMillis(now),
+          });
+          const snap2 = await getDoc(ref);
+          updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
+        }
+      }
+    } catch (e) {
+      console.error("Firestore updatePuzzleReview failed:", e);
+    }
+  }
+
+  if (updated) {
+    syncToLocal(updated);
+    return updated;
+  }
+
+  const local = getLocalPuzzles();
+  const idx = local.findIndex((p) => p.id === id);
+  if (idx === -1) return null;
+  local[idx] = {
+    ...local[idx],
+    reviewStatus,
+    reviewedBy: user,
+    reviewNote: reviewNote ?? undefined,
+    lastModifiedBy: user,
+    updatedAt: now,
+  };
+  saveLocalPuzzles(local);
+  return local[idx];
+}
+
 export function getStudioSession(): string | null {
   if (typeof sessionStorage === "undefined") return null;
   return sessionStorage.getItem("studio-authed");
@@ -317,6 +396,7 @@ export function setStudioSession(inviteCode: string) {
 export function clearStudioSession() {
   if (typeof sessionStorage === "undefined") return;
   sessionStorage.removeItem("studio-authed");
+  sessionStorage.removeItem("studio-role");
 }
 
 export const CATEGORIES = [
