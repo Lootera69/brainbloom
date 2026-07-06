@@ -218,6 +218,12 @@ export default function StudioPage() {
                       {STATUS_LABELS[puzzle.reviewStatus ?? "draft"]}
                     </span>
                   )}
+                  {!puzzle.published && puzzle.reviewNote && (
+                    <span className="flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground" title={puzzle.reviewNote}>
+                      <MessageSquare className="size-3" />
+                      Note
+                    </span>
+                  )}
                 </div>
                 <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
                   <span>{catLabel(puzzle.category)}</span>
