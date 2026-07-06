@@ -24,7 +24,7 @@ export function XPToast() {
             </div>
           </div>
         ),
-        { duration: 1500 },
+        { duration: 1500, position: "top-center" },
       );
     }
   }, [lastXpGain]);

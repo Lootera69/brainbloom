@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, HeartCrack, ArrowLeft } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
+import { useUIStore } from "@/store/ui-store";
 import { PuzzleBrowser } from "@/features/puzzle/components/PuzzleBrowser";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { SectionHeader } from "@/features/home/components/SectionHeader";
@@ -32,6 +33,7 @@ export default function LearnPage() {
   const hearts = useUserStore((s) => s.hearts);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
+  const setFocusMode = useUIStore((s) => s.setFocusMode);
   const addXp = useUserStore((s) => s.addXp);
   const useHeart = useUserStore((s) => s.useHeart);
   const logActivity = useUserStore((s) => s.logActivity);
@@ -53,7 +55,8 @@ export default function LearnPage() {
     if (hearts <= 0) return;
     setCurrentPuzzle(puzzle);
     setView("play");
-  }, [hearts]);
+    setFocusMode(true);
+  }, [hearts, setFocusMode]);
 
   const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
     setLastResult({ correct, xp: xpEarned });
@@ -80,11 +83,13 @@ export default function LearnPage() {
 
     setView("browse");
     setCurrentPuzzle(null);
-  }, [addXp, checkStreak, logActivity, markPuzzleCompleted, currentPuzzle]);
+    setFocusMode(false);
+  }, [addXp, checkStreak, logActivity, markPuzzleCompleted, currentPuzzle, setFocusMode]);
 
   const handleBack = () => {
     setView("browse");
     setCurrentPuzzle(null);
+    setFocusMode(false);
   };
 
   return (
@@ -174,7 +179,7 @@ export default function LearnPage() {
                       </div>
                     </motion.div>
                   ),
-                  { duration: 1500 },
+                  { duration: 1500, position: "top-center" },
                 );
               }}
               isRepeat={hasCompletedPuzzle(currentPuzzle.id)}

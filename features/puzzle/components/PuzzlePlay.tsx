@@ -7,6 +7,7 @@ import { type Puzzle } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
 import { cn } from "@/lib/utils";
 import { CrosswordPlay } from "./CrosswordPlay";
+import { TypeAnswerPlay } from "./TypeAnswerPlay";
 
 interface Props {
   puzzle: Puzzle;
@@ -67,6 +68,13 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
                   <Info className="size-3.5" />
                   Re-doing this task will not award any extra points
                 </motion.div>
+              )}
+              {puzzle.imageUrl && (
+                <img
+                  src={puzzle.imageUrl}
+                  alt="Question image"
+                  className="mx-auto mb-4 max-h-64 w-full rounded-xl object-contain"
+                />
               )}
               <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 {puzzle.difficulty} &middot; {puzzle.type === "true-false" ? "True / False" : "Multiple Choice"}
@@ -135,6 +143,9 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
 export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
   if (puzzle.type === "crossword") {
     return <CrosswordPlay puzzle={puzzle} onComplete={onComplete} onWrongAttempt={onWrongAttempt} isRepeat={isRepeat} />;
+  }
+  if (puzzle.type === "type-answer") {
+    return <TypeAnswerPlay puzzle={puzzle} onComplete={onComplete} onWrongAttempt={onWrongAttempt} isRepeat={isRepeat} />;
   }
   return <QuizPlay puzzle={puzzle} onComplete={onComplete} onWrongAttempt={onWrongAttempt} isRepeat={isRepeat} />;
 }

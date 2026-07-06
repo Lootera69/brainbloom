@@ -1,4 +1,4 @@
-export type PuzzleType = "multiple-choice" | "true-false" | "crossword";
+export type PuzzleType = "multiple-choice" | "true-false" | "crossword" | "type-answer";
 export type Difficulty = "easy" | "medium" | "hard";
 
 export interface CrosswordClue {
@@ -25,6 +25,8 @@ export interface Puzzle {
   question: string;
   choices: string[];
   correctAnswer: string;
+  acceptedAnswers?: string[];
+  imageUrl?: string;
   crosswordData?: CrosswordData;
   xpReward: number;
   published: boolean;
@@ -45,6 +47,8 @@ export interface PuzzleFormData {
   question: string;
   choices: string[];
   correctAnswer: string;
+  acceptedAnswers?: string[];
+  imageUrl?: string;
   crosswordData?: CrosswordData;
   xpReward: number;
   requiresExplanation: boolean;

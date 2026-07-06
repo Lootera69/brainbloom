@@ -8,6 +8,7 @@ import { PageTransition } from "@/components/common/page-transition";
 import { AnimatedBackground } from "@/features/home/components/AnimatedBackground";
 import { XPToast } from "@/features/home/components/XPToast";
 import { useUserStore } from "@/store/user-store";
+import { useUIStore } from "@/store/ui-store";
 import { Toaster } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -15,6 +16,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
+  const focusMode = useUIStore((s) => s.focusMode);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -65,16 +67,18 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       <XPToast />
       <Toaster position="top-center" />
       <AnimatedBackground />
-      <Sidebar />
+      {!focusMode && <Sidebar />}
       <main
         className="relative flex-1"
-        style={{
-          paddingBottom: "calc(4rem + var(--safe-area-inset-bottom))",
-        }}
+        style={
+          focusMode
+            ? {}
+            : { paddingBottom: "calc(4rem + var(--safe-area-inset-bottom))" }
+        }
       >
         <PageTransition>{children}</PageTransition>
       </main>
-      <BottomNav />
+      {!focusMode && <BottomNav />}
     </div>
   );
 }

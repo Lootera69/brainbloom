@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import {
@@ -14,12 +15,23 @@ import {
   Gem,
   Snowflake,
   Check,
+  Clock,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUserStore } from "@/store/user-store";
 import { toast } from "sonner";
+
+function formatHeartTimer(ms: number): string {
+  if (ms <= 0) return "Full";
+  const totalHours = Math.floor(ms / 3600000);
+  const totalMinutes = Math.floor((ms % 3600000) / 60000);
+  const seconds = Math.floor((ms % 60000) / 1000);
+  if (totalHours > 0) return `${totalHours}h ${totalMinutes}m ${seconds}s`;
+  if (totalMinutes > 0) return `${totalMinutes}m ${seconds}s`;
+  return `${seconds}s`;
+}
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -37,6 +49,20 @@ export default function ProfilePage() {
     logout,
     buyStreakFreeze,
   } = useUserStore();
+
+  const processHeartRefill = useUserStore((s) => s.processHeartRefill);
+  const getHeartTimer = useUserStore((s) => s.getHeartTimer);
+  const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    const tick = () => {
+      processHeartRefill();
+      setTimer(getHeartTimer());
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
+  }, [processHeartRefill, getHeartTimer]);
 
   const initials = displayName
     .split(" ")
@@ -102,6 +128,16 @@ export default function ProfilePage() {
             ))}
           </div>
         </Card>
+        {hearts < 5 && (
+          <div className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-primary/5 px-4 py-3 text-sm">
+            <Heart className="size-4 fill-primary text-primary" />
+            <span className="text-muted-foreground">{hearts}/5 hearts &middot; Next in</span>
+            <span className="font-mono font-bold tabular-nums text-foreground">
+              {formatHeartTimer(timer)}
+            </span>
+            <Clock className="size-3.5 text-muted-foreground" />
+          </div>
+        )}
       </motion.section>
 
       <motion.section

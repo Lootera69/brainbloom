@@ -69,7 +69,7 @@ export function PuzzleBrowser({ onStartPuzzle }: Props) {
   return (
     <div className="space-y-6">
       {/* Category filter */}
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      <div className="flex flex-wrap gap-2">
         <button
           onClick={() => setSelectedCat(null)}
           className={cn(

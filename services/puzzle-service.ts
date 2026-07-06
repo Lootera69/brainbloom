@@ -60,6 +60,8 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
     completedBy: (data.completedBy as number) ?? 0,
     requiresExplanation: (data.requiresExplanation as boolean) ?? false,
     explanation: (data.explanation as string) ?? "",
+    imageUrl: (data.imageUrl as string) ?? undefined,
+    acceptedAnswers: (data.acceptedAnswers as string[]) ?? undefined,
   };
   if (data.crosswordData) {
     puzzle.crosswordData = data.crosswordData as CrosswordData;
@@ -85,6 +87,8 @@ function puzzleToFirestore(puzzle: Puzzle) {
     completedBy: puzzle.completedBy ?? 0,
     requiresExplanation: puzzle.requiresExplanation ?? false,
     explanation: puzzle.explanation ?? "",
+    imageUrl: puzzle.imageUrl ?? null,
+    acceptedAnswers: puzzle.acceptedAnswers ?? null,
   };
   if (puzzle.crosswordData) {
     data.crosswordData = puzzle.crosswordData;
