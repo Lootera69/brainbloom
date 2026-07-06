@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings, CheckCircle2, XCircle, MessageSquare, Send, Filter } from "lucide-react";
+import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
 import { type Puzzle, type ReviewStatus } from "@/types/puzzle";
@@ -45,7 +46,11 @@ export default function StudioPage() {
   const [deleteTarget, setDeleteTarget] = useState<Puzzle | null>(null);
   const [confirmText, setConfirmText] = useState("");
   const [deleting, setDeleting] = useState(false);
+  const [deleteCountdown, setDeleteCountdown] = useState(5);
+  const deleteIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [testPuzzle, setTestPuzzle] = useState<Puzzle | null>(null);
+  const [publishTarget, setPublishTarget] = useState<Puzzle | null>(null);
+  const [publishing, setPublishing] = useState(false);
   const [filterTab, setFilterTab] = useState<string>("all");
   const admin = isAdmin();
 
@@ -57,6 +62,27 @@ export default function StudioPage() {
   };
 
   useEffect(() => { load(); }, []);
+
+  useEffect(() => {
+    if (deleteTarget) {
+      setDeleteCountdown(5);
+      deleteIntervalRef.current = setInterval(() => {
+        setDeleteCountdown((prev) => {
+          if (prev <= 1) {
+            if (deleteIntervalRef.current) clearInterval(deleteIntervalRef.current);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    } else {
+      if (deleteIntervalRef.current) clearInterval(deleteIntervalRef.current);
+      setDeleteCountdown(5);
+    }
+    return () => {
+      if (deleteIntervalRef.current) clearInterval(deleteIntervalRef.current);
+    };
+  }, [deleteTarget]);
 
   const filtered = puzzles.filter((p) => {
     if (filterTab === "all") return true;
@@ -73,8 +99,12 @@ export default function StudioPage() {
     load();
   };
 
-  const handleTogglePublish = async (id: string) => {
-    await togglePublish(id);
+  const handleTogglePublish = async () => {
+    if (!publishTarget) return;
+    setPublishing(true);
+    await togglePublish(publishTarget.id);
+    setPublishing(false);
+    setPublishTarget(null);
     load();
   };
 
@@ -221,7 +251,7 @@ export default function StudioPage() {
                 )}
 
                 {(puzzle.published || puzzle.reviewStatus === "approved") && admin && (
-                  <button onClick={() => handleTogglePublish(puzzle.id)}
+                  <button onClick={() => setPublishTarget(puzzle)}
                     className={`flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-all active:scale-[0.98] ${
                       puzzle.published
                         ? "bg-muted text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
@@ -236,6 +266,22 @@ export default function StudioPage() {
           ))}
         </div>
       )}
+
+      {/* Publish confirmation dialog */}
+      <ConfirmDialog
+        open={!!publishTarget}
+        onClose={() => { setPublishTarget(null); setPublishing(false); }}
+        onConfirm={handleTogglePublish}
+        title={publishTarget?.published ? "Unpublish Puzzle" : "Go Live"}
+        description={
+          publishTarget?.published
+            ? "This puzzle will be hidden from players. Are you sure you want to unpublish?"
+            : "This puzzle will be visible to all players immediately. Please make sure everything is correct before proceeding."
+        }
+        confirmLabel={publishTarget?.published ? "Unpublish" : "Go Live"}
+        confirmVariant={publishTarget?.published ? "danger" : "success"}
+        loading={publishing}
+      />
 
       {/* Delete confirmation dialog */}
       <AnimatePresence>
@@ -274,9 +320,11 @@ export default function StudioPage() {
               <div className="mt-5 flex gap-3">
                 <button onClick={() => { setDeleteTarget(null); setConfirmText(""); }}
                   className="flex h-10 flex-1 items-center justify-center rounded-xl border text-sm font-medium transition-colors hover:bg-muted">Cancel</button>
-                <button onClick={handleDelete} disabled={!deleteTarget || confirmText !== deleteTarget.title || deleting}
+                <button onClick={handleDelete} disabled={!deleteTarget || confirmText !== deleteTarget.title || deleting || deleteCountdown > 0}
                   className="flex h-10 flex-1 items-center justify-center gap-2 rounded-xl bg-destructive text-sm font-semibold text-white transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-40">
-                  {deleting ? <Loader2 className="size-4 animate-spin" /> : <Trash2 className="size-4" />}Delete</button>
+                  {deleting ? <Loader2 className="size-4 animate-spin" /> : <Trash2 className="size-4" />}
+                  {deleteCountdown > 0 ? `Delete (${deleteCountdown}s)` : "Delete"}
+                </button>
               </div>
             </motion.div>
           </motion.div>

@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Save, Loader2, Trash2, ImageUp, X, Loader as Spinner, Send, CheckCircle2, XCircle, MessageSquare } from "lucide-react";
+import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
 import { type PuzzleFormData, type PuzzleType, type CrosswordData, type ReviewStatus } from "@/types/puzzle";
@@ -54,6 +55,8 @@ export default function EditPuzzlePage() {
   const [reviewNoteInput, setReviewNoteInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [publishing, setPublishing] = useState(false);
+  const [showPublishConfirm, setShowPublishConfirm] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState<PuzzleFormData>({
     type: "multiple-choice",
@@ -172,7 +175,7 @@ export default function EditPuzzlePage() {
   };
 
   const handleDelete = async () => {
-    if (!confirm("Delete this puzzle permanently?")) return;
+    setShowDeleteConfirm(false);
     await deletePuzzle(id);
     router.push("/studio");
   };
@@ -449,7 +452,7 @@ export default function EditPuzzlePage() {
 
         {/* Admin: Publish toggle */}
         {isAdmin() && (puzzlePublished || puzzleStatus === "approved") && (
-          <button type="button" onClick={handleTogglePublish} disabled={publishing}
+          <button type="button" onClick={() => setShowPublishConfirm(true)} disabled={publishing}
             className={`flex h-11 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all active:scale-[0.98] disabled:opacity-50 ${
               puzzlePublished
                 ? "border border-destructive/30 text-destructive hover:bg-destructive/10"
@@ -465,13 +468,38 @@ export default function EditPuzzlePage() {
             {saving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
             Save
           </button>
-          <button type="button" onClick={handleDelete}
+          <button type="button" onClick={() => setShowDeleteConfirm(true)}
             className="flex h-11 items-center justify-center gap-2 rounded-xl border border-destructive/30 px-6 text-sm font-medium text-destructive transition-colors hover:bg-destructive/10">
             <Trash2 className="size-4" />
             Delete
           </button>
         </div>
       </form>
+
+      <ConfirmDialog
+        open={showPublishConfirm}
+        onClose={() => setShowPublishConfirm(false)}
+        onConfirm={handleTogglePublish}
+        title={puzzlePublished ? "Unpublish Puzzle" : "Go Live"}
+        description={
+          puzzlePublished
+            ? "This puzzle will be hidden from players. Are you sure you want to unpublish?"
+            : "This puzzle will be visible to all players immediately. Please make sure everything is correct before proceeding."
+        }
+        confirmLabel={puzzlePublished ? "Unpublish" : "Go Live"}
+        confirmVariant={puzzlePublished ? "danger" : "success"}
+        loading={publishing}
+      />
+
+      <ConfirmDialog
+        open={showDeleteConfirm}
+        onClose={() => setShowDeleteConfirm(false)}
+        onConfirm={handleDelete}
+        title="Delete Puzzle"
+        description="Are you sure you want to delete this puzzle? This action cannot be undone."
+        confirmLabel="Delete"
+        confirmVariant="danger"
+      />
     </main>
   );
 }
