@@ -184,11 +184,11 @@ export default function StudioPage() {
                 <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-muted-foreground/70">
                   <span className="flex items-center gap-1"><User className="size-3" />{puzzle.createdBy || "—"}</span>
                   <span className="flex items-center gap-1"><Calendar className="size-3" />{puzzle.createdAt ? fmtDate(puzzle.createdAt) : "—"}</span>
-                  {puzzle.reviewedBy && (
+                  {!puzzle.published && puzzle.reviewedBy && (
                     <span className="flex items-center gap-1"><MessageSquare className="size-3" />Reviewed by {puzzle.reviewedBy}</span>
                   )}
                 </div>
-                {puzzle.reviewNote && (
+                {!puzzle.published && puzzle.reviewNote && (
                   <p className="mt-1 text-[11px] italic text-muted-foreground/60">&ldquo;{puzzle.reviewNote}&rdquo;</p>
                 )}
               </div>
@@ -207,7 +207,7 @@ export default function StudioPage() {
                   <Trash2 className="size-4" />
                 </button>
 
-                {admin && puzzle.reviewStatus === "pending" && (
+                {!puzzle.published && admin && puzzle.reviewStatus === "pending" && (
                   <div className="flex gap-1">
                     <button onClick={() => handleQuickReview(puzzle.id, "approved")}
                       className="flex size-8 items-center justify-center rounded-lg text-success transition-colors hover:bg-success/10" title="Approve">
@@ -220,7 +220,7 @@ export default function StudioPage() {
                   </div>
                 )}
 
-                {admin && (
+                {(puzzle.published || puzzle.reviewStatus === "approved") && admin && (
                   <button onClick={() => handleTogglePublish(puzzle.id)}
                     className={`flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-all active:scale-[0.98] ${
                       puzzle.published

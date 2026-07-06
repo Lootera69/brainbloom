@@ -397,14 +397,14 @@ export default function EditPuzzlePage() {
               {STATUS_LABELS[puzzleStatus ?? "draft"]}
             </span>
           )}
-          {puzzleReviewedBy && (
+          {!puzzlePublished && puzzleReviewedBy && (
             <span className="text-xs text-muted-foreground">
               Reviewed by {puzzleReviewedBy}
             </span>
           )}
         </div>
 
-        {puzzleReviewNote && (
+        {!puzzlePublished && puzzleReviewNote && (
           <div className="flex items-start gap-2 rounded-xl bg-muted/50 p-3">
             <MessageSquare className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
             <p className="text-xs text-muted-foreground">{puzzleReviewNote}</p>
@@ -412,7 +412,7 @@ export default function EditPuzzlePage() {
         )}
 
         {/* Contributor: Submit for review */}
-        {!isAdmin() && puzzleStatus && ["draft", "rejected"].includes(puzzleStatus) && (
+        {!puzzlePublished && !isAdmin() && puzzleStatus && ["draft", "rejected"].includes(puzzleStatus) && (
           <button type="button" onClick={handleSubmitForReview} disabled={submitting}
             className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-amber-500/10 text-sm font-semibold text-amber-600 transition-all hover:bg-amber-500/20 active:scale-[0.98] disabled:opacity-50 dark:text-amber-400">
             {submitting ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
@@ -421,7 +421,7 @@ export default function EditPuzzlePage() {
         )}
 
         {/* Admin: Review actions */}
-        {isAdmin() && puzzleStatus && puzzleStatus !== "approved" && (
+        {!puzzlePublished && isAdmin() && puzzleStatus && puzzleStatus !== "approved" && (
           <div className="space-y-3 rounded-xl border bg-card p-4">
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Review</p>
             <div className="flex gap-2">
@@ -448,7 +448,7 @@ export default function EditPuzzlePage() {
         )}
 
         {/* Admin: Publish toggle */}
-        {isAdmin() && (
+        {isAdmin() && (puzzlePublished || puzzleStatus === "approved") && (
           <button type="button" onClick={handleTogglePublish} disabled={publishing}
             className={`flex h-11 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all active:scale-[0.98] disabled:opacity-50 ${
               puzzlePublished
