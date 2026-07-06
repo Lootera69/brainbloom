@@ -77,7 +77,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
                 />
               )}
               <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                {puzzle.difficulty} &middot; {puzzle.type === "true-false" ? "True / False" : "Multiple Choice"}
+                {puzzle.difficulty} &middot; {puzzle.type === "true-false" ? "True / False" : puzzle.type === "type-answer" ? "Type Answer" : "Multiple Choice"}
               </p>
               <h2 className="font-heading text-xl font-bold sm:text-2xl">{puzzle.question}</h2>
             </GlassCard>
