@@ -388,14 +388,13 @@ export default function EditPuzzlePage() {
           </>
         )}
 
-        {/* Review status */}
+        {/* Stage badge */}
         <div className="flex flex-wrap items-center gap-2 rounded-xl border bg-card p-4">
-          <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase ${STATUS_COLORS[puzzleStatus ?? "draft"]}`}>
-            {STATUS_LABELS[puzzleStatus ?? "draft"]}
-          </span>
-          {puzzlePublished && (
-            <span className="rounded-full bg-success/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase text-success">
-              Published
+          {puzzlePublished ? (
+            <span className="rounded-full bg-success/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase text-success">Live</span>
+          ) : (
+            <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase ${STATUS_COLORS[puzzleStatus ?? "draft"]}`}>
+              {STATUS_LABELS[puzzleStatus ?? "draft"]}
             </span>
           )}
           {puzzleReviewedBy && (

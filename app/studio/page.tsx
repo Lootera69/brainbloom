@@ -158,11 +158,12 @@ export default function StudioPage() {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <h3 className="truncate text-sm font-semibold">{puzzle.title}</h3>
-                  <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${STATUS_COLORS[puzzle.reviewStatus ?? "draft"]}`}>
-                    {STATUS_LABELS[puzzle.reviewStatus ?? "draft"]}
-                  </span>
-                  {puzzle.published && (
+                  {puzzle.published ? (
                     <span className="rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-semibold uppercase text-success">Live</span>
+                  ) : (
+                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${STATUS_COLORS[puzzle.reviewStatus ?? "draft"]}`}>
+                      {STATUS_LABELS[puzzle.reviewStatus ?? "draft"]}
+                    </span>
                   )}
                 </div>
                 <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
