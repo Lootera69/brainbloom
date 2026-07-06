@@ -233,7 +233,9 @@ export default function StudioPage() {
                   <Edit3 className="size-4" />
                 </button>
                 <button onClick={() => { setDeleteTarget(puzzle); setConfirmText(""); }}
-                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive" title="Delete">
+                  disabled={!admin && puzzle.published}
+                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive disabled:cursor-not-allowed disabled:opacity-30"
+                  title={!admin && puzzle.published ? "Cannot delete live puzzles" : "Delete"}>
                   <Trash2 className="size-4" />
                 </button>
 

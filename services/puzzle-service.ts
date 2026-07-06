@@ -235,6 +235,11 @@ export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): P
 }
 
 export async function deletePuzzle(id: string): Promise<boolean> {
+  const puzzle = await getPuzzle(id);
+  if (puzzle?.published && !isAdmin()) {
+    console.error("Contributors cannot delete live puzzles");
+    return false;
+  }
   if (isFirestoreAvailable()) {
     try {
       const { db } = getFirebase();

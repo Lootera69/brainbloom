@@ -469,7 +469,9 @@ export default function EditPuzzlePage() {
             Save
           </button>
           <button type="button" onClick={() => setShowDeleteConfirm(true)}
-            className="flex h-11 items-center justify-center gap-2 rounded-xl border border-destructive/30 px-6 text-sm font-medium text-destructive transition-colors hover:bg-destructive/10">
+            disabled={!isAdmin() && puzzlePublished}
+            title={!isAdmin() && puzzlePublished ? "Cannot delete live puzzles" : ""}
+            className="flex h-11 items-center justify-center gap-2 rounded-xl border border-destructive/30 px-6 text-sm font-medium text-destructive transition-colors hover:bg-destructive/10 disabled:cursor-not-allowed disabled:opacity-30">
             <Trash2 className="size-4" />
             Delete
           </button>
