@@ -90,6 +90,11 @@ export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }:
                   <span className="font-semibold text-foreground">{puzzle.correctAnswer}</span>
                 </p>
               )}
+              {puzzle.acceptedAnswers && puzzle.acceptedAnswers.length > 0 && (
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Also accepted: {puzzle.acceptedAnswers.join(", ")}
+                </p>
+              )}
               {puzzle.requiresExplanation && puzzle.explanation && (
                 <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
                   className="mt-4 rounded-xl bg-muted/50 p-4 text-left">
