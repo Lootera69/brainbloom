@@ -58,6 +58,8 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
     lastModifiedBy: data.lastModifiedBy as string,
     updatedAt: (data.updatedAt as Timestamp)?.toMillis?.() ?? (data.updatedAt as number),
     completedBy: (data.completedBy as number) ?? 0,
+    requiresExplanation: (data.requiresExplanation as boolean) ?? false,
+    explanation: (data.explanation as string) ?? "",
   };
   if (data.crosswordData) {
     puzzle.crosswordData = data.crosswordData as CrosswordData;
@@ -81,6 +83,8 @@ function puzzleToFirestore(puzzle: Puzzle) {
     lastModifiedBy: puzzle.lastModifiedBy,
     updatedAt: Timestamp.fromMillis(puzzle.updatedAt),
     completedBy: puzzle.completedBy ?? 0,
+    requiresExplanation: puzzle.requiresExplanation ?? false,
+    explanation: puzzle.explanation ?? "",
   };
   if (puzzle.crosswordData) {
     data.crosswordData = puzzle.crosswordData;
@@ -164,6 +168,8 @@ export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
     ...data,
     published: false,
     completedBy: 0,
+    requiresExplanation: data.requiresExplanation ?? false,
+    explanation: data.explanation ?? "",
     createdBy: user,
     createdAt: now,
     lastModifiedBy: user,

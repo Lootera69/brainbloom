@@ -111,6 +111,14 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
                   The correct answer was: <span className="font-semibold text-foreground">{puzzle.correctAnswer}</span>
                 </p>
               )}
+              {puzzle.requiresExplanation && puzzle.explanation && (
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+                  className="mt-4 rounded-xl bg-muted/50 p-4 text-left"
+                >
+                  <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Why this answer?</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{puzzle.explanation}</p>
+                </motion.div>
+              )}
               <motion.button onClick={() => onComplete(isCorrect, earned)}
                 whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                 className="mt-8 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98]">

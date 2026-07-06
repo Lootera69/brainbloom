@@ -28,6 +28,8 @@ export interface Puzzle {
   crosswordData?: CrosswordData;
   xpReward: number;
   published: boolean;
+  requiresExplanation: boolean;
+  explanation: string;
   createdBy: string;
   createdAt: number;
   lastModifiedBy: string;
@@ -45,4 +47,6 @@ export interface PuzzleFormData {
   correctAnswer: string;
   crosswordData?: CrosswordData;
   xpReward: number;
+  requiresExplanation: boolean;
+  explanation: string;
 }

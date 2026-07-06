@@ -27,6 +27,8 @@ export default function CreatePuzzlePage() {
     choices: ["", "", "", ""],
     correctAnswer: "",
     xpReward: 10,
+    requiresExplanation: false,
+    explanation: "",
   });
 
   const update = <K extends keyof PuzzleFormData>(key: K, value: PuzzleFormData[K]) =>
@@ -190,7 +192,35 @@ export default function CreatePuzzlePage() {
               </select>
             </div>
           </>
-        ) : (
+        ) : null}
+
+        {isQuiz && (
+          <div className="space-y-4">
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={form.requiresExplanation}
+                onChange={(e) => update("requiresExplanation", e.target.checked)}
+                className="size-4 rounded border-foreground/20 text-primary focus:ring-primary"
+              />
+              <span className="text-sm font-medium">Requires explanation</span>
+            </label>
+            {form.requiresExplanation && (
+              <div>
+                <label className="mb-1.5 block text-sm font-medium">Explanation</label>
+                <textarea
+                  value={form.explanation}
+                  onChange={(e) => update("explanation", e.target.value)}
+                  placeholder="Explain why this answer is correct..."
+                  rows={3}
+                  className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                />
+              </div>
+            )}
+          </div>
+        )}
+
+        {!isQuiz && (
           <div>
             <label className="mb-1.5 block text-sm font-medium">Crossword Grid</label>
             <p className="mb-3 text-xs text-muted-foreground">
