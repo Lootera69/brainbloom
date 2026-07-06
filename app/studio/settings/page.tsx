@@ -15,6 +15,7 @@ export default function StudioSettingsPage() {
   const [newPassword, setNewPassword] = useState("");
   const [newRole, setNewRole] = useState<"admin" | "contributor">("contributor");
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
+  const currentCode = getStudioSession();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -110,7 +111,9 @@ export default function StudioSettingsPage() {
                 </span>
                 <button
                   onClick={() => handleRemove(entry.code)}
-                  className="flex size-7 items-center justify-center rounded-lg text-destructive/60 hover:bg-destructive/10 hover:text-destructive"
+                  disabled={entry.role === "admin"}
+                  className="flex size-7 items-center justify-center rounded-lg text-destructive/60 hover:bg-destructive/10 hover:text-destructive disabled:cursor-not-allowed disabled:opacity-30"
+                  title={entry.role === "admin" ? "Cannot delete admin credentials" : "Delete"}
                 >
                   <Trash2 className="size-3.5" />
                 </button>
