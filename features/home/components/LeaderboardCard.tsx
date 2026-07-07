@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Trophy, Crown, Medal } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -24,9 +25,23 @@ export function LeaderboardCard() {
   const userXp = useUserStore((s) => s.xp);
   const userDisplay = useUserStore((s) => s.displayName);
 
-  const leaders = mockLeaders.map((l) =>
-    l.name === "You" ? { ...l, xp: userXp, avatar: userDisplay[0]?.toUpperCase() ?? "G" } : l,
-  );
+  const display = useMemo(() => {
+    const userEntry = { name: "You", xp: userXp, avatar: userDisplay[0]?.toUpperCase() ?? "G", color: "from-primary to-[#8b5cf6]" };
+    const merged = [...mockLeaders.filter((l) => l.name !== "You"), userEntry];
+    const sorted = merged.sort((a, b) => b.xp - a.xp);
+
+    const userIndex = sorted.findIndex((l) => l.name === "You");
+
+    if (userIndex <= 4) {
+      return { leaders: sorted.slice(0, 5), userVisible: true };
+    }
+
+    return {
+      leaders: sorted.slice(0, 4).concat(userEntry),
+      userVisible: true,
+      userActualRank: userIndex,
+    };
+  }, [userXp, userDisplay]);
 
   return (
     <motion.section
@@ -41,28 +56,35 @@ export function LeaderboardCard() {
         </div>
 
         <div className="space-y-2">
-          {leaders.map((leader, i) => (
-            <div
-              key={leader.name}
-              className={`flex items-center gap-3 rounded-xl px-3 py-2.5 ${
-                leader.name === "You" ? "bg-primary/10" : ""
-              }`}
-            >
-              <RankIcon rank={i} />
+          {display.leaders.map((leader, i) => {
+            const isUser = leader.name === "You";
+            const actualRank = isUser && "userActualRank" in display
+              ? (display as { userActualRank: number }).userActualRank
+              : i;
 
-              <span
-                className={`flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-xs font-bold text-white ${leader.color}`}
+            return (
+              <div
+                key={leader.name}
+                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 ${
+                  isUser ? "bg-primary/10" : ""
+                }`}
               >
-                {leader.avatar}
-              </span>
+                <RankIcon rank={actualRank} />
 
-              <span className="flex-1 text-sm font-medium">{leader.name}</span>
+                <span
+                  className={`flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-xs font-bold text-white ${leader.color}`}
+                >
+                  {leader.avatar}
+                </span>
 
-              <span className="text-sm font-semibold tabular-nums text-muted-foreground">
-                {leader.xp.toLocaleString()} XP
-              </span>
-            </div>
-          ))}
+                <span className="flex-1 text-sm font-medium">{leader.name}</span>
+
+                <span className="text-sm font-semibold tabular-nums text-muted-foreground">
+                  {leader.xp.toLocaleString()} XP
+                </span>
+              </div>
+            );
+          })}
         </div>
       </GlassCard>
     </motion.section>
