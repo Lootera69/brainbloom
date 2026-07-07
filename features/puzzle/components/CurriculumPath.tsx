@@ -38,7 +38,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
   }, [category]);
 
   const lessonPuzzles = useMemo(() =>
-    puzzles.filter((p) => p.lessonOrder != null && p.lessonContent?.trim())
+    puzzles.filter((p) => p.lessonOrder != null)
       .sort((a, b) => {
         const go = (a.lessonGroupOrder ?? 999) - (b.lessonGroupOrder ?? 999);
         if (go !== 0) return go;
@@ -70,7 +70,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
     return result;
   }, [lessonPuzzles]);  // eslint-disable-line react-hooks/exhaustive-deps
 
-  const extras = puzzles.filter((p) => p.lessonOrder == null || !p.lessonContent?.trim());
+  const extras = puzzles.filter((p) => p.lessonOrder == null);
 
   // Check if all sub-lessons in a group are completed
   const isGroupCompleted = (group: LessonGroup) =>

@@ -8,6 +8,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { cn } from "@/lib/utils";
 import { CrosswordPlay } from "./CrosswordPlay";
 import { TypeAnswerPlay } from "./TypeAnswerPlay";
+import { SudokuPlay } from "./SudokuPlay";
 
 interface Props {
   puzzle: Puzzle;
@@ -77,7 +78,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
                 />
               )}
               <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                {puzzle.difficulty} &middot; {puzzle.type === "true-false" ? "True / False" : puzzle.type === "type-answer" ? "Type Answer" : "Multiple Choice"}
+                {puzzle.difficulty} &middot; {puzzle.type === "true-false" ? "True / False" : puzzle.type === "type-answer" ? "Type Answer" : puzzle.type === "sudoku" ? "Sudoku" : "Multiple Choice"}
               </p>
               <h2 className="font-heading text-xl font-bold sm:text-2xl">{puzzle.question}</h2>
             </GlassCard>
@@ -164,6 +165,9 @@ export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
   }
   if (puzzle.type === "type-answer") {
     return <TypeAnswerPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
+  }
+  if (puzzle.type === "sudoku") {
+    return <SudokuPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
   }
   return <QuizPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
 }

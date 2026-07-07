@@ -1,4 +1,4 @@
-export type PuzzleType = "multiple-choice" | "true-false" | "crossword" | "type-answer";
+export type PuzzleType = "multiple-choice" | "true-false" | "crossword" | "type-answer" | "sudoku";
 export type Difficulty = "easy" | "medium" | "hard";
 export type ReviewStatus = "draft" | "pending" | "approved" | "rejected" | "needs-discussion";
 
@@ -17,6 +17,11 @@ export interface CrosswordData {
   clues: CrosswordClue[];
 }
 
+export interface SudokuData {
+  puzzle: number[];   // 81 cells, 0 = empty, 1-9 = clue
+  solution: number[]; // 81 cells, 1-9
+}
+
 export interface Puzzle {
   id: string;
   type: PuzzleType;
@@ -29,6 +34,7 @@ export interface Puzzle {
   acceptedAnswers?: string[];
   imageUrl?: string;
   crosswordData?: CrosswordData;
+  sudokuData?: SudokuData;
   xpReward: number;
   published: boolean;
   reviewStatus: ReviewStatus;
@@ -58,6 +64,7 @@ export interface PuzzleFormData {
   acceptedAnswers?: string[];
   imageUrl?: string;
   crosswordData?: CrosswordData;
+  sudokuData?: SudokuData;
   xpReward: number;
   reviewStatus?: ReviewStatus;
   requiresExplanation: boolean;

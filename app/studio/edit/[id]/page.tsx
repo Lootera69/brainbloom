@@ -8,8 +8,9 @@ import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
-import { type PuzzleFormData, type PuzzleType, type CrosswordData, type ReviewStatus } from "@/types/puzzle";
+import { type PuzzleFormData, type PuzzleType, type CrosswordData, type SudokuData, type ReviewStatus } from "@/types/puzzle";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
+import { generateSudoku } from "@/services/sudoku-generator";
 import { toast } from "sonner";
 
 const STATUS_LABELS: Record<ReviewStatus, string> = {
@@ -88,6 +89,7 @@ export default function EditPuzzlePage() {
         requiresExplanation: puzzle.requiresExplanation ?? false,
         explanation: puzzle.explanation ?? "",
         crosswordData: puzzle.crosswordData ? { ...puzzle.crosswordData, grid: puzzle.crosswordData.grid.map((r) => [...r]) } : undefined,
+        sudokuData: puzzle.sudokuData ? { ...puzzle.sudokuData } : undefined,
         imageUrl: puzzle.imageUrl ?? undefined,
         acceptedAnswers: puzzle.acceptedAnswers ?? undefined,
         lessonContent: puzzle.lessonContent ?? undefined,
@@ -113,14 +115,15 @@ export default function EditPuzzlePage() {
   const isQuiz = form.type === "multiple-choice" || form.type === "true-false";
   const isTypeAnswer = form.type === "type-answer";
   const isCrossword = form.type === "crossword";
+  const isSudoku = form.type === "sudoku";
 
   useEffect(() => {
-    if (form.category && (isQuiz || isTypeAnswer)) {
+    if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku)) {
       getLessonGroups(form.category).then(setLessonGroups);
     } else {
       setLessonGroups([]);
     }
-  }, [form.category]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [form.category, form.type]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (form.category && form.lessonGroup) {
@@ -158,6 +161,10 @@ export default function EditPuzzlePage() {
     e.preventDefault();
     if (form.type === "crossword" && (!form.crosswordData || form.crosswordData.clues.length === 0)) {
       toast.error("Add at least one clue before saving.");
+      return;
+    }
+    if (form.type === "sudoku" && !form.sudokuData) {
+      toast.error("Generate a Sudoku puzzle before saving.");
       return;
     }
     if (form.requiresExplanation && !form.explanation.trim()) {
@@ -214,12 +221,15 @@ export default function EditPuzzlePage() {
 
   const handleTypeChange = (type: PuzzleType) => {
     if (type === "crossword") {
-      setForm((f) => ({ ...f, type, crosswordData: defaultCrossword }));
+      setForm((f) => ({ ...f, type, crosswordData: defaultCrossword, sudokuData: undefined }));
     } else if (type === "type-answer") {
-      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", crosswordData: undefined }));
+      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", crosswordData: undefined, sudokuData: undefined }));
+    } else if (type === "sudoku") {
+      const sudokuData = generateSudoku(form.difficulty);
+      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", crosswordData: undefined, sudokuData }));
     } else {
       const choices = type === "true-false" ? ["True", "False"] : ["", "", "", ""];
-      setForm((f) => ({ ...f, type, choices, correctAnswer: "", crosswordData: undefined }));
+      setForm((f) => ({ ...f, type, choices, correctAnswer: "", crosswordData: undefined, sudokuData: undefined }));
     }
   };
 
@@ -256,14 +266,14 @@ export default function EditPuzzlePage() {
       <form onSubmit={handleSubmit} className="mt-6 space-y-5">
         <div>
           <label className="mb-1.5 block text-sm font-medium">Type</label>
-          <div className="flex gap-2">
-            {(["multiple-choice", "true-false", "type-answer", "crossword"] as const).map((t) => (
+          <div className="flex gap-2 flex-wrap">
+            {(["multiple-choice", "true-false", "type-answer", "crossword", "sudoku"] as const).map((t) => (
               <button key={t} type="button" onClick={() => handleTypeChange(t)}
                 className={`flex-1 rounded-xl border px-4 py-2.5 text-sm font-medium transition-all ${
                   form.type === t ? "border-primary bg-primary/10 text-primary" : "hover:bg-muted"
                 }`}
               >
-                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : "Crossword"}
+                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : "Sudoku"}
               </button>
             ))}
           </div>
@@ -419,8 +429,69 @@ export default function EditPuzzlePage() {
           </>
         )}
 
+        {isSudoku && (
+          <>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Title</label>
+              <input value={form.title} onChange={(e) => update("title", e.target.value)}
+                placeholder="e.g. Sudoku - Easy"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Sudoku Grid</label>
+              <p className="mb-3 text-xs text-muted-foreground">
+                Puzzle generated based on difficulty. Click regenerate to get a new layout.
+              </p>
+              {form.sudokuData ? (
+                <div className="space-y-3">
+                  <div className="mx-auto grid aspect-square w-full max-w-[270px] select-none grid-cols-9 gap-0 overflow-hidden rounded-md border-2 border-border">
+                    {form.sudokuData.puzzle.map((val, i) => {
+                      const row = Math.floor(i / 9);
+                      const col = i % 9;
+                      return (
+                        <div
+                          key={i}
+                          className={`flex items-center justify-center text-xs font-medium ${
+                            val > 0 ? "text-foreground" : "bg-card/30 text-muted-foreground"
+                          } ${col === 2 || col === 5 ? "border-r-[2px] border-r-border" : "border-r border-r-border/30"} ${
+                            row === 2 || row === 5 ? "border-b-[2px] border-b-border" : "border-b border-b-border/30"
+                          } bg-card`}
+                          style={{ aspectRatio: "1" }}
+                        >
+                          {val > 0 ? val : ""}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const sudokuData = generateSudoku(form.difficulty);
+                      update("sudokuData", sudokuData);
+                    }}
+                    className="flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-primary/30 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
+                  >
+                    Regenerate Puzzle
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    const sudokuData = generateSudoku(form.difficulty);
+                    update("sudokuData", sudokuData);
+                  }}
+                  className="flex h-20 w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                >
+                  Generate Sudoku Puzzle
+                </button>
+              )}
+            </div>
+          </>
+        )}
+
         {/* Lesson fields */}
-        {(isQuiz || isTypeAnswer) && (
+        {(isQuiz || isTypeAnswer || isCrossword || isSudoku) && (
           <>
             <hr className="border-muted" />
             <div className="grid grid-cols-2 gap-4">

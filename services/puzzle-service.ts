@@ -1,4 +1,4 @@
-import { type Puzzle, type PuzzleFormData, type CrosswordData, type ReviewStatus } from "@/types/puzzle";
+import { type Puzzle, type PuzzleFormData, type CrosswordData, type SudokuData, type ReviewStatus } from "@/types/puzzle";
 import { getFirebase } from "@/services/firebase";
 import {
   collection,
@@ -67,6 +67,9 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
   if (data.crosswordData) {
     puzzle.crosswordData = data.crosswordData as CrosswordData;
   }
+  if (data.sudokuData) {
+    puzzle.sudokuData = data.sudokuData as SudokuData;
+  }
   return puzzle;
 }
 
@@ -100,6 +103,9 @@ function puzzleToFirestore(puzzle: Puzzle) {
   };
   if (puzzle.crosswordData) {
     data.crosswordData = puzzle.crosswordData;
+  }
+  if (puzzle.sudokuData) {
+    data.sudokuData = puzzle.sudokuData;
   }
   return data;
 }
@@ -148,7 +154,7 @@ export async function getPublishedPuzzles(): Promise<Puzzle[]> {
 
 export async function categoryHasLessons(category: string): Promise<boolean> {
   const puzzles = await getPublishedByCategory(category);
-  return puzzles.some((p) => p.lessonContent && p.lessonContent.trim().length > 0);
+  return puzzles.some((p) => p.lessonOrder != null);
 }
 
 export async function getPublishedByCategory(category: string): Promise<Puzzle[]> {
