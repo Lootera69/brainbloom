@@ -16,7 +16,7 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
 ```
 {
   id: string,
-  type: "multiple-choice" | "true-false" | "crossword" | "type-answer",
+  type: "multiple-choice" | "true-false" | "crossword" | "type-answer" | "sudoku",
   category: string,
   difficulty: "easy" | "medium" | "hard",
   title: string,
@@ -30,6 +30,7 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   createdAt: number,
   updatedAt: number,
   crosswordData?: CrosswordData,       // for type: "crossword"
+  sudokuData?: SudokuData,             // for type: "sudoku" — { puzzle: number[], solution: number[] }
   reviewStatus: "draft" | "pending" | "approved" | "rejected" | "needs-discussion",
   reviewedBy?: string,
   reviewNote?: string,
@@ -38,6 +39,8 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   completedBy?: number,                // incremented via Firestore increment(1)
   lessonContent?: string,               // numbered facts, one per line, shown before quiz
   lessonOrder?: number,                 // position in Learning Path
+  lessonGroup?: string,                 // lesson group name
+  lessonGroupOrder?: number,            // lesson group display order
 }
 ```
 
@@ -136,8 +139,25 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
    - Sequential unlock: complete all sub-lessons in a group → next group unlocks
    - Studio create/edit: Lesson Group picklist from settings; Sub-lesson Order picklist (1-10, excludes taken orders)
    - `getUsedLessonOrders()` helper prevents duplicate sub-lesson orders per group
-5. ⬜ Content: seed 30-50 puzzles via Studio or LLM-generated JSON
-6. ⬜ Polish: analytics, sound effects, PWA manifest, offline support, bulk JSON import/export
+5. ✅ **Sudoku Puzzle Type**:
+   - `"sudoku"` added to PuzzleType with `SudokuData { puzzle: number[], solution: number[] }`
+   - `services/sudoku-generator.ts`: backtracking generator, unique-solution validation via `countSolutions`, difficulty-based clue counts (easy=40, medium=30, hard=24)
+   - `SudokuPlay.tsx`: interactive 9×9 grid, number pad, notes mode, auto-validate on each cell fill, conflict shake+highlight, 3-mistake heart deduction, auto-advance to next empty cell, auto-complete detection
+   - Progress saved to localStorage (`brainbloom-sudoku-{id}`), restored on mount, cleared on completion
+   - Studio create/edit: Sudoku picklist type, grid preview, Regenerate button; stored via puzzleToFirestore/puzzleFromFirestore
+6. ✅ **PWA + Sound Effects**:
+   - `app/manifest.ts` → webmanifest with standalone display, SVG icons, indigo theme
+   - `public/sw.js`: cache-first service worker, precaches `/` and `/offline`
+   - `services/sound-service.ts`: Web Audio API procedural sounds (correct chime, wrong buzz, heartbreak, XP arpeggio, gem chime, completion fanfare, daily fanfare, lesson bell, unlock sweep, streak scale, click tick)
+   - `initSounds()` on first interaction, mute toggle synced to user store + Firestore
+   - Profile page: switch toggle, sound-enabled field cross-device synced
+7. ✅ **Polish & UI**:
+   - Studio Settings: tabbed navigation (Lesson Hierarchy / Invite Codes), GlassCard sections, group-hover reveal edit/delete
+   - Leaderboard: sorted by actual XP, correct rank positioning (crown/medal top-3, user below when outside top-5)
+   - BottomNav: Apple-style frosted glass (`backdrop-blur-2xl saturate-[1.8]`), gradient top line, progressive enhancement
+   - Profile page: gradient-blur avatar ring, animated level XP bar, glass stat grid, collapsible heart timer, two-column achievements/streak-freeze, animated sound toggle
+8. ⬜ Content: seed 30-50 puzzles via Studio or LLM-generated JSON
+9. ⬜ Polish: analytics, offline page, bulk JSON import/export
 
 ## Recent Changes (Session: Jul 2026)
 - Added admin code deletion prevention, confirmed acceptedAnswers checking, comma-split fix
@@ -159,3 +179,17 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
 - **Settings page**: Lesson Hierarchy section (both admin/contributor), invite codes section (admin-only)
 - **Dynamic picklists**: Lesson Group picklist from settings, Sub-lesson Order picklist (1-10, excludes taken orders)
 - **CurriculumPath rewrite**: collapsible lesson groups with numbered sub-lessons, sequential unlock per group
+- **Sudoku Puzzle Type**:
+  - Full 9×9 grid with number pad, notes mode, auto-validate
+  - Backtracking generator with unique-solution validation
+  - Conflict shake+highlight, 3-mistake heart deduction, auto-advance
+  - Progress saved to localStorage, restored on revisit, cleared on completion
+  - Game ends when hearts depleted (onComplete with 0 XP)
+- **PWA support**: manifest route, SVG icons, cache-first service worker
+- **Sound Effects**: Web Audio API procedural sounds, profile toggle, cross-device sync
+- **Studio Settings redesign**: tabbed navigation (Lesson Hierarchy / Invite Codes), GlassCard sections, group-hover reveal
+- **Leaderboard fix**: sorted by actual XP with correct rank (top-3 crown/medal, user at actual position)
+- **BottomNav glass effect**: Apple-style frosted glass with gradient top line
+- **Profile page redesign**: gradient-blur avatar ring, animated XP progress bar, glass stat grid, two-column layout
+- **Learning path for all types**: lesson fields now visible for crossword/sudoku; puzzles without lessonContent still appear in learning path
+- **Lesson group loading fix**: useEffect now depends on both `form.category` and `form.type`; loads for all puzzle types
