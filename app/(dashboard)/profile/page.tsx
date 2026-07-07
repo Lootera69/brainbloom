@@ -16,6 +16,8 @@ import {
   Snowflake,
   Check,
   Clock,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -49,6 +51,8 @@ export default function ProfilePage() {
     logout,
     buyStreakFreeze,
   } = useUserStore();
+  const soundEnabled = useUserStore((s) => s.soundEnabled);
+  const setSoundEnabled = useUserStore((s) => s.setSoundEnabled);
 
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
@@ -190,6 +194,44 @@ export default function ProfilePage() {
             ) : (
               <span className="text-xs text-muted-foreground">Not enough gems</span>
             )}
+          </div>
+        </Card>
+      </motion.section>
+
+      {/* Sound */}
+      <motion.section
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 16 }}
+        transition={{ delay: 0.35 }}
+        className="mb-6"
+      >
+        <Card className="p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              {soundEnabled ? (
+                <Volume2 className="size-5 text-primary" />
+              ) : (
+                <VolumeX className="size-5 text-muted-foreground" />
+              )}
+              <div>
+                <h3 className="text-sm font-semibold">Sound Effects</h3>
+                <p className="text-xs text-muted-foreground">
+                  {soundEnabled ? "On" : "Off"}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setSoundEnabled(!soundEnabled)}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                soundEnabled ? "bg-primary" : "bg-muted-foreground/30"
+              }`}
+            >
+              <span
+                className={`inline-block size-5 rounded-full bg-white transition-transform ${
+                  soundEnabled ? "translate-x-[22px]" : "translate-x-[2px]"
+                }`}
+              />
+            </button>
           </div>
         </Card>
       </motion.section>

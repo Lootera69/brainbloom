@@ -43,6 +43,7 @@ export interface UserDocument {
   dailyPuzzleCompletedDate: string | null;
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
+  soundEnabled: boolean;
 }
 
 export async function saveUserData(uid: string, data: UserDocument): Promise<void> {
@@ -91,6 +92,7 @@ export async function loadUserData(uid: string): Promise<Partial<UserDocument> |
       dailyPuzzleCompletedDate: d.dailyPuzzleCompletedDate as string | null ?? null,
       dailyPuzzleStreak: (d.dailyPuzzleStreak as number) ?? 0,
       dailyPuzzleLastDate: d.dailyPuzzleLastDate as string | null ?? null,
+      soundEnabled: (d.soundEnabled as boolean) ?? true,
     };
   } catch (e) {
     console.error("Failed to load user data from Firestore:", e);

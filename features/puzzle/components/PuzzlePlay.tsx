@@ -141,11 +141,29 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
 }
 
 export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
+  const handleComplete = (correct: boolean, xpEarned: number) => {
+    if (correct) {
+      import("@/services/sound-service").then(({ playCorrect, playComplete }) => {
+        playCorrect();
+        setTimeout(playComplete, 400);
+      });
+    }
+    onComplete(correct, xpEarned);
+  };
+
+  const handleWrongAttempt = () => {
+    import("@/services/sound-service").then(({ playWrong, playHeartbreak }) => {
+      playWrong();
+      playHeartbreak();
+    });
+    onWrongAttempt?.();
+  };
+
   if (puzzle.type === "crossword") {
-    return <CrosswordPlay puzzle={puzzle} onComplete={onComplete} onWrongAttempt={onWrongAttempt} isRepeat={isRepeat} />;
+    return <CrosswordPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
   }
   if (puzzle.type === "type-answer") {
-    return <TypeAnswerPlay puzzle={puzzle} onComplete={onComplete} onWrongAttempt={onWrongAttempt} isRepeat={isRepeat} />;
+    return <TypeAnswerPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
   }
-  return <QuizPlay puzzle={puzzle} onComplete={onComplete} onWrongAttempt={onWrongAttempt} isRepeat={isRepeat} />;
+  return <QuizPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
 }

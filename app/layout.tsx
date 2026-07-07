@@ -4,12 +4,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-};
+import { ServiceWorkerRegister } from "@/components/providers/service-worker";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,6 +19,22 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "BrainBloom",
   description: "Train your brain every day.",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "BrainBloom",
+    statusBarStyle: "black-translucent",
+  },
+  icons: {
+    apple: "/icon.svg",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: "#6366f1",
 };
 
 export default function RootLayout({
@@ -41,6 +52,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           {children}
+          <ServiceWorkerRegister />
         </ThemeProvider>
       </body>
     </html>

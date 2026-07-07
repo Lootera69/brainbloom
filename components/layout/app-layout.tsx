@@ -22,6 +22,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     processHeartRefill();
+    import("@/services/sound-service").then(({ initSounds }) => initSounds());
     const interval = setInterval(processHeartRefill, 30_000);
     return () => clearInterval(interval);
   }, [processHeartRefill]);

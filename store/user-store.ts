@@ -57,6 +57,7 @@ interface UserState {
   dailyPuzzleCompletedDate: string | null;
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
+  soundEnabled: boolean;
 
   loginAsGuest: () => void;
   setUser: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
@@ -83,6 +84,7 @@ interface UserState {
   getHeartTimer: () => number;
   completeDailyPuzzle: () => void;
   hasCompletedDailyPuzzle: () => boolean;
+  setSoundEnabled: (v: boolean) => void;
 }
 
 function generateId() {
@@ -138,6 +140,7 @@ export const useUserStore = create<UserState>()(
       dailyPuzzleCompletedDate: null,
       dailyPuzzleStreak: 0,
       dailyPuzzleLastDate: null,
+      soundEnabled: true,
 
       loginAsGuest: () => {
         set({
@@ -196,6 +199,7 @@ export const useUserStore = create<UserState>()(
             dailyPuzzleCompletedDate: s.dailyPuzzleCompletedDate,
             dailyPuzzleStreak: s.dailyPuzzleStreak,
             dailyPuzzleLastDate: s.dailyPuzzleLastDate,
+            soundEnabled: s.soundEnabled,
           }),
         );
       },
@@ -234,6 +238,7 @@ export const useUserStore = create<UserState>()(
               dailyPuzzleCompletedDate: data.dailyPuzzleCompletedDate ?? s.dailyPuzzleCompletedDate,
               dailyPuzzleStreak: data.dailyPuzzleStreak ?? s.dailyPuzzleStreak,
               dailyPuzzleLastDate: data.dailyPuzzleLastDate ?? s.dailyPuzzleLastDate,
+              soundEnabled: data.soundEnabled ?? s.soundEnabled,
             });
           } else {
             get().syncToFirestore();
@@ -272,7 +277,9 @@ export const useUserStore = create<UserState>()(
           nextHeartAt: null,
           dailyPuzzleCompletedDate: null,
           dailyPuzzleStreak: 0,
-          dailyPuzzleLastDate: null,
+      dailyPuzzleLastDate: null,
+      soundEnabled: true,
+
         });
       },
 
@@ -486,6 +493,11 @@ export const useUserStore = create<UserState>()(
         const { hearts, nextHeartAt } = get();
         if (hearts >= 5 || !nextHeartAt) return 0;
         return Math.max(0, nextHeartAt - Date.now());
+      },
+
+      setSoundEnabled: (v: boolean) => {
+        set({ soundEnabled: v });
+        import("@/services/sound-service").then(({ setSoundEnabled }) => setSoundEnabled(v));
       },
     }),
     { name: "brainbloom-user" },

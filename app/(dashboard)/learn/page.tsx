@@ -133,6 +133,11 @@ export default function LearnPage() {
         addGems(5);
         completeDailyPuzzle();
         toast.success(`Daily Puzzle completed! +${totalXp} XP (2x bonus) +5 gems`, { position: "top-center" });
+        import("@/services/sound-service").then(({ playDailyComplete, playXp, playGem }) => {
+          playDailyComplete();
+          setTimeout(playXp, 300);
+          setTimeout(playGem, 600);
+        });
         if (firstTime) {
           import("@/services/puzzle-service").then(({ incrementCompleted }) =>
             incrementCompleted(currentPuzzle.id),
@@ -140,6 +145,7 @@ export default function LearnPage() {
         }
       } else if (firstTime) {
         addXp(xpEarned);
+        import("@/services/sound-service").then(({ playXp }) => playXp());
         import("@/services/puzzle-service").then(({ incrementCompleted }) =>
           incrementCompleted(currentPuzzle.id),
         );
