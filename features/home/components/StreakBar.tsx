@@ -1,16 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Flame, Zap, Heart, Gem } from "lucide-react";
+import { Flame, Zap, Heart, Gem, CheckCircle2 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { CountUp } from "@/features/home/components/CountUp";
 import { GlassCard } from "@/components/ui/glass-card";
+import { useMemo } from "react";
 
 export function StreakBar() {
   const streak = useUserStore((s) => s.streak);
   const xp = useUserStore((s) => s.xp);
   const hearts = useUserStore((s) => s.hearts);
   const gems = useUserStore((s) => s.gems);
+  const lastActiveDate = useUserStore((s) => s.lastActiveDate);
+
+  const keptToday = useMemo(() => lastActiveDate === new Date().toDateString(), [lastActiveDate]);
 
   return (
     <motion.div
@@ -39,6 +43,17 @@ export function StreakBar() {
                 duration={600}
                 className={`font-heading text-xl font-bold ${color}`}
               />
+              {label === "Streak" && streak > 0 && (
+                <span className={`mt-0.5 flex items-center gap-0.5 text-[10px] font-medium ${
+                  keptToday ? "text-success" : "text-amber-500"
+                }`}>
+                  {keptToday ? (
+                    <><CheckCircle2 className="size-2.5" />Kept today</>
+                  ) : (
+                    <><Flame className="size-2.5" />Do a lesson</>
+                  )}
+                </span>
+              )}
             </div>
           ))}
         </div>
