@@ -13,6 +13,7 @@ import { SkeletonCurriculum } from "@/components/ui/skeleton";
 export interface LessonProgress {
   currentOrder: number;
   totalInGroup: number;
+  completedInGroup: number;
   groupName: string;
   groupNumber: number;
 }
@@ -235,6 +236,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
                             onClick={() => state !== "locked" && onStartPuzzle(puzzle, {
                               currentOrder: puzzle.lessonOrder ?? 0,
                               totalInGroup: group.puzzles.length,
+                              completedInGroup: group.puzzles.filter(p => completedPuzzleIds.includes(p.id)).length,
                               groupName: group.name || `Group ${gi + 1}`,
                               groupNumber: gi + 1,
                             })}

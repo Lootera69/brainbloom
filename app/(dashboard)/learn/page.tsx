@@ -393,7 +393,7 @@ export default function LearnPage() {
               <div className="absolute right-0 top-3 h-1 w-24 overflow-hidden rounded-full bg-muted sm:w-32">
                 <motion.div
                   initial={{ width: 0 }}
-                  animate={{ width: `${((lessonProgress.currentOrder) / lessonProgress.totalInGroup) * 100}%` }}
+                  animate={{ width: `${(lessonProgress.completedInGroup / lessonProgress.totalInGroup) * 100}%` }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
                   className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
                 />
@@ -424,7 +424,7 @@ export default function LearnPage() {
               <div className="absolute right-0 top-3 h-1 w-24 overflow-hidden rounded-full bg-muted sm:w-32">
                 <motion.div
                   initial={{ width: 0 }}
-                  animate={{ width: `${((lessonProgress.currentOrder) / lessonProgress.totalInGroup) * 100}%` }}
+                  animate={{ width: `${(lessonProgress.completedInGroup / lessonProgress.totalInGroup) * 100}%` }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
                   className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
                 />
