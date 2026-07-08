@@ -19,49 +19,49 @@ export function StreakBar() {
   const keptToday = useMemo(() => lastActiveDate === new Date().toDateString(), [lastActiveDate]);
 
   const stats = [
-    {
-      icon: Flame,
-      label: "Day Streak",
-      value: streak,
-      numClass: "text-orange-500",
-      gradient: "from-orange-500/20 to-amber-500/10",
-      iconBg: "bg-gradient-to-br from-orange-500/25 to-amber-500/10",
-      ring: "ring-orange-500/20",
-      bottom: streak > 0 ? (
-        <span className={cn(
-          "mt-1 flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wide",
-          keptToday
-            ? "bg-success/10 text-success"
-            : "bg-amber-500/10 text-amber-600 dark:text-amber-400"
-        )}>
-          {keptToday ? (
-            <><CheckCircle2 className="size-2.5" /> Kept today</>
-          ) : (
-            <><Flame className="size-2.5" /> Do a lesson</>
-          )}
-        </span>
-      ) : null,
-    },
-    {
-      icon: Zap,
-      label: "Total XP",
-      value: xp,
-      numClass: "text-primary",
-      gradient: "from-primary/20 to-purple-500/10",
-      iconBg: "bg-gradient-to-br from-primary/25 to-purple-500/10",
-      ring: "ring-primary/20",
-      bottom: null,
-    },
-    {
-      icon: Gem,
-      label: "Gems",
-      value: gems,
-      numClass: "text-cyan-500",
-      gradient: "from-cyan-500/20 to-emerald-500/10",
-      iconBg: "bg-gradient-to-br from-cyan-500/25 to-emerald-500/10",
-      ring: "ring-cyan-500/20",
-      bottom: null,
-    },
+    // {
+    //   icon: Flame,
+    //   label: "Day Streak",
+    //   value: streak,
+    //   numClass: "text-orange-500",
+    //   gradient: "from-orange-500/20 to-amber-500/10",
+    //   iconBg: "bg-gradient-to-br from-orange-500/25 to-amber-500/10",
+    //   ring: "ring-orange-500/20",
+    //   bottom: streak > 0 ? (
+    //     <span className={cn(
+    //       "mt-1 flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-wide",
+    //       keptToday
+    //         ? "bg-success/10 text-success"
+    //         : "bg-amber-500/10 text-amber-600 dark:text-amber-400"
+    //     )}>
+    //       {keptToday ? (
+    //         <><CheckCircle2 className="size-2.5" /> Kept today</>
+    //       ) : (
+    //         <><Flame className="size-2.5" /> Do a lesson</>
+    //       )}
+    //     </span>
+    //   ) : null,
+    // },
+    // {
+    //   icon: Zap,
+    //   label: "Total XP",
+    //   value: xp,
+    //   numClass: "text-primary",
+    //   gradient: "from-primary/20 to-purple-500/10",
+    //   iconBg: "bg-gradient-to-br from-primary/25 to-purple-500/10",
+    //   ring: "ring-primary/20",
+    //   bottom: null,
+    // },
+    // {
+    //   icon: Gem,
+    //   label: "Gems",
+    //   value: gems,
+    //   numClass: "text-cyan-500",
+    //   gradient: "from-cyan-500/20 to-emerald-500/10",
+    //   iconBg: "bg-gradient-to-br from-cyan-500/25 to-emerald-500/10",
+    //   ring: "ring-cyan-500/20",
+    //   bottom: null,
+    // },
     {
       icon: Heart,
       label: "Hearts",
@@ -93,7 +93,7 @@ export function StreakBar() {
       transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 20 }}
     >
       <GlassCard intensity="light" className="mb-6 overflow-hidden sm:mb-8">
-        <div className="grid grid-cols-4 divide-x divide-muted/50">
+        <div className="grid grid-cols-1">
           {stats.map(({ icon: Icon, label, value, numClass, iconBg, bottom }, i) => (
             <motion.div
               key={label}
