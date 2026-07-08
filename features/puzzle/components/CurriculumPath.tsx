@@ -2,12 +2,13 @@
 
 import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { BookOpen, Lock, CheckCircle2, Zap, Loader2, ArrowRight, ChevronDown } from "lucide-react";
+import { BookOpen, Lock, CheckCircle2, Zap, ArrowRight, ChevronDown } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { getPublishedByCategory, categoryHasLessons } from "@/services/puzzle-service";
 import { useUserStore } from "@/store/user-store";
 import { type Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";
+import { SkeletonCurriculum } from "@/components/ui/skeleton";
 
 interface Props {
   category: string;
@@ -107,11 +108,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <Loader2 className="size-6 animate-spin text-muted-foreground" />
-      </div>
-    );
+    return <SkeletonCurriculum />;
   }
 
   if (puzzles.length === 0) {

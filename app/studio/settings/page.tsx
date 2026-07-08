@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
+import { SkeletonLessonGroup } from "@/components/ui/skeleton";
 
 type SettingsTab = "lessons" | "invites";
 
@@ -37,6 +38,7 @@ export default function StudioSettingsPage() {
 
   // Lesson groups state
   const [groups, setGroups] = useState<LessonGroupEntry[]>([]);
+  const [groupsLoading, setGroupsLoading] = useState(true);
   const [selectedCat, setSelectedCat] = useState<string>(CATEGORIES[0]?.value ?? "");
   const [newGroupName, setNewGroupName] = useState("");
   const [newGroupOrder, setNewGroupOrder] = useState("");
@@ -54,7 +56,7 @@ export default function StudioSettingsPage() {
   }, [isAdmin]);
 
   useEffect(() => {
-    getAllLessonGroups().then(setGroups);
+    getAllLessonGroups().then((g) => { setGroups(g); setGroupsLoading(false); });
   }, []);
 
   // Auto-switch tab if admin-only tab is inaccessible
@@ -231,7 +233,11 @@ export default function StudioSettingsPage() {
             </GlassCard>
 
             {/* Existing groups */}
-            {catGroups.length === 0 ? (
+            {groupsLoading ? (
+              <div className="space-y-2">
+                {[1, 2, 3].map((i) => <SkeletonLessonGroup key={i} />)}
+              </div>
+            ) : catGroups.length === 0 ? (
               <div className="rounded-xl border border-dashed border-border py-10 text-center">
                 <Layers className="mx-auto mb-2 size-6 text-muted-foreground/40" />
                 <p className="text-sm text-muted-foreground">

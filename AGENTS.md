@@ -164,6 +164,7 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
    - Top 10 most-completed puzzles + recent 10 puzzles lists
    - Category breakdown table with counts & avg plays per puzzle
    - BarChart3 icon button in Studio header next to Settings
+10. ✅ **Skeleton Loading**: 15 reusable skeleton variants replacing all spinners
 
 ## Recent Changes (Session: Jul 2026)
 - Added admin code deletion prevention, confirmed acceptedAnswers checking, comma-split fix
@@ -200,3 +201,8 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
 - **Learning path for all types**: lesson fields now visible for crossword/sudoku; puzzles without lessonContent still appear in learning path
 - **Lesson group loading fix**: useEffect now depends on both `form.category` and `form.type`; loads for all puzzle types
 - **Analytics Dashboard** (`/studio/analytics`): stat cards, bar charts (by type/status/category), top 10 puzzles, recent puzzles table, category breakdown, BarChart3 button in Studio header
+- **Skeleton Loading**: professional skeleton placeholders across all loading states
+  - `components/ui/skeleton.tsx` — 15 reusable skeleton variants (Card, Chart, Row, LessonGroup, Leaderboard, Activity, DailyChallenge, StreakBar, Form, FilterBar, Curriculum, etc.)
+  - Home: DailyChallengeCard upgraded from spinner to matching skeleton blocks
+  - Learn: PuzzleBrowser filters + puzzle list skeletons; CurriculumPath lesson group skeletons
+  - Studio: puzzle list rows skeleton; edit form skeleton; settings lesson groups skeleton

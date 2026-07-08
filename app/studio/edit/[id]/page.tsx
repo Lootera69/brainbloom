@@ -12,6 +12,7 @@ import { type PuzzleFormData, type PuzzleType, type CrosswordData, type SudokuDa
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
 import { generateSudoku } from "@/services/sudoku-generator";
 import { toast } from "sonner";
+import { SkeletonForm } from "@/components/ui/skeleton";
 
 const STATUS_LABELS: Record<ReviewStatus, string> = {
   draft: "Draft",
@@ -235,8 +236,10 @@ export default function EditPuzzlePage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-[50vh] items-center justify-center">
-        <Loader2 className="size-6 animate-spin text-muted-foreground" />
+      <main className="mx-auto max-w-2xl px-4 py-6">
+        <div className="mb-4 h-4 w-24 animate-pulse rounded bg-muted" />
+        <div className="mb-6 h-7 w-40 animate-pulse rounded bg-muted" />
+        <SkeletonForm />
       </main>
     );
   }

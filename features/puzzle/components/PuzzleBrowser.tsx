@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Zap, Loader2, CheckCircle2 } from "lucide-react";
+import { Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Zap, CheckCircle2 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { getPublishedPuzzles, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
 import { useUserStore } from "@/store/user-store";
 import { type Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";
+import { SkeletonFilterBar, SkeletonPuzzleList } from "@/components/ui/skeleton";
 
 const iconMap: Record<string, typeof Brain> = {
   brain: Brain,
@@ -58,8 +59,10 @@ export function PuzzleBrowser({ onStartPuzzle, onCategoryChange, category, hideF
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <Loader2 className="size-6 animate-spin text-muted-foreground" />
+      <div className="space-y-6">
+        <SkeletonFilterBar />
+        <SkeletonFilterBar />
+        <SkeletonPuzzleList count={4} />
       </div>
     );
   }

@@ -10,6 +10,7 @@ import { getTodayDailyPuzzleId, setDailyPuzzle } from "@/services/daily-puzzle";
 import { type Puzzle, type ReviewStatus } from "@/types/puzzle";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { toast } from "sonner";
+import { SkeletonPuzzleList, SkeletonFilterBar } from "@/components/ui/skeleton";
 
 const STATUS_LABELS: Record<ReviewStatus, string> = {
   draft: "Draft",
@@ -185,8 +186,9 @@ export default function StudioPage() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center py-20">
-          <Loader2 className="size-6 animate-spin text-muted-foreground" />
+        <div className="space-y-4">
+          <SkeletonFilterBar />
+          <SkeletonPuzzleList count={6} />
         </div>
       ) : filtered.length === 0 ? (
         <div className="rounded-2xl border border-dashed py-20 text-center">
