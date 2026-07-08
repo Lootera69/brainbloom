@@ -241,6 +241,25 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Sud
       setNotes((prev) => {
         const n = [...prev];
         n[target] = new Set();
+        const row = Math.floor(target / SIZE);
+        const col = target % SIZE;
+        const boxRow = Math.floor(row / 3) * 3;
+        const boxCol = Math.floor(col / 3) * 3;
+        for (let i = 0; i < n.length; i++) {
+          if (i === target) continue;
+          const r = Math.floor(i / SIZE);
+          const c = i % SIZE;
+          const inRow = r === row;
+          const inCol = c === col;
+          const inBox = r >= boxRow && r < boxRow + 3 && c >= boxCol && c < boxCol + 3;
+          if (inRow || inCol || inBox) {
+            const s = new Set(n[i]);
+            if (s.has(num)) {
+              s.delete(num);
+              n[i] = s;
+            }
+          }
+        }
         return n;
       });
 
