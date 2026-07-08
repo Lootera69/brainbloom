@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Heart, HeartCrack, ArrowLeft, Sparkles, Brain, Lightbulb, Atom, Grid2x2, ArrowRight } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
-import { CurriculumPath } from "@/features/puzzle/components/CurriculumPath";
+import { CurriculumPath, type LessonProgress } from "@/features/puzzle/components/CurriculumPath";
 import { LessonView } from "@/features/puzzle/components/LessonView";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { SectionHeader } from "@/features/home/components/SectionHeader";
@@ -42,6 +42,7 @@ export default function LearnPage() {
   const [timer, setTimer] = useState(0);
   const [isDaily, setIsDaily] = useState(false);
   const [selectedCat, setSelectedCat] = useState<string | null>(null);
+  const [lessonProgress, setLessonProgress] = useState<LessonProgress | null>(null);
 
   const hearts = useUserStore((s) => s.hearts);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
@@ -100,10 +101,11 @@ export default function LearnPage() {
     router.push("/learn", { scroll: false });
   };
 
-  const handleStartPuzzle = useCallback((puzzle: Puzzle) => {
+  const handleStartPuzzle = useCallback((puzzle: Puzzle, progress?: LessonProgress) => {
     if (hearts <= 0) return;
     setIsDaily(false);
     setLastPlayedCategory(puzzle.category);
+    setLessonProgress(progress ?? null);
 
     if (puzzle.lessonContent?.trim()) {
       setCurrentPuzzle(puzzle);
@@ -163,6 +165,7 @@ export default function LearnPage() {
     setView("browse");
     setCurrentPuzzle(null);
     setIsDaily(false);
+    setLessonProgress(null);
     setFocusMode(false);
   }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, setFocusMode]);
 
@@ -170,6 +173,7 @@ export default function LearnPage() {
     setView("browse");
     setCurrentPuzzle(null);
     setIsDaily(false);
+    setLessonProgress(null);
     setFocusMode(false);
   };
 
@@ -383,6 +387,24 @@ export default function LearnPage() {
               <ArrowLeft className="size-4" />
               Back
             </button>
+
+            {lessonProgress && (
+              <div className="mb-4 space-y-1.5">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <span>{lessonProgress.groupName}</span>
+                  <span>{lessonProgress.groupNumber}.{lessonProgress.currentOrder} of {lessonProgress.totalInGroup}</span>
+                </div>
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${((lessonProgress.currentOrder) / lessonProgress.totalInGroup) * 100}%` }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
+                  />
+                </div>
+              </div>
+            )}
+
             <LessonView puzzle={currentPuzzle} onStartQuiz={handleStartQuiz} />
           </motion.div>
         )}
@@ -401,6 +423,24 @@ export default function LearnPage() {
               <ArrowLeft className="size-4" />
               Back
             </button>
+
+            {lessonProgress && (
+              <div className="mb-4 space-y-1.5">
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <span>{lessonProgress.groupName}</span>
+                  <span>{lessonProgress.groupNumber}.{lessonProgress.currentOrder} of {lessonProgress.totalInGroup}</span>
+                </div>
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${((lessonProgress.currentOrder) / lessonProgress.totalInGroup) * 100}%` }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
+                  />
+                </div>
+              </div>
+            )}
+
             {isDaily && (
               <motion.div
                 initial={{ opacity: 0, y: -8 }}

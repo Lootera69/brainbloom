@@ -10,9 +10,16 @@ import { type Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";
 import { SkeletonCurriculum } from "@/components/ui/skeleton";
 
+export interface LessonProgress {
+  currentOrder: number;
+  totalInGroup: number;
+  groupName: string;
+  groupNumber: number;
+}
+
 interface Props {
   category: string;
-  onStartPuzzle: (puzzle: Puzzle) => void;
+  onStartPuzzle: (puzzle: Puzzle, progress?: LessonProgress) => void;
 }
 
 interface LessonGroup {
@@ -225,7 +232,12 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
                           transition={{ delay: si * 0.04 }}
                         >
                           <button
-                            onClick={() => state !== "locked" && onStartPuzzle(puzzle)}
+                            onClick={() => state !== "locked" && onStartPuzzle(puzzle, {
+                              currentOrder: puzzle.lessonOrder ?? 0,
+                              totalInGroup: group.puzzles.length,
+                              groupName: group.name || `Group ${gi + 1}`,
+                              groupNumber: gi + 1,
+                            })}
                             disabled={state === "locked"}
                             className="w-full text-left"
                           >
