@@ -213,8 +213,8 @@ export default function LearnPage() {
             ) : (
               <>
                 {hearts < 5 && timer > 0 && (
-                  <div className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-primary/5 px-4 py-2 text-sm">
-                    <Heart className="size-4 fill-primary text-primary" />
+                  <div className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-destructive/10 px-4 py-2 text-sm">
+                    <Heart className="size-4 fill-destructive text-destructive" />
                     <span className="text-muted-foreground">
                       Next heart in{" "}
                     </span>
@@ -355,8 +355,8 @@ export default function LearnPage() {
             ) : (
               <>
                 {hearts < 5 && timer > 0 && (
-                  <div className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-primary/5 px-4 py-2 text-sm">
-                    <Heart className="size-4 fill-primary text-primary" />
+                  <div className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-destructive/10 px-4 py-2 text-sm">
+                    <Heart className="size-4 fill-destructive text-destructive" />
                     <span className="text-muted-foreground">
                       Next heart in{" "}
                     </span>
