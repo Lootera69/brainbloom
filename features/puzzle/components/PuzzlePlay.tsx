@@ -78,7 +78,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
                 />
               )}
               <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                {puzzle.difficulty} &middot; {puzzle.type === "true-false" ? "True / False" : puzzle.type === "type-answer" ? "Type Answer" : puzzle.type === "sudoku" ? "Sudoku" : "Multiple Choice"}
+                {puzzle.difficulty} &middot; {puzzle.type === "true-false" ? "True / False" : "Multiple Choice"}
               </p>
               <h2 className="font-heading text-xl font-bold sm:text-2xl">{puzzle.question}</h2>
             </GlassCard>
@@ -101,43 +101,77 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
             </motion.button>
           </motion.div>
         ) : (
-          <motion.div key="result" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
-            <GlassCard className={`p-8 sm:p-10 ${isCorrect ? "ring-1 ring-success/30" : "ring-1 ring-destructive/20"}`}>
-              <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 300 }}
-                className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full">
-                {isCorrect ? <CheckCircle2 className="size-16 text-success" /> : <XCircle className="size-16 text-destructive" />}
-              </motion.div>
-              <h2 className="font-heading text-2xl font-bold">{isCorrect ? "Correct!" : "Not quite!"}</h2>
-              {isCorrect && !isRepeat ? (
-                <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-                  className="mt-3 flex items-center justify-center gap-2 text-lg font-semibold text-success">
-                  <Zap className="size-5" /> +{puzzle.xpReward} XP
-                </motion.p>
-              ) : isCorrect && isRepeat ? (
-                <p className="mt-3 text-sm text-amber-600 dark:text-amber-400">Already solved &mdash; no extra XP earned</p>
-              ) : (
-                <p className="mt-2 text-sm text-muted-foreground">
-                  The correct answer was: <span className="font-semibold text-foreground">{puzzle.correctAnswer}</span>
-                </p>
-              )}
-              {puzzle.requiresExplanation && puzzle.explanation && (
-                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
-                  className="mt-4 rounded-xl bg-muted/50 p-4 text-left"
-                >
-                  <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Why this answer?</p>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{puzzle.explanation}</p>
-                </motion.div>
-              )}
-              <motion.button onClick={() => onComplete(isCorrect, earned)}
-                whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                className="mt-8 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98]">
-                Continue <ArrowRight className="size-4" />
-              </motion.button>
-            </GlassCard>
-          </motion.div>
+          <ResultCard
+            correct={isCorrect}
+            earned={earned}
+            isRepeat={isRepeat ?? false}
+            correctExplanation={puzzle.correctExplanation}
+            incorrectExplanation={puzzle.incorrectExplanation}
+            correctAnswer={puzzle.correctAnswer}
+            onContinue={() => onComplete(isCorrect, earned)}
+          />
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+function ResultCard({ correct, earned, isRepeat, correctExplanation, incorrectExplanation, correctAnswer, onContinue }: {
+  correct: boolean;
+  earned: number;
+  isRepeat: boolean;
+  correctExplanation?: string;
+  incorrectExplanation?: string;
+  correctAnswer: string;
+  onContinue: () => void;
+}) {
+  return (
+    <motion.div key="result" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
+      <GlassCard className={`p-6 sm:p-8 ${correct ? "ring-1 ring-success/30" : "ring-1 ring-destructive/20"}`}>
+        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 300 }}
+          className="mx-auto mb-3 flex size-14 items-center justify-center rounded-full sm:size-16">
+          {correct
+            ? <CheckCircle2 className="size-14 text-success sm:size-16" />
+            : <XCircle className="size-14 text-destructive sm:size-16" />}
+        </motion.div>
+        <h2 className="font-heading text-xl font-bold sm:text-2xl">{correct ? "Correct!" : "Not quite!"}</h2>
+
+        {correct && !isRepeat ? (
+          <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+            className="mt-2 flex items-center justify-center gap-2 text-lg font-semibold text-success">
+            <Zap className="size-5" /> +{earned} XP
+          </motion.p>
+        ) : correct && isRepeat ? (
+          <p className="mt-2 text-sm text-amber-600 dark:text-amber-400">Already solved &mdash; no extra XP earned</p>
+        ) : (
+          <p className="mt-2 text-sm text-muted-foreground">
+            The correct answer was: <span className="font-semibold text-foreground">{correctAnswer}</span>
+          </p>
+        )}
+
+        {/* Explanation */}
+        {correct && correctExplanation && (
+          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+            className="mt-4 rounded-xl bg-success/5 p-4 text-left">
+            <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-success">Explanation</p>
+            <p className="text-sm leading-relaxed text-muted-foreground">{correctExplanation}</p>
+          </motion.div>
+        )}
+        {!correct && incorrectExplanation && (
+          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+            className="mt-4 rounded-xl bg-destructive/5 p-4 text-left">
+            <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-destructive">Explanation</p>
+            <p className="text-sm leading-relaxed text-muted-foreground">{incorrectExplanation}</p>
+          </motion.div>
+        )}
+
+        <motion.button onClick={onContinue}
+          whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+          className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98]">
+          Continue <ArrowRight className="size-4" />
+        </motion.button>
+      </GlassCard>
+    </motion.div>
   );
 }
 

@@ -34,8 +34,8 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   reviewStatus: "draft" | "pending" | "approved" | "rejected" | "needs-discussion",
   reviewedBy?: string,
   reviewNote?: string,
-  requiresExplanation?: boolean,
-  explanation?: string,
+  correctExplanation?: string,          // shown on correct answer
+  incorrectExplanation?: string,        // shown on wrong answer
   completedBy?: number,                // incremented via Firestore increment(1)
   lessonContent?: string,               // numbered facts, one per line, shown before quiz
   lessonOrder?: number,                 // position in Learning Path
@@ -113,6 +113,7 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
 - Studio test modal uses `PuzzlePlay` with close-on-complete (no XP awarded)
 - "Puzzles" category renamed to "Puzzles"
 - Deployed to Vercel: brainblooms.vercel.app
+- `correctExplanation` replaces old `explanation` + `requiresExplanation` toggle; both explanation fields always shown in Studio for quiz/type-answer
 
 ## Build Order
 1. ✅ Foundation (Phase 1-3, Home page, UI components, store, auth, shell)
@@ -165,6 +166,11 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
    - Category breakdown table with counts & avg plays per puzzle
    - BarChart3 icon button in Studio header next to Settings
 10. ✅ **Skeleton Loading**: 15 reusable skeleton variants replacing all spinners
+11. ✅ **Duolingo-style inline result UI**:
+    - Replaced `explanation` + `requiresExplanation` with `correctExplanation` / `incorrectExplanation`
+    - Studio forms show both explanation fields for quiz/type-answer (not crossword/sudoku)
+    - QuizPlay and TypeAnswerPlay show inline result card with appropriate explanation after each answer
+    - All existing logic preserved (XP, hearts, sounds, completion tracking)
 
 ## Recent Changes (Session: Jul 2026)
 - Added admin code deletion prevention, confirmed acceptedAnswers checking, comma-split fix
@@ -206,3 +212,9 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   - Home: DailyChallengeCard upgraded from spinner to matching skeleton blocks
   - Learn: PuzzleBrowser filters + puzzle list skeletons; CurriculumPath lesson group skeletons
   - Studio: puzzle list rows skeleton; edit form skeleton; settings lesson groups skeleton
+- **Duolingo-style inline result UI**:
+  - Replaced single `explanation` + `requiresExplanation` toggle with `correctExplanation` and `incorrectExplanation` fields
+  - Studio create/edit forms show both explanation fields for quiz/type-answer puzzles (not crossword/sudoku)
+  - QuizPlay and TypeAnswerPlay show inline result card after each answer with the appropriate explanation (green for correct, red for wrong)
+  - Correct answer shows correctExplanation; wrong answer shows incorrectExplanation + the right answer
+  - All existing logic preserved (XP, hearts, sound effects, completion tracking)

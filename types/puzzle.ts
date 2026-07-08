@@ -40,8 +40,8 @@ export interface Puzzle {
   reviewStatus: ReviewStatus;
   reviewedBy?: string;
   reviewNote?: string;
-  requiresExplanation: boolean;
-  explanation: string;
+  correctExplanation?: string;
+  incorrectExplanation?: string;
   createdBy: string;
   createdAt: number;
   lastModifiedBy: string;
@@ -67,8 +67,8 @@ export interface PuzzleFormData {
   sudokuData?: SudokuData;
   xpReward: number;
   reviewStatus?: ReviewStatus;
-  requiresExplanation: boolean;
-  explanation: string;
+  correctExplanation?: string;
+  incorrectExplanation?: string;
   lessonContent?: string;
   lessonOrder?: number;
   lessonGroup?: string;

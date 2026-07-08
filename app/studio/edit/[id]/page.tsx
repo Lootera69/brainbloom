@@ -70,8 +70,6 @@ export default function EditPuzzlePage() {
     choices: ["", "", "", ""],
     correctAnswer: "",
     xpReward: 10,
-    requiresExplanation: false,
-    explanation: "",
   });
 
   useEffect(() => {
@@ -87,8 +85,8 @@ export default function EditPuzzlePage() {
         choices: puzzle.choices,
         correctAnswer: puzzle.correctAnswer,
         xpReward: puzzle.xpReward,
-        requiresExplanation: puzzle.requiresExplanation ?? false,
-        explanation: puzzle.explanation ?? "",
+        correctExplanation: puzzle.correctExplanation ?? undefined,
+        incorrectExplanation: puzzle.incorrectExplanation ?? undefined,
         crosswordData: puzzle.crosswordData ? { ...puzzle.crosswordData, grid: puzzle.crosswordData.grid.map((r) => [...r]) } : undefined,
         sudokuData: puzzle.sudokuData ? { ...puzzle.sudokuData } : undefined,
         imageUrl: puzzle.imageUrl ?? undefined,
@@ -166,10 +164,6 @@ export default function EditPuzzlePage() {
     }
     if (form.type === "sudoku" && !form.sudokuData) {
       toast.error("Generate a Sudoku puzzle before saving.");
-      return;
-    }
-    if (form.requiresExplanation && !form.explanation.trim()) {
-      toast.error("Please write an explanation or uncheck the option.");
       return;
     }
     setSaving(true);
@@ -400,19 +394,20 @@ export default function EditPuzzlePage() {
 
         {(isQuiz || isTypeAnswer) && (
           <div className="space-y-4">
-            <label className="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" checked={form.requiresExplanation} onChange={(e) => update("requiresExplanation", e.target.checked)}
-                className="size-4 rounded border-foreground/20 text-primary focus:ring-primary" />
-              <span className="text-sm font-medium">Requires explanation</span>
-            </label>
-            {form.requiresExplanation && (
-              <div>
-                <label className="mb-1.5 block text-sm font-medium">Explanation</label>
-                <textarea value={form.explanation} onChange={(e) => update("explanation", e.target.value)}
-                  placeholder="Explain why this answer is correct..." rows={3}
-                  className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
-              </div>
-            )}
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Explanation (for correct answer)</label>
+              <textarea value={form.correctExplanation ?? ""} onChange={(e) => update("correctExplanation", e.target.value)}
+                placeholder="Explain why this answer is correct..."
+                rows={3}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Explanation (for wrong answer)</label>
+              <textarea value={form.incorrectExplanation ?? ""} onChange={(e) => update("incorrectExplanation", e.target.value)}
+                placeholder="Explain what the correct answer is and why..."
+                rows={3}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+            </div>
           </div>
         )}
 
