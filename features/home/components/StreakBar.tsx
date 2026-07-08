@@ -121,10 +121,6 @@ export function StreakBar() {
                 )}
               />
 
-              <p className="mt-0.5 text-[11px] font-medium text-muted-foreground/70 sm:text-xs">
-                {label}
-              </p>
-
               {bottom}
             </motion.div>
           ))}
