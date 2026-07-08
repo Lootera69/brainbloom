@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
 import { signInWithGoogle } from "@/services/firebase";
 import { Toaster, toast } from "sonner";
+import { Skeleton } from "@/components/ui/skeleton";
 
 
 const firebaseConfigured =
@@ -23,14 +24,19 @@ const taglines = [
 export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(true);
   const [taglineIndex, setTaglineIndex] = useState(0);
   const loginAsGuest = useUserStore((s) => s.loginAsGuest);
   const setUser = useUserStore((s) => s.setUser);
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
-
   useEffect(() => {
-    if (isAuthenticated) router.replace("/");
-  }, [isAuthenticated, router]);
+    if (isAuthenticated) {
+      router.replace("/");
+    } else {
+      const timer = setTimeout(() => setPageLoading(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,6 +74,22 @@ export default function LoginPage() {
   };
 
   const TaglineIcon = taglines[taglineIndex].icon;
+
+  if (pageLoading) {
+    return (
+      <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-hidden px-6">
+        <div className="flex flex-col items-center gap-6">
+          <Skeleton className="size-16 rounded-2xl" />
+          <Skeleton className="h-12 w-56 rounded-lg" />
+          <Skeleton className="h-5 w-40 rounded-full" />
+          <div className="mt-10 flex w-full max-w-sm flex-col gap-3">
+            <Skeleton className="h-14 w-full rounded-2xl" />
+            <Skeleton className="h-14 w-full rounded-2xl" />
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-hidden px-6">
