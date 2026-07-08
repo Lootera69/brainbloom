@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles } from "lucide-react";
+import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3 } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
@@ -148,6 +148,10 @@ export default function StudioPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <button onClick={() => router.push("/studio/analytics")}
+            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted active:scale-[0.98]">
+            <BarChart3 className="size-4" />
+          </button>
           <button onClick={() => router.push("/studio/settings")}
             className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted active:scale-[0.98]">
             <Settings className="size-4" />

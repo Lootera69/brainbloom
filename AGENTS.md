@@ -157,7 +157,13 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
    - BottomNav: Apple-style frosted glass (`backdrop-blur-2xl saturate-[1.8]`), gradient top line, progressive enhancement
    - Profile page: gradient-blur avatar ring, animated level XP bar, glass stat grid, collapsible heart timer, two-column achievements/streak-freeze, animated sound toggle
 8. ⬜ Content: seed 30-50 puzzles via Studio or LLM-generated JSON
-9. ⬜ Polish: analytics, offline page, bulk JSON import/export
+9. ✅ **Analytics Dashboard** (`/studio/analytics`):
+   - `services/analytics-service.ts` — aggregates puzzle stats (total, published, completions)
+   - Stat cards: total puzzles, published count, total completions, category count
+   - Horizontal bar charts: puzzles by type, puzzles by status, completions by category
+   - Top 10 most-completed puzzles + recent 10 puzzles lists
+   - Category breakdown table with counts & avg plays per puzzle
+   - BarChart3 icon button in Studio header next to Settings
 
 ## Recent Changes (Session: Jul 2026)
 - Added admin code deletion prevention, confirmed acceptedAnswers checking, comma-split fix
@@ -193,3 +199,4 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
 - **Profile page redesign**: gradient-blur avatar ring, animated XP progress bar, glass stat grid, two-column layout
 - **Learning path for all types**: lesson fields now visible for crossword/sudoku; puzzles without lessonContent still appear in learning path
 - **Lesson group loading fix**: useEffect now depends on both `form.category` and `form.type`; loads for all puzzle types
+- **Analytics Dashboard** (`/studio/analytics`): stat cards, bar charts (by type/status/category), top 10 puzzles, recent puzzles table, category breakdown, BarChart3 button in Studio header

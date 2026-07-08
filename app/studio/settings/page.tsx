@@ -3,13 +3,14 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Plus, Trash2, Key, Lock, Eye, EyeOff, Shield, PenTool, BookOpen, Edit3, Layers, Users, GripVertical } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, Key, Lock, Eye, EyeOff, Shield, PenTool, BookOpen, Edit3, Layers, Users, GripVertical, AlertTriangle } from "lucide-react";
 import { getInviteCodes, addInviteCode, removeInviteCode, type InviteCodeEntry } from "@/services/studio-settings";
 import { getStudioSession, getStudioRole, CATEGORIES } from "@/services/puzzle-service";
 import { getAllLessonGroups, addLessonGroup, removeLessonGroup, updateLessonGroup, type LessonGroupEntry } from "@/services/lesson-service";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
+import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 
 type SettingsTab = "lessons" | "invites";
 
@@ -32,6 +33,7 @@ export default function StudioSettingsPage() {
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
   const currentCode = getStudioSession();
   const [codesLoading, setCodesLoading] = useState(true);
+  const [deleteTarget, setDeleteTarget] = useState<InviteCodeEntry | null>(null);
 
   // Lesson groups state
   const [groups, setGroups] = useState<LessonGroupEntry[]>([]);
@@ -92,6 +94,7 @@ export default function StudioSettingsPage() {
   const handleRemoveCode = async (code: string) => {
     await removeInviteCode(code);
     toast.success("Invite code removed.");
+    setDeleteTarget(null);
     await refreshCodes();
   };
 
@@ -412,7 +415,7 @@ export default function StudioSettingsPage() {
                           {revealed[entry.code] ? entry.password : "••••••••"}
                         </span>
                         <button
-                          onClick={() => handleRemoveCode(entry.code)}
+                          onClick={() => setDeleteTarget(entry)}
                           disabled={entry.role === "admin"}
                           className="flex size-7 items-center justify-center rounded-lg text-destructive/60 hover:bg-destructive/10 hover:text-destructive disabled:cursor-not-allowed disabled:opacity-30"
                           title={entry.role === "admin" ? "Cannot delete admin credentials" : "Delete"}
@@ -482,6 +485,16 @@ export default function StudioSettingsPage() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* Delete invite code confirmation */}
+      <ConfirmDialog
+        open={deleteTarget !== null}
+        onClose={() => setDeleteTarget(null)}
+        onConfirm={() => handleRemoveCode(deleteTarget!.code)}
+        title="Delete Invite Code"
+        description={`Are you sure you want to delete the invite code "${deleteTarget?.code}"? Users with this code will no longer be able to access the studio.`}
+        confirmLabel="Delete"
+        confirmVariant="danger"
+      />
     </main>
   );
 }
