@@ -379,6 +379,7 @@ export default function LearnPage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
+            className="relative"
           >
             <button
               onClick={handleBack}
@@ -389,19 +390,13 @@ export default function LearnPage() {
             </button>
 
             {lessonProgress && (
-              <div className="mb-4 space-y-1.5">
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <span>{lessonProgress.groupName}</span>
-                  <span>{lessonProgress.groupNumber}.{lessonProgress.currentOrder} of {lessonProgress.totalInGroup}</span>
-                </div>
-                <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${((lessonProgress.currentOrder) / lessonProgress.totalInGroup) * 100}%` }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
-                  />
-                </div>
+              <div className="absolute right-0 top-3 h-1 w-24 overflow-hidden rounded-full bg-muted sm:w-32">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${((lessonProgress.currentOrder) / lessonProgress.totalInGroup) * 100}%` }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
+                />
               </div>
             )}
 
@@ -415,6 +410,7 @@ export default function LearnPage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
+            className="relative"
           >
             <button
               onClick={handleBack}
@@ -425,19 +421,13 @@ export default function LearnPage() {
             </button>
 
             {lessonProgress && (
-              <div className="mb-4 space-y-1.5">
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
-                  <span>{lessonProgress.groupName}</span>
-                  <span>{lessonProgress.groupNumber}.{lessonProgress.currentOrder} of {lessonProgress.totalInGroup}</span>
-                </div>
-                <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${((lessonProgress.currentOrder) / lessonProgress.totalInGroup) * 100}%` }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
-                  />
-                </div>
+              <div className="absolute right-0 top-3 h-1 w-24 overflow-hidden rounded-full bg-muted sm:w-32">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${((lessonProgress.currentOrder) / lessonProgress.totalInGroup) * 100}%` }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
+                />
               </div>
             )}
 
