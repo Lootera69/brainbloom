@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, HeartCrack, ArrowLeft, Sparkles, Brain, Lightbulb, Atom, Grid2x2, ArrowRight } from "lucide-react";
+import { Heart, HeartCrack, ArrowLeft, Sparkles, Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Flame, CheckCircle2 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
 import { CurriculumPath, type LessonProgress } from "@/features/puzzle/components/CurriculumPath";
@@ -58,6 +58,28 @@ export default function LearnPage() {
   const completeDailyPuzzle = useUserStore((s) => s.completeDailyPuzzle);
   const hasCompletedDailyPuzzle = useUserStore((s) => s.hasCompletedDailyPuzzle);
   const setLastPlayedCategory = useUserStore((s) => s.setLastPlayedCategory);
+  const streak = useUserStore((s) => s.streak);
+  const lastActiveDate = useUserStore((s) => s.lastActiveDate);
+
+  const streakMaintainedToday = useMemo(() => {
+    return lastActiveDate === new Date().toDateString();
+  }, [lastActiveDate]);
+
+  const streakDays = useMemo(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const lastActive = lastActiveDate ? new Date(lastActiveDate + "T00:00:00") : null;
+    const streakStart = lastActive ? new Date(lastActive.getTime() - (streak - 1) * 86400000) : null;
+    const dayLabels = ["S", "M", "T", "W", "T", "F", "S"];
+    const days: { filled: boolean; label: string; isToday: boolean }[] = [];
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      const filled = streakStart && lastActive ? date >= streakStart && date <= lastActive : false;
+      days.push({ filled, label: dayLabels[date.getDay()], isToday: i === 0 });
+    }
+    return days;
+  }, [streak, lastActiveDate]);
 
   useEffect(() => {
     const tick = () => {
@@ -194,6 +216,53 @@ export default function LearnPage() {
             exit={{ opacity: 0, y: -10 }}
           >
             <SectionHeader title="Learn" subtitle="Pick a category to explore" />
+
+            {streak > 0 && (
+              <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="mb-5">
+                <GlassCard intensity="light" className="overflow-hidden p-4 sm:p-5">
+                  <div className="flex items-center gap-4 sm:gap-6">
+                    <div className="flex shrink-0 items-center gap-2">
+                      <span className="flex size-10 items-center justify-center rounded-xl bg-orange-500/10 sm:size-11">
+                        <Flame className="size-5 fill-orange-500 text-orange-500 sm:size-6" />
+                      </span>
+                      <div>
+                        <p className="font-heading text-lg font-bold leading-none sm:text-xl">{streak}</p>
+                        <p className="text-[11px] text-muted-foreground">Day Streak</p>
+                      </div>
+                    </div>
+
+                    <div className="hidden items-center gap-0.5 sm:flex">
+                      {streakDays.map((d, i) => (
+                        <div key={i} className="flex flex-col items-center gap-0.5">
+                          <span className="text-[10px] font-medium text-muted-foreground">{d.label}</span>
+                          <div className={`size-5 rounded-full border-2 transition-colors ${
+                            d.filled
+                              ? "border-orange-500 bg-orange-500"
+                              : d.isToday
+                                ? "border-orange-300 border-dashed"
+                                : "border-muted-foreground/30"
+                          }`} />
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="ml-auto shrink-0 text-right">
+                      <div className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ${
+                        streakMaintainedToday
+                          ? "bg-success/10 text-success"
+                          : "bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                      }`}>
+                        {streakMaintainedToday ? (
+                          <><CheckCircle2 className="size-3" /> Kept today</>
+                        ) : (
+                          <><Flame className="size-3" /> Do a lesson!</>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            )}
             {hearts <= 0 ? (
               <GlassCard intensity="light" className="mx-auto mt-6 max-w-md p-6 text-center">
                 <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-destructive/10">
@@ -363,6 +432,20 @@ export default function LearnPage() {
                     <span className="font-mono font-bold tabular-nums">
                       {formatHeartTimer(timer)}
                     </span>
+                  </div>
+                )}
+
+                {/* Compact streak */}
+                {streak > 0 && (
+                  <div className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-orange-500/5 px-4 py-2 text-xs sm:text-sm">
+                    <Flame className="size-4 fill-orange-500 text-orange-500" />
+                    <span className="font-semibold text-foreground">{streak} Day Streak</span>
+                    <span className="text-muted-foreground">&middot;</span>
+                    {streakMaintainedToday ? (
+                      <span className="font-medium text-success">Today's done</span>
+                    ) : (
+                      <span className="font-medium text-amber-500">Do a lesson</span>
+                    )}
                   </div>
                 )}
 
