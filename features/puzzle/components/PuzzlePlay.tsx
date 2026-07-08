@@ -38,140 +38,127 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
   const getChoiceClass = (choice: string) => {
     if (!submitted) {
       return selected === choice
-        ? "border-primary bg-primary/10 text-primary"
-        : "border-transparent bg-card hover:bg-muted";
+        ? "ring-2 ring-primary border-primary bg-primary/10"
+        : "border-border bg-card hover:bg-muted";
     }
     if (choice === puzzle.correctAnswer) {
-      return "border-success bg-success/10 text-success";
+      return "ring-2 ring-success border-success bg-success/10 text-success";
     }
     if (choice === selected && !isCorrect) {
-      return "border-destructive bg-destructive/10 text-destructive";
+      return "ring-2 ring-destructive border-destructive bg-destructive/10 text-destructive";
     }
-    return "border-transparent bg-card opacity-50";
+    return "border-border bg-card/50 opacity-50";
   };
 
-  const getIcon = (choice: string) => {
-    if (!submitted) return null;
+  const getChoiceIcon = (choice: string) => {
+    if (!submitted) return <span className="size-4" />;
     if (choice === puzzle.correctAnswer) return <CheckCircle2 className="size-5 text-success" />;
     if (choice === selected && !isCorrect) return <XCircle className="size-5 text-destructive" />;
-    return null;
+    return <span className="size-4" />;
   };
+
+  const letter = (choice: string) => String.fromCharCode(65 + puzzle.choices.indexOf(choice));
 
   return (
     <div className="mx-auto max-w-lg">
-      <AnimatePresence mode="wait">
-        {!submitted ? (
-          <motion.div key="question" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, y: -20 }}>
-            <GlassCard className="mb-6 p-6 text-center sm:p-8">
-              {isRepeat && (
-                <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
-                  className="mb-4 flex items-center justify-center gap-1.5 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-600 dark:text-amber-400">
-                  <Info className="size-3.5" />
-                  Re-doing this task will not award any extra points
-                </motion.div>
+      {/* Question card — always visible */}
+      <GlassCard className="mb-6 p-6 text-center sm:p-8">
+        {isRepeat && (
+          <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
+            className="mb-4 flex items-center justify-center gap-1.5 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-600 dark:text-amber-400">
+            <Info className="size-3.5" />
+            Re-doing this task will not award any extra points
+          </motion.div>
+        )}
+        {puzzle.imageUrl && (
+          <img src={puzzle.imageUrl} alt="Question image"
+            className="mx-auto mb-4 max-h-64 w-full rounded-xl object-contain" />
+        )}
+        <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          {puzzle.difficulty} &middot; {puzzle.type === "true-false" ? "True / False" : "Multiple Choice"}
+        </p>
+        <h2 className="font-heading text-xl font-bold sm:text-2xl">{puzzle.question}</h2>
+      </GlassCard>
+
+      {/* Choices */}
+      <div className="space-y-3">
+        {puzzle.choices.map((choice) => (
+          <motion.button key={choice} onClick={() => handleChoicePick(choice)}
+            whileHover={submitted ? {} : { scale: 1.01 }} whileTap={submitted ? {} : { scale: 0.99 }}
+            className={cn("flex w-full items-center gap-4 rounded-2xl border p-4 text-left text-sm font-medium transition-all sm:p-5", getChoiceClass(choice))}>
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-muted text-xs font-bold text-muted-foreground">
+              {letter(choice)}
+            </span>
+            <span className="flex-1">{choice}</span>
+            {getChoiceIcon(choice)}
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Feedback bar — slides in after submit */}
+      <AnimatePresence>
+        {submitted && (
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
+            className="mt-4">
+            <div className={`rounded-2xl border p-5 ${
+              isCorrect ? "border-success/30 bg-success/5" : "border-destructive/30 bg-destructive/5"
+            }`}>
+              <div className="flex items-start gap-3">
+                <span className={`flex size-8 shrink-0 items-center justify-center rounded-full ${
+                  isCorrect ? "bg-success/10 text-success" : "bg-destructive/10 text-destructive"
+                }`}>
+                  {isCorrect ? <CheckCircle2 className="size-5" /> : <XCircle className="size-5" />}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className={`text-sm font-semibold ${isCorrect ? "text-success" : "text-destructive"}`}>
+                    {isCorrect ? "Correct!" : "Not quite!"}
+                  </p>
+                  {!isCorrect && (
+                    <p className="mt-0.5 text-xs text-muted-foreground">
+                      The correct answer is <span className="font-semibold text-foreground">{puzzle.correctAnswer}</span>
+                    </p>
+                  )}
+                  {isCorrect && !isRepeat && (
+                    <p className="mt-0.5 text-xs font-medium text-success">
+                      <Zap className="mr-0.5 inline size-3" />+{earned} XP
+                    </p>
+                  )}
+                  {isCorrect && isRepeat && (
+                    <p className="mt-0.5 text-xs text-amber-600 dark:text-amber-400">Already solved — no extra XP</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Explanation */}
+              {isCorrect && puzzle.correctExplanation && (
+                <div className="mt-3 rounded-xl bg-success/[0.08] px-3 py-2.5 text-xs leading-relaxed text-muted-foreground">
+                  {puzzle.correctExplanation}
+                </div>
               )}
-              {puzzle.imageUrl && (
-                <img
-                  src={puzzle.imageUrl}
-                  alt="Question image"
-                  className="mx-auto mb-4 max-h-64 w-full rounded-xl object-contain"
-                />
+              {!isCorrect && puzzle.incorrectExplanation && (
+                <div className="mt-3 rounded-xl bg-destructive/[0.08] px-3 py-2.5 text-xs leading-relaxed text-muted-foreground">
+                  {puzzle.incorrectExplanation}
+                </div>
               )}
-              <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                {puzzle.difficulty} &middot; {puzzle.type === "true-false" ? "True / False" : "Multiple Choice"}
-              </p>
-              <h2 className="font-heading text-xl font-bold sm:text-2xl">{puzzle.question}</h2>
-            </GlassCard>
-            <div className="space-y-3">
-              {puzzle.choices.map((choice) => (
-                <motion.button key={choice} onClick={() => handleChoicePick(choice)}
-                  whileHover={submitted ? {} : { scale: 1.01 }} whileTap={submitted ? {} : { scale: 0.99 }}
-                  className={cn("flex w-full items-center gap-4 rounded-2xl border p-4 text-left text-sm font-medium transition-all sm:p-5", getChoiceClass(choice))}>
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-muted text-xs font-bold text-muted-foreground">
-                    {String.fromCharCode(65 + puzzle.choices.indexOf(choice))}
-                  </span>
-                  <span className="flex-1">{choice}</span>
-                  {getIcon(choice)}
-                </motion.button>
-              ))}
             </div>
-            <motion.button onClick={handleSubmit} disabled={!selected}
-              className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 active:scale-[0.98] disabled:opacity-40">
-              <Zap className="size-5" /> Submit Answer
+
+            <motion.button onClick={() => onComplete(isCorrect, earned)}
+              whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+              className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98]">
+              Continue <ArrowRight className="size-4" />
             </motion.button>
           </motion.div>
-        ) : (
-          <ResultCard
-            correct={isCorrect}
-            earned={earned}
-            isRepeat={isRepeat ?? false}
-            correctExplanation={puzzle.correctExplanation}
-            incorrectExplanation={puzzle.incorrectExplanation}
-            correctAnswer={puzzle.correctAnswer}
-            onContinue={() => onComplete(isCorrect, earned)}
-          />
         )}
       </AnimatePresence>
-    </div>
-  );
-}
 
-function ResultCard({ correct, earned, isRepeat, correctExplanation, incorrectExplanation, correctAnswer, onContinue }: {
-  correct: boolean;
-  earned: number;
-  isRepeat: boolean;
-  correctExplanation?: string;
-  incorrectExplanation?: string;
-  correctAnswer: string;
-  onContinue: () => void;
-}) {
-  return (
-    <motion.div key="result" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
-      <GlassCard className={`p-6 sm:p-8 ${correct ? "ring-1 ring-success/30" : "ring-1 ring-destructive/20"}`}>
-        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 300 }}
-          className="mx-auto mb-3 flex size-14 items-center justify-center rounded-full sm:size-16">
-          {correct
-            ? <CheckCircle2 className="size-14 text-success sm:size-16" />
-            : <XCircle className="size-14 text-destructive sm:size-16" />}
-        </motion.div>
-        <h2 className="font-heading text-xl font-bold sm:text-2xl">{correct ? "Correct!" : "Not quite!"}</h2>
-
-        {correct && !isRepeat ? (
-          <motion.p initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-            className="mt-2 flex items-center justify-center gap-2 text-lg font-semibold text-success">
-            <Zap className="size-5" /> +{earned} XP
-          </motion.p>
-        ) : correct && isRepeat ? (
-          <p className="mt-2 text-sm text-amber-600 dark:text-amber-400">Already solved &mdash; no extra XP earned</p>
-        ) : (
-          <p className="mt-2 text-sm text-muted-foreground">
-            The correct answer was: <span className="font-semibold text-foreground">{correctAnswer}</span>
-          </p>
-        )}
-
-        {/* Explanation */}
-        {correct && correctExplanation && (
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-            className="mt-4 rounded-xl bg-success/5 p-4 text-left">
-            <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-success">Explanation</p>
-            <p className="text-sm leading-relaxed text-muted-foreground">{correctExplanation}</p>
-          </motion.div>
-        )}
-        {!correct && incorrectExplanation && (
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-            className="mt-4 rounded-xl bg-destructive/5 p-4 text-left">
-            <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-destructive">Explanation</p>
-            <p className="text-sm leading-relaxed text-muted-foreground">{incorrectExplanation}</p>
-          </motion.div>
-        )}
-
-        <motion.button onClick={onContinue}
-          whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-          className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98]">
-          Continue <ArrowRight className="size-4" />
+      {/* Submit button — hidden after submit */}
+      {!submitted && (
+        <motion.button onClick={handleSubmit} disabled={!selected}
+          className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 active:scale-[0.98] disabled:opacity-40">
+          <Zap className="size-5" /> Submit Answer
         </motion.button>
-      </GlassCard>
-    </motion.div>
+      )}
+    </div>
   );
 }
 
