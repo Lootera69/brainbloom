@@ -218,3 +218,17 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   - QuizPlay and TypeAnswerPlay show inline result card after each answer with the appropriate explanation (green for correct, red for wrong)
   - Correct answer shows correctExplanation; wrong answer shows incorrectExplanation + the right answer
   - All existing logic preserved (XP, hearts, sound effects, completion tracking)
+- **Polish & UX (Session: Jul 2026 - Part 2)**:
+  - Lesson progress bar on learn/play screens (absolute top-right, gradient bar)
+  - Streak widget on learn page: 7-day circles (epoch ms fix) + today status
+  - Heart timer uses destructive (red) colors instead of primary (purple)
+  - EmptyState component replaces 9+ inline empty states across Studio/PuzzleBrowser/CurriculumPath
+  - CelebrationModal with canvas confetti for achievements/level-ups (auto-checked after completion, detected in addXp)
+  - Studio dashboard: sort dropdown (newest, last modified, title A–Z, XP, completions) + asc/desc toggle
+  - Studio create/edit: unsaved changes warning (`useUnsavedChanges`), image validation (<2MB, <4096×4096px), Ctrl+S shortcut, collapsible Learning Path section
+  - Heart refill notification: animated toast when processHeartRefill detects hearts increased
+  - Daily puzzle streak badge on home page card
+  - Custom 404 page
+- **Analytics time-range filter** (7d/30d/all) — toggle buttons in analytics header, filters puzzles by createdAt
+- **Drag-to-reorder lesson groups** — HTML5 drag & drop in Settings lesson list, reindexes via `reorderLessonGroups()`
+- **Home screen streak** — text badges removed from StreakBar and DailyChallengeCard; clicking flame opens streak popup with 7-day circles (unmaintained today = b/w, maintained = filled orange)

@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Zap, CheckCircle2 } from "lucide-react";
+import { Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Zap, CheckCircle2, SearchX } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { getPublishedPuzzles, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
 import { useUserStore } from "@/store/user-store";
 import { type Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";
 import { SkeletonFilterBar, SkeletonPuzzleList } from "@/components/ui/skeleton";
+import { EmptyState } from "@/components/ui/empty-state";
 
 const iconMap: Record<string, typeof Brain> = {
   brain: Brain,
@@ -68,22 +69,12 @@ export function PuzzleBrowser({ onStartPuzzle, onCategoryChange, category, hideF
   }
 
   if (puzzles.length === 0) {
-    return (
-      <div className="rounded-2xl border border-dashed py-20 text-center">
-        <p className="text-sm text-muted-foreground">No puzzles available yet.</p>
-        <p className="mt-1 text-xs text-muted-foreground">Check back soon!</p>
-      </div>
-    );
+    return <EmptyState icon={<SearchX className="size-5" />} title="No puzzles available yet." description="Check back soon!" />;
   }
 
   if (category && filtered.length === 0) {
     const catLabel = CATEGORIES.find((c) => c.value === category)?.label ?? category;
-    return (
-      <div className="rounded-2xl border border-dashed py-20 text-center">
-        <p className="text-sm text-muted-foreground">No puzzles in {catLabel} yet.</p>
-        <p className="mt-1 text-xs text-muted-foreground">Check back soon!</p>
-      </div>
-    );
+    return <EmptyState icon={<SearchX className="size-5" />} title={`No puzzles in ${catLabel} yet.`} description="Check back soon!" />;
   }
 
   return (

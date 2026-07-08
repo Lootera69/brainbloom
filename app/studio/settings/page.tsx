@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Plus, Trash2, Key, Lock, Eye, EyeOff, Shield, PenTool, BookOpen, Edit3, Layers, Users, GripVertical, AlertTriangle } from "lucide-react";
 import { getInviteCodes, addInviteCode, removeInviteCode, type InviteCodeEntry } from "@/services/studio-settings";
 import { getStudioSession, getStudioRole, CATEGORIES } from "@/services/puzzle-service";
-import { getAllLessonGroups, addLessonGroup, removeLessonGroup, updateLessonGroup, type LessonGroupEntry } from "@/services/lesson-service";
+import { getAllLessonGroups, addLessonGroup, removeLessonGroup, updateLessonGroup, reorderLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -45,6 +45,8 @@ export default function StudioSettingsPage() {
   const [editingGroup, setEditingGroup] = useState<{ category: string; name: string } | null>(null);
   const [editName, setEditName] = useState("");
   const [editOrder, setEditOrder] = useState("");
+  const [dragIdx, setDragIdx] = useState<number | null>(null);
+  const dragOverIdx = useRef<number | null>(null);
 
   useEffect(() => {
     if (isAdmin) {
@@ -253,9 +255,24 @@ export default function StudioSettingsPage() {
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: gi * 0.03 }}
-                    className="group flex items-center gap-3 rounded-xl border bg-card px-4 py-3 transition-all hover:border-primary/20"
+                    draggable={!editingGroup}
+                    onDragStart={() => setDragIdx(gi)}
+                    onDragOver={(e) => { e.preventDefault(); dragOverIdx.current = gi; }}
+                    onDragEnd={() => {
+                      if (dragIdx !== null && dragOverIdx.current !== null && dragIdx !== dragOverIdx.current) {
+                        const reordered = [...catGroups];
+                        const [moved] = reordered.splice(dragIdx, 1);
+                        reordered.splice(dragOverIdx.current, 0, moved);
+                        reorderLessonGroups(selectedCat, reordered.map((r) => r.name));
+                      }
+                      setDragIdx(null);
+                      dragOverIdx.current = null;
+                    }}
+                    className={`group flex items-center gap-3 rounded-xl border bg-card px-4 py-3 transition-all hover:border-primary/20 ${
+                      dragIdx === gi ? "opacity-50" : ""
+                    }`}
                   >
-                    <GripVertical className="size-3.5 shrink-0 text-muted-foreground/30" />
+                    <GripVertical className="size-3.5 shrink-0 cursor-grab text-muted-foreground/30 active:cursor-grabbing" />
                     <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/5">
                       <BookOpen className="size-4 text-primary" />
                     </div>

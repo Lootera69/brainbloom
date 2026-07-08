@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, Zap, Sparkles, CheckCircle2, Flame } from "lucide-react";
+import { Brain, Zap, Sparkles, Flame, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
@@ -53,7 +53,7 @@ export function DailyChallengeCard({ puzzle, loading }: Props) {
         />
 
         <div className="relative">
-          <div className="mb-4 flex items-center gap-3 sm:mb-5">
+          <div className="mb-4 flex flex-wrap items-center gap-2 sm:mb-5">
             <motion.span
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
@@ -71,6 +71,7 @@ export function DailyChallengeCard({ puzzle, loading }: Props) {
               <Sparkles className="size-3" />
               {completed ? "Completed" : "Daily Puzzle"}
             </motion.span>
+
             {dailyPuzzleStreak > 0 && (
               <motion.span
                 initial={{ opacity: 0, scale: 0.8 }}

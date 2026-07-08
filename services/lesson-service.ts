@@ -122,3 +122,18 @@ export async function updateLessonGroup(category: string, oldName: string, newNa
   }
   saveLocalGroups(groups);
 }
+
+export async function reorderLessonGroups(category: string, orderedNames: string[]) {
+  const groups = await getAllLessonGroups();
+  const catGroups = groups.filter((g) => g.category === category);
+  const otherGroups = groups.filter((g) => g.category !== category);
+  const reordered = orderedNames.map((name, i) => {
+    const found = catGroups.find((g) => g.name === name);
+    return found ? { ...found, order: i + 1 } : null;
+  }).filter(Boolean) as LessonGroupEntry[];
+  const merged = [...otherGroups, ...reordered];
+  if (isFirestoreAvailable()) {
+    await saveFirestoreGroups(merged);
+  }
+  saveLocalGroups(merged);
+}

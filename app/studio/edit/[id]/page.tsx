@@ -2,8 +2,8 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { motion } from "framer-motion";
-import { ArrowLeft, Save, Loader2, Trash2, ImageUp, X, Loader as Spinner, Send, CheckCircle2, XCircle, MessageSquare } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, Save, Loader2, Trash2, ImageUp, X, Loader as Spinner, Send, CheckCircle2, XCircle, MessageSquare, ChevronDown } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
@@ -13,6 +13,8 @@ import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
 import { generateSudoku } from "@/services/sudoku-generator";
 import { toast } from "sonner";
 import { SkeletonForm } from "@/components/ui/skeleton";
+import { useUnsavedChanges } from "@/hooks/use-unsaved-changes";
+import { cn } from "@/lib/utils";
 
 const STATUS_LABELS: Record<ReviewStatus, string> = {
   draft: "Draft",
@@ -50,6 +52,8 @@ export default function EditPuzzlePage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [dirty, setDirty] = useState(false);
+  const { confirmLeave } = useUnsavedChanges(dirty);
   const [notFound, setNotFound] = useState(false);
   const [puzzleStatus, setPuzzleStatus] = useState<ReviewStatus | null>(null);
   const [puzzlePublished, setPuzzlePublished] = useState(false);
@@ -104,12 +108,15 @@ export default function EditPuzzlePage() {
     })();
   }, [id]);
 
-  const update = <K extends keyof PuzzleFormData>(key: K, value: PuzzleFormData[K]) =>
+  const update = <K extends keyof PuzzleFormData>(key: K, value: PuzzleFormData[K]) => {
     setForm((f) => ({ ...f, [key]: value }));
+    setDirty(true);
+  };
 
   // Lesson group state
   const [lessonGroups, setLessonGroups] = useState<LessonGroupEntry[]>([]);
   const [availableOrders, setAvailableOrders] = useState<number[]>([]);
+  const [lessonOpen, setLessonOpen] = useState(false);
 
   const isQuiz = form.type === "multiple-choice" || form.type === "true-false";
   const isTypeAnswer = form.type === "type-answer";
@@ -144,10 +151,27 @@ export default function EditPuzzlePage() {
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error("Image must be smaller than 2MB.");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    await new Promise((resolve) => { img.onload = resolve; img.src = url; });
+    URL.revokeObjectURL(url);
+    if (img.width > 4096 || img.height > 4096) {
+      toast.error("Image dimensions must be under 4096×4096px.");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
     setUploading(true);
     try {
-      const url = await uploadToImgbb(file);
-      update("imageUrl", url);
+      const imageUrl = await uploadToImgbb(file);
+      update("imageUrl", imageUrl);
       toast.success("Image uploaded");
     } catch {
       toast.error("Failed to upload image");
@@ -170,9 +194,21 @@ export default function EditPuzzlePage() {
     const updated = await updatePuzzle(id, form);
     if (updated) {
       setPuzzleStatus(updated.reviewStatus ?? puzzleStatus);
+      setDirty(false);
     }
     setSaving(false);
     toast.success("Saved.");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === "s") {
+      e.preventDefault();
+      (e.currentTarget as HTMLFormElement).requestSubmit();
+    }
+  };
+
+  const handleBack = () => {
+    if (confirmLeave()) router.push("/studio");
   };
 
   const handleSubmitForReview = async () => {
@@ -251,7 +287,7 @@ export default function EditPuzzlePage() {
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-6">
-      <button onClick={() => router.push("/studio")} className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
+      <button onClick={handleBack} className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
         <ArrowLeft className="size-4" />
         Back to puzzles
       </button>
@@ -260,7 +296,7 @@ export default function EditPuzzlePage() {
         <h1 className="font-heading text-2xl font-bold">Edit Puzzle</h1>
       </motion.div>
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+      <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="mt-6 space-y-5">
         <div>
           <label className="mb-1.5 block text-sm font-medium">Type</label>
           <div className="flex gap-2 flex-wrap">
@@ -492,92 +528,120 @@ export default function EditPuzzlePage() {
         {(isQuiz || isTypeAnswer || isCrossword || isSudoku) && (
           <>
             <hr className="border-muted" />
-            <div className="grid grid-cols-2 gap-4">
-              <div className="col-span-2 sm:col-span-1">
-                <label className="mb-1.5 block text-sm font-medium">
-                  Lesson Group <span className="text-muted-foreground font-normal">(optional)</span>
-                </label>
-                {lessonGroups.length > 0 ? (
-                  <select
-                    value={form.lessonGroup ?? ""}
-                    onChange={(e) => {
-                      const selected = lessonGroups.find((g) => g.name === e.target.value);
-                      update("lessonGroup", e.target.value || undefined);
-                      if (selected) update("lessonGroupOrder", selected.order);
-                    }}
-                    className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
-                  >
-                    <option value="">-- Select lesson group --</option>
-                    {lessonGroups.map((g) => (
-                      <option key={g.name} value={g.name}>Lesson {g.order}: {g.name}</option>
-                    ))}
-                  </select>
-                ) : (
-                  <input
-                    value={form.lessonGroup ?? ""}
-                    onChange={(e) => update("lessonGroup", e.target.value)}
-                    placeholder="e.g. Counting"
-                    className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
-                  />
+            <button
+              type="button"
+              onClick={() => setLessonOpen(!lessonOpen)}
+              className="flex w-full items-center justify-between text-left"
+            >
+              <span className="text-sm font-medium">Learning Path</span>
+              <ChevronDown
+                className={cn(
+                  "h-4 w-4 text-muted-foreground transition-transform duration-200",
+                  lessonOpen && "rotate-180",
                 )}
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {lessonGroups.length > 0
-                    ? "Select from the configured lesson groups."
-                    : "Configure lesson groups in Settings first."}
-                </p>
-              </div>
-            </div>
-            <div>
-              <label className="mb-1.5 block text-sm font-medium">
-                Sub-lesson Order <span className="text-muted-foreground font-normal">(optional)</span>
-              </label>
-              {form.lessonGroup && availableOrders.length > 0 ? (
-                <select
-                  value={form.lessonOrder ?? ""}
-                  onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
-                  className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
-                >
-                  <option value="">-- Select order --</option>
-                  {availableOrders.map((o) => (
-                    <option key={o} value={o}>Sub-lesson {o}</option>
-                  ))}
-                </select>
-              ) : form.lessonGroup && availableOrders.length === 0 ? (
-                <div className="rounded-xl border bg-card px-4 py-2.5 text-sm text-muted-foreground">
-                  All orders 1–10 are taken for this group. Edit another puzzle to free one up.
-                </div>
-              ) : (
-                <input
-                  value={form.lessonOrder ?? ""}
-                  onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
-                  type="number"
-                  min={1}
-                  max={10}
-                  placeholder="e.g. 1"
-                  className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
-                />
-              )}
-              <p className="mt-1 text-xs text-muted-foreground">
-                {form.lessonGroup
-                  ? "Position within the lesson group. Only available orders are shown."
-                  : "Select a lesson group first to see available orders."}
-              </p>
-            </div>
-            <div>
-              <label className="mb-1.5 block text-sm font-medium">
-                Lesson Content <span className="text-muted-foreground font-normal">(optional)</span>
-              </label>
-              <textarea
-                value={form.lessonContent ?? ""}
-                onChange={(e) => update("lessonContent", e.target.value)}
-                placeholder="One fact per line&#10;e.g.&#10;The sun is a star at the center of our solar system.&#10;It provides light and heat that makes life on Earth possible."
-                rows={5}
-                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
               />
-              <p className="mt-1 text-xs text-muted-foreground">
-                Each line becomes a numbered fact shown before the quiz.
-              </p>
-            </div>
+            </button>
+            <AnimatePresence initial={false}>
+              {lessonOpen && (
+                <motion.div
+                  key="lesson-fields"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden"
+                >
+                  <div className="space-y-4 pt-2">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="col-span-2 sm:col-span-1">
+                        <label className="mb-1.5 block text-sm font-medium">
+                          Lesson Group <span className="text-muted-foreground font-normal">(optional)</span>
+                        </label>
+                        {lessonGroups.length > 0 ? (
+                          <select
+                            value={form.lessonGroup ?? ""}
+                            onChange={(e) => {
+                              const selected = lessonGroups.find((g) => g.name === e.target.value);
+                              update("lessonGroup", e.target.value || undefined);
+                              if (selected) update("lessonGroupOrder", selected.order);
+                            }}
+                            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                          >
+                            <option value="">-- Select lesson group --</option>
+                            {lessonGroups.map((g) => (
+                              <option key={g.name} value={g.name}>Lesson {g.order}: {g.name}</option>
+                            ))}
+                          </select>
+                        ) : (
+                          <input
+                            value={form.lessonGroup ?? ""}
+                            onChange={(e) => update("lessonGroup", e.target.value)}
+                            placeholder="e.g. Counting"
+                            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                          />
+                        )}
+                        <p className="mt-1 text-xs text-muted-foreground">
+                          {lessonGroups.length > 0
+                            ? "Select from the configured lesson groups."
+                            : "Configure lesson groups in Settings first."}
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="mb-1.5 block text-sm font-medium">
+                        Sub-lesson Order <span className="text-muted-foreground font-normal">(optional)</span>
+                      </label>
+                      {form.lessonGroup && availableOrders.length > 0 ? (
+                        <select
+                          value={form.lessonOrder ?? ""}
+                          onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
+                          className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                        >
+                          <option value="">-- Select order --</option>
+                          {availableOrders.map((o) => (
+                            <option key={o} value={o}>Sub-lesson {o}</option>
+                          ))}
+                        </select>
+                      ) : form.lessonGroup && availableOrders.length === 0 ? (
+                        <div className="rounded-xl border bg-card px-4 py-2.5 text-sm text-muted-foreground">
+                          All orders 1–10 are taken for this group. Edit another puzzle to free one up.
+                        </div>
+                      ) : (
+                        <input
+                          value={form.lessonOrder ?? ""}
+                          onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
+                          type="number"
+                          min={1}
+                          max={10}
+                          placeholder="e.g. 1"
+                          className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                        />
+                      )}
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        {form.lessonGroup
+                          ? "Position within the lesson group. Only available orders are shown."
+                          : "Select a lesson group first to see available orders."}
+                      </p>
+                    </div>
+                    <div>
+                      <label className="mb-1.5 block text-sm font-medium">
+                        Lesson Content <span className="text-muted-foreground font-normal">(optional)</span>
+                      </label>
+                      <textarea
+                        value={form.lessonContent ?? ""}
+                        onChange={(e) => update("lessonContent", e.target.value)}
+                        placeholder="One fact per line&#10;e.g.&#10;The sun is a star at the center of our solar system.&#10;It provides light and heat that makes life on Earth possible."
+                        rows={5}
+                        className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                      />
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        Each line becomes a numbered fact shown before the quiz.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </>
         )}
 

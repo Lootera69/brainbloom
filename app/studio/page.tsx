@@ -2,12 +2,13 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3 } from "lucide-react";
+import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ChevronDown, ArrowUpDown } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
+import { type Puzzle, type ReviewStatus, type PuzzleType } from "@/types/puzzle";
+import { EmptyState } from "@/components/ui/empty-state";
 import { getTodayDailyPuzzleId, setDailyPuzzle } from "@/services/daily-puzzle";
-import { type Puzzle, type ReviewStatus } from "@/types/puzzle";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { toast } from "sonner";
 import { SkeletonPuzzleList, SkeletonFilterBar } from "@/components/ui/skeleton";
@@ -55,6 +56,10 @@ export default function StudioPage() {
   const [publishTarget, setPublishTarget] = useState<Puzzle | null>(null);
   const [publishing, setPublishing] = useState(false);
   const [filterTab, setFilterTab] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [typeFilter, setTypeFilter] = useState<string>("all");
+  const [sortBy, setSortBy] = useState<string>("createdAt");
+  const [sortAsc, setSortAsc] = useState(false);
   const [dailyPuzzleId, setDailyPuzzleId] = useState<string | null>(null);
   const [settingDaily, setSettingDaily] = useState(false);
   const admin = isAdmin();
@@ -90,10 +95,21 @@ export default function StudioPage() {
     };
   }, [deleteTarget]);
 
-  const filtered = puzzles.filter((p) => {
-    if (filterTab === "all") return true;
-    return p.reviewStatus === filterTab;
-  });
+  const filtered = puzzles
+    .filter((p) => {
+      if (filterTab !== "all" && p.reviewStatus !== filterTab) return false;
+      if (typeFilter !== "all" && p.type !== typeFilter) return false;
+      if (searchQuery.trim() && !p.title.toLowerCase().includes(searchQuery.trim().toLowerCase())) return false;
+      return true;
+    })
+    .sort((a, b) => {
+      const dir = sortAsc ? 1 : -1;
+      if (sortBy === "title") return dir * a.title.localeCompare(b.title);
+      if (sortBy === "xpReward") return dir * ((a.xpReward ?? 0) - (b.xpReward ?? 0));
+      if (sortBy === "completedBy") return dir * ((a.completedBy ?? 0) - (b.completedBy ?? 0));
+      if (sortBy === "updatedAt") return dir * ((a.updatedAt ?? a.createdAt ?? 0) - (b.updatedAt ?? b.createdAt ?? 0));
+      return dir * ((a.createdAt ?? 0) - (b.createdAt ?? 0));
+    });
 
   const handleSetDaily = async (puzzleId: string) => {
     setSettingDaily(true);
@@ -185,23 +201,64 @@ export default function StudioPage() {
         ))}
       </div>
 
+      {/* Search + type filter */}
+      <div className="mb-4 flex flex-wrap items-center gap-3">
+        <div className="relative flex-1 min-w-[200px]">
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/50" />
+          <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by title..."
+            className="h-9 w-full rounded-xl border bg-card pl-9 pr-3 text-xs outline-none transition-colors focus:border-primary" />
+        </div>
+        <div className="relative">
+          <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}
+            className="h-9 appearance-none rounded-xl border bg-card pl-3 pr-8 text-xs outline-none transition-colors focus:border-primary">
+            <option value="all">All types</option>
+            <option value="multiple-choice">Multiple Choice</option>
+            <option value="true-false">True / False</option>
+            <option value="type-answer">Type Answer</option>
+            <option value="crossword">Crossword</option>
+            <option value="sudoku">Sudoku</option>
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground/50" />
+        </div>
+        <div className="relative">
+          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}
+            className="h-9 appearance-none rounded-xl border bg-card pl-3 pr-8 text-xs outline-none transition-colors focus:border-primary">
+            <option value="createdAt">Newest</option>
+            <option value="updatedAt">Last modified</option>
+            <option value="title">Title A-Z</option>
+            <option value="xpReward">XP</option>
+            <option value="completedBy">Most completed</option>
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground/50" />
+        </div>
+        <button onClick={() => setSortAsc(!sortAsc)}
+          className={`flex h-9 items-center gap-1 rounded-xl border px-2.5 text-xs font-medium transition-colors ${
+            sortAsc ? "border-primary/30 bg-primary/5 text-primary" : "text-muted-foreground hover:bg-muted"
+          }`}
+          title={sortAsc ? "Ascending" : "Descending"}>
+          <ArrowUpDown className="size-3.5" />
+        </button>
+        {(searchQuery || typeFilter !== "all") && (
+          <button onClick={() => { setSearchQuery(""); setTypeFilter("all"); }}
+            className="h-9 rounded-xl border px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted">
+            Clear
+          </button>
+        )}
+      </div>
+
       {loading ? (
         <div className="space-y-4">
           <SkeletonFilterBar />
           <SkeletonPuzzleList count={6} />
         </div>
       ) : filtered.length === 0 ? (
-        <div className="rounded-2xl border border-dashed py-20 text-center">
-          <p className="text-sm text-muted-foreground">
-            {puzzles.length === 0 ? "No puzzles yet." : "No puzzles match this filter."}
-          </p>
-          {puzzles.length === 0 && (
-            <button onClick={() => router.push("/studio/create")}
-              className="mt-3 text-sm font-medium text-primary hover:underline">
-              Create your first puzzle
-            </button>
-          )}
-        </div>
+        <EmptyState
+          icon={<Filter className="size-5" />}
+          title={puzzles.length === 0 ? "No puzzles yet." : "No puzzles match this filter."}
+          description={puzzles.length === 0 ? "Create your first puzzle to get started." : undefined}
+          action={puzzles.length === 0 ? { label: "Create your first puzzle", onClick: () => router.push("/studio/create") } : undefined}
+        />
       ) : (
         <div className="space-y-3">
           {filtered.map((puzzle, i) => (

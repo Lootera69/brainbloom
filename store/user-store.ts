@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { questTemplates } from "@/constants/quests";
+import { achievementsList } from "@/constants/achievements";
 
 export interface Activity {
   id: string;
@@ -58,6 +59,7 @@ interface UserState {
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
   soundEnabled: boolean;
+  pendingCelebration: { type: "achievement" | "level-up"; title: string; subtitle?: string; xp?: number; gems?: number } | null;
 
   loginAsGuest: () => void;
   setUser: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
@@ -85,6 +87,8 @@ interface UserState {
   completeDailyPuzzle: () => void;
   hasCompletedDailyPuzzle: () => boolean;
   setSoundEnabled: (v: boolean) => void;
+  clearCelebration: () => void;
+  checkAchievements: () => void;
 }
 
 function generateId() {
@@ -141,6 +145,7 @@ export const useUserStore = create<UserState>()(
       dailyPuzzleStreak: 0,
       dailyPuzzleLastDate: null,
       soundEnabled: true,
+      pendingCelebration: null,
 
       loginAsGuest: () => {
         set({
@@ -277,20 +282,24 @@ export const useUserStore = create<UserState>()(
           nextHeartAt: null,
           dailyPuzzleCompletedDate: null,
           dailyPuzzleStreak: 0,
-      dailyPuzzleLastDate: null,
-      soundEnabled: true,
+          dailyPuzzleLastDate: null,
+          soundEnabled: true,
+          pendingCelebration: null,
 
         });
       },
 
       addXp: (amount) => {
-        const { xp, xpToday } = get();
+        const { xp, xpToday, level } = get();
         const newXp = xp + amount;
+        const newLevel = calcLevel(newXp);
+        const levelUp = newLevel > level;
         set({
           xp: newXp,
           xpToday: xpToday + amount,
-          level: calcLevel(newXp),
+          level: newLevel,
           lastXpGain: amount,
+          pendingCelebration: levelUp ? { type: "level-up", title: `Level ${newLevel}!`, subtitle: "Keep up the great work!" } : get().pendingCelebration,
         });
         get().advanceQuest("earn-xp", amount);
       },
@@ -368,11 +377,21 @@ export const useUserStore = create<UserState>()(
       unlockAchievement: (id) => {
         const { achievements } = get();
         if (achievements.some((a) => a.id === id)) return false;
+        const def = achievementsList.find((a) => a.id === id);
+        const xpReward = def?.xp ?? 0;
+        const gemReward = def?.gems ?? 0;
         set({
-          achievements: [
-            ...achievements,
-            { id, unlockedAt: Date.now() },
-          ],
+          achievements: [...achievements, { id, unlockedAt: Date.now() }],
+          xp: get().xp + xpReward,
+          level: calcLevel(get().xp + xpReward),
+          gems: get().gems + gemReward,
+          pendingCelebration: {
+            type: "achievement",
+            title: def?.title ?? "Achievement Unlocked!",
+            subtitle: def?.description,
+            xp: xpReward,
+            gems: gemReward,
+          },
         });
         return true;
       },
@@ -498,6 +517,30 @@ export const useUserStore = create<UserState>()(
       setSoundEnabled: (v: boolean) => {
         set({ soundEnabled: v });
         import("@/services/sound-service").then(({ setSoundEnabled }) => setSoundEnabled(v));
+      },
+
+      clearCelebration: () => set({ pendingCelebration: null }),
+
+      checkAchievements: () => {
+        const { xp, streak, completedPuzzleIds, achievements, history, dailyPuzzleStreak, level } = get();
+        const already = new Set(achievements.map((a) => a.id));
+
+        const checks: { id: string; condition: boolean }[] = [
+          { id: "first_challenge", condition: completedPuzzleIds.length >= 1 },
+          { id: "streak_3", condition: streak >= 3 },
+          { id: "streak_7", condition: streak >= 7 },
+          { id: "xp_500", condition: xp >= 500 },
+          { id: "xp_1000", condition: xp >= 1000 },
+          { id: "all_categories", condition: new Set(history.map((h) => h.category)).size >= 4 },
+          { id: "perfect_day", condition: dailyPuzzleStreak >= 5 },
+          { id: "level_5", condition: level >= 5 },
+        ];
+
+        for (const { id, condition } of checks) {
+          if (!already.has(id) && condition) {
+            get().unlockAchievement(id);
+          }
+        }
       },
     }),
     { name: "brainbloom-user" },

@@ -58,6 +58,7 @@ export default function LearnPage() {
   const completeDailyPuzzle = useUserStore((s) => s.completeDailyPuzzle);
   const hasCompletedDailyPuzzle = useUserStore((s) => s.hasCompletedDailyPuzzle);
   const setLastPlayedCategory = useUserStore((s) => s.setLastPlayedCategory);
+  const checkAchievements = useUserStore((s) => s.checkAchievements);
   const streak = useUserStore((s) => s.streak);
   const lastActiveDate = useUserStore((s) => s.lastActiveDate);
 
@@ -68,15 +69,15 @@ export default function LearnPage() {
   const streakDays = useMemo(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const lastActive = lastActiveDate ? new Date(lastActiveDate + "T00:00:00") : null;
-    const streakStart = lastActive ? new Date(lastActive.getTime() - (streak - 1) * 86400000) : null;
+    const todayMs = today.getTime();
+    const lastActiveMs = lastActiveDate ? new Date(lastActiveDate).getTime() : null;
+    const streakStartMs = lastActiveMs != null ? lastActiveMs - (streak - 1) * 86400000 : null;
     const dayLabels = ["S", "M", "T", "W", "T", "F", "S"];
     const days: { filled: boolean; label: string; isToday: boolean }[] = [];
     for (let i = 6; i >= 0; i--) {
-      const date = new Date(today);
-      date.setDate(date.getDate() - i);
-      const filled = streakStart && lastActive ? date >= streakStart && date <= lastActive : false;
-      days.push({ filled, label: dayLabels[date.getDay()], isToday: i === 0 });
+      const dateMs = todayMs - i * 86400000;
+      const filled = streakStartMs != null && lastActiveMs != null ? dateMs >= streakStartMs && dateMs <= lastActiveMs : false;
+      days.push({ filled, label: dayLabels[new Date(dateMs).getDay()], isToday: i === 0 });
     }
     return days;
   }, [streak, lastActiveDate]);
@@ -177,6 +178,7 @@ export default function LearnPage() {
     }
 
     checkStreak();
+    checkAchievements();
     logActivity({
       type: "daily",
       category: currentPuzzle.category || "general",
@@ -231,7 +233,7 @@ export default function LearnPage() {
                       </div>
                     </div>
 
-                    <div className="hidden items-center gap-0.5 sm:flex">
+                    <div className="flex items-center gap-0.5">
                       {streakDays.map((d, i) => (
                         <div key={i} className="flex flex-col items-center gap-0.5">
                           <span className="text-[10px] font-medium text-muted-foreground">{d.label}</span>

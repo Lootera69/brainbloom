@@ -479,13 +479,15 @@ export default function AnalyticsPage() {
   const router = useRouter();
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [timeRange, setTimeRange] = useState<"7d" | "30d" | "all">("all");
 
   useEffect(() => {
-    getAnalytics().then((result) => {
+    setLoading(true);
+    getAnalytics(timeRange).then((result) => {
       setData(result);
       setLoading(false);
     });
-  }, []);
+  }, [timeRange]);
 
   const [timeAgo, setTimeAgo] = useState("");
   useEffect(() => {
@@ -519,6 +521,21 @@ export default function AnalyticsPage() {
               {timeAgo && <span className="ml-2 text-xs text-muted-foreground/60">· Updated {timeAgo}</span>}
             </p>
           </div>
+        </div>
+        <div className="flex gap-1 rounded-lg bg-muted/50 p-0.5">
+          {(["all", "30d", "7d"] as const).map((range) => (
+            <button
+              key={range}
+              onClick={() => setTimeRange(range)}
+              className={`rounded-md px-3 py-1.5 text-xs font-semibold transition-all ${
+                timeRange === range
+                  ? "bg-card text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {range === "all" ? "All Time" : range === "30d" ? "30 Days" : "7 Days"}
+            </button>
+          ))}
         </div>
       </motion.div>
 

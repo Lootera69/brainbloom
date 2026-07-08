@@ -2,13 +2,14 @@
 
 import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { BookOpen, Lock, CheckCircle2, Zap, ArrowRight, ChevronDown } from "lucide-react";
+import { BookOpen, Lock, CheckCircle2, Zap, ArrowRight, ChevronDown, BookX } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { getPublishedByCategory, categoryHasLessons } from "@/services/puzzle-service";
 import { useUserStore } from "@/store/user-store";
 import { type Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";
 import { SkeletonCurriculum } from "@/components/ui/skeleton";
+import { EmptyState } from "@/components/ui/empty-state";
 
 export interface LessonProgress {
   currentOrder: number;
@@ -120,11 +121,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
   }
 
   if (puzzles.length === 0) {
-    return (
-      <div className="rounded-2xl border border-dashed py-20 text-center">
-        <p className="text-sm text-muted-foreground">No puzzles available in this category yet.</p>
-      </div>
-    );
+    return <EmptyState icon={<BookX className="size-5" />} title="No puzzles available in this category yet." />;
   }
 
   return (

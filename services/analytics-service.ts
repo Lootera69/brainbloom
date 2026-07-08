@@ -14,8 +14,12 @@ export interface AnalyticsData {
   recentPuzzles: Puzzle[];
 }
 
-export async function getAnalytics(): Promise<AnalyticsData> {
-  const puzzles = await getPuzzles();
+export async function getAnalytics(timeRange?: "7d" | "30d" | "all"): Promise<AnalyticsData> {
+  const allPuzzles = await getPuzzles();
+  const cutoff = timeRange && timeRange !== "all"
+    ? Date.now() - (timeRange === "7d" ? 7 : 30) * 86400000
+    : 0;
+  const puzzles = cutoff > 0 ? allPuzzles.filter((p) => p.createdAt >= cutoff) : allPuzzles;
 
   const totalPuzzles = puzzles.length;
   const publishedPuzzles = puzzles.filter((p) => p.published).length;

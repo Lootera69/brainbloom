@@ -9,13 +9,17 @@ import { AnimatedBackground } from "@/features/home/components/AnimatedBackgroun
 import { XPToast } from "@/features/home/components/XPToast";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
-import { Toaster } from "sonner";
+import { Toaster, toast } from "sonner";
+import { Heart } from "lucide-react";
+import { motion } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton";
+import { CelebrationProvider } from "@/components/ui/celebration-provider";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
+  const hearts = useUserStore((s) => s.hearts);
   const focusMode = useUIStore((s) => s.focusMode);
   const [mounted, setMounted] = useState(false);
 
@@ -23,7 +27,28 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     setMounted(true);
     processHeartRefill();
     import("@/services/sound-service").then(({ initSounds }) => initSounds());
-    const interval = setInterval(processHeartRefill, 30_000);
+    const interval = setInterval(() => {
+      const prev = useUserStore.getState().hearts;
+      processHeartRefill();
+      const next = useUserStore.getState().hearts;
+      if (next > prev && prev < 5) {
+        toast.custom(
+          (t) => (
+            <motion.div initial={{ opacity: 0, scale: 0.8, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: -10 }}
+              className="flex items-center gap-3 rounded-xl border border-success/20 bg-card px-4 py-3 shadow-lg">
+              <span className="flex size-8 items-center justify-center rounded-lg bg-success/10">
+                <Heart className="size-4 fill-success text-success" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-success">Heart Refilled</p>
+                <p className="text-xs text-muted-foreground">{next}/{5} hearts</p>
+              </div>
+            </motion.div>
+          ),
+          { duration: 3000, position: "top-center" },
+        );
+      }
+    }, 30_000);
     return () => clearInterval(interval);
   }, [processHeartRefill]);
 
@@ -67,6 +92,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-dvh">
       <XPToast />
       <Toaster position="top-center" />
+      <CelebrationProvider />
       <AnimatedBackground />
       {!focusMode && <Sidebar />}
       <main
