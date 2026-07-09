@@ -47,6 +47,7 @@ export default function CreatePuzzlePage() {
   const [lessonGroups, setLessonGroups] = useState<LessonGroupEntry[]>([]);
   const [availableOrders, setAvailableOrders] = useState<number[]>([]);
   const [lessonOpen, setLessonOpen] = useState(false);
+  const [acceptedRaw, setAcceptedRaw] = useState("");
 
   const isQuiz = form.type === "multiple-choice" || form.type === "true-false";
   const isTypeAnswer = form.type === "type-answer";
@@ -140,6 +141,7 @@ export default function CreatePuzzlePage() {
   };
 
   const handleTypeChange = (type: PuzzleType) => {
+    setAcceptedRaw("");
     if (type === "crossword") {
       setForm((f) => ({ ...f, type, crosswordData: defaultCrossword, sudokuData: undefined }));
     } else if (type === "type-answer" || type === "riddle") {
@@ -302,7 +304,7 @@ export default function CreatePuzzlePage() {
           </>
         )}
 
-        {(isQuiz || isTypeAnswer) && (
+        {(isQuiz || isTypeAnswer || isRiddle) && (
           <>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Title</label>
@@ -382,8 +384,17 @@ export default function CreatePuzzlePage() {
             <div>
               <label className="mb-1.5 block text-sm font-medium">Alternate answers (optional, comma-separated)</label>
               <input
-                value={(form.acceptedAnswers ?? []).join(", ")}
-                onChange={(e) => update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
+                value={form.type === "type-answer" ? acceptedRaw : (form.acceptedAnswers ?? []).join(", ")}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (form.type === "type-answer") setAcceptedRaw(v);
+                  else update("acceptedAnswers", v.split(",").map((s) => s.trim()).filter(Boolean));
+                }}
+                onBlur={(e) => {
+                  if (form.type === "type-answer") {
+                    update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean));
+                  }
+                }}
                 placeholder="e.g. BTW, By the way"
                 className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
               />
@@ -403,8 +414,9 @@ export default function CreatePuzzlePage() {
             <div>
               <label className="mb-1.5 block text-sm font-medium">Alternate accepted answers (optional, comma-separated)</label>
               <input
-                value={(form.acceptedAnswers ?? []).join(", ")}
-                onChange={(e) => update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
+                value={acceptedRaw}
+                onChange={(e) => setAcceptedRaw(e.target.value)}
+                onBlur={(e) => update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
                 placeholder="e.g. wind, breeze"
                 className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
               />

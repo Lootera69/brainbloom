@@ -99,7 +99,9 @@ export default function EditPuzzlePage() {
         lessonOrder: puzzle.lessonOrder ?? undefined,
         lessonGroup: puzzle.lessonGroup ?? undefined,
         lessonGroupOrder: puzzle.lessonGroupOrder ?? undefined,
+        hintText: puzzle.hintText ?? undefined,
       });
+      setAcceptedRaw((puzzle.acceptedAnswers ?? []).join(", "));
       setPuzzleStatus(puzzle.reviewStatus ?? "draft");
       setPuzzlePublished(puzzle.published);
       setPuzzleReviewedBy(puzzle.reviewedBy);
@@ -117,6 +119,7 @@ export default function EditPuzzlePage() {
   const [lessonGroups, setLessonGroups] = useState<LessonGroupEntry[]>([]);
   const [availableOrders, setAvailableOrders] = useState<number[]>([]);
   const [lessonOpen, setLessonOpen] = useState(false);
+  const [acceptedRaw, setAcceptedRaw] = useState("");
 
   const isQuiz = form.type === "multiple-choice" || form.type === "true-false";
   const isTypeAnswer = form.type === "type-answer";
@@ -342,7 +345,7 @@ export default function EditPuzzlePage() {
           </datalist>
         </div>
 
-        {(isQuiz || isTypeAnswer) && (
+        {(isQuiz || isTypeAnswer || isRiddle) && (
           <>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Title</label>
@@ -419,8 +422,9 @@ export default function EditPuzzlePage() {
             <div>
               <label className="mb-1.5 block text-sm font-medium">Alternate answers (optional, comma-separated)</label>
               <input
-                value={(form.acceptedAnswers ?? []).join(", ")}
-                onChange={(e) => update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
+                value={acceptedRaw}
+                onChange={(e) => setAcceptedRaw(e.target.value)}
+                onBlur={(e) => update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
                 placeholder="e.g. BTW, By the way"
                 className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary"
               />
@@ -440,8 +444,9 @@ export default function EditPuzzlePage() {
             <div>
               <label className="mb-1.5 block text-sm font-medium">Alternate accepted answers (optional, comma-separated)</label>
               <input
-                value={(form.acceptedAnswers ?? []).join(", ")}
-                onChange={(e) => update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
+                value={acceptedRaw}
+                onChange={(e) => setAcceptedRaw(e.target.value)}
+                onBlur={(e) => update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
                 placeholder="e.g. wind, breeze"
                 className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary"
               />
