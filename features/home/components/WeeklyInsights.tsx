@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BarChart3, Zap, Flame, Brain, Clock, Award, X, Sparkles, TrendingUp, Share2 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { cn } from "@/lib/utils";
+import html2canvas from "html2canvas";
 
 interface Stat {
   icon: typeof Zap;
@@ -16,6 +17,7 @@ interface Stat {
 
 export function WeeklyInsights() {
   const [open, setOpen] = useState(false);
+  const reportRef = useRef<HTMLDivElement>(null);
   const streak = useUserStore((s) => s.streak);
   const history = useUserStore((s) => s.history);
   const completedPuzzleIds = useUserStore((s) => s.completedPuzzleIds);
@@ -97,11 +99,51 @@ export function WeeklyInsights() {
   ];
 
   const handleShare = async () => {
-    const text = `🧠 BrainBloom Weekly Report\n\n📊 XP Earned: ${weeklyStats.totalXpWeek}\n🧩 Puzzles: ${weeklyStats.weeklyPuzzles}\n🔥 Streak: ${streak} days\n🎯 Accuracy: ${weeklyStats.accuracy}%\n\nTrain your mind with BrainBloom!`;
-    if (navigator.share) {
-      try { await navigator.share({ title: "My BrainBloom Week", text }); } catch {}
-    } else {
-      try { await navigator.clipboard.writeText(text); } catch {}
+    if (!reportRef.current) return;
+
+    try {
+      const canvas = await html2canvas(reportRef.current, {
+        backgroundColor: "#ffffff",
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        allowTaint: false,
+      });
+
+      const blob = await new Promise<Blob | null>((resolve) =>
+        canvas.toBlob(resolve, "image/png")
+      );
+      if (!blob) throw new Error("canvas toBlob failed");
+
+      const file = new File([blob], "brainbloom-weekly.png", { type: "image/png" });
+
+      if (
+        navigator.share &&
+        navigator.canShare?.({ files: [file] })
+      ) {
+        try {
+          await navigator.share({
+            title: "My BrainBloom Week",
+            text: "Check out my weekly BrainBloom report!",
+            files: [file],
+          });
+          return;
+        } catch (e) {
+          if (e instanceof Error && e.name === "AbortError") return;
+        }
+      }
+
+      const link = document.createElement("a");
+      link.download = "brainbloom-weekly.png";
+      link.href = canvas.toDataURL();
+      link.click();
+    } catch {
+      const text = `🧠 BrainBloom Weekly Report\n\n📊 XP Earned: ${weeklyStats.totalXpWeek}\n🧩 Puzzles: ${weeklyStats.weeklyPuzzles}\n🔥 Streak: ${streak} days\n🎯 Accuracy: ${weeklyStats.accuracy}%\n\nTrain your mind with BrainBloom!`;
+      if (navigator.share) {
+        try { await navigator.share({ title: "My BrainBloom Week", text }); } catch {}
+      } else {
+        try { await navigator.clipboard.writeText(text); } catch {}
+      }
     }
   };
 
@@ -159,6 +201,7 @@ export function WeeklyInsights() {
                 <X className="size-4" />
               </button>
 
+              <div ref={reportRef} className="bg-white dark:bg-gray-950">
               {/* Header */}
               <div className="relative bg-gradient-to-br from-primary/5 via-purple-500/5 to-transparent px-6 pb-4 pt-8 sm:px-8">
                 <motion.div
@@ -207,6 +250,8 @@ export function WeeklyInsights() {
                     </div>
                   </motion.div>
                 ))}
+              </div>
+
               </div>
 
               {/* Footer */}
