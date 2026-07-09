@@ -104,24 +104,23 @@ export function WeeklyInsights() {
 
     try {
       const blob = await toBlob(el, {
-        quality: 1,
-        width: el.offsetWidth * 2,
-        height: el.offsetHeight * 2,
+        scale: window.devicePixelRatio || 2,
+        bgcolor: "#ffffff",
       });
       if (!blob) throw new Error("toBlob returned null");
 
       const file = new File([blob], "brainbloom-weekly.png", { type: "image/png" });
 
-      if (navigator.share && navigator.canShare?.({ files: [file] })) {
-        try {
-          await navigator.share({
-            title: "My BrainBloom Week",
-            text: "Check out my weekly BrainBloom report!",
-            files: [file],
-          });
-          return;
-        } catch (e) {
-          if (e instanceof Error && e.name === "AbortError") return;
+      try {
+        await navigator.share({
+          title: "My BrainBloom Week",
+          text: "Check out my weekly BrainBloom report!",
+          files: [file],
+        });
+        return;
+      } catch (e) {
+        if (e instanceof Error) {
+          if (e.name === "AbortError") return;
         }
       }
 
@@ -195,7 +194,7 @@ export function WeeklyInsights() {
                 <X className="size-4" />
               </button>
 
-              <div ref={reportRef} className="bg-white dark:bg-gray-950 overflow-hidden rounded-xl">
+              <div ref={reportRef} className="bg-white dark:bg-gray-950">
               <div className="relative bg-gradient-to-br from-primary/5 via-purple-500/5 to-transparent px-6 pb-4 pt-8 sm:px-8">
                 <div className="absolute -top-10 -right-10">
                   <Sparkles className="size-28 text-primary/10" />
