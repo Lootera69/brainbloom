@@ -2,7 +2,8 @@ import { initializeApp, type FirebaseApp } from "firebase/app";
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signOut as firebaseSignOut,
   type User,
 } from "firebase/auth";
@@ -56,13 +57,19 @@ export function getFirebase() {
   return initFirebase();
 }
 
-export async function signInWithGoogle(): Promise<User | null> {
+export async function signInWithGoogleRedirect(): Promise<void> {
+  const { auth: fbAuth } = initFirebase();
+  if (!fbAuth) return;
+  const provider = new GoogleAuthProvider();
+  await signInWithRedirect(fbAuth, provider);
+}
+
+export async function handleRedirectResult(): Promise<User | null> {
   const { auth: fbAuth } = initFirebase();
   if (!fbAuth) return null;
-  const provider = new GoogleAuthProvider();
   try {
-    const result = await signInWithPopup(fbAuth, provider);
-    return result.user;
+    const result = await getRedirectResult(fbAuth);
+    return result?.user ?? null;
   } catch {
     return null;
   }

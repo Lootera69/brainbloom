@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { Sparkles, User, Loader2, Zap, Brain, Flame } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
-import { signInWithGoogle } from "@/services/firebase";
-import { Toaster, toast } from "sonner";
+import { signInWithGoogleRedirect, handleRedirectResult } from "@/services/firebase";
+import { Toaster } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
 
@@ -25,6 +25,7 @@ export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
+  const [processingRedirect, setProcessingRedirect] = useState(false);
   const [taglineIndex, setTaglineIndex] = useState(0);
   const loginAsGuest = useUserStore((s) => s.loginAsGuest);
   const setUser = useUserStore((s) => s.setUser);
@@ -32,10 +33,30 @@ export default function LoginPage() {
   useEffect(() => {
     if (isAuthenticated) {
       router.replace("/");
-    } else {
-      const timer = setTimeout(() => setPageLoading(false), 300);
-      return () => clearTimeout(timer);
+      return;
     }
+    (async () => {
+      setProcessingRedirect(true);
+      try {
+        const user = await handleRedirectResult();
+        if (user) {
+          setUser({
+            uid: user.uid,
+            displayName: user.displayName ?? "User",
+            email: user.email,
+            photoURL: user.photoURL,
+          });
+          router.replace("/");
+          return;
+        }
+      } catch {
+        // user cancelled or error — stay on login page
+      } finally {
+        setProcessingRedirect(false);
+        const timer = setTimeout(() => setPageLoading(false), 300);
+        return () => clearTimeout(timer);
+      }
+    })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -50,27 +71,10 @@ export default function LoginPage() {
     router.push("/");
   };
 
-  const handleGoogle = async () => {
+  const handleGoogle = () => {
     if (!firebaseConfigured) return;
     setLoading(true);
-    try {
-      const user = await signInWithGoogle();
-      if (user) {
-        setUser({
-          uid: user.uid,
-          displayName: user.displayName ?? "User",
-          email: user.email,
-          photoURL: user.photoURL,
-        });
-        router.push("/");
-      } else {
-        toast.error("Sign in failed. Check Firebase config.");
-      }
-    } catch {
-      toast.error("Something went wrong.");
-    } finally {
-      setLoading(false);
-    }
+    signInWithGoogleRedirect();
   };
 
   const TaglineIcon = taglines[taglineIndex].icon;
