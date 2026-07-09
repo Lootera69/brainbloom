@@ -33,6 +33,7 @@ export interface Puzzle {
   correctAnswer: string;
   acceptedAnswers?: string[];
   imageUrl?: string;
+  lessonImageUrl?: string;
   crosswordData?: CrosswordData;
   sudokuData?: SudokuData;
   xpReward: number;
@@ -64,6 +65,7 @@ export interface PuzzleFormData {
   correctAnswer: string;
   acceptedAnswers?: string[];
   imageUrl?: string;
+  lessonImageUrl?: string;
   crosswordData?: CrosswordData;
   sudokuData?: SudokuData;
   xpReward: number;

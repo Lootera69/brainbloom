@@ -16,7 +16,7 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
 ```
 {
   id: string,
-  type: "multiple-choice" | "true-false" | "crossword" | "type-answer" | "sudoku",
+  type: "multiple-choice" | "true-false" | "crossword" | "type-answer" | "sudoku" | "riddle",
   category: string,
   difficulty: "easy" | "medium" | "hard",
   title: string,
@@ -25,6 +25,7 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   correctAnswer: string,
   acceptedAnswers?: string[],         // alternate correct answers for type-answer
   imageUrl?: string,                   // uploaded via imgbb
+  lessonImageUrl?: string,             // separate image for lesson view
   xpReward: number,
   published: boolean,
   createdAt: number,
@@ -41,6 +42,7 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   lessonOrder?: number,                 // position in Learning Path
   lessonGroup?: string,                 // lesson group name
   lessonGroupOrder?: number,            // lesson group display order
+  hintText?: string,                    // progressive hints for riddles (one per line)
 }
 ```
 
@@ -157,7 +159,12 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
    - Leaderboard: sorted by actual XP, correct rank positioning (crown/medal top-3, user below when outside top-5)
    - BottomNav: Apple-style frosted glass (`backdrop-blur-2xl saturate-[1.8]`), gradient top line, progressive enhancement
    - Profile page: gradient-blur avatar ring, animated level XP bar, glass stat grid, collapsible heart timer, two-column achievements/streak-freeze, animated sound toggle
-8. ⬜ Content: seed 30-50 puzzles via Studio or LLM-generated JSON
+8. ✅ **Content Seeding**:
+    - `scripts/seed-data/importer.ts` — direct localStorage + Firestore import/clear engine (batch delete, dual-write)
+    - `scripts/seed-data/data.ts` — 68 hand-crafted puzzles across 4 categories with lesson groups
+    - `app/studio/seed/page.tsx` — protected seed page at `/studio/seed` with danger confirmation, animated progress, live log
+    - Studio header: Database icon button links to seed page
+    - All puzzles `published: true`, `reviewStatus: "approved"`, include lesson content + explanations
 9. ✅ **Analytics Dashboard** (`/studio/analytics`):
    - `services/analytics-service.ts` — aggregates puzzle stats (total, published, completions)
    - Stat cards: total puzzles, published count, total completions, category count
@@ -264,3 +271,14 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   - Trigger card on home page showing weekly summary (puzzles, XP)
   - Modal with 6 stat tiles: XP earned, puzzles done, best streak, accuracy %, weakest category, categories explored
   - Share button using native `navigator.share()` with clipboard fallback
+
+## Recent Changes (Session: Jul 2026 - Part 4)
+- **Streak freeze fix**: replaced exact-2-day-gap check with `diffDays` calculation — each freeze covers exactly one missed day; streak only breaks if missed days exceed available freezes. Edge case: new users (`lastActiveDate: ""`) get streak=1 on first completion
+- **Level XP helpers exported**: `xpForLevel()` and `getLevelProgress()` exported from `store/user-store.ts`; profile page `getLevel()` delegates to shared helper instead of hardcoded `LEVEL_XP_MULTIPLIER`
+- **Lesson image support**: `lessonImageUrl?: string` added to `Puzzle`/`PuzzleFormData` types, `puzzleToFirestore`/`puzzleFromFirestore`, Studio create/edit forms (separate file input + imgbb upload), and `LessonView` (renders `lessonImageUrl ?? imageUrl` fallback)
+- **Content Seeding System**:
+  - `scripts/seed-data/importer.ts` — batch delete (localStorage + Firestore writeBatch), `seedLessonGroups()`, `seedPuzzles()`, `directCreatePuzzle()` with `published: true` + `reviewStatus: "approved"`
+  - `scripts/seed-data/data.ts` — 68 hand-crafted puzzles across Logic (16), Riddles (16), Science (20), Puzzles (16); 17 lesson groups; each with real questions, lesson content (3-5 facts), explanations, hint text for riddles
+  - `app/studio/seed/page.tsx` — danger-confirmed seed page with animated step indicators, live log, completion stats
+  - Studio header: Database icon button links to seed page
+- **True-false puzzle fix**: all 5 true-false puzzles now have `choices: ["True", "False"]` with `correctAnswer` matching exact case (strict `===` in `PuzzlePlay.tsx:41`)

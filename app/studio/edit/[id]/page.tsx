@@ -65,6 +65,8 @@ export default function EditPuzzlePage() {
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const lessonFileInputRef = useRef<HTMLInputElement>(null);
+  const [lessonUploading, setLessonUploading] = useState(false);
   const [form, setForm] = useState<PuzzleFormData>({
     type: "multiple-choice",
     category: "logic",
@@ -94,6 +96,7 @@ export default function EditPuzzlePage() {
         crosswordData: puzzle.crosswordData ? { ...puzzle.crosswordData, grid: puzzle.crosswordData.grid.map((r) => [...r]) } : undefined,
         sudokuData: puzzle.sudokuData ? { ...puzzle.sudokuData } : undefined,
         imageUrl: puzzle.imageUrl ?? undefined,
+        lessonImageUrl: puzzle.lessonImageUrl ?? undefined,
         acceptedAnswers: puzzle.acceptedAnswers ?? undefined,
         lessonContent: puzzle.lessonContent ?? undefined,
         lessonOrder: puzzle.lessonOrder ?? undefined,
@@ -182,6 +185,35 @@ export default function EditPuzzlePage() {
     }
     setUploading(false);
     if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const handleLessonImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error("Image must be smaller than 2MB.");
+      if (lessonFileInputRef.current) lessonFileInputRef.current.value = "";
+      return;
+    }
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    await new Promise((resolve) => { img.onload = resolve; img.src = url; });
+    URL.revokeObjectURL(url);
+    if (img.width > 4096 || img.height > 4096) {
+      toast.error("Image dimensions must be under 4096×4096px.");
+      if (lessonFileInputRef.current) lessonFileInputRef.current.value = "";
+      return;
+    }
+    setLessonUploading(true);
+    try {
+      const imageUrl = await uploadToImgbb(file);
+      update("lessonImageUrl", imageUrl);
+      toast.success("Lesson image uploaded");
+    } catch {
+      toast.error("Failed to upload image");
+    }
+    setLessonUploading(false);
+    if (lessonFileInputRef.current) lessonFileInputRef.current.value = "";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -672,6 +704,27 @@ export default function EditPuzzlePage() {
                       <p className="mt-1 text-xs text-muted-foreground">
                         Each line becomes a numbered fact shown before the quiz.
                       </p>
+                    </div>
+                    <div>
+                      <label className="mb-1.5 block text-sm font-medium">
+                        Lesson Image <span className="text-muted-foreground font-normal">(optional)</span>
+                      </label>
+                      <input ref={lessonFileInputRef} type="file" accept="image/*" onChange={handleLessonImageUpload} className="hidden" />
+                      {form.lessonImageUrl ? (
+                        <div className="relative">
+                          <img src={form.lessonImageUrl} alt="Lesson preview" className="max-h-48 w-full rounded-xl object-contain bg-muted" />
+                          <button type="button" onClick={() => update("lessonImageUrl", undefined)}
+                            className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-background/80 text-muted-foreground hover:text-foreground">
+                            <X className="size-4" />
+                          </button>
+                        </div>
+                      ) : (
+                        <button type="button" onClick={() => lessonFileInputRef.current?.click()} disabled={lessonUploading}
+                          className="flex h-20 w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                          {lessonUploading ? <Spinner className="size-5 animate-spin" /> : <ImageUp className="size-5" />}
+                          {lessonUploading ? "Uploading..." : "Upload lesson image"}
+                        </button>
+                      )}
                     </div>
                   </div>
                 </motion.div>

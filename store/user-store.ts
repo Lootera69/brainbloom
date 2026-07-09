@@ -340,9 +340,6 @@ export const useUserStore = create<UserState>()(
         const { lastActiveDate, streak, streakFreezes, dailyQuests, lastQuestRefresh } = get();
         const today = new Date().toDateString();
 
-        const yesterday = new Date(Date.now() - 86400000).toDateString();
-        const dayBeforeYesterday = new Date(Date.now() - 172800000).toDateString();
-
         if (lastActiveDate === today) {
           if (lastQuestRefresh !== today) {
             set({ dailyQuests: getRefreshedQuests(), lastQuestRefresh: today, xpToday: 0, questsRewarded: [] });
@@ -350,22 +347,41 @@ export const useUserStore = create<UserState>()(
           return;
         }
 
-        let newStreak: number;
-        let freezesUsed = streakFreezes;
+        get().processHeartRefill();
 
-        if (lastActiveDate === yesterday) {
+        if (!lastActiveDate) {
+          set({
+            streak: 1,
+            streakFreezes,
+            lastActiveDate: today,
+            xpToday: 0,
+            dailyQuests: getRefreshedQuests(),
+            lastQuestRefresh: today,
+            questsRewarded: [],
+            practiceHeartsToday: 0,
+            lastPracticeDate: today,
+          });
+          return;
+        }
+
+        const todayMs = new Date(today).getTime();
+        const lastActiveMs = new Date(lastActiveDate).getTime();
+        const diffDays = Math.round((todayMs - lastActiveMs) / 86400000);
+        const missedDays = Math.max(0, diffDays - 1);
+        const freezesToConsume = Math.min(streakFreezes, missedDays);
+
+        let newStreak: number;
+        if (missedDays === 0) {
           newStreak = streak + 1;
-        } else if (streakFreezes > 0 && lastActiveDate === dayBeforeYesterday) {
+        } else if (freezesToConsume === missedDays) {
           newStreak = streak;
-          freezesUsed = streakFreezes - 1;
         } else {
           newStreak = 1;
         }
 
-        get().processHeartRefill();
         set({
           streak: newStreak,
-          streakFreezes: freezesUsed,
+          streakFreezes: streakFreezes - freezesToConsume,
           lastActiveDate: today,
           xpToday: 0,
           dailyQuests: getRefreshedQuests(),

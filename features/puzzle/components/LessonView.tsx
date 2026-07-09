@@ -40,12 +40,12 @@ export function LessonView({ puzzle, onStartQuiz }: Props) {
             {puzzle.category} &middot; Lesson {puzzle.lessonOrder ?? "-"}
           </p>
 
-          {puzzle.imageUrl && (
+          {(puzzle.lessonImageUrl ?? puzzle.imageUrl) && (
             <motion.img
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              src={puzzle.imageUrl}
+              src={puzzle.lessonImageUrl ?? puzzle.imageUrl!}
               alt="Lesson illustration"
               className="mx-auto mt-4 max-h-48 w-full rounded-xl object-contain"
             />
