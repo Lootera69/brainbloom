@@ -105,7 +105,6 @@ export function WeeklyInsights() {
     try {
       const blob = await toBlob(el, {
         scale: window.devicePixelRatio || 2,
-        bgcolor: "#ffffff",
       });
       if (!blob) throw new Error("toBlob returned null");
 
