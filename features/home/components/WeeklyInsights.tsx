@@ -201,42 +201,28 @@ export function WeeklyInsights() {
                 <X className="size-4" />
               </button>
 
-              <div ref={reportRef} className="bg-white dark:bg-gray-950">
-              {/* Header */}
+              <div ref={reportRef} className="bg-white dark:bg-gray-950 overflow-hidden rounded-xl">
               <div className="relative bg-gradient-to-br from-primary/5 via-purple-500/5 to-transparent px-6 pb-4 pt-8 sm:px-8">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                  className="absolute -top-10 -right-10"
-                >
-                  <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ duration: 3, repeat: Infinity }}>
-                    <Sparkles className="size-28 text-primary/10" />
-                  </motion.div>
-                </motion.div>
+                <div className="absolute -top-10 -right-10">
+                  <Sparkles className="size-28 text-primary/10" />
+                </div>
 
                 <div className="relative flex items-center gap-3">
                   <span className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/10">
                     <BarChart3 className="size-6 text-primary" />
                   </span>
                   <div>
-                    <h2 className="font-heading text-xl font-bold">Weekly Insights</h2>
-                    <p className="text-sm text-muted-foreground">Your learning summary this week</p>
+                    <h2 className="font-heading text-xl font-bold text-gray-900 dark:text-white">Weekly Insights</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Your learning summary this week</p>
                   </div>
                 </div>
               </div>
 
-              {/* Stats grid */}
               <div className="grid grid-cols-2 gap-3 px-6 py-5 sm:grid-cols-3 sm:px-8">
-                {stats.map((stat, i) => (
-                  <motion.div
+                {stats.map((stat) => (
+                  <div
                     key={stat.label}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + i * 0.05, type: "spring", stiffness: 150 }}
-                    className={cn(
-                      "flex flex-col items-center gap-2 rounded-xl p-4 text-center ring-1 ring-inset ring-border/50",
-                    )}
+                    className="flex flex-col items-center gap-2 rounded-xl p-4 text-center ring-1 ring-inset ring-gray-200 dark:ring-gray-700"
                   >
                     <span className={cn(
                       "flex size-10 items-center justify-center rounded-xl bg-gradient-to-br",
@@ -246,9 +232,9 @@ export function WeeklyInsights() {
                     </span>
                     <div>
                       <p className={cn("text-lg font-bold tabular-nums", stat.color)}>{stat.value}</p>
-                      <p className="text-[11px] text-muted-foreground">{stat.label}</p>
+                      <p className="text-[11px] text-gray-500 dark:text-gray-400">{stat.label}</p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
