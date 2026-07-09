@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BarChart3, Zap, Flame, Brain, Clock, Award, X, Sparkles, TrendingUp, Share2 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { cn } from "@/lib/utils";
-import html2canvas from "html2canvas";
+import { toBlob } from "dom-to-image-more";
 
 interface Stat {
   icon: typeof Zap;
@@ -99,28 +99,20 @@ export function WeeklyInsights() {
   ];
 
   const handleShare = async () => {
-    if (!reportRef.current) return;
+    const el = reportRef.current;
+    if (!el) return;
 
     try {
-      const canvas = await html2canvas(reportRef.current, {
-        backgroundColor: "#ffffff",
-        scale: 2,
-        useCORS: true,
-        logging: false,
-        allowTaint: false,
+      const blob = await toBlob(el, {
+        quality: 1,
+        width: el.offsetWidth * 2,
+        height: el.offsetHeight * 2,
       });
-
-      const blob = await new Promise<Blob | null>((resolve) =>
-        canvas.toBlob(resolve, "image/png")
-      );
-      if (!blob) throw new Error("canvas toBlob failed");
+      if (!blob) throw new Error("toBlob returned null");
 
       const file = new File([blob], "brainbloom-weekly.png", { type: "image/png" });
 
-      if (
-        navigator.share &&
-        navigator.canShare?.({ files: [file] })
-      ) {
+      if (navigator.share && navigator.canShare?.({ files: [file] })) {
         try {
           await navigator.share({
             title: "My BrainBloom Week",
@@ -133,10 +125,12 @@ export function WeeklyInsights() {
         }
       }
 
+      const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.download = "brainbloom-weekly.png";
-      link.href = canvas.toDataURL();
+      link.href = url;
       link.click();
+      URL.revokeObjectURL(url);
     } catch {
       const text = `🧠 BrainBloom Weekly Report\n\n📊 XP Earned: ${weeklyStats.totalXpWeek}\n🧩 Puzzles: ${weeklyStats.weeklyPuzzles}\n🔥 Streak: ${streak} days\n🎯 Accuracy: ${weeklyStats.accuracy}%\n\nTrain your mind with BrainBloom!`;
       if (navigator.share) {
