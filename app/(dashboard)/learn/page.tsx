@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useMemo } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, HeartCrack, ArrowLeft, Sparkles, Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Flame, CheckCircle2 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
@@ -92,11 +92,14 @@ export default function LearnPage() {
     return () => clearInterval(interval);
   }, [processHeartRefill, getHeartTimer]);
 
-  // Handle ?daily=true and ?category=id
+  // Handle ?daily=true and ?category=id navigation (incl. sidebar/bottom-nav clicks)
+  const searchParams = useSearchParams();
   useEffect(() => {
     (async () => {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get("daily") === "true") {
+      const category = searchParams.get("category");
+      const daily = searchParams.get("daily");
+
+      if (daily === "true") {
         const puzzle = await getDailyPuzzle();
         if (puzzle && hearts > 0 && !hasCompletedDailyPuzzle()) {
           setCurrentPuzzle(puzzle);
@@ -104,13 +107,24 @@ export default function LearnPage() {
           setView("play");
           setFocusMode(true);
         }
-      } else if (params.get("category")) {
-        const cat = params.get("category");
-        setSelectedCat(cat);
-        setView("browse");
+        return;
       }
+
+      if (category) {
+        setSelectedCat(category);
+        setView("browse");
+        return;
+      }
+
+      // No params — reset to categories view (handles sidebar/bottom-nav nav to /learn)
+      setView("categories");
+      setSelectedCat(null);
+      setCurrentPuzzle(null);
+      setIsDaily(false);
+      setLessonProgress(null);
+      setFocusMode(false);
     })();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSelectCategory = (catId: string) => {
     setSelectedCat(catId);
