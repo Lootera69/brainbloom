@@ -97,8 +97,23 @@ function generateId() {
   return crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 }
 
+export function xpForLevel(level: number): number {
+  if (level <= 1) return 0;
+  return 25 * level * (level + 1) - 50;
+}
+
 function calcLevel(xp: number): number {
-  return Math.floor(xp / 200) + 1;
+  let level = 1;
+  while (xpForLevel(level + 1) <= xp) level++;
+  return level;
+}
+
+export function getLevelProgress(xp: number): { level: number; progress: number; xpToNext: number; currentXp: number; nextXp: number } {
+  const level = calcLevel(xp);
+  const currentXp = xpForLevel(level);
+  const nextXp = xpForLevel(level + 1);
+  const progress = nextXp > currentXp ? (xp - currentXp) / (nextXp - currentXp) : 0;
+  return { level, progress, xpToNext: nextXp - xp, currentXp, nextXp };
 }
 
 function getRefreshedQuests(): DailyQuest[] {

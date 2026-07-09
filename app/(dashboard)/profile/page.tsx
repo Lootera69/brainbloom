@@ -23,11 +23,13 @@ import {
 import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useUserStore } from "@/store/user-store";
+import { useUserStore, getLevelProgress } from "@/store/user-store";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
-const LEVEL_XP_MULTIPLIER = 100;
+function getLevel(xp: number) {
+  return getLevelProgress(xp);
+}
 
 function formatHeartTimer(ms: number): string {
   if (ms <= 0) return "Full";
@@ -39,13 +41,7 @@ function formatHeartTimer(ms: number): string {
   return `${seconds}s`;
 }
 
-function getLevel(xp: number) {
-  const level = Math.floor(xp / LEVEL_XP_MULTIPLIER) + 1;
-  const currentLevelXp = (level - 1) * LEVEL_XP_MULTIPLIER;
-  const nextLevelXp = level * LEVEL_XP_MULTIPLIER;
-  const progress = (xp - currentLevelXp) / (nextLevelXp - currentLevelXp);
-  return { level, progress, xpToNext: nextLevelXp - xp };
-}
+
 
 const statCards = [
   { icon: Zap, label: "Total XP", color: "text-primary", bg: "bg-primary/10" },
