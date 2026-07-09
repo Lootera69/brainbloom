@@ -35,10 +35,14 @@ export default function LoginPage() {
       router.replace("/");
       return;
     }
+
+    let mounted = true;
+
     (async () => {
       setProcessingRedirect(true);
       try {
         const user = await handleRedirectResult();
+        if (!mounted) return;
         if (user) {
           setUser({
             uid: user.uid,
@@ -50,13 +54,14 @@ export default function LoginPage() {
           return;
         }
       } catch {
-        // user cancelled or error — stay on login page
-      } finally {
-        setProcessingRedirect(false);
-        const timer = setTimeout(() => setPageLoading(false), 300);
-        return () => clearTimeout(timer);
+        // ignore
       }
+      if (!mounted) return;
+      setProcessingRedirect(false);
+      setTimeout(() => setPageLoading(false), 300);
     })();
+
+    return () => { mounted = false; };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
