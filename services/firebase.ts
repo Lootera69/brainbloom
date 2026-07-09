@@ -7,6 +7,11 @@ import {
   type User,
 } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
+import {
+  initializeAppCheck,
+  ReCaptchaV3Provider,
+  type AppCheck,
+} from "firebase/app-check";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -25,14 +30,26 @@ export const firebaseConfigured =
 let app: FirebaseApp | null = null;
 let auth: ReturnType<typeof getAuth> | null = null;
 let db: Firestore | null = null;
+let appCheck: AppCheck | null = null;
+
+const recaptchaSiteKey =
+  typeof process !== "undefined"
+    ? process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+    : undefined;
 
 function initFirebase() {
   if (!app && firebaseConfigured) {
     app = initializeApp(firebaseConfig);
     auth = getAuth(app);
     db = getFirestore(app);
+    if (recaptchaSiteKey) {
+      appCheck = initializeAppCheck(app, {
+        provider: new ReCaptchaV3Provider(recaptchaSiteKey),
+        isTokenAutoRefreshEnabled: true,
+      });
+    }
   }
-  return { app, auth, db };
+  return { app, auth, db, appCheck };
 }
 
 export function getFirebase() {
