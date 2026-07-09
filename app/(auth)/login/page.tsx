@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Sparkles, User, Loader2, Zap, Brain, Flame } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
-import { signInWithGoogleRedirect, onAuthChanged } from "@/services/firebase";
+import { signInWithGoogle } from "@/services/firebase";
 import { Toaster } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -32,29 +32,10 @@ export default function LoginPage() {
   useEffect(() => {
     if (isAuthenticated) {
       router.replace("/");
-      return;
+    } else {
+      const timer = setTimeout(() => setPageLoading(false), 300);
+      return () => clearTimeout(timer);
     }
-
-    // Firebase Auth processes redirect result internally on SDK init
-    // onAuthChanged detects the newly-signed-in user after redirect
-    const unsub = onAuthChanged((user) => {
-      if (user && !useUserStore.getState().isAuthenticated) {
-        setUser({
-          uid: user.uid,
-          displayName: user.displayName ?? "User",
-          email: user.email,
-          photoURL: user.photoURL,
-        });
-        router.replace("/");
-      }
-    });
-
-    const timer = setTimeout(() => setPageLoading(false), 500);
-
-    return () => {
-      unsub();
-      clearTimeout(timer);
-    };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -69,10 +50,25 @@ export default function LoginPage() {
     router.push("/");
   };
 
-  const handleGoogle = () => {
+  const handleGoogle = async () => {
     if (!firebaseConfigured) return;
     setLoading(true);
-    signInWithGoogleRedirect();
+    try {
+      const user = await signInWithGoogle();
+      if (user) {
+        setUser({
+          uid: user.uid,
+          displayName: user.displayName ?? "User",
+          email: user.email,
+          photoURL: user.photoURL,
+        });
+        router.push("/");
+      }
+    } catch {
+      // ignore
+    } finally {
+      setLoading(false);
+    }
   };
 
   const TaglineIcon = taglines[taglineIndex].icon;
