@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { CrosswordPlay } from "./CrosswordPlay";
 import { TypeAnswerPlay } from "./TypeAnswerPlay";
 import { SudokuPlay } from "./SudokuPlay";
+import { RiddlePlay } from "./RiddlePlay";
 
 interface Props {
   puzzle: Puzzle;
@@ -189,6 +190,9 @@ export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
   }
   if (puzzle.type === "sudoku") {
     return <SudokuPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
+  }
+  if (puzzle.type === "riddle") {
+    return <RiddlePlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
   }
   return <QuizPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
 }

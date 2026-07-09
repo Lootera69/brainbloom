@@ -63,6 +63,7 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
     lessonOrder: (data.lessonOrder as number) ?? undefined,
     lessonGroup: (data.lessonGroup as string) ?? undefined,
     lessonGroupOrder: (data.lessonGroupOrder as number) ?? undefined,
+    hintText: (data.hintText as string) ?? undefined,
   };
   if (data.crosswordData) {
     puzzle.crosswordData = data.crosswordData as CrosswordData;
@@ -100,6 +101,7 @@ function puzzleToFirestore(puzzle: Puzzle) {
     lessonOrder: puzzle.lessonOrder ?? null,
     lessonGroup: puzzle.lessonGroup ?? null,
     lessonGroupOrder: puzzle.lessonGroupOrder ?? null,
+    hintText: puzzle.hintText ?? null,
   };
   if (puzzle.crosswordData) {
     data.crosswordData = puzzle.crosswordData;

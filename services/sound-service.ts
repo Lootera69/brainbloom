@@ -219,6 +219,46 @@ export function playStreak() {
   } catch { /* silent fallback */ }
 }
 
+export function playRiddleReveal() {
+  if (!_enabled) return;
+  try {
+    const c = getCtx();
+    const g = gain(0.2);
+    // Suspenseful rising tone — slow ascending sine
+    const o = osc("sine", 200, c.currentTime, c.currentTime + 1.2);
+    o.frequency.setValueAtTime(200, c.currentTime);
+    o.frequency.exponentialRampToValueAtTime(800, c.currentTime + 1.0);
+    o.connect(g);
+    g.gain.setValueAtTime(0.2, c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 1.2);
+    // Soft shimmer
+    const g2 = gain(0.08);
+    const o2 = osc("triangle", 1200, c.currentTime + 0.8, c.currentTime + 1.3);
+    o2.connect(g2);
+    g2.gain.setValueAtTime(0.08, c.currentTime + 0.8);
+    g2.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 1.3);
+  } catch { /* silent fallback */ }
+}
+
+export function playRiddleCorrect() {
+  if (!_enabled) return;
+  try {
+    const c = getCtx();
+    const g = gain(0.2);
+    // Gentle two-note chime
+    const notes = [523, 784];
+    const dur = 0.2;
+    const o = osc("triangle", notes[0], c.currentTime, c.currentTime + dur * 2 + 0.3);
+    notes.forEach((f, i) => {
+      o.frequency.setValueAtTime(f, c.currentTime + i * dur);
+    });
+    o.connect(g);
+    g.gain.setValueAtTime(0.2, c.currentTime);
+    g.gain.setValueAtTime(0.2, c.currentTime + dur * 2);
+    g.gain.exponentialRampToValueAtTime(0.01, c.currentTime + dur * 2 + 0.3);
+  } catch { /* silent fallback */ }
+}
+
 // Warm up AudioContext on first user interaction
 export function initSounds() {
   if (typeof document === "undefined") return;

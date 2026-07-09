@@ -52,9 +52,10 @@ export default function CreatePuzzlePage() {
   const isTypeAnswer = form.type === "type-answer";
   const isCrossword = form.type === "crossword";
   const isSudoku = form.type === "sudoku";
+  const isRiddle = form.type === "riddle";
 
   useEffect(() => {
-    if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku)) {
+    if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle)) {
       getLessonGroups(form.category).then(setLessonGroups);
     } else {
       setLessonGroups([]);
@@ -141,7 +142,7 @@ export default function CreatePuzzlePage() {
   const handleTypeChange = (type: PuzzleType) => {
     if (type === "crossword") {
       setForm((f) => ({ ...f, type, crosswordData: defaultCrossword, sudokuData: undefined }));
-    } else if (type === "type-answer") {
+    } else if (type === "type-answer" || type === "riddle") {
       setForm((f) => ({
         ...f,
         type,
@@ -178,7 +179,7 @@ export default function CreatePuzzlePage() {
         <div>
           <label className="mb-1.5 block text-sm font-medium">Type</label>
           <div className="flex gap-2 flex-wrap">
-            {(["multiple-choice", "true-false", "type-answer", "crossword", "sudoku"] as const).map((t) => (
+            {(["multiple-choice", "true-false", "type-answer", "crossword", "sudoku", "riddle"] as const).map((t) => (
               <button
                 key={t}
                 type="button"
@@ -189,7 +190,7 @@ export default function CreatePuzzlePage() {
                     : "hover:bg-muted"
                 }`}
               >
-                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : "Sudoku"}
+                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : t === "sudoku" ? "Sudoku" : "Riddle"}
               </button>
             ))}
           </div>
@@ -391,7 +392,36 @@ export default function CreatePuzzlePage() {
           </>
         )}
 
-        {(isQuiz || isTypeAnswer) && (
+        {isRiddle && (
+          <>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Correct Answer</label>
+              <input value={form.correctAnswer} onChange={(e) => update("correctAnswer", e.target.value)}
+                placeholder="e.g. An echo"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Alternate accepted answers (optional, comma-separated)</label>
+              <input
+                value={(form.acceptedAnswers ?? []).join(", ")}
+                onChange={(e) => update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
+                placeholder="e.g. wind, breeze"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+              />
+              <p className="mt-1 text-xs text-muted-foreground">Alternate correct answers for the riddle.</p>
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Hint (optional, one clue per line)</label>
+              <textarea value={form.hintText ?? ""} onChange={(e) => update("hintText", e.target.value)}
+                placeholder="First hint line...&#10;Second hint line..."
+                rows={3}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+              <p className="mt-1 text-xs text-muted-foreground">Each line becomes a progressive hint shown during the riddle.</p>
+            </div>
+          </>
+        )}
+
+        {(isQuiz || isTypeAnswer || isRiddle) && (
           <div className="space-y-4">
             <div>
               <label className="mb-1.5 block text-sm font-medium">Explanation (for correct answer)</label>
@@ -427,7 +457,7 @@ export default function CreatePuzzlePage() {
         )}
 
         {/* Lesson fields — collapsible */}
-        {(isQuiz || isTypeAnswer || isCrossword || isSudoku) && (
+        {(isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle) && (
           <>
             <hr className="border-muted" />
             <div className="rounded-xl border bg-card">

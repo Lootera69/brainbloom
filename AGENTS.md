@@ -232,3 +232,10 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
 - **Analytics time-range filter** (7d/30d/all) — toggle buttons in analytics header, filters puzzles by createdAt
 - **Drag-to-reorder lesson groups** — HTML5 drag & drop in Settings lesson list, reindexes via `reorderLessonGroups()`
 - **Home screen streak** — text badges removed from StreakBar and DailyChallengeCard; clicking flame opens streak popup with 7-day circles (unmaintained today = b/w, maintained = filled orange)
+- **Riddle Puzzle Type** (`"riddle"`) — Duolingo-style animated reveal puzzle type:
+  - `RiddlePlay.tsx` component: 4-phase flow (thinking → typewriter reveal → self-assessment → result)
+  - `hintText?: string` field — progressive hints (one per line) shown via hint button
+  - Self-assessment model: user taps "I got it" or "Nope" (not system-graded, heart deducted on wrong)
+  - Suspenseful reveal sound (`playRiddleReveal`) + gentle chime on correct (`playRiddleCorrect`)
+  - Studio create/edit: Riddle type in picklist, hint textarea, correct answer + accepted answers + explanations
+  - Works with existing Learning Path system (lessonContent shown before riddle)

@@ -237,13 +237,19 @@ export default function LearnPage() {
                       {streakDays.map((d, i) => (
                         <div key={i} className="flex flex-col items-center gap-0.5">
                           <span className="text-[10px] font-medium text-muted-foreground">{d.label}</span>
-                          <div className={`size-5 rounded-full border-2 transition-colors ${
+                          <div className={`size-5 rounded-full border-2 transition-colors sm:size-6 flex items-center justify-center ${
                             d.filled
                               ? "border-orange-500 bg-orange-500"
-                              : d.isToday
-                                ? "border-orange-300 border-dashed"
-                                : "border-muted-foreground/30"
-                          }`} />
+                              : d.isToday && streakMaintainedToday
+                                ? "border-orange-500 bg-orange-500"
+                                : d.isToday
+                                  ? "border-muted-foreground/40"
+                                  : "border-muted-foreground/15"
+                          }`}>
+                            {(d.filled || (d.isToday && streakMaintainedToday)) && (
+                              <CheckCircle2 className="size-3.5 text-white sm:size-4" />
+                            )}
+                          </div>
                         </div>
                       ))}
                     </div>
