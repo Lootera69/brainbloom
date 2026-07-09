@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Sparkles, User, Loader2, Zap, Brain, Flame } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
-import { signInWithGoogleRedirect, handleRedirectResult } from "@/services/firebase";
+import { signInWithGoogleRedirect, onAuthChanged } from "@/services/firebase";
 import { Toaster } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -25,7 +25,6 @@ export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
-  const [processingRedirect, setProcessingRedirect] = useState(false);
   const [taglineIndex, setTaglineIndex] = useState(0);
   const loginAsGuest = useUserStore((s) => s.loginAsGuest);
   const setUser = useUserStore((s) => s.setUser);
@@ -36,32 +35,26 @@ export default function LoginPage() {
       return;
     }
 
-    let mounted = true;
-
-    (async () => {
-      setProcessingRedirect(true);
-      try {
-        const user = await handleRedirectResult();
-        if (!mounted) return;
-        if (user) {
-          setUser({
-            uid: user.uid,
-            displayName: user.displayName ?? "User",
-            email: user.email,
-            photoURL: user.photoURL,
-          });
-          router.replace("/");
-          return;
-        }
-      } catch {
-        // ignore
+    // Firebase Auth processes redirect result internally on SDK init
+    // onAuthChanged detects the newly-signed-in user after redirect
+    const unsub = onAuthChanged((user) => {
+      if (user && !useUserStore.getState().isAuthenticated) {
+        setUser({
+          uid: user.uid,
+          displayName: user.displayName ?? "User",
+          email: user.email,
+          photoURL: user.photoURL,
+        });
+        router.replace("/");
       }
-      if (!mounted) return;
-      setProcessingRedirect(false);
-      setTimeout(() => setPageLoading(false), 300);
-    })();
+    });
 
-    return () => { mounted = false; };
+    const timer = setTimeout(() => setPageLoading(false), 500);
+
+    return () => {
+      unsub();
+      clearTimeout(timer);
+    };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
