@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, XCircle, ArrowRight, ChevronDown, ChevronUp, Zap } from "lucide-react";
+import { CheckCircle2, XCircle, ArrowRight, ChevronDown, ChevronUp, Zap, Sparkles } from "lucide-react";
 import { type Puzzle, type CrosswordClue } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
 import { cn } from "@/lib/utils";
@@ -29,6 +29,22 @@ function clueNumbers(grid: (string | null)[][]): number[][] {
     }
   }
   return nums;
+}
+
+function ShimmerCheckButton({ onClick }: { onClick: () => void }) {
+  return (
+    <motion.button onClick={onClick}
+      whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
+      className="relative mt-6 flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]">
+      <motion.span
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        animate={{ x: ["-100%", "100%"] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+      />
+      <Zap className="size-5" />
+      Check Answers
+    </motion.button>
+  );
 }
 
 export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
@@ -169,7 +185,6 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
       const newGrid = playerGrid.map((row) => [...row]);
       newGrid[r][c] = letter;
       setPlayerGrid(newGrid);
-      // Auto-advance in current direction
       if (activeClue?.direction === "across") {
         for (let nc = c + 1; nc < size; nc++) {
           if (isActiveCell(r, nc)) { setSelectedRow(r); setSelectedCol(nc); return; }
@@ -238,30 +253,72 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
         {/* Result banner */}
         {submitted && (
           <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-4">
-            <GlassCard className={`p-4 text-center ${allCorrect ? "ring-1 ring-success/30" : "ring-1 ring-destructive/20"}`}>
-              <div className="flex items-center justify-center gap-2">
-                {allCorrect ? <CheckCircle2 className="size-5 text-success" /> : <XCircle className="size-5 text-destructive" />}
-                <span className="text-sm font-semibold">{allCorrect ? "Complete!" : "Not quite!"}</span>
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              className={cn(
+                "relative overflow-hidden rounded-2xl border p-4 text-center transition-all",
+                allCorrect
+                  ? "border-success/30 bg-gradient-to-b from-success/5 to-transparent"
+                  : "border-destructive/30 bg-gradient-to-b from-destructive/5 to-transparent",
+              )}
+            >
+              {allCorrect && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                  className="absolute -top-8 -right-8"
+                >
+                  <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+                    <Sparkles className="size-20 text-success/10" />
+                  </motion.div>
+                </motion.div>
+              )}
+              <div className="relative flex items-center justify-center gap-2">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+                  className={cn(
+                    "flex size-8 shrink-0 items-center justify-center rounded-full",
+                    allCorrect ? "bg-success/10 text-success" : "bg-destructive/10 text-destructive",
+                  )}
+                >
+                  {allCorrect ? <CheckCircle2 className="size-5" /> : <XCircle className="size-5" />}
+                </motion.span>
+                <span className={cn("text-base font-semibold", allCorrect ? "text-success" : "text-destructive")}>
+                  {allCorrect ? "Complete!" : "Not quite!"}
+                </span>
               </div>
               {!allCorrect && (
-                <p className="mt-1 text-xs text-muted-foreground">Wrong answers are highlighted in red. Fix them and try again.</p>
+                <p className="relative mt-1 text-xs text-muted-foreground">Wrong answers highlighted in red. Fix them and try again.</p>
               )}
               {allCorrect && !isRepeat && (
-                <p className="mt-1 flex items-center justify-center gap-1 text-sm font-semibold text-success">
-                  <Zap className="size-4" /> +{puzzle.xpReward} XP
-                </p>
+                <motion.div
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                  className="relative mt-2 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-success/20 to-emerald-500/20 px-3 py-1"
+                >
+                  <Zap className="size-3.5 text-success" />
+                  <span className="text-sm font-bold text-success">+{puzzle.xpReward} XP</span>
+                </motion.div>
               )}
               {allCorrect && isRepeat && (
-                <p className="mt-1 text-xs text-amber-600 dark:text-amber-400">Already solved — no extra XP earned</p>
+                <p className="relative mt-1 text-xs text-amber-600 dark:text-amber-400">Already solved — no extra XP earned</p>
               )}
-            </GlassCard>
+            </motion.div>
           </motion.div>
         )}
 
         {/* Grid */}
         <div className="flex justify-center">
           <div
-            className={cn("grid border-2 border-foreground/20", submitted && "pointer-events-none")}
+            className={cn(
+              "grid border-2 border-foreground/20 rounded-md overflow-hidden",
+              submitted && "pointer-events-none",
+            )}
             style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}
           >
             {answerGrid.map((row, r) =>
@@ -280,7 +337,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
                     className={cn(
                       "relative flex items-center justify-center border border-foreground/10 text-sm font-bold transition-colors",
                       blocked ? "bg-foreground/40 pointer-events-none" : "cursor-pointer",
-                      isSelected && "ring-2 ring-primary",
+                      isSelected && "ring-2 ring-primary z-10",
                       isHighlighted && !isSelected && "bg-primary/8",
                       hasError && "bg-destructive/20",
                       isCorrect && "bg-success/10",
@@ -373,21 +430,15 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
         </div>
 
         {/* Buttons */}
-        {!submitted && (
-          <motion.button
-            onClick={handleCheck}
-            className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 active:scale-[0.98]"
-          >
-            <Zap className="size-5" />
-            Check Answers
-          </motion.button>
-        )}
+        {!submitted && <ShimmerCheckButton onClick={handleCheck} />}
         {submitted && !allCorrect && (
           <motion.button
             onClick={() => setSubmitted(false)}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-2xl border text-sm font-semibold transition-all hover:bg-muted active:scale-[0.98]"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-2xl border text-sm font-semibold transition-all hover:bg-muted hover:border-primary/40 active:scale-[0.98]"
           >
             <XCircle className="size-5" />
             Try Again
@@ -398,7 +449,9 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
             onClick={handleContinue}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground transition-all active:scale-[0.98]"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+            className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"
           >
             Continue <ArrowRight className="size-4" />
           </motion.button>

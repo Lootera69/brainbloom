@@ -13,6 +13,7 @@ import { ContinueLearning } from "@/features/home/components/ContinueLearning";
 import { RecentActivity } from "@/features/home/components/RecentActivity";
 import { DailyGoalCard } from "@/features/home/components/DailyGoalCard";
 import { DailyRewardChest } from "@/features/home/components/DailyRewardChest";
+import { WeeklyInsights } from "@/features/home/components/WeeklyInsights";
 import { LeaderboardCard } from "@/features/home/components/LeaderboardCard";
 import { SectionHeader } from "@/features/home/components/SectionHeader";
 import { DailyQuests } from "@/features/home/components/DailyQuests";
@@ -38,6 +39,7 @@ export default function HomePage() {
 
       <DailyGoalCard />
       <DailyRewardChest />
+      <WeeklyInsights />
 
       <DailyQuests />
 

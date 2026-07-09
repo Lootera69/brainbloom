@@ -25,7 +25,7 @@ export default function CreatePuzzlePage() {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [dirty, setDirty] = useState(false);
-  const { confirmLeave } = useUnsavedChanges(dirty);
+  const { confirmLeave, LeaveWarningModal } = useUnsavedChanges(dirty);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState<PuzzleFormData>({
     type: "multiple-choice",
@@ -137,7 +137,7 @@ export default function CreatePuzzlePage() {
   };
 
   const handleBack = () => {
-    if (confirmLeave()) router.push("/studio");
+    confirmLeave(() => router.push("/studio"));
   };
 
   const handleTypeChange = (type: PuzzleType) => {
@@ -566,6 +566,7 @@ export default function CreatePuzzlePage() {
           Save Puzzle
         </button>
       </form>
+      {LeaveWarningModal}
     </main>
   );
 }

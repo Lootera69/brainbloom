@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, Zap, Sparkles, Clock, Pencil } from "lucide-react";
 import type { Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/store/user-store";
@@ -30,6 +31,26 @@ interface SavedData {
   mistakeCount: number;
   elapsed: number;
 }
+
+const MistakeDots = ({ count }: { count: number }) => {
+  return (
+    <div className="flex items-center gap-1">
+      {Array.from({ length: MISTAKE_LIMIT }, (_, i) => (
+        <motion.span
+          key={i}
+          initial={i < count ? { scale: 1.3 } : { scale: 1 }}
+          animate={{ scale: 1 }}
+          className={cn(
+            "inline-block size-2.5 rounded-full border transition-colors",
+            i < count
+              ? "border-destructive bg-destructive"
+              : "border-muted-foreground/30 bg-transparent",
+          )}
+        />
+      ))}
+    </div>
+  );
+};
 
 export function SudokuPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: SudokuPlayProps) {
   const sudokuData = puzzle.sudokuData!;
@@ -301,37 +322,32 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Sud
   const filledCells = cells.filter((v) => v !== null).length;
   const progress = filledCells / (SIZE * SIZE);
 
-  const mistakeDots = Array.from({ length: MISTAKE_LIMIT }, (_, i) => (
-    <span
-      key={i}
-      className={`inline-block size-2.5 rounded-full border transition-colors ${
-        i < (mistakeCount % MISTAKE_LIMIT)
-          ? "border-destructive bg-destructive"
-          : "border-muted-foreground/30 bg-transparent"
-      }`}
-    />
-  ));
-
   const isConflictCell = (index: number) => conflictCells.some((c) => c.index === index);
 
   return (
     <div className="flex flex-col items-center gap-3 px-2 pb-6">
-      <div className="flex w-full max-w-md items-center justify-between px-1">
+      {/* Status bar */}
+      <div className="flex w-full max-w-md items-center justify-between rounded-2xl bg-card/80 px-4 py-2.5 shadow-sm">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <span className="tabular-nums">{formatTime(elapsed)}</span>
+          <Clock className="size-4" />
+          <span className="tabular-nums font-medium">{formatTime(elapsed)}</span>
         </div>
-        <div className="flex items-center gap-1.5">{mistakeDots}</div>
-        <div className="h-2 w-20 overflow-hidden rounded-full bg-muted">
-          <motion.div
-            className="h-full rounded-full bg-primary"
-            initial={{ width: 0 }}
-            animate={{ width: `${Math.min(progress * 100, 100)}%` }}
-            transition={{ duration: 0.3 }}
-          />
+        <MistakeDots count={mistakeCount % MISTAKE_LIMIT} />
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-muted-foreground">{Math.round(progress * 100)}%</span>
+          <div className="h-2 w-16 overflow-hidden rounded-full bg-muted">
+            <motion.div
+              className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
+              initial={{ width: 0 }}
+              animate={{ width: `${Math.min(progress * 100, 100)}%` }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="grid w-full max-w-md aspect-square select-none border-2 border-border rounded-md overflow-hidden bg-card">
+      {/* Grid */}
+      <div className="grid w-full max-w-md aspect-square select-none border-2 border-border rounded-lg overflow-hidden bg-card shadow-lg">
         {Array.from({ length: SIZE * SIZE }, (_, i) => {
           const row = Math.floor(i / SIZE);
           const col = i % SIZE;
@@ -357,7 +373,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Sud
                   ? "bg-card font-bold text-foreground"
                   : "bg-card/60 text-foreground",
                 isSelected
-                  ? "bg-primary/25 text-foreground"
+                  ? "bg-primary/25 text-foreground ring-2 ring-primary/40 z-10"
                   : isHighlighted(i)
                     ? "bg-primary/8"
                     : "",
@@ -400,43 +416,51 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Sud
         })}
       </div>
 
+      {/* Controls */}
       <div className="flex w-full max-w-md flex-col gap-2.5">
         <div className="flex items-center justify-between px-0.5">
-          <button
+          <motion.button
             onClick={() => setNoteMode(!noteMode)}
+            whileTap={{ scale: 0.95 }}
             className={cn(
-              "rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors",
+              "flex items-center gap-1.5 rounded-xl border px-4 py-2 text-xs font-medium transition-all",
               noteMode
-                ? "border-primary bg-primary text-primary-foreground"
-                : "border-border text-muted-foreground hover:bg-muted",
+                ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                : "border-border text-muted-foreground hover:bg-muted hover:border-primary/30",
             )}
           >
+            <Pencil className="size-3.5" />
             Notes {noteMode ? "ON" : "OFF"}
-          </button>
+          </motion.button>
           <span className="text-[10px] text-muted-foreground">
             {selected !== null
               ? isClue(selected)
-                ? "Clue"
+                ? "Clue cell"
                 : `R${selectedRow + 1}C${selectedCol + 1}`
               : "Tap a cell"}
           </span>
         </div>
 
+        {/* Number pad */}
         <div className="grid grid-cols-10 gap-1.5">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-            <button
+            <motion.button
               key={num}
               onClick={() => fillCell(num)}
               disabled={completed}
-              className="flex aspect-square items-center justify-center rounded-lg bg-card text-lg font-semibold shadow-sm transition-all hover:bg-primary/20 active:scale-90 disabled:opacity-40"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              className="flex aspect-square items-center justify-center rounded-xl bg-card text-lg font-semibold shadow-sm transition-all hover:bg-primary/20 hover:shadow-md hover:shadow-primary/10 active:scale-90 disabled:opacity-40"
             >
               {num}
-            </button>
+            </motion.button>
           ))}
-          <button
+          <motion.button
             onClick={eraseCell}
             disabled={completed}
-            className="flex aspect-square items-center justify-center rounded-lg bg-card text-lg shadow-sm transition-all hover:bg-destructive/20 active:scale-90 disabled:opacity-40"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.9 }}
+            className="flex aspect-square items-center justify-center rounded-xl bg-card text-lg shadow-sm transition-all hover:bg-destructive/20 hover:shadow-md hover:shadow-destructive/10 active:scale-90 disabled:opacity-40"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -452,42 +476,71 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Sud
               <line x1="18" y1="9" x2="12" y2="15" />
               <line x1="12" y1="9" x2="18" y2="15" />
             </svg>
-          </button>
+          </motion.button>
         </div>
       </div>
 
+      {/* Completion modal */}
       <AnimatePresence>
         {showResult && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm"
-            onClick={() => {
-              setShowResult(false);
-              onComplete(true, puzzle.xpReward);
-            }}
           >
             <motion.div
-              initial={{ y: 40 }}
-              animate={{ y: 0 }}
-              className="w-full max-w-sm rounded-2xl bg-card p-8 text-center shadow-2xl"
+              initial={{ opacity: 0, y: 40, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 40, scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 200, damping: 25 }}
+              className="relative w-full max-w-sm overflow-hidden rounded-2xl border border-success/30 bg-card p-6 text-center shadow-2xl sm:p-8"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="mb-3 text-5xl">🎉</div>
-              <h3 className="mb-1 text-xl font-bold">Sudoku Complete!</h3>
-              <p className="mb-4 text-sm text-muted-foreground">
-                Time: {formatTime(elapsed)} &middot; Mistakes: {mistakeCount}
+              {/* Background sparkle */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="absolute -top-10 -right-10"
+              >
+                <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ duration: 3, repeat: Infinity }}>
+                  <Sparkles className="size-28 text-success/10" />
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 300, delay: 0.1 }}
+                className="relative mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-success/10"
+              >
+                <CheckCircle2 className="size-8 text-success" />
+              </motion.div>
+
+              <h3 className="relative mb-1 text-xl font-bold">Sudoku Complete!</h3>
+              <p className="relative mb-4 text-sm text-muted-foreground">
+                Solved in {formatTime(elapsed)} with {mistakeCount} mistake{mistakeCount !== 1 ? "s" : ""}
               </p>
-              <p className="mb-6 text-2xl font-bold text-primary">
-                +{puzzle.xpReward} XP
-              </p>
-              <button
-                onClick={() => onComplete(true, puzzle.xpReward)}
-                className="w-full rounded-xl bg-primary py-3 font-semibold text-primary-foreground shadow-lg transition-all hover:brightness-110"
+
+              <motion.div
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="relative mb-6 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-success/20 to-emerald-500/20 px-4 py-2"
+              >
+                <Zap className="size-5 text-success" />
+                <span className="text-lg font-bold text-success">+{puzzle.xpReward} XP</span>
+              </motion.div>
+
+              <motion.button
+                onClick={() => { setShowResult(false); onComplete(true, puzzle.xpReward); }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                className="relative w-full rounded-xl bg-gradient-to-br from-primary to-[#8b5cf6] py-3 font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30"
               >
                 Continue
-              </button>
+              </motion.button>
             </motion.div>
           </motion.div>
         )}

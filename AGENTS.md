@@ -172,7 +172,7 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
     - QuizPlay and TypeAnswerPlay show inline result card with appropriate explanation after each answer
     - All existing logic preserved (XP, hearts, sounds, completion tracking)
 
-## Recent Changes (Session: Jul 2026)
+## Recent Changes (Session: Jul 2026 - Part 3)
 - Added admin code deletion prevention, confirmed acceptedAnswers checking, comma-split fix
 - Added 5-second timer confirmation for publish/unpublish/delete
 - Blocked contributors from deleting live puzzles
@@ -239,3 +239,28 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   - Suspenseful reveal sound (`playRiddleReveal`) + gentle chime on correct (`playRiddleCorrect`)
   - Studio create/edit: Riddle type in picklist, hint textarea, correct answer + accepted answers + explanations
   - Works with existing Learning Path system (lessonContent shown before riddle)
+- **Duolingo-style polish for all play components**:
+  - QuizPlay: phase indicator icon, gradient glow, thinking dots, shimmer submit, staggered result card with XP pill badge, "Also accepted" with star icon
+  - TypeAnswerPlay: same phase indicator + shimmer + gradient result card + "Also accepted"
+  - CrosswordPlay: shimmer check button, gradient result banner with XP pill, spring-animated icons
+  - SudokuPlay: MistakeDots component, gradient progress bar, number pad hover effects, polished completion modal with gradient continue
+- **Sidebar redesign**:
+  - Frosted glass body (`backdrop-blur-2xl saturate-[1.8]`) matching BottomNav
+  - Nav items with rounded-2xl, gradient active background + gradient left bar indicator
+  - Gradient-ring avatar, inline XP/hearts mini-stats in user card
+- **Unsaved changes modal** (`useUnsavedChanges.tsx`):
+  - Replaced native `window.confirm()` with proper styled modal (AlertTriangle icon, backdrop blur)
+  - `confirmLeave` now takes a callback instead of returning boolean
+  - Both create and edit pages use the new modal
+- **Daily Login Bonus** (`DailyRewardChest.tsx`):
+  - Trigger card on home page opens full-screen modal with 3.5s auto-play sequence
+  - Custom SVG gift box with 3D-style lid, base, ribbon, bow (gradients + shines)
+  - Phases: idle (golden glow) → shaking (violent wiggle) → opening (lid flies off, 4 radial light beams) → confetti explosion → reward reveal
+  - Reward reveal: gradient-ring icon, orbiting sparkle ring, gradient gradient text, expanding shimmer ring
+  - Weighted probability pool (XP 10-100, Gems 5-10, Streak Freeze) — higher chance for lower XP
+  - Modal blocks all input during animation (`pointer-events: none`, body scroll locked)
+  - Auto-closes after reward display
+- **Weekly Insights Report** (`WeeklyInsights.tsx`):
+  - Trigger card on home page showing weekly summary (puzzles, XP)
+  - Modal with 6 stat tiles: XP earned, puzzles done, best streak, accuracy %, weakest category, categories explored
+  - Share button using native `navigator.share()` with clipboard fallback

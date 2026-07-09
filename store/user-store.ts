@@ -89,6 +89,8 @@ interface UserState {
   setSoundEnabled: (v: boolean) => void;
   clearCelebration: () => void;
   checkAchievements: () => void;
+  claimDailyBonus: () => { type: "xp" | "gems" | "streak-freeze"; amount: number; label: string } | null;
+  canClaimDailyBonus: () => boolean;
 }
 
 function generateId() {
@@ -541,6 +543,50 @@ export const useUserStore = create<UserState>()(
             get().unlockAchievement(id);
           }
         }
+      },
+
+      canClaimDailyBonus: () => {
+        return get().lastRewardClaim !== new Date().toDateString();
+      },
+
+      claimDailyBonus: () => {
+        const { lastRewardClaim, xp, gems, streakFreezes } = get();
+        const today = new Date().toDateString();
+        if (lastRewardClaim === today) return null;
+
+        // Weighted probability pool
+        const pool: { type: "xp" | "gems" | "streak-freeze"; amount: number; label: string; weight: number }[] = [
+          { type: "xp", amount: 10, label: "10 XP", weight: 30 },
+          { type: "xp", amount: 20, label: "20 XP", weight: 20 },
+          { type: "xp", amount: 30, label: "30 XP", weight: 15 },
+          { type: "xp", amount: 40, label: "40 XP", weight: 10 },
+          { type: "gems", amount: 5, label: "5 Gems", weight: 8 },
+          { type: "xp", amount: 50, label: "50 XP", weight: 5 },
+          { type: "gems", amount: 10, label: "10 Gems", weight: 4.5 },
+          { type: "xp", amount: 75, label: "75 XP", weight: 3 },
+          { type: "xp", amount: 100, label: "100 XP", weight: 2.5 },
+          { type: "streak-freeze", amount: 1, label: "Streak Freeze", weight: 2 },
+        ];
+
+        const totalWeight = pool.reduce((s, i) => s + i.weight, 0);
+        let roll = Math.random() * totalWeight;
+        let picked = pool[0];
+        for (const item of pool) {
+          roll -= item.weight;
+          if (roll <= 0) { picked = item; break; }
+        }
+
+        set({ lastRewardClaim: today });
+
+        if (picked.type === "xp") {
+          get().addXp(picked.amount);
+        } else if (picked.type === "gems") {
+          set({ gems: gems + picked.amount });
+        } else if (picked.type === "streak-freeze") {
+          set({ streakFreezes: streakFreezes + 1 });
+        }
+
+        return picked;
       },
     }),
     { name: "brainbloom-user" },

@@ -53,7 +53,7 @@ export default function EditPuzzlePage() {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [dirty, setDirty] = useState(false);
-  const { confirmLeave } = useUnsavedChanges(dirty);
+  const { confirmLeave, LeaveWarningModal } = useUnsavedChanges(dirty);
   const [notFound, setNotFound] = useState(false);
   const [puzzleStatus, setPuzzleStatus] = useState<ReviewStatus | null>(null);
   const [puzzlePublished, setPuzzlePublished] = useState(false);
@@ -212,7 +212,7 @@ export default function EditPuzzlePage() {
   };
 
   const handleBack = () => {
-    if (confirmLeave()) router.push("/studio");
+    confirmLeave(() => router.push("/studio"));
   };
 
   const handleSubmitForReview = async () => {
@@ -791,6 +791,7 @@ export default function EditPuzzlePage() {
         confirmLabel="Delete"
         confirmVariant="danger"
       />
+      {LeaveWarningModal}
     </main>
   );
 }
