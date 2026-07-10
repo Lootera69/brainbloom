@@ -26,7 +26,7 @@ const iconMap: Record<string, typeof Brain> = {
   grid: Grid2x2,
 };
 
-async function findNextLessonPuzzle(
+async function findNextLessonGroupFirstPuzzle(
   category: string,
   currentId: string,
 ): Promise<{ puzzle: Puzzle; progress: LessonProgress } | null> {
@@ -55,30 +55,44 @@ async function findNextLessonPuzzle(
   }
   groups.sort((a, b) => a.order - b.order);
 
-  const currentIdx = sorted.findIndex((p) => p.id === currentId);
-  if (currentIdx === -1) return null;
-
   const completedIds = useUserStore.getState().completedPuzzleIds;
 
-  for (let i = currentIdx + 1; i < sorted.length; i++) {
-    const next = sorted[i];
-    if (!completedIds.includes(next.id)) {
-      for (let gi = 0; gi < groups.length; gi++) {
-        if (groups[gi].puzzles.some((p) => p.id === next.id)) {
-          return {
-            puzzle: next,
-            progress: {
-              currentOrder: next.lessonOrder ?? 0,
-              totalInGroup: groups[gi].puzzles.length,
-              completedInGroup: groups[gi].puzzles.filter(
-                (p) => completedIds.includes(p.id),
-              ).length,
-              groupName: groups[gi].name || `Group ${gi + 1}`,
-              groupNumber: gi + 1,
-            },
-          };
-        }
-      }
+  // Find which group the current puzzle belongs to
+  let currentGroupIdx = -1;
+  for (let gi = 0; gi < groups.length; gi++) {
+    if (groups[gi].puzzles.some((p) => p.id === currentId)) {
+      currentGroupIdx = gi;
+      break;
+    }
+  }
+  if (currentGroupIdx === -1) return null;
+
+  // Check if there are still uncompleted puzzles in the current group
+  const currentGroup = groups[currentGroupIdx];
+  const remainingInGroup = currentGroup.puzzles.filter(
+    (p) => !completedIds.includes(p.id) && p.id !== currentId,
+  );
+  if (remainingInGroup.length > 0) return null;
+
+  // Find the next group with any uncompleted puzzle
+  for (let gi = currentGroupIdx + 1; gi < groups.length; gi++) {
+    const nextGroup = groups[gi];
+    const firstUncompleted = nextGroup.puzzles.find(
+      (p) => !completedIds.includes(p.id),
+    );
+    if (firstUncompleted) {
+      return {
+        puzzle: firstUncompleted,
+        progress: {
+          currentOrder: firstUncompleted.lessonOrder ?? 0,
+          totalInGroup: nextGroup.puzzles.length,
+          completedInGroup: nextGroup.puzzles.filter(
+            (p) => completedIds.includes(p.id),
+          ).length,
+          groupName: nextGroup.name || `Group ${gi + 1}`,
+          groupNumber: gi + 1,
+        },
+      };
     }
   }
 
@@ -260,9 +274,9 @@ export default function LearnPage() {
       xp: isDaily ? (currentPuzzle.xpReward * 2) : xpEarned,
     });
 
-    // Auto-advance for learning path puzzles
+    // Auto-advance to next lesson group when current group is fully done
     if (lessonProgress && currentPuzzle.lessonOrder != null) {
-      const next = await findNextLessonPuzzle(
+      const next = await findNextLessonGroupFirstPuzzle(
         currentPuzzle.category || "",
         currentPuzzle.id,
       );
