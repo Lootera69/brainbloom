@@ -26,6 +26,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     processHeartRefill();
+    // Pull latest from Firestore on page refresh (cross-device sync)
+    useUserStore.getState().loadFromFirestore();
     import("@/services/sound-service").then(({ initSounds }) => initSounds());
     const interval = setInterval(() => {
       const prev = useUserStore.getState().hearts;

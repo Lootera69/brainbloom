@@ -83,7 +83,8 @@ export function ErrorFallback({
         <button
           onClick={() => {
             handleCopyDiagnostics();
-            toast.success("Diagnostics copied — please send to our support team", { position: "top-center" });
+            window.open("https://github.com/Lootera69/brainbloom/issues/new", "_blank", "noopener,noreferrer");
+            toast.success("Diagnostics copied — paste them into the GitHub issue", { position: "top-center", duration: 5000 });
           }}
           className="inline-flex h-10 items-center gap-2 rounded-xl bg-destructive/10 px-5 text-sm font-medium text-destructive transition-all hover:bg-destructive/20 active:scale-[0.98]"
         >
