@@ -73,14 +73,20 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
       });
     }
     result.sort((a, b) => a.order - b.order);
-    // Auto-expand first group
-    if (result.length > 0 && expandedGroups.size === 0) {
-      setExpandedGroups(new Set([result[0].name]));
-    }
     return result;
-  }, [lessonPuzzles]);  // eslint-disable-line react-hooks/exhaustive-deps
+  }, [lessonPuzzles]);
 
   const extras = puzzles.filter((p) => p.lessonOrder == null);
+
+  // Auto-expand the first unlocked group on mount
+  useEffect(() => {
+    if (groups.length > 0 && expandedGroups.size === 0) {
+      const firstUnlocked = groups.findIndex((_, gi) =>
+        gi === 0 || isGroupCompleted(groups[gi - 1]),
+      );
+      setExpandedGroups(new Set([groups[Math.max(0, firstUnlocked)].name]));
+    }
+  }, [groups]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Check if all sub-lessons in a group are completed
   const isGroupCompleted = (group: LessonGroup) =>

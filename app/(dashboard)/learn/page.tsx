@@ -14,6 +14,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { type Puzzle } from "@/types/puzzle";
 import { toast } from "sonner";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
+import { getPublishedByCategory } from "@/services/puzzle-service";
 import { categories } from "@/constants/home";
 
 type View = "categories" | "browse" | "lesson" | "play";
@@ -24,6 +25,65 @@ const iconMap: Record<string, typeof Brain> = {
   atom: Atom,
   grid: Grid2x2,
 };
+
+async function findNextLessonPuzzle(
+  category: string,
+  currentId: string,
+): Promise<{ puzzle: Puzzle; progress: LessonProgress } | null> {
+  const all = await getPublishedByCategory(category);
+  const sorted = all
+    .filter((p) => p.lessonOrder != null)
+    .sort((a, b) => {
+      const go = (a.lessonGroupOrder ?? 999) - (b.lessonGroupOrder ?? 999);
+      if (go !== 0) return go;
+      return (a.lessonOrder ?? 0) - (b.lessonOrder ?? 0);
+    });
+
+  const groups: { name: string; order: number; puzzles: Puzzle[] }[] = [];
+  const map = new Map<string, Puzzle[]>();
+  for (const p of sorted) {
+    const key = p.lessonGroup || "__default__";
+    if (!map.has(key)) map.set(key, []);
+    map.get(key)!.push(p);
+  }
+  for (const [name, puzzles] of map) {
+    groups.push({
+      name: name === "__default__" ? "" : name,
+      order: puzzles[0]?.lessonGroupOrder ?? 0,
+      puzzles,
+    });
+  }
+  groups.sort((a, b) => a.order - b.order);
+
+  const currentIdx = sorted.findIndex((p) => p.id === currentId);
+  if (currentIdx === -1) return null;
+
+  const completedIds = useUserStore.getState().completedPuzzleIds;
+
+  for (let i = currentIdx + 1; i < sorted.length; i++) {
+    const next = sorted[i];
+    if (!completedIds.includes(next.id)) {
+      for (let gi = 0; gi < groups.length; gi++) {
+        if (groups[gi].puzzles.some((p) => p.id === next.id)) {
+          return {
+            puzzle: next,
+            progress: {
+              currentOrder: next.lessonOrder ?? 0,
+              totalInGroup: groups[gi].puzzles.length,
+              completedInGroup: groups[gi].puzzles.filter(
+                (p) => completedIds.includes(p.id),
+              ).length,
+              groupName: groups[gi].name || `Group ${gi + 1}`,
+              groupNumber: gi + 1,
+            },
+          };
+        }
+      }
+    }
+  }
+
+  return null;
+}
 
 function formatHeartTimer(ms: number): string {
   if (ms <= 0) return "Full";
@@ -159,7 +219,7 @@ export default function LearnPage() {
     setView("play");
   }, []);
 
-  const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
+  const handleComplete = useCallback(async (correct: boolean, xpEarned: number) => {
     if (!currentPuzzle) return;
 
     if (correct) {
@@ -200,12 +260,30 @@ export default function LearnPage() {
       xp: isDaily ? (currentPuzzle.xpReward * 2) : xpEarned,
     });
 
+    // Auto-advance for learning path puzzles
+    if (lessonProgress && currentPuzzle.lessonOrder != null) {
+      const next = await findNextLessonPuzzle(
+        currentPuzzle.category || "",
+        currentPuzzle.id,
+      );
+      if (next) {
+        setCurrentPuzzle(next.puzzle);
+        setLessonProgress(next.progress);
+        if (next.puzzle.lessonContent?.trim()) {
+          setView("lesson");
+        } else {
+          setView("play");
+        }
+        return;
+      }
+    }
+
     setView("browse");
     setCurrentPuzzle(null);
     setIsDaily(false);
     setLessonProgress(null);
     setFocusMode(false);
-  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, setFocusMode]);
+  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, lessonProgress, setFocusMode]);
 
   const handleBack = () => {
     setView("browse");
