@@ -67,6 +67,9 @@ function generateCompleteGrid(): number[] {
 }
 
 export function generateSudoku(difficulty: Difficulty): SudokuData {
+  const startTime = Date.now();
+  const TIMEOUT = 2000;
+
   const solution = generateCompleteGrid();
   const puzzle = [...solution];
   const targetClues = clueCounts[difficulty];
@@ -74,6 +77,10 @@ export function generateSudoku(difficulty: Difficulty): SudokuData {
 
   let clues = SIZE * SIZE;
   for (const pos of positions) {
+    if (Date.now() - startTime > TIMEOUT) {
+      console.warn("Sudoku generation timed out — returning partial puzzle");
+      break;
+    }
     if (clues <= targetClues) break;
     const backup = puzzle[pos];
     puzzle[pos] = 0;

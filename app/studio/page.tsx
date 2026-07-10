@@ -12,6 +12,9 @@ import { getTodayDailyPuzzleId, setDailyPuzzle } from "@/services/daily-puzzle";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { toast } from "sonner";
 import { SkeletonPuzzleList, SkeletonFilterBar } from "@/components/ui/skeleton";
+import { ErrorBoundary } from "@/components/error-boundary";
+import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
+import { ErrorFallback } from "@/components/error-fallback";
 
 const STATUS_LABELS: Record<ReviewStatus, string> = {
   draft: "Draft",
@@ -63,16 +66,18 @@ export default function StudioPage() {
   const [dailyPuzzleId, setDailyPuzzleId] = useState<string | null>(null);
   const [settingDaily, setSettingDaily] = useState(false);
   const admin = isAdmin();
+  const { timedOut: loadTimedOut, reset: resetLoadTimeout } = useLoadingTimeout(6000);
 
   const load = async () => {
     setLoading(true);
+    resetLoadTimeout();
     const [data, dailyId] = await Promise.all([getPuzzles(), getTodayDailyPuzzleId()]);
     setPuzzles(data);
     setDailyPuzzleId(dailyId);
     setLoading(false);
   };
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (deleteTarget) {
@@ -155,6 +160,7 @@ export default function StudioPage() {
   const discussCount = puzzles.filter((p) => p.reviewStatus === "needs-discussion").length;
 
   return (
+    <ErrorBoundary>
     <main className="mx-auto max-w-6xl px-4 py-6">
       <div className="mb-6 flex items-center justify-between">
         <div>
@@ -251,7 +257,16 @@ export default function StudioPage() {
         )}
       </div>
 
-      {loading ? (
+      {loading && loadTimedOut ? (
+        <div className="flex min-h-[40vh] flex-col items-center justify-center text-center">
+          <ErrorFallback
+            title="Taking longer than expected"
+            description="The puzzle list is taking a while to load. Please try again."
+            onRetry={load}
+            fullPage={false}
+          />
+        </div>
+      ) : loading ? (
         <div className="space-y-4">
           <SkeletonFilterBar />
           <SkeletonPuzzleList count={6} />
@@ -467,5 +482,6 @@ export default function StudioPage() {
         )}
       </AnimatePresence>
     </main>
+    </ErrorBoundary>
   );
 }

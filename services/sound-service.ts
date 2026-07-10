@@ -261,12 +261,18 @@ export function playRiddleCorrect() {
 
 // Warm up AudioContext on first user interaction
 export function initSounds() {
-  if (typeof document === "undefined") return;
-  const handler = () => {
-    getCtx();
-    document.removeEventListener("click", handler);
-    document.removeEventListener("touchstart", handler);
-  };
-  document.addEventListener("click", handler);
-  document.addEventListener("touchstart", handler);
+  try {
+    if (typeof document === "undefined") return;
+    const handler = () => {
+      try {
+        getCtx();
+      } catch { /* AudioContext may be blocked */ }
+      document.removeEventListener("click", handler);
+      document.removeEventListener("touchstart", handler);
+    };
+    document.addEventListener("click", handler);
+    document.addEventListener("touchstart", handler);
+  } catch {
+    // Silent fallback — sound will be disabled
+  }
 }

@@ -9,6 +9,9 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getAnalytics, type AnalyticsData } from "@/services/analytics-service";
+import { ErrorBoundary } from "@/components/error-boundary";
+import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
+import { ErrorFallback } from "@/components/error-fallback";
 
 const TYPE_LABELS: Record<string, string> = {
   "multiple-choice": "Multiple Choice",
@@ -480,14 +483,16 @@ export default function AnalyticsPage() {
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [timeRange, setTimeRange] = useState<"7d" | "30d" | "all">("all");
+  const { timedOut: loadTimedOut, reset: resetLoadTimeout } = useLoadingTimeout(6000);
 
   useEffect(() => {
     setLoading(true);
+    resetLoadTimeout();
     getAnalytics(timeRange).then((result) => {
       setData(result);
       setLoading(false);
     });
-  }, [timeRange]);
+  }, [timeRange]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [timeAgo, setTimeAgo] = useState("");
   useEffect(() => {
@@ -499,7 +504,23 @@ export default function AnalyticsPage() {
     }
   }, [data]);
 
+  if (loadTimedOut && loading) {
+    return (
+      <main className="mx-auto max-w-6xl px-4 py-6">
+        <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
+          <ErrorFallback
+            title="Taking longer than expected"
+            description="Analytics data is taking a while to load. Please try again."
+            onRetry={() => { resetLoadTimeout(); setLoading(true); getAnalytics(timeRange).then((r) => { setData(r); setLoading(false); }); }}
+            fullPage={false}
+          />
+        </div>
+      </main>
+    );
+  }
+
   return (
+    <ErrorBoundary>
     <main className="mx-auto max-w-6xl px-4 py-6">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
@@ -615,5 +636,6 @@ export default function AnalyticsPage() {
         </div>
       )}
     </main>
+    </ErrorBoundary>
   );
 }

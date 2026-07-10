@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, type PersistStorage } from "zustand/middleware";
 import { questTemplates } from "@/constants/quests";
 import { achievementsList } from "@/constants/achievements";
 
@@ -115,6 +115,22 @@ export function getLevelProgress(xp: number): { level: number; progress: number;
   const progress = nextXp > currentXp ? (xp - currentXp) / (nextXp - currentXp) : 0;
   return { level, progress, xpToNext: nextXp - xp, currentXp, nextXp };
 }
+
+// Safe localStorage wrapper for Zustand persist (handles quota errors)
+const safeStorage: PersistStorage<UserState> = {
+  getItem: (name) => {
+    const raw = localStorage.getItem(name);
+    return raw ? JSON.parse(raw) : null;
+  },
+  setItem: (name, value) => {
+    try {
+      localStorage.setItem(name, JSON.stringify(value));
+    } catch {
+      console.warn("localStorage write failed — storage may be full");
+    }
+  },
+  removeItem: (name) => localStorage.removeItem(name),
+};
 
 function getRefreshedQuests(): DailyQuest[] {
   return questTemplates.map((qt) => ({
@@ -622,6 +638,9 @@ export const useUserStore = create<UserState>()(
         return picked;
       },
     }),
-    { name: "brainbloom-user" },
+    {
+      name: "brainbloom-user",
+      storage: safeStorage,
+    },
   ),
 );

@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useCallback, useEffect, useMemo } from "react";
+import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, HeartCrack, ArrowLeft, Sparkles, Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Flame, CheckCircle2 } from "lucide-react";
+import {
+  Heart, HeartCrack, ArrowLeft, Sparkles, Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Flame, CheckCircle2, Loader2, Clock
+} from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
 import { CurriculumPath, type LessonProgress } from "@/features/puzzle/components/CurriculumPath";
@@ -14,6 +16,9 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { type Puzzle } from "@/types/puzzle";
 import { toast } from "sonner";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
+import { ErrorBoundary } from "@/components/error-boundary";
+import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
+import { ErrorFallback } from "@/components/error-fallback";
 
 import { categories } from "@/constants/home";
 
@@ -39,6 +44,8 @@ function formatHeartTimer(ms: number): string {
 export default function LearnPage() {
   const router = useRouter();
   const [view, setView] = useState<View>("categories");
+  const viewRef = useRef(view);
+  viewRef.current = view;
   const [currentPuzzle, setCurrentPuzzle] = useState<Puzzle | null>(null);
   const [timer, setTimer] = useState(0);
   const [isDaily, setIsDaily] = useState(false);
@@ -512,78 +519,144 @@ export default function LearnPage() {
           </motion.div>
         )}
 
-        {view === "play" && currentPuzzle && (
-          <motion.div
-            key="play"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="relative"
-          >
-            <button
-              onClick={handleBack}
-              className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ArrowLeft className="size-4" />
-              Back
-            </button>
-
-            {lessonProgress && (
-              <div className="absolute right-0 top-3 h-1 w-24 overflow-hidden rounded-full bg-muted sm:w-32">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${(lessonProgress.completedInGroup / lessonProgress.totalInGroup) * 100}%` }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
-                />
-              </div>
-            )}
-
-            {isDaily && (
-              <motion.div
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary/10 to-purple-500/10 px-4 py-2.5 text-sm font-semibold"
-              >
-                <Sparkles className="size-4 text-primary" />
-                Daily Puzzle &middot; 2x XP &middot; +5 gems
-              </motion.div>
-            )}
-            <PuzzlePlay
-              puzzle={currentPuzzle}
-              onComplete={handleComplete}
-              onWrongAttempt={() => {
-                useHeart();
-                toast.custom(
-                  (t) => (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.8, y: -10 }}
-                      className="flex items-center gap-3 rounded-xl border border-red-500/20 bg-card px-4 py-3 shadow-lg"
-                    >
-                      <motion.span
-                        initial={{ scale: 1 }}
-                        animate={{ scale: [1, 1.3, 1] }}
-                        transition={{ duration: 0.4 }}
-                        className="flex size-8 items-center justify-center rounded-lg bg-destructive/10"
-                      >
-                        <HeartCrack className="size-4 text-destructive" />
-                      </motion.span>
-                      <div>
-                        <p className="text-sm font-semibold text-destructive">-1 Heart</p>
-                        <p className="text-xs text-muted-foreground">Wrong answer!</p>
-                      </div>
-                    </motion.div>
-                  ),
-                  { duration: 1500, position: "top-center" },
-                );
-              }}
-              isRepeat={hasCompletedPuzzle(currentPuzzle.id)}
-            />
-          </motion.div>
+        {view === "play" && (
+          <PuzzlePlayView
+            currentPuzzle={currentPuzzle}
+            isDaily={isDaily}
+            lessonProgress={lessonProgress}
+            handleBack={handleBack}
+            handleComplete={handleComplete}
+            useHeart={useHeart}
+            hasCompletedPuzzle={hasCompletedPuzzle}
+          />
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+function PuzzlePlayView({
+  currentPuzzle,
+  isDaily,
+  lessonProgress,
+  handleBack,
+  handleComplete,
+  useHeart,
+  hasCompletedPuzzle,
+}: {
+  currentPuzzle: Puzzle | null;
+  isDaily: boolean;
+  lessonProgress: LessonProgress | null;
+  handleBack: () => void;
+  handleComplete: (correct: boolean, xpEarned: number) => void;
+  useHeart: () => void;
+  hasCompletedPuzzle: (id: string) => boolean;
+}) {
+  const { timedOut, cancel } = useLoadingTimeout(6000);
+
+  useEffect(() => {
+    if (currentPuzzle) cancel();
+  }, [currentPuzzle, cancel]);
+
+  return (
+    <ErrorBoundary>
+      <motion.div
+        key="play"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        className="relative"
+      >
+        <button
+          onClick={handleBack}
+          className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="size-4" />
+          Back
+        </button>
+
+        {lessonProgress && (
+          <div className="absolute right-0 top-3 h-1 w-24 overflow-hidden rounded-full bg-muted sm:w-32">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: `${(lessonProgress.completedInGroup / lessonProgress.totalInGroup) * 100}%` }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
+            />
+          </div>
+        )}
+
+        {isDaily && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary/10 to-purple-500/10 px-4 py-2.5 text-sm font-semibold"
+          >
+            <Sparkles className="size-4 text-primary" />
+            Daily Puzzle &middot; 2x XP &middot; +5 gems
+          </motion.div>
+        )}
+
+        {timedOut && !currentPuzzle ? (
+          <div className="flex min-h-[40vh] flex-col items-center justify-center text-center">
+            <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-amber-500/10">
+              <Clock className="size-6 text-amber-500" />
+            </div>
+            <h3 className="font-heading text-lg font-bold">Taking longer than expected</h3>
+            <p className="mt-1 max-w-sm text-sm text-muted-foreground">
+              This puzzle is taking a while to load. Please try again or contact support if the issue persists.
+            </p>
+            <div className="mt-5 flex gap-3">
+              <button
+                onClick={handleBack}
+                className="inline-flex h-10 items-center gap-2 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:brightness-110 active:scale-[0.98]"
+              >
+                Go Back
+              </button>
+            </div>
+          </div>
+        ) : currentPuzzle ? (
+          <PuzzlePlay
+            puzzle={currentPuzzle}
+            onComplete={handleComplete}
+            onWrongAttempt={() => {
+              useHeart();
+              toast.custom(
+                (t) => (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, y: -10 }}
+                    className="flex items-center gap-3 rounded-xl border border-red-500/20 bg-card px-4 py-3 shadow-lg"
+                  >
+                    <motion.span
+                      initial={{ scale: 1 }}
+                      animate={{ scale: [1, 1.3, 1] }}
+                      transition={{ duration: 0.4 }}
+                      className="flex size-8 items-center justify-center rounded-lg bg-destructive/10"
+                    >
+                      <HeartCrack className="size-4 text-destructive" />
+                    </motion.span>
+                    <div>
+                      <p className="text-sm font-semibold text-destructive">-1 Heart</p>
+                      <p className="text-xs text-muted-foreground">Wrong answer!</p>
+                    </div>
+                  </motion.div>
+                ),
+                { duration: 1500, position: "top-center" },
+              );
+            }}
+            isRepeat={currentPuzzle ? hasCompletedPuzzle(currentPuzzle.id) : false}
+          />
+        ) : (
+          <div className="flex min-h-[40vh] items-center justify-center">
+            <div className="flex flex-col items-center gap-3">
+              <Loader2 className="size-8 animate-spin text-primary" />
+              <p className="text-sm text-muted-foreground">Loading puzzle...</p>
+            </div>
+          </div>
+        )}
+      </motion.div>
+    </ErrorBoundary>
   );
 }

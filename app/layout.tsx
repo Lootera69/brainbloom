@@ -5,6 +5,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ServiceWorkerRegister } from "@/components/providers/service-worker";
+import { GlobalErrorHandler } from "@/components/providers/global-error-handler";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({
         <ThemeProvider>
           {children}
           <ServiceWorkerRegister />
+          <GlobalErrorHandler />
         </ThemeProvider>
       </body>
     </html>
