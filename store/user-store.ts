@@ -265,7 +265,9 @@ export const useUserStore = create<UserState>()(
           } else {
             get().syncToFirestore();
           }
-        } catch {}
+        } catch (e) {
+          console.warn("loadFromFirestore failed — keeping local state:", e);
+        }
       },
 
       logout: () => {

@@ -280,6 +280,14 @@ export function DailyRewardChest() {
   const [reward, setReward] = useState<{ type: "xp" | "gems" | "streak-freeze"; amount: number; label: string } | null>(null);
   const [showBeams, setShowBeams] = useState(false);
   const unlocking = useRef(false);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      timeoutsRef.current.forEach(clearTimeout);
+    };
+  }, []);
 
   // Block body scroll while modal is open
   useEffect(() => {
@@ -294,18 +302,18 @@ export function DailyRewardChest() {
     setOpen(true);
     setPhase("idle");
 
-    // Shake
+    // Clear any stale timeouts from previous invocations
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+
     const t1 = setTimeout(() => setPhase("shaking"), 300);
-    // Open
     const t2 = setTimeout(() => {
       setPhase("opening");
       setShowBeams(true);
       const result = claim();
       if (result) setReward(result);
     }, 900);
-    // Confetti + reveal
     const t3 = setTimeout(() => setShowBeams(false), 1400);
-    // Auto-close after reward display
     const t4 = setTimeout(() => {
       setOpen(false);
       setPhase("idle");
@@ -313,7 +321,7 @@ export function DailyRewardChest() {
       unlocking.current = false;
     }, 3500);
 
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+    timeoutsRef.current = [t1, t2, t3, t4];
   }, [claim]);
 
   if (!canClaim()) return null;

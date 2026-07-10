@@ -99,10 +99,12 @@ export default function LearnPage() {
     (async () => {
       const category = searchParams.get("category");
       const daily = searchParams.get("daily");
+      // Read latest values directly from store to avoid stale closure
+      const { hearts: h, hasCompletedDailyPuzzle: checkDaily } = useUserStore.getState();
 
       if (daily === "true") {
         const puzzle = await getDailyPuzzle();
-        if (puzzle && hearts > 0 && !hasCompletedDailyPuzzle()) {
+        if (puzzle && h > 0 && !checkDaily()) {
           setCurrentPuzzle(puzzle);
           setIsDaily(true);
           setView("play");
@@ -125,7 +127,7 @@ export default function LearnPage() {
       setLessonProgress(null);
       setFocusMode(false);
     })();
-  }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [searchParams, setFocusMode]);
 
   const handleSelectCategory = (catId: string) => {
     setSelectedCat(catId);

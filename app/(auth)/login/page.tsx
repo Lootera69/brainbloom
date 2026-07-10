@@ -36,7 +36,7 @@ export default function LoginPage() {
       const timer = setTimeout(() => setPageLoading(false), 300);
       return () => clearTimeout(timer);
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, router]);
 
   useEffect(() => {
     const interval = setInterval(() => {
