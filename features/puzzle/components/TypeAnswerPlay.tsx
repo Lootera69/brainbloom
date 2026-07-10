@@ -40,7 +40,11 @@ export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }:
   const handleSubmit = () => {
     if (!input.trim() || submitted) return;
     setSubmitted(true);
-    if (!result.correct) onWrongAttempt?.();
+    if (!result.correct) {
+      onWrongAttempt?.();
+    } else {
+      import("@/services/sound-service").then(({ playCorrect }) => playCorrect());
+    }
   };
 
   return (

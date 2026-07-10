@@ -44,7 +44,11 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
   const handleSubmit = () => {
     if (!selected || submitted) return;
     setSubmitted(true);
-    if (selected !== puzzle.correctAnswer) onWrongAttempt?.();
+    if (selected !== puzzle.correctAnswer) {
+      onWrongAttempt?.();
+    } else {
+      import("@/services/sound-service").then(({ playCorrect }) => playCorrect());
+    }
   };
 
   const handleChoicePick = (choice: string) => {
@@ -327,8 +331,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
 export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
   const handleComplete = (correct: boolean, xpEarned: number) => {
     if (correct) {
-      import("@/services/sound-service").then(({ playCorrect, playComplete }) => {
-        playCorrect();
+      import("@/services/sound-service").then(({ playComplete }) => {
         setTimeout(playComplete, 400);
       });
     }
