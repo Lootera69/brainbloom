@@ -119,6 +119,9 @@ function isFirestoreAvailable() {
   return !!db;
 }
 
+let puzzlesCache: { data: Puzzle[]; ts: number } | null = null;
+const CACHE_TTL = 30_000;
+
 async function getFirestorePuzzles(): Promise<Puzzle[]> {
   const { db } = getFirebase();
   if (!db) return [];
@@ -127,7 +130,14 @@ async function getFirestorePuzzles(): Promise<Puzzle[]> {
   return snap.docs.map((d) => puzzleFromFirestore(d.id, d.data() as Record<string, unknown>));
 }
 
+export function clearPuzzlesCache() {
+  puzzlesCache = null;
+}
+
 export async function getPuzzles(): Promise<Puzzle[]> {
+  if (puzzlesCache && Date.now() - puzzlesCache.ts < CACHE_TTL) {
+    return puzzlesCache.data;
+  }
   const local = getLocalPuzzles();
   if (!isFirestoreAvailable()) return local;
 
@@ -144,6 +154,7 @@ export async function getPuzzles(): Promise<Puzzle[]> {
         merged.push(lp);
       }
     }
+    puzzlesCache = { data: merged, ts: Date.now() };
     return merged;
   } catch (e) {
     console.error("Firestore getPuzzles failed:", e);
@@ -228,6 +239,7 @@ export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
   }
 
   syncToLocal(puzzle);
+  clearPuzzlesCache();
   return puzzle;
 }
 
@@ -256,6 +268,7 @@ export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): P
 
   if (updated) {
     syncToLocal(updated);
+    clearPuzzlesCache();
     return updated;
   }
 
@@ -264,6 +277,7 @@ export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): P
   if (idx === -1) return null;
   local[idx] = { ...local[idx], ...data, lastModifiedBy: user, updatedAt: now };
   saveLocalPuzzles(local);
+  clearPuzzlesCache();
   return local[idx];
 }
 
@@ -287,6 +301,7 @@ export async function deletePuzzle(id: string): Promise<boolean> {
   const local = getLocalPuzzles();
   const before = local.length;
   saveLocalPuzzles(local.filter((p) => p.id !== id));
+  clearPuzzlesCache();
   return local.length !== before;
 }
 
@@ -319,6 +334,7 @@ export async function togglePublish(id: string): Promise<Puzzle | null> {
 
   if (updated) {
     syncToLocal(updated);
+    clearPuzzlesCache();
     return updated;
   }
 
@@ -327,6 +343,7 @@ export async function togglePublish(id: string): Promise<Puzzle | null> {
   if (idx === -1) return null;
   local[idx] = { ...local[idx], published: !local[idx].published, lastModifiedBy: user, updatedAt: now };
   saveLocalPuzzles(local);
+  clearPuzzlesCache();
   return local[idx];
 }
 
@@ -404,6 +421,7 @@ export async function updatePuzzleReview(
 
   if (updated) {
     syncToLocal(updated);
+    clearPuzzlesCache();
     return updated;
   }
 
@@ -420,6 +438,7 @@ export async function updatePuzzleReview(
     updatedAt: now,
   };
   saveLocalPuzzles(local);
+  clearPuzzlesCache();
   return local[idx];
 }
 
