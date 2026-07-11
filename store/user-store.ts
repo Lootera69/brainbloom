@@ -218,7 +218,7 @@ export const useUserStore = create<UserState>()(
             xpToday: s.xpToday,
             streak: s.streak,
             lastActiveDate: s.lastActiveDate,
-            hearts: s.hearts,
+            hearts: Math.min(5, s.hearts),
             nextHeartAt: s.nextHeartAt,
             level: s.level,
             gems: s.gems,
@@ -257,7 +257,7 @@ export const useUserStore = create<UserState>()(
               xpToday: data.xpToday ?? s.xpToday,
               streak: data.streak ?? s.streak,
               lastActiveDate: data.lastActiveDate ?? s.lastActiveDate,
-              hearts: data.hearts ?? s.hearts,
+              hearts: data.hearts !== undefined ? Math.min(5, data.hearts) : s.hearts,
               nextHeartAt: data.nextHeartAt ?? s.nextHeartAt,
               level: data.level ?? s.level,
               gems: data.gems ?? s.gems,
@@ -549,10 +549,11 @@ export const useUserStore = create<UserState>()(
         if (hearts >= 5 || !nextHeartAt) return;
         const now = Date.now();
         if (now < nextHeartAt) return;
+        const REFILL_MS = 5 * 60 * 60 * 1000;
         const elapsed = now - nextHeartAt;
-        const heartsToAdd = Math.floor(elapsed / (5 * 60 * 60 * 1000)) + 1;
+        const heartsToAdd = Math.floor(elapsed / REFILL_MS) + 1;
         const newHearts = Math.min(5, hearts + heartsToAdd);
-        const remainingMs = (heartsToAdd - 1) * 5 * 60 * 60 * 1000 + (5 * 60 * 60 * 1000 - (elapsed % (5 * 60 * 60 * 1000)));
+        const remainingMs = heartsToAdd * REFILL_MS - elapsed;
         set({
           hearts: newHearts,
           nextHeartAt: newHearts >= 5 ? null : now + remainingMs,
