@@ -1,10 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
   <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#6366f1"/>
       <stop offset="100%" stop-color="#8b5cf6"/>
     </linearGradient>
   </defs>
-  <rect width="192" height="192" rx="36" fill="url(#g)"/>
-  <text x="96" y="124" font-family="system-ui, sans-serif" font-size="100" font-weight="bold" fill="white" text-anchor="middle">B</text>
+  <rect width="192" height="192" rx="40" fill="url(#bg)"/>
+  <g transform="translate(96,96)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5">
+    <!-- Main sparkle star (4-pointed) -->
+    <path d="M0,-32 C4,-12 12,-4 32,0 C12,4 4,12 0,32 C-4,12 -12,4 -32,0 C-12,-4 -4,-12 0,-32Z"/>
+    <!-- Small sparkle top-right -->
+    <path d="M38,-28 C40,-22 44,-20 48,-18 C44,-16 40,-14 38,-8 C36,-14 32,-16 28,-18 C32,-20 36,-22 38,-28Z"/>
+    <!-- Small sparkle bottom-left -->
+    <path d="M-36,20 C-34,24 -32,26 -28,28 C-32,30 -34,32 -36,36 C-38,32 -40,30 -44,28 C-40,26 -38,24 -36,20Z"/>
+  </g>
 </svg>

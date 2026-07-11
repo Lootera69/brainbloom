@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
   },
   icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml", media: "(prefers-color-scheme: dark)" },
+      { url: "/icon.svg", type: "image/svg+xml", media: "(prefers-color-scheme: light)" },
+    ],
     apple: "/icon.svg",
   },
 };

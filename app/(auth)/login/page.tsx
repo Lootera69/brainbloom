@@ -105,16 +105,19 @@ export default function LoginPage() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative flex flex-col items-center text-center"
       >
-        {/* Logo ring */}
+        {/* Logo with breathing glow */}
         <motion.div
           className="relative mb-7"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          animate={{
+            boxShadow: [
+              "0 0 0 0 rgba(99,102,241,0)",
+              "0 0 30px 4px rgba(99,102,241,0.15)",
+              "0 0 0 0 rgba(99,102,241,0)",
+            ],
+          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary via-[#8b5cf6] to-secondary p-[2px]">
-            <div className="size-16 rounded-2xl bg-background" />
-          </div>
-          <span className="relative flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] shadow-lg shadow-primary/25">
+          <span className="flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] shadow-lg shadow-primary/25">
             <Sparkles className="size-8 text-white" />
           </span>
         </motion.div>
