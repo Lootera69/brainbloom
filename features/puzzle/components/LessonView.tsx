@@ -46,7 +46,7 @@ export function LessonView({ puzzle, onStartQuiz }: Props) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
               src={puzzle.lessonImageUrl ?? puzzle.imageUrl!}
-              alt="Lesson illustration"
+              alt="Lesson illustration" loading="lazy"
               className="mx-auto mt-4 max-h-48 w-full rounded-xl object-contain"
             />
           )}

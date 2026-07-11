@@ -113,7 +113,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
           )}
 
           {puzzle.imageUrl && (
-            <img src={puzzle.imageUrl} alt="Question image"
+            <img src={puzzle.imageUrl} alt="Question image" loading="lazy"
               className="relative mx-auto mb-4 max-h-64 w-full rounded-xl object-contain" />
           )}
 

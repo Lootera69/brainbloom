@@ -183,7 +183,7 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
           )}
 
           {puzzle.imageUrl && (
-            <img src={puzzle.imageUrl} alt="Riddle image"
+            <img src={puzzle.imageUrl} alt="Riddle image" loading="lazy"
               className="relative mx-auto mb-4 max-h-48 w-full rounded-xl object-contain" />
           )}
 
