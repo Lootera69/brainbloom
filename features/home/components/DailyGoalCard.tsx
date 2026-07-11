@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Target } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { GlassCard } from "@/components/ui/glass-card";
-import { CountUp } from "@/features/home/components/CountUp";
+
 
 const PARTICLES = Array.from({ length: 12 }).map((_, i) => ({
   x: (i % 4) * 30 + (i * 7) % 20,
@@ -116,15 +116,6 @@ export function DailyGoalCard() {
               {pct}%
             </motion.p>
           </div>
-        </div>
-
-        <div className="mt-3 text-center">
-          <p className="font-heading text-3xl font-bold tabular-nums leading-none">
-            <CountUp to={xpToday} duration={600} />
-          </p>
-          <p className="mt-0.5 text-[11px] text-muted-foreground/50">
-            of {dailyGoal} XP
-          </p>
         </div>
 
         <motion.div
