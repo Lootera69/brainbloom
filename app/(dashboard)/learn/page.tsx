@@ -16,6 +16,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { type Puzzle } from "@/types/puzzle";
 import { toast } from "sonner";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
+import { getPublishedByCategory } from "@/services/puzzle-service";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
 import { ErrorFallback } from "@/components/error-fallback";
@@ -51,6 +52,8 @@ export default function LearnPage() {
   const [isDaily, setIsDaily] = useState(false);
   const [selectedCat, setSelectedCat] = useState<string | null>(null);
   const [lessonProgress, setLessonProgress] = useState<LessonProgress | null>(null);
+  const [attempt, setAttempt] = useState(0);
+  const [catPuzzles, setCatPuzzles] = useState<Puzzle[]>([]);
 
   const hearts = useUserStore((s) => s.hearts);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
@@ -138,6 +141,8 @@ export default function LearnPage() {
       setIsDaily(false);
       setLessonProgress(null);
       setFocusMode(false);
+      setAttempt(0);
+      setCatPuzzles([]);
     })();
   }, [searchParams, setFocusMode]);
 
@@ -153,11 +158,16 @@ export default function LearnPage() {
     router.push("/learn", { scroll: false });
   };
 
-  const handleStartPuzzle = useCallback((puzzle: Puzzle, progress?: LessonProgress) => {
+  const handleStartPuzzle = useCallback(async (puzzle: Puzzle, progress?: LessonProgress) => {
     if (hearts <= 0) return;
     setIsDaily(false);
     setLastPlayedCategory(puzzle.category);
     setLessonProgress(progress ?? null);
+    setAttempt(0);
+
+    // Load category puzzles for auto-advance
+    const pz = await getPublishedByCategory(puzzle.category);
+    setCatPuzzles(pz);
 
     if (puzzle.lessonContent?.trim()) {
       setCurrentPuzzle(puzzle);
@@ -206,7 +216,42 @@ export default function LearnPage() {
           incrementCompleted(currentPuzzle.id),
         );
       }
+
+      // Auto-advance: if this is a lesson puzzle, find and jump to next sub-lesson
+      if (lessonProgress) {
+        checkAchievements();
+        logActivity({
+          type: "daily",
+          category: currentPuzzle.category || "general",
+          title: currentPuzzle.title || "Puzzle",
+          xp: isDaily ? (currentPuzzle.xpReward * 2) : xpEarned,
+        });
+
+        const next = findNextInGroup(currentPuzzle, catPuzzles);
+        if (next) {
+          setAttempt(0);
+          setLessonProgress({
+            ...lessonProgress,
+            currentOrder: next.lessonOrder ?? 1,
+            completedInGroup: lessonProgress.completedInGroup + 1,
+          });
+          if (next.lessonContent?.trim()) {
+            setCurrentPuzzle(next);
+            setView("lesson");
+          } else {
+            setCurrentPuzzle(next);
+            setView("play");
+          }
+          return;
+        }
+        // Last in group — falls through to return to browse
+      }
+    } else if (lessonProgress) {
+      // Wrong answer in lesson puzzle — retry same puzzle
+      setAttempt((a) => a + 1);
+      return;
     }
+
     checkAchievements();
     logActivity({
       type: "daily",
@@ -220,7 +265,7 @@ export default function LearnPage() {
     setIsDaily(false);
     setLessonProgress(null);
     setFocusMode(false);
-  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, setFocusMode]);
+  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, setFocusMode, lessonProgress, catPuzzles]);
 
   const handleBack = () => {
     setView("browse");
@@ -235,6 +280,17 @@ export default function LearnPage() {
       handleBackToCategories();
     }
   };
+
+  function findNextInGroup(current: Puzzle, all: Puzzle[]): Puzzle | null {
+    const sameGroup = all
+      .filter((p) => p.lessonGroup === current.lessonGroup && p.id !== current.id)
+      .sort((a, b) => (a.lessonOrder ?? 0) - (b.lessonOrder ?? 0));
+    const currentOrder = current.lessonOrder ?? 0;
+    for (const p of sameGroup) {
+      if ((p.lessonOrder ?? 0) > currentOrder) return p;
+    }
+    return null;
+  }
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-5 sm:p-6">
@@ -530,6 +586,7 @@ export default function LearnPage() {
             handleComplete={handleComplete}
             useHeart={useHeart}
             hasCompletedPuzzle={hasCompletedPuzzle}
+            attempt={attempt}
           />
         )}
       </AnimatePresence>
@@ -545,6 +602,7 @@ function PuzzlePlayView({
   handleComplete,
   useHeart,
   hasCompletedPuzzle,
+  attempt,
 }: {
   currentPuzzle: Puzzle | null;
   isDaily: boolean;
@@ -553,6 +611,7 @@ function PuzzlePlayView({
   handleComplete: (correct: boolean, xpEarned: number) => void;
   useHeart: () => void;
   hasCompletedPuzzle: (id: string) => boolean;
+  attempt: number;
 }) {
   const { timedOut, cancel } = useLoadingTimeout(6000);
 
@@ -619,6 +678,7 @@ function PuzzlePlayView({
           </div>
         ) : currentPuzzle ? (
           <PuzzlePlay
+            key={`${currentPuzzle.id}-${attempt}`}
             puzzle={currentPuzzle}
             onComplete={handleComplete}
             onWrongAttempt={() => {

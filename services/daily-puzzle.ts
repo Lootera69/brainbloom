@@ -41,7 +41,14 @@ function getToday(): string {
 export async function getDailyPuzzle(): Promise<Puzzle | null> {
   const today = getToday();
 
-  // 1. Try Firestore
+  // 1. Try local first — fastest path, no network
+  const local = getLocalDaily();
+  if (local && local.date === today) {
+    const puzzle = await getPuzzle(local.puzzleId);
+    if (puzzle?.published) return puzzle;
+  }
+
+  // 2. Try Firestore
   if (isFirestoreAvailable()) {
     try {
       const { db } = getFirebase();
@@ -61,13 +68,6 @@ export async function getDailyPuzzle(): Promise<Puzzle | null> {
     } catch (e) {
       console.error("Firestore getDailyPuzzle failed:", e);
     }
-  }
-
-  // 2. Try local
-  const local = getLocalDaily();
-  if (local && local.date === today) {
-    const puzzle = await getPuzzle(local.puzzleId);
-    if (puzzle?.published) return puzzle;
   }
 
   // 3. Auto-pick and save

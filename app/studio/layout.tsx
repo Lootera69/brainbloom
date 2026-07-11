@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight } from "lucide-react";
+import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight, Eye, EyeOff, XCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { getStudioSession, setStudioSession, clearStudioSession } from "@/services/puzzle-service";
 import { verifyStudioCredentials } from "@/services/studio-settings";
 import { setStudioRole, getStudioRole, clearStudioRole } from "@/services/puzzle-service";
@@ -26,7 +27,17 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   const [error, setError] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [role, setRole] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [inputFocus, setInputFocus] = useState<"code" | "password" | null>(null);
   const pathname = usePathname();
+
+  // Reduced-motion check runs on mount (client only)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setPrefersReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    }
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -61,62 +72,259 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   if (!mounted) return null;
 
   if (!authed) {
+    // Premium Studio Login — dark mode only, no rotation, luxury feel
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (e.key === "Enter") handleLogin(e);
+      if (e.key === "Escape") setError(false);
+    };
+
     return (
-      <div className="flex min-h-dvh items-center justify-center bg-background p-6">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-sm space-y-6 text-center"
-        >
+      <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-background p-6">
+        {/* Layered background: base → noise → slow orbs → dot grid */}
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          {/* Noise texture */}
+          <div className="absolute inset-0 opacity-[0.015] bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E')]" />
+          {/* Slow-drifting orbs */}
           <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="mx-auto mb-4 flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] shadow-lg"
+            className="absolute -left-40 -top-40 size-[40rem] rounded-full bg-primary/5 blur-3xl"
+            animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            style={{ display: prefersReducedMotion ? "none" : "block" }}
+          />
+          <motion.div
+            className="absolute -right-40 -bottom-40 size-[35rem] rounded-full bg-[#8b5cf6]/5 blur-3xl"
+            animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear", delay: 12 }}
+            style={{ display: prefersReducedMotion ? "none" : "block" }}
+          />
+          <motion.div
+            className="absolute left-1/2 top-1/3 -translate-x-1/2 size-[15rem] rounded-full bg-primary/3 blur-3xl"
+            animate={{ scale: [1, 1.15, 1] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+            style={{ display: prefersReducedMotion ? "none" : "block" }}
+          />
+          {/* Subtle dot grid */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.025)_1px,transparent_1px)] bg-[length:32px_32px]" />
+        </div>
+
+        {/* Entrance choreography */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, ease: "easeOut" }}
+          className="relative w-full max-w-sm"
+        >
+          {/* Glass card — true glassmorphism */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.1, duration: prefersReducedMotion ? 0.01 : 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="relative rounded-2xl border border-white/10 bg-white/5 p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] shadow-primary/10 backdrop-blur-xl sm:p-10"
           >
-            <Lock className="size-7 text-white" />
-          </motion.div>
-
-          <h1 className="font-heading text-2xl font-bold">Puzzle Studio</h1>
-          <p className="text-sm text-muted-foreground">
-            Authorized access only. Enter your invite code and password.
-          </p>
-
-          <form onSubmit={handleLogin} className="space-y-3">
-            <div className="relative">
-              <Key className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-              <input
-                value={inviteCode}
-                onChange={(e) => { setInviteCode(e.target.value); setError(false); }}
-                placeholder="Invite code"
-                className="w-full rounded-xl border bg-card py-3 pl-10 pr-4 text-sm outline-none transition-colors focus:border-primary"
-                autoComplete="off"
-              />
-            </div>
-            <div className="relative">
-              <Lock className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => { setPassword(e.target.value); setError(false); }}
-                placeholder="Password"
-                className="w-full rounded-xl border bg-card py-3 pl-10 pr-4 text-sm outline-none transition-colors focus:border-primary"
-              />
-            </div>
-            {error && (
-              <p className="text-xs text-destructive">Invalid invite code or password.</p>
-            )}
-            <button
-              type="submit"
-              className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 active:scale-[0.98]"
+            {/* Logo — static, subtle pulse on hover */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                delay: 0.15,
+                type: "spring",
+                stiffness: 150,
+                damping: 12,
+              }}
+              className="mx-auto mb-6 flex size-14 items-center justify-center"
+              whileHover={{ scale: 1.05, transition: { type: "spring", stiffness: 400, damping: 17 } }}
             >
-              <Lock className="size-4" />
-              Unlock Studio
-            </button>
-          </form>
+              <div className="relative">
+                {/* Ambient glow ring */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-[#8b5cf6]/20 blur-xl opacity-60" />
+                {/* Logo container */}
+                <div className="relative flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] shadow-lg shadow-primary/30">
+                  <Sparkles className="size-6 text-white" />
+                </div>
+              </div>
+            </motion.div>
 
-          <p className="text-xs text-muted-foreground">
-            Internal tool. Authorized access only.
-          </p>
+            {/* Headline */}
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: prefersReducedMotion ? 0.01 : 0.4, ease: "easeOut" }}
+              className="mb-8 text-center"
+            >
+              <h1 className="font-heading text-2xl font-bold tracking-tight text-foreground">Puzzle Studio</h1>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                Authorized access only. Enter your credentials to continue.
+              </p>
+            </motion.div>
+
+            {/* Form */}
+            <form onSubmit={handleLogin} onKeyDown={handleKeyDown} className="space-y-5" noValidate>
+              {/* Invite Code Field */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: prefersReducedMotion ? 0.01 : 0.4, ease: "easeOut" }}
+                className="space-y-2"
+              >
+                <label htmlFor="invite-code" className="text-xs font-medium text-muted-foreground">
+                  Invite Code
+                </label>
+                <div className="relative">
+                  <Key
+                    className={cn(
+                      "pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 transition-colors duration-200",
+                      inputFocus === "code" ? "text-primary" : "text-muted-foreground/50"
+                    )}
+                    aria-hidden="true"
+                  />
+                  <input
+                    id="invite-code"
+                    type="text"
+                    value={inviteCode}
+                    onChange={(e) => { setInviteCode(e.target.value); setError(false); }}
+                    onFocus={() => setInputFocus("code")}
+                    onBlur={() => setInputFocus(null)}
+                    placeholder="Enter your invite code"
+                    autoComplete="username"
+                    autoFocus
+                    className={cn(
+                      "w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 pr-4 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40",
+                      "focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15 focus:ring-offset-0",
+                      error && "border-destructive/50 focus:border-destructive focus:ring-destructive/15"
+                    )}
+                  />
+                </div>
+              </motion.div>
+
+              {/* Password Field */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.38, duration: prefersReducedMotion ? 0.01 : 0.4, ease: "easeOut" }}
+                className="space-y-2"
+              >
+                <label htmlFor="password" className="text-xs font-medium text-muted-foreground">
+                  Password
+                </label>
+                <div className="relative">
+                  <Lock
+                    className={cn(
+                      "pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 transition-colors duration-200",
+                      inputFocus === "password" ? "text-primary" : "text-muted-foreground/50"
+                    )}
+                    aria-hidden="true"
+                  />
+                  <input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => { setPassword(e.target.value); setError(false); }}
+                    onFocus={() => setInputFocus("password")}
+                    onBlur={() => setInputFocus(null)}
+                    placeholder="Enter your password"
+                    autoComplete="current-password"
+                    className={cn(
+                      "w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40",
+                      "focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15 focus:ring-offset-0",
+                      error && "border-destructive/50 focus:border-destructive focus:ring-destructive/15"
+                    )}
+                  />
+                  {/* Password visibility toggle */}
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    onFocus={() => setInputFocus("password")}
+                    onBlur={() => setInputFocus(null)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center p-1 text-muted-foreground/50 hover:text-foreground transition-colors"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    aria-pressed={showPassword}
+                  >
+                    {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Error state — slides down, shakes on appear */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="relative overflow-hidden rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3"
+                >
+                  <motion.span
+                    initial={{ x: 0 }}
+                    animate={{ x: [0, -6, 6, -6, 6, 0] }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                    className="flex items-center gap-2 text-sm text-destructive"
+                  >
+                    <span className="flex size-5 items-center justify-center rounded-full bg-destructive/20">
+                      <XCircle className="size-3" />
+                    </span>
+                    Invalid invite code or password. Please try again.
+                  </motion.span>
+                </motion.div>
+              )}
+
+              {/* Submit button — shimmer sweep */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.46, duration: prefersReducedMotion ? 0.01 : 0.4, ease: "easeOut" }}
+              >
+                <button
+                  type="submit"
+                  className={cn(
+                    "relative overflow-hidden flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white transition-all duration-300",
+                    "before:absolute before:inset-0 before:-translate-x-full before:skew-x-12 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent",
+                    "hover:brightness-110 hover:shadow-xl hover:shadow-primary/25",
+                    "active:scale-[0.98] active:brightness-100",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  )}
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    <Lock className="size-4" aria-hidden="true" />
+                    Unlock Studio
+                  </span>
+                  {/* Shimmer sweep on hover */}
+                  <motion.div
+                    className="absolute inset-0"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "200%" }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                    style={{ display: prefersReducedMotion ? "none" : "block" }}
+                  />
+                </button>
+              </motion.div>
+            </form>
+
+            {/* Divider + version badge */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.55, duration: 0.3 }}
+              className="mt-6 flex flex-col items-center gap-3"
+            >
+              <div className="w-full flex items-center gap-3">
+                <span className="h-px flex-1 bg-white/10" />
+                <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground/40">Internal tool</span>
+                <span className="h-px flex-1 bg-white/10" />
+              </div>
+              <span className="text-[10px] font-mono text-muted-foreground/30">
+                v1.0.0 · Studio
+              </span>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.3 }}
+              className="mt-4 text-center text-[11px] text-muted-foreground/30"
+            >
+              &copy; {new Date().getFullYear()} BrainBloom. Authorized personnel only.
+            </motion.p>
+          </motion.div>
         </motion.div>
       </div>
     );

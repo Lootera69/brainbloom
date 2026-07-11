@@ -183,10 +183,14 @@ export async function getPublishedByCategory(category: string): Promise<Puzzle[]
 }
 
 export async function getPuzzle(id: string): Promise<Puzzle | null> {
+  // Check local first — avoids Firestore read for already-known puzzles
+  const local = getLocalPuzzles().find((p) => p.id === id);
+  if (local) return local;
+
   if (isFirestoreAvailable()) {
     try {
       const { db } = getFirebase();
-      if (!db) return getLocalPuzzles().find((p) => p.id === id) ?? null;
+      if (!db) return null;
       const ref = doc(db, "puzzles", id);
       const snap = await getDoc(ref);
       if (snap.exists()) return puzzleFromFirestore(snap.id, snap.data() as Record<string, unknown>);
@@ -194,7 +198,7 @@ export async function getPuzzle(id: string): Promise<Puzzle | null> {
       console.error("Firestore getPuzzle failed:", e);
     }
   }
-  return getLocalPuzzles().find((p) => p.id === id) ?? null;
+  return null;
 }
 
 function syncToLocal(puzzle: Puzzle) {
