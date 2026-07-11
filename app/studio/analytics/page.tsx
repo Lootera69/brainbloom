@@ -532,7 +532,7 @@ export default function AnalyticsPage() {
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="font-heading text-2xl font-bold">Analytics</h1>
+              <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Analytics</h1>
               <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
                 Studio
               </span>
@@ -550,7 +550,7 @@ export default function AnalyticsPage() {
               onClick={() => setTimeRange(range)}
               className={`rounded-md px-3 py-1.5 text-xs font-semibold transition-all ${
                 timeRange === range
-                  ? "bg-card text-foreground shadow-sm"
+                  ? "bg-card text-foreground shadow-sm shadow-primary/5"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >

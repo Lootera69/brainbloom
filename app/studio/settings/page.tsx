@@ -162,7 +162,7 @@ export default function StudioSettingsPage() {
       </button>
 
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="font-heading text-2xl font-bold">Studio Settings</h1>
+        <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Studio Settings</h1>
         <p className="text-sm text-muted-foreground">
           {isAdmin ? "Manage invite codes and lesson hierarchy." : "Manage lesson hierarchy."}
         </p>
@@ -180,8 +180,8 @@ export default function StudioSettingsPage() {
               className={cn(
                 "flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-xs font-semibold transition-all",
                 isActive
-                  ? "bg-card text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground",
+                  ? "bg-card text-foreground shadow-sm shadow-primary/5"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
               )}
             >
               <Icon className="size-4" />

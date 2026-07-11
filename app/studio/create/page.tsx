@@ -204,7 +204,7 @@ export default function CreatePuzzlePage() {
       </button>
 
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="font-heading text-2xl font-bold">New Puzzle</h1>
+        <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">New Puzzle</h1>
         <p className="text-sm text-muted-foreground">Fill in the details below.</p>
       </motion.div>
 
@@ -219,8 +219,8 @@ export default function CreatePuzzlePage() {
                 onClick={() => handleTypeChange(t)}
                 className={`flex-1 rounded-xl border px-4 py-2.5 text-sm font-medium transition-all ${
                   form.type === t
-                    ? "border-primary bg-primary/10 text-primary"
-                    : "hover:bg-muted"
+                    ? "border-primary bg-primary/10 text-primary shadow-sm shadow-primary/10"
+                    : "hover:bg-muted/80 hover:border-primary/20"
                 }`}
               >
                 {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : t === "sudoku" ? "Sudoku" : "Riddle"}
@@ -235,7 +235,7 @@ export default function CreatePuzzlePage() {
             <select
               value={form.category}
               onChange={(e) => update("category", e.target.value)}
-              className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+              className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
             >
               {CATEGORIES.map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>
@@ -247,7 +247,7 @@ export default function CreatePuzzlePage() {
             <select
               value={form.difficulty}
               onChange={(e) => update("difficulty", e.target.value as "easy" | "medium" | "hard")}
-              className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+              className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
             >
               {DIFFICULTIES.map((d) => (
                 <option key={d.value} value={d.value}>{d.label}</option>
@@ -265,7 +265,7 @@ export default function CreatePuzzlePage() {
             min={0}
             max={999}
             list="xp-presets"
-            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
           />
           <datalist id="xp-presets">
             {[10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((v) => (
@@ -280,7 +280,7 @@ export default function CreatePuzzlePage() {
               <label className="mb-1.5 block text-sm font-medium">Title</label>
               <input value={form.title} onChange={(e) => update("title", e.target.value)}
                 placeholder="e.g. Sudoku - Easy"
-                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required />
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Sudoku Grid</label>
@@ -341,13 +341,13 @@ export default function CreatePuzzlePage() {
               <label className="mb-1.5 block text-sm font-medium">Title</label>
               <input value={form.title} onChange={(e) => update("title", e.target.value)}
                 placeholder="e.g. What comes next in the sequence?"
-                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required />
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Question</label>
               <textarea value={form.question} onChange={(e) => update("question", e.target.value)}
                 placeholder="Write the full question here..." rows={4}
-                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required />
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Image (optional)</label>
@@ -383,7 +383,7 @@ export default function CreatePuzzlePage() {
                     </span>
                     <input value={choice} onChange={(e) => updateChoice(i, e.target.value)}
                       placeholder={`Choice ${String.fromCharCode(65 + i)}`}
-                      className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required />
+                      className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
                   </div>
                 ))}
               </div>
@@ -392,7 +392,7 @@ export default function CreatePuzzlePage() {
             <div>
               <label className="mb-1.5 block text-sm font-medium">Correct Answer</label>
               <select value={form.correctAnswer} onChange={(e) => update("correctAnswer", e.target.value)}
-                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required>
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required>
                 <option value="">Select correct answer</option>
                 {(form.choices || []).map((choice, i) => (
                   <option key={i} value={choice} disabled={!choice.trim()}>
@@ -410,7 +410,7 @@ export default function CreatePuzzlePage() {
               <label className="mb-1.5 block text-sm font-medium">Correct Answer</label>
               <input value={form.correctAnswer} onChange={(e) => update("correctAnswer", e.target.value)}
                 placeholder="e.g. Rope"
-                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required />
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Alternate answers (optional, comma-separated)</label>
@@ -427,7 +427,7 @@ export default function CreatePuzzlePage() {
                   }
                 }}
                 placeholder="e.g. BTW, By the way"
-                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
               />
               <p className="mt-1 text-xs text-muted-foreground">Alternate correct answers. Case &amp; spacing are handled automatically.</p>
             </div>
@@ -440,7 +440,7 @@ export default function CreatePuzzlePage() {
               <label className="mb-1.5 block text-sm font-medium">Correct Answer</label>
               <input value={form.correctAnswer} onChange={(e) => update("correctAnswer", e.target.value)}
                 placeholder="e.g. An echo"
-                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required />
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Alternate accepted answers (optional, comma-separated)</label>
@@ -449,7 +449,7 @@ export default function CreatePuzzlePage() {
                 onChange={(e) => setAcceptedRaw(e.target.value)}
                 onBlur={(e) => update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
                 placeholder="e.g. wind, breeze"
-                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
               />
               <p className="mt-1 text-xs text-muted-foreground">Alternate correct answers for the riddle.</p>
             </div>
@@ -458,7 +458,7 @@ export default function CreatePuzzlePage() {
               <textarea value={form.hintText ?? ""} onChange={(e) => update("hintText", e.target.value)}
                 placeholder="First hint line...&#10;Second hint line..."
                 rows={3}
-                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
               <p className="mt-1 text-xs text-muted-foreground">Each line becomes a progressive hint shown during the riddle.</p>
             </div>
           </>
@@ -471,14 +471,14 @@ export default function CreatePuzzlePage() {
               <textarea value={form.correctExplanation ?? ""} onChange={(e) => update("correctExplanation", e.target.value)}
                 placeholder="Explain why this answer is correct..."
                 rows={3}
-                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Explanation (for wrong answer)</label>
               <textarea value={form.incorrectExplanation ?? ""} onChange={(e) => update("incorrectExplanation", e.target.value)}
                 placeholder="Explain what the correct answer is and why..."
                 rows={3}
-                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
             </div>
           </div>
         )}
@@ -489,7 +489,7 @@ export default function CreatePuzzlePage() {
               <label className="mb-1.5 block text-sm font-medium">Title</label>
               <input value={form.title} onChange={(e) => update("title", e.target.value)}
                 placeholder="e.g. Sunday Crossword"
-                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required />
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Crossword Grid</label>
@@ -527,14 +527,14 @@ export default function CreatePuzzlePage() {
                               update("lessonGroup", e.target.value || undefined);
                               if (selected) update("lessonGroupOrder", selected.order);
                             }}
-                              className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary">
+                              className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10">
                               <option value="">-- Select lesson group --</option>
                               {lessonGroups.map((g) => (<option key={g.name} value={g.name}>Lesson {g.order}: {g.name}</option>))}
                             </select>
                           ) : (
                             <input value={form.lessonGroup ?? ""} onChange={(e) => update("lessonGroup", e.target.value)}
                               placeholder="e.g. Counting"
-                              className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+                              className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
                           )}
                           <p className="mt-1 text-xs text-muted-foreground">
                             {lessonGroups.length > 0 ? "Select from the configured lesson groups." : "Configure lesson groups in Settings first."}
@@ -547,7 +547,7 @@ export default function CreatePuzzlePage() {
                         </label>
                         {form.lessonGroup && availableOrders.length > 0 ? (
                           <select value={form.lessonOrder ?? ""} onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
-                            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary">
+                            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10">
                             <option value="">-- Select order --</option>
                             {availableOrders.map((o) => (<option key={o} value={o}>Sub-lesson {o}</option>))}
                           </select>
@@ -558,7 +558,7 @@ export default function CreatePuzzlePage() {
                         ) : (
                           <input value={form.lessonOrder ?? ""} onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
                             type="number" min={1} max={10} placeholder="e.g. 1"
-                            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+                            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
                         )}
                         <p className="mt-1 text-xs text-muted-foreground">
                           {form.lessonGroup ? "Position within the lesson group." : "Select a lesson group first to see available orders."}
@@ -571,7 +571,7 @@ export default function CreatePuzzlePage() {
                         <textarea value={form.lessonContent ?? ""} onChange={(e) => update("lessonContent", e.target.value)}
                           placeholder={"One fact per line\ne.g.\nThe sun is a star at the center of our solar system.\nIt provides light and heat that makes life on Earth possible.\nThe sun is about 4.6 billion years old."}
                           rows={5}
-                          className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+                          className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
                         <p className="mt-1 text-xs text-muted-foreground">
                           Each line becomes a numbered fact shown before the quiz.
                         </p>
@@ -608,7 +608,7 @@ export default function CreatePuzzlePage() {
         <button
           type="submit"
           disabled={saving}
-          className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-50"
+          className="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-primary-foreground shadow-md shadow-primary/25 transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-50"
         >
           {saving ? (
             <Loader2 className="size-4 animate-spin" />

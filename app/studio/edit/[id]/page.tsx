@@ -329,7 +329,7 @@ export default function EditPuzzlePage() {
       </button>
 
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="font-heading text-2xl font-bold">Edit Puzzle</h1>
+        <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Edit Puzzle</h1>
       </motion.div>
 
       <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="mt-6 space-y-5">
@@ -339,7 +339,7 @@ export default function EditPuzzlePage() {
             {(["multiple-choice", "true-false", "type-answer", "crossword", "sudoku", "riddle"] as const).map((t) => (
               <button key={t} type="button" onClick={() => handleTypeChange(t)}
                 className={`flex-1 rounded-xl border px-4 py-2.5 text-sm font-medium transition-all ${
-                  form.type === t ? "border-primary bg-primary/10 text-primary" : "hover:bg-muted"
+                  form.type === t ? "border-primary bg-primary/10 text-primary shadow-sm shadow-primary/10" : "hover:bg-muted/80 hover:border-primary/20"
                 }`}
               >
                 {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : t === "sudoku" ? "Sudoku" : "Riddle"}
@@ -489,7 +489,7 @@ export default function EditPuzzlePage() {
               <textarea value={form.hintText ?? ""} onChange={(e) => update("hintText", e.target.value)}
                 placeholder="First hint line...&#10;Second hint line..."
                 rows={3}
-                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
               <p className="mt-1 text-xs text-muted-foreground">Each line becomes a progressive hint shown during the riddle.</p>
             </div>
           </>
@@ -502,14 +502,14 @@ export default function EditPuzzlePage() {
               <textarea value={form.correctExplanation ?? ""} onChange={(e) => update("correctExplanation", e.target.value)}
                 placeholder="Explain why this answer is correct..."
                 rows={3}
-                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Explanation (for wrong answer)</label>
               <textarea value={form.incorrectExplanation ?? ""} onChange={(e) => update("incorrectExplanation", e.target.value)}
                 placeholder="Explain what the correct answer is and why..."
                 rows={3}
-                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" />
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
             </div>
           </div>
         )}
@@ -536,7 +536,7 @@ export default function EditPuzzlePage() {
               <label className="mb-1.5 block text-sm font-medium">Title</label>
               <input value={form.title} onChange={(e) => update("title", e.target.value)}
                 placeholder="e.g. Sudoku - Easy"
-                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary" required />
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Sudoku Grid</label>
@@ -632,7 +632,7 @@ export default function EditPuzzlePage() {
                               update("lessonGroup", e.target.value || undefined);
                               if (selected) update("lessonGroupOrder", selected.order);
                             }}
-                            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
                           >
                             <option value="">-- Select lesson group --</option>
                             {lessonGroups.map((g) => (
@@ -644,7 +644,7 @@ export default function EditPuzzlePage() {
                             value={form.lessonGroup ?? ""}
                             onChange={(e) => update("lessonGroup", e.target.value)}
                             placeholder="e.g. Counting"
-                            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                            className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
                           />
                         )}
                         <p className="mt-1 text-xs text-muted-foreground">
@@ -662,7 +662,7 @@ export default function EditPuzzlePage() {
                         <select
                           value={form.lessonOrder ?? ""}
                           onChange={(e) => update("lessonOrder", e.target.value ? Number(e.target.value) : undefined)}
-                          className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                          className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
                         >
                           <option value="">-- Select order --</option>
                           {availableOrders.map((o) => (
@@ -681,7 +681,7 @@ export default function EditPuzzlePage() {
                           min={1}
                           max={10}
                           placeholder="e.g. 1"
-                          className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                          className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
                         />
                       )}
                       <p className="mt-1 text-xs text-muted-foreground">
@@ -699,7 +699,7 @@ export default function EditPuzzlePage() {
                         onChange={(e) => update("lessonContent", e.target.value)}
                         placeholder="One fact per line&#10;e.g.&#10;The sun is a star at the center of our solar system.&#10;It provides light and heat that makes life on Earth possible."
                         rows={5}
-                        className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                        className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
                       />
                       <p className="mt-1 text-xs text-muted-foreground">
                         Each line becomes a numbered fact shown before the quiz.
@@ -788,7 +788,7 @@ export default function EditPuzzlePage() {
             <textarea value={reviewNoteInput} onChange={(e) => setReviewNoteInput(e.target.value)}
               placeholder="Add a review note (optional)..."
               rows={2}
-              className="w-full resize-none rounded-xl border bg-background px-3 py-2 text-xs outline-none transition-colors focus:border-primary" />
+              className="w-full resize-none rounded-xl border bg-background px-3 py-2 text-xs outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
           </div>
         )}
 
@@ -806,7 +806,7 @@ export default function EditPuzzlePage() {
 
         <div className="flex gap-3">
           <button type="submit" disabled={saving}
-            className="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-primary text-sm font-semibold text-white transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-50">
+            className="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-md shadow-primary/25 transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-50">
             {saving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
             Save
           </button>

@@ -164,7 +164,7 @@ export default function StudioPage() {
     <main className="mx-auto max-w-6xl px-4 py-6">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="font-heading text-2xl font-bold">Puzzles</h1>
+          <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Puzzles</h1>
           <p className="text-sm text-muted-foreground">
             {puzzles.length} total &middot; {puzzles.filter((p) => p.published).length} published
             {pendingCount > 0 && <span className="text-amber-600 dark:text-amber-400"> &middot; {pendingCount} pending</span>}
@@ -172,19 +172,19 @@ export default function StudioPage() {
         </div>
         <div className="flex items-center gap-2">
           <button onClick={() => router.push("/studio/analytics")}
-            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted active:scale-[0.98]">
+            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted/80 hover:border-primary/20 active:scale-[0.98]">
             <BarChart3 className="size-4" />
           </button>
           <button onClick={() => router.push("/studio/seed")}
-            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted active:scale-[0.98]">
+            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted/80 hover:border-primary/20 active:scale-[0.98]">
             <Database className="size-4" />
           </button>
           <button onClick={() => router.push("/studio/settings")}
-            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted active:scale-[0.98]">
+            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted/80 hover:border-primary/20 active:scale-[0.98]">
             <Settings className="size-4" />
           </button>
           <button onClick={() => router.push("/studio/create")}
-            className="flex h-10 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-white transition-all hover:brightness-110 active:scale-[0.98]">
+            className="flex h-10 items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] px-4 text-sm font-semibold text-white shadow-md shadow-primary/25 transition-all hover:brightness-110 active:scale-[0.98]">
             <Plus className="size-4" />
             New Puzzle
           </button>
@@ -197,8 +197,8 @@ export default function StudioPage() {
           <button key={tab.value} onClick={() => setFilterTab(tab.value)}
             className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
               filterTab === tab.value
-                ? "bg-primary/10 text-primary"
-                : "text-muted-foreground hover:bg-muted"
+                ? "bg-primary/15 text-primary shadow-sm shadow-primary/10"
+                : "text-muted-foreground hover:bg-muted/80"
             }`}>
             {tab.label}
             {tab.value === "pending" && pendingCount > 0 && (
@@ -217,11 +217,11 @@ export default function StudioPage() {
           <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/50" />
           <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search by title..."
-            className="h-9 w-full rounded-xl border bg-card pl-9 pr-3 text-xs outline-none transition-colors focus:border-primary" />
+            className="h-9 w-full rounded-xl border bg-card/80 backdrop-blur-sm pl-9 pr-3 text-xs outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
         </div>
         <div className="relative">
           <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}
-            className="h-9 appearance-none rounded-xl border bg-card pl-3 pr-8 text-xs outline-none transition-colors focus:border-primary">
+            className="h-9 appearance-none rounded-xl border bg-card/80 backdrop-blur-sm pl-3 pr-8 text-xs outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10">
             <option value="all">All types</option>
             <option value="multiple-choice">Multiple Choice</option>
             <option value="true-false">True / False</option>
@@ -233,7 +233,7 @@ export default function StudioPage() {
         </div>
         <div className="relative">
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}
-            className="h-9 appearance-none rounded-xl border bg-card pl-3 pr-8 text-xs outline-none transition-colors focus:border-primary">
+            className="h-9 appearance-none rounded-xl border bg-card/80 backdrop-blur-sm pl-3 pr-8 text-xs outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10">
             <option value="createdAt">Newest</option>
             <option value="updatedAt">Last modified</option>
             <option value="title">Title A-Z</option>
@@ -243,8 +243,8 @@ export default function StudioPage() {
           <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground/50" />
         </div>
         <button onClick={() => setSortAsc(!sortAsc)}
-          className={`flex h-9 items-center gap-1 rounded-xl border px-2.5 text-xs font-medium transition-colors ${
-            sortAsc ? "border-primary/30 bg-primary/5 text-primary" : "text-muted-foreground hover:bg-muted"
+          className={`flex h-9 items-center gap-1 rounded-xl border px-2.5 text-xs font-medium transition-all ${
+            sortAsc ? "border-primary/30 bg-primary/10 text-primary shadow-sm shadow-primary/10" : "text-muted-foreground hover:bg-muted/80"
           }`}
           title={sortAsc ? "Ascending" : "Descending"}>
           <ArrowUpDown className="size-3.5" />
@@ -285,7 +285,7 @@ export default function StudioPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.04 }}
-              className="flex items-center gap-4 rounded-2xl border bg-card p-4 transition-colors hover:bg-muted/50">
+              className="flex items-center gap-4 rounded-2xl border bg-card/60 backdrop-blur-sm p-4 transition-all hover:border-primary/20 hover:bg-primary/[0.02]">
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <h3 className="truncate text-sm font-semibold">{puzzle.title}</h3>
@@ -338,11 +338,11 @@ export default function StudioPage() {
 
               <div className="flex shrink-0 items-center gap-1.5">
                 <button onClick={() => setTestPuzzle(puzzle)}
-                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" title="Test">
+                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-all hover:bg-primary/10 hover:text-primary" title="Test">
                   <Play className="size-4" />
                 </button>
                 <button onClick={() => router.push(`/studio/edit/${puzzle.id}`)}
-                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" title="Edit">
+                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-all hover:bg-primary/10 hover:text-primary" title="Edit">
                   <Edit3 className="size-4" />
                 </button>
                 <button onClick={() => { setDeleteTarget(puzzle); setConfirmText(""); }}
@@ -355,11 +355,11 @@ export default function StudioPage() {
                 {!puzzle.published && admin && puzzle.reviewStatus === "pending" && (
                   <div className="flex gap-1">
                     <button onClick={() => handleQuickReview(puzzle.id, "approved")}
-                      className="flex size-8 items-center justify-center rounded-lg text-success transition-colors hover:bg-success/10" title="Approve">
+                      className="flex size-8 items-center justify-center rounded-lg text-success transition-all hover:bg-success/15 hover:shadow-sm hover:shadow-success/10" title="Approve">
                       <CheckCircle2 className="size-4" />
                     </button>
                     <button onClick={() => handleQuickReview(puzzle.id, "rejected")}
-                      className="flex size-8 items-center justify-center rounded-lg text-destructive transition-colors hover:bg-destructive/10" title="Reject">
+                      className="flex size-8 items-center justify-center rounded-lg text-destructive transition-all hover:bg-destructive/15 hover:shadow-sm hover:shadow-destructive/10" title="Reject">
                       <XCircle className="size-4" />
                     </button>
                   </div>
@@ -367,7 +367,7 @@ export default function StudioPage() {
 
                 {!puzzle.published && !admin && (puzzle.reviewStatus === "draft" || puzzle.reviewStatus === "rejected" || puzzle.reviewStatus === "needs-discussion") && (
                   <button onClick={async () => { await updatePuzzleReview(puzzle.id, "pending"); toast.success("Submitted for approval."); load(); }}
-                    className="flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-all active:scale-[0.98] bg-amber-500/10 text-amber-600 hover:bg-amber-500/20 dark:text-amber-400">
+                    className="flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-all active:scale-[0.98] bg-gradient-to-r from-amber-500/15 to-amber-500/10 text-amber-600 hover:from-amber-500/25 hover:to-amber-500/15 dark:text-amber-400 shadow-sm shadow-amber-500/10">
                     <Send className="size-3.5" />
                     Submit
                   </button>
@@ -378,7 +378,7 @@ export default function StudioPage() {
                     className={`flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-all active:scale-[0.98] ${
                       puzzle.published
                         ? "bg-muted text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                        : "bg-success/10 text-success hover:bg-success/20"
+                        : "bg-gradient-to-r from-success/15 to-success/10 text-success hover:from-success/25 hover:to-success/15 shadow-sm shadow-success/10"
                     }`}>
                     {puzzle.published ? <Lock className="size-3.5" /> : <Globe className="size-3.5" />}
                     {puzzle.published ? "Unpublish" : "Go Live"}
@@ -389,8 +389,8 @@ export default function StudioPage() {
                     title="Set as today's daily puzzle"
                     className={`flex size-8 items-center justify-center rounded-lg transition-all disabled:opacity-40 ${
                       dailyPuzzleId === puzzle.id
-                        ? "bg-amber-500/15 text-amber-500"
-                        : "text-muted-foreground hover:bg-amber-500/10 hover:text-amber-500"
+                        ? "bg-amber-500/15 text-amber-500 shadow-sm shadow-amber-500/20"
+                        : "text-muted-foreground hover:bg-amber-500/10 hover:text-amber-500 hover:shadow-sm hover:shadow-amber-500/10"
                     }`}>
                     <Sparkles className="size-4" />
                   </button>

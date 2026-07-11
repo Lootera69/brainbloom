@@ -79,7 +79,7 @@ export default function SeedPage() {
       </button>
 
       <div>
-        <h1 className="text-2xl font-bold">Seed Database</h1>
+        <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Seed Database</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           Import all lesson groups and puzzles from the seed data file. This will
           replace ALL existing data.
