@@ -15,12 +15,14 @@ interface Stat {
   bgClass: string;
 }
 
-export function WeeklyInsights() {
+export function WeeklyInsights({ compact }: { compact?: boolean }) {
   const [open, setOpen] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
   const streak = useUserStore((s) => s.streak);
   const history = useUserStore((s) => s.history);
   const completedPuzzleIds = useUserStore((s) => s.completedPuzzleIds);
+  const weeklyXp = useUserStore((s) => s.weeklyXp);
+  const userXp = useUserStore((s) => s.xp);
 
   const oneWeekAgo = Date.now() - 7 * 86400000;
 
@@ -28,7 +30,7 @@ export function WeeklyInsights() {
     const weekly = history.filter((a) => a.timestamp >= oneWeekAgo);
     const puzzlesSolved = completedPuzzleIds.length;
     const weeklyPuzzles = weekly.length;
-    const totalXpWeek = weekly.reduce((sum, a) => sum + a.xp, 0);
+    const totalXpWeek = weeklyXp;
 
     const categoryStats: Record<string, { count: number; totalXp: number }> = {};
     for (const a of weekly) {
@@ -51,7 +53,7 @@ export function WeeklyInsights() {
       : 0;
 
     return { weeklyPuzzles, totalXpWeek, accuracy, weakest, puzzlesSolved, categoryCount: Object.keys(categoryStats).length };
-  }, [history, completedPuzzleIds, oneWeekAgo]);
+  }, [history, completedPuzzleIds, oneWeekAgo, weeklyXp]);
 
   const stats: Stat[] = [
     {
@@ -141,33 +143,119 @@ export function WeeklyInsights() {
 
   return (
     <>
-      {/* Trigger */}
-      <motion.button
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.35 }}
-        onClick={() => setOpen(true)}
-        className="group mb-6 flex w-full items-center gap-3 rounded-2xl border border-muted/50 bg-card/60 px-5 py-4 text-left transition-all hover:bg-muted/30 sm:mb-8"
-      >
-        <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-purple-500/10">
-          <BarChart3 className="size-5 text-primary" />
-        </span>
-        <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold">Weekly Insights</p>
-          <p className="text-xs text-muted-foreground">
-            {weeklyStats.weeklyPuzzles} puzzles &middot; +{weeklyStats.totalXpWeek} XP this week
-          </p>
-        </div>
-        <motion.span
-          initial={{ x: 0 }}
-          whileHover={{ x: 3 }}
-          className="shrink-0 text-muted-foreground/40"
+      {compact ? (
+        <motion.button
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          onClick={() => setOpen(true)}
+          className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#6366f1] via-[#7c3aed] to-[#8b5cf6] text-left text-white transition-all hover:shadow-xl hover:shadow-primary/20"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </motion.span>
-      </motion.button>
+          {/* Decorative blobs */}
+          <motion.div
+            animate={{ y: [0, -8, 0], x: [0, 4, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-10 -right-10 size-28 rounded-full bg-white/10 blur-2xl"
+          />
+          <motion.div
+            animate={{ y: [0, 6, 0], x: [0, -3, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute -bottom-8 -left-8 size-24 rounded-full bg-white/5 blur-xl"
+          />
+
+          {/* Shimmer overlay on hover */}
+          <span className="absolute inset-0 -z-10 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.06)_50%,transparent_75%)] bg-[length:250%_250%] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+
+          <div className="relative z-10 flex flex-1 flex-col p-4 sm:p-5">
+            {/* Header */}
+            <div className="flex items-center gap-3">
+              <span className="glass-tint flex size-10 items-center justify-center rounded-xl">
+                <BarChart3 className="size-5" />
+              </span>
+              <div>
+                <p className="text-xs font-semibold text-white/60 uppercase tracking-wider">This Week</p>
+                <p className="font-heading text-lg font-bold">Insights</p>
+              </div>
+            </div>
+
+            {/* Hero stat — XP */}
+            <div className="mt-4 flex items-baseline gap-1.5">
+              <span className="font-heading text-4xl font-bold tabular-nums leading-none">
+                {weeklyStats.totalXpWeek}
+              </span>
+              <span className="text-sm font-semibold text-white/50">XP</span>
+            </div>
+            <p className="mt-0.5 text-xs text-white/50">earned this week</p>
+
+            {/* Mini stat row */}
+            <div className="mt-3.5 grid grid-cols-3 gap-1.5">
+              {[
+                { icon: Brain, label: "Puzzles", value: weeklyStats.weeklyPuzzles, always: true },
+                { icon: Flame, label: "Streak", value: `${streak}d`, always: true },
+                { icon: TrendingUp, label: "Accuracy", value: `${weeklyStats.accuracy}%`, always: true },
+                { icon: Clock, label: "Categories", value: weeklyStats.categoryCount, always: false },
+                { icon: Award, label: "Weakest", value: weeklyStats.weakest, always: false },
+                { icon: Zap, label: "Total XP", value: userXp.toLocaleString(), always: false },
+              ].map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + i * 0.08 }}
+                  className={`glass-tint flex flex-col items-center gap-0.5 rounded-xl px-2 py-2 ${
+                    !s.always ? "hidden md:flex" : ""
+                  }`}
+                >
+                  <s.icon className="size-3.5 text-white/70" />
+                  <span className="text-sm font-bold tabular-nums leading-none">{s.value}</span>
+                  <span className="text-[9px] text-white/40">{s.label}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="relative z-10 border-t border-white/10 px-4 py-2.5">
+            <span className="flex items-center justify-between">
+              <span className="text-[11px] font-semibold text-white/50 group-hover:text-white/80 transition-colors">View Full Report</span>
+              <motion.span
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.5 }}
+                className="text-white/40 group-hover:text-white/70 transition-colors"
+              >
+                &rarr;
+              </motion.span>
+            </span>
+          </div>
+        </motion.button>
+      ) : (
+        <motion.button
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          onClick={() => setOpen(true)}
+          className="group mb-6 flex w-full items-center gap-3 rounded-2xl border border-muted/50 bg-card/60 px-5 py-4 text-left transition-all hover:bg-muted/30 sm:mb-8"
+        >
+          <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-purple-500/10">
+            <BarChart3 className="size-5 text-primary" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold">Weekly Insights</p>
+            <p className="text-xs text-muted-foreground">
+              {weeklyStats.weeklyPuzzles} puzzles &middot; +{weeklyStats.totalXpWeek} XP this week
+            </p>
+          </div>
+          <motion.span
+            initial={{ x: 0 }}
+            whileHover={{ x: 3 }}
+            className="shrink-0 text-muted-foreground/40"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </motion.span>
+        </motion.button>
+      )}
 
       {/* Modal */}
       <AnimatePresence>

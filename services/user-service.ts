@@ -44,6 +44,8 @@ export interface UserDocument {
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
   soundEnabled: boolean;
+  weeklyXp: number;
+  weeklyStartDate: number;
 }
 
 export async function saveUserData(uid: string, data: UserDocument): Promise<void> {

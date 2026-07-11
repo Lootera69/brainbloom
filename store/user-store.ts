@@ -59,6 +59,8 @@ interface UserState {
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
   soundEnabled: boolean;
+  weeklyXp: number;
+  weeklyStartDate: number;
   pendingCelebration: { type: "achievement" | "level-up"; title: string; subtitle?: string; xp?: number; gems?: number } | null;
 
   loginAsGuest: () => void;
@@ -67,6 +69,7 @@ interface UserState {
   syncToFirestore: () => void;
   loadFromFirestore: () => Promise<void>;
   addXp: (amount: number) => void;
+  checkWeeklyReset: () => void;
   addGems: (amount: number) => void;
   useHeart: () => void;
   restoreHearts: () => void;
@@ -106,6 +109,20 @@ function calcLevel(xp: number): number {
   let level = 1;
   while (xpForLevel(level + 1) <= xp) level++;
   return level;
+}
+
+function getWeekStart(ts: number): number {
+  const d = new Date(ts);
+  const day = d.getUTCDay();
+  // Monday = 1 .. Sunday = 0, so diff to Monday
+  const diff = day === 0 ? 6 : day - 1;
+  d.setUTCDate(d.getUTCDate() - diff);
+  d.setUTCHours(0, 0, 0, 0);
+  return d.getTime();
+}
+
+function hasWeekChanged(storedStart: number): boolean {
+  return getWeekStart(Date.now()) !== getWeekStart(storedStart);
 }
 
 export function getLevelProgress(xp: number): { level: number; progress: number; xpToNext: number; currentXp: number; nextXp: number } {
@@ -178,6 +195,8 @@ export const useUserStore = create<UserState>()(
       dailyPuzzleStreak: 0,
       dailyPuzzleLastDate: null,
       soundEnabled: true,
+      weeklyXp: 0,
+      weeklyStartDate: Date.now(),
       pendingCelebration: null,
 
       loginAsGuest: () => {
@@ -238,6 +257,8 @@ export const useUserStore = create<UserState>()(
             dailyPuzzleStreak: s.dailyPuzzleStreak,
             dailyPuzzleLastDate: s.dailyPuzzleLastDate,
             soundEnabled: s.soundEnabled,
+            weeklyXp: s.weeklyXp,
+            weeklyStartDate: s.weeklyStartDate,
           }),
         );
       },
@@ -277,7 +298,10 @@ export const useUserStore = create<UserState>()(
               dailyPuzzleStreak: data.dailyPuzzleStreak ?? s.dailyPuzzleStreak,
               dailyPuzzleLastDate: data.dailyPuzzleLastDate ?? s.dailyPuzzleLastDate,
               soundEnabled: data.soundEnabled ?? s.soundEnabled,
+              weeklyXp: data.weeklyXp ?? s.weeklyXp,
+              weeklyStartDate: data.weeklyStartDate ?? s.weeklyStartDate,
             });
+            get().checkWeeklyReset();
           } else {
             get().syncToFirestore();
           }
@@ -319,24 +343,36 @@ export const useUserStore = create<UserState>()(
           dailyPuzzleStreak: 0,
           dailyPuzzleLastDate: null,
           soundEnabled: true,
+          weeklyXp: 0,
+          weeklyStartDate: Date.now(),
           pendingCelebration: null,
 
         });
       },
 
       addXp: (amount) => {
-        const { xp, xpToday, level } = get();
+        const { xp, xpToday, level, weeklyXp, weeklyStartDate } = get();
         const newXp = xp + amount;
         const newLevel = calcLevel(newXp);
         const levelUp = newLevel > level;
+        const weekReset = hasWeekChanged(weeklyStartDate);
         set({
           xp: newXp,
           xpToday: xpToday + amount,
           level: newLevel,
           lastXpGain: amount,
+          weeklyXp: weekReset ? amount : weeklyXp + amount,
+          weeklyStartDate: weekReset ? Date.now() : weeklyStartDate,
           pendingCelebration: levelUp ? { type: "level-up", title: `Level ${newLevel}!`, subtitle: "Keep up the great work!" } : get().pendingCelebration,
         });
         get().advanceQuest("earn-xp", amount);
+      },
+
+      checkWeeklyReset: () => {
+        const { weeklyXp, weeklyStartDate } = get();
+        if (hasWeekChanged(weeklyStartDate)) {
+          set({ weeklyXp: 0, weeklyStartDate: Date.now() });
+        }
       },
 
       addGems: (amount) => set({ gems: get().gems + amount }),
@@ -431,11 +467,15 @@ export const useUserStore = create<UserState>()(
         const def = achievementsList.find((a) => a.id === id);
         const xpReward = def?.xp ?? 0;
         const gemReward = def?.gems ?? 0;
+        const { weeklyXp, weeklyStartDate } = get();
+        const weekReset = hasWeekChanged(weeklyStartDate);
         set({
           achievements: [...achievements, { id, unlockedAt: Date.now() }],
           xp: get().xp + xpReward,
           level: calcLevel(get().xp + xpReward),
           gems: get().gems + gemReward,
+          weeklyXp: weekReset ? xpReward : weeklyXp + xpReward,
+          weeklyStartDate: weekReset ? Date.now() : weeklyStartDate,
           pendingCelebration: {
             type: "achievement",
             title: def?.title ?? "Achievement Unlocked!",
@@ -642,6 +682,9 @@ export const useUserStore = create<UserState>()(
     {
       name: "brainbloom-user",
       storage: safeStorage,
+      onRehydrateStorage: () => () => {
+        useUserStore.getState().checkWeeklyReset();
+      },
     },
   ),
 );
