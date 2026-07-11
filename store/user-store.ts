@@ -3,6 +3,11 @@ import { persist, type PersistStorage } from "zustand/middleware";
 import { questTemplates } from "@/constants/quests";
 import { achievementsList } from "@/constants/achievements";
 
+let heartsLostThisSession = false;
+export function resetHeartsLostFlag() { heartsLostThisSession = false; }
+export function setHeartsLostFlag() { heartsLostThisSession = true; }
+export function getHeartsLostFlag() { return heartsLostThisSession; }
+
 export interface Activity {
   id: string;
   type: "daily" | "challenge";
@@ -61,6 +66,10 @@ interface UserState {
   soundEnabled: boolean;
   weeklyXp: number;
   weeklyStartDate: number;
+  frozenDays: string[];
+  brokenDays: string[];
+  dailyGoalStreak: number;
+  dailyGoalLastHitDate: string | null;
   pendingCelebration: { type: "achievement" | "level-up"; title: string; subtitle?: string; xp?: number; gems?: number } | null;
 
   loginAsGuest: () => void;
@@ -197,6 +206,10 @@ export const useUserStore = create<UserState>()(
       soundEnabled: true,
       weeklyXp: 0,
       weeklyStartDate: Date.now(),
+      frozenDays: [],
+      brokenDays: [],
+      dailyGoalStreak: 0,
+      dailyGoalLastHitDate: null,
       pendingCelebration: null,
 
       loginAsGuest: () => {
@@ -259,6 +272,10 @@ export const useUserStore = create<UserState>()(
             soundEnabled: s.soundEnabled,
             weeklyXp: s.weeklyXp,
             weeklyStartDate: s.weeklyStartDate,
+            frozenDays: s.frozenDays,
+            brokenDays: s.brokenDays,
+            dailyGoalStreak: s.dailyGoalStreak,
+            dailyGoalLastHitDate: s.dailyGoalLastHitDate,
           }),
         );
       },
@@ -300,6 +317,10 @@ export const useUserStore = create<UserState>()(
               soundEnabled: data.soundEnabled ?? s.soundEnabled,
               weeklyXp: data.weeklyXp ?? s.weeklyXp,
               weeklyStartDate: data.weeklyStartDate ?? s.weeklyStartDate,
+              frozenDays: data.frozenDays ?? s.frozenDays,
+              brokenDays: data.brokenDays ?? s.brokenDays,
+              dailyGoalStreak: data.dailyGoalStreak ?? s.dailyGoalStreak,
+              dailyGoalLastHitDate: data.dailyGoalLastHitDate ?? s.dailyGoalLastHitDate,
             });
             get().checkWeeklyReset();
           } else {
@@ -345,6 +366,10 @@ export const useUserStore = create<UserState>()(
           soundEnabled: true,
           weeklyXp: 0,
           weeklyStartDate: Date.now(),
+          frozenDays: [],
+          brokenDays: [],
+          dailyGoalStreak: 0,
+          dailyGoalLastHitDate: null,
           pendingCelebration: null,
 
         });
@@ -366,6 +391,18 @@ export const useUserStore = create<UserState>()(
           pendingCelebration: levelUp ? { type: "level-up", title: `Level ${newLevel}!`, subtitle: "Keep up the great work!" } : get().pendingCelebration,
         });
         get().advanceQuest("earn-xp", amount);
+        // Check daily goal streak
+        const { xpToday: xt, dailyGoal, dailyGoalStreak, dailyGoalLastHitDate } = get();
+        if (xt >= dailyGoal) {
+          const today = new Date().toDateString();
+          if (dailyGoalLastHitDate !== today) {
+            const yesterday = new Date(Date.now() - 86400000).toDateString();
+            set({
+              dailyGoalStreak: dailyGoalLastHitDate === yesterday ? dailyGoalStreak + 1 : 1,
+              dailyGoalLastHitDate: today,
+            });
+          }
+        }
       },
 
       checkWeeklyReset: () => {
@@ -391,7 +428,7 @@ export const useUserStore = create<UserState>()(
       restoreHearts: () => set({ hearts: 5, nextHeartAt: null }),
 
       checkStreak: () => {
-        const { lastActiveDate, streak, streakFreezes, dailyQuests, lastQuestRefresh } = get();
+        const { lastActiveDate, streak, streakFreezes, dailyQuests, lastQuestRefresh, frozenDays, brokenDays } = get();
         const today = new Date().toDateString();
 
         if (lastActiveDate === today) {
@@ -423,15 +460,40 @@ export const useUserStore = create<UserState>()(
         const diffDays = Math.round((todayMs - lastActiveMs) / 86400000);
         const missedDays = Math.max(0, diffDays - 1);
         const freezesToConsume = Math.min(streakFreezes, missedDays);
+        const gapDates: string[] = [];
+        for (let d = 1; d <= missedDays; d++) {
+          gapDates.push(new Date(lastActiveMs + d * 86400000).toDateString());
+        }
 
         let newStreak: number;
+        const newFrozenDays = [...frozenDays];
+        const newBrokenDays = [...brokenDays];
+
         if (missedDays === 0) {
           newStreak = streak + 1;
         } else if (freezesToConsume === missedDays) {
           newStreak = streak;
+          for (const d of gapDates) {
+            if (!newFrozenDays.includes(d)) newFrozenDays.push(d);
+          }
         } else {
           newStreak = 1;
+          const frozenPortion = gapDates.slice(0, freezesToConsume);
+          const brokenPortion = gapDates.slice(freezesToConsume);
+          for (const d of frozenPortion) {
+            if (!newFrozenDays.includes(d)) newFrozenDays.push(d);
+          }
+          for (const d of brokenPortion) {
+            if (!newBrokenDays.includes(d)) newBrokenDays.push(d);
+          }
         }
+
+        // Prune to last 14 days to prevent unbounded growth
+        const cutoff = new Date();
+        cutoff.setDate(cutoff.getDate() - 14);
+        const cutoffStr = cutoff.toDateString();
+        const cutoffMs = cutoff.getTime();
+        const prune = (arr: string[]) => arr.filter((d) => new Date(d).getTime() >= cutoffMs);
 
         set({
           streak: newStreak,
@@ -443,6 +505,8 @@ export const useUserStore = create<UserState>()(
           questsRewarded: [],
           practiceHeartsToday: 0,
           lastPracticeDate: today,
+          frozenDays: prune(newFrozenDays),
+          brokenDays: prune(newBrokenDays),
         });
       },
 
@@ -614,7 +678,7 @@ export const useUserStore = create<UserState>()(
       clearCelebration: () => set({ pendingCelebration: null }),
 
       checkAchievements: () => {
-        const { xp, streak, completedPuzzleIds, achievements, history, dailyPuzzleStreak, level } = get();
+        const { xp, streak, completedPuzzleIds, achievements, history, dailyPuzzleStreak, level, dailyGoalStreak } = get();
         const already = new Set(achievements.map((a) => a.id));
 
         const checks: { id: string; condition: boolean }[] = [
@@ -626,6 +690,8 @@ export const useUserStore = create<UserState>()(
           { id: "all_categories", condition: new Set(history.map((h) => h.category)).size >= 4 },
           { id: "perfect_day", condition: dailyPuzzleStreak >= 5 },
           { id: "level_5", condition: level >= 5 },
+          { id: "hearts_saver", condition: !getHeartsLostFlag() && completedPuzzleIds.length >= 1 },
+          { id: "daily_goal_week", condition: dailyGoalStreak >= 7 },
         ];
 
         for (const { id, condition } of checks) {

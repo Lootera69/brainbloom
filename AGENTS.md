@@ -282,3 +282,21 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   - `app/studio/seed/page.tsx` — danger-confirmed seed page with animated step indicators, live log, completion stats
   - Studio header: Database icon button links to seed page
 - **True-false puzzle fix**: all 5 true-false puzzles now have `choices: ["True", "False"]` with `correctAnswer` matching exact case (strict `===` in `PuzzlePlay.tsx:41`)
+
+## Remaining / Known Issues
+- **`/offline` page missing** — SW precaches it but page doesn't exist, SW install will fail
+- **`npm run lint` broken** — script is just `"eslint"` with no glob (should be `"eslint ."`)
+- **4 unused store actions** — `restoreHearts`, `claimDailyReward`, `canClaimReward`, `refreshDailyQuests` implemented but never called from UI
+- **No `loading.tsx` / `error.tsx`** at any route level — no suspense fallbacks or route error boundaries
+- **Sudoku generator 2s timeout** can produce partial/invalid puzzles
+- **`acceptedAnswers` save inconsistency** — type-answer uses `onChange`, riddle uses `onBlur`
+- **Starter SVGs** — `public/window.svg`, `globe.svg`, `file.svg` unused
+- **Local dev IP** — `192.168.1.3` in `next.config.ts` `allowedDevOrigins`
+- **No test infrastructure** — zero tests across the project
+- **`shadcn` in `dependencies`** instead of `devDependencies`
+
+## Recent Changes (Session: Jul 2026 - Part 5)
+- **Weekly XP tracking fix**: Added `weeklyXp` + `weeklyStartDate` store fields; `addXp` and `unlockAchievement` increment it; ISO week boundary detection via `getWeekStart()`/`hasWeekChanged()`; `checkWeeklyReset()` on rehydration + `loadFromFirestore`; WeeklyInsights uses `store.weeklyXp` (not history sum)
+- **Weekly insights grid 60:40**: Changed from `md:grid-cols-4` (75:25) to `md:grid-cols-5` with 3:2 split
+- **Streak freeze visualization**: Added `frozenDays`/`brokenDays` tracking to `checkStreak()`; streak circles show blue Snowflake for freeze-saved days, red X for broken days, orange CheckCircle2 for maintained
+- **Achievement fixes**: `hearts_saver` (perfect run via module-level `heartsLostThisSession` flag, reset per puzzle in PuzzlePlay) and `daily_goal_week` (7-day goal streak via `dailyGoalStreak`/`dailyGoalLastHitDate` tracked in `addXp`) — both now trigger correctly

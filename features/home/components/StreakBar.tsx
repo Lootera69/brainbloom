@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Flame, Zap, Heart, Gem, X, CheckCircle2 } from "lucide-react";
+import { Flame, Zap, Heart, Gem, X, CheckCircle2, Snowflake } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { CountUp } from "@/features/home/components/CountUp";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -14,6 +14,8 @@ export function StreakBar() {
   const hearts = useUserStore((s) => s.hearts);
   const gems = useUserStore((s) => s.gems);
   const lastActiveDate = useUserStore((s) => s.lastActiveDate);
+  const frozenDays = useUserStore((s) => s.frozenDays);
+  const brokenDays = useUserStore((s) => s.brokenDays);
   const maxHearts = 5;
   const [showStreak, setShowStreak] = useState(false);
 
@@ -24,14 +26,17 @@ export function StreakBar() {
     const lastActiveMs = lastActiveDate ? new Date(lastActiveDate).getTime() : null;
     const streakStartMs = lastActiveMs != null ? lastActiveMs - (streak - 1) * 86400000 : null;
     const dayLabels = ["S", "M", "T", "W", "T", "F", "S"];
-    const days: { filled: boolean; label: string; isToday: boolean }[] = [];
+    const days: { status: "filled" | "frozen" | "broken" | "empty"; label: string; isToday: boolean }[] = [];
     for (let i = 6; i >= 0; i--) {
       const dateMs = todayMs - i * 86400000;
+      const dateStr = new Date(dateMs).toDateString();
       const filled = streakStartMs != null && lastActiveMs != null ? dateMs >= streakStartMs && dateMs <= lastActiveMs : false;
-      days.push({ filled, label: dayLabels[new Date(dateMs).getDay()], isToday: i === 0 });
+      const frozen = !filled && frozenDays.includes(dateStr);
+      const broken = !filled && !frozen && brokenDays.includes(dateStr);
+      days.push({ status: filled ? "filled" : frozen ? "frozen" : broken ? "broken" : "empty", label: dayLabels[new Date(dateMs).getDay()], isToday: i === 0 });
     }
     return days;
-  }, [streak, lastActiveDate]);
+  }, [streak, lastActiveDate, frozenDays, brokenDays]);
 
   const keptToday = useMemo(() => lastActiveDate === new Date().toDateString(), [lastActiveDate]);
 
@@ -184,19 +189,17 @@ export function StreakBar() {
                     <span className="text-[10px] font-medium text-muted-foreground">{d.label}</span>
                     <div
                       className={cn(
-                        "size-7 rounded-full border-2 transition-colors sm:size-8",
-                        d.filled
-                          ? "border-orange-500 bg-orange-500"
-                          : d.isToday
-                            ? keptToday
-                              ? "border-orange-500 bg-orange-500"
-                              : "border-muted-foreground/40"
-                            : "border-muted-foreground/15",
+                        "flex size-7 items-center justify-center rounded-full border-2 transition-colors sm:size-8",
+                        d.status === "filled" && "border-orange-500 bg-orange-500",
+                        d.status === "frozen" && "border-blue-400 bg-blue-500/10",
+                        d.status === "broken" && "border-red-400 bg-red-500/10",
+                        d.status === "empty" && d.isToday && "border-muted-foreground/40",
+                        d.status === "empty" && !d.isToday && "border-muted-foreground/15",
                       )}
                     >
-                      {d.filled || (d.isToday && keptToday) ? (
-                        <CheckCircle2 className="size-full p-1 text-white" />
-                      ) : null}
+                      {d.status === "filled" && <CheckCircle2 className="size-full p-1 text-white" />}
+                      {d.status === "frozen" && <Snowflake className="size-full p-1 text-blue-400" />}
+                      {d.status === "broken" && <X className="size-full p-1 text-red-400" />}
                     </div>
                   </div>
                 ))}

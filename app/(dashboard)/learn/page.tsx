@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Heart, HeartCrack, ArrowLeft, Sparkles, Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Flame, CheckCircle2, Loader2, Clock
+  Heart, HeartCrack, ArrowLeft, Sparkles, Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Flame, CheckCircle2, Loader2, Clock, Snowflake, X
 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
@@ -69,6 +69,8 @@ export default function LearnPage() {
   const checkAchievements = useUserStore((s) => s.checkAchievements);
   const streak = useUserStore((s) => s.streak);
   const lastActiveDate = useUserStore((s) => s.lastActiveDate);
+  const frozenDays = useUserStore((s) => s.frozenDays);
+  const brokenDays = useUserStore((s) => s.brokenDays);
 
   const streakMaintainedToday = useMemo(() => {
     return lastActiveDate === new Date().toDateString();
@@ -81,14 +83,17 @@ export default function LearnPage() {
     const lastActiveMs = lastActiveDate ? new Date(lastActiveDate).getTime() : null;
     const streakStartMs = lastActiveMs != null ? lastActiveMs - (streak - 1) * 86400000 : null;
     const dayLabels = ["S", "M", "T", "W", "T", "F", "S"];
-    const days: { filled: boolean; label: string; isToday: boolean }[] = [];
+    const days: { status: "filled" | "frozen" | "broken" | "empty"; label: string; isToday: boolean }[] = [];
     for (let i = 6; i >= 0; i--) {
       const dateMs = todayMs - i * 86400000;
+      const dateStr = new Date(dateMs).toDateString();
       const filled = streakStartMs != null && lastActiveMs != null ? dateMs >= streakStartMs && dateMs <= lastActiveMs : false;
-      days.push({ filled, label: dayLabels[new Date(dateMs).getDay()], isToday: i === 0 });
+      const frozen = !filled && frozenDays.includes(dateStr);
+      const broken = !filled && !frozen && brokenDays.includes(dateStr);
+      days.push({ status: filled ? "filled" : frozen ? "frozen" : broken ? "broken" : "empty", label: dayLabels[new Date(dateMs).getDay()], isToday: i === 0 });
     }
     return days;
-  }, [streak, lastActiveDate]);
+  }, [streak, lastActiveDate, frozenDays, brokenDays]);
 
   useEffect(() => {
     const tick = () => {
@@ -261,18 +266,15 @@ export default function LearnPage() {
                       {streakDays.map((d, i) => (
                         <div key={i} className="flex flex-col items-center gap-0.5">
                           <span className="text-[10px] font-medium text-muted-foreground">{d.label}</span>
-                          <div className={`size-5 rounded-full border-2 transition-colors sm:size-6 flex items-center justify-center ${
-                            d.filled
-                              ? "border-orange-500 bg-orange-500"
-                              : d.isToday && streakMaintainedToday
-                                ? "border-orange-500 bg-orange-500"
-                                : d.isToday
-                                  ? "border-muted-foreground/40"
-                                  : "border-muted-foreground/15"
+                          <div className={`flex size-5 items-center justify-center rounded-full border-2 transition-colors sm:size-6 ${
+                            d.status === "filled" ? "border-orange-500 bg-orange-500" :
+                            d.status === "frozen" ? "border-blue-400 bg-blue-500/10" :
+                            d.status === "broken" ? "border-red-400 bg-red-500/10" :
+                            d.isToday ? "border-muted-foreground/40" : "border-muted-foreground/15"
                           }`}>
-                            {(d.filled || (d.isToday && streakMaintainedToday)) && (
-                              <CheckCircle2 className="size-3.5 text-white sm:size-4" />
-                            )}
+                            {d.status === "filled" && <CheckCircle2 className="size-3.5 text-white sm:size-4" />}
+                            {d.status === "frozen" && <Snowflake className="size-3.5 text-blue-400 sm:size-4" />}
+                            {d.status === "broken" && <X className="size-3.5 text-red-400 sm:size-4" />}
                           </div>
                         </div>
                       ))}

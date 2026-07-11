@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Zap, ArrowRight, Info, Sparkles, Brain, Star } from "lucide-react";
 import { type Puzzle } from "@/types/puzzle";
@@ -10,6 +10,7 @@ import { CrosswordPlay } from "./CrosswordPlay";
 import { TypeAnswerPlay } from "./TypeAnswerPlay";
 import { SudokuPlay } from "./SudokuPlay";
 import { RiddlePlay } from "./RiddlePlay";
+import { resetHeartsLostFlag, setHeartsLostFlag } from "@/store/user-store";
 
 interface Props {
   puzzle: Puzzle;
@@ -329,6 +330,8 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
 }
 
 export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
+  useEffect(() => { resetHeartsLostFlag(); }, [puzzle.id]);
+
   const handleComplete = (correct: boolean, xpEarned: number) => {
     if (correct) {
       import("@/services/sound-service").then(({ playComplete }) => {
@@ -339,6 +342,7 @@ export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
   };
 
   const handleWrongAttempt = () => {
+    setHeartsLostFlag();
     import("@/services/sound-service").then(({ playWrong, playHeartbreak }) => {
       playWrong();
       playHeartbreak();

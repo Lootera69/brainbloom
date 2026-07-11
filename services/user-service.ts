@@ -46,6 +46,10 @@ export interface UserDocument {
   soundEnabled: boolean;
   weeklyXp: number;
   weeklyStartDate: number;
+  frozenDays: string[];
+  brokenDays: string[];
+  dailyGoalStreak: number;
+  dailyGoalLastHitDate: string | null;
 }
 
 export async function saveUserData(uid: string, data: UserDocument): Promise<void> {
