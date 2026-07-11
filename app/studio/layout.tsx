@@ -1,13 +1,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool } from "lucide-react";
+import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight } from "lucide-react";
 import { getStudioSession, setStudioSession, clearStudioSession } from "@/services/puzzle-service";
 import { verifyStudioCredentials } from "@/services/studio-settings";
 import { setStudioRole, getStudioRole, clearStudioRole } from "@/services/puzzle-service";
 import { Toaster } from "sonner";
+
+const navItems = [
+  { href: "/studio", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/studio/analytics", label: "Analytics", icon: BarChart3 },
+  { href: "/studio/create", label: "Create Puzzle", icon: Plus },
+  { href: "/studio/seed", label: "Seed Data", icon: Database },
+  { href: "/studio/settings", label: "Settings", icon: Settings },
+];
 
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -17,6 +26,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   const [error, setError] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [role, setRole] = useState<string | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
@@ -113,9 +123,9 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   }
 
   return (
-    <div className="min-h-dvh bg-background">
+    <div className="flex min-h-dvh flex-col bg-background">
       <header className="sticky top-0 z-50 border-b bg-card/70 backdrop-blur-xl">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+        <div className="flex h-14 items-center justify-between px-4">
           <div className="flex items-center gap-2.5">
             <span className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-[#8b5cf6]">
               <Sparkles className="size-4 text-white" />
@@ -147,8 +157,79 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
           </div>
         </div>
       </header>
-      <Toaster position="top-center" />
-      {children}
+
+      <div className="flex flex-1">
+        <StudioSidebar />
+        <div className="flex flex-1 flex-col min-w-0">
+          <Toaster position="top-center" />
+          {children}
+        </div>
+      </div>
+
+      {/* Mobile bottom nav */}
+      <nav className="sticky bottom-0 z-40 flex items-center border-t bg-card/70 backdrop-blur-xl px-1 pb-safe md:hidden">
+        {navItems.map((item, idx) => {
+          const isActive = pathname === item.href;
+          const Icon = item.icon;
+          const isCreate = idx === 2;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-[10px] font-medium transition-all ${
+                isCreate
+                  ? "relative -mt-3"
+                  : isActive
+                    ? "text-primary"
+                    : "text-muted-foreground/60 hover:text-foreground"
+              }`}
+            >
+              {isCreate ? (
+                <span className="flex size-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-white shadow-md shadow-primary/25">
+                  <Icon className="size-5" />
+                </span>
+              ) : (
+                <Icon className={`size-[18px] ${isActive ? "text-primary" : ""}`} />
+              )}
+              <span className={isCreate ? "text-[10px] font-semibold text-foreground" : ""}>
+                {isCreate ? "Create" : item.label}
+              </span>
+            </Link>
+          );
+        })}
+      </nav>
     </div>
   );
+
+  function StudioSidebar() {
+    return (
+      <aside className="sticky top-14 z-40 hidden h-[calc(100dvh-3.5rem)] w-72 shrink-0 border-r bg-card/30 backdrop-blur-sm md:block">
+        <nav className="flex flex-col gap-1 p-3 pt-4">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
+                  isActive
+                    ? "bg-gradient-to-r from-primary/10 to-primary/5 text-primary shadow-sm shadow-primary/5"
+                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                }`}
+              >
+                <Icon className={`size-[18px] shrink-0 transition-colors ${
+                  isActive ? "text-primary" : "text-muted-foreground/60 group-hover:text-foreground"
+                }`} />
+                <span className="leading-tight">{item.label}</span>
+                {isActive && (
+                  <ChevronRight className="ml-auto size-3.5 text-primary/40" />
+                )}
+              </Link>
+            );
+          })}
+        </nav>
+      </aside>
+    );
+  }
 }

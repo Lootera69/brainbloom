@@ -32,6 +32,24 @@ const STATUS_COLORS: Record<ReviewStatus, string> = {
   "needs-discussion": "bg-blue-500/10 text-blue-600 dark:text-blue-400",
 };
 
+const STATUS_ACCENTS: Record<string, string> = {
+  draft: "bg-muted-foreground/30",
+  pending: "bg-amber-500",
+  approved: "bg-success",
+  rejected: "bg-destructive",
+  "needs-discussion": "bg-blue-500",
+  live: "bg-emerald-500",
+};
+
+const STATUS_DOTS: Record<string, string> = {
+  draft: "bg-muted-foreground/40",
+  pending: "bg-amber-500",
+  approved: "bg-success",
+  rejected: "bg-destructive",
+  "needs-discussion": "bg-blue-500",
+  live: "bg-emerald-500",
+};
+
 const FILTER_TABS = [
   { value: "all", label: "All" },
   { value: "pending", label: "Pending" },
@@ -161,38 +179,33 @@ export default function StudioPage() {
 
   return (
     <ErrorBoundary>
-    <main className="mx-auto max-w-6xl px-4 py-6">
+    <main className="mx-auto w-full px-4 py-6" style={{ maxWidth: "85%" }}>
       <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Puzzles</h1>
-          <p className="text-sm text-muted-foreground">
-            {puzzles.length} total &middot; {puzzles.filter((p) => p.published).length} published
-            {pendingCount > 0 && <span className="text-amber-600 dark:text-amber-400"> &middot; {pendingCount} pending</span>}
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <button onClick={() => router.push("/studio/analytics")}
-            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted/80 hover:border-primary/20 active:scale-[0.98]">
-            <BarChart3 className="size-4" />
-          </button>
-          <button onClick={() => router.push("/studio/seed")}
-            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted/80 hover:border-primary/20 active:scale-[0.98]">
-            <Database className="size-4" />
-          </button>
-          <button onClick={() => router.push("/studio/settings")}
-            className="flex h-10 items-center gap-2 rounded-xl border px-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted/80 hover:border-primary/20 active:scale-[0.98]">
-            <Settings className="size-4" />
-          </button>
-          <button onClick={() => router.push("/studio/create")}
-            className="flex h-10 items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] px-4 text-sm font-semibold text-white shadow-md shadow-primary/25 transition-all hover:brightness-110 active:scale-[0.98]">
-            <Plus className="size-4" />
-            New Puzzle
-          </button>
-        </div>
+        <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Puzzles</h1>
+        <button onClick={() => router.push("/studio/create")}
+          className="flex h-10 items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] px-4 text-sm font-semibold text-white shadow-md shadow-primary/25 transition-all hover:brightness-110 active:scale-[0.98]">
+          <Plus className="size-4" />
+          New Puzzle
+        </button>
+      </div>
+
+      {/* Stats row */}
+      <div className="mb-6 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+        {[
+          { label: "Total", value: puzzles.length, color: "from-primary/20 to-primary/5", text: "text-primary" },
+          { label: "Published", value: puzzles.filter((p) => p.published).length, color: "from-emerald-500/20 to-emerald-500/5", text: "text-emerald-500" },
+          { label: "Pending", value: pendingCount, color: "from-amber-500/20 to-amber-500/5", text: "text-amber-500" },
+          { label: "Discuss", value: discussCount, color: "from-blue-500/20 to-blue-500/5", text: "text-blue-500" },
+        ].map((s) => (
+          <div key={s.label} className={`rounded-xl border bg-card/50 backdrop-blur-sm p-4 transition-all hover:border-primary/20 hover:shadow-sm`}>
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/70">{s.label}</p>
+            <p className={`mt-1 text-2xl font-bold tabular-nums ${s.text}`}>{s.value}</p>
+          </div>
+        ))}
       </div>
 
       {/* Filter tabs */}
-      <div className="mb-4 flex gap-1.5 overflow-x-auto">
+      <div className="mb-4 flex flex-wrap gap-1.5">
         {FILTER_TABS.map((tab) => (
           <button key={tab.value} onClick={() => setFilterTab(tab.value)}
             className={`shrink-0 rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
@@ -279,52 +292,51 @@ export default function StudioPage() {
           action={puzzles.length === 0 ? { label: "Create your first puzzle", onClick: () => router.push("/studio/create") } : undefined}
         />
       ) : (
-        <div className="space-y-3">
-          {filtered.map((puzzle, i) => (
+        <div className="space-y-2">
+          {filtered.map((puzzle, i) => {
+            const statusKey = puzzle.published ? "live" : puzzle.reviewStatus ?? "draft";
+            return (
             <motion.div key={puzzle.id}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.04 }}
-              className="flex items-center gap-4 rounded-2xl border bg-card/60 backdrop-blur-sm p-4 transition-all hover:border-primary/20 hover:bg-primary/[0.02]">
+              transition={{ delay: i * 0.03 }}
+              className="group relative flex flex-col gap-3 rounded-xl border bg-card px-4 py-3.5 transition-all hover:border-primary/20 hover:shadow-sm sm:flex-row sm:items-center sm:gap-4 sm:px-5 sm:py-4">
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
-                  <h3 className="truncate text-sm font-semibold">{puzzle.title}</h3>
+                <div className="flex items-center gap-2.5">
+                  <span className="flex items-center gap-1.5">
+                    <span className={`size-2 rounded-full ${STATUS_DOTS[statusKey]}`} />
+                    <span className="text-[11px] font-medium text-muted-foreground/70">{puzzle.published ? "Live" : STATUS_LABELS[puzzle.reviewStatus ?? "draft"]}</span>
+                  </span>
                   {dailyPuzzleId === puzzle.id && (
-                    <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase text-amber-500 flex items-center gap-1">
+                    <span className="flex items-center gap-1 rounded-md bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-amber-500">
                       <Sparkles className="size-3" />
                       Daily
                     </span>
                   )}
-                  {puzzle.published ? (
-                    <span className="rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-semibold uppercase text-success">Live</span>
-                  ) : (
-                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${STATUS_COLORS[puzzle.reviewStatus ?? "draft"]}`}>
-                      {STATUS_LABELS[puzzle.reviewStatus ?? "draft"]}
-                    </span>
-                  )}
+                  <h3 className="truncate text-sm font-semibold">{puzzle.title}</h3>
                   {!puzzle.published && puzzle.reviewNote && (
-                    <span className="flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground" title={puzzle.reviewNote}>
+                    <span className="flex items-center gap-1 rounded-md bg-muted/70 px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground/60" title={puzzle.reviewNote}>
                       <MessageSquare className="size-3" />
                       Note
                     </span>
                   )}
                 </div>
-                <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
+                <div className="mt-1.5 flex items-center gap-3 text-xs text-muted-foreground/70">
                   <span>{catLabel(puzzle.category)}</span>
-                  <span>&middot;</span>
+                  <span className="text-muted-foreground/20">|</span>
                   <span>{diffLabel(puzzle.difficulty)}</span>
-                  <span>&middot;</span>
-                  <span>{puzzle.type === "true-false" ? "True/False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : puzzle.type === "type-answer" ? "Type Answer" : "Multiple Choice"}</span>
-                  <span>&middot;</span>
+                  <span className="text-muted-foreground/20">|</span>
+                  <span>{puzzle.type === "true-false" ? "True/False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : puzzle.type === "type-answer" ? "Type Answer" : puzzle.type === "riddle" ? "Riddle" : puzzle.type === "sudoku" ? "Sudoku" : "Multiple Choice"}</span>
+                  <span className="text-muted-foreground/20">|</span>
                   <span>{puzzle.xpReward} XP</span>
                   {(puzzle.completedBy ?? 0) > 0 && (
                     <>
-                      <span>&middot;</span>
-                      <span className="text-success">{puzzle.completedBy} completed</span>
+                      <span className="text-muted-foreground/20">|</span>
+                      <span className="text-success">{puzzle.completedBy} plays</span>
                     </>
                   )}
                 </div>
-                <div className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-muted-foreground/70">
+                <div className="mt-1 flex items-center gap-3 text-[11px] text-muted-foreground/50">
                   <span className="flex items-center gap-1"><User className="size-3" />{puzzle.createdBy || "—"}</span>
                   <span className="flex items-center gap-1"><Calendar className="size-3" />{puzzle.createdAt ? fmtDate(puzzle.createdAt) : "—"}</span>
                   {!puzzle.published && puzzle.reviewedBy && (
@@ -332,34 +344,35 @@ export default function StudioPage() {
                   )}
                 </div>
                 {!puzzle.published && puzzle.reviewNote && (
-                  <p className="mt-1 text-[11px] italic text-muted-foreground/60">&ldquo;{puzzle.reviewNote}&rdquo;</p>
+                  <p className="mt-1.5 border-l-2 border-muted-foreground/15 pl-2 text-[11px] italic text-muted-foreground/50">&ldquo;{puzzle.reviewNote}&rdquo;</p>
                 )}
               </div>
 
-              <div className="flex shrink-0 items-center gap-1.5">
+              <div className="flex shrink-0 items-center gap-1">
                 <button onClick={() => setTestPuzzle(puzzle)}
-                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-all hover:bg-primary/10 hover:text-primary" title="Test">
+                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground/60 transition-all hover:bg-primary/10 hover:text-primary" title="Test">
                   <Play className="size-4" />
                 </button>
                 <button onClick={() => router.push(`/studio/edit/${puzzle.id}`)}
-                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-all hover:bg-primary/10 hover:text-primary" title="Edit">
+                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground/60 transition-all hover:bg-primary/10 hover:text-primary" title="Edit">
                   <Edit3 className="size-4" />
                 </button>
                 <button onClick={() => { setDeleteTarget(puzzle); setConfirmText(""); }}
                   disabled={!admin && puzzle.published}
-                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive disabled:cursor-not-allowed disabled:opacity-30"
+                  className="flex size-8 items-center justify-center rounded-lg text-muted-foreground/60 transition-colors hover:bg-destructive/10 hover:text-destructive disabled:cursor-not-allowed disabled:opacity-20"
                   title={!admin && puzzle.published ? "Cannot delete live puzzles" : "Delete"}>
                   <Trash2 className="size-4" />
                 </button>
+                <span className="mx-1 h-5 w-px bg-border/50" />
 
                 {!puzzle.published && admin && puzzle.reviewStatus === "pending" && (
                   <div className="flex gap-1">
                     <button onClick={() => handleQuickReview(puzzle.id, "approved")}
-                      className="flex size-8 items-center justify-center rounded-lg text-success transition-all hover:bg-success/15 hover:shadow-sm hover:shadow-success/10" title="Approve">
+                      className="flex size-8 items-center justify-center rounded-lg text-success/70 transition-all hover:bg-success/15 hover:text-success" title="Approve">
                       <CheckCircle2 className="size-4" />
                     </button>
                     <button onClick={() => handleQuickReview(puzzle.id, "rejected")}
-                      className="flex size-8 items-center justify-center rounded-lg text-destructive transition-all hover:bg-destructive/15 hover:shadow-sm hover:shadow-destructive/10" title="Reject">
+                      className="flex size-8 items-center justify-center rounded-lg text-destructive/70 transition-all hover:bg-destructive/15 hover:text-destructive" title="Reject">
                       <XCircle className="size-4" />
                     </button>
                   </div>
@@ -367,20 +380,20 @@ export default function StudioPage() {
 
                 {!puzzle.published && !admin && (puzzle.reviewStatus === "draft" || puzzle.reviewStatus === "rejected" || puzzle.reviewStatus === "needs-discussion") && (
                   <button onClick={async () => { await updatePuzzleReview(puzzle.id, "pending"); toast.success("Submitted for approval."); load(); }}
-                    className="flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-all active:scale-[0.98] bg-gradient-to-r from-amber-500/15 to-amber-500/10 text-amber-600 hover:from-amber-500/25 hover:to-amber-500/15 dark:text-amber-400 shadow-sm shadow-amber-500/10">
-                    <Send className="size-3.5" />
+                    className="flex h-7 items-center gap-1.5 rounded-lg px-2.5 text-[11px] font-semibold transition-all active:scale-[0.98] bg-gradient-to-r from-amber-500/15 to-amber-500/10 text-amber-600 hover:from-amber-500/25 hover:to-amber-500/15 dark:text-amber-400">
+                    <Send className="size-3" />
                     Submit
                   </button>
                 )}
 
                 {(puzzle.published || puzzle.reviewStatus === "approved") && admin && (
                   <button onClick={() => setPublishTarget(puzzle)}
-                    className={`flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-semibold transition-all active:scale-[0.98] ${
+                    className={`flex h-7 items-center gap-1.5 rounded-lg px-2.5 text-[11px] font-semibold transition-all active:scale-[0.98] ${
                       puzzle.published
-                        ? "bg-muted text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
-                        : "bg-gradient-to-r from-success/15 to-success/10 text-success hover:from-success/25 hover:to-success/15 shadow-sm shadow-success/10"
+                        ? "bg-muted/60 text-muted-foreground/70 hover:bg-destructive/10 hover:text-destructive"
+                        : "bg-gradient-to-r from-success/15 to-success/10 text-success hover:from-success/25 hover:to-success/15"
                     }`}>
-                    {puzzle.published ? <Lock className="size-3.5" /> : <Globe className="size-3.5" />}
+                    {puzzle.published ? <Lock className="size-3" /> : <Globe className="size-3" />}
                     {puzzle.published ? "Unpublish" : "Go Live"}
                   </button>
                 )}
@@ -390,14 +403,15 @@ export default function StudioPage() {
                     className={`flex size-8 items-center justify-center rounded-lg transition-all disabled:opacity-40 ${
                       dailyPuzzleId === puzzle.id
                         ? "bg-amber-500/15 text-amber-500 shadow-sm shadow-amber-500/20"
-                        : "text-muted-foreground hover:bg-amber-500/10 hover:text-amber-500 hover:shadow-sm hover:shadow-amber-500/10"
+                        : "text-muted-foreground/60 hover:bg-amber-500/10 hover:text-amber-500"
                     }`}>
                     <Sparkles className="size-4" />
                   </button>
                 )}
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       )}
 

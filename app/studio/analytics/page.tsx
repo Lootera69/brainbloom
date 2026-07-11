@@ -506,7 +506,7 @@ export default function AnalyticsPage() {
 
   if (loadTimedOut && loading) {
     return (
-      <main className="mx-auto max-w-6xl px-4 py-6">
+      <main className="mx-auto w-full px-4 py-6" style={{ maxWidth: "85%" }}>
         <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
           <ErrorFallback
             title="Taking longer than expected"
@@ -521,7 +521,7 @@ export default function AnalyticsPage() {
 
   return (
     <ErrorBoundary>
-    <main className="mx-auto max-w-6xl px-4 py-6">
+    <main className="mx-auto w-full px-4 py-6" style={{ maxWidth: "85%" }}>
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
         className="mb-8 flex items-center justify-between">

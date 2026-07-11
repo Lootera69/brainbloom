@@ -194,7 +194,7 @@ export default function CreatePuzzlePage() {
   };
 
   return (
-    <main className="mx-auto max-w-2xl px-4 py-6">
+    <main className="mx-auto w-full px-4 py-6" style={{ maxWidth: "85%" }}>
       <button
         onClick={handleBack}
         className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -208,7 +208,14 @@ export default function CreatePuzzlePage() {
         <p className="text-sm text-muted-foreground">Fill in the details below.</p>
       </motion.div>
 
-      <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="mt-6 space-y-5">
+      <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="mt-6 space-y-7 rounded-xl border bg-card p-6">
+
+        {/* Section: Puzzle Type */}
+        <div>
+          <div className="mb-4 flex items-center gap-2">
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/60">Puzzle Type</span>
+            <span className="h-px flex-1 bg-border/50" />
+          </div>
         <div>
           <label className="mb-1.5 block text-sm font-medium">Type</label>
           <div className="flex gap-2 flex-wrap">
@@ -226,6 +233,7 @@ export default function CreatePuzzlePage() {
                 {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : t === "sudoku" ? "Sudoku" : "Riddle"}
               </button>
             ))}
+          </div>
           </div>
         </div>
 

@@ -302,7 +302,7 @@ export default function EditPuzzlePage() {
 
   if (loading) {
     return (
-      <main className="mx-auto max-w-2xl px-4 py-6">
+      <main className="mx-auto w-full px-4 py-6" style={{ maxWidth: "85%" }}>
         <div className="mb-4 h-4 w-24 animate-pulse rounded bg-muted" />
         <div className="mb-6 h-7 w-40 animate-pulse rounded bg-muted" />
         <SkeletonForm />
@@ -312,7 +312,7 @@ export default function EditPuzzlePage() {
 
   if (notFound) {
     return (
-      <main className="mx-auto max-w-2xl px-4 py-6 text-center">
+      <main className="mx-auto w-full px-4 py-6 text-center" style={{ maxWidth: "85%" }}>
         <p className="text-muted-foreground">Puzzle not found.</p>
         <button onClick={() => router.push("/studio")} className="mt-3 text-sm text-primary hover:underline">
           Back to studio
@@ -322,7 +322,7 @@ export default function EditPuzzlePage() {
   }
 
   return (
-    <main className="mx-auto max-w-2xl px-4 py-6">
+    <main className="mx-auto w-full px-4 py-6" style={{ maxWidth: "85%" }}>
       <button onClick={handleBack} className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
         <ArrowLeft className="size-4" />
         Back to puzzles
@@ -332,7 +332,14 @@ export default function EditPuzzlePage() {
         <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Edit Puzzle</h1>
       </motion.div>
 
-      <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="mt-6 space-y-5">
+      <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="mt-6 space-y-7 rounded-xl border bg-card p-6">
+
+        {/* Section: Puzzle Type */}
+        <div>
+          <div className="mb-4 flex items-center gap-2">
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/60">Puzzle Type</span>
+            <span className="h-px flex-1 bg-border/50" />
+          </div>
         <div>
           <label className="mb-1.5 block text-sm font-medium">Type</label>
           <div className="flex gap-2 flex-wrap">
@@ -346,6 +353,7 @@ export default function EditPuzzlePage() {
               </button>
             ))}
           </div>
+        </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
