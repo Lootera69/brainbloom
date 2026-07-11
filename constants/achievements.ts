@@ -66,7 +66,7 @@ export const achievementsList = [
   {
     id: "hearts_saver",
     title: "Heart Saver",
-    description: "Finish a challenge without losing any hearts",
+    description: "Complete a lesson without losing any hearts",
     icon: "Heart",
     xp: 100,
     gems: 20,
