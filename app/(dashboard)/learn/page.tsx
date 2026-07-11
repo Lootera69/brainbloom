@@ -172,6 +172,8 @@ export default function LearnPage() {
   const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
     if (!currentPuzzle) return;
 
+    checkStreak();
+
     if (correct) {
       const firstTime = markPuzzleCompleted(currentPuzzle.id);
 
@@ -200,8 +202,6 @@ export default function LearnPage() {
         );
       }
     }
-
-    checkStreak();
     checkAchievements();
     logActivity({
       type: "daily",

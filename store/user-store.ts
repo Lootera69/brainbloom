@@ -360,7 +360,7 @@ export const useUserStore = create<UserState>()(
 
         if (lastActiveDate === today) {
           if (lastQuestRefresh !== today) {
-            set({ dailyQuests: getRefreshedQuests(), lastQuestRefresh: today, xpToday: 0, questsRewarded: [] });
+            set({ dailyQuests: getRefreshedQuests(), lastQuestRefresh: today, questsRewarded: [] });
           }
           return;
         }
