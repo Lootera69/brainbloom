@@ -1,83 +1,49 @@
 "use client";
 
-import { useId } from "react";
 import { motion } from "framer-motion";
-import { Target, TrendingUp } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { GlassCard } from "@/components/ui/glass-card";
 import { CountUp } from "@/features/home/components/CountUp";
 
 export function DailyGoalCard() {
-  const gradientId = useId();
   const xpToday = useUserStore((s) => s.xpToday);
   const dailyGoal = useUserStore((s) => s.dailyGoal);
 
   const progress = Math.min(xpToday / dailyGoal, 1);
-  const radius = 48;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference * (1 - progress);
+  const pct = Math.round(progress * 100);
   const remaining = Math.max(0, dailyGoal - xpToday);
 
   return (
-    <GlassCard intensity="light" className="flex h-full flex-col items-center justify-center gap-4 p-5 sm:p-6">
-      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Daily Goal</p>
+    <GlassCard intensity="light" className="flex h-full flex-col items-center justify-center p-5 sm:p-6">
+      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground/60">
+        Today
+      </p>
 
-      <div className="relative">
-        <svg width="120" height="120" className="-rotate-90">
-          <circle
-            cx="60"
-            cy="60"
-            r={radius}
-            fill="none"
-            stroke="var(--muted)"
-            strokeWidth="8"
-          />
-          <motion.circle
-            cx="60"
-            cy="60"
-            r={radius}
-            fill="none"
-            stroke={`url(#${gradientId})`}
-            strokeWidth="8"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            initial={{ strokeDashoffset: circumference }}
-            animate={{ strokeDashoffset: offset }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          />
-          <defs>
-            <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="var(--primary)" />
-              <stop offset="100%" stopColor="#8b5cf6" />
-            </linearGradient>
-          </defs>
-        </svg>
-        <Target className="absolute inset-0 m-auto size-7 text-primary" />
-      </div>
+      <motion.p
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ type: "spring", stiffness: 120, damping: 14 }}
+        className="mt-2 font-heading text-5xl font-bold tabular-nums leading-none tracking-tight"
+      >
+        <CountUp to={xpToday} duration={600} />
+      </motion.p>
 
-      <div className="text-center">
-        <p className="font-heading text-3xl font-bold tabular-nums">
-          <CountUp to={xpToday} duration={800} />
-        </p>
-        <p className="text-xs text-muted-foreground">
-          of {dailyGoal} XP
-        </p>
-      </div>
+      <p className="mt-1 text-xs text-muted-foreground/60">
+        of {dailyGoal} XP
+      </p>
 
-      {progress >= 1 ? (
+      <div className="relative mt-5 h-0.5 w-full max-w-[120px] overflow-hidden rounded-full bg-muted">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-semibold text-success"
-        >
-          <TrendingUp className="size-3.5" />
-          Goal reached
-        </motion.div>
-      ) : (
-        <p className="text-xs text-muted-foreground">
-          {remaining > 0 ? `${remaining} XP remaining` : ""}
-        </p>
-      )}
+          initial={{ width: 0 }}
+          animate={{ width: `${pct}%` }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="h-full rounded-full bg-gradient-to-r from-primary to-[#8b5cf6]"
+        />
+      </div>
+
+      <p className="mt-2 text-[11px] font-medium text-muted-foreground/40">
+        {progress >= 1 ? "Goal reached" : `${remaining} XP to go`}
+      </p>
     </GlassCard>
   );
 }
