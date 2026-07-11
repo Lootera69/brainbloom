@@ -4,9 +4,11 @@ import { questTemplates } from "@/constants/quests";
 import { achievementsList } from "@/constants/achievements";
 
 let heartsLostThisSession = false;
+let currentPuzzleHasLesson = false;
 export function resetHeartsLostFlag() { heartsLostThisSession = false; }
 export function setHeartsLostFlag() { heartsLostThisSession = true; }
 export function getHeartsLostFlag() { return heartsLostThisSession; }
+export function setPuzzleHasLesson(v: boolean) { currentPuzzleHasLesson = v; }
 
 export interface Activity {
   id: string;
@@ -690,7 +692,7 @@ export const useUserStore = create<UserState>()(
           { id: "all_categories", condition: new Set(history.map((h) => h.category)).size >= 4 },
           { id: "perfect_day", condition: dailyPuzzleStreak >= 5 },
           { id: "level_5", condition: level >= 5 },
-          { id: "hearts_saver", condition: !getHeartsLostFlag() && completedPuzzleIds.length >= 1 },
+          { id: "hearts_saver", condition: !getHeartsLostFlag() && currentPuzzleHasLesson },
           { id: "daily_goal_week", condition: dailyGoalStreak >= 7 },
         ];
 
