@@ -16,7 +16,7 @@ export function DailyGoalCard() {
   const offset = circumference * (1 - progress);
 
   return (
-    <GlassCard intensity="light" className="mb-6 p-5 sm:mb-8 sm:p-6">
+    <GlassCard intensity="light" className="p-5 sm:p-6">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm text-muted-foreground">Daily Goal</p>

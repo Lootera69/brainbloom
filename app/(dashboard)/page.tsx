@@ -37,17 +37,21 @@ export default function HomePage() {
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-5 sm:p-6">
       <StreakBar />
 
-      <DailyGoalCard />
+      <div className="mb-6 grid gap-6 sm:mb-8 md:grid-cols-3">
+        <div className="md:col-span-1">
+          <DailyGoalCard />
+        </div>
+        <div className="md:col-span-2">
+          <DailyChallengeCard puzzle={dailyPuzzle} loading={dailyLoading} />
+        </div>
+      </div>
+
       <DailyRewardChest />
       <WeeklyInsights />
 
       <DailyQuests />
 
       <PracticeToHeal />
-
-      <section className="mb-8 sm:mb-10">
-        <DailyChallengeCard puzzle={dailyPuzzle} loading={dailyLoading} />
-      </section>
 
       <div className="mb-8 sm:mb-10">
         <Link href="/learn">
