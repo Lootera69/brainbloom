@@ -31,7 +31,7 @@ export function DailyGoalCard() {
       {PARTICLES.map((p, i) => (
         <motion.span
           key={i}
-          className="absolute rounded-full bg-primary/30"
+          className={`absolute rounded-full ${complete ? "bg-success/40" : "bg-primary/30"}`}
           style={{ width: p.size, height: p.size, left: `${p.x}%`, bottom: 0 }}
           animate={{
             y: [0, -140 - (i % 3) * 30],
