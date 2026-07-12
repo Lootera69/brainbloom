@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, User, Loader2, Zap, Brain, Flame, Mail, Lock, Eye, EyeOff, ArrowLeft, CheckCircle, AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
-import { signInWithGoogle, signUpWithEmailFull, signInWithEmailFull, sendPasswordReset } from "@/services/firebase";
+import { signInWithGoogle, signUpWithEmailFull, signInWithEmailFull, sendPasswordReset, sendVerificationEmail } from "@/services/firebase";
 import { Toaster, toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
@@ -142,6 +142,8 @@ export default function LoginPage() {
 
     if (result.error) { setError(result.error); return; }
     if (result.user) {
+      sendVerificationEmail(result.user);
+      toast.success("Account created! Check your email to verify.", { position: "top-center", duration: 6000 });
       setUser({
         uid: result.user.uid,
         displayName: displayName.trim(),

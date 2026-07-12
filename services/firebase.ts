@@ -8,6 +8,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   updateProfile,
+  sendEmailVerification,
   type User,
 } from "firebase/auth";
 import { getFirestore, type Firestore } from "firebase/firestore";
@@ -146,6 +147,28 @@ export async function signInWithEmailFull(
     if (code === "auth/user-disabled") return { user: null, error: "This account has been disabled" };
     return { user: null, error: "Something went wrong. Please try again" };
   }
+}
+
+export async function sendVerificationEmail(user?: User): Promise<{ success: boolean; error?: string }> {
+  const { auth: fbAuth } = initFirebase();
+  const target = user ?? fbAuth?.currentUser;
+  if (!target) return { success: false, error: "No user signed in" };
+  try {
+    await sendEmailVerification(target);
+    return { success: true };
+  } catch {
+    return { success: false, error: "Failed to send verification email" };
+  }
+}
+
+export function getCurrentUserEmailVerified(): boolean {
+  const { auth: fbAuth } = initFirebase();
+  return fbAuth?.currentUser?.emailVerified ?? false;
+}
+
+export function getCurrentFirebaseUser() {
+  const { auth: fbAuth } = initFirebase();
+  return fbAuth?.currentUser ?? null;
 }
 
 export async function sendPasswordReset(email: string): Promise<{ success: boolean; error?: string }> {
