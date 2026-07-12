@@ -231,36 +231,41 @@ export const AvatarPanda: React.FC<AvatarSvgProps> = ({ size = 100, className })
   );
 };
 
-export const AvatarBunny: React.FC<AvatarSvgProps> = ({ size = 100, className }) => {
-  const g = uid("bunny");
+export const AvatarRooster: React.FC<AvatarSvgProps> = ({ size = 100, className }) => {
+  const g = uid("rooster");
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none" className={className}>
       <defs>
-        <radialGradient id={g} cx="40%" cy="30%" r="65%">
-          <stop offset="0%" stopColor="#a78bfa" />
-          <stop offset="100%" stopColor="#7c3aed" />
+        <radialGradient id={g} cx="45%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#f97316" />
+          <stop offset="100%" stopColor="#c2410c" />
         </radialGradient>
       </defs>
       <circle cx="50" cy="50" r="47" fill={`url(#${g})`} />
-      <ellipse cx="30" cy="22" rx="8" ry="20" transform="rotate(-12 30 22)" fill={`url(#${g})`} />
-      <ellipse cx="70" cy="22" rx="8" ry="20" transform="rotate(12 70 22)" fill={`url(#${g})`} />
-      <ellipse cx="30" cy="22" rx="4" ry="14" transform="rotate(-12 30 22)" fill="rgba(255,255,255,0.15)" />
-      <ellipse cx="70" cy="22" rx="4" ry="14" transform="rotate(12 70 22)" fill="rgba(255,255,255,0.15)" />
-      <circle cx="50" cy="52" r="28" fill="rgba(255,255,255,0.12)" />
-      <circle cx="36" cy="46" r="9" fill="white" />
-      <circle cx="64" cy="46" r="9" fill="white" />
-      <circle cx="36" cy="46" r="5" fill="#1e1b4b" />
-      <circle cx="64" cy="46" r="5" fill="#1e1b4b" />
-      <circle cx="38" cy="44" r="2" fill="white" />
-      <circle cx="66" cy="44" r="2" fill="white" />
-      {blinkOverlay(36, 46, 9.5, 9.5, g)}
-      {blinkOverlay(64, 46, 9.5, 9.5, g)}
-      <ellipse cx="50" cy="57" rx="3" ry="2.5" fill="#a78bfa" />
-      <circle cx="42" cy="64" r="1.5" fill="rgba(255,255,255,0.25)" />
-      <circle cx="46" cy="66" r="1.5" fill="rgba(255,255,255,0.25)" />
-      <circle cx="54" cy="66" r="1.5" fill="rgba(255,255,255,0.25)" />
-      <circle cx="58" cy="64" r="1.5" fill="rgba(255,255,255,0.25)" />
-      <ellipse cx="50" cy="80" rx="14" ry="8" fill="rgba(255,255,255,0.06)" />
+      <path d="M32 24 L40 10 L50 22 Z" fill="none" stroke="#c2410c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M32 24 Q20 36 24 38 Q28 34 32 24 Z" fill="#dc2626" />
+      <path d="M50 22 L52 18 Q48 14 46 18 Z" fill="#c2410c" />
+      <circle cx="28" cy="32" r="3" fill="#dc2626" />
+      <circle cx="30" cy="34" r="2" fill="#dc2626" />
+      <circle cx="26" cy="34" r="1.5" fill="#dc2626" />
+      <circle cx="50" cy="46" r="34" fill="rgba(255,255,255,0.12)" />
+      <circle cx="36" cy="40" r="7" fill="white" />
+      <circle cx="64" cy="40" r="7" fill="white" />
+      <circle cx="36" cy="40" r="3.5" fill="#1e1b4b" />
+      <circle cx="64" cy="40" r="3.5" fill="#1e1b4b" />
+      <circle cx="38" cy="38" r="1.5" fill="white" />
+      <circle cx="66" cy="38" r="1.5" fill="white" />
+      {blinkOverlay(36, 40, 7.5, 7.5, g)}
+      {blinkOverlay(64, 40, 7.5, 7.5, g)}
+      <path d="M42 46 L50 44 L58 46 Z" fill="#fbbf24" stroke="#c2410c" strokeWidth="0.8" />
+      <path d="M44 44 L50 42 L56 44 Z" fill="#f59e0b" />
+      <ellipse cx="50" cy="52" rx="8" ry="6" fill="#dc2626" />
+      <path d="M44 54 Q50 68 56 54" fill="none" stroke="#fca5a5" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="23" cy="54" r="4" fill="rgba(255,255,255,0.1)" />
+      <circle cx="77" cy="54" r="4" fill="rgba(255,255,255,0.1)" />
+      <line x1="18" y1="58" x2="26" y2="56" stroke="#c2410c" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="82" y1="58" x2="74" y2="56" stroke="#c2410c" strokeWidth="1.5" strokeLinecap="round" />
+      <ellipse cx="50" cy="88" rx="16" ry="6" fill="rgba(255,255,255,0.06)" />
     </svg>
   );
 };
@@ -311,7 +316,7 @@ export const avatars: AvatarDefinition[] = [
   { id: "dog", name: "Dog", component: AvatarDog },
   { id: "ufo", name: "UFO", component: AvatarUfo },
   { id: "panda", name: "Panda", component: AvatarPanda },
-  { id: "bunny", name: "Bunny", component: AvatarBunny },
+  { id: "rooster", name: "Rooster", component: AvatarRooster },
   { id: "turtle", name: "Turtle", component: AvatarTurtle },
 ];
 
