@@ -73,6 +73,8 @@ interface UserState {
   dailyGoalStreak: number;
   dailyGoalLastHitDate: string | null;
   pendingCelebration: { type: "achievement" | "level-up"; title: string; subtitle?: string; xp?: number; gems?: number } | null;
+  streakStartDate: string | null;
+  activeDates: string[];
 
   loginAsGuest: () => void;
   setUser: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
@@ -213,6 +215,8 @@ export const useUserStore = create<UserState>()(
       dailyGoalStreak: 0,
       dailyGoalLastHitDate: null,
       pendingCelebration: null,
+      streakStartDate: null,
+      activeDates: [],
 
       loginAsGuest: () => {
         set({
@@ -278,6 +282,8 @@ export const useUserStore = create<UserState>()(
             brokenDays: s.brokenDays,
             dailyGoalStreak: s.dailyGoalStreak,
             dailyGoalLastHitDate: s.dailyGoalLastHitDate,
+            streakStartDate: s.streakStartDate,
+            activeDates: s.activeDates,
           }),
         );
       },
@@ -323,6 +329,8 @@ export const useUserStore = create<UserState>()(
               brokenDays: data.brokenDays ?? s.brokenDays,
               dailyGoalStreak: data.dailyGoalStreak ?? s.dailyGoalStreak,
               dailyGoalLastHitDate: data.dailyGoalLastHitDate ?? s.dailyGoalLastHitDate,
+              streakStartDate: data.streakStartDate ?? s.streakStartDate,
+              activeDates: data.activeDates ?? s.activeDates,
             });
             get().checkWeeklyReset();
           } else {
@@ -370,9 +378,11 @@ export const useUserStore = create<UserState>()(
           weeklyStartDate: Date.now(),
           frozenDays: [],
           brokenDays: [],
-          dailyGoalStreak: 0,
-          dailyGoalLastHitDate: null,
-          pendingCelebration: null,
+      dailyGoalStreak: 0,
+      dailyGoalLastHitDate: null,
+      pendingCelebration: null,
+      streakStartDate: null,
+      activeDates: [],
 
         });
       },
@@ -430,7 +440,7 @@ export const useUserStore = create<UserState>()(
       restoreHearts: () => set({ hearts: 5, nextHeartAt: null }),
 
       checkStreak: () => {
-        const { lastActiveDate, streak, streakFreezes, dailyQuests, lastQuestRefresh, frozenDays, brokenDays } = get();
+        const { lastActiveDate, streak, streakFreezes, dailyQuests, lastQuestRefresh, frozenDays, brokenDays, streakStartDate, activeDates } = get();
         const today = new Date().toDateString();
 
         if (lastActiveDate === today) {
@@ -453,6 +463,8 @@ export const useUserStore = create<UserState>()(
             questsRewarded: [],
             practiceHeartsToday: 0,
             lastPracticeDate: today,
+            streakStartDate: today,
+            activeDates: [today],
           });
           return;
         }
@@ -474,7 +486,7 @@ export const useUserStore = create<UserState>()(
         if (missedDays === 0) {
           newStreak = streak + 1;
         } else if (freezesToConsume === missedDays) {
-          newStreak = streak;
+          newStreak = streak + 1;
           for (const d of gapDates) {
             if (!newFrozenDays.includes(d)) newFrozenDays.push(d);
           }
@@ -490,10 +502,25 @@ export const useUserStore = create<UserState>()(
           }
         }
 
-        // Prune to last 14 days to prevent unbounded growth
+        // Track active dates for month-view support
+        let newActiveDates = [...activeDates];
+        let newStreakStartDate = streakStartDate;
+        if (missedDays === 0 || (freezesToConsume === missedDays && missedDays > 0)) {
+          if (!newActiveDates.includes(today)) newActiveDates.push(today);
+        } else {
+          // Streak broken — reset
+          newActiveDates = [today];
+          newStreakStartDate = today;
+        }
+        // Prune activeDates to last 365 days
+        const yearCutoff = new Date();
+        yearCutoff.setDate(yearCutoff.getDate() - 365);
+        const yearCutoffMs = yearCutoff.getTime();
+        newActiveDates = newActiveDates.filter((d) => new Date(d).getTime() >= yearCutoffMs);
+
+        // Prune frozen/broken to last 14 days
         const cutoff = new Date();
         cutoff.setDate(cutoff.getDate() - 14);
-        const cutoffStr = cutoff.toDateString();
         const cutoffMs = cutoff.getTime();
         const prune = (arr: string[]) => arr.filter((d) => new Date(d).getTime() >= cutoffMs);
 
@@ -509,6 +536,8 @@ export const useUserStore = create<UserState>()(
           lastPracticeDate: today,
           frozenDays: prune(newFrozenDays),
           brokenDays: prune(newBrokenDays),
+          streakStartDate: newStreakStartDate,
+          activeDates: newActiveDates,
         });
       },
 

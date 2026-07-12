@@ -74,6 +74,7 @@ export default function LearnPage() {
   const lastActiveDate = useUserStore((s) => s.lastActiveDate);
   const frozenDays = useUserStore((s) => s.frozenDays);
   const brokenDays = useUserStore((s) => s.brokenDays);
+  const streakStartDate = useUserStore((s) => s.streakStartDate);
 
   const streakMaintainedToday = useMemo(() => {
     return lastActiveDate === new Date().toDateString();
@@ -84,19 +85,19 @@ export default function LearnPage() {
     today.setHours(0, 0, 0, 0);
     const todayMs = today.getTime();
     const lastActiveMs = lastActiveDate ? new Date(lastActiveDate).getTime() : null;
-    const streakStartMs = lastActiveMs != null ? lastActiveMs - (streak - 1) * 86400000 : null;
+    const streakStartMs = streakStartDate ? new Date(streakStartDate).getTime() : null;
     const dayLabels = ["S", "M", "T", "W", "T", "F", "S"];
     const days: { status: "filled" | "frozen" | "broken" | "empty"; label: string; isToday: boolean }[] = [];
     for (let i = 6; i >= 0; i--) {
       const dateMs = todayMs - i * 86400000;
       const dateStr = new Date(dateMs).toDateString();
-      const filled = streakStartMs != null && lastActiveMs != null ? dateMs >= streakStartMs && dateMs <= lastActiveMs : false;
-      const frozen = !filled && frozenDays.includes(dateStr);
+      const frozen = frozenDays.includes(dateStr);
+      const filled = !frozen && streakStartMs != null && lastActiveMs != null ? dateMs >= streakStartMs && dateMs <= lastActiveMs : false;
       const broken = !filled && !frozen && brokenDays.includes(dateStr);
       days.push({ status: filled ? "filled" : frozen ? "frozen" : broken ? "broken" : "empty", label: dayLabels[new Date(dateMs).getDay()], isToday: i === 0 });
     }
     return days;
-  }, [streak, lastActiveDate, frozenDays, brokenDays]);
+  }, [streak, lastActiveDate, frozenDays, brokenDays, streakStartDate]);
 
   useEffect(() => {
     const tick = () => {

@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Flame, Zap, Heart, Gem, X, CheckCircle2, Snowflake } from "lucide-react";
+import { Flame, Zap, Heart, Gem, X, CheckCircle2, Snowflake, CalendarDays, Calendar } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { CountUp } from "@/features/home/components/CountUp";
 import { GlassCard } from "@/components/ui/glass-card";
+import { MonthlyStreakView } from "@/features/home/components/MonthlyStreakView";
 import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
@@ -16,27 +17,30 @@ export function StreakBar() {
   const lastActiveDate = useUserStore((s) => s.lastActiveDate);
   const frozenDays = useUserStore((s) => s.frozenDays);
   const brokenDays = useUserStore((s) => s.brokenDays);
+  const streakStartDate = useUserStore((s) => s.streakStartDate);
+  const activeDates = useUserStore((s) => s.activeDates);
   const maxHearts = 5;
   const [showStreak, setShowStreak] = useState(false);
+  const [streakTab, setStreakTab] = useState<"week" | "month">("week");
 
   const streakDays = useMemo(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const todayMs = today.getTime();
     const lastActiveMs = lastActiveDate ? new Date(lastActiveDate).getTime() : null;
-    const streakStartMs = lastActiveMs != null ? lastActiveMs - (streak - 1) * 86400000 : null;
+    const streakStartMs = streakStartDate ? new Date(streakStartDate).getTime() : null;
     const dayLabels = ["S", "M", "T", "W", "T", "F", "S"];
     const days: { status: "filled" | "frozen" | "broken" | "empty"; label: string; isToday: boolean }[] = [];
     for (let i = 6; i >= 0; i--) {
       const dateMs = todayMs - i * 86400000;
       const dateStr = new Date(dateMs).toDateString();
-      const filled = streakStartMs != null && lastActiveMs != null ? dateMs >= streakStartMs && dateMs <= lastActiveMs : false;
-      const frozen = !filled && frozenDays.includes(dateStr);
+      const frozen = frozenDays.includes(dateStr);
+      const filled = !frozen && streakStartMs != null && lastActiveMs != null ? dateMs >= streakStartMs && dateMs <= lastActiveMs : false;
       const broken = !filled && !frozen && brokenDays.includes(dateStr);
       days.push({ status: filled ? "filled" : frozen ? "frozen" : broken ? "broken" : "empty", label: dayLabels[new Date(dateMs).getDay()], isToday: i === 0 });
     }
     return days;
-  }, [streak, lastActiveDate, frozenDays, brokenDays]);
+  }, [streak, lastActiveDate, frozenDays, brokenDays, streakStartDate]);
 
   const keptToday = useMemo(() => lastActiveDate === new Date().toDateString(), [lastActiveDate]);
 
@@ -97,7 +101,7 @@ export function StreakBar() {
   ];
 
   const handleClick = (onClick?: () => void) => {
-    if (onClick) onClick();
+    if (onClick) { setStreakTab("week"); onClick(); }
   };
 
   return (
@@ -161,12 +165,15 @@ export function StreakBar() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="relative w-full max-w-xs rounded-2xl border bg-card p-6 shadow-2xl"
+              className={cn(
+                "relative w-full rounded-2xl border bg-card p-6 shadow-2xl",
+                streakTab === "month" ? "max-w-sm" : "max-w-xs",
+              )}
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setShowStreak(false)}
-                className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted"
+                className="absolute right-3 top-3 z-10 flex size-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted"
               >
                 <X className="size-4" />
               </button>
@@ -183,27 +190,77 @@ export function StreakBar() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-center gap-1.5">
-                {streakDays.map((d, i) => (
-                  <div key={i} className="flex flex-col items-center gap-1">
-                    <span className="text-[10px] font-medium text-muted-foreground">{d.label}</span>
-                    <div
-                      className={cn(
-                        "flex size-7 items-center justify-center rounded-full border-2 transition-colors sm:size-8",
-                        d.status === "filled" && "border-orange-500 bg-orange-500",
-                        d.status === "frozen" && "border-blue-400 bg-blue-500/10",
-                        d.status === "broken" && "border-red-400 bg-red-500/10",
-                        d.status === "empty" && d.isToday && "border-muted-foreground/40",
-                        d.status === "empty" && !d.isToday && "border-muted-foreground/15",
-                      )}
-                    >
-                      {d.status === "filled" && <CheckCircle2 className="size-full p-1 text-white" />}
-                      {d.status === "frozen" && <Snowflake className="size-full p-1 text-blue-400" />}
-                      {d.status === "broken" && <X className="size-full p-1 text-red-400" />}
-                    </div>
-                  </div>
-                ))}
+              {/* Week / Month tabs */}
+              <div className="mb-4 flex gap-1 rounded-lg bg-muted/50 p-0.5">
+                <button
+                  onClick={() => setStreakTab("week")}
+                  className={cn(
+                    "flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-all",
+                    streakTab === "week" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  <CalendarDays className="size-3.5" />
+                  Week
+                </button>
+                <button
+                  onClick={() => setStreakTab("month")}
+                  className={cn(
+                    "flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-all",
+                    streakTab === "month" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  <Calendar className="size-3.5" />
+                  Month
+                </button>
               </div>
+
+              <AnimatePresence mode="wait">
+                {streakTab === "week" ? (
+                  <motion.div
+                    key="week"
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 12 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <div className="flex items-center justify-center gap-1.5">
+                      {streakDays.map((d, i) => (
+                        <div key={i} className="flex flex-col items-center gap-1">
+                          <span className="text-[10px] font-medium text-muted-foreground">{d.label}</span>
+                          <div
+                            className={cn(
+                              "flex size-7 items-center justify-center rounded-full border-2 transition-colors sm:size-8",
+                              d.status === "filled" && "border-orange-500 bg-orange-500",
+                              d.status === "frozen" && "border-blue-400 bg-blue-500/10",
+                              d.status === "broken" && "border-red-400 bg-red-500/10",
+                              d.status === "empty" && d.isToday && "border-muted-foreground/40",
+                              d.status === "empty" && !d.isToday && "border-muted-foreground/15",
+                            )}
+                          >
+                            {d.status === "filled" && <CheckCircle2 className="size-full p-1 text-white" />}
+                            {d.status === "frozen" && <Snowflake className="size-full p-1 text-blue-400" />}
+                            {d.status === "broken" && <X className="size-full p-1 text-red-400" />}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="month"
+                    initial={{ opacity: 0, x: 12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    transition={{ duration: 0.15 }}
+                  >
+                    <MonthlyStreakView
+                      activeDates={activeDates}
+                      frozenDays={frozenDays}
+                      brokenDays={brokenDays}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           </motion.div>
         )}

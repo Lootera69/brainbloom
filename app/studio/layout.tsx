@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight, Eye, EyeOff, XCircle } from "lucide-react";
+import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight, Eye, EyeOff, XCircle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getStudioSession, setStudioSession, clearStudioSession } from "@/services/puzzle-service";
 import { verifyStudioCredentials } from "@/services/studio-settings";
@@ -29,6 +29,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   const [role, setRole] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [inputFocus, setInputFocus] = useState<"code" | "password" | null>(null);
+  const [loading, setLoading] = useState(false);
   const pathname = usePathname();
 
   // Reduced-motion check runs on mount (client only)
@@ -50,7 +51,10 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setError(false);
     const entry = await verifyStudioCredentials(inviteCode, password);
+    setLoading(false);
     if (entry) {
       setStudioSession(inviteCode);
       setStudioRole(entry.role);
@@ -275,17 +279,23 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
               >
                 <button
                   type="submit"
+                  disabled={loading}
                   className={cn(
                     "relative overflow-hidden flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white transition-all duration-300",
                     "before:absolute before:inset-0 before:-translate-x-full before:skew-x-12 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent",
                     "hover:brightness-110 hover:shadow-xl hover:shadow-primary/25",
                     "active:scale-[0.98] active:brightness-100",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                    loading && "opacity-80 cursor-not-allowed"
                   )}
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    <Lock className="size-4" aria-hidden="true" />
-                    Unlock Studio
+                    {loading ? (
+                      <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                    ) : (
+                      <Lock className="size-4" aria-hidden="true" />
+                    )}
+                    {loading ? "Authenticating…" : "Unlock Studio"}
                   </span>
                   {/* Shimmer sweep on hover */}
                   <motion.div
@@ -293,7 +303,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
                     initial={{ x: "-100%" }}
                     whileHover={{ x: "200%" }}
                     transition={{ duration: 0.7, ease: "easeOut" }}
-                    style={{ display: prefersReducedMotion ? "none" : "block" }}
+                    style={{ display: prefersReducedMotion || loading ? "none" : "block" }}
                   />
                 </button>
               </motion.div>
