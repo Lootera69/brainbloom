@@ -9,6 +9,8 @@ import { signInWithGoogle, signUpWithEmailFull, signInWithEmailFull, sendPasswor
 import { Toaster, toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import OnboardingFlow from "@/components/onboarding/OnboardingFlow";
+import AvatarWithEyes from "@/components/onboarding/AvatarWithEyes";
 
 const firebaseConfigured =
   typeof process !== "undefined" &&
@@ -41,8 +43,21 @@ export default function LoginPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [verifyingEmail, setVerifyingEmail] = useState(false);
 
+  const [ready, setReady] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [selectedAvatarId, setSelectedAvatarId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const complete = localStorage.getItem("brainbloom-onboarding-complete") === "true";
+    setShowOnboarding(!complete);
+    setReady(true);
+    const avatarId = localStorage.getItem("brainbloom-selected-avatar");
+    if (avatarId) setSelectedAvatarId(avatarId);
+  }, []);
+
   const loginAsGuest = useUserStore((s) => s.loginAsGuest);
   const setUser = useUserStore((s) => s.setUser);
+  const setAvatarId = useUserStore((s) => s.setAvatarId);
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
 
   const emailRef = useRef<HTMLInputElement>(null);
@@ -74,8 +89,19 @@ export default function LoginPage() {
     setShowConfirmPassword(false);
   }, [mode]);
 
+  const handleOnboardingComplete = () => {
+    setShowOnboarding(false);
+    const avatarId = localStorage.getItem("brainbloom-selected-avatar");
+    if (avatarId) setSelectedAvatarId(avatarId);
+  };
+
   const handleGuest = () => {
     loginAsGuest();
+    // Apply avatar from onboarding if selected
+    const avatarId = localStorage.getItem("brainbloom-selected-avatar");
+    if (avatarId) {
+      setAvatarId(avatarId);
+    }
     router.push("/");
   };
 
@@ -205,7 +231,11 @@ export default function LoginPage() {
 
   const TaglineIcon = taglines[taglineIndex].icon;
 
-  if (pageLoading) {
+  if (showOnboarding) {
+    return <OnboardingFlow onComplete={handleOnboardingComplete} />;
+  }
+
+  if (!ready || pageLoading) {
     return (
       <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-y-auto px-6">
         <div className="flex flex-col items-center gap-6">
@@ -256,7 +286,18 @@ export default function LoginPage() {
           BrainBloom
         </h1>
 
-        <div className="mt-3 flex items-center gap-2">
+        <div className="mt-3 flex items-center justify-center">
+          {selectedAvatarId && (
+            <motion.div
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="shrink-0"
+              style={{ width: 60 }}
+            >
+              <AvatarWithEyes avatarId={selectedAvatarId} size={56} />
+            </motion.div>
+          )}
           <motion.div
             key={taglineIndex}
             initial={{ opacity: 0, y: 8, filter: "blur(4px)" }}
