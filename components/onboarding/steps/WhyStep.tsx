@@ -32,7 +32,7 @@ const cards = [
     icon: Bird,
     title: "Your Guide Awaits",
     description:
-      "A spirit animal will walk with you on this journey. Pick yours when you start.",
+      "A spirit guide will accompany you through every puzzle. Pick yours when you start.",
     gradient: "from-[#8b5cf6]/20 to-primary/10",
     iconColor: "text-[#8b5cf6]",
   },
