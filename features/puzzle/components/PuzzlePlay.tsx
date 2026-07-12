@@ -10,7 +10,7 @@ import { CrosswordPlay } from "./CrosswordPlay";
 import { TypeAnswerPlay } from "./TypeAnswerPlay";
 import { SudokuPlay } from "./SudokuPlay";
 import { RiddlePlay } from "./RiddlePlay";
-import { resetHeartsLostFlag, setHeartsLostFlag, setPuzzleHasLesson } from "@/store/user-store";
+import { setHeartsLostFlag, setPuzzleHasLesson } from "@/store/user-store";
 
 interface Props {
   puzzle: Puzzle;
@@ -330,7 +330,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
 }
 
 export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
-  useEffect(() => { resetHeartsLostFlag(); setPuzzleHasLesson(!!puzzle.lessonContent); }, [puzzle.id]);
+  useEffect(() => { setPuzzleHasLesson(!!puzzle.lessonContent); }, [puzzle.id]);
 
   const handleComplete = (correct: boolean, xpEarned: number) => {
     if (correct) {

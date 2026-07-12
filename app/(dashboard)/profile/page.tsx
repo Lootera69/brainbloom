@@ -30,7 +30,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUserStore, getLevelProgress } from "@/store/user-store";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-import { signOutUser, sendPasswordReset, sendVerificationEmail, getCurrentUserEmailVerified } from "@/services/firebase";
+import { signOutUser, sendPasswordReset } from "@/services/firebase";
 
 function getLevel(xp: number) {
   return getLevelProgress(xp);
@@ -74,9 +74,6 @@ export default function ProfilePage() {
   const soundEnabled = useUserStore((s) => s.soundEnabled);
   const setSoundEnabled = useUserStore((s) => s.setSoundEnabled);
 
-  const [emailVerified, setEmailVerified] = useState(false);
-  const [verifying, setVerifying] = useState(false);
-
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
   const [timer, setTimer] = useState(0);
@@ -91,12 +88,6 @@ export default function ProfilePage() {
     return () => clearInterval(interval);
   }, [processHeartRefill, getHeartTimer]);
 
-  useEffect(() => {
-    if (!isGuest && !photoURL && email) {
-      setEmailVerified(getCurrentUserEmailVerified());
-    }
-  }, [isGuest, photoURL, email]);
-
   const { level, progress, xpToNext } = useMemo(() => getLevel(xp), [xp]);
 
   const initials = displayName
@@ -110,18 +101,6 @@ export default function ProfilePage() {
     await signOutUser();
     logout();
     router.push("/login");
-  };
-
-  const handleResendVerification = async () => {
-    setVerifying(true);
-    const result = await sendVerificationEmail();
-    setVerifying(false);
-    if (result.success) {
-      toast.success("Verification email sent! Check your inbox.", { position: "top-center" });
-      setEmailVerified(false);
-    } else {
-      toast.error(result.error ?? "Failed to send verification email", { position: "top-center" });
-    }
   };
 
   const handleChangePassword = async () => {
@@ -359,49 +338,14 @@ export default function ProfilePage() {
         </motion.div>
       </div>
 
-      {/* Email Verification + Password (email auth only) */}
+      {/* Change Password (email auth only) */}
       {authType === "email" && (
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
-          className="mt-3 flex flex-col gap-3"
+          className="mt-3"
         >
-          {/* Verification status */}
-          <GlassCard intensity="light" className="flex items-center justify-between p-4">
-            <div className="flex items-center gap-3">
-              <span className={cn(
-                "flex size-10 items-center justify-center rounded-xl",
-                emailVerified ? "bg-emerald-500/10" : "bg-warning/10",
-              )}>
-                {emailVerified ? (
-                  <Check className="size-5 text-emerald-500" />
-                ) : (
-                  <Mail className="size-5 text-warning" />
-                )}
-              </span>
-              <div>
-                <p className="text-sm font-semibold">Email Verification</p>
-                <p className="text-[11px] text-muted-foreground">
-                  {emailVerified ? "Verified" : "Not verified"}
-                </p>
-              </div>
-            </div>
-            {!emailVerified && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleResendVerification}
-                disabled={verifying}
-                className="h-8 gap-1.5 text-xs"
-              >
-                {verifying ? <Loader2 className="size-3.5 animate-spin" /> : <Mail className="size-3.5" />}
-                Resend
-              </Button>
-            )}
-          </GlassCard>
-
-          {/* Change Password */}
           <GlassCard intensity="light" className="flex items-center justify-between p-4">
             <div className="flex items-center gap-3">
               <span className="flex size-10 items-center justify-center rounded-xl bg-muted">

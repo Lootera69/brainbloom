@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Heart, HeartCrack, ArrowLeft, Sparkles, Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Flame, CheckCircle2, Loader2, Clock, Snowflake, X
 } from "lucide-react";
-import { useUserStore } from "@/store/user-store";
+import { useUserStore, resetHeartsLostFlag, setPuzzleHasLesson } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
 import { CurriculumPath, type LessonProgress } from "@/features/puzzle/components/CurriculumPath";
 import { LessonView } from "@/features/puzzle/components/LessonView";
@@ -161,6 +161,8 @@ export default function LearnPage() {
 
   const handleStartPuzzle = useCallback(async (puzzle: Puzzle, progress?: LessonProgress) => {
     if (hearts <= 0) return;
+    resetHeartsLostFlag();
+    setPuzzleHasLesson(!!puzzle.lessonContent);
     setIsDaily(false);
     setLastPlayedCategory(puzzle.category);
     setLessonProgress(progress ?? null);
@@ -220,7 +222,6 @@ export default function LearnPage() {
 
       // Auto-advance: if this is a lesson puzzle, find and jump to next sub-lesson
       if (lessonProgress) {
-        checkAchievements();
         logActivity({
           type: "daily",
           category: currentPuzzle.category || "general",
