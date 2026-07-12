@@ -39,6 +39,7 @@ interface UserState {
   displayName: string;
   email: string | null;
   photoURL: string | null;
+  avatarId: string | null;
   isGuest: boolean;
   isAuthenticated: boolean;
   xp: number;
@@ -78,6 +79,7 @@ interface UserState {
 
   loginAsGuest: () => void;
   setUser: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
+  setAvatarId: (avatarId: string | null) => void;
   logout: () => void;
   syncToFirestore: () => void;
   loadFromFirestore: () => Promise<void>;
@@ -181,6 +183,7 @@ export const useUserStore = create<UserState>()(
       displayName: "",
       email: null,
       photoURL: null,
+      avatarId: null,
       isGuest: false,
       isAuthenticated: false,
       xp: 0,
@@ -224,6 +227,7 @@ export const useUserStore = create<UserState>()(
           displayName: "Guest",
           email: null,
           photoURL: null,
+          avatarId: null,
           isGuest: true,
           isAuthenticated: true,
         });
@@ -235,6 +239,7 @@ export const useUserStore = create<UserState>()(
           displayName: user.displayName,
           email: user.email,
           photoURL: user.photoURL,
+          avatarId: null,
           isGuest: false,
           isAuthenticated: true,
         });
@@ -242,6 +247,11 @@ export const useUserStore = create<UserState>()(
           await get().loadFromFirestore();
           setTimeout(() => get().syncToFirestore(), 200);
         }, 100);
+      },
+
+      setAvatarId: (avatarId) => {
+        set({ avatarId });
+        get().syncToFirestore();
       },
 
       syncToFirestore: () => {
@@ -252,6 +262,7 @@ export const useUserStore = create<UserState>()(
             displayName: s.displayName,
             email: s.email,
             photoURL: s.photoURL,
+            avatarId: s.avatarId,
             xp: s.xp,
             xpToday: s.xpToday,
             streak: s.streak,
@@ -299,6 +310,7 @@ export const useUserStore = create<UserState>()(
               displayName: data.displayName ?? s.displayName,
               email: data.email ?? s.email,
               photoURL: data.photoURL ?? s.photoURL,
+              avatarId: data.avatarId ?? s.avatarId,
               xp: data.xp ?? s.xp,
               xpToday: data.xpToday ?? s.xpToday,
               streak: data.streak ?? s.streak,
@@ -347,6 +359,7 @@ export const useUserStore = create<UserState>()(
           displayName: "",
           email: null,
           photoURL: null,
+          avatarId: null,
           isGuest: false,
           isAuthenticated: false,
           xp: 0,

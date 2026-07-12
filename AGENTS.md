@@ -1,19 +1,98 @@
-# BrainBloom Strategy
+# BrainBloom — Full Project Reference
 
-## Architecture
-- **Player App** → `(dashboard)` route group — consumer-facing mobile-first PWA
-- **Puzzle Studio** → `(studio)` route group — internal platform to create, edit, test, publish puzzles
-- **Auth** → Guest-first (localStorage via Zustand persist), optional Google sign-in (Firebase Auth)
-- **Data** → Firestore (free tier: 1GB, 50K reads/day) with localStorage fallback for dev
+## Overview
+BrainBloom is a **mobile-first PWA** for daily brain training (puzzles, quizzes, riddles). It has two route groups:
+- **`(dashboard)`** — Player App (home, learn, profile, achievements, leaderboard)
+- **`(studio)`** — Puzzle Studio (create/edit/publish puzzles, analytics, settings, seed)
+- **`(auth)`** — Login page (guest, Google, email/password with verification)
+
+Deployed at **brainblooms.vercel.app**.
+
+---
 
 ## Tech Stack
-- Next.js 16 App Router, TypeScript, Tailwind v4, shadcn/ui, Framer Motion, Zustand
-- Firebase (Auth + Firestore) — only when env vars are configured
-- No paid services — everything on free tier
+- **Framework**: Next.js 16 (App Router, Turbopack)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4, shadcn/ui primitives
+- **Animation**: Framer Motion (spring animations, AnimatePresence)
+- **State**: Zustand (persist middleware → localStorage)
+- **Backend**: Firebase Auth + Firestore (free tier)
+  - Only active when `NEXT_PUBLIC_FIREBASE_API_KEY` env var is set
+  - Firestore collections: `puzzles`, `users/{uid}`, `settings/studio`
+- **Image hosting**: imgbb API (free, unlimited, base64 upload)
+- **Payments**: None — everything on free tier
+
+---
+
+## Project Structure
+```
+app/
+  (auth)/login/page.tsx          — Login page (guest, Google, email/password, verify)
+  (dashboard)/
+    page.tsx                     — Home (daily puzzle, streak, weekly insights, daily reward chest)
+    learn/page.tsx               — Puzzle browser + learning path + curriculum
+    profile/page.tsx             — User profile (stats, achievements, settings)
+    achievements/page.tsx        — Achievement list
+  (studio)/
+    page.tsx                     — Studio dashboard (puzzle list, review workflow)
+    create/page.tsx              — Puzzle create form
+    edit/[id]/page.tsx           — Puzzle edit form
+    settings/page.tsx            — Lesson hierarchy + invite codes
+    analytics/page.tsx           — Analytics dashboard (charts, stats)
+    seed/page.tsx                — Content seeding (danger-guarded)
+  manifest.ts                    — PWA webmanifest
+
+components/
+  ui/                            — shadcn/ui primitives + custom (GlassCard, Skeleton, EmptyState, CelebrationModal)
+  layout/
+    AppLayout.tsx                — Main shell (sidebar, bottom nav, heart refill timer)
+    BottomNav.tsx                — Apple-style frosted glass bottom nav
+    Sidebar.tsx                  — Frosted glass sidebar with gradient nav items
+  home/                          — Home page components
+    DailyChallengeCard.tsx
+    DailyRewardChest.tsx         — 3.5s animated gift box with confetti
+    StreakBar.tsx                — Week/month streak view with circles
+    MonthlyStreakView.tsx        — Calendar month view
+    WeeklyInsights.tsx           — Weekly stats modal with share
+
+features/
+  puzzle/
+    components/
+      PuzzlePlay.tsx             — Plays multiple-choice & true-false (inline result with explanations)
+      CrosswordPlay.tsx          — Crossword player (keyboard input, auto-advance, arrow keys)
+      TypeAnswerPlay.tsx         — Type-answer player (accepted answers, Levenshtein close match)
+      SudokuPlay.tsx             — Sudoku player (9x9 grid, notes, mistake tracking, auto-validate)
+      RiddlePlay.tsx             — 4-phase riddle (thinking → typewriter reveal → self-assessment → result)
+      LessonView.tsx             — Pre-quiz lesson content (numbered facts + image)
+      CurriculumPath.tsx         — Lesson tree with lock/available/completed, collapsible groups
+      PuzzleBrowser.tsx          — Filterable puzzle grid
+    data/
+      puzzle-schemas.ts          — Puzzle type definitions & schemas
+
+store/
+  user-store.ts                  — User state (XP, level, hearts, streak, achievements, daily quests, settings)
+  ui-store.ts                    — UI state (focus mode)
+
+services/
+  firebase.ts                    — Firebase auth (Google, email/password, reset, verify) + Firestore CRUD
+  puzzle-service.ts              — Puzzle CRUD (Firestore + localStorage dual-write)
+  user-service.ts                — User data save/load (Firestore + localStorage)
+  lesson-service.ts              — Lesson groups CRUD
+  analytics-service.ts           — Aggregated puzzle stats
+  imgbb.ts                       — Image upload to imgbb
+  sudoku-generator.ts            — Backtracking sudoku generator + unique-solution validation
+  sound-service.ts               — Web Audio API procedural sounds (initSounds(), play*())
+
+lib/
+  utils.tsx                      — checkAnswer(), cn(), formatters
+```
+
+---
 
 ## Data Model
-Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-puzzles` key):
-```
+
+### Puzzle (Firestore `puzzles` collection / localStorage `brainbloom-puzzles`)
+```ts
 {
   id: string,
   type: "multiple-choice" | "true-false" | "crossword" | "type-answer" | "sudoku" | "riddle",
@@ -21,282 +100,294 @@ Puzzles stored in Firestore collection `puzzles` or local fallback (`brainbloom-
   difficulty: "easy" | "medium" | "hard",
   title: string,
   question: string,
-  choices?: string[],
+  choices?: string[],               // for multiple-choice, true-false
   correctAnswer: string,
-  acceptedAnswers?: string[],         // alternate correct answers for type-answer
-  imageUrl?: string,                   // uploaded via imgbb
-  lessonImageUrl?: string,             // separate image for lesson view
+  acceptedAnswers?: string[],       // alternate correct answers (type-answer, riddle)
+  imageUrl?: string,                // imgbb URL
+  lessonImageUrl?: string,          // separate image for lesson view
   xpReward: number,
   published: boolean,
-  createdAt: number,
+  createdAt: number,                // epoch ms
   updatedAt: number,
-  crosswordData?: CrosswordData,       // for type: "crossword"
-  sudokuData?: SudokuData,             // for type: "sudoku" — { puzzle: number[], solution: number[] }
+  crosswordData?: CrosswordData,
+  sudokuData?: SudokuData,          // { puzzle: number[], solution: number[] }
   reviewStatus: "draft" | "pending" | "approved" | "rejected" | "needs-discussion",
   reviewedBy?: string,
   reviewNote?: string,
-  correctExplanation?: string,          // shown on correct answer
-  incorrectExplanation?: string,        // shown on wrong answer
-  completedBy?: number,                // incremented via Firestore increment(1)
-  lessonContent?: string,               // numbered facts, one per line, shown before quiz
-  lessonOrder?: number,                 // position in Learning Path
-  lessonGroup?: string,                 // lesson group name
-  lessonGroupOrder?: number,            // lesson group display order
-  hintText?: string,                    // progressive hints for riddles (one per line)
+  correctExplanation?: string,      // shown on correct answer (inline result card)
+  incorrectExplanation?: string,    // shown on wrong answer
+  completedBy?: number,             // incremented via Firestore increment(1)
+  lessonContent?: string,           // numbered facts, one per line
+  lessonOrder?: number,             // position in learning path
+  lessonGroup?: string,             // lesson group name (from Settings)
+  lessonGroupOrder?: number,        // group display order
+  hintText?: string,                // progressive hints for riddles (one per line)
+}
+```
+- `puzzleToFirestore()`: strips `undefined` fields, sets `acceptedAnswers: null` when empty
+- `puzzleFromFirestore()`: maps `acceptedAnswers: null` back to `undefined`
+
+### User (Firestore `users/{uid}` / localStorage `brainbloom-user`)
+Stored in Zustand with persist middleware. Key fields:
+- `uid`, `displayName`, `email`, `photoURL`
+- `xp`, `level`, `hearts`, `maxHearts`, `nextHeartAt`
+- `streak`, `lastActiveDate`, `streakStartDate`, `activeDates` (ISO date strings)
+- `streakFreezes` (count)
+- `weeklyXp`, `weeklyStartDate`
+- `dailyQuestProgress`, `dailyGoalStreak`, `dailyGoalLastHitDate`
+- `completedPuzzleIds: string[]`
+- `achievements: Record<string, number>` (achievement ID → unlocked count)
+- `gems`, `totalXpEarned`, `puzzlesCompleted`, `totalCorrect`, `totalAttempts`
+- `soundEnabled`, `dailyRewardClaimed`, `dailyRewardDate`
+- `heartsLostThisSession` (module-level flag for hearts_saver achievement)
+
+### Settings (Firestore `settings/studio` / localStorage `brainbloom-settings`)
+```ts
+{
+  lessonGroups: { name: string, order: number }[],
+  codes: { code: string, password: string, role: "admin" | "contributor" }[]
 }
 ```
 
-## Studio Access
-- Invite code system via Firestore `settings/studio` doc (array of `{ code, password, role }[]`)
-- Roles: `admin` (alpha-2026) and `contributor` (beta-2026, gamma-2026)
-- Session role stored in `sessionStorage` under `"studio-role"`
-- Legacy localStorage codes auto-migrated with role preservation via `DEFAULT_CODES` lookup
-- **Admin codes cannot be deleted** from settings page (delete button disabled)
+---
 
-## Review Workflow
-- `draft → pending → approved/rejected/needs-discussion → admin publishes`
-- Contributors create as `draft`, submit for approval → `pending`
-- Admin approves/rejects/needs-discussion with optional note
-- `reviewedBy` only written on actual admin review actions (not on contributor submission)
-- Publish only allowed on approved puzzles; unpublish always available for live puzzles
-- Studio dashboard has filter tabs: All / Pending / Approved / Rejected with pending count badge
-- Single badge per puzzle: "Live" when published, review status otherwise
-- Review note + "Reviewed by" hidden when live
+## Auth System
+- **Guest-first**: No forced login. Zustand persist to localStorage. `loginAsGuest()` sets guest flag.
+- **Email/Password** (`services/firebase.ts`):
+  - `signUpWithEmailFull()` → sends verification email → shows verify screen
+  - `signInWithEmailFull()` → checks `emailVerified`, returns `{ needsVerification: true }` if unverified → shows verify screen
+  - `resendVerificationEmail()` — re-sends verification
+  - `sendPasswordReset()` — sends password reset email
+  - Verify screen has "Resend" + "I've verified — Sign In" buttons. Hides Google/Guest/divider.
+  - Profile shows email auth type badge + Change Password card. Sign out calls Firebase `signOutUser()`.
+- **Google**: `signInWithGoogle()` → sets user in store → redirects to `/`
+- **Firebase env guard**: All Firebase functions check `firebaseConfigured` before use
+- **Cross-device sync**: Debounced Zustand subscriber (3s) → `saveUserData` → Firestore. Merge strategy: newer `updatedAt` wins for same puzzle ID.
 
-## Image Upload
-- imgbb API (free, unlimited) via `services/imgbb.ts`
-- Base64 upload via `FileReader`, returns `display_url`
-- `NEXT_PUBLIC_IMGBB_API_KEY` env var required
+---
 
-## Heart System
-- Hearts = 5 max, refill at 1 per 5 hours
-- `nextHeartAt` timestamp in Zustand store
-- `processHeartRefill()` called from AppLayout (30s interval) and Learn page (1s interval for countdown)
-- **Heart deducted only on wrong answer check** (not on start or retry) — for all puzzle types
-- Hearts=0 shows "No Hearts Left" card with timer; hearts<5 shows "Next heart in" banner
-- `onWrongAttempt` callback fires from QuizPlay, CrosswordPlay, TypeAnswerPlay
+## Routing
+| Route | Page | Description |
+|-------|------|-------------|
+| `/` | Home | Daily puzzle, streak, weekly insights, daily reward chest |
+| `/learn` | Learn | Category grid → puzzle browser → play + curriculum path |
+| `/profile` | Profile | Stats, achievements, sound toggle, auth settings |
+| `/achievements` | Achievements | Full achievement list |
+| `/login` | Login | Sign in / Sign up / Forgot / Verify |
+| `/studio` | Studio | Dashboard with puzzle list + review filters |
+| `/studio/create` | Create | Puzzle creation form |
+| `/studio/edit/[id]` | Edit | Puzzle edit form |
+| `/studio/settings` | Settings | Lesson hierarchy + invite codes |
+| `/studio/analytics` | Analytics | Charts, stats, top/ recent puzzles |
+| `/studio/seed` | Seed | Content seeding (danger-guarded) |
+| `/manifest.webmanifest` | PWA | Webmanifest |
 
-## Type Answer Puzzles
-- `"type-answer"` PuzzleType with `acceptedAnswers?: string[]`
-- `checkAnswer()` in `lib/utils.tsx`: case-insensitive, checks `acceptedAnswers[]`, falls back to Levenshtein distance ≤ 2 for "close" feedback
-- Result screen shows "Also accepted: ..." when `acceptedAnswers` present
-- Comma-separated input in Studio form: `value.split(",").map(s => s.trim()).filter(Boolean)`
+**Missing**: No `loading.tsx` or `error.tsx` at any route level. No `/offline` page (SW precaches it but it doesn't exist).
 
-## Crossword Puzzles
+---
+
+## State Management (Zustand)
+### `useUserStore` (`store/user-store.ts`)
+- Persisted to localStorage via Zustand `persist` middleware
+- Key actions: `loginAsGuest`, `setUser`, `addXp`, `deductHeart`, `processHeartRefill`, `updateStreak`, `checkStreak`, `completePuzzle`, `unlockAchievement`, `checkAchievements`
+- Level helpers: `xpForLevel(level)`, `getLevelProgress(xp, level)` — exported for use outside store
+- Streak uses `lastActiveDate`, `streakStartDate`, `activeDates` (array of ISO date strings)
+- `checkStreak()` returns `{ current, longest, frozenDays, brokenDays, todayActive }`
+
+### `useUiStore` (`store/ui-store.ts`)
+- `focusMode: boolean` — hides Sidebar/BottomNav during puzzle play
+
+---
+
+## Key Features
+
+### 1. Puzzle Engine
+- **6 types**: multiple-choice, true-false, crossword, type-answer, sudoku, riddle
+- **Data service** (`services/puzzle-service.ts`): CRUD with Firestore + localStorage fallback
+- **Play components**: `PuzzlePlay`, `CrosswordPlay`, `TypeAnswerPlay`, `SudokuPlay`, `RiddlePlay`
+  - All show inline result card after answer (green=correct, red=wrong) with explanation fields
+  - Hearts deducted only on wrong answer (not on start/retry). `onWrongAttempt` callback fires.
+  - `resetHeartsLostFlag()` called in `handleStartPuzzle` (learn page), not on mount
+  - `checkAchievements()` runs after puzzle completion (not mid-group)
+- **XP awarded on first-time completion only**. `completedBy` increments via Firestore `increment(1)`.
+
+### 2. Studio (Puzzle Studio)
+- **Access**: Invite code system (`settings/studio`). Roles: `admin` (alpha-2026), `contributor` (beta-2026, gamma-2026)
+  - Session role in `sessionStorage("studio-role")`. Legacy localStorage codes auto-migrated.
+  - Admin codes cannot be deleted from settings page.
+  - Studio login has loading spinner + "Authenticating…" on Unlock button during credential check.
+- **Review workflow**: `draft → pending → approved/rejected/needs-discussion → admin publishes`
+  - Contributors create as `draft`, submit → `pending`. Admin approves/rejects with optional note.
+  - `reviewedBy` only written on actual admin review (not contributor submit).
+  - Publish only on approved; unpublish always available.
+  - Studio dashboard: filter tabs (All/Pending/Approved/Rejected/Needs-discussion/Discuss) + pending count badge
+  - Single badge: "Live" when published, review status otherwise. Review note hidden when live.
+- **Create/Edit form**: All 6 types in picklist. Lesson group picklist from settings, sub-lesson order picklist (1-10, excludes taken orders via `getUsedLessonOrders()`). Both explanation fields shown for quiz/type-answer (not crossword/sudoku). Unsaved changes warning via `useUnsavedChanges` modal (styled, not native confirm). Ctrl+S shortcut. Image validation (<2MB, <4096×4096px).
+
+### 3. Learning Path (Duolingo-style)
+- **Lesson groups**: Defined in Settings (`services/lesson-service.ts`). Drag-to-reorder via HTML5 drag & drop, reindexed via `reorderLessonGroups()`.
+- **Sub-lessons**: Each puzzle has `lessonGroup`, `lessonOrder`, `lessonContent`.
+- **CurriculumPath component**: Collapsible groups with numbered sub-lessons (1.1, 1.2, etc.). Sequential unlock: complete all in group → next group unlocks.
+- **LessonView**: Shows numbered facts + image (`lessonImageUrl ?? imageUrl`) before quiz.
+- **Learn page**: Category grid → click → puzzle view with "All" / "Learning Path" toggle. Puzzles without `lessonContent` skip lesson view, shown as bonus.
+- **Lesson progress bar**: Absolute top-right on learn/play screens, gradient bar.
+
+### 4. Heart System
+- Max 5 hearts, refill 1 per 5 hours. `nextHeartAt` as timestamp.
+- `processHeartRefill()` called from AppLayout (30s interval) + Learn page (1s for countdown).
+- Heart deducted **only on wrong answer** (not start/retry) for all puzzle types.
+- Hearts=0 → "No Hearts Left" card with timer. Hearts<5 → "Next heart in" banner.
+- Heart refill notification: animated toast when `processHeartRefill` detects increase.
+- Heart timer uses destructive (red) colors.
+
+### 5. XP & Levels
+- Level formula: `xpForLevel(n) = n * 100` (can change). `getLevelProgress()` returns `{ current, next, progress }`.
+- Difficulty picklist does NOT auto-set XP. XP has separate `<input type="number" list="xp-presets">` (10-100, steps of 10).
+- `weeklyXp` tracked with ISO week boundary detection. Reset on week change.
+
+### 6. Streak System
+- `checkStreak()` uses `lastActiveDate`, `streakStartDate`, `activeDates[]`.
+- **Streak freeze**: Each freeze covers exactly one missed day. `diffDays` calculation — streak breaks only if missed days exceed available freezes. Frozen day shown as blue Snowflake icon.
+- New users (`lastActiveDate: ""`) get streak=1 on first completion.
+- StreakBar: 7-day circles + today status. Click flame → popup with Week/Month tabs (MonthlyStreakView: calendar month with active/frozen/broken/empty/future states, legend, active-day count).
+- Streak circles: orange CheckCircle2 (maintained), blue Snowflake (freeze-saved), red X (broken), b/w (unmaintained today).
+
+### 7. Achievement System
+- `checkAchievements()` called after puzzle completion (not mid-group).
+- Achievements tracked in `store.achievements: Record<string, number>`.
+- `hearts_saver` (perfect run) uses module-level `heartsLostThisSession` flag, reset in `handleStartPuzzle`.
+- `daily_goal_week` (7-day goal streak) via `dailyGoalStreak` / `dailyGoalLastHitDate` tracked in `addXp`.
+- `CelebrationModal`: canvas confetti for achievements/level-ups. Auto-checked after completion, detected in `addXp`.
+
+### 8. Puzzle Type Specifics
+
+**Crossword**:
 - Grid builder with clue panel, auto-numbering
 - Player: keyboard input with auto-advance, arrow key navigation
 - `handleCheck` validates against clue answers (not grid cells)
-- Non-clue cells blocked/greyed, grid stays visible after check, Try Again button
-- Cells are `string` (letter), `null` (blocked in grid), or `""` (open but no letter)
+- Non-clue cells blocked/greyed, grid stays visible after check, "Try Again" button
+- Cells: `string` (letter), `null` (blocked), `""` (open)
 
-## UI / UX
-- Mobile-first, all components responsive (320px+), dark mode supported
-- Glassmorphism via `GlassCard`, design tokens (no hardcoded colors), Tailwind v4
-- Framer Motion: spring animations, AnimatePresence for transitions
-- Focus mode: Zustand `ui-store` hides Sidebar/BottomNav during puzzle play
-- Toast positioning: explicit `position: "top-center"` on all custom toasts
-- Category filter uses `flex-wrap` (no horizontal scroll)
+**Type-Answer**:
+- `acceptedAnswers?: string[]` — alternate correct answers
+- `checkAnswer()` in `lib/utils.tsx`: case-insensitive, checks `acceptedAnswers[]`, falls back to Levenshtein distance ≤ 2 for "close" feedback
+- Result shows "Also accepted: ..." when `acceptedAnswers` present
+- Studio form: comma-separated input → `value.split(",").map(s => s.trim()).filter(Boolean)`
 
-## Cross-Device Sync
-- Firestore `users/{uid}` document stores all user fields
-- Debounced Zustand subscriber (3s) calls `saveUserData`
-- Guest-first: no forced login, Zustand persist to localStorage
-- Merge strategy: `getPuzzles` compares `updatedAt` — newer version wins for same ID
-- Dual-write: Firestore + localStorage; merged reads
+**Sudoku**:
+- Backtracking generator (`services/sudoku-generator.ts`) with `countSolutions()` for uniqueness
+- Difficulty-based clue counts: easy=40, medium=30, hard=24
+- `SudokuPlay.tsx`: 9×9 grid, number pad, notes mode, auto-validate on each cell fill
+- Conflict shake+highlight, 3-mistake heart deduction, auto-advance to next empty cell
+- Progress saved to localStorage (`brainbloom-sudoku-{id}`), restored on mount, cleared on completion
+- Game ends when hearts depleted (onComplete with 0 XP)
 
-## XP & Difficulty
-- Difficulty picklist no longer auto-sets XP
-- XP has separate `<input type="number" list="xp-presets">` with presets 10–100 (steps of 10) + custom entry
-- `completedBy` counter incremented only on first-time completion via Firestore `increment(1)`
+**Riddle**:
+- 4-phase flow in `RiddlePlay.tsx`: thinking → typewriter reveal → self-assessment ("I got it" / "Nope") → result
+- `hintText?: string` — progressive hints (one per line) shown via hint button
+- Self-assessment model: user taps, heart deducted on "Nope" (not system-graded)
+- Suspenseful reveal sound + gentle chime on correct
 
-## Key Decisions
-- `puzzleToFirestore`: `acceptedAnswers: null` when empty; `puzzleFromFirestore`: `?? undefined`
-- All Firestore catch blocks log errors to console
-- Studio test modal uses `PuzzlePlay` with close-on-complete (no XP awarded)
-- "Puzzles" category renamed to "Puzzles"
-- Deployed to Vercel: brainblooms.vercel.app
-- `correctExplanation` replaces old `explanation` + `requiresExplanation` toggle; both explanation fields always shown in Studio for quiz/type-answer
+### 9. Puzzle of the Day
+- Auto-picked daily puzzle, admin override available
+- Streak tracking, 2x XP bonus
+- Streak badge on home page card
 
-## Build Order
-1. ✅ Foundation (Phase 1-3, Home page, UI components, store, auth, shell)
-2. ✅ Puzzle Engine (Phase 4):
-   a. Puzzle type definitions + data service (Firestore + local fallback)
-   b. Puzzle Studio: password gate, list, create/edit form, preview
-   c. Player App: puzzle browser (Learn page), play UI, result screen
-   d. Wire up XP, hearts, streaks, activity log, daily quests
-   e. Crossword editor + player
-   f. Type Answer puzzles with acceptedAnswers
-   g. Role-based review workflow
-   h. Image upload, invite codes, focus mode, heart mechanics
-3. ✅ **Learning Path (Duolingo-style)**:
-   - `lessonContent?: string` and `lessonOrder?: number` added to Puzzle data model
-   - `LessonView` component: shows numbered facts + image before the quiz
-   - `CurriculumPath` component: lesson tree with locked/available/completed states
-   - Learn page shows Learning Path toggle for categories with lessons
-   - `PuzzleBrowser` emits category changes to detect lesson-enabled categories
-4. ✅ **Sub-lesson Groups + Hierarchy Management**:
-   - `lessonGroup?: string` and `lessonGroupOrder?: number` added to Puzzle data model
-   - `services/lesson-service.ts`: CRUD for lesson groups per category (Firestore + localStorage)
-   - Settings page: Lesson Hierarchy section (add/edit/delete groups), admin-only invite codes
-   - CurriculumPath shows collapsible Lesson groups with numbered sub-lessons (1.1, 1.2, etc.)
-   - Sequential unlock: complete all sub-lessons in a group → next group unlocks
-   - Studio create/edit: Lesson Group picklist from settings; Sub-lesson Order picklist (1-10, excludes taken orders)
-   - `getUsedLessonOrders()` helper prevents duplicate sub-lesson orders per group
-5. ✅ **Sudoku Puzzle Type**:
-   - `"sudoku"` added to PuzzleType with `SudokuData { puzzle: number[], solution: number[] }`
-   - `services/sudoku-generator.ts`: backtracking generator, unique-solution validation via `countSolutions`, difficulty-based clue counts (easy=40, medium=30, hard=24)
-   - `SudokuPlay.tsx`: interactive 9×9 grid, number pad, notes mode, auto-validate on each cell fill, conflict shake+highlight, 3-mistake heart deduction, auto-advance to next empty cell, auto-complete detection
-   - Progress saved to localStorage (`brainbloom-sudoku-{id}`), restored on mount, cleared on completion
-   - Studio create/edit: Sudoku picklist type, grid preview, Regenerate button; stored via puzzleToFirestore/puzzleFromFirestore
-6. ✅ **PWA + Sound Effects**:
-   - `app/manifest.ts` → webmanifest with standalone display, SVG icons, indigo theme
-   - `public/sw.js`: cache-first service worker, precaches `/` and `/offline`
-   - `services/sound-service.ts`: Web Audio API procedural sounds (correct chime, wrong buzz, heartbreak, XP arpeggio, gem chime, completion fanfare, daily fanfare, lesson bell, unlock sweep, streak scale, click tick)
-   - `initSounds()` on first interaction, mute toggle synced to user store + Firestore
-   - Profile page: switch toggle, sound-enabled field cross-device synced
-7. ✅ **Polish & UI**:
-   - Studio Settings: tabbed navigation (Lesson Hierarchy / Invite Codes), GlassCard sections, group-hover reveal edit/delete
-   - Leaderboard: sorted by actual XP, correct rank positioning (crown/medal top-3, user below when outside top-5)
-   - BottomNav: Apple-style frosted glass (`backdrop-blur-2xl saturate-[1.8]`), gradient top line, progressive enhancement
-   - Profile page: gradient-blur avatar ring, animated level XP bar, glass stat grid, collapsible heart timer, two-column achievements/streak-freeze, animated sound toggle
-8. ✅ **Content Seeding**:
-    - `scripts/seed-data/importer.ts` — direct localStorage + Firestore import/clear engine (batch delete, dual-write)
-    - `scripts/seed-data/data.ts` — 68 hand-crafted puzzles across 4 categories with lesson groups
-    - `app/studio/seed/page.tsx` — protected seed page at `/studio/seed` with danger confirmation, animated progress, live log
-    - Studio header: Database icon button links to seed page
-    - All puzzles `published: true`, `reviewStatus: "approved"`, include lesson content + explanations
-9. ✅ **Analytics Dashboard** (`/studio/analytics`):
-   - `services/analytics-service.ts` — aggregates puzzle stats (total, published, completions)
-   - Stat cards: total puzzles, published count, total completions, category count
-   - Horizontal bar charts: puzzles by type, puzzles by status, completions by category
-   - Top 10 most-completed puzzles + recent 10 puzzles lists
-   - Category breakdown table with counts & avg plays per puzzle
-   - BarChart3 icon button in Studio header next to Settings
-10. ✅ **Skeleton Loading**: 15 reusable skeleton variants replacing all spinners
-11. ✅ **Duolingo-style inline result UI**:
-    - Replaced `explanation` + `requiresExplanation` with `correctExplanation` / `incorrectExplanation`
-    - Studio forms show both explanation fields for quiz/type-answer (not crossword/sudoku)
-    - QuizPlay and TypeAnswerPlay show inline result card with appropriate explanation after each answer
-    - All existing logic preserved (XP, hearts, sounds, completion tracking)
+### 10. PWA + Sound
+- **Manifest**: `app/manifest.ts` → standalone display, SVG icons, indigo theme
+- **Service Worker**: `public/sw.js` — cache-first, precaches `/` and `/offline`
+- **Sound**: `services/sound-service.ts` — Web Audio API procedural sounds (correct chime, wrong buzz, heartbreak, XP arpeggio, gem chime, completion fanfare, daily fanfare, lesson bell, unlock sweep, streak scale, click tick)
+  - `initSounds()` on first user interaction
+  - Mute toggle synced to user store + Firestore cross-device
+  - Profile page: animated sound toggle switch
 
-## Recent Changes (Session: Jul 2026 - Part 3)
-- Added admin code deletion prevention, confirmed acceptedAnswers checking, comma-split fix
-- Added 5-second timer confirmation for publish/unpublish/delete
-- Blocked contributors from deleting live puzzles
-- Fixed type-answer display in player app
-- **Puzzle of the Day** with auto-pick, admin override, streak tracking, 2x XP bonus
-- **Studio improvements**: Submit button on dashboard, Discuss filter tab, Note badge, re-submit needs-discussion
-- **Learning Path (Duolingo-style)**:
-  - `lessonContent` + `lessonOrder` fields on Puzzle type
-  - `LessonView` component — teaches facts before quiz, with image support
-  - `CurriculumPath` component — lesson tree with lock/unlock/completed states, sequential progression
-  - Learn page detects categories with lessons, shows toggle between All and Learning Path
-  - `PuzzleBrowser` now accepts `onCategoryChange` for lesson detection
-  - Studio create/edit forms include Lesson Content (one fact per line) and Lesson Order fields
-  - Edge cases: puzzles without lesson content skip lesson view; extras shown as bonus puzzles
-- **Learn page redesign**: categories grid first (like home page), click → puzzles view, linked from home page cards
-- **Sub-lesson Groups**: `lessonGroup` + `lessonGroupOrder` fields, groups defined in Settings, auto-filled on puzzle creation
-- **Settings page**: Lesson Hierarchy section (both admin/contributor), invite codes section (admin-only)
-- **Dynamic picklists**: Lesson Group picklist from settings, Sub-lesson Order picklist (1-10, excludes taken orders)
-- **CurriculumPath rewrite**: collapsible lesson groups with numbered sub-lessons, sequential unlock per group
-- **Sudoku Puzzle Type**:
-  - Full 9×9 grid with number pad, notes mode, auto-validate
-  - Backtracking generator with unique-solution validation
-  - Conflict shake+highlight, 3-mistake heart deduction, auto-advance
-  - Progress saved to localStorage, restored on revisit, cleared on completion
-  - Game ends when hearts depleted (onComplete with 0 XP)
-- **PWA support**: manifest route, SVG icons, cache-first service worker
-- **Sound Effects**: Web Audio API procedural sounds, profile toggle, cross-device sync
-- **Studio Settings redesign**: tabbed navigation (Lesson Hierarchy / Invite Codes), GlassCard sections, group-hover reveal
-- **Leaderboard fix**: sorted by actual XP with correct rank (top-3 crown/medal, user at actual position)
-- **BottomNav glass effect**: Apple-style frosted glass with gradient top line
-- **Profile page redesign**: gradient-blur avatar ring, animated XP progress bar, glass stat grid, two-column layout
-- **Learning path for all types**: lesson fields now visible for crossword/sudoku; puzzles without lessonContent still appear in learning path
-- **Lesson group loading fix**: useEffect now depends on both `form.category` and `form.type`; loads for all puzzle types
-- **Analytics Dashboard** (`/studio/analytics`): stat cards, bar charts (by type/status/category), top 10 puzzles, recent puzzles table, category breakdown, BarChart3 button in Studio header
-- **Skeleton Loading**: professional skeleton placeholders across all loading states
-  - `components/ui/skeleton.tsx` — 15 reusable skeleton variants (Card, Chart, Row, LessonGroup, Leaderboard, Activity, DailyChallenge, StreakBar, Form, FilterBar, Curriculum, etc.)
-  - Home: DailyChallengeCard upgraded from spinner to matching skeleton blocks
-  - Learn: PuzzleBrowser filters + puzzle list skeletons; CurriculumPath lesson group skeletons
-  - Studio: puzzle list rows skeleton; edit form skeleton; settings lesson groups skeleton
-- **Duolingo-style inline result UI**:
-  - Replaced single `explanation` + `requiresExplanation` toggle with `correctExplanation` and `incorrectExplanation` fields
-  - Studio create/edit forms show both explanation fields for quiz/type-answer puzzles (not crossword/sudoku)
-  - QuizPlay and TypeAnswerPlay show inline result card after each answer with the appropriate explanation (green for correct, red for wrong)
-  - Correct answer shows correctExplanation; wrong answer shows incorrectExplanation + the right answer
-  - All existing logic preserved (XP, hearts, sound effects, completion tracking)
-- **Polish & UX (Session: Jul 2026 - Part 2)**:
-  - Lesson progress bar on learn/play screens (absolute top-right, gradient bar)
-  - Streak widget on learn page: 7-day circles (epoch ms fix) + today status
-  - Heart timer uses destructive (red) colors instead of primary (purple)
-  - EmptyState component replaces 9+ inline empty states across Studio/PuzzleBrowser/CurriculumPath
-  - CelebrationModal with canvas confetti for achievements/level-ups (auto-checked after completion, detected in addXp)
-  - Studio dashboard: sort dropdown (newest, last modified, title A–Z, XP, completions) + asc/desc toggle
-  - Studio create/edit: unsaved changes warning (`useUnsavedChanges`), image validation (<2MB, <4096×4096px), Ctrl+S shortcut, collapsible Learning Path section
-  - Heart refill notification: animated toast when processHeartRefill detects hearts increased
-  - Daily puzzle streak badge on home page card
-  - Custom 404 page
-- **Analytics time-range filter** (7d/30d/all) — toggle buttons in analytics header, filters puzzles by createdAt
-- **Drag-to-reorder lesson groups** — HTML5 drag & drop in Settings lesson list, reindexes via `reorderLessonGroups()`
-- **Home screen streak** — text badges removed from StreakBar and DailyChallengeCard; clicking flame opens streak popup with 7-day circles (unmaintained today = b/w, maintained = filled orange)
-- **Riddle Puzzle Type** (`"riddle"`) — Duolingo-style animated reveal puzzle type:
-  - `RiddlePlay.tsx` component: 4-phase flow (thinking → typewriter reveal → self-assessment → result)
-  - `hintText?: string` field — progressive hints (one per line) shown via hint button
-  - Self-assessment model: user taps "I got it" or "Nope" (not system-graded, heart deducted on wrong)
-  - Suspenseful reveal sound (`playRiddleReveal`) + gentle chime on correct (`playRiddleCorrect`)
-  - Studio create/edit: Riddle type in picklist, hint textarea, correct answer + accepted answers + explanations
-  - Works with existing Learning Path system (lessonContent shown before riddle)
-- **Duolingo-style polish for all play components**:
-  - QuizPlay: phase indicator icon, gradient glow, thinking dots, shimmer submit, staggered result card with XP pill badge, "Also accepted" with star icon
-  - TypeAnswerPlay: same phase indicator + shimmer + gradient result card + "Also accepted"
-  - CrosswordPlay: shimmer check button, gradient result banner with XP pill, spring-animated icons
-  - SudokuPlay: MistakeDots component, gradient progress bar, number pad hover effects, polished completion modal with gradient continue
-- **Sidebar redesign**:
-  - Frosted glass body (`backdrop-blur-2xl saturate-[1.8]`) matching BottomNav
-  - Nav items with rounded-2xl, gradient active background + gradient left bar indicator
-  - Gradient-ring avatar, inline XP/hearts mini-stats in user card
-- **Unsaved changes modal** (`useUnsavedChanges.tsx`):
-  - Replaced native `window.confirm()` with proper styled modal (AlertTriangle icon, backdrop blur)
-  - `confirmLeave` now takes a callback instead of returning boolean
-  - Both create and edit pages use the new modal
-- **Daily Login Bonus** (`DailyRewardChest.tsx`):
-  - Trigger card on home page opens full-screen modal with 3.5s auto-play sequence
-  - Custom SVG gift box with 3D-style lid, base, ribbon, bow (gradients + shines)
-  - Phases: idle (golden glow) → shaking (violent wiggle) → opening (lid flies off, 4 radial light beams) → confetti explosion → reward reveal
-  - Reward reveal: gradient-ring icon, orbiting sparkle ring, gradient gradient text, expanding shimmer ring
-  - Weighted probability pool (XP 10-100, Gems 5-10, Streak Freeze) — higher chance for lower XP
-  - Modal blocks all input during animation (`pointer-events: none`, body scroll locked)
-  - Auto-closes after reward display
-- **Weekly Insights Report** (`WeeklyInsights.tsx`):
-  - Trigger card on home page showing weekly summary (puzzles, XP)
-  - Modal with 6 stat tiles: XP earned, puzzles done, best streak, accuracy %, weakest category, categories explored
-  - Share button using native `navigator.share()` with clipboard fallback
+### 11. Analytics Dashboard (`/studio/analytics`)
+- Stat cards: total puzzles, published, total completions, category count
+- Horizontal bar charts: by type, by status, completions by category
+- Top 10 most-completed + recent 10 puzzles
+- Category breakdown table with counts & avg plays
+- Time-range filter (7d/30d/all)
+- BarChart3 button in Studio header
 
-## Recent Changes (Session: Jul 2026 - Part 4)
-- **Streak freeze fix**: replaced exact-2-day-gap check with `diffDays` calculation — each freeze covers exactly one missed day; streak only breaks if missed days exceed available freezes. Edge case: new users (`lastActiveDate: ""`) get streak=1 on first completion
-- **Level XP helpers exported**: `xpForLevel()` and `getLevelProgress()` exported from `store/user-store.ts`; profile page `getLevel()` delegates to shared helper instead of hardcoded `LEVEL_XP_MULTIPLIER`
-- **Lesson image support**: `lessonImageUrl?: string` added to `Puzzle`/`PuzzleFormData` types, `puzzleToFirestore`/`puzzleFromFirestore`, Studio create/edit forms (separate file input + imgbb upload), and `LessonView` (renders `lessonImageUrl ?? imageUrl` fallback)
-- **Content Seeding System**:
-  - `scripts/seed-data/importer.ts` — batch delete (localStorage + Firestore writeBatch), `seedLessonGroups()`, `seedPuzzles()`, `directCreatePuzzle()` with `published: true` + `reviewStatus: "approved"`
-  - `scripts/seed-data/data.ts` — 68 hand-crafted puzzles across Logic (16), Riddles (16), Science (20), Puzzles (16); 17 lesson groups; each with real questions, lesson content (3-5 facts), explanations, hint text for riddles
-  - `app/studio/seed/page.tsx` — danger-confirmed seed page with animated step indicators, live log, completion stats
-  - Studio header: Database icon button links to seed page
-- **True-false puzzle fix**: all 5 true-false puzzles now have `choices: ["True", "False"]` with `correctAnswer` matching exact case (strict `===` in `PuzzlePlay.tsx:41`)
+### 12. Content Seeding (`/studio/seed`)
+- `scripts/seed-data/importer.ts` — batch delete (localStorage + Firestore writeBatch), `seedLessonGroups()`, `seedPuzzles()`, `directCreatePuzzle()` with `published: true` + `reviewStatus: "approved"`
+- `scripts/seed-data/data.ts` — 68 puzzles across Logic (16), Riddles (16), Science (20), Puzzles (16); 17 lesson groups
+- Seed page: danger confirmation, animated step indicators, live log, completion stats
+- Studio header: Database icon button links to seed page
 
-## Remaining / Known Issues
-- **`/offline` page missing** — SW precaches it but page doesn't exist, SW install will fail
-- **`npm run lint` broken** — script is just `"eslint"` with no glob (should be `"eslint ."`)
-- **4 unused store actions** — `restoreHearts`, `claimDailyReward`, `canClaimReward`, `refreshDailyQuests` implemented but never called from UI
-- **No `loading.tsx` / `error.tsx`** at any route level — no suspense fallbacks or route error boundaries
-- **Sudoku generator 2s timeout** can produce partial/invalid puzzles
-- **`acceptedAnswers` save inconsistency** — type-answer uses `onChange`, riddle uses `onBlur`
-- **Starter SVGs** — `public/window.svg`, `globe.svg`, `file.svg` unused
-- **Local dev IP** — `192.168.1.3` in `next.config.ts` `allowedDevOrigins`
-- **No test infrastructure** — zero tests across the project
-- **`shadcn` in `dependencies`** instead of `devDependencies`
+### 13. Daily Login Bonus (`DailyRewardChest.tsx`)
+- Full-screen modal with 3.5s auto-play: idle glow → shake → open (lid flies off, radial light beams) → confetti → reward reveal
+- Weighted probability pool: XP 10-100, Gems 5-10, Streak Freeze (higher chance for lower XP)
+- Modal blocks all input during animation, auto-closes after reveal
 
-## Recent Changes (Session: Jul 2026 - Part 5)
-- **Weekly XP tracking fix**: Added `weeklyXp` + `weeklyStartDate` store fields; `addXp` and `unlockAchievement` increment it; ISO week boundary detection via `getWeekStart()`/`hasWeekChanged()`; `checkWeeklyReset()` on rehydration + `loadFromFirestore`; WeeklyInsights uses `store.weeklyXp` (not history sum)
-- **Weekly insights grid 60:40**: Changed from `md:grid-cols-4` (75:25) to `md:grid-cols-5` with 3:2 split
-- **Streak freeze visualization**: Added `frozenDays`/`brokenDays` tracking to `checkStreak()`; streak circles show blue Snowflake for freeze-saved days, red X for broken days, orange CheckCircle2 for maintained
-- **Achievement fixes**: `hearts_saver` (perfect run via module-level `heartsLostThisSession` flag, reset per puzzle in PuzzlePlay) and `daily_goal_week` (7-day goal streak via `dailyGoalStreak`/`dailyGoalLastHitDate` tracked in `addXp`) — both now trigger correctly
+### 14. Weekly Insights (`WeeklyInsights.tsx`)
+- Trigger card on home page → modal with 6 stat tiles (XP, puzzles, streak, accuracy, weakest category, categories explored)
+- Share button via `navigator.share()` with clipboard fallback
+
+---
+
+## UI / UX Patterns
+- **Mobile-first** (320px+), dark mode only (no light mode toggle)
+- **Glassmorphism**: `GlassCard` component, `backdrop-blur-2xl saturate-[1.8]`, `bg-card/60` patterns
+- **Design tokens**: No hardcoded colors. Uses Tailwind `primary`, `secondary`, `destructive`, `muted`, `card`, `background`, `foreground`, `muted-foreground`
+- **Framer Motion**: Spring animations, `AnimatePresence` for transitions, `motion.div` with `initial`/`animate`/`exit`. Stagger delays for lists.
+- **Focus mode** (`useUiStore`): Hides Sidebar/BottomNav during puzzle play
+- **Toast positioning**: All custom toasts use explicit `position: "top-center"`
+- **Category filter**: Uses `flex-wrap` no horizontal scroll
+- **Skeleton loading**: 15 variants (Card, Chart, Row, LessonGroup, Leaderboard, Activity, DailyChallenge, StreakBar, Form, FilterBar, Curriculum, etc.) via `components/ui/skeleton.tsx`
+- **EmptyState component**: Replaces 9+ inline empty states across Studio/PuzzleBrowser/CurriculumPath
+- **Error/Success banners**: `AnimatePresence` with slide-in from top
+- **Gradient CTAs**: Buttons use `bg-gradient-to-r from-primary to-[#8b5cf6]` pattern
+
+---
+
+## Design Patterns & Conventions
+- No comments in code (expect AGENTS.md for context)
+- All Firebase catch blocks log errors to console only
+- Studio test modal uses `PuzzlePlay` with `closeOnComplete` (no XP awarded)
+- Store selectors used in components (not raw store access)
+- Firestore writes are dual: Firestore + localStorage. Reads merge both, newest `updatedAt` wins.
+- `puzzleToFirestore()` / `puzzleFromFirestore()` used as serialization layer
+- `cn()` from `lib/utils.tsx` for class merging
+- Exported helper functions over store-internal utilities where possible (e.g., `xpForLevel`, `getLevelProgress`, `checkAnswer`)
+
+---
+
+## Known Issues & Gotchas
+1. **`/offline` page missing** — SW precaches it but page doesn't exist → SW install fails
+2. **`npm run lint` broken** — script is `"eslint"` with no glob (should be `"eslint ."`)
+3. **4 unused store actions** — `restoreHearts`, `claimDailyReward`, `canClaimReward`, `refreshDailyQuests` never called from UI
+4. **No `loading.tsx` / `error.tsx`** at any route level — no suspense fallbacks or route error boundaries
+5. **Sudoku generator 2s timeout** can produce partial/invalid puzzles
+6. **`acceptedAnswers` save inconsistency** — type-answer uses `onChange`, riddle uses `onBlur`
+7. **Starter SVGs** — `public/window.svg`, `globe.svg`, `file.svg` unused
+8. **Local dev IP** — `192.168.1.3` in `next.config.ts` `allowedDevOrigins`
+9. **No test infrastructure** — zero tests across the project
+10. **`shadcn` in `dependencies`** instead of `devDependencies`
+
+---
+
+## Environment Variables (`.env.local`)
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_IMGBB_API_KEY=
+```
+
+---
+
+## Commands
+```bash
+npm run dev          # Development server
+npm run build        # Production build (lint + typecheck + compile)
+npm run lint         # Broken — needs "eslint ." fix
+```
+
+## Git Workflow
+- Commits on `main` branch
+- Push to `origin/main` (GitHub: Lootera69/brainbloom)
+- Always `git status` + `git diff --stat` before committing

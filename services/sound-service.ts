@@ -259,13 +259,70 @@ export function playRiddleCorrect() {
   } catch { /* silent fallback */ }
 }
 
-// Warm up AudioContext on first user interaction
+// --- Avatar Selection Sounds (AudioBuffer) ---
+
+const avatarBuffers: Record<string, AudioBuffer | null> = {};
+let avatarsLoaded = false;
+const avatarIds = ["owl", "fox", "cat", "robot", "alien", "panda", "bunny", "turtle"];
+
+async function preloadAvatarSounds() {
+  if (avatarsLoaded) return;
+  const c = getCtx();
+  await Promise.allSettled(
+    avatarIds.map(async (id) => {
+      try {
+        const res = await fetch(`/sounds/avatars/${id}.mp3`);
+        if (!res.ok) return;
+        const buf = await res.arrayBuffer();
+        avatarBuffers[id] = await c.decodeAudioData(buf);
+      } catch { /* skip silently */ }
+    }),
+  );
+  avatarsLoaded = true;
+}
+
+function playAvBuffer(id: string, vol = 0.35) {
+  if (!_enabled) return;
+  const buf = avatarBuffers[id];
+  if (!buf) return;
+  try {
+    const c = getCtx();
+    const src = c.createBufferSource();
+    src.buffer = buf;
+    const g = gain(vol);
+    src.connect(g);
+    src.start();
+  } catch { /* silent fallback */ }
+}
+
+export function playOwlSound() { playAvBuffer("owl", 0.4); }
+export function playFoxSound() { playAvBuffer("fox", 0.3); }
+export function playCatSound() { playAvBuffer("cat", 0.35); }
+export function playRobotSound() { playAvBuffer("robot", 0.3); }
+export function playAlienSound() { playAvBuffer("alien", 0.3); }
+export function playPandaSound() { playAvBuffer("panda", 0.3); }
+export function playBunnySound() { playAvBuffer("bunny", 0.25); }
+export function playTurtleSound() { playAvBuffer("turtle", 0.3); }
+
+export const avatarSounds: Record<string, () => void> = {
+  owl: playOwlSound,
+  fox: playFoxSound,
+  cat: playCatSound,
+  robot: playRobotSound,
+  alien: playAlienSound,
+  panda: playPandaSound,
+  bunny: playBunnySound,
+  turtle: playTurtleSound,
+};
+
+// Warm up AudioContext + preload avatar sounds on first user interaction
 export function initSounds() {
   try {
     if (typeof document === "undefined") return;
     const handler = () => {
       try {
         getCtx();
+        preloadAvatarSounds(); // preload after context is ready
       } catch { /* AudioContext may be blocked */ }
       document.removeEventListener("click", handler);
       document.removeEventListener("touchstart", handler);

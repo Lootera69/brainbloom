@@ -20,6 +20,7 @@ export interface UserDocument {
   displayName: string;
   email: string | null;
   photoURL: string | null;
+  avatarId: string | null;
   xp: number;
   xpToday: number;
   streak: number;
@@ -77,6 +78,7 @@ export async function loadUserData(uid: string): Promise<Partial<UserDocument> |
       displayName: d.displayName as string ?? "",
       email: d.email as string | null ?? null,
       photoURL: d.photoURL as string | null ?? null,
+      avatarId: d.avatarId as string | null ?? null,
       xp: (d.xp as number) ?? 0,
       xpToday: (d.xpToday as number) ?? 0,
       streak: (d.streak as number) ?? 0,

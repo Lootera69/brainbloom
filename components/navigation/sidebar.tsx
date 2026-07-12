@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { House, Brain, Trophy, User, Sparkles, Heart, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/store/user-store";
+import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
 
 const navItems = [
   { href: "/", label: "Home", icon: House },
@@ -16,14 +17,7 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { displayName, photoURL, isGuest, level, xp, hearts } = useUserStore();
-
-  const initials = displayName
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
+  const { displayName, photoURL, avatarId, isGuest, level, xp, hearts } = useUserStore();
 
   return (
     <aside className="sticky top-0 hidden h-dvh w-64 flex-col md:flex">
@@ -120,12 +114,13 @@ export function Sidebar() {
             <span className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-[#8b5cf6] p-[2px]">
               <span className="block size-full rounded-full bg-card" />
             </span>
-            <span className="relative flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-primary/20 to-purple-500/10 text-xs font-bold text-foreground">
-              {photoURL ? (
-                <img src={photoURL} alt="" className="size-full rounded-full object-cover" />
-              ) : (
-                initials
-              )}
+            <span className="relative flex size-9 items-center justify-center overflow-hidden rounded-full">
+              <AvatarDisplay
+                avatarId={avatarId}
+                photoURL={photoURL}
+                name={displayName}
+                size={36}
+              />
             </span>
           </span>
 

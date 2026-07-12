@@ -26,8 +26,9 @@ import {
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUserStore, getLevelProgress } from "@/store/user-store";
+import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
+import { AvatarSelector } from "@/components/avatars/AvatarSelector";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { signOutUser, sendPasswordReset } from "@/services/firebase";
@@ -61,6 +62,7 @@ export default function ProfilePage() {
     displayName,
     email,
     photoURL,
+    avatarId,
     isGuest,
     xp,
     streak,
@@ -70,6 +72,7 @@ export default function ProfilePage() {
     streakFreezes,
     logout,
     buyStreakFreeze,
+    setAvatarId,
   } = useUserStore();
   const soundEnabled = useUserStore((s) => s.soundEnabled);
   const setSoundEnabled = useUserStore((s) => s.setSoundEnabled);
@@ -77,6 +80,7 @@ export default function ProfilePage() {
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
   const [timer, setTimer] = useState(0);
+  const [showAvatarSelector, setShowAvatarSelector] = useState(false);
 
   useEffect(() => {
     const tick = () => {
@@ -89,13 +93,6 @@ export default function ProfilePage() {
   }, [processHeartRefill, getHeartTimer]);
 
   const { level, progress, xpToNext } = useMemo(() => getLevel(xp), [xp]);
-
-  const initials = displayName
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
 
   const handleLogout = async () => {
     await signOutUser();
@@ -132,15 +129,28 @@ export default function ProfilePage() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="relative mb-4"
+              className="relative mb-4 group"
             >
               <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary via-secondary to-warning opacity-50 blur-sm" />
-              <Avatar className="relative size-24 ring-4 ring-background">
-                <AvatarImage src={photoURL ?? undefined} />
-                <AvatarFallback className="bg-gradient-to-br from-primary to-secondary text-xl font-bold text-white">
-                  {initials}
-                </AvatarFallback>
-              </Avatar>
+              <button
+                onClick={() => setShowAvatarSelector(true)}
+                className="relative block cursor-pointer"
+                aria-label="Change avatar"
+              >
+                <div className="size-24 ring-4 ring-background overflow-hidden rounded-full">
+                  <AvatarDisplay
+                    avatarId={avatarId}
+                    photoURL={photoURL}
+                    name={displayName}
+                    size={96}
+                  />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                  <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                    Edit
+                  </span>
+                </div>
+              </button>
             </motion.div>
 
             <motion.h1
@@ -430,6 +440,24 @@ export default function ProfilePage() {
           {isGuest ? "Reset Guest Data" : "Sign Out"}
         </Button>
       </motion.div>
+
+      {showAvatarSelector && (
+        <AvatarSelector
+          currentAvatarId={avatarId}
+          photoURL={photoURL}
+          displayName={displayName}
+          onSelect={(id) => {
+            setAvatarId(id);
+            toast.success(
+              id
+                ? `Avatar changed!`
+                : "Using default avatar",
+              { position: "top-center" },
+            );
+          }}
+          onClose={() => setShowAvatarSelector(false)}
+        />
+      )}
     </main>
   );
 }
