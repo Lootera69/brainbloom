@@ -16,8 +16,8 @@ interface AvatarDisplayProps {
 // Stagger floating delays based on avatar ID
 function floatDelay(avatarId: string | null): number {
   const delays: Record<string, number> = {
-    owl: 0, fox: 0.4, cat: 0.8, robot: 1.2,
-    alien: 1.6, panda: 2, bunny: 2.4, turtle: 2.8,
+    owl: 0, fox: 0.4, cat: 0.8, dog: 1.2,
+    ufo: 1.6, panda: 2, bunny: 2.4, turtle: 2.8,
   };
   return avatarId ? delays[avatarId] ?? 0 : 0;
 }

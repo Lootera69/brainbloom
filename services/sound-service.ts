@@ -263,7 +263,7 @@ export function playRiddleCorrect() {
 
 const avatarBuffers: Record<string, AudioBuffer | null> = {};
 let avatarsLoaded = false;
-const avatarIds = ["owl", "fox", "cat", "robot", "alien", "panda", "bunny", "turtle"];
+const avatarIds = ["owl", "fox", "cat", "dog", "ufo", "panda", "bunny", "turtle"];
 
 async function preloadAvatarSounds() {
   if (avatarsLoaded) return;
@@ -298,8 +298,8 @@ function playAvBuffer(id: string, vol = 0.35) {
 export function playOwlSound() { playAvBuffer("owl", 0.4); }
 export function playFoxSound() { playAvBuffer("fox", 0.3); }
 export function playCatSound() { playAvBuffer("cat", 0.35); }
-export function playRobotSound() { playAvBuffer("robot", 0.3); }
-export function playAlienSound() { playAvBuffer("alien", 0.3); }
+export function playDogSound() { playAvBuffer("dog", 0.4); }
+export function playUfoSound() { playAvBuffer("ufo", 0.35); }
 export function playPandaSound() { playAvBuffer("panda", 0.3); }
 export function playBunnySound() { playAvBuffer("bunny", 0.25); }
 export function playTurtleSound() { playAvBuffer("turtle", 0.3); }
@@ -308,8 +308,8 @@ export const avatarSounds: Record<string, () => void> = {
   owl: playOwlSound,
   fox: playFoxSound,
   cat: playCatSound,
-  robot: playRobotSound,
-  alien: playAlienSound,
+  dog: playDogSound,
+  ufo: playUfoSound,
   panda: playPandaSound,
   bunny: playBunnySound,
   turtle: playTurtleSound,

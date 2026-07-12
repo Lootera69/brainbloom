@@ -123,71 +123,73 @@ export const AvatarCat: React.FC<AvatarSvgProps> = ({ size = 100, className }) =
   );
 };
 
-export const AvatarRobot: React.FC<AvatarSvgProps> = ({ size = 100, className }) => {
-  const g = uid("robot");
+export const AvatarDog: React.FC<AvatarSvgProps> = ({ size = 100, className }) => {
+  const g = uid("dog");
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none" className={className}>
       <defs>
-        <radialGradient id={g} cx="40%" cy="30%" r="65%">
-          <stop offset="0%" stopColor="#22d3ee" />
-          <stop offset="100%" stopColor="#0891b2" />
+        <radialGradient id={g} cx="45%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#d97706" />
+          <stop offset="100%" stopColor="#92400e" />
         </radialGradient>
       </defs>
       <circle cx="50" cy="50" r="47" fill={`url(#${g})`} />
-      <rect x="20" y="18" width="60" height="48" rx="12" fill={`url(#${g})`} stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
-      <line x1="50" y1="8" x2="50" y2="18" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeLinecap="round" />
-      <circle cx="50" cy="6" r="4" fill="#22d3ee" opacity="0.8">
-        <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2.5s" repeatCount="indefinite" />
-      </circle>
-      <rect x="31" y="34" width="14" height="10" rx="2.5" fill="#155e75" />
-      <rect x="55" y="34" width="14" height="10" rx="2.5" fill="#155e75" />
-      <circle cx="38" cy="39" r="4" fill="#22d3ee" opacity="0.9">
-        <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.2s" repeatCount="indefinite" />
-      </circle>
-      <circle cx="62" cy="39" r="4" fill="#22d3ee" opacity="0.9">
-        <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.2s" begin="0.3s" repeatCount="indefinite" />
-      </circle>
-      <rect x="38" y="50" width="24" height="4" rx="2" fill="rgba(255,255,255,0.15)" />
-      <rect x="40" y="56" width="20" height="2" rx="1" fill="rgba(255,255,255,0.1)" />
-      <rect x="42" y="60" width="16" height="2" rx="1" fill="rgba(255,255,255,0.08)" />
-      <circle cx="20" cy="30" r="3" fill="rgba(255,255,255,0.2)" />
-      <circle cx="80" cy="30" r="3" fill="rgba(255,255,255,0.2)" />
-      <rect x="35" y="68" width="30" height="25" rx="8" fill="rgba(255,255,255,0.06)" />
-      <circle cx="50" cy="80" r="5" fill="rgba(255,255,255,0.15)" />
+      <path d="M18 38 Q12 14 28 18 L36 28 Z" fill={`url(#${g})`} />
+      <path d="M82 38 Q88 14 72 18 L64 28 Z" fill={`url(#${g})`} />
+      <path d="M20 34 L22 20 L34 28 Z" fill="rgba(255,255,255,0.15)" />
+      <path d="M80 34 L78 20 L66 28 Z" fill="rgba(255,255,255,0.15)" />
+      <circle cx="50" cy="48" r="32" fill="rgba(255,255,255,0.12)" />
+      <ellipse cx="36" cy="40" rx="9" ry="10" fill="white" />
+      <ellipse cx="64" cy="40" rx="9" ry="10" fill="white" />
+      <circle cx="36" cy="40" r="5" fill="#1e1b4b" />
+      <circle cx="64" cy="40" r="5" fill="#1e1b4b" />
+      <circle cx="38" cy="38" r="2" fill="white" />
+      <circle cx="66" cy="38" r="2" fill="white" />
+      {blinkOverlay(36, 40, 9.5, 10.5, g)}
+      {blinkOverlay(64, 40, 9.5, 10.5, g)}
+      <ellipse cx="50" cy="54" rx="6" ry="5" fill="#1e1b4b" />
+      <path d="M42 62 Q50 70 58 62" fill="none" stroke="#1e1b4b" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="44" cy="66" rx="2" ry="3" fill="#fca5a5" />
+      <circle cx="22" cy="58" r="3" fill="rgba(255,255,255,0.12)" />
+      <circle cx="78" cy="58" r="3" fill="rgba(255,255,255,0.12)" />
+      <ellipse cx="50" cy="86" rx="12" ry="6" fill="rgba(255,255,255,0.06)" />
     </svg>
   );
 };
 
-export const AvatarAlien: React.FC<AvatarSvgProps> = ({ size = 100, className }) => {
-  const g = uid("alien");
+export const AvatarUfo: React.FC<AvatarSvgProps> = ({ size = 100, className }) => {
+  const g = uid("ufo");
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none" className={className}>
       <defs>
         <radialGradient id={g} cx="40%" cy="30%" r="65%">
-          <stop offset="0%" stopColor="#34d399" />
-          <stop offset="100%" stopColor="#059669" />
+          <stop offset="0%" stopColor="#64748b" />
+          <stop offset="100%" stopColor="#1e293b" />
         </radialGradient>
       </defs>
       <circle cx="50" cy="50" r="47" fill={`url(#${g})`} />
-      <ellipse cx="50" cy="46" rx="28" ry="34" fill={`url(#${g})`} />
-      <ellipse cx="50" cy="50" rx="24" ry="28" fill="rgba(255,255,255,0.08)" />
-      <line x1="40" y1="14" x2="38" y2="6" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="60" y1="14" x2="62" y2="6" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" />
-      <circle cx="38" cy="6" r="3" fill="#6ee7b7" opacity="0.6">
-        <animate attributeName="opacity" values="0.6;0.15;0.6" dur="2s" repeatCount="indefinite" />
+      <ellipse cx="50" cy="48" rx="36" ry="14" fill="#475569" stroke="rgba(255,255,255,0.1)" strokeWidth="1.5" />
+      <ellipse cx="50" cy="48" rx="36" ry="14" fill="url(#star-sky)" opacity="0.4" />
+      <ellipse cx="50" cy="34" rx="18" ry="16" fill="#334155" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+      <ellipse cx="50" cy="32" rx="14" ry="12" fill="#a1a1aa" opacity="0.15" />
+      <ellipse cx="50" cy="34" rx="16" ry="14" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
+      <circle cx="50" cy="48" r="2.5" fill="#22d3ee" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1s" repeatCount="indefinite" />
       </circle>
-      <circle cx="62" cy="6" r="3" fill="#6ee7b7" opacity="0.6">
-        <animate attributeName="opacity" values="0.6;0.15;0.6" dur="2s" begin="0.6s" repeatCount="indefinite" />
+      <circle cx="28" cy="48" r="2" fill="#22d3ee" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.2s" begin="0.2s" repeatCount="indefinite" />
       </circle>
-      <ellipse cx="36" cy="40" rx="9" ry="12" fill="#064e3b" />
-      <ellipse cx="64" cy="40" rx="9" ry="12" fill="#064e3b" />
-      <ellipse cx="36" cy="40" rx="6" ry="8" fill="#a7f3d0" opacity="0.6" />
-      <ellipse cx="64" cy="40" rx="6" ry="8" fill="#a7f3d0" opacity="0.6" />
-      <circle cx="36" cy="40" r="3" fill="#064e3b" />
-      <circle cx="64" cy="40" r="3" fill="#064e3b" />
-      <circle cx="34" cy="37" r="1.5" fill="white" opacity="0.6" />
-      <circle cx="62" cy="37" r="1.5" fill="white" opacity="0.6" />
-      <path d="M44 58 Q50 64 56 58" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="72" cy="48" r="2" fill="#22d3ee" opacity="0.7">
+        <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.2s" begin="0.4s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="18" cy="48" r="1.5" fill="#22d3ee" opacity="0.5">
+        <animate attributeName="opacity" values="0.5;0.15;0.5" dur="1.5s" begin="0.6s" repeatCount="indefinite" />
+      </circle>
+      <circle cx="82" cy="48" r="1.5" fill="#22d3ee" opacity="0.5">
+        <animate attributeName="opacity" values="0.5;0.15;0.5" dur="1.5s" begin="0.8s" repeatCount="indefinite" />
+      </circle>
+      <path d="M30 68 Q50 76 70 68" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M34 72 Q50 80 66 72" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeLinecap="round" />
     </svg>
   );
 };
@@ -306,8 +308,8 @@ export const avatars: AvatarDefinition[] = [
   { id: "owl", name: "Owl", component: AvatarOwl },
   { id: "fox", name: "Fox", component: AvatarFox },
   { id: "cat", name: "Cat", component: AvatarCat },
-  { id: "robot", name: "Robot", component: AvatarRobot },
-  { id: "alien", name: "Alien", component: AvatarAlien },
+  { id: "dog", name: "Dog", component: AvatarDog },
+  { id: "ufo", name: "UFO", component: AvatarUfo },
   { id: "panda", name: "Panda", component: AvatarPanda },
   { id: "bunny", name: "Bunny", component: AvatarBunny },
   { id: "turtle", name: "Turtle", component: AvatarTurtle },
