@@ -259,57 +259,48 @@ export function playRiddleCorrect() {
   } catch { /* silent fallback */ }
 }
 
-// --- Avatar Selection Sounds (AudioBuffer) ---
+// --- Avatar Selection Sounds (HTML Audio, no AudioContext needed) ---
 
-const avatarBuffers: Record<string, AudioBuffer | null> = {};
-let avatarsLoaded = false;
-const avatarIds = ["owl", "fox", "cat", "dog", "ufo", "panda", "rooster", "turtle"];
+const avatarEls: Record<string, HTMLAudioElement | null> = {};
+let playingAvatarId: string | null = null;
+let avatarTimer: ReturnType<typeof setTimeout> | null = null;
 
-async function preloadAvatarSounds() {
-  if (avatarsLoaded) return;
-  const c = getCtx();
-  await Promise.allSettled(
-    avatarIds.map(async (id) => {
-      try {
-        const res = await fetch(`/sounds/avatars/${id}.mp3`);
-        if (!res.ok) return;
-        const buf = await res.arrayBuffer();
-        avatarBuffers[id] = await c.decodeAudioData(buf);
-      } catch { /* skip silently */ }
-    }),
-  );
-  avatarsLoaded = true;
+function stopAvatarSound() {
+  if (avatarTimer) { clearTimeout(avatarTimer); avatarTimer = null; }
+  if (playingAvatarId) {
+    const el = avatarEls[playingAvatarId];
+    if (el) { el.pause(); el.currentTime = 0; }
+    playingAvatarId = null;
+  }
 }
 
-let currentAvatarSrc: AudioBufferSourceNode | null = null;
-
-function playAvBuffer(id: string, vol = 0.35) {
+function playAvatar(id: string, vol = 0.35) {
+  // Always stop current sound first (even when sound disabled, to silence anything playing)
+  stopAvatarSound();
   if (!_enabled) return;
-  const buf = avatarBuffers[id];
-  if (!buf) return;
-  try {
-    const c = getCtx();
-    if (currentAvatarSrc) {
-      try { currentAvatarSrc.stop(); } catch { /* already stopped */ }
-    }
-    const src = c.createBufferSource();
-    src.buffer = buf;
-    const g = gain(vol);
-    src.connect(g);
-    src.start();
-    src.stop(c.currentTime + 3);
-    currentAvatarSrc = src;
-  } catch { /* silent fallback */ }
+  // Get or create audio element
+  let audio = avatarEls[id];
+  if (!audio) {
+    audio = new Audio(`/sounds/avatars/${id}.mp3`);
+    avatarEls[id] = audio;
+  }
+  audio.volume = vol;
+  playingAvatarId = id;
+  audio.play().catch(() => {});
+  // Cap at 3 seconds
+  avatarTimer = setTimeout(() => {
+    if (playingAvatarId === id) stopAvatarSound();
+  }, 3000);
 }
 
-export function playOwlSound() { playAvBuffer("owl", 0.4); }
-export function playFoxSound() { playAvBuffer("fox", 0.3); }
-export function playCatSound() { playAvBuffer("cat", 0.35); }
-export function playDogSound() { playAvBuffer("dog", 0.4); }
-export function playUfoSound() { playAvBuffer("ufo", 0.35); }
-export function playPandaSound() { playAvBuffer("panda", 0.3); }
-export function playRoosterSound() { playAvBuffer("rooster", 0.3); }
-export function playTurtleSound() { playAvBuffer("turtle", 0.3); }
+export function playOwlSound() { playAvatar("owl", 0.4); }
+export function playFoxSound() { playAvatar("fox", 0.3); }
+export function playCatSound() { playAvatar("cat", 0.35); }
+export function playDogSound() { playAvatar("dog", 0.4); }
+export function playUfoSound() { playAvatar("ufo", 0.35); }
+export function playPandaSound() { playAvatar("panda", 0.3); }
+export function playRoosterSound() { playAvatar("rooster", 0.3); }
+export function playTurtleSound() { playAvatar("turtle", 0.3); }
 
 export const avatarSounds: Record<string, () => void> = {
   owl: playOwlSound,
@@ -322,15 +313,12 @@ export const avatarSounds: Record<string, () => void> = {
   turtle: playTurtleSound,
 };
 
-// Warm up AudioContext + preload avatar sounds on first user interaction
+// Warm up AudioContext for procedural sounds on first user interaction
 export function initSounds() {
   try {
     if (typeof document === "undefined") return;
     const handler = () => {
-      try {
-        getCtx();
-        preloadAvatarSounds(); // preload after context is ready
-      } catch { /* AudioContext may be blocked */ }
+      try { getCtx(); } catch { /* AudioContext may be blocked */ }
       document.removeEventListener("click", handler);
       document.removeEventListener("touchstart", handler);
     };
