@@ -86,11 +86,11 @@ export function AvatarSelector({
           </div>
 
           {/* Grid */}
-          <div className="px-6 pb-2">
+          <div className="px-3 sm:px-6 pb-2">
             <p className="mb-3 text-xs font-medium text-muted-foreground">
               Pick your character
             </p>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {avatars.map((avatar) => {
                 const isSelected = selected === avatar.id;
                 const SvgComponent = avatar.component;
@@ -130,10 +130,10 @@ export function AvatarSelector({
 
           {/* Remove option */}
           {(photoURL || currentAvatarId) && (
-            <div className="px-6 pt-2 pb-1">
+            <div className="px-3 sm:px-6 pt-2 pb-1">
               <button
                 onClick={() => setSelected(null)}
-                className={`w-full rounded-xl py-2 text-xs font-medium transition-colors ${
+                className={`w-full rounded-xl py-2.5 text-xs font-medium transition-colors ${
                   selected === null
                     ? "bg-primary/10 text-primary"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
@@ -145,11 +145,11 @@ export function AvatarSelector({
           )}
 
           {/* Confirm */}
-          <div className="px-6 py-4">
+          <div className="px-3 sm:px-6 py-4">
             <button
               onClick={handleConfirm}
               disabled={selected === currentAvatarId && selected !== null}
-              className="relative flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-40"
+              className="relative flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-40"
             >
               <Check className="size-4" />
               {selected === null ? "Use fallback" : `Select ${avatars.find((a) => a.id === selected)?.name}`}
