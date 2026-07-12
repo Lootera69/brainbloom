@@ -207,7 +207,7 @@ export default function LoginPage() {
 
   if (pageLoading) {
     return (
-      <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-hidden px-6">
+      <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-y-auto px-6">
         <div className="flex flex-col items-center gap-6">
           <Skeleton className="size-16 rounded-2xl" />
           <Skeleton className="h-12 w-56 rounded-lg" />
@@ -222,7 +222,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-hidden px-6">
+    <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-y-auto px-6 pb-4 md:pb-0">
       <Toaster position="top-center" />
 
       <div className="pointer-events-none fixed inset-0 -z-10">
@@ -237,7 +237,7 @@ export default function LoginPage() {
         className="relative flex flex-col items-center text-center"
       >
         <motion.div
-          className="relative mb-7"
+          className="relative mb-5 md:mb-7"
           animate={{
             boxShadow: [
               "0 0 0 0 rgba(99,102,241,0)",
@@ -247,12 +247,12 @@ export default function LoginPage() {
           }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="flex size-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] shadow-lg shadow-primary/25">
-            <Sparkles className="size-8 text-white" />
+          <span className="flex size-14 md:size-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] shadow-lg shadow-primary/25">
+            <Sparkles className="size-7 md:size-8 text-white" />
           </span>
         </motion.div>
 
-        <h1 className="font-heading bg-gradient-to-r from-primary via-[#8b5cf6] to-secondary bg-clip-text text-5xl font-bold text-transparent sm:text-6xl">
+          <h1 className="font-heading bg-gradient-to-r from-primary via-[#8b5cf6] to-secondary bg-clip-text text-4xl font-bold text-transparent sm:text-5xl md:text-6xl">
           BrainBloom
         </h1>
 
@@ -272,20 +272,7 @@ export default function LoginPage() {
           </motion.div>
         </div>
 
-        <div className="mt-5 flex items-center gap-3">
-          {["Daily Challenges", "Track Progress", "Earn Rewards"].map((feat, i) => (
-            <motion.div
-              key={feat}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + i * 0.12 }}
-              className="flex items-center gap-1.5 text-xs text-muted-foreground"
-            >
-              <span className="size-1.5 rounded-full bg-primary" />
-              {feat}
-            </motion.div>
-          ))}
-        </div>
+
       </motion.div>
 
       {/* Auth form */}
@@ -293,11 +280,11 @@ export default function LoginPage() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.5 }}
-        className="mt-8 w-full max-w-sm"
+        className="mt-6 md:mt-8 w-full max-w-sm"
       >
         {/* Tab bar */}
         {mode !== "forgot" && mode !== "verify" && (
-          <div className="mb-5 flex gap-1 rounded-xl bg-muted/60 p-1">
+          <div className="mb-4 md:mb-5 flex gap-1 rounded-xl bg-muted/60 p-1">
             <button
               onClick={() => setMode("signin")}
               className={cn(
@@ -620,7 +607,7 @@ export default function LoginPage() {
 
         {mode !== "verify" && (
           <>
-            <div className="my-5 flex items-center gap-3">
+            <div className="my-4 md:my-5 flex items-center gap-3">
               <span className="h-px flex-1 bg-white/10" />
               <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground/40">or continue with</span>
               <span className="h-px flex-1 bg-white/10" />
@@ -660,7 +647,7 @@ export default function LoginPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
-              className="mt-6 text-center text-xs text-muted-foreground/60"
+              className="mt-5 md:mt-6 text-center text-xs text-muted-foreground/60"
             >
               By signing in to BrainBloom, you agree to our{" "}
               <span className="underline underline-offset-2 hover:text-muted-foreground cursor-pointer">Terms</span>{" "}
@@ -670,8 +657,6 @@ export default function LoginPage() {
           </>
         )}
       </motion.div>
-
-      <div className="pointer-events-none fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </main>
   );
 }
