@@ -233,7 +233,7 @@ export default function ProfilePage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
       >
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {statCards.map(({ icon: Icon, label, color, bg }, i) => (
             <motion.div
               key={label}
