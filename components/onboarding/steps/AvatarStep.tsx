@@ -31,7 +31,7 @@ export default function AvatarStep({ selectedAvatar, onSelect, onNext }: AvatarS
           Pick your guide
         </h2>
         <p className="mt-1 text-sm text-muted-foreground/60">
-          This spirit animal will walk with you on your journey
+          Your spirit guide through the labyrinth of the mind
         </p>
       </motion.div>
 
