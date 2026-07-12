@@ -281,21 +281,17 @@ async function preloadAvatarSounds() {
   avatarsLoaded = true;
 }
 
-let currentAvatarId: string | null = null;
 let currentAvatarSrc: AudioBufferSourceNode | null = null;
 
 function playAvBuffer(id: string, vol = 0.35) {
   if (!_enabled) return;
-  if (id === currentAvatarId) return;
   const buf = avatarBuffers[id];
   if (!buf) return;
   try {
     const c = getCtx();
     if (currentAvatarSrc) {
       try { currentAvatarSrc.stop(); } catch { /* already stopped */ }
-      currentAvatarSrc = null;
     }
-    currentAvatarId = id;
     const src = c.createBufferSource();
     src.buffer = buf;
     const g = gain(vol);
@@ -303,12 +299,6 @@ function playAvBuffer(id: string, vol = 0.35) {
     src.start();
     src.stop(c.currentTime + 3);
     currentAvatarSrc = src;
-    src.onended = () => {
-      if (currentAvatarSrc === src) {
-        currentAvatarSrc = null;
-        currentAvatarId = null;
-      }
-    };
   } catch { /* silent fallback */ }
 }
 
