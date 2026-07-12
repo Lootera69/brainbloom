@@ -19,6 +19,9 @@ import {
   Volume2,
   VolumeX,
   TrendingUp,
+  Mail,
+  Shield,
+  KeyRound,
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
@@ -26,6 +29,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUserStore, getLevelProgress } from "@/store/user-store";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { signOutUser, sendPasswordReset } from "@/services/firebase";
 
 function getLevel(xp: number) {
   return getLevelProgress(xp);
@@ -92,10 +96,25 @@ export default function ProfilePage() {
     .toUpperCase()
     .slice(0, 2);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await signOutUser();
     logout();
     router.push("/login");
   };
+
+  const handleChangePassword = async () => {
+    if (!email) return;
+    toast.loading("Sending reset link…", { id: "reset-pw" });
+    const result = await sendPasswordReset(email);
+    toast.dismiss("reset-pw");
+    if (result.success) {
+      toast.success("Password reset link sent! Check your email.", { position: "top-center" });
+    } else {
+      toast.error(result.error ?? "Failed to send reset link", { position: "top-center" });
+    }
+  };
+
+  const authType = isGuest ? "guest" : photoURL ? "google" : email ? "email" : "guest";
 
   return (
     <main className="mx-auto min-h-screen max-w-2xl px-4 py-5 sm:p-6">
@@ -136,12 +155,26 @@ export default function ProfilePage() {
               <p className="mt-0.5 text-sm text-muted-foreground">{email}</p>
             )}
 
-            {isGuest && (
-              <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-muted/80 px-3 py-1 text-[11px] font-medium text-muted-foreground">
-                <User className="size-3" />
-                Guest
-              </span>
-            )}
+            <div className="mt-2 flex items-center gap-2">
+              {authType === "guest" && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-muted/80 px-3 py-1 text-[11px] font-medium text-muted-foreground">
+                  <User className="size-3" />
+                  Guest
+                </span>
+              )}
+              {authType === "google" && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-medium text-primary">
+                  <svg viewBox="0 0 24 24" className="size-3"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                  Google
+                </span>
+              )}
+              {authType === "email" && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-3 py-1 text-[11px] font-medium text-emerald-500">
+                  <Mail className="size-3" />
+                  Email
+                </span>
+              )}
+            </div>
 
             {/* Level Badge + XP Bar */}
             <motion.div
@@ -304,6 +337,37 @@ export default function ProfilePage() {
         </motion.div>
       </div>
 
+      {/* Change Password (email auth only) */}
+      {authType === "email" && (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          className="mt-3"
+        >
+          <GlassCard intensity="light" className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-3">
+              <span className="flex size-10 items-center justify-center rounded-xl bg-muted">
+                <KeyRound className="size-5 text-muted-foreground" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold">Password</p>
+                <p className="text-[11px] text-muted-foreground">Change your password</p>
+              </div>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleChangePassword}
+              className="h-8 gap-1.5 text-xs"
+            >
+              <Mail className="size-3.5" />
+              Reset
+            </Button>
+          </GlassCard>
+        </motion.div>
+      )}
+
       {/* Sound + Logout row */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -354,7 +418,7 @@ export default function ProfilePage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.35 }}
-        className="mt-8 mb-6 text-center"
+        className="mt-6 mb-6 text-center"
       >
         <Button
           variant="destructive"

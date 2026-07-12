@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Sparkles, User, Loader2, Zap, Brain, Flame } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles, User, Loader2, Zap, Brain, Flame, Mail, Lock, Eye, EyeOff, ArrowLeft, CheckCircle, AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
-import { signInWithGoogle } from "@/services/firebase";
-import { Toaster } from "sonner";
+import { signInWithGoogle, signUpWithEmailFull, signInWithEmailFull, sendPasswordReset } from "@/services/firebase";
+import { Toaster, toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
-
+import { cn } from "@/lib/utils";
 
 const firebaseConfigured =
   typeof process !== "undefined" &&
@@ -21,14 +21,31 @@ const taglines = [
   { text: "Build your streak", icon: Flame },
 ];
 
+type AuthMode = "signin" | "signup" | "forgot";
+
 export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
   const [taglineIndex, setTaglineIndex] = useState(0);
+  const [mode, setMode] = useState<AuthMode>("signin");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  // Form fields
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const loginAsGuest = useUserStore((s) => s.loginAsGuest);
   const setUser = useUserStore((s) => s.setUser);
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
+
+  const emailRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     if (isAuthenticated) {
       router.replace("/");
@@ -45,6 +62,17 @@ export default function LoginPage() {
     return () => clearInterval(interval);
   }, []);
 
+  // Reset form when switching modes
+  useEffect(() => {
+    setError("");
+    setSuccess("");
+    setPassword("");
+    setConfirmPassword("");
+    setDisplayName("");
+    setShowPassword(false);
+    setShowConfirmPassword(false);
+  }, [mode]);
+
   const handleGuest = () => {
     loginAsGuest();
     router.push("/");
@@ -53,6 +81,7 @@ export default function LoginPage() {
   const handleGoogle = async () => {
     if (!firebaseConfigured) return;
     setLoading(true);
+    setError("");
     try {
       const user = await signInWithGoogle();
       if (user) {
@@ -65,10 +94,78 @@ export default function LoginPage() {
         router.push("/");
       }
     } catch {
-      // ignore
+      setError("Google sign-in failed. Please try again.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const validateEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+
+    if (!validateEmail(email)) { setError("Please enter a valid email address"); return; }
+    if (!password) { setError("Please enter your password"); return; }
+
+    setLoading(true);
+    const result = await signInWithEmailFull(email, password);
+    setLoading(false);
+
+    if (result.error) { setError(result.error); return; }
+    if (result.user) {
+      setUser({
+        uid: result.user.uid,
+        displayName: result.user.displayName ?? email.split("@")[0],
+        email: result.user.email,
+        photoURL: result.user.photoURL,
+      });
+      router.push("/");
+    }
+  };
+
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+
+    if (!displayName.trim()) { setError("Please enter your name"); return; }
+    if (!validateEmail(email)) { setError("Please enter a valid email address"); return; }
+    if (password.length < 6) { setError("Password must be at least 6 characters"); return; }
+    if (password !== confirmPassword) { setError("Passwords do not match"); return; }
+
+    setLoading(true);
+    const result = await signUpWithEmailFull(email, password, displayName.trim());
+    setLoading(false);
+
+    if (result.error) { setError(result.error); return; }
+    if (result.user) {
+      setUser({
+        uid: result.user.uid,
+        displayName: displayName.trim(),
+        email: result.user.email,
+        photoURL: result.user.photoURL,
+      });
+      router.push("/");
+    }
+  };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+
+    if (!validateEmail(email)) { setError("Please enter a valid email address"); return; }
+
+    setLoading(true);
+    const result = await sendPasswordReset(email);
+    setLoading(false);
+
+    if (result.error) { setError(result.error); return; }
+    setSuccess("Password reset link sent! Check your email.");
+    setEmail("");
   };
 
   const TaglineIcon = taglines[taglineIndex].icon;
@@ -91,21 +188,19 @@ export default function LoginPage() {
 
   return (
     <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-hidden px-6">
-      <Toaster />
+      <Toaster position="top-center" />
 
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute left-1/2 top-1/4 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/5 blur-[120px]" />
         <div className="absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full bg-[#8b5cf6]/5 blur-[100px]" />
       </div>
 
-      {/* Brand section */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative flex flex-col items-center text-center"
       >
-        {/* Logo with breathing glow */}
         <motion.div
           className="relative mb-7"
           animate={{
@@ -142,7 +237,6 @@ export default function LoginPage() {
           </motion.div>
         </div>
 
-        {/* Feature dots */}
         <div className="mt-5 flex items-center gap-3">
           {["Daily Challenges", "Track Progress", "Earn Rewards"].map((feat, i) => (
             <motion.div
@@ -159,44 +253,309 @@ export default function LoginPage() {
         </div>
       </motion.div>
 
-      {/* Actions */}
+      {/* Auth form */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.5 }}
-        className="mt-10 flex w-full max-w-sm flex-col gap-3"
+        className="mt-8 w-full max-w-sm"
       >
-        <motion.button
-          onClick={handleGuest}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="group relative flex h-14 items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-card/60 text-sm font-semibold shadow-lg backdrop-blur-xl saturate-150 transition-all hover:border-primary/30 hover:shadow-primary/10 active:scale-[0.98]"
-        >
-          <span className="absolute inset-0 -z-10 translate-y-full bg-gradient-to-b from-primary/5 to-transparent transition-transform duration-300 group-hover:translate-y-0" />
-          <User className="size-5" />
-          Continue as Guest
-        </motion.button>
+        {/* Tab bar */}
+        {mode !== "forgot" && (
+          <div className="mb-5 flex gap-1 rounded-xl bg-muted/60 p-1">
+            <button
+              onClick={() => setMode("signin")}
+              className={cn(
+                "flex-1 rounded-lg px-4 py-2 text-xs font-semibold transition-all",
+                mode === "signin" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              Sign In
+            </button>
+            <button
+              onClick={() => setMode("signup")}
+              className={cn(
+                "flex-1 rounded-lg px-4 py-2 text-xs font-semibold transition-all",
+                mode === "signup" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              Sign Up
+            </button>
+          </div>
+        )}
 
-        <motion.button
-          onClick={handleGoogle}
-          disabled={!firebaseConfigured || loading}
-          whileHover={firebaseConfigured ? { scale: 1.02 } : {}}
-          whileTap={firebaseConfigured ? { scale: 0.98 } : {}}
-          className="relative flex h-14 items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 active:scale-[0.98] disabled:opacity-50"
-        >
-          <span className="absolute inset-0 -z-10 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.15)_50%,transparent_75%)] bg-[length:250%_250%] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          {loading ? (
-            <Loader2 className="size-5 animate-spin" />
-          ) : (
-            <svg viewBox="0 0 24 24" className="size-5">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-            </svg>
+        {/* Error banner */}
+        <AnimatePresence>
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="mb-4 overflow-hidden"
+            >
+              <div className="flex items-center gap-2 rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+                <AlertCircle className="size-4 shrink-0" />
+                <span>{error}</span>
+              </div>
+            </motion.div>
           )}
-          {firebaseConfigured ? "Sign in with Google" : "Google Sign-In"}
-        </motion.button>
+        </AnimatePresence>
+
+        {/* Success banner */}
+        <AnimatePresence>
+          {success && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="mb-4 overflow-hidden"
+            >
+              <div className="flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-500">
+                <CheckCircle className="size-4 shrink-0" />
+                <span>{success}</span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+          {mode === "signin" && (
+            <motion.form
+              key="signin"
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 12 }}
+              transition={{ duration: 0.18 }}
+              onSubmit={handleSignIn}
+              className="space-y-3"
+            >
+              <div className="relative">
+                <Mail className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/50" />
+                <input
+                  ref={emailRef}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email address"
+                  autoComplete="email"
+                  autoFocus
+                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                />
+              </div>
+
+              <div className="relative">
+                <Lock className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/50" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  autoComplete="current-password"
+                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/50 hover:text-foreground transition-colors"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                </button>
+              </div>
+
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => { setMode("forgot"); setEmail(email); }}
+                  className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Forgot password?
+                </button>
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="relative flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-60"
+              >
+                {loading ? <Loader2 className="size-4 animate-spin" /> : <Mail className="size-4" />}
+                {loading ? "Signing in…" : "Sign In"}
+              </button>
+            </motion.form>
+          )}
+
+          {mode === "signup" && (
+            <motion.form
+              key="signup"
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -12 }}
+              transition={{ duration: 0.18 }}
+              onSubmit={handleSignUp}
+              className="space-y-3"
+            >
+              <div className="relative">
+                <User className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/50" />
+                <input
+                  type="text"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  placeholder="Your name"
+                  autoComplete="name"
+                  autoFocus
+                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                />
+              </div>
+
+              <div className="relative">
+                <Mail className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/50" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email address"
+                  autoComplete="email"
+                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                />
+              </div>
+
+              <div className="relative">
+                <Lock className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/50" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password (min 6 characters)"
+                  autoComplete="new-password"
+                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/50 hover:text-foreground transition-colors"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                </button>
+              </div>
+
+              <div className="relative">
+                <Lock className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/50" />
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Confirm password"
+                  autoComplete="new-password"
+                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/50 hover:text-foreground transition-colors"
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                >
+                  {showConfirmPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                </button>
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="relative flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-60"
+              >
+                {loading ? <Loader2 className="size-4 animate-spin" /> : <User className="size-4" />}
+                {loading ? "Creating account…" : "Create Account"}
+              </button>
+            </motion.form>
+          )}
+
+          {mode === "forgot" && (
+            <motion.form
+              key="forgot"
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -12 }}
+              transition={{ duration: 0.18 }}
+              onSubmit={handleForgotPassword}
+              className="space-y-3"
+            >
+              <button
+                type="button"
+                onClick={() => setMode("signin")}
+                className="mb-2 flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ArrowLeft className="size-3.5" />
+                Back to sign in
+              </button>
+
+              <p className="text-sm text-muted-foreground">
+                Enter your email and we'll send you a link to reset your password.
+              </p>
+
+              <div className="relative">
+                <Mail className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/50" />
+                <input
+                  ref={emailRef}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email address"
+                  autoComplete="email"
+                  autoFocus
+                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="relative flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-60"
+              >
+                {loading ? <Loader2 className="size-4 animate-spin" /> : <Mail className="size-4" />}
+                {loading ? "Sending…" : "Send Reset Link"}
+              </button>
+            </motion.form>
+          )}
+        </AnimatePresence>
+
+        {/* Divider */}
+        <div className="my-5 flex items-center gap-3">
+          <span className="h-px flex-1 bg-white/10" />
+          <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground/40">or continue with</span>
+          <span className="h-px flex-1 bg-white/10" />
+        </div>
+
+        {/* Google + Guest buttons */}
+        <div className="flex flex-col gap-3">
+          <button
+            onClick={handleGoogle}
+            disabled={!firebaseConfigured || loading}
+            className="relative flex h-12 items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 active:scale-[0.98] disabled:opacity-50"
+          >
+            {loading ? (
+              <Loader2 className="size-5 animate-spin" />
+            ) : (
+              <svg viewBox="0 0 24 24" className="size-5 shrink-0">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+            )}
+            Google
+          </button>
+
+          <button
+            onClick={handleGuest}
+            disabled={loading}
+            className="group relative flex h-12 items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-card/60 text-sm font-semibold shadow-lg backdrop-blur-xl saturate-150 transition-all hover:border-primary/30 hover:shadow-primary/10 active:scale-[0.98] disabled:opacity-50"
+          >
+            <span className="absolute inset-0 -z-10 translate-y-full bg-gradient-to-b from-primary/5 to-transparent transition-transform duration-300 group-hover:translate-y-0" />
+            <User className="size-4" />
+            Continue as Guest
+          </button>
+        </div>
 
         <motion.p
           initial={{ opacity: 0 }}
@@ -211,7 +570,6 @@ export default function LoginPage() {
         </motion.p>
       </motion.div>
 
-      {/* Bottom fade */}
       <div className="pointer-events-none fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </main>
   );
