@@ -43,15 +43,19 @@ app/
   manifest.ts                    — PWA webmanifest
 
 components/
-  ui/                            — shadcn/ui primitives + custom (GlassCard, Skeleton, EmptyState, CelebrationModal)
+  ui/                            — shadcn/ui primitives + custom (GlassCard, Skeleton, EmptyState, CelebrationModal, SoundToggle)
+  avatar/                        — PremiumAvatarBorder (animated golden ring for premium users)
+  avatars/                       — SVG avatar components (Owl, Fox, Cat, Dog, UFO, Panda, Rooster, Turtle, Dragon, Phoenix, Griffin)
   layout/
-    AppLayout.tsx                — Main shell (sidebar, bottom nav, heart refill timer)
+    AppLayout.tsx                — Main shell (sidebar, bottom nav, heart refill timer, skips refill for premium)
     BottomNav.tsx                — Apple-style frosted glass bottom nav
-    Sidebar.tsx                  — Frosted glass sidebar with gradient nav items
+    Sidebar.tsx                  — Frosted glass sidebar with golden tint for premium users, no left active bar
+  paywall/                       — PricingCard component (subscription tier cards with offer/billing toggle)
+  shop/                          — ShopModal (dynamic pricing, premium subscription section)
   home/                          — Home page components
     DailyChallengeCard.tsx
     DailyRewardChest.tsx         — 3.5s animated gift box with confetti
-    StreakBar.tsx                — Week/month streak view with circles
+    StreakBar.tsx                — Week/month streak view with circles, ∞ hearts for premium
     MonthlyStreakView.tsx        — Calendar month view
     WeeklyInsights.tsx           — Weekly stats modal with share
 
@@ -78,13 +82,16 @@ services/
   puzzle-service.ts              — Puzzle CRUD (Firestore + localStorage dual-write)
   user-service.ts                — User data save/load (Firestore + localStorage)
   lesson-service.ts              — Lesson groups CRUD
-  analytics-service.ts           — Aggregated puzzle stats
+  analytics-service.ts           — Aggregated puzzle stats + premium stats
   imgbb.ts                       — Image upload to imgbb
   sudoku-generator.ts            — Backtracking sudoku generator + unique-solution validation
   sound-service.ts               — Web Audio API procedural sounds (initSounds(), play*())
+  pricing-service.ts             — PricingConfig CRUD (Firestore + localStorage)
+  entitlement-service.ts         — hasPremiumAccess(), daysRemaining(), formatExpiry()
 
 lib/
   utils.tsx                      — checkAnswer(), cn(), formatters
+  subscription.ts                — PricingConfig types, DEFAULT_PRICING, SHOP_PRODUCTS, PREMIUM_BENEFITS, getProductPriceLabel()
 ```
 
 ---
@@ -140,12 +147,33 @@ Stored in Zustand with persist middleware. Key fields:
 - `gems`, `totalXpEarned`, `puzzlesCompleted`, `totalCorrect`, `totalAttempts`
 - `soundEnabled`, `dailyRewardClaimed`, `dailyRewardDate`
 - `heartsLostThisSession` (module-level flag for hearts_saver achievement)
+- `tier: "free" | "premium"`, `subscriptionExpiry?: number` (ms timestamp)
+- `avatarId: string | null` — selected avatar ID
 
 ### Settings (Firestore `settings/studio` / localStorage `brainbloom-settings`)
 ```ts
 {
   lessonGroups: { name: string, order: number }[],
   codes: { code: string, password: string, role: "admin" | "contributor" }[]
+}
+```
+
+### PricingConfig (Firestore `settings/pricing` / localStorage `brainbloom-pricing`)
+```ts
+{
+  monthlyBase: number,           // e.g. 4.99
+  monthlyOffer: number,          // e.g. 1.00
+  monthlyOfferPercent: number,   // e.g. 80
+  yearlyBase: number,            // e.g. 39.99
+  yearlyOffer: number,           // e.g. 10.00
+  yearlyOfferPercent: number,    // e.g. 75
+  offerActive: boolean,
+  offerLabel: string,            // e.g. "Launch Special"
+  gems_100: number,              // shop product prices
+  gems_500: number,
+  gems_1200: number,
+  heart_refill: number,
+  streak_freeze_3: number,
 }
 ```
 
@@ -239,6 +267,7 @@ Stored in Zustand with persist middleware. Key fields:
 - Hearts=0 → "No Hearts Left" card with timer. Hearts<5 → "Next heart in" banner.
 - Heart refill notification: animated toast when `processHeartRefill` detects increase.
 - Heart timer uses destructive (red) colors.
+- **Premium**: Unlimited hearts (no deduction, no refill timer). `∞` shown across all UI.
 
 ### 5. XP & Levels
 - Level formula: `xpForLevel(n) = n * 100` (can change). `getLevelProgress()` returns `{ current, next, progress }`.
@@ -258,6 +287,8 @@ Stored in Zustand with persist middleware. Key fields:
 - `hearts_saver` (perfect run) uses module-level `heartsLostThisSession` flag, reset in `handleStartPuzzle`.
 - `daily_goal_week` (7-day goal streak) via `dailyGoalStreak` / `dailyGoalLastHitDate` tracked in `addXp`.
 - `CelebrationModal`: canvas confetti for achievements/level-ups. Auto-checked after completion, detected in `addXp`.
+- **Profile preview**: Shows 3 inline achievement badges (unlocked first, then locked) with icon + title.
+  - Click "View all" to navigate to full `/achievements` page.
 
 ### 8. Puzzle Type Specifics
 
@@ -300,6 +331,7 @@ Stored in Zustand with persist middleware. Key fields:
   - `initSounds()` on first user interaction
   - Mute toggle synced to user store + Firestore cross-device
   - Profile page: animated sound toggle switch
+  - Toggle sound effects: `playToggleOn()` (rising C-E-G-C arpeggio), `playToggleOff()` (descending E-G chime) — bypass `_enabled` flag
 
 ### 11. Analytics Dashboard (`/studio/analytics`)
 - Stat cards: total puzzles, published, total completions, category count
@@ -308,6 +340,7 @@ Stored in Zustand with persist middleware. Key fields:
 - Category breakdown table with counts & avg plays
 - Time-range filter (7d/30d/all)
 - BarChart3 button in Studio header
+- **Premium stats**: premium users count, estimated monthly revenue, conversion rate
 
 ### 12. Content Seeding (`/studio/seed`)
 - `scripts/seed-data/importer.ts` — batch delete (localStorage + Firestore writeBatch), `seedLessonGroups()`, `seedPuzzles()`, `directCreatePuzzle()` with `published: true` + `reviewStatus: "approved"`
@@ -326,6 +359,30 @@ Stored in Zustand with persist middleware. Key fields:
 
 ---
 
+### 15. Premium Subscription System
+- **Free tier**: 3 puzzles/day, standard hearts (max 5 + refill), basic avatars
+- **Premium tier**: unlimited puzzles, unlimited hearts (∞), premium avatars (Dragon, Phoenix, Griffin), golden VIP profile, 2x XP, ad-free
+- **Pricing**: `PricingConfig` in Firestore `settings/pricing` with monthly/yearly base + offer prices, 5 shop product prices
+  - `PricingCard` component: plan toggle (monthly/yearly), offer badges, savings %, save button (mock purchase)
+  - Admin-editable via Studio → Settings → Pricing tab
+- **Entitlement**: `hasPremiumAccess(tier, expiry)` checks tier + expiry timestamp. `daysRemaining()`, `formatExpiry()` helpers.
+- **Gating**: `useHeart()` skips deduction for premium. `processHeartRefill()` interval skips for premium. `PracticeToHeal` hidden.
+- **Golden profile**: `PremiumAvatarBorder` (animated rotating golden ring), gradient name/level badges, amber glow on avatar border, crown badge
+- **Sidebar**: Golden gradient avatar ring, amber name text, golden `from-amber-500/10 via-yellow-500/10 to-orange-500/10` hover glow on user card
+
+### 16. Premium Avatars
+- 3 premium SVG avatars: Dragon (red), Phoenix (orange), Griffin (purple)
+- Procedural Web Audio sounds: `playDragonSfx()` (low growl + sub bass), `playPhoenixSfx()` (ethereal ascending chime), `playGriffinSfx()` (brass fanfare)
+- Locked state: golden border overlay + lock icon + `PremiumBadge` in AvatarSelector and onboarding AvatarStep
+- Clicking locked avatar opens ShopModal
+- Non-premium avatars remain free (Owl, Fox, Cat, Dog, UFO, Panda, Rooster, Turtle)
+
+### 17. Shop System
+- `ShopModal`: tabs for Gems, Hearts/Streak, Premium Membership
+- **Premium section**: inline `PricingCard` for subscription purchase
+- **Product prices**: dynamic from `PricingConfig` via `getProductPriceLabel()`, fallback to `SHOP_PRODUCTS.priceLabel`
+- All purchases are mock (`[MOCK PURCHASE]` console log + localStorage)
+
 ## UI / UX Patterns
 - **Mobile-first** (320px+), dark mode only (no light mode toggle)
 - **Glassmorphism**: `GlassCard` component, `backdrop-blur-2xl saturate-[1.8]`, `bg-card/60` patterns
@@ -338,6 +395,7 @@ Stored in Zustand with persist middleware. Key fields:
 - **EmptyState component**: Replaces 9+ inline empty states across Studio/PuzzleBrowser/CurriculumPath
 - **Error/Success banners**: `AnimatePresence` with slide-in from top
 - **Gradient CTAs**: Buttons use `bg-gradient-to-r from-primary to-[#8b5cf6]` pattern
+- **Golden tint for premium**: `from-amber-500/10 via-yellow-500/10 to-orange-500/10` patterns in sidebar, profile cards, avatar borders
 
 ---
 
