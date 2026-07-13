@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Plus, Trash2, Key, Lock, Eye, EyeOff, Shield, PenTool, BookOpen, Edit3, Layers, Users, GripVertical, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, Key, Lock, Eye, EyeOff, Shield, PenTool, BookOpen, Edit3, Layers, Users, GripVertical, AlertTriangle, DollarSign, Sparkles, Gem } from "lucide-react";
 import { getInviteCodes, addInviteCode, removeInviteCode, type InviteCodeEntry } from "@/services/studio-settings";
 import { getStudioSession, getStudioRole, CATEGORIES } from "@/services/puzzle-service";
 import { getAllLessonGroups, addLessonGroup, removeLessonGroup, updateLessonGroup, reorderLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
@@ -12,12 +12,16 @@ import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { SkeletonLessonGroup } from "@/components/ui/skeleton";
+import { getPricingConfig, savePricingConfig } from "@/services/pricing-service";
+import type { PricingConfig } from "@/lib/subscription";
+import { DEFAULT_PRICING } from "@/lib/subscription";
 
-type SettingsTab = "lessons" | "invites";
+type SettingsTab = "lessons" | "invites" | "pricing";
 
 const TABS: { id: SettingsTab; label: string; icon: typeof Layers; adminOnly?: boolean }[] = [
   { id: "lessons", label: "Lesson Hierarchy", icon: Layers },
   { id: "invites", label: "Invite Codes", icon: Key, adminOnly: true },
+  { id: "pricing", label: "Pricing", icon: DollarSign, adminOnly: true },
 ];
 
 export default function StudioSettingsPage() {
@@ -28,6 +32,8 @@ export default function StudioSettingsPage() {
 
   // Invite codes state
   const [codes, setCodes] = useState<InviteCodeEntry[]>([]);
+  const [pricing, setPricing] = useState<PricingConfig>(DEFAULT_PRICING);
+  const [pricingLoaded, setPricingLoaded] = useState(false);
   const [newCode, setNewCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newRole, setNewRole] = useState<"admin" | "contributor">("contributor");
@@ -77,6 +83,10 @@ export default function StudioSettingsPage() {
     const c = await getInviteCodes();
     setCodes(c);
   };
+
+  useEffect(() => {
+    getPricingConfig().then((cfg) => { setPricing(cfg); setPricingLoaded(true); });
+  }, []);
 
   const handleAddCode = async () => {
     if (!newCode.trim() || !newPassword.trim()) {
@@ -504,6 +514,146 @@ export default function StudioSettingsPage() {
                   Add Code
                 </button>
               </div>
+            </GlassCard>
+          </motion.div>
+        )}
+
+        {/* Pricing Tab */}
+        {activeTab === "pricing" && isAdmin && (
+          <motion.div
+            key="pricing"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="mt-6 space-y-5"
+          >
+            <GlassCard className="p-5">
+              <div className="mb-4 flex items-center gap-2">
+                <div className="flex size-8 items-center justify-center rounded-lg bg-amber-500/10">
+                  <DollarSign className="size-4 text-amber-500" />
+                </div>
+                <div>
+                  <h2 className="text-sm font-semibold">Premium Pricing</h2>
+                  <p className="text-xs text-muted-foreground">
+                    Configure subscription pricing and offers
+                  </p>
+                </div>
+              </div>
+
+              {pricingLoaded && (
+                <div className="flex flex-col gap-4">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-1.5">
+                      <label className="text-xs text-muted-foreground">Monthly Base ($)</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={pricing.monthlyBase}
+                        onChange={(e) => setPricing({ ...pricing, monthlyBase: parseFloat(e.target.value) || 0 })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-xs text-muted-foreground">Monthly Offer ($)</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={pricing.monthlyOffer}
+                        onChange={(e) => setPricing({ ...pricing, monthlyOffer: parseFloat(e.target.value) || 0 })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-xs text-muted-foreground">Yearly Base ($)</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={pricing.yearlyBase}
+                        onChange={(e) => setPricing({ ...pricing, yearlyBase: parseFloat(e.target.value) || 0 })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-xs text-muted-foreground">Yearly Offer ($)</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={pricing.yearlyOffer}
+                        onChange={(e) => setPricing({ ...pricing, yearlyOffer: parseFloat(e.target.value) || 0 })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="text-xs text-muted-foreground">Offer label</label>
+                      <input
+                        value={pricing.offerLabel}
+                        onChange={(e) => setPricing({ ...pricing, offerLabel: e.target.value })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
+                      />
+                    </div>
+                    <div className="flex items-end gap-3">
+                      <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm transition-all hover:bg-white/5">
+                        <input
+                          type="checkbox"
+                          checked={pricing.offerActive}
+                          onChange={(e) => setPricing({ ...pricing, offerActive: e.target.checked })}
+                          className="size-4 accent-primary"
+                        />
+                        <span className="text-xs text-muted-foreground">Offer active</span>
+                      </label>
+                      <button
+                        onClick={async () => {
+                          await savePricingConfig(pricing);
+                          toast.success("Pricing saved!");
+                        }}
+                        className="flex h-10 items-center gap-1.5 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 active:scale-[0.98]"
+                      >
+                        <Sparkles className="size-4" />
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </GlassCard>
+
+            <GlassCard className="p-5">
+              <div className="mb-4 flex items-center gap-2">
+                <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-500/10">
+                  <Gem className="size-4 text-emerald-500" />
+                </div>
+                <div>
+                  <h2 className="text-sm font-semibold">Product Pricing</h2>
+                  <p className="text-xs text-muted-foreground">
+                    Configure individual shop product prices
+                  </p>
+                </div>
+              </div>
+
+              {pricingLoaded && (
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {([
+                    { key: "gems_100", label: "100 Gems ($)" },
+                    { key: "gems_500", label: "500 Gems ($)" },
+                    { key: "gems_1200", label: "1200 Gems ($)" },
+                    { key: "heart_refill", label: "Heart Refill ($)" },
+                    { key: "streak_freeze_3", label: "Streak Freeze 3-Pack ($)" },
+                  ] as const).map(({ key, label }) => (
+                    <div key={key} className="space-y-1.5">
+                      <label className="text-xs text-muted-foreground">{label}</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={pricing[key]}
+                        onChange={(e) => setPricing({ ...pricing, [key]: parseFloat(e.target.value) || 0 })}
+                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
             </GlassCard>
           </motion.div>
         )}

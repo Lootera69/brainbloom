@@ -23,11 +23,18 @@ import {
   Shield,
   KeyRound,
   Loader2,
+  Crown,
+  Lock,
+  Compass,
+  Sun,
+  Target,
+  Brain,
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import { useUserStore, getLevelProgress } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
+import { achievementsList } from "@/constants/achievements";
 import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
 import { PremiumBadge } from "@/components/paywall/PremiumBadge";
 import { hasPremiumAccess, daysRemaining, formatExpiry } from "@/services/entitlement-service";
@@ -35,6 +42,7 @@ import { AvatarSelector } from "@/components/avatars/AvatarSelector";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { signOutUser, sendPasswordReset } from "@/services/firebase";
+import { playToggleOn, playToggleOff } from "@/services/sound-service";
 
 function getLevel(xp: number) {
   return getLevelProgress(xp);
@@ -82,6 +90,23 @@ export default function ProfilePage() {
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
   const setShowShop = useUIStore((s) => s.setShowShop);
+  const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
+  const userAchievements = useUserStore((s) => s.achievements);
+
+  const iconMap: Record<string, typeof Trophy> = {
+    Brain, Flame, Zap, Compass: Trophy, Sun: Trophy,
+    TrendingUp: Trophy, Heart: Trophy, Target: Trophy,
+  };
+
+  const unlockedIds = new Set(userAchievements.map((a) => a.id));
+  const previewAchievements = achievementsList
+    .slice()
+    .sort((a, b) => {
+      const aUnlocked = unlockedIds.has(a.id) ? 0 : 1;
+      const bUnlocked = unlockedIds.has(b.id) ? 0 : 1;
+      return aUnlocked - bUnlocked;
+    })
+    .slice(0, 3);
 
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
@@ -128,8 +153,25 @@ export default function ProfilePage() {
         animate={{ opacity: 1, y: 0 }}
         className="relative mb-6 overflow-hidden rounded-3xl"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
-        <GlassCard className="relative p-6 sm:p-8">
+        <div className={`absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5`} />
+        {isPremium && (
+          <>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-yellow-500/5" />
+            <div className="pointer-events-none absolute -inset-1 rounded-3xl border border-amber-500/20" />
+            <motion.div
+              className="pointer-events-none absolute inset-0 opacity-20"
+              style={{
+                background: "linear-gradient(135deg, transparent 0%, rgba(251,191,36,0.15) 50%, transparent 100%)",
+                backgroundSize: "200% 200%",
+              }}
+              animate={{
+                backgroundPosition: ["0% 0%", "100% 100%"],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            />
+          </>
+        )}
+        <GlassCard className={`relative p-6 sm:p-8 ${isPremium ? "shadow-lg shadow-amber-500/10" : ""}`}>
           <div className="flex flex-col items-center text-center">
             <motion.div
               initial={{ scale: 0 }}
@@ -137,20 +179,44 @@ export default function ProfilePage() {
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
               className="relative mb-4 group"
             >
-              <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary via-secondary to-warning opacity-50 blur-sm" />
+              <div className={`absolute -inset-1 rounded-full blur-sm ${
+                isPremium
+                  ? "bg-gradient-to-br from-amber-400 via-yellow-500 to-orange-500 opacity-70"
+                  : "bg-gradient-to-br from-primary via-secondary to-warning opacity-50"
+              }`} />
               <button
                 onClick={() => setShowAvatarSelector(true)}
                 className="relative block cursor-pointer"
                 aria-label="Change avatar"
               >
-                <div className="size-24 ring-4 ring-background overflow-hidden rounded-full">
+                {isPremium ? (
                   <AvatarDisplay
                     avatarId={avatarId}
                     photoURL={photoURL}
                     name={displayName}
                     size={96}
+                    premium
                   />
-                </div>
+                ) : (
+                  <div className="size-24 overflow-hidden rounded-full ring-4 ring-background">
+                    <AvatarDisplay
+                      avatarId={avatarId}
+                      photoURL={photoURL}
+                      name={displayName}
+                      size={96}
+                    />
+                  </div>
+                )}
+                {isPremium && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+                    className="absolute -right-1 -top-1 flex size-7 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 shadow-lg"
+                  >
+                    <Crown className="size-4 text-white" />
+                  </motion.span>
+                )}
                 <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                   <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
                     Edit
@@ -163,7 +229,7 @@ export default function ProfilePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.15 }}
-              className="font-heading text-2xl font-bold"
+              className={`font-heading text-2xl font-bold ${isPremium ? "bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-400 bg-clip-text text-transparent" : ""}`}
             >
               {displayName}
             </motion.h1>
@@ -201,9 +267,11 @@ export default function ProfilePage() {
               className="mt-5 w-full max-w-xs"
             >
               <div className="mb-2 flex items-center justify-between">
-                <div className="flex items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-1">
-                  <Sparkles className="size-3.5 text-primary" />
-                  <span className="text-xs font-bold text-primary">Level {level}</span>
+                <div className={`flex items-center gap-1.5 rounded-lg px-3 py-1 ${
+                  isPremium ? "bg-amber-500/15" : "bg-primary/10"
+                }`}>
+                  <Sparkles className={`size-3.5 ${isPremium ? "text-amber-400" : "text-primary"}`} />
+                  <span className={`text-xs font-bold ${isPremium ? "text-amber-400" : "text-primary"}`}>Level {level}</span>
                 </div>
                 <span className="text-[11px] text-muted-foreground">
                   {xpToNext} XP to next level
@@ -214,7 +282,11 @@ export default function ProfilePage() {
                   initial={{ width: 0 }}
                   animate={{ width: `${progress * 100}%` }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="h-full rounded-full bg-gradient-to-r from-primary to-secondary"
+                  className={`h-full rounded-full ${
+                    isPremium
+                      ? "bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500"
+                      : "bg-gradient-to-r from-primary to-secondary"
+                  }`}
                 />
               </div>
             </motion.div>
@@ -254,7 +326,7 @@ export default function ProfilePage() {
                 <div>
                   <p className="text-[11px] text-muted-foreground">{label}</p>
                   <p className="font-heading text-lg font-bold tabular-nums leading-tight">
-                    {label === "Streak" ? `${streak}d` : label === "Hearts" ? hearts : label === "Total XP" ? xp.toLocaleString() : gems}
+                    {label === "Streak" ? `${streak}d` : label === "Hearts" ? (isPremium ? "∞" : hearts) : label === "Total XP" ? xp.toLocaleString() : gems}
                   </p>
                 </div>
               </GlassCard>
@@ -263,7 +335,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Heart timer banner — shows when hearts < 5 */}
-        {hearts < 5 && (
+        {!isPremium && hearts < 5 && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
@@ -290,23 +362,52 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
+          className="h-full"
         >
-          <GlassCard
-            hover
-            intensity="light"
-            className="flex items-center justify-between p-4 cursor-pointer"
-            onClick={() => router.push("/achievements")}
-          >
-            <div className="flex items-center gap-3">
-              <span className="flex size-10 items-center justify-center rounded-xl bg-warning/10">
-                <Trophy className="size-5 text-warning" />
-              </span>
-              <div>
-                <p className="text-sm font-semibold">Achievements</p>
-                <p className="text-[11px] text-muted-foreground">View your badges</p>
+          <GlassCard intensity="light" className="flex h-full flex-col p-4">
+            <div className="mb-2 flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <span className="flex size-6 items-center justify-center rounded-md bg-warning/10">
+                  <Trophy className="size-3.5 text-warning" />
+                </span>
+                <h3 className="text-sm font-semibold">Achievements</h3>
               </div>
+              <button
+                onClick={() => router.push("/achievements")}
+                className="text-[10px] font-medium text-primary transition-colors hover:text-primary/80"
+              >
+                View all
+              </button>
             </div>
-            <ChevronRight className="size-4 text-muted-foreground" />
+            <div className="flex flex-1 items-center justify-center">
+              <div className="grid w-full grid-cols-3 gap-1">
+              {previewAchievements.map((a) => {
+                const Icon = iconMap[a.icon] ?? Trophy;
+                const unlocked = unlockedIds.has(a.id);
+                return (
+                  <div
+                    key={a.id}
+                    className={`flex flex-col items-center gap-0.5 rounded-lg p-1.5 ${
+                      unlocked ? "bg-primary/5" : "bg-muted/30"
+                    }`}
+                  >
+                    <span className={`flex size-6 items-center justify-center rounded-md ${
+                      unlocked ? "bg-primary/15" : "bg-muted"
+                    }`}>
+                      {unlocked ? (
+                        <Icon className="size-5 text-primary" />
+                      ) : (
+                        <Lock className="size-5 text-muted-foreground/50" />
+                      )}
+                    </span>
+                    <span className="text-center text-[10px] font-medium leading-tight text-muted-foreground">
+                      {a.title}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+            </div>
           </GlassCard>
         </motion.div>
 
@@ -458,7 +559,10 @@ export default function ProfilePage() {
             </div>
           </div>
           <button
-            onClick={() => setSoundEnabled(!soundEnabled)}
+            onClick={() => {
+              if (soundEnabled) playToggleOff(); else playToggleOn();
+              setSoundEnabled(!soundEnabled);
+            }}
             className={cn(
               "relative inline-flex h-6 w-11 items-center rounded-full transition-colors",
               soundEnabled ? "bg-primary" : "bg-muted-foreground/30",

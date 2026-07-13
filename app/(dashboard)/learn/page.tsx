@@ -22,6 +22,7 @@ import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
 import { ErrorFallback } from "@/components/error-fallback";
 import { PaywallModal } from "@/components/paywall/PaywallModal";
 import { ShopModal } from "@/components/shop/ShopModal";
+import { hasPremiumAccess } from "@/services/entitlement-service";
 
 import { categories } from "@/constants/home";
 
@@ -78,6 +79,8 @@ export default function LearnPage() {
   const canPlayPuzzle = useUserStore((s) => s.canPlayPuzzle);
   const incrementPuzzlePlayed = useUserStore((s) => s.incrementPuzzlePlayed);
   const tier = useUserStore((s) => s.tier);
+  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
+  const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
   const streak = useUserStore((s) => s.streak);
   const lastActiveDate = useUserStore((s) => s.lastActiveDate);
   const frozenDays = useUserStore((s) => s.frozenDays);
@@ -168,7 +171,7 @@ export default function LearnPage() {
   };
 
   const handleStartPuzzle = useCallback(async (puzzle: Puzzle, progress?: LessonProgress) => {
-    if (hearts <= 0) { setPaywallType("hearts"); return; }
+    if (!isPremium && hearts <= 0) { setPaywallType("hearts"); return; }
     const check = useUserStore.getState().canPlayPuzzle();
     if (!check) { setPaywallType("limit"); return; }
     resetHeartsLostFlag();
@@ -366,7 +369,7 @@ export default function LearnPage() {
                 </GlassCard>
               </motion.div>
             )}
-            {hearts <= 0 ? (
+            {!isPremium && hearts <= 0 ? (
               <GlassCard intensity="light" className="mx-auto mt-6 max-w-md p-6 text-center">
                 <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-destructive/10">
                   <Heart className="size-7 text-destructive" />
@@ -384,7 +387,7 @@ export default function LearnPage() {
               </GlassCard>
             ) : (
               <>
-                {hearts < 5 && timer > 0 && (
+                {!isPremium && hearts < 5 && timer > 0 && (
                   <div className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-destructive/10 px-4 py-2 text-sm">
                     <Heart className="size-4 fill-destructive text-destructive" />
                     <span className="text-muted-foreground">
@@ -508,7 +511,7 @@ export default function LearnPage() {
               </div>
             )}
 
-            {hearts <= 0 ? (
+            {!isPremium && hearts <= 0 ? (
               <GlassCard intensity="light" className="mx-auto mt-6 max-w-md p-6 text-center">
                 <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-destructive/10">
                   <Heart className="size-7 text-destructive" />
@@ -526,7 +529,7 @@ export default function LearnPage() {
               </GlassCard>
             ) : (
               <>
-                {hearts < 5 && timer > 0 && (
+                {!isPremium && hearts < 5 && timer > 0 && (
                   <div className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-destructive/10 px-4 py-2 text-sm">
                     <Heart className="size-4 fill-destructive text-destructive" />
                     <span className="text-muted-foreground">

@@ -5,19 +5,23 @@ import { Heart, RotateCcw } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
+import { hasPremiumAccess } from "@/services/entitlement-service";
 
 export function PracticeToHeal() {
   const hearts = useUserStore((s) => s.hearts);
+  const tier = useUserStore((s) => s.tier);
+  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
   const usePracticeHeart = useUserStore((s) => s.usePracticeHeart);
   const practiceHeartsToday = useUserStore((s) => s.practiceHeartsToday);
   const lastPracticeDate = useUserStore((s) => s.lastPracticeDate);
   const addXp = useUserStore((s) => s.addXp);
   const logActivity = useUserStore((s) => s.logActivity);
+  const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
 
   const today = typeof window !== "undefined" ? new Date().toDateString() : "";
   const practicesUsed = lastPracticeDate === today ? practiceHeartsToday : 0;
   const practicesLeft = 3 - practicesUsed;
-  const show = hearts < 5 && practicesLeft > 0;
+  const show = !isPremium && hearts < 5 && practicesLeft > 0;
 
   if (!show) return null;
 

@@ -8,17 +8,21 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { MonthlyStreakView } from "@/features/home/components/MonthlyStreakView";
 import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
+import { hasPremiumAccess } from "@/services/entitlement-service";
 
 export function StreakBar() {
   const streak = useUserStore((s) => s.streak);
   const xp = useUserStore((s) => s.xp);
   const hearts = useUserStore((s) => s.hearts);
   const gems = useUserStore((s) => s.gems);
+  const tier = useUserStore((s) => s.tier);
+  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
   const lastActiveDate = useUserStore((s) => s.lastActiveDate);
   const frozenDays = useUserStore((s) => s.frozenDays);
   const brokenDays = useUserStore((s) => s.brokenDays);
   const streakStartDate = useUserStore((s) => s.streakStartDate);
   const activeDates = useUserStore((s) => s.activeDates);
+  const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
   const maxHearts = 5;
   const [showStreak, setShowStreak] = useState(false);
   const [streakTab, setStreakTab] = useState<"week" | "month">("week");
@@ -84,7 +88,11 @@ export function StreakBar() {
       gradient: "from-rose-500/20 to-pink-500/10",
       iconBg: "bg-gradient-to-br from-rose-500/25 to-pink-500/10",
       ring: "ring-rose-500/20",
-      bottom: (
+      bottom: isPremium ? (
+        <div className="mt-1.5 flex items-center justify-center">
+          <span className="text-lg font-bold text-rose-500">∞</span>
+        </div>
+      ) : (
         <div className="mt-1.5 flex items-center gap-0.5">
           {Array.from({ length: maxHearts }).map((_, i) => (
             <Heart

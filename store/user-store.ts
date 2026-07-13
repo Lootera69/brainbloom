@@ -477,8 +477,9 @@ export const useUserStore = create<UserState>()(
       addGems: (amount) => set({ gems: get().gems + amount }),
 
       useHeart: () => {
-        const { hearts, nextHeartAt } = get();
+        const { hearts, nextHeartAt, tier, subscriptionExpiry } = get();
         if (hearts <= 0) return;
+        if (tier === "premium" && (!subscriptionExpiry || Date.now() < subscriptionExpiry)) return;
         const newHearts = hearts - 1;
         const now = Date.now();
         set({

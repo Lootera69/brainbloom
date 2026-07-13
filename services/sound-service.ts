@@ -259,6 +259,110 @@ export function playRiddleCorrect() {
   } catch { /* silent fallback */ }
 }
 
+// --- Procedural Avatar Sounds (Web Audio API) ---
+
+export function playDragonSfx() {
+  if (!_enabled) return;
+  try {
+    const c = getCtx();
+    stopAvatarSound();
+    // Low growl with frequency ramp up — sawtooth for raspy texture
+    const g1 = gain(0.18);
+    const o1 = osc("sawtooth", 55, c.currentTime, c.currentTime + 0.6);
+    o1.frequency.setValueAtTime(55, c.currentTime);
+    o1.frequency.exponentialRampToValueAtTime(130, c.currentTime + 0.5);
+    o1.connect(g1);
+    g1.gain.setValueAtTime(0.01, c.currentTime);
+    g1.gain.linearRampToValueAtTime(0.18, c.currentTime + 0.08);
+    g1.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 0.6);
+    // Sub bass layer for rumble
+    const g2 = gain(0.14);
+    const o2 = osc("sine", 38, c.currentTime, c.currentTime + 0.6);
+    o2.frequency.setValueAtTime(38, c.currentTime);
+    o2.frequency.exponentialRampToValueAtTime(85, c.currentTime + 0.5);
+    o2.connect(g2);
+    g2.gain.setValueAtTime(0.01, c.currentTime);
+    g2.gain.linearRampToValueAtTime(0.14, c.currentTime + 0.1);
+    g2.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 0.6);
+    // Noise burst for growl texture
+    const g3 = gain(0.1);
+    const n = noise(0.2);
+    n.connect(g3);
+    n.start(c.currentTime + 0.05);
+    n.stop(c.currentTime + 0.25);
+    g3.gain.setValueAtTime(0.1, c.currentTime + 0.05);
+    g3.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 0.25);
+  } catch { /* silent fallback */ }
+}
+
+export function playPhoenixSfx() {
+  if (!_enabled) return;
+  try {
+    const c = getCtx();
+    stopAvatarSound();
+    // Main ascending ethereal chime
+    const g1 = gain(0.13);
+    const o1 = osc("sine", 350, c.currentTime, c.currentTime + 0.8);
+    o1.frequency.setValueAtTime(350, c.currentTime);
+    o1.frequency.exponentialRampToValueAtTime(1800, c.currentTime + 0.7);
+    o1.connect(g1);
+    g1.gain.setValueAtTime(0.01, c.currentTime);
+    g1.gain.linearRampToValueAtTime(0.13, c.currentTime + 0.08);
+    g1.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 0.8);
+    // Harmonic shimmer — triangle at 2x frequency
+    const g2 = gain(0.07);
+    const o2 = osc("triangle", 700, c.currentTime + 0.05, c.currentTime + 0.8);
+    o2.frequency.setValueAtTime(700, c.currentTime + 0.05);
+    o2.frequency.exponentialRampToValueAtTime(3600, c.currentTime + 0.7);
+    o2.connect(g2);
+    g2.gain.setValueAtTime(0.01, c.currentTime + 0.05);
+    g2.gain.linearRampToValueAtTime(0.07, c.currentTime + 0.12);
+    g2.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 0.8);
+    // Detuned layer for ethereal width
+    const g3 = gain(0.05);
+    const o3 = osc("sine", 353, c.currentTime + 0.08, c.currentTime + 0.8);
+    o3.frequency.setValueAtTime(353, c.currentTime + 0.08);
+    o3.frequency.exponentialRampToValueAtTime(1810, c.currentTime + 0.7);
+    o3.connect(g3);
+    g3.gain.setValueAtTime(0.01, c.currentTime + 0.08);
+    g3.gain.linearRampToValueAtTime(0.05, c.currentTime + 0.15);
+    g3.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 0.8);
+  } catch { /* silent fallback */ }
+}
+
+export function playGriffinSfx() {
+  if (!_enabled) return;
+  try {
+    const c = getCtx();
+    stopAvatarSound();
+    // First fanfare note — square for brass-like tone
+    const g1 = gain(0.18);
+    const o1 = osc("square", 494, c.currentTime, c.currentTime + 0.18);
+    o1.connect(g1);
+    g1.gain.setValueAtTime(0.01, c.currentTime);
+    g1.gain.linearRampToValueAtTime(0.18, c.currentTime + 0.02);
+    g1.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 0.18);
+    // Second fanfare note — ascending fifth
+    const g2 = gain(0.18);
+    const o2 = osc("square", 740, c.currentTime + 0.15, c.currentTime + 0.5);
+    o2.connect(g2);
+    g2.gain.setValueAtTime(0.01, c.currentTime + 0.15);
+    g2.gain.linearRampToValueAtTime(0.18, c.currentTime + 0.17);
+    g2.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 0.5);
+    // Sawtooth layer for richness
+    const g3 = gain(0.08);
+    const o3 = osc("sawtooth", 494, c.currentTime, c.currentTime + 0.5);
+    o3.frequency.setValueAtTime(494, c.currentTime);
+    o3.frequency.setValueAtTime(740, c.currentTime + 0.15);
+    o3.connect(g3);
+    g3.gain.setValueAtTime(0.01, c.currentTime);
+    g3.gain.linearRampToValueAtTime(0.08, c.currentTime + 0.02);
+    g3.gain.setValueAtTime(0.08, c.currentTime + 0.13);
+    g3.gain.linearRampToValueAtTime(0.1, c.currentTime + 0.17);
+    g3.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 0.5);
+  } catch { /* silent fallback */ }
+}
+
 // --- Avatar Selection Sounds (HTML Audio, no AudioContext needed) ---
 
 const avatarEls: Record<string, HTMLAudioElement | null> = {};
@@ -301,6 +405,9 @@ export function playUfoSound() { playAvatar("ufo", 0.35); }
 export function playPandaSound() { playAvatar("panda", 0.3); }
 export function playRoosterSound() { playAvatar("rooster", 0.3); }
 export function playTurtleSound() { playAvatar("turtle", 0.3); }
+export function playDragonSound() { playDragonSfx(); }
+export function playPhoenixSound() { playPhoenixSfx(); }
+export function playGriffinSound() { playGriffinSfx(); }
 
 export const avatarSounds: Record<string, () => void> = {
   owl: playOwlSound,
@@ -311,7 +418,46 @@ export const avatarSounds: Record<string, () => void> = {
   panda: playPandaSound,
   rooster: playRoosterSound,
   turtle: playTurtleSound,
+  dragon: playDragonSound,
+  phoenix: playPhoenixSound,
+  griffin: playGriffinSound,
 };
+
+// --- Sound Toggle Effects (bypass _enabled — always play) ---
+
+export function playToggleOn() {
+  try {
+    const c = getCtx();
+    const g = gain(0.2);
+    const notes = [523, 784, 1047]; // C5, G5, C6
+    const dur = 0.15;
+    const o = osc("sine", notes[0], c.currentTime, c.currentTime + notes.length * dur + 0.3);
+    notes.forEach((f, i) => {
+      o.frequency.setValueAtTime(f, c.currentTime + i * dur);
+    });
+    o.connect(g);
+    g.gain.setValueAtTime(0.2, c.currentTime);
+    g.gain.setValueAtTime(0.2, c.currentTime + notes.length * dur);
+    g.gain.exponentialRampToValueAtTime(0.01, c.currentTime + notes.length * dur + 0.3);
+  } catch { /* silent fallback */ }
+}
+
+export function playToggleOff() {
+  try {
+    const c = getCtx();
+    const g = gain(0.15);
+    const notes = [659, 392]; // E5, G4
+    const dur = 0.2;
+    const o = osc("triangle", notes[0], c.currentTime, c.currentTime + notes.length * dur + 0.3);
+    notes.forEach((f, i) => {
+      o.frequency.setValueAtTime(f, c.currentTime + i * dur);
+    });
+    o.connect(g);
+    g.gain.setValueAtTime(0.15, c.currentTime);
+    g.gain.setValueAtTime(0.15, c.currentTime + notes.length * dur);
+    g.gain.exponentialRampToValueAtTime(0.01, c.currentTime + notes.length * dur + 0.3);
+  } catch { /* silent fallback */ }
+}
 
 // Warm up AudioContext for procedural sounds on first user interaction
 export function initSounds() {

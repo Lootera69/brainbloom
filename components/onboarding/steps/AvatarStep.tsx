@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, Lock, Sparkles } from "lucide-react";
 import { avatars } from "@/components/avatars/avatar-svgs";
 import { avatarSounds } from "@/services/sound-service";
+import { PremiumBadge } from "@/components/paywall/PremiumBadge";
 
 interface AvatarStepProps {
   selectedAvatar: string | null;
@@ -14,6 +14,8 @@ interface AvatarStepProps {
 
 export default function AvatarStep({ selectedAvatar, onSelect, onNext }: AvatarStepProps) {
   const handleSelect = (id: string) => {
+    const avatar = avatars.find((a) => a.id === id);
+    if (avatar?.premium) return;
     onSelect(id);
     avatarSounds[id]?.();
   };
@@ -39,6 +41,7 @@ export default function AvatarStep({ selectedAvatar, onSelect, onNext }: AvatarS
         {avatars.map((avatar, i) => {
           const isSelected = selectedAvatar === avatar.id;
           const AvatarComp = avatar.component;
+          const isPremium = avatar.premium;
           return (
             <motion.button
               key={avatar.id}
@@ -49,12 +52,26 @@ export default function AvatarStep({ selectedAvatar, onSelect, onNext }: AvatarS
               className={`relative flex flex-col items-center gap-1.5 rounded-2xl border p-3 md:p-4 transition-all ${
                 isSelected
                   ? "border-primary bg-primary/10 shadow-lg shadow-primary/20"
-                  : "border-white/5 bg-white/5 hover:border-white/15 hover:bg-white/10"
+                  : isPremium
+                    ? "border-amber-500/20 bg-amber-500/5"
+                    : "border-white/5 bg-white/5 hover:border-white/15 hover:bg-white/10"
               }`}
             >
-              <AvatarComp size={52} className="md:[&_svg]:size-14" />
-              <span className="text-[10px] font-medium text-muted-foreground/60 md:text-xs">
-                {avatar.name}
+              <span className="relative">
+                <AvatarComp size={52} className={`md:[&_svg]:size-14 ${isPremium ? "opacity-60" : ""}`} />
+                {isPremium && (
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <Lock className="size-5 text-amber-400/80" />
+                  </span>
+                )}
+              </span>
+              <span className="flex items-center gap-1">
+                <span className={`text-[10px] font-medium md:text-xs ${
+                  isPremium ? "text-amber-400/60" : "text-muted-foreground/60"
+                }`}>
+                  {avatar.name}
+                </span>
+                {isPremium && <PremiumBadge size="xs" />}
               </span>
               {isSelected && (
                 <motion.span
@@ -70,12 +87,22 @@ export default function AvatarStep({ selectedAvatar, onSelect, onNext }: AvatarS
         })}
       </div>
 
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="mt-4 flex items-center gap-1.5 text-xs text-muted-foreground/50"
+      >
+        <Sparkles className="size-3 text-amber-400/60" />
+        Premium avatars can be unlocked later in the shop
+      </motion.p>
+
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
         onClick={onNext}
-        className="mt-8 flex h-12 w-48 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:brightness-110 hover:shadow-xl active:scale-[0.98]"
+        className="mt-4 flex h-12 w-48 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:brightness-110 hover:shadow-xl active:scale-[0.98]"
       >
         {selectedAvatar ? "Next" : "Skip for now"}
       </motion.button>

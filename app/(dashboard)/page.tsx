@@ -24,15 +24,19 @@ import { Play, Heart, Sparkles } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { AdModal } from "@/components/paywall/AdModal";
 import { type Puzzle } from "@/types/puzzle";
+import { hasPremiumAccess } from "@/services/entitlement-service";
 
 export default function HomePage() {
   const [dailyPuzzle, setDailyPuzzle] = useState<Puzzle | null>(null);
   const [dailyLoading, setDailyLoading] = useState(true);
   const [showAd, setShowAd] = useState(false);
   const hearts = useUserStore((s) => s.hearts);
+  const tier = useUserStore((s) => s.tier);
+  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
   const useHeart = useUserStore((s) => s.useHeart);
   const canWatchAd = useUserStore((s) => s.canWatchAd);
   const incrementAdWatched = useUserStore((s) => s.incrementAdWatched);
+  const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
 
   useEffect(() => {
     (async () => {
@@ -46,6 +50,8 @@ export default function HomePage() {
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-5 sm:p-6">
       <StreakBar />
 
+      <DailyRewardChest />
+
       <div className="mb-6 grid gap-6 sm:mb-8 md:grid-cols-3">
         <div className="md:col-span-1">
           <DailyGoalCard />
@@ -55,13 +61,11 @@ export default function HomePage() {
         </div>
       </div>
 
-      <DailyRewardChest />
-
       <DailyQuests />
 
       <PracticeToHeal />
 
-      {hearts < 5 && canWatchAd() && (
+      {!isPremium && hearts < 5 && canWatchAd() && (
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}

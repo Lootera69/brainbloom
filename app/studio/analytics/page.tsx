@@ -5,17 +5,14 @@ import { motion } from "framer-motion";
 import {
   Puzzle, Globe, Trophy, Layers, ArrowLeft, TrendingUp, Clock, BookOpen,
   Loader2, Eye, ListOrdered, ChevronDown, BarChart3, Sparkles, Activity,
-  CheckCircle2, AlertCircle,
+  CheckCircle2, AlertCircle, Crown, Users, DollarSign,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getAnalytics, type AnalyticsData } from "@/services/analytics-service";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
 import { ErrorFallback } from "@/components/error-fallback";
-import { LockedFeature } from "@/components/paywall/LockedFeature";
-import { useUserStore } from "@/store/user-store";
-import { useUIStore } from "@/store/ui-store";
-import { hasPremiumAccess } from "@/services/entitlement-service";
+
 
 const TYPE_LABELS: Record<string, string> = {
   "multiple-choice": "Multiple Choice",
@@ -118,6 +115,7 @@ function StatCard({
   sub,
   gradient,
   trend,
+  suffix,
 }: {
   icon: any;
   label: string;
@@ -125,6 +123,7 @@ function StatCard({
   sub?: string;
   gradient: string;
   trend?: { up: boolean; label: string };
+  suffix?: string;
 }) {
   return (
     <motion.div
@@ -484,32 +483,10 @@ function SkeletonChart() {
 
 export default function AnalyticsPage() {
   const router = useRouter();
-  const tier = useUserStore((s) => s.tier);
-  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
-  const setShowShop = useUIStore((s) => s.setShowShop);
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [timeRange, setTimeRange] = useState<"7d" | "30d" | "all">("all");
   const { timedOut: loadTimedOut, reset: resetLoadTimeout } = useLoadingTimeout(6000);
-
-  if (!hasPremiumAccess(tier, subscriptionExpiry)) {
-    return (
-      <div className="mx-auto max-w-2xl px-4 py-12">
-        <button
-          onClick={() => router.push("/studio")}
-          className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="size-4" />
-          Back to Studio
-        </button>
-        <LockedFeature
-          featureName="Advanced Analytics"
-          description="Upgrade to Premium to access detailed puzzle analytics, charts, and insights."
-          onUpgrade={() => setShowShop(true)}
-        />
-      </div>
-    );
-  }
 
   useEffect(() => {
     setLoading(true);
@@ -587,9 +564,10 @@ export default function AnalyticsPage() {
       </motion.div>
 
       {/* Stat Cards */}
-      <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
+      <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-5">
         {loading ? (
           <>
+            <SkeletonCard />
             <SkeletonCard />
             <SkeletonCard />
             <SkeletonCard />
@@ -610,9 +588,24 @@ export default function AnalyticsPage() {
             <StatCard icon={Layers} label="Categories" value={data.categories.length}
               gradient="from-sky-600 to-sky-500 shadow-sky-500/25"
               sub={data.categories.length === 1 ? "1 category" : `${data.categories.length} categories`} />
+            <StatCard icon={Crown} label="Premium Members" value={data.premiumUsers}
+              gradient="from-amber-600 to-amber-500 shadow-amber-500/25"
+              sub={data.premiumUsers > 0 ? `${(data.premiumConversionRate * 100).toFixed(1)}% conversion` : "No premium users yet"} />
           </>
         ) : null}
       </div>
+
+      {/* Premium Revenue */}
+      {!loading && data && data.premiumUsers > 0 && (
+        <div className="mb-8 grid grid-cols-2 gap-3">
+          <StatCard icon={DollarSign} label="Est. Monthly Revenue" value={data.estimatedMonthlyRevenue}
+            gradient="from-emerald-600 to-emerald-500 shadow-emerald-500/25"
+            sub="Based on current premium members" />
+          <StatCard icon={Users} label="Premium Conversion" value={Math.round(data.premiumConversionRate * 100)}
+            gradient="from-amber-600 to-amber-500 shadow-amber-500/25"
+            sub={`${data.premiumUsers} premium · ${(data.premiumConversionRate * 100).toFixed(0)}% of users`} />
+        </div>
+      )}
 
       {/* Charts Row */}
       <div className="mb-8 grid gap-5 md:grid-cols-2">

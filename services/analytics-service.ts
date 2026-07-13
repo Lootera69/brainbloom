@@ -1,5 +1,6 @@
 import { type Puzzle } from "@/types/puzzle";
 import { getPuzzles } from "@/services/puzzle-service";
+import { DEFAULT_PRICING } from "@/lib/subscription";
 
 export interface AnalyticsData {
   totalPuzzles: number;
@@ -12,6 +13,47 @@ export interface AnalyticsData {
   byStatus: Record<string, number>;
   topPuzzles: Puzzle[];
   recentPuzzles: Puzzle[];
+  premiumUsers: number;
+  estimatedMonthlyRevenue: number;
+  premiumConversionRate: number;
+}
+
+async function getPremiumStats(): Promise<{ premiumUsers: number; estimatedMonthlyRevenue: number; premiumConversionRate: number }> {
+  let premiumCount = 0;
+  let totalUsers = 0;
+  let revenue = 0;
+
+  try {
+    const own = localStorage.getItem("brainbloom-user");
+    if (own) {
+      const parsed = JSON.parse(own);
+      const state = parsed?.state;
+      if (state?.tier === "premium" && state?.subscriptionExpiry && Date.now() < state.subscriptionExpiry) {
+        premiumCount++;
+        revenue += DEFAULT_PRICING.monthlyOffer;
+      }
+      totalUsers++;
+    }
+  } catch { /* ignore */ }
+
+  try {
+    const { doc, getDoc } = await import("firebase/firestore");
+    const f = await import("./firebase").then((m) => m.getFirebase());
+    if (f.db) {
+      const settingsRef = doc(f.db, "settings", "pricing");
+      const settingsSnap = await getDoc(settingsRef);
+      if (settingsSnap.exists()) {
+        const pricing = settingsSnap.data();
+        revenue = (pricing.monthlyOffer ?? DEFAULT_PRICING.monthlyOffer) * premiumCount;
+      }
+    }
+  } catch { /* ignore */ }
+
+  return {
+    premiumUsers: premiumCount,
+    estimatedMonthlyRevenue: revenue,
+    premiumConversionRate: totalUsers > 0 ? premiumCount / totalUsers : 0,
+  };
 }
 
 export async function getAnalytics(timeRange?: "7d" | "30d" | "all"): Promise<AnalyticsData> {
@@ -59,6 +101,8 @@ export async function getAnalytics(timeRange?: "7d" | "30d" | "all"): Promise<An
     .sort((a, b) => b.createdAt - a.createdAt)
     .slice(0, 10);
 
+  const premiumStats = await getPremiumStats();
+
   return {
     totalPuzzles,
     publishedPuzzles,
@@ -70,5 +114,6 @@ export async function getAnalytics(timeRange?: "7d" | "30d" | "all"): Promise<An
     byStatus,
     topPuzzles,
     recentPuzzles,
+    ...premiumStats,
   };
 }

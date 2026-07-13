@@ -1,15 +1,17 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Gem, Heart, Snowflake, Sparkles, X, Loader2, CheckCircle2, ShoppingBag,
+  Gem, Heart, Snowflake, Sparkles, X, Loader2, CheckCircle2, ShoppingBag, Crown,
 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
-import { SHOP_PRODUCTS, type ShopProduct } from "@/lib/subscription";
+import { SHOP_PRODUCTS, type ShopProduct, type PricingConfig, getProductPriceLabel } from "@/lib/subscription";
+import { getPricingConfig } from "@/services/pricing-service";
 import { purchaseProduct } from "@/services/purchase-service";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { PricingCard } from "@/components/paywall/PricingCard";
 
 const iconMap: Record<string, typeof Gem> = {
   Gem, Heart, Snowflake, Sparkles,
@@ -22,7 +24,12 @@ interface ShopModalProps {
 export function ShopModal({ onClose }: ShopModalProps) {
   const [purchasing, setPurchasing] = useState<string | null>(null);
   const [purchased, setPurchased] = useState<string | null>(null);
+  const [pricing, setPricing] = useState<PricingConfig | null>(null);
   const gems = useUserStore((s) => s.gems);
+
+  useEffect(() => {
+    getPricingConfig().then(setPricing);
+  }, []);
   const addGems = useUserStore((s) => s.addGems);
   const setTier = useUserStore((s) => s.setTier);
   const restoreHearts = useUserStore((s) => s.restoreHearts);
@@ -108,6 +115,17 @@ export function ShopModal({ onClose }: ShopModalProps) {
             </div>
 
             {sections.map((section) => {
+              if (section.category === "premium") {
+                return (
+                  <div key="premium" className="mb-5">
+                    <h3 className="mb-3 flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                      <Crown className="size-3 text-amber-400" />
+                      Premium Membership
+                    </h3>
+                    <PricingCard onClose={onClose} />
+                  </div>
+                );
+              }
               const products = SHOP_PRODUCTS.filter((p) => p.category === section.category);
               if (products.length === 0) return null;
               return (
@@ -137,19 +155,14 @@ export function ShopModal({ onClose }: ShopModalProps) {
                         >
                           <span className={cn(
                             "flex size-10 shrink-0 items-center justify-center rounded-xl",
-                            product.category === "premium"
-                              ? "bg-gradient-to-br from-primary/20 to-purple-500/20"
-                              : "bg-white/5",
+                            "bg-white/5",
                           )}>
                             {isPurchased ? (
                               <CheckCircle2 className="size-5 text-success" />
                             ) : isPurchasing ? (
                               <Loader2 className="size-5 animate-spin text-primary" />
                             ) : (
-                              <Icon className={cn(
-                                "size-5",
-                                product.category === "premium" ? "text-primary" : "text-muted-foreground",
-                              )} />
+                              <Icon className="size-5 text-muted-foreground" />
                             )}
                           </span>
                           <div className="min-w-0 flex-1">
@@ -157,7 +170,7 @@ export function ShopModal({ onClose }: ShopModalProps) {
                             <p className="text-[11px] text-muted-foreground">{product.description}</p>
                           </div>
                           <span className="shrink-0 text-xs font-semibold text-muted-foreground">
-                            {product.priceLabel}
+                            {pricing ? getProductPriceLabel(product.id, pricing) : product.priceLabel}
                           </span>
                         </motion.button>
                       );

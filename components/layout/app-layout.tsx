@@ -34,7 +34,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     useUserStore.getState().loadFromFirestore();
     import("@/services/sound-service").then(({ initSounds }) => initSounds());
     const interval = setInterval(() => {
-      const prev = useUserStore.getState().hearts;
+      const state = useUserStore.getState();
+      const { tier, subscriptionExpiry } = state;
+      if (tier === "premium" && (!subscriptionExpiry || Date.now() < subscriptionExpiry)) return;
+      const prev = state.hearts;
       processHeartRefill();
       const next = useUserStore.getState().hearts;
       if (next > prev && prev < 5) {

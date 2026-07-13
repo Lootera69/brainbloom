@@ -2,10 +2,14 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles, Check } from "lucide-react";
+import { X, Sparkles, Check, Lock } from "lucide-react";
 import { avatars } from "./avatar-svgs";
 import { AvatarDisplay } from "./AvatarDisplay";
 import { avatarSounds } from "@/services/sound-service";
+import { useUserStore } from "@/store/user-store";
+import { useUIStore } from "@/store/ui-store";
+import { hasPremiumAccess } from "@/services/entitlement-service";
+import { PremiumBadge } from "@/components/paywall/PremiumBadge";
 
 interface AvatarSelectorProps {
   currentAvatarId: string | null;
@@ -23,6 +27,10 @@ export function AvatarSelector({
   onClose,
 }: AvatarSelectorProps) {
   const [selected, setSelected] = useState<string | null>(currentAvatarId);
+  const tier = useUserStore((s) => s.tier);
+  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
+  const setShowShop = useUIStore((s) => s.setShowShop);
+  const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
   const gridRef = useRef<HTMLDivElement>(null);
   const [scrollable, setScrollable] = useState(false);
 
@@ -114,27 +122,45 @@ export function AvatarSelector({
                 {avatars.map((avatar) => {
                   const isSelected = selected === avatar.id;
                   const SvgComponent = avatar.component;
+                  const locked = avatar.premium && !isPremium;
                   return (
                     <motion.button
                       key={avatar.id}
                       whileTap={{ scale: 0.92 }}
                       onClick={() => {
+                        if (locked) {
+                          setShowShop(true);
+                          onClose();
+                          return;
+                        }
                         setSelected(avatar.id);
                         avatarSounds[avatar.id]?.();
                       }}
                       className={`relative flex flex-col items-center gap-1 rounded-2xl p-2 transition-all ${
-                        isSelected
-                          ? "bg-primary/15 ring-2 ring-primary shadow-lg shadow-primary/10"
-                          : "bg-muted/30 hover:bg-muted/60 ring-1 ring-transparent hover:ring-white/10"
+                        locked
+                          ? "bg-amber-500/5 ring-1 ring-amber-500/20 opacity-70"
+                          : isSelected
+                            ? "bg-primary/15 ring-2 ring-primary shadow-lg shadow-primary/10"
+                            : "bg-muted/30 hover:bg-muted/60 ring-1 ring-transparent hover:ring-white/10"
                       }`}
                     >
-                      <SvgComponent size={40} />
-                      <span
-                        className={`text-[10px] font-medium leading-tight ${
-                          isSelected ? "text-primary" : "text-muted-foreground"
-                        }`}
-                      >
-                        {avatar.name}
+                      <span className="relative">
+                        <SvgComponent size={40} className={locked ? "opacity-50" : ""} />
+                        {locked && (
+                          <span className="absolute inset-0 flex items-center justify-center">
+                            <Lock className="size-4 text-amber-400/70" />
+                          </span>
+                        )}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <span
+                          className={`text-[10px] font-medium leading-tight ${
+                            locked ? "text-amber-400/60" : isSelected ? "text-primary" : "text-muted-foreground"
+                          }`}
+                        >
+                          {avatar.name}
+                        </span>
+                        {locked && <PremiumBadge size="xs" />}
                       </span>
                       {isSelected && (
                         <span className="absolute -right-0.5 -top-0.5 flex size-5 items-center justify-center rounded-full bg-primary shadow">

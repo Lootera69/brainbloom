@@ -307,17 +307,120 @@ export interface AvatarDefinition {
   id: string;
   name: string;
   component: React.FC<AvatarSvgProps>;
+  premium?: boolean;
 }
+
+export const AvatarDragon: React.FC<AvatarSvgProps> = ({ size = 100, className }) => {
+  const g = uid("dragon");
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none" className={className}>
+      <defs>
+        <radialGradient id={g} cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#ef4444" />
+          <stop offset="100%" stopColor="#991b1b" />
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="47" fill={`url(#${g})`} />
+      <path d="M15 20 Q25 5 35 20 Q30 15 25 20" fill="#dc2626" />
+      <path d="M65 20 Q75 5 85 20 Q80 15 75 20" fill="#dc2626" />
+      <path d="M18 18 Q15 8 22 12" fill="#b91c1c" />
+      <path d="M82 18 Q85 8 78 12" fill="#b91c1c" />
+      <circle cx="50" cy="52" r="32" fill="rgba(255,255,255,0.08)" />
+      <path d="M50 38 L43 48 L57 48 Z" fill="#facc15" />
+      <path d="M43 48 L57 48 L50 52 Z" fill="#fbbf24" />
+      <circle cx="35" cy="42" r="9" fill="white" />
+      <circle cx="65" cy="42" r="9" fill="white" />
+      <circle cx="35" cy="42" r="4.5" fill="#450a0a" />
+      <circle cx="65" cy="42" r="4.5" fill="#450a0a" />
+      <circle cx="37" cy="40" r="1.8" fill="white" />
+      <circle cx="67" cy="40" r="1.8" fill="white" />
+      {blinkOverlay(35, 42, 9.5, 9.5, g)}
+      {blinkOverlay(65, 42, 9.5, 9.5, g)}
+      <path d="M38 60 Q50 72 62 60 Q50 66 38 60" fill="#facc15" />
+      <path d="M15 55 Q10 70 8 80 Q12 72 18 62" fill="#dc2626" />
+      <path d="M85 55 Q90 70 92 80 Q88 72 82 62" fill="#dc2626" />
+      <ellipse cx="14" cy="55" rx="6" ry="10" fill="rgba(255,255,255,0.08)" />
+      <ellipse cx="86" cy="55" rx="6" ry="10" fill="rgba(255,255,255,0.08)" />
+    </svg>
+  );
+};
+
+export const AvatarPhoenix: React.FC<AvatarSvgProps> = ({ size = 100, className }) => {
+  const g = uid("phoenix");
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none" className={className}>
+      <defs>
+        <radialGradient id={g} cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#f97316" />
+          <stop offset="100%" stopColor="#c2410c" />
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="47" fill={`url(#${g})`} />
+      <path d="M25 18 Q20 8 30 10 Q22 8 25 18" fill="#ea580c" />
+      <path d="M75 18 Q80 8 70 10 Q78 8 75 18" fill="#ea580c" />
+      <path d="M50 20 L42 8 L58 8 Z" fill="#facc15" />
+      <circle cx="50" cy="48" r="30" fill="rgba(255,255,255,0.08)" />
+      <circle cx="34" cy="40" r="9" fill="white" />
+      <circle cx="66" cy="40" r="9" fill="white" />
+      <circle cx="34" cy="40" r="4.5" fill="#7c2d12" />
+      <circle cx="66" cy="40" r="4.5" fill="#7c2d12" />
+      <circle cx="36" cy="38" r="1.8" fill="white" />
+      <circle cx="68" cy="38" r="1.8" fill="white" />
+      {blinkOverlay(34, 40, 9.5, 9.5, g)}
+      {blinkOverlay(66, 40, 9.5, 9.5, g)}
+      <path d="M35 58 Q30 68 25 80 Q34 72 40 64" fill="#facc15" />
+      <path d="M65 58 Q70 68 75 80 Q66 72 60 64" fill="#facc15" />
+      <path d="M42 55 Q50 70 58 55 Q50 62 42 55" fill="#fbbf24" />
+      <ellipse cx="15" cy="52" rx="7" ry="12" fill="rgba(255,255,255,0.08)" />
+      <ellipse cx="85" cy="52" rx="7" ry="12" fill="rgba(255,255,255,0.08)" />
+    </svg>
+  );
+};
+
+export const AvatarGriffin: React.FC<AvatarSvgProps> = ({ size = 100, className }) => {
+  const g = uid("griffin");
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" fill="none" className={className}>
+      <defs>
+        <radialGradient id={g} cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#a855f7" />
+          <stop offset="100%" stopColor="#7e22ce" />
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="47" fill={`url(#${g})`} />
+      <path d="M20 22 L15 8 L30 15 Z" fill="#d8b4fe" />
+      <path d="M80 22 L85 8 L70 15 Z" fill="#d8b4fe" />
+      <circle cx="50" cy="50" r="28" fill="rgba(255,255,255,0.06)" />
+      <circle cx="34" cy="40" r="9" fill="white" />
+      <circle cx="66" cy="40" r="9" fill="white" />
+      <circle cx="34" cy="40" r="4.5" fill="#3b0764" />
+      <circle cx="66" cy="40" r="4.5" fill="#3b0764" />
+      <circle cx="36" cy="38" r="1.8" fill="white" />
+      <circle cx="68" cy="38" r="1.8" fill="white" />
+      {blinkOverlay(34, 40, 9.5, 9.5, g)}
+      {blinkOverlay(66, 40, 9.5, 9.5, g)}
+      <path d="M38 52 Q44 48 50 44 Q56 48 62 52 Q56 62 44 62 Z" fill="#facc15" />
+      <path d="M44 58 Q50 68 56 58" fill="#fbbf24" />
+      <ellipse cx="18" cy="52" rx="8" ry="14" fill="rgba(255,255,255,0.08)" />
+      <ellipse cx="82" cy="52" rx="8" ry="14" fill="rgba(255,255,255,0.08)" />
+      <ellipse cx="40" cy="88" rx="6" ry="4" fill="#d8b4fe" />
+      <ellipse cx="60" cy="88" rx="6" ry="4" fill="#d8b4fe" />
+    </svg>
+  );
+};
 
 export const avatars: AvatarDefinition[] = [
   { id: "owl", name: "Owl", component: AvatarOwl },
   { id: "fox", name: "Fox", component: AvatarFox },
   { id: "cat", name: "Cat", component: AvatarCat },
   { id: "dog", name: "Dog", component: AvatarDog },
-  { id: "ufo", name: "UFO", component: AvatarUfo },
-  { id: "panda", name: "Panda", component: AvatarPanda },
+  { id: "ufo", name: "UFO", component: AvatarUfo, premium: true },
+  { id: "panda", name: "Panda", component: AvatarPanda, premium: true },
   { id: "rooster", name: "Rooster", component: AvatarRooster },
   { id: "turtle", name: "Turtle", component: AvatarTurtle },
+  { id: "dragon", name: "Dragon", component: AvatarDragon, premium: true },
+  { id: "phoenix", name: "Phoenix", component: AvatarPhoenix, premium: true },
+  { id: "griffin", name: "Griffin", component: AvatarGriffin, premium: true },
 ];
 
 export function getAvatarById(id: string) {

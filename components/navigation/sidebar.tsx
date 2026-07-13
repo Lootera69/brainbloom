@@ -67,15 +67,6 @@ export function Sidebar() {
                 />
               )}
 
-              {/* Left active indicator bar */}
-              {isActive && (
-                <motion.div
-                  layoutId="sidebar-active-bar"
-                  className="absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full bg-gradient-to-b from-primary to-[#8b5cf6]"
-                  transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                />
-              )}
-
               <motion.span
                 whileHover={isActive ? {} : { scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -112,29 +103,31 @@ export function Sidebar() {
       <div className="relative border-t border-white/10 dark:border-white/5 p-4">
         <Link
           href="/profile"
-          className="group flex items-center gap-3 rounded-2xl px-3 py-3 transition-all hover:bg-muted/50"
+          className="group relative flex items-center gap-3 rounded-2xl px-3 py-3 transition-all hover:bg-muted/50"
         >
-          {/* Avatar with gradient ring */}
+          {isPremium && (
+            <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-amber-500/10 via-yellow-500/10 to-orange-500/10" />
+          )}
           <span className="relative flex size-10 shrink-0 items-center justify-center">
-            <span className="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-[#8b5cf6] p-[2px]">
+            <span className={`absolute inset-0 rounded-full p-[2px] ${
+              isPremium
+                ? "bg-gradient-to-br from-amber-400 via-yellow-500 to-orange-500"
+                : "bg-gradient-to-br from-primary to-[#8b5cf6]"
+            }`}>
               <span className="block size-full rounded-full bg-card" />
             </span>
             <span className="relative flex size-9 items-center justify-center overflow-hidden rounded-full">
-              <AvatarDisplay
-                avatarId={avatarId}
-                photoURL={photoURL}
-                name={displayName}
-                size={36}
-              />
+              <AvatarDisplay avatarId={avatarId} photoURL={photoURL} name={displayName} size={36} />
             </span>
           </span>
 
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-semibold group-hover:text-primary transition-colors">{displayName.split(" ")[0]}</p>
-            <p className="text-[11px] text-muted-foreground">Level {level}{isGuest ? " • Guest" : ""}</p>
+            <p className={`text-sm font-semibold transition-colors ${
+              isPremium ? "text-amber-300" : "group-hover:text-primary"
+            }`}>{displayName.split(" ")[0]}</p>
+            <p className="text-[11px] text-muted-foreground">Level {level}</p>
           </div>
 
-          {/* Mini stats */}
           <div className="flex items-center gap-2">
             <span className="flex items-center gap-1 text-[11px] font-medium text-amber-500">
               <Zap className="size-3" />
@@ -142,19 +135,15 @@ export function Sidebar() {
             </span>
             <span className="flex items-center gap-1 text-[11px] font-medium text-rose-500">
               <Heart className="size-3" />
-              {hearts}
+              {isPremium ? "∞" : hearts}
             </span>
-            {isPremium ? (
-              <PremiumBadge size="xs" />
-            ) : (
-              <button
-                onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowShop(true); }}
-                className="flex items-center gap-1 text-[11px] font-medium text-cyan-500 transition-colors hover:text-cyan-400"
-              >
-                <Gem className="size-3" />
-                {gems}
-              </button>
-            )}
+            <button
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowShop(true); }}
+              className="flex items-center gap-1 text-[11px] font-medium text-cyan-500 transition-colors hover:text-cyan-400"
+            >
+              <Gem className="size-3" />
+              {gems}
+            </button>
           </div>
         </Link>
       </div>
