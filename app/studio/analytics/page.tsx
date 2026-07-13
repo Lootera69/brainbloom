@@ -12,6 +12,10 @@ import { getAnalytics, type AnalyticsData } from "@/services/analytics-service";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
 import { ErrorFallback } from "@/components/error-fallback";
+import { LockedFeature } from "@/components/paywall/LockedFeature";
+import { useUserStore } from "@/store/user-store";
+import { useUIStore } from "@/store/ui-store";
+import { hasPremiumAccess } from "@/services/entitlement-service";
 
 const TYPE_LABELS: Record<string, string> = {
   "multiple-choice": "Multiple Choice",
@@ -480,10 +484,32 @@ function SkeletonChart() {
 
 export default function AnalyticsPage() {
   const router = useRouter();
+  const tier = useUserStore((s) => s.tier);
+  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
+  const setShowShop = useUIStore((s) => s.setShowShop);
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [timeRange, setTimeRange] = useState<"7d" | "30d" | "all">("all");
   const { timedOut: loadTimedOut, reset: resetLoadTimeout } = useLoadingTimeout(6000);
+
+  if (!hasPremiumAccess(tier, subscriptionExpiry)) {
+    return (
+      <div className="mx-auto max-w-2xl px-4 py-12">
+        <button
+          onClick={() => router.push("/studio")}
+          className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="size-4" />
+          Back to Studio
+        </button>
+        <LockedFeature
+          featureName="Advanced Analytics"
+          description="Upgrade to Premium to access detailed puzzle analytics, charts, and insights."
+          onUpgrade={() => setShowShop(true)}
+        />
+      </div>
+    );
+  }
 
   useEffect(() => {
     setLoading(true);

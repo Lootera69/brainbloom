@@ -14,6 +14,8 @@ import { Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CelebrationProvider } from "@/components/ui/celebration-provider";
+import { ShopModal } from "@/components/shop/ShopModal";
+import { AnimatePresence } from "framer-motion";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -21,6 +23,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const hearts = useUserStore((s) => s.hearts);
   const focusMode = useUIStore((s) => s.focusMode);
+  const showShop = useUIStore((s) => s.showShop);
+  const setShowShop = useUIStore((s) => s.setShowShop);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -108,6 +112,9 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <PageTransition>{children}</PageTransition>
       </main>
       {!focusMode && <BottomNav />}
+      <AnimatePresence>
+        {showShop && <ShopModal onClose={() => setShowShop(false)} />}
+      </AnimatePresence>
     </div>
   );
 }

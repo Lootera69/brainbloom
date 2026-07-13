@@ -27,7 +27,10 @@ import {
 import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import { useUserStore, getLevelProgress } from "@/store/user-store";
+import { useUIStore } from "@/store/ui-store";
 import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
+import { PremiumBadge } from "@/components/paywall/PremiumBadge";
+import { hasPremiumAccess, daysRemaining, formatExpiry } from "@/services/entitlement-service";
 import { AvatarSelector } from "@/components/avatars/AvatarSelector";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -76,6 +79,9 @@ export default function ProfilePage() {
   } = useUserStore();
   const soundEnabled = useUserStore((s) => s.soundEnabled);
   const setSoundEnabled = useUserStore((s) => s.setSoundEnabled);
+  const tier = useUserStore((s) => s.tier);
+  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
+  const setShowShop = useUIStore((s) => s.setShowShop);
 
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
@@ -378,6 +384,52 @@ export default function ProfilePage() {
           </GlassCard>
         </motion.div>
       )}
+
+      {/* Subscription */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.27 }}
+        className="mt-3"
+      >
+        <GlassCard
+          hover
+          intensity="light"
+          className="flex cursor-pointer items-center justify-between p-4"
+          onClick={() => setShowShop(true)}
+        >
+          <div className="flex items-center gap-3">
+            <span className={cn(
+              "flex size-10 items-center justify-center rounded-xl",
+              hasPremiumAccess(tier, subscriptionExpiry)
+                ? "bg-gradient-to-br from-primary/20 to-purple-500/20"
+                : "bg-muted",
+            )}>
+              <Sparkles className={cn(
+                "size-5",
+                hasPremiumAccess(tier, subscriptionExpiry) ? "text-primary" : "text-muted-foreground",
+              )} />
+            </span>
+            <div>
+              <p className="text-sm font-semibold">
+                {hasPremiumAccess(tier, subscriptionExpiry) ? "Premium" : "BrainBloom Premium"}
+              </p>
+              <p className="text-[11px] text-muted-foreground">
+                {hasPremiumAccess(tier, subscriptionExpiry)
+                  ? `${formatExpiry(subscriptionExpiry)} remaining`
+                  : "Unlock unlimited puzzles & features"}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            {hasPremiumAccess(tier, subscriptionExpiry) ? (
+              <PremiumBadge size="sm" />
+            ) : (
+              <ChevronRight className="size-4 text-muted-foreground" />
+            )}
+          </div>
+        </GlassCard>
+      </motion.div>
 
       {/* Sound + Logout row */}
       <motion.div

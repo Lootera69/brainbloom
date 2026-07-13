@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { House, Brain, Trophy, User, Sparkles, Heart, Zap } from "lucide-react";
+import { House, Brain, Trophy, User, Sparkles, Heart, Zap, Gem, ShoppingBag, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/store/user-store";
+import { useUIStore } from "@/store/ui-store";
 import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
+import { PremiumBadge } from "@/components/paywall/PremiumBadge";
+import { hasPremiumAccess } from "@/services/entitlement-service";
 
 const navItems = [
   { href: "/", label: "Home", icon: House },
@@ -17,7 +20,9 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { displayName, photoURL, avatarId, isGuest, level, xp, hearts } = useUserStore();
+  const { displayName, photoURL, avatarId, isGuest, level, xp, hearts, gems, tier, subscriptionExpiry } = useUserStore();
+  const setShowShop = useUIStore((s) => s.setShowShop);
+  const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
 
   return (
     <aside className="sticky top-0 hidden h-dvh w-64 flex-col md:flex">
@@ -139,6 +144,17 @@ export function Sidebar() {
               <Heart className="size-3" />
               {hearts}
             </span>
+            {isPremium ? (
+              <PremiumBadge size="xs" />
+            ) : (
+              <button
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowShop(true); }}
+                className="flex items-center gap-1 text-[11px] font-medium text-cyan-500 transition-colors hover:text-cyan-400"
+              >
+                <Gem className="size-3" />
+                {gems}
+              </button>
+            )}
           </div>
         </Link>
       </div>

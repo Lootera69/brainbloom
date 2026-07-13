@@ -19,11 +19,20 @@ import { SectionHeader } from "@/features/home/components/SectionHeader";
 import { DailyQuests } from "@/features/home/components/DailyQuests";
 import { PracticeToHeal } from "@/features/home/components/PracticeToHeal";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
+import { motion } from "framer-motion";
+import { Play, Heart, Sparkles } from "lucide-react";
+import { useUserStore } from "@/store/user-store";
+import { AdModal } from "@/components/paywall/AdModal";
 import { type Puzzle } from "@/types/puzzle";
 
 export default function HomePage() {
   const [dailyPuzzle, setDailyPuzzle] = useState<Puzzle | null>(null);
   const [dailyLoading, setDailyLoading] = useState(true);
+  const [showAd, setShowAd] = useState(false);
+  const hearts = useUserStore((s) => s.hearts);
+  const useHeart = useUserStore((s) => s.useHeart);
+  const canWatchAd = useUserStore((s) => s.canWatchAd);
+  const incrementAdWatched = useUserStore((s) => s.incrementAdWatched);
 
   useEffect(() => {
     (async () => {
@@ -51,6 +60,36 @@ export default function HomePage() {
       <DailyQuests />
 
       <PracticeToHeal />
+
+      {hearts < 5 && canWatchAd() && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6"
+        >
+          <button
+            onClick={() => setShowAd(true)}
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-rose-500/30 bg-rose-500/5 px-4 py-3 text-sm font-medium text-rose-400 transition-all hover:bg-rose-500/10 active:scale-[0.98]"
+          >
+            <Play className="size-4" />
+            Watch an Ad for 1 Free Heart
+            <Heart className="size-4 fill-rose-400 text-rose-400" />
+          </button>
+        </motion.div>
+      )}
+
+      {showAd && (
+        <AdModal
+          onComplete={(rewarded) => {
+            setShowAd(false);
+            if (rewarded) {
+              incrementAdWatched();
+              useHeart();
+            }
+          }}
+          onClose={() => setShowAd(false)}
+        />
+      )}
 
       <div className="mb-8 sm:mb-10">
         <Link href="/learn">

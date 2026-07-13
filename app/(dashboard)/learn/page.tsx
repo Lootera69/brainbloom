@@ -20,6 +20,8 @@ import { getPublishedByCategory } from "@/services/puzzle-service";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
 import { ErrorFallback } from "@/components/error-fallback";
+import { PaywallModal } from "@/components/paywall/PaywallModal";
+import { ShopModal } from "@/components/shop/ShopModal";
 
 import { categories } from "@/constants/home";
 
@@ -54,11 +56,14 @@ export default function LearnPage() {
   const [lessonProgress, setLessonProgress] = useState<LessonProgress | null>(null);
   const [attempt, setAttempt] = useState(0);
   const [catPuzzles, setCatPuzzles] = useState<Puzzle[]>([]);
+  const [paywallType, setPaywallType] = useState<"limit" | "hearts" | null>(null);
 
   const hearts = useUserStore((s) => s.hearts);
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const setFocusMode = useUIStore((s) => s.setFocusMode);
+  const showShop = useUIStore((s) => s.showShop);
+  const setShowShop = useUIStore((s) => s.setShowShop);
   const addXp = useUserStore((s) => s.addXp);
   const addGems = useUserStore((s) => s.addGems);
   const useHeart = useUserStore((s) => s.useHeart);
@@ -70,6 +75,9 @@ export default function LearnPage() {
   const hasCompletedDailyPuzzle = useUserStore((s) => s.hasCompletedDailyPuzzle);
   const setLastPlayedCategory = useUserStore((s) => s.setLastPlayedCategory);
   const checkAchievements = useUserStore((s) => s.checkAchievements);
+  const canPlayPuzzle = useUserStore((s) => s.canPlayPuzzle);
+  const incrementPuzzlePlayed = useUserStore((s) => s.incrementPuzzlePlayed);
+  const tier = useUserStore((s) => s.tier);
   const streak = useUserStore((s) => s.streak);
   const lastActiveDate = useUserStore((s) => s.lastActiveDate);
   const frozenDays = useUserStore((s) => s.frozenDays);
@@ -160,13 +168,16 @@ export default function LearnPage() {
   };
 
   const handleStartPuzzle = useCallback(async (puzzle: Puzzle, progress?: LessonProgress) => {
-    if (hearts <= 0) return;
+    if (hearts <= 0) { setPaywallType("hearts"); return; }
+    const check = useUserStore.getState().canPlayPuzzle();
+    if (!check) { setPaywallType("limit"); return; }
     resetHeartsLostFlag();
     setPuzzleHasLesson(!!puzzle.lessonContent);
     setIsDaily(false);
     setLastPlayedCategory(puzzle.category);
     setLessonProgress(progress ?? null);
     setAttempt(0);
+    incrementPuzzlePlayed();
 
     // Load category puzzles for auto-advance
     const pz = await getPublishedByCategory(puzzle.category);
@@ -181,7 +192,7 @@ export default function LearnPage() {
       setView("play");
       setFocusMode(true);
     }
-  }, [hearts, setFocusMode, setLastPlayedCategory]);
+  }, [hearts, setFocusMode, setLastPlayedCategory, incrementPuzzlePlayed]);
 
   const handleStartQuiz = useCallback(() => {
     setView("play");
@@ -591,6 +602,20 @@ export default function LearnPage() {
             attempt={attempt}
           />
         )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {paywallType && (
+          <PaywallModal
+            type={paywallType}
+            onClose={() => setPaywallType(null)}
+            onGoPremium={() => {
+              setPaywallType(null);
+              setShowShop(true);
+            }}
+          />
+        )}
+        {showShop && <ShopModal onClose={() => setShowShop(false)} />}
       </AnimatePresence>
     </div>
   );

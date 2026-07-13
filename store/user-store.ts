@@ -76,6 +76,12 @@ interface UserState {
   pendingCelebration: { type: "achievement" | "level-up"; title: string; subtitle?: string; xp?: number; gems?: number } | null;
   streakStartDate: string | null;
   activeDates: string[];
+  tier: "free" | "premium";
+  subscriptionExpiry: number | null;
+  puzzlesPlayedToday: number;
+  puzzlesPlayedDate: string | null;
+  adsWatchedToday: number;
+  adsWatchDate: string | null;
 
   loginAsGuest: () => void;
   setUser: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
@@ -109,6 +115,13 @@ interface UserState {
   checkAchievements: () => void;
   claimDailyBonus: () => { type: "xp" | "gems" | "streak-freeze"; amount: number; label: string } | null;
   canClaimDailyBonus: () => boolean;
+  setTier: (tier: "free" | "premium", expiry?: number | null) => void;
+  incrementPuzzlePlayed: () => void;
+  canPlayPuzzle: () => boolean;
+  incrementAdWatched: () => void;
+  canWatchAd: () => boolean;
+  buyHeartRefillWithGems: () => boolean;
+  addStreakFreezes: (amount: number) => void;
 }
 
 function generateId() {
@@ -220,6 +233,12 @@ export const useUserStore = create<UserState>()(
       pendingCelebration: null,
       streakStartDate: null,
       activeDates: [],
+      tier: "free",
+      subscriptionExpiry: null,
+      puzzlesPlayedToday: 0,
+      puzzlesPlayedDate: null,
+      adsWatchedToday: 0,
+      adsWatchDate: null,
 
       loginAsGuest: () => {
         set({
@@ -295,6 +314,12 @@ export const useUserStore = create<UserState>()(
             dailyGoalLastHitDate: s.dailyGoalLastHitDate,
             streakStartDate: s.streakStartDate,
             activeDates: s.activeDates,
+            tier: s.tier,
+            subscriptionExpiry: s.subscriptionExpiry,
+            puzzlesPlayedToday: s.puzzlesPlayedToday,
+            puzzlesPlayedDate: s.puzzlesPlayedDate,
+            adsWatchedToday: s.adsWatchedToday,
+            adsWatchDate: s.adsWatchDate,
           }),
         );
       },
@@ -343,6 +368,12 @@ export const useUserStore = create<UserState>()(
               dailyGoalLastHitDate: data.dailyGoalLastHitDate ?? s.dailyGoalLastHitDate,
               streakStartDate: data.streakStartDate ?? s.streakStartDate,
               activeDates: data.activeDates ?? s.activeDates,
+              tier: data.tier ?? s.tier,
+              subscriptionExpiry: data.subscriptionExpiry ?? s.subscriptionExpiry,
+              puzzlesPlayedToday: data.puzzlesPlayedToday ?? s.puzzlesPlayedToday,
+              puzzlesPlayedDate: data.puzzlesPlayedDate ?? s.puzzlesPlayedDate,
+              adsWatchedToday: data.adsWatchedToday ?? s.adsWatchedToday,
+              adsWatchDate: data.adsWatchDate ?? s.adsWatchDate,
             });
             get().checkWeeklyReset();
           } else {
@@ -396,6 +427,12 @@ export const useUserStore = create<UserState>()(
       pendingCelebration: null,
       streakStartDate: null,
       activeDates: [],
+      tier: "free",
+      subscriptionExpiry: null,
+      puzzlesPlayedToday: 0,
+      puzzlesPlayedDate: null,
+      adsWatchedToday: 0,
+      adsWatchDate: null,
 
         });
       },
@@ -787,6 +824,56 @@ export const useUserStore = create<UserState>()(
         }
 
         return picked;
+      },
+
+      setTier: (tier, expiry = null) => {
+        set({ tier, subscriptionExpiry: expiry });
+        get().syncToFirestore();
+      },
+
+      incrementPuzzlePlayed: () => {
+        const { puzzlesPlayedToday, puzzlesPlayedDate, tier } = get();
+        if (tier === "premium") return;
+        const today = new Date().toDateString();
+        set({
+          puzzlesPlayedToday: puzzlesPlayedDate === today ? puzzlesPlayedToday + 1 : 1,
+          puzzlesPlayedDate: today,
+        });
+      },
+
+      canPlayPuzzle: () => {
+        const { tier, puzzlesPlayedToday, puzzlesPlayedDate, subscriptionExpiry } = get();
+        if (tier === "premium" && (!subscriptionExpiry || Date.now() < subscriptionExpiry)) return true;
+        const today = new Date().toDateString();
+        const count = puzzlesPlayedDate === today ? puzzlesPlayedToday : 0;
+        return count < 3;
+      },
+
+      incrementAdWatched: () => {
+        const { adsWatchedToday, adsWatchDate } = get();
+        const today = new Date().toDateString();
+        set({
+          adsWatchedToday: adsWatchDate === today ? adsWatchedToday + 1 : 1,
+          adsWatchDate: today,
+        });
+      },
+
+      canWatchAd: () => {
+        const { adsWatchedToday, adsWatchDate } = get();
+        const today = new Date().toDateString();
+        const count = adsWatchDate === today ? adsWatchedToday : 0;
+        return count < 3;
+      },
+
+      buyHeartRefillWithGems: () => {
+        const { gems } = get();
+        if (gems < 50) return false;
+        set({ gems: gems - 50, hearts: Math.min(5, get().hearts + 5), nextHeartAt: null });
+        return true;
+      },
+
+      addStreakFreezes: (amount) => {
+        set({ streakFreezes: get().streakFreezes + amount });
       },
     }),
     {
