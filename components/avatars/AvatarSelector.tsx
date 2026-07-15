@@ -9,8 +9,6 @@ import { avatarSounds } from "@/services/sound-service";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
 import { hasPremiumAccess } from "@/services/entitlement-service";
-import { PremiumBadge } from "@/components/paywall/PremiumBadge";
-
 interface AvatarSelectorProps {
   currentAvatarId: string | null;
   photoURL?: string | null;
@@ -160,7 +158,6 @@ export function AvatarSelector({
                         >
                           {avatar.name}
                         </span>
-                        {locked && <PremiumBadge size="xs" />}
                       </span>
                       {isSelected && (
                         <span className="absolute -right-0.5 -top-0.5 flex size-5 items-center justify-center rounded-full bg-primary shadow">

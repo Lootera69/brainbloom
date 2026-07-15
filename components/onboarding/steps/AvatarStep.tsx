@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import { Check, Lock, Sparkles } from "lucide-react";
 import { avatars } from "@/components/avatars/avatar-svgs";
 import { avatarSounds } from "@/services/sound-service";
-import { PremiumBadge } from "@/components/paywall/PremiumBadge";
-
 interface AvatarStepProps {
   selectedAvatar: string | null;
   onSelect: (id: string) => void;
@@ -71,7 +69,6 @@ export default function AvatarStep({ selectedAvatar, onSelect, onNext }: AvatarS
                 }`}>
                   {avatar.name}
                 </span>
-                {isPremium && <PremiumBadge size="xs" />}
               </span>
               {isSelected && (
                 <motion.span
