@@ -24,7 +24,10 @@ export function MonthlyStreakView({ activeDates, frozenDays, brokenDays }: Month
   const directionRef = useRef(1);
 
   const isCurrentMonth = viewYear === now.getFullYear() && viewMonth === now.getMonth();
-  const canGoNext = viewYear < now.getFullYear() || (viewYear === now.getFullYear() && viewMonth < now.getMonth());
+  const maxViewMonth = now.getMonth() + 1;
+  const maxViewYear = now.getFullYear() + (maxViewMonth > 11 ? 1 : 0);
+  const adjMaxViewMonth = maxViewMonth % 12;
+  const canGoNext = viewYear < maxViewYear || (viewYear === maxViewYear && viewMonth < adjMaxViewMonth);
 
   const goNextMonth = () => {
     directionRef.current = 1;
