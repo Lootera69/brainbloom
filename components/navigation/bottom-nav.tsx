@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { House, Brain, Trophy, User } from "lucide-react";
+import { House, Brain, Trophy, User, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/", label: "Home", icon: House },
   { href: "/learn", label: "Learn", icon: Brain },
+  { href: "/shop", label: "Shop", icon: ShoppingBag },
   { href: "/achievements", label: "Achievements", icon: Trophy },
   { href: "/profile", label: "Profile", icon: User },
 ];

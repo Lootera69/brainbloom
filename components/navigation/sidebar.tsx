@@ -14,6 +14,7 @@ import { hasPremiumAccess } from "@/services/entitlement-service";
 const navItems = [
   { href: "/", label: "Home", icon: House },
   { href: "/learn", label: "Learn", icon: Brain },
+  { href: "/shop", label: "Shop", icon: ShoppingBag },
   { href: "/achievements", label: "Achievements", icon: Trophy },
   { href: "/profile", label: "Profile", icon: User },
 ];
