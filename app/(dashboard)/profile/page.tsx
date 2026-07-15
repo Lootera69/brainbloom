@@ -432,13 +432,7 @@ export default function ProfilePage() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="flex items-center gap-1 rounded-full bg-cyan-500/10 px-2 py-0.5 text-[11px] font-semibold text-cyan-500">
-                <Gem className="size-3" />
-                {gems}
-              </span>
-              <ChevronRight className="size-4 text-muted-foreground" />
-            </div>
+            <ChevronRight className="size-4 text-muted-foreground" />
           </GlassCard>
         </motion.div>
       </div>
