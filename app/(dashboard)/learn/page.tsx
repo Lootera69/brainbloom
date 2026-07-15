@@ -386,6 +386,24 @@ function LearnPage() {
                   </span>
                   <p className="mt-1 text-xs text-muted-foreground">until next heart</p>
                 </div>
+                <div className="mt-6 space-y-3">
+                  <div className="mx-auto flex max-w-xs items-center gap-3 rounded-xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-orange-500/10 px-4 py-3 text-left">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500/20 to-yellow-500/20">
+                      <Sparkles className="size-4 text-amber-400" />
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold text-amber-400">Hearts protected ∞</p>
+                      <p className="text-xs text-amber-400/60">With Premium, never worry about hearts</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => { setPaywallType(null); setShowShop(true); }}
+                    className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-sm font-semibold text-white shadow-lg shadow-amber-500/20 transition-all hover:brightness-110 active:scale-[0.98]"
+                  >
+                    Go Premium
+                    <Sparkles className="size-3.5" />
+                  </button>
+                </div>
               </GlassCard>
             ) : (
               <>
@@ -527,6 +545,24 @@ function LearnPage() {
                     {formatHeartTimer(timer)}
                   </span>
                   <p className="mt-1 text-xs text-muted-foreground">until next heart</p>
+                </div>
+                <div className="mt-6 space-y-3">
+                  <div className="mx-auto flex max-w-xs items-center gap-3 rounded-xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-orange-500/10 px-4 py-3 text-left">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500/20 to-yellow-500/20">
+                      <Sparkles className="size-4 text-amber-400" />
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold text-amber-400">Hearts protected ∞</p>
+                      <p className="text-xs text-amber-400/60">With Premium, never worry about hearts</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => { setPaywallType(null); setShowShop(true); }}
+                    className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-sm font-semibold text-white shadow-lg shadow-amber-500/20 transition-all hover:brightness-110 active:scale-[0.98]"
+                  >
+                    Go Premium
+                    <Sparkles className="size-3.5" />
+                  </button>
                 </div>
               </GlassCard>
             ) : (
