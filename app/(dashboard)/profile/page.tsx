@@ -13,8 +13,7 @@ import {
   Sparkles,
   ChevronRight,
   Gem,
-  Snowflake,
-  Check,
+  ShoppingBag,
   Clock,
   Volume2,
   VolumeX,
@@ -80,9 +79,7 @@ export default function ProfilePage() {
     hearts,
     level: storeLevel,
     gems,
-    streakFreezes,
     logout,
-    buyStreakFreeze,
     setAvatarId,
   } = useUserStore();
   const soundEnabled = useUserStore((s) => s.soundEnabled);
@@ -411,45 +408,35 @@ export default function ProfilePage() {
           </GlassCard>
         </motion.div>
 
-        {/* Streak Freeze */}
+        {/* Shop */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
         >
-          <GlassCard intensity="light" className="p-4">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="flex size-8 items-center justify-center rounded-lg bg-cyan-500/10">
-                <Snowflake className="size-4 text-cyan-500" />
+          <GlassCard
+            hover
+            intensity="light"
+            className="flex cursor-pointer items-center justify-between p-4"
+            onClick={() => setShowShop(true)}
+          >
+            <div className="flex items-center gap-3">
+              <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/20 via-yellow-500/10 to-orange-500/20">
+                <ShoppingBag className="size-5 text-amber-400" />
               </span>
               <div>
-                <h3 className="text-sm font-semibold">Streak Freeze</h3>
+                <h3 className="text-sm font-semibold">Shop</h3>
                 <p className="text-[11px] text-muted-foreground">
-                  {streakFreezes} freeze{streakFreezes !== 1 ? "s" : ""} available
+                  Gems, hearts, streak freezes & more
                 </p>
               </div>
             </div>
-            <div className="flex items-center justify-between rounded-xl bg-muted/50 px-4 py-2.5">
-              <span className="flex items-center gap-1.5 text-xs">
-                <Gem className="size-3.5 text-cyan-500" />
-                200 Gems
+            <div className="flex items-center gap-2">
+              <span className="flex items-center gap-1 rounded-full bg-cyan-500/10 px-2 py-0.5 text-[11px] font-semibold text-cyan-500">
+                <Gem className="size-3" />
+                {gems}
               </span>
-              {gems >= 200 ? (
-                <Button
-                  size="sm"
-                  onClick={() => {
-                    const ok = buyStreakFreeze();
-                    if (ok) toast.success("Streak freeze purchased!");
-                    else toast.error("Not enough gems");
-                  }}
-                  className="h-7 gap-1 text-xs"
-                >
-                  <Check className="size-3" />
-                  Buy
-                </Button>
-              ) : (
-                <span className="text-[11px] text-muted-foreground">Not enough</span>
-              )}
+              <ChevronRight className="size-4 text-muted-foreground" />
             </div>
           </GlassCard>
         </motion.div>
@@ -496,24 +483,55 @@ export default function ProfilePage() {
         <GlassCard
           hover
           intensity="light"
-          className="flex cursor-pointer items-center justify-between p-4"
+          className={cn(
+            "relative flex cursor-pointer items-center justify-between overflow-hidden p-4",
+            hasPremiumAccess(tier, subscriptionExpiry)
+              ? "shadow-lg shadow-amber-500/10"
+              : "",
+          )}
           onClick={() => setShowShop(true)}
         >
-          <div className="flex items-center gap-3">
+          {/* Animated shimmer border for premium */}
+          {hasPremiumAccess(tier, subscriptionExpiry) && (
+            <motion.div
+              className="pointer-events-none absolute inset-0 rounded-2xl"
+              style={{
+                background: "linear-gradient(135deg, rgba(251,191,36,0.08) 0%, rgba(245,158,11,0.04) 50%, rgba(251,191,36,0.08) 100%)",
+              }}
+              animate={{ opacity: [0.4, 0.8, 0.4] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          )}
+          {/* Golden top accent */}
+          <div className={cn(
+            "pointer-events-none absolute inset-x-0 top-0 h-px",
+            hasPremiumAccess(tier, subscriptionExpiry)
+              ? "bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"
+              : "bg-gradient-to-r from-transparent via-amber-400/20 to-transparent",
+          )} />
+
+          <div className="relative flex items-center gap-3">
             <span className={cn(
               "flex size-10 items-center justify-center rounded-xl",
               hasPremiumAccess(tier, subscriptionExpiry)
-                ? "bg-gradient-to-br from-primary/20 to-purple-500/20"
-                : "bg-muted",
+                ? "bg-gradient-to-br from-amber-500/20 via-yellow-500/10 to-orange-500/20 ring-1 ring-amber-500/30"
+                : "bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-orange-500/10",
             )}>
-              <Sparkles className={cn(
+              <Crown className={cn(
                 "size-5",
-                hasPremiumAccess(tier, subscriptionExpiry) ? "text-primary" : "text-muted-foreground",
+                hasPremiumAccess(tier, subscriptionExpiry)
+                  ? "text-amber-400 drop-shadow-sm"
+                  : "text-amber-400/60",
               )} />
             </span>
             <div>
-              <p className="text-sm font-semibold">
-                {hasPremiumAccess(tier, subscriptionExpiry) ? "Premium" : "BrainBloom Premium"}
+              <p className={cn(
+                "text-sm font-semibold",
+                hasPremiumAccess(tier, subscriptionExpiry)
+                  ? "bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-400 bg-clip-text text-transparent"
+                  : "",
+              )}>
+                {hasPremiumAccess(tier, subscriptionExpiry) ? "Premium Active" : "BrainBloom Premium"}
               </p>
               <p className="text-[11px] text-muted-foreground">
                 {hasPremiumAccess(tier, subscriptionExpiry)
@@ -522,11 +540,18 @@ export default function ProfilePage() {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="relative flex items-center gap-2">
             {hasPremiumAccess(tier, subscriptionExpiry) ? (
               <PremiumBadge size="sm" />
             ) : (
-              <ChevronRight className="size-4 text-muted-foreground" />
+              <motion.span
+                initial={{ x: -4, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                className="flex items-center gap-1 rounded-full bg-gradient-to-r from-amber-500/15 to-yellow-500/15 px-3 py-1 text-[11px] font-semibold text-amber-400"
+              >
+                <Sparkles className="size-3" />
+                Upgrade
+              </motion.span>
             )}
           </div>
         </GlassCard>
