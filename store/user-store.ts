@@ -161,11 +161,17 @@ export function getLevelProgress(xp: number): { level: number; progress: number;
   return { level, progress, xpToNext: nextXp - xp, currentXp, nextXp };
 }
 
-// Safe localStorage wrapper for Zustand persist (handles quota errors)
-const safeStorage: PersistStorage<UserState> = {
+// Safe localStorage wrapper for Zustand persist (handles quota errors + corruption)
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const safeStorage: PersistStorage<any> = {
   getItem: (name) => {
-    const raw = localStorage.getItem(name);
-    return raw ? JSON.parse(raw) : null;
+    try {
+      const raw = localStorage.getItem(name);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      console.warn("localStorage read failed — corrupt or inaccessible, resetting");
+      return null;
+    }
   },
   setItem: (name, value) => {
     try {
@@ -880,6 +886,54 @@ export const useUserStore = create<UserState>()(
     {
       name: "brainbloom-user",
       storage: safeStorage,
+      partialize: (state) => ({
+        userId: state.userId,
+        displayName: state.displayName,
+        email: state.email,
+        photoURL: state.photoURL,
+        avatarId: state.avatarId,
+        isGuest: state.isGuest,
+        isAuthenticated: state.isAuthenticated,
+        xp: state.xp,
+        xpToday: state.xpToday,
+        lastXpGain: state.lastXpGain,
+        streak: state.streak,
+        lastActiveDate: state.lastActiveDate,
+        hearts: state.hearts,
+        level: state.level,
+        gems: state.gems,
+        dailyGoal: state.dailyGoal,
+        lastPlayedCategory: state.lastPlayedCategory,
+        history: state.history,
+        achievements: state.achievements,
+        lastRewardClaim: state.lastRewardClaim,
+        streakFreezes: state.streakFreezes,
+        practiceHeartsToday: state.practiceHeartsToday,
+        lastPracticeDate: state.lastPracticeDate,
+        dailyQuests: state.dailyQuests,
+        lastQuestRefresh: state.lastQuestRefresh,
+        completedPuzzleIds: state.completedPuzzleIds,
+        questsRewarded: state.questsRewarded,
+        nextHeartAt: state.nextHeartAt,
+        dailyPuzzleCompletedDate: state.dailyPuzzleCompletedDate,
+        dailyPuzzleStreak: state.dailyPuzzleStreak,
+        dailyPuzzleLastDate: state.dailyPuzzleLastDate,
+        soundEnabled: state.soundEnabled,
+        weeklyXp: state.weeklyXp,
+        weeklyStartDate: state.weeklyStartDate,
+        frozenDays: state.frozenDays,
+        brokenDays: state.brokenDays,
+        dailyGoalStreak: state.dailyGoalStreak,
+        dailyGoalLastHitDate: state.dailyGoalLastHitDate,
+        streakStartDate: state.streakStartDate,
+        activeDates: state.activeDates,
+        tier: state.tier,
+        subscriptionExpiry: state.subscriptionExpiry,
+        puzzlesPlayedToday: state.puzzlesPlayedToday,
+        puzzlesPlayedDate: state.puzzlesPlayedDate,
+        adsWatchedToday: state.adsWatchedToday,
+        adsWatchDate: state.adsWatchDate,
+      }),
       onRehydrateStorage: () => () => {
         useUserStore.getState().checkWeeklyReset();
       },

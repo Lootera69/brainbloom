@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useMemo, useRef } from "react";
+import { useState, useCallback, useEffect, useMemo, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -23,6 +23,7 @@ import { ErrorFallback } from "@/components/error-fallback";
 import { PaywallModal } from "@/components/paywall/PaywallModal";
 import { ShopModal } from "@/components/shop/ShopModal";
 import { hasPremiumAccess } from "@/services/entitlement-service";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { categories } from "@/constants/home";
 
@@ -45,7 +46,7 @@ function formatHeartTimer(ms: number): string {
   return `${seconds}s`;
 }
 
-export default function LearnPage() {
+function LearnPage() {
   const router = useRouter();
   const [view, setView] = useState<View>("categories");
   const viewRef = useRef(view);
@@ -750,5 +751,21 @@ function PuzzlePlayView({
         )}
       </motion.div>
     </ErrorBoundary>
+  );
+}
+
+export default function LearnPageWrapper() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-dvh items-center justify-center p-6">
+        <div className="flex flex-col items-center gap-3">
+          <Skeleton className="size-16 rounded-full" />
+          <Skeleton className="h-6 w-48" />
+          <Skeleton className="h-4 w-32" />
+        </div>
+      </div>
+    }>
+      <LearnPage />
+    </Suspense>
   );
 }
