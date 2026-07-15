@@ -602,6 +602,7 @@ function LearnPage() {
             lessonProgress={lessonProgress}
             handleBack={handleBack}
             handleComplete={handleComplete}
+            onHeartsDepleted={() => setPaywallType("hearts")}
             useHeart={useHeart}
             hasCompletedPuzzle={hasCompletedPuzzle}
             attempt={attempt}
@@ -632,6 +633,7 @@ function PuzzlePlayView({
   lessonProgress,
   handleBack,
   handleComplete,
+  onHeartsDepleted,
   useHeart,
   hasCompletedPuzzle,
   attempt,
@@ -641,6 +643,7 @@ function PuzzlePlayView({
   lessonProgress: LessonProgress | null;
   handleBack: () => void;
   handleComplete: (correct: boolean, xpEarned: number) => void;
+  onHeartsDepleted?: () => void;
   useHeart: () => void;
   hasCompletedPuzzle: (id: string) => boolean;
   attempt: number;
@@ -718,6 +721,11 @@ function PuzzlePlayView({
               const sExp = useUserStore.getState().subscriptionExpiry;
               const premium = hasPremiumAccess(st, sExp);
               useHeart();
+              if (!premium && useUserStore.getState().hearts <= 0) {
+                handleBack();
+                onHeartsDepleted?.();
+                return;
+              }
               toast.custom(
                 (toastId) => (
                   <motion.div
