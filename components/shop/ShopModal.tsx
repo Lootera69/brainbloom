@@ -3,75 +3,69 @@
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Gem, Heart, Snowflake, Sparkles, X, Loader2, CheckCircle2, ShoppingBag, Crown,
+  Gem, Heart, Snowflake, Sparkles, X, Crown, ShoppingBag, ChevronRight,
 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
-import { SHOP_PRODUCTS, type ShopProduct, type PricingConfig, getProductPriceLabel } from "@/lib/subscription";
+import { useRouter } from "next/navigation";
+import { SHOP_PRODUCTS, type PricingConfig, getProductPriceLabel } from "@/lib/subscription";
 import { getPricingConfig } from "@/services/pricing-service";
 import { purchaseProduct } from "@/services/purchase-service";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { PricingCard } from "@/components/paywall/PricingCard";
+import { PremiumTab } from "@/features/shop/components/PremiumTab";
+import { ProductCard } from "@/features/shop/components/ProductCard";
 
-const iconMap: Record<string, typeof Gem> = {
-  Gem, Heart, Snowflake, Sparkles,
-};
+type ModalTab = "premium" | "gems" | "hearts";
+
+const MODAL_TABS: { id: ModalTab; label: string; icon: typeof Crown }[] = [
+  { id: "premium", label: "Premium", icon: Crown },
+  { id: "gems", label: "Gems", icon: Gem },
+  { id: "hearts", label: "Hearts & Freezes", icon: Heart },
+];
 
 interface ShopModalProps {
   onClose: () => void;
 }
 
 export function ShopModal({ onClose }: ShopModalProps) {
+  const [activeTab, setActiveTab] = useState<ModalTab>("premium");
   const [purchasing, setPurchasing] = useState<string | null>(null);
   const [purchased, setPurchased] = useState<string | null>(null);
   const [pricing, setPricing] = useState<PricingConfig | null>(null);
   const gems = useUserStore((s) => s.gems);
+  const router = useRouter();
 
   useEffect(() => {
     getPricingConfig().then(setPricing);
   }, []);
-  const addGems = useUserStore((s) => s.addGems);
-  const setTier = useUserStore((s) => s.setTier);
-  const restoreHearts = useUserStore((s) => s.restoreHearts);
-  const addGemsToStore = useUserStore((s) => s.addGems);
-  const addStreakFreezes = useUserStore((s) => s.addStreakFreezes);
 
-  const handlePurchase = useCallback(async (product: ShopProduct) => {
+  const addGems = useUserStore((s) => s.addGems);
+  const restoreHearts = useUserStore((s) => s.restoreHearts);
+  const addStreakFreezes = useUserStore((s) => s.addStreakFreezes);
+  const setTier = useUserStore((s) => s.setTier);
+
+  const handleProductPurchase = useCallback(async (product: typeof SHOP_PRODUCTS[number]) => {
     if (purchasing) return;
     setPurchasing(product.id);
-
     const result = await purchaseProduct(product.id);
-
     if (!result.success) {
       toast.error("Purchase failed. Please try again.", { position: "top-center" });
       setPurchasing(null);
       return;
     }
-
-    if (product.effect.gems) {
-      addGemsToStore(product.effect.gems);
-    }
-    if (product.effect.hearts) {
-      restoreHearts();
-    }
-    if (product.effect.streakFreezes) {
-      addStreakFreezes(product.effect.streakFreezes);
-    }
+    if (product.effect.gems) addGems(product.effect.gems);
+    if (product.effect.hearts) restoreHearts();
+    if (product.effect.streakFreezes) addStreakFreezes(product.effect.streakFreezes);
     if (product.effect.tier === "premium" && product.effect.days) {
       const expiry = Date.now() + product.effect.days * 86400000;
       setTier("premium", expiry);
     }
-
     setPurchased(product.id);
     setTimeout(() => setPurchased(null), 2000);
     setPurchasing(null);
-  }, [purchasing, addGemsToStore, restoreHearts, setTier, addStreakFreezes]);
+  }, [purchasing, addGems, restoreHearts, setTier, addStreakFreezes]);
 
-  const sections = [
-    { label: "Premium", category: "premium" as const },
-    { label: "Gems", category: "gems" as const },
-    { label: "Hearts & Freezes", category: "hearts" as const },
-  ];
+  const nonPremiumProducts = SHOP_PRODUCTS.filter((p) => p.category !== "premium");
 
   return (
     <AnimatePresence>
@@ -79,106 +73,117 @@ export function ShopModal({ onClose }: ShopModalProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+        transition={{ duration: 0.15 }}
+        className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center"
         onClick={onClose}
       >
         <motion.div
-          initial={{ scale: 0.9, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.9, opacity: 0, y: 20 }}
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+        />
+
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 40, scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 300, damping: 28 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative flex max-h-[90vh] w-full max-w-sm flex-col overflow-hidden rounded-3xl border border-white/10 bg-card shadow-2xl"
+          className="relative flex max-h-[85vh] w-full max-w-sm flex-col rounded-2xl sm:rounded-3xl border border-white/10 bg-card/95 backdrop-blur-2xl sm:mx-4 shadow-2xl"
         >
-          <div className="flex items-center justify-between border-b border-white/5 px-5 py-4">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4 shrink-0">
             <div className="flex items-center gap-2">
               <ShoppingBag className="size-4 text-primary" />
-              <h2 className="font-heading text-base font-bold">Shop</h2>
+              <h2 className="text-sm font-bold">Shop</h2>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="flex items-center gap-1 rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-500">
+            <div className="flex items-center gap-2">
+              <span className="flex items-center gap-1 rounded-full bg-cyan-500/10 px-2.5 py-1 text-xs font-semibold text-cyan-500">
                 <Gem className="size-3" />
                 {gems}
               </span>
               <button
                 onClick={onClose}
-                className="flex size-8 items-center justify-center rounded-full bg-white/5 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+                className="flex size-7 items-center justify-center rounded-full bg-white/5 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
               >
-                <X className="size-4" />
+                <X className="size-3.5" />
               </button>
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-5 py-4">
-            <div className="mb-3 rounded-xl bg-amber-500/10 px-4 py-2.5 text-center text-[11px] text-amber-600 dark:text-amber-400">
-              🛠 Testing Mode — No real charges. All purchases are simulated.
-            </div>
-
-            {sections.map((section) => {
-              if (section.category === "premium") {
-                return (
-                  <div key="premium" className="mb-5">
-                    <h3 className="mb-3 flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                      <Crown className="size-3 text-amber-400" />
-                      Premium Membership
-                    </h3>
-                    <PricingCard onClose={onClose} />
-                  </div>
-                );
-              }
-              const products = SHOP_PRODUCTS.filter((p) => p.category === section.category);
-              if (products.length === 0) return null;
+          {/* Tab bar */}
+          <div className="relative flex gap-1 border-b border-white/[0.06] px-5 py-2 shrink-0">
+            {MODAL_TABS.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
               return (
-                <div key={section.label} className="mb-5">
-                  <h3 className="mb-2.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                    {section.label}
-                  </h3>
-                  <div className="flex flex-col gap-2">
-                    {products.map((product) => {
-                      const Icon = iconMap[product.icon] || Gem;
-                      const isPurchasing = purchasing === product.id;
-                      const isPurchased = purchased === product.id;
-
-                      return (
-                        <motion.button
-                          key={product.id}
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          disabled={!!purchasing}
-                          onClick={() => handlePurchase(product)}
-                          className={cn(
-                            "flex items-center gap-3 rounded-xl border p-3.5 text-left transition-all active:scale-[0.98]",
-                            isPurchased
-                              ? "border-success/30 bg-success/10"
-                              : "border-white/5 bg-white/5 hover:border-white/15 hover:bg-white/10",
-                          )}
-                        >
-                          <span className={cn(
-                            "flex size-10 shrink-0 items-center justify-center rounded-xl",
-                            "bg-white/5",
-                          )}>
-                            {isPurchased ? (
-                              <CheckCircle2 className="size-5 text-success" />
-                            ) : isPurchasing ? (
-                              <Loader2 className="size-5 animate-spin text-primary" />
-                            ) : (
-                              <Icon className="size-5 text-muted-foreground" />
-                            )}
-                          </span>
-                          <div className="min-w-0 flex-1">
-                            <p className="text-sm font-semibold">{product.name}</p>
-                            <p className="text-[11px] text-muted-foreground">{product.description}</p>
-                          </div>
-                          <span className="shrink-0 text-xs font-semibold text-muted-foreground">
-                            {pricing ? getProductPriceLabel(product.id, pricing) : product.priceLabel}
-                          </span>
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-                </div>
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={cn(
+                    "relative px-3 py-2 text-[11px] font-semibold transition-colors rounded-lg",
+                    isActive
+                      ? "text-foreground bg-white/[0.06]"
+                      : "text-muted-foreground hover:text-foreground/80",
+                  )}
+                >
+                  <Icon className="inline size-3 mr-1" />
+                  {tab.label}
+                </button>
               );
             })}
+          </div>
+
+          {/* Scrollable content */}
+          <div className="flex-1 overflow-y-auto px-5 py-4">
+            {activeTab === "premium" && (
+              <PremiumTab onClose={onClose} />
+            )}
+
+            {activeTab !== "premium" && (
+              <div className="space-y-2">
+                {nonPremiumProducts
+                  .filter((p) =>
+                    activeTab === "gems"
+                      ? p.category === "gems"
+                      : p.category === "hearts" || p.category === "streak_freeze",
+                  )
+                  .map((product, i) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      priceLabel={
+                        pricing
+                          ? getProductPriceLabel(product.id, pricing)
+                          : product.priceLabel
+                      }
+                      purchasing={purchasing === product.id}
+                      purchased={purchased === product.id}
+                      onPurchase={() => handleProductPurchase(product)}
+                      index={i}
+                    />
+                  ))}
+              </div>
+            )}
+
+            {/* View full store */}
+            <div className="mt-4 pt-3 border-t border-white/[0.06]">
+              <button
+                onClick={() => {
+                  onClose();
+                  router.push("/shop");
+                }}
+                className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-white/[0.04] py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-white/[0.08] hover:text-foreground"
+              >
+                <Sparkles className="size-3" />
+                View full store
+                <ChevronRight className="size-3" />
+              </button>
+            </div>
+
+            {/* Bottom safe area */}
+            <div className="h-1" />
           </div>
         </motion.div>
       </motion.div>
