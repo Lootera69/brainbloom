@@ -413,11 +413,12 @@ export default function ProfilePage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
+          className="h-full"
         >
           <GlassCard
             hover
             intensity="light"
-            className="flex cursor-pointer items-center justify-between p-4"
+            className="flex h-full cursor-pointer items-center justify-between p-4"
             onClick={() => setShowShop(true)}
           >
             <div className="flex items-center gap-3">

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { House, Brain, Trophy, User, Sparkles, Heart, Zap, Gem, ShoppingBag, Crown } from "lucide-react";
+import { House, Brain, Trophy, User, Sparkles, Heart, Zap, Gem, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
@@ -14,7 +14,6 @@ import { hasPremiumAccess } from "@/services/entitlement-service";
 const navItems = [
   { href: "/", label: "Home", icon: House },
   { href: "/learn", label: "Learn", icon: Brain },
-  { href: "/shop", label: "Shop", icon: ShoppingBag },
   { href: "/achievements", label: "Achievements", icon: Trophy },
   { href: "/profile", label: "Profile", icon: User },
 ];
