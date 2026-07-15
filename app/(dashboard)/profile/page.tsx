@@ -419,7 +419,7 @@ export default function ProfilePage() {
             hover
             intensity="light"
             className="flex h-full cursor-pointer items-center justify-between p-4"
-            onClick={() => setShowShop(true)}
+            onClick={() => router.push("/shop")}
           >
             <div className="flex items-center gap-3">
               <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/20 via-yellow-500/10 to-orange-500/20">
