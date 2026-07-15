@@ -382,6 +382,7 @@ export const useUserStore = create<UserState>()(
               adsWatchDate: data.adsWatchDate ?? s.adsWatchDate,
             });
             get().checkWeeklyReset();
+            get().checkStreak();
           } else {
             get().syncToFirestore();
           }
@@ -444,7 +445,11 @@ export const useUserStore = create<UserState>()(
       },
 
       addXp: (amount) => {
-        const { xp, xpToday, level, weeklyXp, weeklyStartDate } = get();
+        const { xp, xpToday, level, weeklyXp, weeklyStartDate, streak, lastActiveDate } = get();
+        if (streak === 0) {
+          const today = new Date().toDateString();
+          if (lastActiveDate === today) set({ streak: 1 });
+        }
         const newXp = xp + amount;
         const newLevel = calcLevel(newXp);
         const levelUp = newLevel > level;
@@ -548,7 +553,7 @@ export const useUserStore = create<UserState>()(
             if (!newFrozenDays.includes(d)) newFrozenDays.push(d);
           }
         } else {
-          newStreak = 1;
+          newStreak = 0;
           const frozenPortion = gapDates.slice(0, freezesToConsume);
           const brokenPortion = gapDates.slice(freezesToConsume);
           for (const d of frozenPortion) {
@@ -935,6 +940,7 @@ export const useUserStore = create<UserState>()(
         adsWatchDate: state.adsWatchDate,
       }),
       onRehydrateStorage: () => () => {
+        useUserStore.getState().checkStreak();
         useUserStore.getState().checkWeeklyReset();
       },
     },
