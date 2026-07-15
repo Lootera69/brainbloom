@@ -24,6 +24,7 @@ import { PaywallModal } from "@/components/paywall/PaywallModal";
 import { ShopModal } from "@/components/shop/ShopModal";
 import { hasPremiumAccess } from "@/services/entitlement-service";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 import { categories } from "@/constants/home";
 
@@ -713,27 +714,54 @@ function PuzzlePlayView({
             puzzle={currentPuzzle}
             onComplete={handleComplete}
             onWrongAttempt={() => {
+              const st = useUserStore.getState().tier;
+              const sExp = useUserStore.getState().subscriptionExpiry;
+              const premium = hasPremiumAccess(st, sExp);
               useHeart();
               toast.custom(
-                (t) => (
+                (toastId) => (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.8, y: -10 }}
-                    className="flex items-center gap-3 rounded-xl border border-red-500/20 bg-card px-4 py-3 shadow-lg"
+                    className={cn(
+                      "flex items-center gap-3 rounded-xl px-4 py-3 shadow-lg",
+                      premium
+                        ? "border border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-orange-500/10"
+                        : "border border-red-500/20 bg-card",
+                    )}
                   >
-                    <motion.span
-                      initial={{ scale: 1 }}
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 0.4 }}
-                      className="flex size-8 items-center justify-center rounded-lg bg-destructive/10"
-                    >
-                      <HeartCrack className="size-4 text-destructive" />
-                    </motion.span>
-                    <div>
-                      <p className="text-sm font-semibold text-destructive">-1 Heart</p>
-                      <p className="text-xs text-muted-foreground">Wrong answer!</p>
-                    </div>
+                    {premium ? (
+                      <>
+                        <motion.span
+                          initial={{ scale: 1 }}
+                          animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
+                          transition={{ duration: 0.5 }}
+                          className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500/20 to-yellow-500/20"
+                        >
+                          <Sparkles className="size-4 text-amber-400" />
+                        </motion.span>
+                        <div>
+                          <p className="text-sm font-semibold text-amber-400">Wrong answer</p>
+                          <p className="text-xs text-amber-400/60">Hearts protected ∞</p>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <motion.span
+                          initial={{ scale: 1 }}
+                          animate={{ scale: [1, 1.3, 1] }}
+                          transition={{ duration: 0.4 }}
+                          className="flex size-8 items-center justify-center rounded-lg bg-destructive/10"
+                        >
+                          <HeartCrack className="size-4 text-destructive" />
+                        </motion.span>
+                        <div>
+                          <p className="text-sm font-semibold text-destructive">-1 Heart</p>
+                          <p className="text-xs text-muted-foreground">Wrong answer!</p>
+                        </div>
+                      </>
+                    )}
                   </motion.div>
                 ),
                 { duration: 1500, position: "top-center" },
