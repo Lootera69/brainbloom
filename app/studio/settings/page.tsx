@@ -33,6 +33,7 @@ export default function StudioSettingsPage() {
   // Invite codes state
   const [codes, setCodes] = useState<InviteCodeEntry[]>([]);
   const [pricing, setPricing] = useState<PricingConfig>(DEFAULT_PRICING);
+  const [pricingInitial, setPricingInitial] = useState<PricingConfig | null>(null);
   const [pricingLoaded, setPricingLoaded] = useState(false);
   const [newCode, setNewCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -85,7 +86,7 @@ export default function StudioSettingsPage() {
   };
 
   useEffect(() => {
-    getPricingConfig().then((cfg) => { setPricing(cfg); setPricingLoaded(true); });
+    getPricingConfig().then((cfg) => { setPricing(cfg); setPricingInitial(cfg); setPricingLoaded(true); });
   }, []);
 
   const handleAddCode = async () => {
@@ -551,8 +552,24 @@ export default function StudioSettingsPage() {
                 setPricing({ ...pricing, [key]: isNaN(parsed) ? 0 : Math.max(0, parsed) });
               };
 
+              const isDirty = pricingInitial !== null && (
+                pricing.monthlyBase !== pricingInitial.monthlyBase ||
+                pricing.monthlyOffer !== pricingInitial.monthlyOffer ||
+                pricing.yearlyBase !== pricingInitial.yearlyBase ||
+                pricing.yearlyOffer !== pricingInitial.yearlyOffer ||
+                pricing.offerLabel !== pricingInitial.offerLabel ||
+                pricing.offerActive !== pricingInitial.offerActive ||
+                pricing.gems_100 !== pricingInitial.gems_100 ||
+                pricing.gems_500 !== pricingInitial.gems_500 ||
+                pricing.gems_1200 !== pricingInitial.gems_1200 ||
+                pricing.heart_refill !== pricingInitial.heart_refill ||
+                pricing.streak_freeze_3 !== pricingInitial.streak_freeze_3
+              );
+              const canSave = isDirty && !hasErrors;
+
               return (
                 <>
+                  <style>{`.no-spin::-webkit-inner-spin-button,.no-spin::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.no-spin{-moz-appearance:textfield}`}</style>
                   {/* Plan comparison cards */}
                   <div className="grid gap-4 sm:grid-cols-2">
                     {/* Monthly Card */}
@@ -581,13 +598,16 @@ export default function StudioSettingsPage() {
                                 <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground/60">Original</span>
                               )}
                             </label>
-                            <input
-                              type="number"
-                              step="any"
-                              value={pricing.monthlyBase}
-                              onChange={(e) => set("monthlyBase", e.target.value)}
-                              className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm tabular-nums outline-none transition-colors focus:border-rose-400/50"
-                            />
+                            <div className="relative">
+                              <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">$</span>
+                              <input
+                                type="number"
+                                step="any"
+                                value={pricing.monthlyBase}
+                                onChange={(e) => set("monthlyBase", e.target.value)}
+                                className="no-spin w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-rose-400/50"
+                              />
+                            </div>
                           </div>
                           <div>
                             <label className="mb-1 flex items-center justify-between text-[11px] font-medium text-muted-foreground">
@@ -596,15 +616,18 @@ export default function StudioSettingsPage() {
                                 <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold text-emerald-500">{monthPct}% OFF</span>
                               )}
                             </label>
-                            <input
-                              type="number"
-                              step="any"
-                              value={pricing.monthlyOffer}
-                              onChange={(e) => set("monthlyOffer", e.target.value)}
-                              className={`w-full rounded-xl border bg-white/5 px-3.5 py-2.5 text-sm tabular-nums outline-none transition-colors focus:border-rose-400/50 ${
-                                monthlyInvalid ? "border-destructive/60" : "border-white/10"
-                              }`}
-                            />
+                            <div className="relative">
+                              <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">$</span>
+                              <input
+                                type="number"
+                                step="any"
+                                value={pricing.monthlyOffer}
+                                onChange={(e) => set("monthlyOffer", e.target.value)}
+                                className={`no-spin w-full rounded-xl border bg-white/5 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-rose-400/50 ${
+                                  monthlyInvalid ? "border-destructive/60" : "border-white/10"
+                                }`}
+                              />
+                            </div>
                             {monthlyInvalid && (
                               <motion.p
                                 initial={{ opacity: 0, y: -4 }}
@@ -660,13 +683,16 @@ export default function StudioSettingsPage() {
                                 <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground/60">Original</span>
                               )}
                             </label>
-                            <input
-                              type="number"
-                              step="any"
-                              value={pricing.yearlyBase}
-                              onChange={(e) => set("yearlyBase", e.target.value)}
-                              className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm tabular-nums outline-none transition-colors focus:border-amber-400/50"
-                            />
+                            <div className="relative">
+                              <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">$</span>
+                              <input
+                                type="number"
+                                step="any"
+                                value={pricing.yearlyBase}
+                                onChange={(e) => set("yearlyBase", e.target.value)}
+                                className="no-spin w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-amber-400/50"
+                              />
+                            </div>
                           </div>
                           <div>
                             <label className="mb-1 flex items-center justify-between text-[11px] font-medium text-muted-foreground">
@@ -675,15 +701,18 @@ export default function StudioSettingsPage() {
                                 <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold text-emerald-500">{yearPct}% OFF</span>
                               )}
                             </label>
-                            <input
-                              type="number"
-                              step="any"
-                              value={pricing.yearlyOffer}
-                              onChange={(e) => set("yearlyOffer", e.target.value)}
-                              className={`w-full rounded-xl border bg-white/5 px-3.5 py-2.5 text-sm tabular-nums outline-none transition-colors focus:border-amber-400/50 ${
-                                yearlyInvalid ? "border-destructive/60" : "border-white/10"
-                              }`}
-                            />
+                            <div className="relative">
+                              <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">$</span>
+                              <input
+                                type="number"
+                                step="any"
+                                value={pricing.yearlyOffer}
+                                onChange={(e) => set("yearlyOffer", e.target.value)}
+                                className={`no-spin w-full rounded-xl border bg-white/5 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-amber-400/50 ${
+                                  yearlyInvalid ? "border-destructive/60" : "border-white/10"
+                                }`}
+                              />
+                            </div>
                             {yearlyInvalid && (
                               <motion.p
                                 initial={{ opacity: 0, y: -4 }}
@@ -722,7 +751,7 @@ export default function StudioSettingsPage() {
                     </motion.div>
                   </div>
 
-                  {/* Offer settings + Save row */}
+                  {/* Offer settings */}
                   <GlassCard intensity="light" className="p-4">
                     <div className="flex flex-wrap items-end gap-4">
                       <div className="min-w-[180px] flex-1">
@@ -746,21 +775,6 @@ export default function StudioSettingsPage() {
                         />
                         <span className="text-xs text-muted-foreground">Offer active</span>
                       </label>
-                      <button
-                        disabled={hasErrors}
-                        onClick={async () => {
-                          await savePricingConfig(pricing);
-                          toast.success("Pricing saved!");
-                        }}
-                        className={`flex h-10 items-center gap-1.5 rounded-xl px-5 text-sm font-semibold transition-all active:scale-[0.98] ${
-                          hasErrors
-                            ? "bg-muted text-muted-foreground cursor-not-allowed"
-                            : "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/25 hover:brightness-110"
-                        }`}
-                      >
-                        <Sparkles className="size-4" />
-                        Save Changes
-                      </button>
                     </div>
 
                     {/* Preview pill */}
@@ -813,23 +827,58 @@ export default function StudioSettingsPage() {
                             </span>
                             <div className="min-w-0 flex-1">
                               <p className="text-[11px] font-medium text-muted-foreground">{label}</p>
-                              <input
-                                type="number"
-                                step="any"
-                                min="0"
-                                value={pricing[key]}
-                                onChange={(e) => {
-                                  const val = parseFloat(e.target.value);
-                                  setPricing({ ...pricing, [key]: isNaN(val) ? 0 : Math.max(0, val) });
-                                }}
-                                className="mt-0.5 w-full bg-transparent text-sm font-bold tabular-nums text-foreground outline-none"
-                              />
+                              <div className="relative mt-0.5">
+                                <span className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 text-sm font-bold text-muted-foreground">$</span>
+                                <input
+                                  type="number"
+                                  step="any"
+                                  min="0"
+                                  value={pricing[key]}
+                                  onChange={(e) => {
+                                    const val = parseFloat(e.target.value);
+                                    setPricing({ ...pricing, [key]: isNaN(val) ? 0 : Math.max(0, val) });
+                                  }}
+                                  className="no-spin w-full bg-transparent pl-4 text-sm font-bold tabular-nums text-foreground outline-none"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
                       ))}
                     </div>
                   </GlassCard>
+
+                  {/* Cancel / Save */}
+                  <div className="flex justify-end gap-3">
+                    {isDirty && (
+                      <motion.button
+                        initial={{ opacity: 0, x: 8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        onClick={() => pricingInitial && setPricing({ ...pricingInitial })}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex h-10 items-center rounded-xl border border-white/10 px-5 text-sm font-medium text-muted-foreground transition-all hover:bg-white/5 hover:text-foreground"
+                      >
+                        Cancel
+                      </motion.button>
+                    )}
+                    <motion.button
+                      disabled={!canSave}
+                      onClick={async () => {
+                        await savePricingConfig(pricing);
+                        setPricingInitial({ ...pricing });
+                        toast.success("Pricing saved!");
+                      }}
+                      whileTap={canSave ? { scale: 0.98 } : undefined}
+                      className={`flex h-10 items-center gap-1.5 rounded-xl px-6 text-sm font-semibold transition-all ${
+                        canSave
+                          ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/25 hover:brightness-110"
+                          : "bg-muted text-muted-foreground cursor-not-allowed"
+                      }`}
+                    >
+                      <Sparkles className="size-4" />
+                      Save Changes
+                    </motion.button>
+                  </div>
                 </>
               );
             })()}
