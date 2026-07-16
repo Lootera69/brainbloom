@@ -89,9 +89,10 @@ export function PricingCard({ onClose }: PricingCardProps) {
   const offerPrice = plan === "monthly" ? pricing.monthlyOffer : pricing.yearlyOffer;
   const basePrice = plan === "monthly" ? pricing.monthlyBase : pricing.yearlyBase;
   const displayPrice = pricing.offerActive ? offerPrice : basePrice;
-  const percentOff = plan === "monthly" ? pricing.monthlyOfferPercent : pricing.yearlyOfferPercent;
-  const monthlyPercentOff = pricing.monthlyOfferPercent;
-  const yearlyPercentOff = pricing.yearlyOfferPercent;
+  const computedPercentOff = (bp: number, op: number) => Math.round((1 - op / bp) * 100);
+  const percentOff = computedPercentOff(basePrice, offerPrice);
+  const monthlyPercentOff = computedPercentOff(pricing.monthlyBase, pricing.monthlyOffer);
+  const yearlyPercentOff = computedPercentOff(pricing.yearlyBase, pricing.yearlyOffer);
   const savings = basePrice - offerPrice;
   const formattedSavings = savings < 1 ? `${Math.round(savings * 100)}¢` : `$${savings.toFixed(2)}`;
 

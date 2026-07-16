@@ -543,77 +543,99 @@ export default function StudioSettingsPage() {
 
               {pricingLoaded && (
                 <div className="flex flex-col gap-4">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="space-y-1.5">
-                      <label className="text-xs text-muted-foreground">Monthly Base ($)</label>
-                      <input
-                        type="number"
-                        step="0.01"
-                        value={pricing.monthlyBase}
-                        onChange={(e) => setPricing({ ...pricing, monthlyBase: parseFloat(e.target.value) || 0 })}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label className="text-xs text-muted-foreground">Monthly Offer ($)</label>
-                      <input
-                        type="number"
-                        step="0.01"
-                        value={pricing.monthlyOffer}
-                        onChange={(e) => setPricing({ ...pricing, monthlyOffer: parseFloat(e.target.value) || 0 })}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label className="text-xs text-muted-foreground">Yearly Base ($)</label>
-                      <input
-                        type="number"
-                        step="0.01"
-                        value={pricing.yearlyBase}
-                        onChange={(e) => setPricing({ ...pricing, yearlyBase: parseFloat(e.target.value) || 0 })}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label className="text-xs text-muted-foreground">Yearly Offer ($)</label>
-                      <input
-                        type="number"
-                        step="0.01"
-                        value={pricing.yearlyOffer}
-                        onChange={(e) => setPricing({ ...pricing, yearlyOffer: parseFloat(e.target.value) || 0 })}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label className="text-xs text-muted-foreground">Offer label</label>
-                      <input
-                        value={pricing.offerLabel}
-                        onChange={(e) => setPricing({ ...pricing, offerLabel: e.target.value })}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
-                      />
-                    </div>
-                    <div className="flex items-end gap-3">
-                      <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm transition-all hover:bg-white/5">
-                        <input
-                          type="checkbox"
-                          checked={pricing.offerActive}
-                          onChange={(e) => setPricing({ ...pricing, offerActive: e.target.checked })}
-                          className="size-4 accent-primary"
-                        />
-                        <span className="text-xs text-muted-foreground">Offer active</span>
-                      </label>
-                      <button
-                        onClick={async () => {
-                          await savePricingConfig(pricing);
-                          toast.success("Pricing saved!");
-                        }}
-                        className="flex h-10 items-center gap-1.5 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 active:scale-[0.98]"
-                      >
-                        <Sparkles className="size-4" />
-                        Save
-                      </button>
-                    </div>
-                  </div>
+                  {(() => {
+                    const monthlyInvalid = pricing.monthlyOffer >= pricing.monthlyBase;
+                    const yearlyInvalid = pricing.yearlyOffer >= pricing.yearlyBase;
+                    const hasErrors = monthlyInvalid || yearlyInvalid;
+                    return (
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="space-y-1.5">
+                          <label className="text-xs text-muted-foreground">Monthly Base ($)</label>
+                          <input
+                            type="number"
+                            step="0.01"
+                            value={pricing.monthlyBase}
+                            onChange={(e) => setPricing({ ...pricing, monthlyBase: parseFloat(e.target.value) || 0 })}
+                            className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs text-muted-foreground">Monthly Offer ($)</label>
+                          <input
+                            type="number"
+                            step="0.01"
+                            value={pricing.monthlyOffer}
+                            onChange={(e) => setPricing({ ...pricing, monthlyOffer: parseFloat(e.target.value) || 0 })}
+                            className={`w-full rounded-xl border bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary ${
+                              monthlyInvalid ? "border-destructive/60" : "border-white/10"
+                            }`}
+                          />
+                          {monthlyInvalid && (
+                            <p className="text-[10px] text-destructive">Must be less than base price</p>
+                          )}
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs text-muted-foreground">Yearly Base ($)</label>
+                          <input
+                            type="number"
+                            step="0.01"
+                            value={pricing.yearlyBase}
+                            onChange={(e) => setPricing({ ...pricing, yearlyBase: parseFloat(e.target.value) || 0 })}
+                            className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
+                          />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs text-muted-foreground">Yearly Offer ($)</label>
+                          <input
+                            type="number"
+                            step="0.01"
+                            value={pricing.yearlyOffer}
+                            onChange={(e) => setPricing({ ...pricing, yearlyOffer: parseFloat(e.target.value) || 0 })}
+                            className={`w-full rounded-xl border bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary ${
+                              yearlyInvalid ? "border-destructive/60" : "border-white/10"
+                            }`}
+                          />
+                          {yearlyInvalid && (
+                            <p className="text-[10px] text-destructive">Must be less than base price</p>
+                          )}
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs text-muted-foreground">Offer label</label>
+                          <input
+                            value={pricing.offerLabel}
+                            onChange={(e) => setPricing({ ...pricing, offerLabel: e.target.value })}
+                            className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
+                          />
+                        </div>
+                        <div className="flex items-end gap-3">
+                          <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm transition-all hover:bg-white/5">
+                            <input
+                              type="checkbox"
+                              checked={pricing.offerActive}
+                              onChange={(e) => setPricing({ ...pricing, offerActive: e.target.checked })}
+                              className="size-4 accent-primary"
+                            />
+                            <span className="text-xs text-muted-foreground">Offer active</span>
+                          </label>
+                          <button
+                            disabled={hasErrors}
+                            onClick={async () => {
+                              await savePricingConfig(pricing);
+                              toast.success("Pricing saved!");
+                            }}
+                            className={`flex h-10 items-center gap-1.5 rounded-xl px-4 text-sm font-semibold transition-all active:scale-[0.98] ${
+                              hasErrors
+                                ? "bg-muted text-muted-foreground cursor-not-allowed"
+                                : "bg-primary text-primary-foreground hover:brightness-110"
+                            }`}
+                          >
+                            <Sparkles className="size-4" />
+                            Save
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               )}
             </GlassCard>
