@@ -144,8 +144,8 @@ export interface PremiumBenefit {
 export const PREMIUM_BENEFITS: PremiumBenefit[] = [
   { icon: "Infinity", title: "Unlimited Puzzles", description: "No daily cap — play as much as you want" },
   { icon: "Heart", title: "Unlimited Hearts", description: "Never run out of hearts again" },
-  { icon: "Sparkles", title: "Premium Avatars", description: "Exclusive Dragon, Phoenix & Griffin" },
-  { icon: "Crown", title: "VIP Profile", description: "Golden card, crown badge, animated avatar border & shimmer" },
+  { icon: "Sparkles", title: "Premium Avatars", description: "Exclusive mythical avatar collection with premium styling" },
+  { icon: "Crown", title: "VIP Profile", description: "Luxurious golden profile with animated borders and shimmer effects" },
   { icon: "Zap", title: "2x XP Boost", description: "Level up twice as fast" },
   { icon: "Ban", title: "Ad-Free", description: "No ads, no interruptions" },
 ];

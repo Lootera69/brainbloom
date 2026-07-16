@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Gem, Heart, Snowflake, Sparkles, X, Crown, ShoppingBag, ChevronRight,
@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { PremiumTab } from "@/features/shop/components/PremiumTab";
 import { ProductCard } from "@/features/shop/components/ProductCard";
+import { PurchaseRainEffect } from "@/features/shop/components/PurchaseRainEffect";
 
 type ModalTab = "premium" | "gems" | "hearts";
 
@@ -32,11 +33,14 @@ export function ShopModal({ onClose }: ShopModalProps) {
   const [purchasing, setPurchasing] = useState<string | null>(null);
   const [purchased, setPurchased] = useState<string | null>(null);
   const [pricing, setPricing] = useState<PricingConfig | null>(null);
+  const [rainParams, setRainParams] = useState<{ type: "gems" | "hearts" | "snowflakes"; amount: number } | null>(null);
+  const rainTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const gems = useUserStore((s) => s.gems);
   const router = useRouter();
 
   useEffect(() => {
     getPricingConfig().then(setPricing);
+    return () => { if (rainTimer.current) clearTimeout(rainTimer.current); };
   }, []);
 
   const addGems = useUserStore((s) => s.addGems);
@@ -53,9 +57,24 @@ export function ShopModal({ onClose }: ShopModalProps) {
       setPurchasing(null);
       return;
     }
-    if (product.effect.gems) addGems(product.effect.gems);
-    if (product.effect.hearts) restoreHearts();
-    if (product.effect.streakFreezes) addStreakFreezes(product.effect.streakFreezes);
+    if (product.effect.gems) {
+      addGems(product.effect.gems);
+      setRainParams({ type: "gems", amount: product.effect.gems });
+      if (rainTimer.current) clearTimeout(rainTimer.current);
+      rainTimer.current = setTimeout(() => setRainParams(null), 3000);
+    }
+    if (product.effect.hearts) {
+      restoreHearts();
+      setRainParams({ type: "hearts", amount: 0 });
+      if (rainTimer.current) clearTimeout(rainTimer.current);
+      rainTimer.current = setTimeout(() => setRainParams(null), 3000);
+    }
+    if (product.effect.streakFreezes) {
+      addStreakFreezes(product.effect.streakFreezes);
+      setRainParams({ type: "snowflakes", amount: 0 });
+      if (rainTimer.current) clearTimeout(rainTimer.current);
+      rainTimer.current = setTimeout(() => setRainParams(null), 3000);
+    }
     if (product.effect.tier === "premium" && product.effect.days) {
       const expiry = Date.now() + product.effect.days * 86400000;
       setTier("premium", expiry);
@@ -68,7 +87,11 @@ export function ShopModal({ onClose }: ShopModalProps) {
   const nonPremiumProducts = SHOP_PRODUCTS.filter((p) => p.category !== "premium");
 
   return (
-    <AnimatePresence>
+    <>
+      {rainParams && (
+        <PurchaseRainEffect active type={rainParams.type} amount={rainParams.amount} />
+      )}
+      <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -162,16 +185,22 @@ export function ShopModal({ onClose }: ShopModalProps) {
                       purchased={purchased === product.id}
                       onPurchase={() => handleProductPurchase(product)}
                       index={i}
-                      particleColor={
-                        product.category === "streak_freeze" ? "#60a5fa"
-                        : product.category === "hearts" ? "#fb7185"
-                        : "#22d3ee"
+                      particleType={
+                        product.category === "streak_freeze" ? "snowflakes"
+                        : product.category === "hearts" ? "hearts"
+                        : "gems"
                       }
                       particleCount={
-                        product.category === "streak_freeze" || product.category === "hearts" ? 6
+                        product.category === "streak_freeze" || product.category === "hearts" ? undefined
                         : product.effect.gems && product.effect.gems >= 1000 ? 10
                         : product.effect.gems && product.effect.gems >= 500 ? 7
                         : 4
+                      }
+                      particleIntensity={
+                        product.category === "streak_freeze" || product.category === "hearts" ? undefined
+                        : product.effect.gems && product.effect.gems >= 1000 ? "energetic"
+                        : product.effect.gems && product.effect.gems >= 500 ? "medium"
+                        : "subtle"
                       }
                     />
                   ))}
@@ -199,5 +228,6 @@ export function ShopModal({ onClose }: ShopModalProps) {
         </motion.div>
       </motion.div>
     </AnimatePresence>
+    </>
   );
 }

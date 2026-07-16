@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Heart, Snowflake, Gem, Infinity, Shield } from "lucide-react";
 import { SHOP_PRODUCTS, GEM_HEART_REFILL_COST, GEM_STREAK_FREEZE_COST } from "@/lib/subscription";
@@ -10,10 +10,13 @@ import { hasPremiumAccess } from "@/services/entitlement-service";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { ProductCard } from "./ProductCard";
+import { PurchaseRainEffect } from "./PurchaseRainEffect";
 
 export function HeartsTab() {
   const [purchasing, setPurchasing] = useState<string | null>(null);
   const [purchased, setPurchased] = useState<string | null>(null);
+  const [rainType, setRainType] = useState<"hearts" | "snowflakes" | null>(null);
+  const rainTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const restoreHearts = useUserStore((s) => s.restoreHearts);
   const addStreakFreezes = useUserStore((s) => s.addStreakFreezes);
   const hearts = useUserStore((s) => s.hearts);
@@ -21,6 +24,10 @@ export function HeartsTab() {
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
   const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
+
+  useEffect(() => {
+    return () => { if (rainTimer.current) clearTimeout(rainTimer.current); };
+  }, []);
 
   const handlePurchase = useCallback(async (product: typeof SHOP_PRODUCTS[number]) => {
     if (purchasing) return;
@@ -31,8 +38,18 @@ export function HeartsTab() {
       setPurchasing(null);
       return;
     }
-    if (product.effect.hearts) restoreHearts();
-    if (product.effect.streakFreezes) addStreakFreezes(product.effect.streakFreezes);
+    if (product.effect.hearts) {
+      restoreHearts();
+      setRainType("hearts");
+      if (rainTimer.current) clearTimeout(rainTimer.current);
+      rainTimer.current = setTimeout(() => setRainType(null), 3000);
+    }
+    if (product.effect.streakFreezes) {
+      addStreakFreezes(product.effect.streakFreezes);
+      setRainType("snowflakes");
+      if (rainTimer.current) clearTimeout(rainTimer.current);
+      rainTimer.current = setTimeout(() => setRainType(null), 3000);
+    }
     setPurchased(product.id);
     toast.custom(
       (tid) => (
@@ -64,7 +81,9 @@ export function HeartsTab() {
   const heartBars = Array.from({ length: 5 }, (_, i) => i < hearts);
 
   return (
-    <div className="space-y-5 py-2">
+    <>
+      <PurchaseRainEffect active={rainType !== null} type={rainType ?? "hearts"} />
+      <div className="space-y-5 py-2">
       {/* Balance cards */}
       <div className="grid grid-cols-2 gap-3">
         <motion.div
@@ -163,8 +182,7 @@ export function HeartsTab() {
             purchased={purchased === product.id}
             onPurchase={() => handlePurchase(product)}
             index={i}
-            particleColor={product.category === "streak_freeze" ? "#60a5fa" : "#fb7185"}
-            particleCount={6}
+            particleType={product.category === "streak_freeze" ? "snowflakes" : "hearts"}
           />
         ))}
       </div>
@@ -226,6 +244,7 @@ export function HeartsTab() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

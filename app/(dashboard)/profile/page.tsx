@@ -39,6 +39,7 @@ import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
 import { PremiumBadge } from "@/components/paywall/PremiumBadge";
 import { hasPremiumAccess, daysRemaining, formatExpiry } from "@/services/entitlement-service";
 import { AvatarSelector } from "@/components/avatars/AvatarSelector";
+import { ProfileShopModal } from "@/components/shop/ProfileShopModal";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { signOutUser, sendPasswordReset } from "@/services/firebase";
@@ -111,6 +112,7 @@ export default function ProfilePage() {
   const getHeartTimer = useUserStore((s) => s.getHeartTimer);
   const [timer, setTimer] = useState(0);
   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
+  const [profileShop, setProfileShop] = useState<"gems" | "hearts" | null>(null);
 
   useEffect(() => {
     const tick = () => {
@@ -311,32 +313,43 @@ export default function ProfilePage() {
         transition={{ delay: 0.1 }}
       >
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {statCards.map(({ icon: Icon, label, color, bg }, i) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + i * 0.05 }}
-            >
-              <GlassCard intensity="light" className="flex h-full flex-col items-center justify-center gap-2 p-3 sm:p-4 text-center">
-                <span className={cn("flex size-10 items-center justify-center rounded-xl", bg)}>
-                  <Icon className={cn("size-5", color)} />
-                </span>
-                <div>
-                  <p className="text-[11px] text-muted-foreground">{label}</p>
-                  <p className="font-heading text-lg font-bold tabular-nums leading-tight">
-                    {label === "Streak" ? `${streak}d` : label === "Hearts" ? (isPremium ? "∞" : hearts) : label === "Total XP" ? xp.toLocaleString() : gems}
-                  </p>
-                  {label === "Streak" && streakFreezes > 0 && (
-                    <span className="flex items-center justify-center gap-1 text-[10px] font-medium text-blue-400/70">
-                      <Snowflake className="size-3" />
-                      {streakFreezes} freeze{streakFreezes !== 1 ? "s" : ""}
-                    </span>
+          {statCards.map(({ icon: Icon, label, color, bg }, i) => {
+            const isClickable = label === "Gems" || label === "Hearts";
+            return (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + i * 0.05 }}
+              >
+                <GlassCard
+                  intensity="light"
+                  hover={isClickable}
+                  className={cn(
+                    "flex h-full flex-col items-center justify-center gap-2 p-3 sm:p-4 text-center",
+                    isClickable && "cursor-pointer",
                   )}
-                </div>
-              </GlassCard>
-            </motion.div>
-          ))}
+                  onClick={isClickable ? () => setProfileShop(label.toLowerCase() as "gems" | "hearts") : undefined}
+                >
+                  <span className={cn("flex size-10 items-center justify-center rounded-xl", bg)}>
+                    <Icon className={cn("size-5", color)} />
+                  </span>
+                  <div>
+                    <p className="text-[11px] text-muted-foreground">{label}</p>
+                    <p className="font-heading text-lg font-bold tabular-nums leading-tight">
+                      {label === "Streak" ? `${streak}d` : label === "Hearts" ? (isPremium ? "∞" : hearts) : label === "Total XP" ? xp.toLocaleString() : gems}
+                    </p>
+                    {label === "Streak" && streakFreezes > 0 && (
+                      <span className="flex items-center justify-center gap-1 text-[10px] font-medium text-blue-400/70">
+                        <Snowflake className="size-3" />
+                        {streakFreezes} freeze{streakFreezes !== 1 ? "s" : ""}
+                      </span>
+                    )}
+                  </div>
+                </GlassCard>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Heart timer banner — shows when hearts < 5 */}
@@ -624,6 +637,13 @@ export default function ProfilePage() {
           {isGuest ? "Reset Guest Data" : "Sign Out"}
         </Button>
       </motion.div>
+
+      {profileShop && (
+        <ProfileShopModal
+          type={profileShop}
+          onClose={() => setProfileShop(null)}
+        />
+      )}
 
       {showAvatarSelector && (
         <AvatarSelector

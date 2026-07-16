@@ -10,6 +10,9 @@ const iconMap: Record<string, typeof Gem> = {
   Gem, Heart, Snowflake, Sparkles, ShoppingBag,
 };
 
+type ParticleType = "hearts" | "snowflakes" | "gems";
+type ParticleIntensity = "subtle" | "medium" | "energetic";
+
 interface ProductCardProps {
   product: ShopProduct;
   priceLabel: string;
@@ -17,23 +20,84 @@ interface ProductCardProps {
   purchased: boolean;
   onPurchase: () => void;
   index?: number;
-  particleColor?: string;
+  particleType?: ParticleType;
   particleCount?: number;
+  particleIntensity?: ParticleIntensity;
 }
 
-export function ProductCard({ product, priceLabel, purchasing, purchased, onPurchase, index = 0, particleColor, particleCount = 0 }: ProductCardProps) {
+const particleIcons: Record<ParticleType, typeof Heart> = {
+  hearts: Heart,
+  snowflakes: Snowflake,
+  gems: Gem,
+};
+
+const particleColors: Record<ParticleType, string> = {
+  hearts: "text-rose-400",
+  snowflakes: "text-blue-400",
+  gems: "text-cyan-400",
+};
+
+const defaultCounts: Record<ParticleType, number> = {
+  hearts: 3,
+  snowflakes: 3,
+  gems: 4,
+};
+
+const intensityConfig: Record<ParticleIntensity, { rise: number; spread: number; speed: number; scalePeak: number }> = {
+  subtle: { rise: 70, spread: 6, speed: 4.5, scalePeak: 1.0 },
+  medium: { rise: 110, spread: 10, speed: 3.8, scalePeak: 1.15 },
+  energetic: { rise: 150, spread: 14, speed: 3.0, scalePeak: 1.3 },
+};
+
+const MAX_PARTICLES = 15;
+
+function generateParticles(type: ParticleType, countOverride?: number) {
+  const count = Math.max(0, Math.min(countOverride ?? defaultCounts[type], MAX_PARTICLES));
+  return Array.from({ length: count }).map((_, i) => ({
+    x: 10 + (i * 24 + i * i * 7) % 80,
+    delay: i * 0.6 + (i % 4) * 0.15,
+    size: 10 + (i % 3) * 2,
+    duration: 4 + (i % 4) * 0.5,
+    drift: (i % 5) - 2,
+  }));
+}
+
+function getAnimation(type: ParticleType, intensity: ParticleIntensity) {
+  const cfg = intensityConfig[intensity];
+  switch (type) {
+    case "hearts":
+      return {
+        y: [0, -(cfg.rise + 20)],
+        scale: [0.6, cfg.scalePeak * 1.0, 0.8],
+      };
+    case "snowflakes":
+      return {
+        y: [0, cfg.rise * 0.5],
+        rotate: [0, 360],
+        scale: [0.5, cfg.scalePeak * 0.85, 0.7],
+      };
+    case "gems":
+      return {
+        y: [0, -cfg.rise],
+        scale: [0.3, cfg.scalePeak, 0.4],
+      };
+  }
+}
+
+export function ProductCard({ product, priceLabel, purchasing, purchased, onPurchase, index = 0, particleType, particleCount, particleIntensity = "medium" }: ProductCardProps) {
   const Icon = iconMap[product.icon] || ShoppingBag;
 
   const particles = useMemo(() => {
-    if (particleCount <= 0) return [];
-    return Array.from({ length: particleCount }).map((_, i) => ({
-      x: 10 + (i * 17 + i * i * 3) % 80,
-      delay: i * 0.5 + (i % 3) * 0.2,
-      size: 2 + (i % 3),
-      duration: 3.5 + (i % 4) * 0.5,
-      drift: (i % 5) - 2,
-    }));
-  }, [particleCount]);
+    if (!particleType) return [];
+    return generateParticles(particleType, particleCount);
+  }, [particleType, particleCount]);
+
+  const ParticleIcon = particleType ? particleIcons[particleType] : null;
+  const particleColor = particleType ? particleColors[particleType] : "";
+  const animConfig = useMemo(() => {
+    if (!particleType) return null;
+    return getAnimation(particleType, particleIntensity);
+  }, [particleType, particleIntensity]);
 
   return (
     <motion.button
@@ -50,32 +114,34 @@ export function ProductCard({ product, priceLabel, purchasing, purchased, onPurc
           : "border-white/[0.06] bg-white/[0.03] hover:border-white/[0.12] hover:bg-white/[0.06] hover:shadow-lg hover:shadow-black/5",
       )}
     >
-      {/* Floating particles */}
-      {particles.map((p, i) => (
-        <motion.span
-          key={i}
-          className="pointer-events-none absolute rounded-full"
-          style={{
-            width: p.size,
-            height: p.size,
-            left: `${p.x}%`,
-            bottom: 0,
-            backgroundColor: particleColor,
-          }}
-          animate={{
-            y: [0, -120 - (i % 4) * 20],
-            x: [0, p.drift * 8],
-            opacity: [0, 0.5, 0],
-            scale: [0.3, 1, 0.3],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: "easeOut",
-          }}
-        />
-      ))}
+      {particleType && animConfig && (
+        <>
+          {particles.map((p, i) => (
+            <motion.span
+              key={i}
+              className={`pointer-events-none absolute ${particleColor}`}
+              style={{
+                left: `${p.x}%`,
+                bottom: particleType === "snowflakes" ? "60%" : 0,
+                top: particleType === "snowflakes" ? "auto" : undefined,
+              }}
+              animate={{
+                ...animConfig,
+                x: [0, p.drift * intensityConfig[particleIntensity].spread],
+                opacity: [0, 0.6, 0],
+              }}
+              transition={{
+                duration: p.duration,
+                repeat: Infinity,
+                delay: p.delay,
+                ease: particleType === "snowflakes" ? "linear" : "easeOut",
+              }}
+            >
+              {ParticleIcon && <ParticleIcon size={p.size} />}
+            </motion.span>
+          ))}
+        </>
+      )}
 
       {purchased && (
         <motion.div

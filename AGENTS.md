@@ -51,7 +51,8 @@ components/
     BottomNav.tsx                — Apple-style frosted glass bottom nav
     Sidebar.tsx                  — Frosted glass sidebar with golden tint for premium users, no left active bar
   paywall/                       — PricingCard component (subscription tier cards with offer/billing toggle)
-  shop/                          — ShopModal (dynamic pricing, premium subscription section)
+  shop/                          — ShopModal + ProfileShopModal (mini shop for hearts/gems from profile)
+    ProfileShopModal.tsx         — Mini shop modal reusing GemsTab/HeartsTab, opened from profile stat cards
   home/                          — Home page components
     DailyChallengeCard.tsx
     DailyRewardChest.tsx         — 3.5s animated gift box with confetti
@@ -379,9 +380,30 @@ Stored in Zustand with persist middleware. Key fields:
 
 ### 17. Shop System
 - `ShopModal`: tabs for Gems, Hearts/Streak, Premium Membership
+- `ProfileShopModal`: lightweight modal for hearts/gems opened from profile stat cards
+  - Profile hearts/gems stat cards are clickable → opens mini shop
+  - Only hearts and gems cards are clickable (XP/Streak remain static)
+- **Product cards** (`ProductCard.tsx`): decorative floating particles per product type
+  - Hearts: 3 rose Heart icons, gentle upward float with sway
+  - Snowflakes: 3 blue Snowflake icons, drift downward + rotation
+  - Gems: 4/7/10 cyan Gem icons (100/500/1200), quick upward burst
+  - Distinct `particleIntensity` per gem tier: subtle/medium/energetic
+  - Particle count performance-capped at `MAX_PARTICLES = 15`
 - **Premium section**: inline `PricingCard` for subscription purchase
+  - Benefit descriptions use generalized luxury wording (no specific avatar names)
 - **Product prices**: dynamic from `PricingConfig` via `getProductPriceLabel()`, fallback to `SHOP_PRODUCTS.priceLabel`
 - All purchases are mock (`[MOCK PURCHASE]` console log + localStorage)
+
+### 18. Purchase Rain Effects
+- `PurchaseRainEffect`: canvas-based fullscreen particle rain triggered on successful purchase
+  - **Gems**: faceted diamond shapes, fast fall with spin — density: 30/60/100 based on amount
+  - **Hearts**: 3D bezier gradient hearts, gentle float with pulse — 45 particles
+  - **Snowflakes**: 6-branch crystalline shapes, slow drift with 360° rotation — 40 particles
+  - Canvas bg tint fades in over 1s (`TINT_FADE_IN = 1000ms`): cyan for gems, rose for hearts, blue for snowflakes
+  - Tint fades out smoothly after duration alongside particle opacity
+  - Sparkle burst cross-stars spawn randomly during animation
+  - z-index: 200 (above ShopModal's 100)
+  - Cleanup: cancelAnimationFrame on unmount, timer refs cleared on re-purchase
 
 ## UI / UX Patterns
 - **Mobile-first** (320px+), dark mode only (no light mode toggle)
