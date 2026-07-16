@@ -19,7 +19,7 @@ export default function AchievementsPage() {
   const locked = achievementsList.filter((a) => !unlockedIds.has(a.id));
 
   return (
-    <main className="mx-auto min-h-screen max-w-3xl px-4 py-5 sm:p-6">
+    <main className="mx-auto max-w-3xl px-4 py-5 sm:p-6">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}

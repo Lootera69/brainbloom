@@ -147,7 +147,7 @@ export default function ProfilePage() {
   const authType = isGuest ? "guest" : photoURL ? "google" : email ? "email" : "guest";
 
   return (
-    <main className="mx-auto min-h-screen max-w-2xl px-4 py-5 sm:p-6">
+    <main className="mx-auto max-w-2xl px-4 py-5 sm:p-6">
       {/* Profile Header */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
