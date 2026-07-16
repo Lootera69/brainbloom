@@ -163,6 +163,8 @@ export function HeartsTab() {
             purchased={purchased === product.id}
             onPurchase={() => handlePurchase(product)}
             index={i}
+            particleColor={product.category === "streak_freeze" ? "#60a5fa" : "#fb7185"}
+            particleCount={6}
           />
         ))}
       </div>

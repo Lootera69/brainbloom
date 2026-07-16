@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, Loader2, Gem, Heart, Snowflake, Sparkles, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -16,10 +17,23 @@ interface ProductCardProps {
   purchased: boolean;
   onPurchase: () => void;
   index?: number;
+  particleColor?: string;
+  particleCount?: number;
 }
 
-export function ProductCard({ product, priceLabel, purchasing, purchased, onPurchase, index = 0 }: ProductCardProps) {
+export function ProductCard({ product, priceLabel, purchasing, purchased, onPurchase, index = 0, particleColor, particleCount = 0 }: ProductCardProps) {
   const Icon = iconMap[product.icon] || ShoppingBag;
+
+  const particles = useMemo(() => {
+    if (particleCount <= 0) return [];
+    return Array.from({ length: particleCount }).map((_, i) => ({
+      x: 10 + (i * 17 + i * i * 3) % 80,
+      delay: i * 0.5 + (i % 3) * 0.2,
+      size: 2 + (i % 3),
+      duration: 3.5 + (i % 4) * 0.5,
+      drift: (i % 5) - 2,
+    }));
+  }, [particleCount]);
 
   return (
     <motion.button
@@ -30,12 +44,39 @@ export function ProductCard({ product, priceLabel, purchasing, purchased, onPurc
       disabled={!!purchasing || purchased}
       onClick={onPurchase}
       className={cn(
-        "group relative flex w-full items-center gap-4 rounded-2xl border p-4 text-left transition-all active:scale-[0.97]",
+        "group relative flex w-full items-center gap-4 overflow-hidden rounded-2xl border p-4 text-left transition-all active:scale-[0.97]",
         purchased
           ? "border-emerald-500/20 bg-gradient-to-br from-emerald-500/5 to-emerald-500/[0.02]"
           : "border-white/[0.06] bg-white/[0.03] hover:border-white/[0.12] hover:bg-white/[0.06] hover:shadow-lg hover:shadow-black/5",
       )}
     >
+      {/* Floating particles */}
+      {particles.map((p, i) => (
+        <motion.span
+          key={i}
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            width: p.size,
+            height: p.size,
+            left: `${p.x}%`,
+            bottom: 0,
+            backgroundColor: particleColor,
+          }}
+          animate={{
+            y: [0, -120 - (i % 4) * 20],
+            x: [0, p.drift * 8],
+            opacity: [0, 0.5, 0],
+            scale: [0.3, 1, 0.3],
+          }}
+          transition={{
+            duration: p.duration,
+            repeat: Infinity,
+            delay: p.delay,
+            ease: "easeOut",
+          }}
+        />
+      ))}
+
       {purchased && (
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -45,7 +86,7 @@ export function ProductCard({ product, priceLabel, purchasing, purchased, onPurc
       )}
 
       <span className={cn(
-        "flex size-11 shrink-0 items-center justify-center rounded-xl transition-all",
+        "flex size-11 shrink-0 items-center justify-center rounded-xl transition-all z-10",
         purchased
           ? "bg-emerald-500/15"
           : "bg-white/[0.06] group-hover:bg-white/[0.09]",
@@ -59,7 +100,7 @@ export function ProductCard({ product, priceLabel, purchasing, purchased, onPurc
         )}
       </span>
 
-      <div className="min-w-0 flex-1">
+      <div className="min-w-0 flex-1 z-10">
         <p className={cn(
           "text-sm font-semibold transition-colors",
           purchased ? "text-emerald-500" : "text-foreground",
@@ -72,7 +113,7 @@ export function ProductCard({ product, priceLabel, purchasing, purchased, onPurc
       </div>
 
       <span className={cn(
-        "shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all",
+        "z-10 shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all",
         purchased
           ? "bg-emerald-500/15 text-emerald-500"
           : "bg-white/[0.06] text-muted-foreground group-hover:bg-white/[0.1] group-hover:text-foreground",

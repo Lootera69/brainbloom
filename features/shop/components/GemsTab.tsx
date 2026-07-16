@@ -72,6 +72,12 @@ export function GemsTab() {
             purchased={purchased === product.id}
             onPurchase={() => handlePurchase(product.id, product.effect.gems ?? 0)}
             index={i}
+            particleColor="#22d3ee"
+            particleCount={
+              product.effect.gems && product.effect.gems >= 1000 ? 10
+              : product.effect.gems && product.effect.gems >= 500 ? 7
+              : 4
+            }
           />
         ))}
       </div>

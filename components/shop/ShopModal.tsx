@@ -162,6 +162,17 @@ export function ShopModal({ onClose }: ShopModalProps) {
                       purchased={purchased === product.id}
                       onPurchase={() => handleProductPurchase(product)}
                       index={i}
+                      particleColor={
+                        product.category === "streak_freeze" ? "#60a5fa"
+                        : product.category === "hearts" ? "#fb7185"
+                        : "#22d3ee"
+                      }
+                      particleCount={
+                        product.category === "streak_freeze" || product.category === "hearts" ? 6
+                        : product.effect.gems && product.effect.gems >= 1000 ? 10
+                        : product.effect.gems && product.effect.gems >= 500 ? 7
+                        : 4
+                      }
                     />
                   ))}
               </div>
