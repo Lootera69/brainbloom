@@ -528,155 +528,316 @@ export default function StudioSettingsPage() {
             transition={{ duration: 0.2 }}
             className="mt-6 space-y-5"
           >
-            <GlassCard className="p-5">
-              <div className="mb-4 flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-amber-500/10">
-                  <DollarSign className="size-4 text-amber-500" />
-                </div>
-                <div>
-                  <h2 className="text-sm font-semibold">Premium Pricing</h2>
-                  <p className="text-xs text-muted-foreground">
-                    Configure subscription pricing and offers
-                  </p>
-                </div>
-              </div>
+            {/* Plan Cards */}
+            {pricingLoaded && (() => {
+              const safeNum = (v: number) => Math.max(0, isNaN(v) ? 0 : v);
+              const mb = safeNum(pricing.monthlyBase);
+              const mo = safeNum(pricing.monthlyOffer);
+              const yb = safeNum(pricing.yearlyBase);
+              const yo = safeNum(pricing.yearlyOffer);
 
-              {pricingLoaded && (
-                <div className="flex flex-col gap-4">
-                  {(() => {
-                    const monthlyInvalid = pricing.monthlyOffer >= pricing.monthlyBase;
-                    const yearlyInvalid = pricing.yearlyOffer >= pricing.yearlyBase;
-                    const hasErrors = monthlyInvalid || yearlyInvalid;
-                    return (
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="space-y-1.5">
-                          <label className="text-xs text-muted-foreground">Monthly Base ($)</label>
-                          <input
-                            type="number"
-                            step="0.01"
-                            value={pricing.monthlyBase}
-                            onChange={(e) => setPricing({ ...pricing, monthlyBase: parseFloat(e.target.value) || 0 })}
-                            className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
-                          />
+              const monthlyInvalid = mo >= mb;
+              const yearlyInvalid = yo >= yb;
+              const hasErrors = monthlyInvalid || yearlyInvalid;
+
+              const monthPct = mb > 0 ? Math.round((1 - mo / mb) * 100) : 0;
+              const yearPct = yb > 0 ? Math.round((1 - yo / yb) * 100) : 0;
+              const monthSave = mb - mo;
+              const yearSave = yb - yo;
+              const perMonth = yo > 0 ? (yo / 12).toFixed(2) : "0.00";
+
+              const set = (key: keyof PricingConfig, raw: string) => {
+                const parsed = parseFloat(raw);
+                setPricing({ ...pricing, [key]: isNaN(parsed) ? 0 : Math.max(0, parsed) });
+              };
+
+              return (
+                <>
+                  {/* Plan comparison cards */}
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {/* Monthly Card */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-5"
+                    >
+                      <div className="pointer-events-none absolute -right-8 -top-8 size-28 rounded-full bg-rose-500/10 blur-3xl" />
+                      <div className="relative">
+                        <div className="mb-4 flex items-center gap-2">
+                          <span className="flex size-8 items-center justify-center rounded-lg bg-rose-500/10">
+                            <DollarSign className="size-4 text-rose-400" />
+                          </span>
+                          <div>
+                            <h3 className="text-sm font-bold text-foreground">Monthly Plan</h3>
+                            <p className="text-[10px] text-muted-foreground/60">Billed every month</p>
+                          </div>
                         </div>
-                        <div className="space-y-1.5">
-                          <label className="text-xs text-muted-foreground">Monthly Offer ($)</label>
-                          <input
-                            type="number"
-                            step="0.01"
-                            value={pricing.monthlyOffer}
-                            onChange={(e) => setPricing({ ...pricing, monthlyOffer: parseFloat(e.target.value) || 0 })}
-                            className={`w-full rounded-xl border bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary ${
-                              monthlyInvalid ? "border-destructive/60" : "border-white/10"
-                            }`}
-                          />
-                          {monthlyInvalid && (
-                            <p className="text-[10px] text-destructive">Must be less than base price</p>
-                          )}
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-xs text-muted-foreground">Yearly Base ($)</label>
-                          <input
-                            type="number"
-                            step="0.01"
-                            value={pricing.yearlyBase}
-                            onChange={(e) => setPricing({ ...pricing, yearlyBase: parseFloat(e.target.value) || 0 })}
-                            className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
-                          />
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-xs text-muted-foreground">Yearly Offer ($)</label>
-                          <input
-                            type="number"
-                            step="0.01"
-                            value={pricing.yearlyOffer}
-                            onChange={(e) => setPricing({ ...pricing, yearlyOffer: parseFloat(e.target.value) || 0 })}
-                            className={`w-full rounded-xl border bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary ${
-                              yearlyInvalid ? "border-destructive/60" : "border-white/10"
-                            }`}
-                          />
-                          {yearlyInvalid && (
-                            <p className="text-[10px] text-destructive">Must be less than base price</p>
-                          )}
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-xs text-muted-foreground">Offer label</label>
-                          <input
-                            value={pricing.offerLabel}
-                            onChange={(e) => setPricing({ ...pricing, offerLabel: e.target.value })}
-                            className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
-                          />
-                        </div>
-                        <div className="flex items-end gap-3">
-                          <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm transition-all hover:bg-white/5">
+
+                        <div className="space-y-3">
+                          <div>
+                            <label className="mb-1 flex items-center justify-between text-[11px] font-medium text-muted-foreground">
+                              <span>Base price</span>
+                              {pricing.offerActive && (
+                                <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground/60">Original</span>
+                              )}
+                            </label>
                             <input
-                              type="checkbox"
-                              checked={pricing.offerActive}
-                              onChange={(e) => setPricing({ ...pricing, offerActive: e.target.checked })}
-                              className="size-4 accent-primary"
+                              type="number"
+                              step="any"
+                              value={pricing.monthlyBase}
+                              onChange={(e) => set("monthlyBase", e.target.value)}
+                              className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm tabular-nums outline-none transition-colors focus:border-rose-400/50"
                             />
-                            <span className="text-xs text-muted-foreground">Offer active</span>
-                          </label>
-                          <button
-                            disabled={hasErrors}
-                            onClick={async () => {
-                              await savePricingConfig(pricing);
-                              toast.success("Pricing saved!");
-                            }}
-                            className={`flex h-10 items-center gap-1.5 rounded-xl px-4 text-sm font-semibold transition-all active:scale-[0.98] ${
-                              hasErrors
-                                ? "bg-muted text-muted-foreground cursor-not-allowed"
-                                : "bg-primary text-primary-foreground hover:brightness-110"
-                            }`}
-                          >
-                            <Sparkles className="size-4" />
-                            Save
-                          </button>
+                          </div>
+                          <div>
+                            <label className="mb-1 flex items-center justify-between text-[11px] font-medium text-muted-foreground">
+                              <span>Offer price</span>
+                              {pricing.offerActive && mb > 0 && mo > 0 && mo < mb && (
+                                <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold text-emerald-500">{monthPct}% OFF</span>
+                              )}
+                            </label>
+                            <input
+                              type="number"
+                              step="any"
+                              value={pricing.monthlyOffer}
+                              onChange={(e) => set("monthlyOffer", e.target.value)}
+                              className={`w-full rounded-xl border bg-white/5 px-3.5 py-2.5 text-sm tabular-nums outline-none transition-colors focus:border-rose-400/50 ${
+                                monthlyInvalid ? "border-destructive/60" : "border-white/10"
+                              }`}
+                            />
+                            {monthlyInvalid && (
+                              <motion.p
+                                initial={{ opacity: 0, y: -4 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="mt-1 flex items-center gap-1 text-[10px] text-destructive"
+                              >
+                                <AlertTriangle className="size-3" />
+                                Offer must be less than base price
+                              </motion.p>
+                            )}
+                          </div>
                         </div>
+
+                        {/* Live stats */}
+                        {pricing.offerActive && !monthlyInvalid && mb > 0 && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            className="mt-3 flex items-center justify-between rounded-xl bg-rose-500/5 px-3.5 py-2"
+                          >
+                            <span className="text-[11px] text-muted-foreground">You save</span>
+                            <span className="text-xs font-bold text-rose-400">
+                              {monthSave >= 1 ? `$${monthSave.toFixed(2)}` : `${Math.round(monthSave * 100)}¢`} /mo
+                            </span>
+                          </motion.div>
+                        )}
                       </div>
-                    );
-                  })()}
-                </div>
-              )}
-            </GlassCard>
+                    </motion.div>
 
-            <GlassCard className="p-5">
-              <div className="mb-4 flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-500/10">
-                  <Gem className="size-4 text-emerald-500" />
-                </div>
-                <div>
-                  <h2 className="text-sm font-semibold">Product Pricing</h2>
-                  <p className="text-xs text-muted-foreground">
-                    Configure individual shop product prices
-                  </p>
-                </div>
-              </div>
+                    {/* Yearly Card */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-5"
+                    >
+                      <div className="pointer-events-none absolute -left-8 -top-8 size-28 rounded-full bg-amber-500/10 blur-3xl" />
+                      <div className="relative">
+                        <div className="mb-4 flex items-center gap-2">
+                          <span className="flex size-8 items-center justify-center rounded-lg bg-amber-500/10">
+                            <DollarSign className="size-4 text-amber-400" />
+                          </span>
+                          <div>
+                            <h3 className="text-sm font-bold text-foreground">Yearly Plan</h3>
+                            <p className="text-[10px] text-muted-foreground/60">Billed annually</p>
+                          </div>
+                        </div>
 
-              {pricingLoaded && (
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {([
-                    { key: "gems_100", label: "100 Gems ($)" },
-                    { key: "gems_500", label: "500 Gems ($)" },
-                    { key: "gems_1200", label: "1200 Gems ($)" },
-                    { key: "heart_refill", label: "Heart Refill ($)" },
-                    { key: "streak_freeze_3", label: "Streak Freeze 3-Pack ($)" },
-                  ] as const).map(({ key, label }) => (
-                    <div key={key} className="space-y-1.5">
-                      <label className="text-xs text-muted-foreground">{label}</label>
-                      <input
-                        type="number"
-                        step="0.01"
-                        min="0"
-                        value={pricing[key]}
-                        onChange={(e) => setPricing({ ...pricing, [key]: parseFloat(e.target.value) || 0 })}
-                        className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm outline-none focus:border-primary"
-                      />
+                        <div className="space-y-3">
+                          <div>
+                            <label className="mb-1 flex items-center justify-between text-[11px] font-medium text-muted-foreground">
+                              <span>Base price</span>
+                              {pricing.offerActive && (
+                                <span className="rounded bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground/60">Original</span>
+                              )}
+                            </label>
+                            <input
+                              type="number"
+                              step="any"
+                              value={pricing.yearlyBase}
+                              onChange={(e) => set("yearlyBase", e.target.value)}
+                              className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm tabular-nums outline-none transition-colors focus:border-amber-400/50"
+                            />
+                          </div>
+                          <div>
+                            <label className="mb-1 flex items-center justify-between text-[11px] font-medium text-muted-foreground">
+                              <span>Offer price</span>
+                              {pricing.offerActive && yb > 0 && yo > 0 && yo < yb && (
+                                <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-bold text-emerald-500">{yearPct}% OFF</span>
+                              )}
+                            </label>
+                            <input
+                              type="number"
+                              step="any"
+                              value={pricing.yearlyOffer}
+                              onChange={(e) => set("yearlyOffer", e.target.value)}
+                              className={`w-full rounded-xl border bg-white/5 px-3.5 py-2.5 text-sm tabular-nums outline-none transition-colors focus:border-amber-400/50 ${
+                                yearlyInvalid ? "border-destructive/60" : "border-white/10"
+                              }`}
+                            />
+                            {yearlyInvalid && (
+                              <motion.p
+                                initial={{ opacity: 0, y: -4 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="mt-1 flex items-center gap-1 text-[10px] text-destructive"
+                              >
+                                <AlertTriangle className="size-3" />
+                                Offer must be less than base price
+                              </motion.p>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Live stats */}
+                        {pricing.offerActive && !yearlyInvalid && yb > 0 && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            className="mt-3 space-y-1.5"
+                          >
+                            <div className="flex items-center justify-between rounded-xl bg-amber-500/5 px-3.5 py-2">
+                              <span className="text-[11px] text-muted-foreground">You save</span>
+                              <span className="text-xs font-bold text-amber-400">
+                                {yearSave >= 1 ? `$${yearSave.toFixed(2)}` : `${Math.round(yearSave * 100)}¢`} /yr
+                              </span>
+                            </div>
+                            {yo > 0 && (
+                              <div className="flex items-center justify-between rounded-xl bg-cyan-500/5 px-3.5 py-2">
+                                <span className="text-[11px] text-muted-foreground">Per month</span>
+                                <span className="text-xs font-bold text-cyan-400">${perMonth}/mo</span>
+                              </div>
+                            )}
+                          </motion.div>
+                        )}
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Offer settings + Save row */}
+                  <GlassCard intensity="light" className="p-4">
+                    <div className="flex flex-wrap items-end gap-4">
+                      <div className="min-w-[180px] flex-1">
+                        <label className="mb-1 flex items-center gap-1 text-[11px] font-medium text-muted-foreground">
+                          <Sparkles className="size-3" />
+                          Offer label
+                        </label>
+                        <input
+                          value={pricing.offerLabel}
+                          onChange={(e) => setPricing({ ...pricing, offerLabel: e.target.value })}
+                          placeholder="e.g. Launch Special"
+                          className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                        />
+                      </div>
+                      <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm transition-all hover:bg-white/5">
+                        <input
+                          type="checkbox"
+                          checked={pricing.offerActive}
+                          onChange={(e) => setPricing({ ...pricing, offerActive: e.target.checked })}
+                          className="size-4 accent-primary"
+                        />
+                        <span className="text-xs text-muted-foreground">Offer active</span>
+                      </label>
+                      <button
+                        disabled={hasErrors}
+                        onClick={async () => {
+                          await savePricingConfig(pricing);
+                          toast.success("Pricing saved!");
+                        }}
+                        className={`flex h-10 items-center gap-1.5 rounded-xl px-5 text-sm font-semibold transition-all active:scale-[0.98] ${
+                          hasErrors
+                            ? "bg-muted text-muted-foreground cursor-not-allowed"
+                            : "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/25 hover:brightness-110"
+                        }`}
+                      >
+                        <Sparkles className="size-4" />
+                        Save Changes
+                      </button>
                     </div>
-                  ))}
-                </div>
-              )}
-            </GlassCard>
+
+                    {/* Preview pill */}
+                    {pricing.offerActive && !hasErrors && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 px-3.5 py-1.5"
+                      >
+                        <Sparkles className="size-3 text-amber-400" />
+                        <span className="text-[11px] font-medium text-amber-400">{pricing.offerLabel}</span>
+                        <span className="mx-1 text-[10px] text-muted-foreground/40">&middot;</span>
+                        <span className="text-[10px] text-emerald-500 font-semibold">
+                          Save {monthPct}% Monthly / {yearPct}% Yearly
+                        </span>
+                      </motion.div>
+                    )}
+                    {!pricing.offerActive && (
+                      <p className="mt-3 text-[11px] text-muted-foreground/50 italic">
+                        Offers are currently disabled. Toggle the switch above to activate.
+                      </p>
+                    )}
+                  </GlassCard>
+
+                  {/* Product Pricing */}
+                  <GlassCard className="p-5">
+                    <div className="mb-4 flex items-center gap-2">
+                      <span className="flex size-8 items-center justify-center rounded-lg bg-emerald-500/10">
+                        <Gem className="size-4 text-emerald-500" />
+                      </span>
+                      <div>
+                        <h2 className="text-sm font-semibold">Shop Products</h2>
+                        <p className="text-xs text-muted-foreground">Individual product prices</p>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                      {([
+                        { key: "gems_100", label: "100 Gems", icon: Gem, color: "text-cyan-400", bg: "bg-cyan-500/10" },
+                        { key: "gems_500", label: "500 Gems", icon: Gem, color: "text-cyan-400", bg: "bg-cyan-500/10" },
+                        { key: "gems_1200", label: "1200 Gems", icon: Gem, color: "text-cyan-400", bg: "bg-cyan-500/10" },
+                        { key: "heart_refill", label: "Heart Refill", icon: Gem, color: "text-rose-400", bg: "bg-rose-500/10" },
+                        { key: "streak_freeze_3", label: "Streak Freeze 3-Pack", icon: Gem, color: "text-blue-400", bg: "bg-blue-500/10" },
+                      ] as const).map(({ key, label, icon: Icon, color, bg }) => (
+                        <div key={key} className="group relative">
+                          <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none" />
+                          <div className="relative flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-3.5 py-3 transition-colors group-hover:border-white/[0.12]">
+                            <span className={`flex size-9 shrink-0 items-center justify-center rounded-lg ${bg}`}>
+                              <Icon className={`size-4 ${color}`} />
+                            </span>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-[11px] font-medium text-muted-foreground">{label}</p>
+                              <input
+                                type="number"
+                                step="any"
+                                min="0"
+                                value={pricing[key]}
+                                onChange={(e) => {
+                                  const val = parseFloat(e.target.value);
+                                  setPricing({ ...pricing, [key]: isNaN(val) ? 0 : Math.max(0, val) });
+                                }}
+                                className="mt-0.5 w-full bg-transparent text-sm font-bold tabular-nums text-foreground outline-none"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </GlassCard>
+                </>
+              );
+            })()}
+            {!pricingLoaded && (
+              <div className="flex items-center justify-center py-16">
+                <div className="size-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
