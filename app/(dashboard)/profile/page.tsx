@@ -14,6 +14,7 @@ import {
   ChevronRight,
   Gem,
   ShoppingBag,
+  Snowflake,
   Clock,
   Volume2,
   VolumeX,
@@ -89,6 +90,7 @@ export default function ProfilePage() {
   const setShowShop = useUIStore((s) => s.setShowShop);
   const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
   const userAchievements = useUserStore((s) => s.achievements);
+  const streakFreezes = useUserStore((s) => s.streakFreezes);
 
   const iconMap: Record<string, typeof Trophy> = {
     Brain, Flame, Zap, Compass: Trophy, Sun: Trophy,
@@ -316,7 +318,7 @@ export default function ProfilePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 + i * 0.05 }}
             >
-              <GlassCard intensity="light" className="flex flex-col items-center gap-2 p-3 sm:p-4 text-center">
+              <GlassCard intensity="light" className="flex h-full flex-col items-center justify-center gap-2 p-3 sm:p-4 text-center">
                 <span className={cn("flex size-10 items-center justify-center rounded-xl", bg)}>
                   <Icon className={cn("size-5", color)} />
                 </span>
@@ -325,6 +327,12 @@ export default function ProfilePage() {
                   <p className="font-heading text-lg font-bold tabular-nums leading-tight">
                     {label === "Streak" ? `${streak}d` : label === "Hearts" ? (isPremium ? "∞" : hearts) : label === "Total XP" ? xp.toLocaleString() : gems}
                   </p>
+                  {label === "Streak" && streakFreezes > 0 && (
+                    <span className="flex items-center justify-center gap-1 text-[10px] font-medium text-blue-400/70">
+                      <Snowflake className="size-3" />
+                      {streakFreezes} freeze{streakFreezes !== 1 ? "s" : ""}
+                    </span>
+                  )}
                 </div>
               </GlassCard>
             </motion.div>
