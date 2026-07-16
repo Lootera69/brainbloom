@@ -82,6 +82,7 @@ interface UserState {
   puzzlesPlayedDate: string | null;
   adsWatchedToday: number;
   adsWatchDate: string | null;
+  _lastEvalDate: string;
 
   loginAsGuest: () => void;
   setUser: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
@@ -94,7 +95,7 @@ interface UserState {
   addGems: (amount: number) => void;
   useHeart: () => void;
   restoreHearts: () => void;
-  checkStreak: () => void;
+  checkStreak: (markActive?: boolean) => void;
   setLastPlayedCategory: (id: string) => void;
   logActivity: (activity: Omit<Activity, "id" | "timestamp">) => void;
   unlockAchievement: (id: string) => boolean;
@@ -245,6 +246,7 @@ export const useUserStore = create<UserState>()(
       puzzlesPlayedDate: null,
       adsWatchedToday: 0,
       adsWatchDate: null,
+      _lastEvalDate: "",
 
       loginAsGuest: () => {
         set({
@@ -382,7 +384,7 @@ export const useUserStore = create<UserState>()(
               adsWatchDate: data.adsWatchDate ?? s.adsWatchDate,
             });
             get().checkWeeklyReset();
-            get().checkStreak();
+            get().checkStreak(false);
           } else {
             get().syncToFirestore();
           }
@@ -501,54 +503,123 @@ export const useUserStore = create<UserState>()(
 
       restoreHearts: () => set({ hearts: 5, nextHeartAt: null }),
 
-      checkStreak: () => {
-        const { lastActiveDate, streak, streakFreezes, dailyQuests, lastQuestRefresh, frozenDays, brokenDays, streakStartDate, activeDates } = get();
+      checkStreak: (markActive = true) => {
+        const s = get();
         const today = new Date().toDateString();
 
-        if (lastActiveDate === today) {
-          if (lastQuestRefresh !== today) {
+        if (s.lastActiveDate === today) {
+          if (s.lastQuestRefresh !== today) {
             set({ dailyQuests: getRefreshedQuests(), lastQuestRefresh: today, questsRewarded: [] });
           }
           return;
         }
 
-        get().processHeartRefill();
+        s.processHeartRefill();
 
-        if (!lastActiveDate) {
+        // New user — only init streak on puzzle completion (markActive=true)
+        if (!s.lastActiveDate) {
+          if (markActive) {
+            set({
+              streak: 1,
+              streakFreezes: s.streakFreezes,
+              lastActiveDate: today,
+              xpToday: 0,
+              dailyQuests: getRefreshedQuests(),
+              lastQuestRefresh: today,
+              questsRewarded: [],
+              practiceHeartsToday: 0,
+              lastPracticeDate: today,
+              streakStartDate: today,
+              activeDates: [today],
+              _lastEvalDate: today,
+            });
+          }
+          return;
+        }
+
+        const todayMs = new Date(today).getTime();
+        const lastActiveMs = new Date(s.lastActiveDate).getTime();
+        const diffDays = Math.round((todayMs - lastActiveMs) / 86400000);
+        const missedDays = Math.max(0, diffDays - 1);
+        const freezesToConsume = Math.min(s.streakFreezes, missedDays);
+        const gapDates: string[] = [];
+        for (let d = 1; d <= missedDays; d++) {
+          gapDates.push(new Date(lastActiveMs + d * 86400000).toDateString());
+        }
+
+        // ───── EVALUATION-ONLY MODE (login/page load) ─────
+        if (!markActive) {
+          if (s._lastEvalDate === today) return;
+
+          let newStreak = s.streak;
+          const newFrozenDays = [...s.frozenDays];
+          const newBrokenDays = [...s.brokenDays];
+
+          if (missedDays > 0) {
+            if (freezesToConsume === missedDays) {
+              for (const d of gapDates) {
+                if (!newFrozenDays.includes(d)) newFrozenDays.push(d);
+              }
+            } else {
+              newStreak = 0;
+              const frozenPortion = gapDates.slice(0, freezesToConsume);
+              const brokenPortion = gapDates.slice(freezesToConsume);
+              for (const d of frozenPortion) {
+                if (!newFrozenDays.includes(d)) newFrozenDays.push(d);
+              }
+              for (const d of brokenPortion) {
+                if (!newBrokenDays.includes(d)) newBrokenDays.push(d);
+              }
+            }
+          }
+
+          const cutoff = new Date();
+          cutoff.setDate(cutoff.getDate() - 14);
+          const cutoffMs = cutoff.getTime();
+          const prune = (arr: string[]) => arr.filter((d) => new Date(d).getTime() >= cutoffMs);
+
           set({
-            streak: 1,
-            streakFreezes,
+            streak: newStreak,
+            streakFreezes: s.streakFreezes - freezesToConsume,
+            frozenDays: prune(newFrozenDays),
+            brokenDays: prune(newBrokenDays),
+            _lastEvalDate: today,
+          });
+          return;
+        }
+
+        // ───── FULL ACTIVATION (puzzle completion) ─────
+        // If evaluation already ran today, skip re-evaluation — just mark active
+        if (s._lastEvalDate === today) {
+          const newStreak = s.streak > 0 ? s.streak + 1 : 1;
+          const newActiveDates = s.streak > 0
+            ? (s.activeDates.includes(today) ? s.activeDates : [...s.activeDates, today])
+            : [today];
+          const newStreakStartDate = s.streak > 0 ? (s.streakStartDate ?? today) : today;
+          set({
+            streak: newStreak,
             lastActiveDate: today,
+            streakStartDate: newStreakStartDate,
+            activeDates: newActiveDates,
             xpToday: 0,
             dailyQuests: getRefreshedQuests(),
             lastQuestRefresh: today,
             questsRewarded: [],
             practiceHeartsToday: 0,
             lastPracticeDate: today,
-            streakStartDate: today,
-            activeDates: [today],
           });
           return;
         }
 
-        const todayMs = new Date(today).getTime();
-        const lastActiveMs = new Date(lastActiveDate).getTime();
-        const diffDays = Math.round((todayMs - lastActiveMs) / 86400000);
-        const missedDays = Math.max(0, diffDays - 1);
-        const freezesToConsume = Math.min(streakFreezes, missedDays);
-        const gapDates: string[] = [];
-        for (let d = 1; d <= missedDays; d++) {
-          gapDates.push(new Date(lastActiveMs + d * 86400000).toDateString());
-        }
-
+        // No prior eval today — run full evaluation + activation
         let newStreak: number;
-        const newFrozenDays = [...frozenDays];
-        const newBrokenDays = [...brokenDays];
+        const newFrozenDays = [...s.frozenDays];
+        const newBrokenDays = [...s.brokenDays];
 
         if (missedDays === 0) {
-          newStreak = streak + 1;
+          newStreak = s.streak + 1;
         } else if (freezesToConsume === missedDays) {
-          newStreak = streak + 1;
+          newStreak = s.streak + 1;
           for (const d of gapDates) {
             if (!newFrozenDays.includes(d)) newFrozenDays.push(d);
           }
@@ -564,23 +635,20 @@ export const useUserStore = create<UserState>()(
           }
         }
 
-        // Track active dates for month-view support
-        let newActiveDates = [...activeDates];
-        let newStreakStartDate = streakStartDate;
+        let newActiveDates = [...s.activeDates];
+        let newStreakStartDate = s.streakStartDate;
         if (missedDays === 0 || (freezesToConsume === missedDays && missedDays > 0)) {
           if (!newActiveDates.includes(today)) newActiveDates.push(today);
         } else {
-          // Streak broken — reset
           newActiveDates = [today];
           newStreakStartDate = today;
         }
-        // Prune activeDates to last 365 days
+
         const yearCutoff = new Date();
         yearCutoff.setDate(yearCutoff.getDate() - 365);
         const yearCutoffMs = yearCutoff.getTime();
         newActiveDates = newActiveDates.filter((d) => new Date(d).getTime() >= yearCutoffMs);
 
-        // Prune frozen/broken to last 14 days
         const cutoff = new Date();
         cutoff.setDate(cutoff.getDate() - 14);
         const cutoffMs = cutoff.getTime();
@@ -588,7 +656,7 @@ export const useUserStore = create<UserState>()(
 
         set({
           streak: newStreak,
-          streakFreezes: streakFreezes - freezesToConsume,
+          streakFreezes: s.streakFreezes - freezesToConsume,
           lastActiveDate: today,
           xpToday: 0,
           dailyQuests: getRefreshedQuests(),
@@ -600,6 +668,7 @@ export const useUserStore = create<UserState>()(
           brokenDays: prune(newBrokenDays),
           streakStartDate: newStreakStartDate,
           activeDates: newActiveDates,
+          _lastEvalDate: today,
         });
       },
 
@@ -938,9 +1007,10 @@ export const useUserStore = create<UserState>()(
         puzzlesPlayedDate: state.puzzlesPlayedDate,
         adsWatchedToday: state.adsWatchedToday,
         adsWatchDate: state.adsWatchDate,
+        _lastEvalDate: state._lastEvalDate,
       }),
       onRehydrateStorage: () => () => {
-        useUserStore.getState().checkStreak();
+        useUserStore.getState().checkStreak(false);
         useUserStore.getState().checkWeeklyReset();
       },
     },

@@ -206,7 +206,7 @@ function LearnPage() {
   const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
     if (!currentPuzzle) return;
 
-    checkStreak();
+    checkStreak(true);
 
     if (correct) {
       const firstTime = markPuzzleCompleted(currentPuzzle.id);
