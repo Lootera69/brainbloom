@@ -467,6 +467,43 @@ npm run build        # Production build (lint + typecheck + compile)
 npm run lint         # Broken — needs "eslint ." fix
 ```
 
+---
+
+## 40 Aspects of Thinking — Vision (Saved Jul 16, 2026)
+
+### Core Concept
+Moving from horizontal progression (puzzle → XP → level up) to **vertical cognitive growth**. The app becomes a framework for developing **40 distinct dimensions of thinking** — not skills to grind, but real mental muscles like systems thinking, metacognition, intellectual humility, creative fluency, logical reasoning, etc.
+
+### The Curve
+- Early aspects are easier to recognize and develop in yourself
+- As you approach 40, each aspect becomes more abstract, interconnected, and demanding
+- 40 is not a timer-based cap — it's a genuine ceiling that few people reach
+- The system does NOT declare "this takes X months" — it depends entirely on how fast the player integrates these into how they actually think and live
+
+### Life Integration (Key Differentiator)
+- Puzzles/riddles/etc. are **training tools**, not the goal itself
+- Real "completion" happens when a thinking pattern becomes natural outside the app
+- The app trains you; life proves it
+
+### Implications for Current Codebase
+| System | Future Direction |
+|--------|-----------------|
+| XP / Levels | Become secondary — just a reward layer, not the core progression |
+| Puzzle Types (6) | Become training tools mapped to specific aspects |
+| Curriculum Path | Becomes the 40-aspect framework tree |
+| Achievements | Map directly to aspect milestones |
+| Streak System | Reflects consistency of genuine cognitive engagement |
+| Heart System | Needs rethinking — can you "fail" at cognitive growth? |
+| Studio | Needs ability to tag puzzles with aspect IDs, difficulty curves |
+
+### The Player Promise
+> *"We're pushing you to bring your best to life. Not everyone reaches 40. Some hit maturity early, for some it never hits. It's up to you how fast you bring that level of thinking into your life. The closer you get, the more you've grown — not just in the app, but as a thinker."*
+
+### Status
+⏸️ **Paused** — foundational shift, not a feature patch. Ready to continue when the user returns.
+
+---
+
 ## Git Workflow
 - Commits on `main` branch
 - Push to `origin/main` (GitHub: Lootera69/brainbloom)
