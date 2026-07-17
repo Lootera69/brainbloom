@@ -35,6 +35,7 @@ const iconMap: Record<string, typeof Brain> = {
   lightbulb: Lightbulb,
   atom: Atom,
   grid: Grid2x2,
+  sparkles: Sparkles,
 };
 
 function formatHeartTimer(ms: number): string {
@@ -173,6 +174,23 @@ function LearnPage() {
   };
 
   const handleStartPuzzle = useCallback(async (puzzle: Puzzle, progress?: LessonProgress) => {
+    // Wonders bypass hearts, daily limits, and puzzle-played counting
+    if (puzzle.type === "wonder") {
+      resetHeartsLostFlag();
+      setPuzzleHasLesson(false);
+      setIsDaily(false);
+      setLastPlayedCategory(puzzle.category);
+      setLessonProgress(progress ?? null);
+      setAttempt(0);
+      // Load category puzzles for auto-advance
+      const pz = await getPublishedByCategory(puzzle.category);
+      setCatPuzzles(pz);
+      setCurrentPuzzle(puzzle);
+      setView("play");
+      setFocusMode(true);
+      return;
+    }
+
     if (!isPremium && hearts <= 0) { setPaywallType("hearts"); return; }
     const check = useUserStore.getState().canPlayPuzzle();
     if (!check) { setPaywallType("limit"); return; }
@@ -205,6 +223,41 @@ function LearnPage() {
 
   const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
     if (!currentPuzzle) return;
+
+    if (currentPuzzle.type === "wonder") {
+      // Auto-advance if in a lesson path (like other puzzle types)
+      if (lessonProgress) {
+        logActivity({
+          type: "daily",
+          category: currentPuzzle.category || "general",
+          title: currentPuzzle.title || "Puzzle",
+          xp: 0,
+        });
+        const next = findNextInGroup(currentPuzzle, catPuzzles);
+        if (next) {
+          setAttempt(0);
+          setLessonProgress({
+            ...lessonProgress,
+            currentOrder: next.lessonOrder ?? 1,
+            completedInGroup: lessonProgress.completedInGroup + 1,
+          });
+          if (next.lessonContent?.trim()) {
+            setCurrentPuzzle(next);
+            setView("lesson");
+          } else {
+            setCurrentPuzzle(next);
+            setView("play");
+          }
+          return;
+        }
+      }
+      setView("browse");
+      setCurrentPuzzle(null);
+      setIsDaily(false);
+      setLessonProgress(null);
+      setFocusMode(false);
+      return;
+    }
 
     checkStreak(true);
 

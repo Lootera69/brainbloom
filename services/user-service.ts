@@ -59,6 +59,7 @@ export interface UserDocument {
   puzzlesPlayedDate: string | null;
   adsWatchedToday: number;
   adsWatchDate: string | null;
+  experiencedWonderIds: string[];
 }
 
 export async function saveUserData(uid: string, data: UserDocument): Promise<void> {
@@ -117,6 +118,7 @@ export async function loadUserData(uid: string): Promise<Partial<UserDocument> |
       puzzlesPlayedDate: (d.puzzlesPlayedDate as string | null) ?? null,
       adsWatchedToday: (d.adsWatchedToday as number) ?? 0,
       adsWatchDate: (d.adsWatchDate as string | null) ?? null,
+      experiencedWonderIds: (d.experiencedWonderIds as string[]) ?? [],
     };
   } catch (e) {
     console.error("Failed to load user data from Firestore:", e);

@@ -82,6 +82,7 @@ interface UserState {
   puzzlesPlayedDate: string | null;
   adsWatchedToday: number;
   adsWatchDate: string | null;
+  experiencedWonderIds: string[];
   _lastEvalDate: string;
 
   loginAsGuest: () => void;
@@ -123,6 +124,7 @@ interface UserState {
   canWatchAd: () => boolean;
   buyHeartRefillWithGems: () => boolean;
   addStreakFreezes: (amount: number) => void;
+  markWonderExperienced: (id: string) => void;
 }
 
 function generateId() {
@@ -246,6 +248,7 @@ export const useUserStore = create<UserState>()(
       puzzlesPlayedDate: null,
       adsWatchedToday: 0,
       adsWatchDate: null,
+      experiencedWonderIds: [],
       _lastEvalDate: "",
 
       loginAsGuest: () => {
@@ -328,6 +331,7 @@ export const useUserStore = create<UserState>()(
             puzzlesPlayedDate: s.puzzlesPlayedDate,
             adsWatchedToday: s.adsWatchedToday,
             adsWatchDate: s.adsWatchDate,
+            experiencedWonderIds: s.experiencedWonderIds,
           }),
         );
       },
@@ -380,9 +384,10 @@ export const useUserStore = create<UserState>()(
               subscriptionExpiry: data.subscriptionExpiry ?? s.subscriptionExpiry,
               puzzlesPlayedToday: data.puzzlesPlayedToday ?? s.puzzlesPlayedToday,
               puzzlesPlayedDate: data.puzzlesPlayedDate ?? s.puzzlesPlayedDate,
-              adsWatchedToday: data.adsWatchedToday ?? s.adsWatchedToday,
-              adsWatchDate: data.adsWatchDate ?? s.adsWatchDate,
-            });
+        adsWatchedToday: data.adsWatchedToday ?? s.adsWatchedToday,
+        adsWatchDate: data.adsWatchDate ?? s.adsWatchDate,
+        experiencedWonderIds: data.experiencedWonderIds ?? s.experiencedWonderIds,
+      });
             get().checkWeeklyReset();
             get().checkStreak(false);
           } else {
@@ -956,6 +961,11 @@ export const useUserStore = create<UserState>()(
       addStreakFreezes: (amount) => {
         set({ streakFreezes: get().streakFreezes + amount });
       },
+
+      markWonderExperienced: (id) => {
+        const ids = get().experiencedWonderIds;
+        if (!ids.includes(id)) set({ experiencedWonderIds: [...ids, id] });
+      },
     }),
     {
       name: "brainbloom-user",
@@ -1007,6 +1017,7 @@ export const useUserStore = create<UserState>()(
         puzzlesPlayedDate: state.puzzlesPlayedDate,
         adsWatchedToday: state.adsWatchedToday,
         adsWatchDate: state.adsWatchDate,
+        experiencedWonderIds: state.experiencedWonderIds,
         _lastEvalDate: state._lastEvalDate,
       }),
       onRehydrateStorage: () => () => {

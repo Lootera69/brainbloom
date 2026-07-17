@@ -1,4 +1,4 @@
-export type PuzzleType = "multiple-choice" | "true-false" | "crossword" | "type-answer" | "sudoku" | "riddle";
+export type PuzzleType = "multiple-choice" | "true-false" | "crossword" | "type-answer" | "sudoku" | "riddle" | "wonder";
 export type Difficulty = "easy" | "medium" | "hard";
 export type ReviewStatus = "draft" | "pending" | "approved" | "rejected" | "needs-discussion";
 
@@ -53,6 +53,7 @@ export interface Puzzle {
   lessonGroup?: string;
   lessonGroupOrder?: number;
   hintText?: string;
+  sharePrompt?: string;
 }
 
 export interface PuzzleFormData {
@@ -77,4 +78,5 @@ export interface PuzzleFormData {
   lessonGroup?: string;
   lessonGroupOrder?: number;
   hintText?: string;
+  sharePrompt?: string;
 }

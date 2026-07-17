@@ -10,6 +10,7 @@ import { CrosswordPlay } from "./CrosswordPlay";
 import { TypeAnswerPlay } from "./TypeAnswerPlay";
 import { SudokuPlay } from "./SudokuPlay";
 import { RiddlePlay } from "./RiddlePlay";
+import { WonderPlay } from "./WonderPlay";
 import { setHeartsLostFlag, setPuzzleHasLesson } from "@/store/user-store";
 
 interface Props {
@@ -350,6 +351,9 @@ export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
     onWrongAttempt?.();
   };
 
+  if (puzzle.type === "wonder") {
+    return <WonderPlay puzzle={puzzle} onComplete={() => onComplete(true, 0)} />;
+  }
   if (puzzle.type === "crossword") {
     return <CrosswordPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
   }

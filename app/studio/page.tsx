@@ -326,7 +326,7 @@ export default function StudioPage() {
                   <span className="text-muted-foreground/20">|</span>
                   <span>{diffLabel(puzzle.difficulty)}</span>
                   <span className="text-muted-foreground/20">|</span>
-                  <span>{puzzle.type === "true-false" ? "True/False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : puzzle.type === "type-answer" ? "Type Answer" : puzzle.type === "riddle" ? "Riddle" : puzzle.type === "sudoku" ? "Sudoku" : "Multiple Choice"}</span>
+                  <span>{puzzle.type === "true-false" ? "True/False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : puzzle.type === "type-answer" ? "Type Answer" : puzzle.type === "riddle" ? "Riddle" : puzzle.type === "sudoku" ? "Sudoku" : puzzle.type === "wonder" ? "Wonder" : "Multiple Choice"}</span>
                   <span className="text-muted-foreground/20">|</span>
                   <span>{puzzle.xpReward} XP</span>
                   {(puzzle.completedBy ?? 0) > 0 && (

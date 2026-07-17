@@ -56,9 +56,10 @@ export default function CreatePuzzlePage() {
   const isCrossword = form.type === "crossword";
   const isSudoku = form.type === "sudoku";
   const isRiddle = form.type === "riddle";
+  const isWonder = form.type === "wonder";
 
   useEffect(() => {
-    if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle)) {
+    if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder)) {
       getLessonGroups(form.category).then(setLessonGroups);
     } else {
       setLessonGroups([]);
@@ -175,6 +176,8 @@ export default function CreatePuzzlePage() {
     setAcceptedRaw("");
     if (type === "crossword") {
       setForm((f) => ({ ...f, type, crosswordData: defaultCrossword, sudokuData: undefined }));
+    } else if (type === "wonder") {
+      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", xpReward: 0, crosswordData: undefined, sudokuData: undefined }));
     } else if (type === "type-answer" || type === "riddle") {
       setForm((f) => ({
         ...f,
@@ -219,7 +222,7 @@ export default function CreatePuzzlePage() {
         <div>
           <label className="mb-1.5 block text-sm font-medium">Type</label>
           <div className="flex gap-2 flex-wrap">
-            {(["multiple-choice", "true-false", "type-answer", "crossword", "sudoku", "riddle"] as const).map((t) => (
+            {(["multiple-choice", "true-false", "type-answer", "crossword", "sudoku", "riddle", "wonder"] as const).map((t) => (
               <button
                 key={t}
                 type="button"
@@ -230,7 +233,7 @@ export default function CreatePuzzlePage() {
                     : "hover:bg-muted/80 hover:border-primary/20"
                 }`}
               >
-                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : t === "sudoku" ? "Sudoku" : "Riddle"}
+                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : t === "sudoku" ? "Sudoku" : t === "riddle" ? "Riddle" : "Wonder"}
               </button>
             ))}
           </div>
@@ -379,6 +382,59 @@ export default function CreatePuzzlePage() {
           </>
         )}
 
+        {isWonder && (
+          <>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Title</label>
+              <input value={form.title} onChange={(e) => update("title", e.target.value)}
+                placeholder="e.g. The Bat &amp; the Ball"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Hook / Question</label>
+              <textarea value={form.question} onChange={(e) => update("question", e.target.value)}
+                placeholder="Present the curiosity — no answer expected..."
+                rows={4}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Image (optional)</label>
+              <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+              {form.imageUrl ? (
+                <div className="relative">
+                  <img src={form.imageUrl} alt="Preview" className="max-h-48 w-full rounded-xl object-contain bg-muted" />
+                  <button type="button" onClick={() => update("imageUrl", undefined)}
+                    className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-background/80 text-muted-foreground hover:text-foreground">
+                    <X className="size-4" />
+                  </button>
+                </div>
+              ) : (
+                <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
+                  className="flex h-20 w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                  {uploading ? <Spinner className="size-5 animate-spin" /> : <ImageUp className="size-5" />}
+                  {uploading ? "Uploading..." : "Upload image"}
+                </button>
+              )}
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Insight / Reveal</label>
+              <textarea value={form.correctExplanation ?? form.lessonContent ?? ""} onChange={(e) => update("lessonContent", e.target.value)}
+                placeholder="The takeaway — what to consider after the hook..."
+                rows={5}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
+              <p className="mt-1 text-xs text-muted-foreground">This is shown after the user reflects. No correct answer — just an insight.</p>
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Share Prompt (optional)</label>
+              <textarea value={form.sharePrompt ?? ""} onChange={(e) => update("sharePrompt", e.target.value)}
+                placeholder='e.g. "Try this on 3 people today and watch their faces."'
+                rows={2}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
+              <p className="mt-1 text-xs text-muted-foreground">Encourages the user to share this wonder with someone in real life.</p>
+            </div>
+          </>
+        )}
+
         {isQuiz && (
           <>
             <div>
@@ -508,7 +564,7 @@ export default function CreatePuzzlePage() {
         )}
 
         {/* Lesson fields — collapsible */}
-        {(isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle) && (
+        {(isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder) && (
           <>
             <hr className="border-muted" />
             <div className="rounded-xl border bg-card">

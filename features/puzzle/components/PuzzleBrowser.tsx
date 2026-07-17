@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Zap, CheckCircle2, SearchX } from "lucide-react";
+import { Brain, Lightbulb, Atom, Grid2x2, ArrowRight, Zap, Sparkles, CheckCircle2, SearchX } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { getPublishedPuzzles, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
 import { useUserStore } from "@/store/user-store";
@@ -30,6 +30,12 @@ export function PuzzleBrowser({ onStartPuzzle, onCategoryChange, category, hideF
   const [loading, setLoading] = useState(true);
   const [selectedDiff, setSelectedDiff] = useState<string | null>(null);
   const completedPuzzleIds = useUserStore((s) => s.completedPuzzleIds);
+  const experiencedWonderIds = useUserStore((s) => s.experiencedWonderIds);
+
+  function isPuzzleCompleted(puzzle: Puzzle): boolean {
+    if (puzzle.type === "wonder") return experiencedWonderIds.includes(puzzle.id);
+    return completedPuzzleIds.includes(puzzle.id);
+  }
 
   useEffect(() => {
     (async () => {
@@ -148,32 +154,46 @@ export function PuzzleBrowser({ onStartPuzzle, onCategoryChange, category, hideF
               hover
               intensity="light"
               className={`flex items-center gap-4 p-4 sm:p-5 ${
-                completedPuzzleIds.includes(puzzle.id) ? "ring-1 ring-success/20" : ""
-              }`}
+                isPuzzleCompleted(puzzle) ? "ring-1 ring-success/20" : ""
+              } ${puzzle.type === "wonder" && !isPuzzleCompleted(puzzle) ? "ring-1 ring-amber-500/10" : ""}`}
             >
               <span className={`flex size-10 shrink-0 items-center justify-center rounded-xl ${
-                completedPuzzleIds.includes(puzzle.id)
+                isPuzzleCompleted(puzzle)
                   ? "bg-success/10"
-                  : "bg-primary/10"
+                  : puzzle.type === "wonder"
+                    ? "bg-amber-500/10"
+                    : "bg-primary/10"
               }`}>
-                {completedPuzzleIds.includes(puzzle.id) ? (
-                  <CheckCircle2 className="size-5 text-success" />
+                {isPuzzleCompleted(puzzle) ? (
+                  puzzle.type === "wonder" ? (
+                    <Sparkles className="size-5 text-success" />
+                  ) : (
+                    <CheckCircle2 className="size-5 text-success" />
+                  )
                 ) : (
-                  <Zap className="size-5 text-primary" />
+                  puzzle.type === "wonder" ? (
+                    <Sparkles className="size-5 text-amber-500" />
+                  ) : (
+                    <Zap className="size-5 text-primary" />
+                  )
                 )}
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <h3 className="truncate text-sm font-semibold">{puzzle.title}</h3>
-                  {completedPuzzleIds.includes(puzzle.id) && (
+                  {isPuzzleCompleted(puzzle) && (
                     <span className="shrink-0 rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-medium text-success">
-                      Completed
+                      {puzzle.type === "wonder" ? "Experienced" : "Completed"}
                     </span>
                   )}
                 </div>
                 <p className="mt-0.5 text-xs text-muted-foreground">
-                  {diffLabel(puzzle.difficulty)} &middot; {puzzle.xpReward} XP &middot;{" "}
-                  {puzzle.type === "true-false" ? "True / False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : puzzle.type === "type-answer" ? "Type Answer" : puzzle.type === "sudoku" ? "Sudoku" : "Multiple Choice"}
+                  {puzzle.type === "wonder" ? (
+                    <>Wonder &middot; {puzzle.sharePrompt ? "Shareable" : "Reflection"}</>
+                  ) : (
+                    <>{diffLabel(puzzle.difficulty)} &middot; {puzzle.xpReward} XP &middot;{" "}
+                    {puzzle.type === "true-false" ? "True / False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : puzzle.type === "type-answer" ? "Type Answer" : puzzle.type === "sudoku" ? "Sudoku" : "Multiple Choice"}</>
+                  )}
                 </p>
               </div>
               <ArrowRight className="size-4 shrink-0 text-muted-foreground" />

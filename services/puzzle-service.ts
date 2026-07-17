@@ -65,6 +65,7 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
     lessonGroup: (data.lessonGroup as string) ?? undefined,
     lessonGroupOrder: (data.lessonGroupOrder as number) ?? undefined,
     hintText: (data.hintText as string) ?? undefined,
+    sharePrompt: (data.sharePrompt as string) ?? undefined,
   };
   if (data.crosswordData) {
     puzzle.crosswordData = data.crosswordData as CrosswordData;
@@ -104,6 +105,7 @@ function puzzleToFirestore(puzzle: Puzzle) {
     lessonGroup: puzzle.lessonGroup ?? null,
     lessonGroupOrder: puzzle.lessonGroupOrder ?? null,
     hintText: puzzle.hintText ?? null,
+    sharePrompt: puzzle.sharePrompt ?? null,
   };
   if (puzzle.crosswordData) {
     data.crosswordData = puzzle.crosswordData;
@@ -467,6 +469,7 @@ export const CATEGORIES = [
   { value: "riddles", label: "Riddles" },
   { value: "science", label: "Science" },
   { value: "puzzles", label: "Puzzles" },
+  { value: "wonders", label: "Wonders" },
 ];
 
 export const DIFFICULTIES = [

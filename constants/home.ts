@@ -39,4 +39,14 @@ export const categories = [
     lightBg: "bg-emerald-50 dark:bg-emerald-950/30",
     description: "Solve brain-teasers and puzzles",
   },
+  {
+    id: "wonders",
+    title: "Wonders",
+    icon: "sparkles",
+    progress: 0,
+    color: "#d946ef",
+    gradient: "from-[#d946ef] to-[#ec4899]",
+    lightBg: "bg-fuchsia-50 dark:bg-fuchsia-950/30",
+    description: "Expand your perspective",
+  },
 ] as const;

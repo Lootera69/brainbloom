@@ -6,6 +6,7 @@ import {
   Lightbulb,
   Atom,
   Grid2x2,
+  Sparkles,
   ArrowRight,
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -24,6 +25,7 @@ const icons = {
   lightbulb: Lightbulb,
   atom: Atom,
   grid: Grid2x2,
+  sparkles: Sparkles,
 };
 
 export function CategoryCard({

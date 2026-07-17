@@ -37,6 +37,12 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
   const [showAll, setShowAll] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const completedPuzzleIds = useUserStore((s) => s.completedPuzzleIds);
+  const experiencedWonderIds = useUserStore((s) => s.experiencedWonderIds);
+
+  function isPuzzleCompleted(puzzle: Puzzle): boolean {
+    if (puzzle.type === "wonder") return experiencedWonderIds.includes(puzzle.id);
+    return completedPuzzleIds.includes(puzzle.id);
+  }
 
   useEffect(() => {
     (async () => {
@@ -90,7 +96,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
 
   // Check if all sub-lessons in a group are completed
   const isGroupCompleted = (group: LessonGroup) =>
-    group.puzzles.length > 0 && group.puzzles.every((p) => completedPuzzleIds.includes(p.id));
+    group.puzzles.length > 0 && group.puzzles.every((p) => isPuzzleCompleted(p));
 
   // Check if a group is unlocked (previous group fully completed, or it's the first)
   const isGroupUnlocked = (groupIndex: number) => {
@@ -100,14 +106,14 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
 
   // Determine sub-lesson state within a group
   const getSubLessonState = (puzzle: Puzzle, subIndex: number, groupIndex: number): "locked" | "available" | "completed" => {
-    if (completedPuzzleIds.includes(puzzle.id)) return "completed";
+    if (isPuzzleCompleted(puzzle)) return "completed";
     // Group is locked → all sub-lessons locked
     if (!isGroupUnlocked(groupIndex)) return "locked";
     // First sub-lesson in unlocked group → available
     if (subIndex === 0) return "available";
     // Check previous sub-lesson in same group
     const prev = groups[groupIndex].puzzles[subIndex - 1];
-    if (prev && completedPuzzleIds.includes(prev.id)) return "available";
+    if (prev && isPuzzleCompleted(prev)) return "available";
     return "locked";
   };
 
@@ -239,7 +245,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
                             onClick={() => state !== "locked" && onStartPuzzle(puzzle, {
                               currentOrder: puzzle.lessonOrder ?? 0,
                               totalInGroup: group.puzzles.length,
-                              completedInGroup: group.puzzles.filter(p => completedPuzzleIds.includes(p.id)).length,
+                              completedInGroup: group.puzzles.filter(p => isPuzzleCompleted(p)).length,
                               groupName: group.name || `Group ${gi + 1}`,
                               groupNumber: gi + 1,
                             })}
@@ -325,7 +331,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
           {showAll && (
             <div className="mt-3 space-y-2">
               {extras.map((puzzle) => {
-                const done = completedPuzzleIds.includes(puzzle.id);
+                const done = isPuzzleCompleted(puzzle);
                 return (
                   <motion.button
                     key={puzzle.id}

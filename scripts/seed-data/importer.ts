@@ -48,7 +48,7 @@ export interface SeedPuzzleInput {
   title: string;
   question: string;
   choices?: string[];
-  correctAnswer: string;
+  correctAnswer?: string;
   acceptedAnswers?: string[];
   xpReward: number;
   lessonContent?: string;
@@ -60,6 +60,7 @@ export interface SeedPuzzleInput {
   hintText?: string;
   imageUrl?: string;
   lessonImageUrl?: string;
+  sharePrompt?: string;
 }
 
 export interface SeedData {
@@ -75,7 +76,7 @@ function seedPuzzleToFormData(input: SeedPuzzleInput): PuzzleFormData {
     title: input.title,
     question: input.question,
     choices: input.choices ?? [],
-    correctAnswer: input.correctAnswer,
+    correctAnswer: input.correctAnswer ?? "",
     acceptedAnswers: input.acceptedAnswers,
     xpReward: input.xpReward,
     lessonContent: input.lessonContent,
@@ -87,6 +88,7 @@ function seedPuzzleToFormData(input: SeedPuzzleInput): PuzzleFormData {
     hintText: input.hintText,
     imageUrl: input.imageUrl,
     lessonImageUrl: input.lessonImageUrl,
+    sharePrompt: input.sharePrompt,
   };
 }
 
@@ -144,6 +146,7 @@ export async function importPuzzleToStore(puzzle: Puzzle): Promise<void> {
         lessonGroup: puzzle.lessonGroup ?? null,
         lessonGroupOrder: puzzle.lessonGroupOrder ?? null,
         hintText: puzzle.hintText ?? null,
+        sharePrompt: puzzle.sharePrompt ?? null,
         createdBy: "seed-admin",
         createdAt: Timestamp.fromMillis(puzzle.createdAt),
         lastModifiedBy: "seed-admin",
