@@ -1,4 +1,4 @@
-import { type Puzzle, type PuzzleFormData, type CrosswordData, type SudokuData, type ReviewStatus } from "@/types/puzzle";
+import { type Puzzle, type PuzzleFormData, type CrosswordData, type SudokuData, type CipherData, type ReviewStatus } from "@/types/puzzle";
 import { getFirebase } from "@/services/firebase";
 import {
   collection,
@@ -73,6 +73,9 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
   if (data.sudokuData) {
     puzzle.sudokuData = data.sudokuData as SudokuData;
   }
+  if (data.cipherData) {
+    puzzle.cipherData = data.cipherData as CipherData;
+  }
   return puzzle;
 }
 
@@ -112,6 +115,9 @@ function puzzleToFirestore(puzzle: Puzzle) {
   }
   if (puzzle.sudokuData) {
     data.sudokuData = puzzle.sudokuData;
+  }
+  if (puzzle.cipherData) {
+    data.cipherData = puzzle.cipherData;
   }
   return data;
 }

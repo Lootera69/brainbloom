@@ -241,6 +241,9 @@ export default function StudioPage() {
             <option value="type-answer">Type Answer</option>
             <option value="crossword">Crossword</option>
             <option value="sudoku">Sudoku</option>
+            <option value="riddle">Riddle</option>
+            <option value="wonder">Wonder</option>
+            <option value="cipher">Cipher</option>
           </select>
           <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground/50" />
         </div>
@@ -326,7 +329,7 @@ export default function StudioPage() {
                   <span className="text-muted-foreground/20">|</span>
                   <span>{diffLabel(puzzle.difficulty)}</span>
                   <span className="text-muted-foreground/20">|</span>
-                  <span>{puzzle.type === "true-false" ? "True/False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : puzzle.type === "type-answer" ? "Type Answer" : puzzle.type === "riddle" ? "Riddle" : puzzle.type === "sudoku" ? "Sudoku" : puzzle.type === "wonder" ? "Wonder" : "Multiple Choice"}</span>
+                  <span>{puzzle.type === "true-false" ? "True/False" : puzzle.type === "crossword" ? `Crossword (${puzzle.crosswordData?.size}×${puzzle.crosswordData?.size})` : puzzle.type === "type-answer" ? "Type Answer" : puzzle.type === "riddle" ? "Riddle" : puzzle.type === "sudoku" ? "Sudoku" : puzzle.type === "wonder" ? "Wonder" : puzzle.type === "cipher" ? "Cipher" : "Multiple Choice"}</span>
                   <span className="text-muted-foreground/20">|</span>
                   <span>{puzzle.xpReward} XP</span>
                   {(puzzle.completedBy ?? 0) > 0 && (

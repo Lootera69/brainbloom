@@ -16,7 +16,8 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { type Puzzle } from "@/types/puzzle";
 import { toast } from "sonner";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
-import { getPublishedByCategory } from "@/services/puzzle-service";
+import { getPublishedByCategory, getPuzzle } from "@/services/puzzle-service";
+import { getWeekStart } from "@/services/weekly-cipher";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
 import { ErrorFallback } from "@/components/error-fallback";
@@ -129,8 +130,20 @@ function LearnPage() {
     (async () => {
       const category = searchParams.get("category");
       const daily = searchParams.get("daily");
+      const cipherId = searchParams.get("cipher");
       // Read latest values directly from store to avoid stale closure
       const { hearts: h, hasCompletedDailyPuzzle: checkDaily } = useUserStore.getState();
+
+      if (cipherId) {
+        const puzzle = await getPuzzle(cipherId);
+        if (puzzle) {
+          setCurrentPuzzle(puzzle);
+          setIsDaily(false);
+          setView("play");
+          setFocusMode(true);
+        }
+        return;
+      }
 
       if (daily === "true") {
         const puzzle = await getDailyPuzzle();
@@ -223,6 +236,26 @@ function LearnPage() {
 
   const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
     if (!currentPuzzle) return;
+
+    if (currentPuzzle.type === "cipher") {
+      const wStart = getWeekStart();
+      if (correct) {
+        const solveCipher = useUserStore.getState().solveCipher;
+        solveCipher(wStart);
+        const firstTime = markPuzzleCompleted(currentPuzzle.id);
+        if (firstTime) {
+          addXp(xpEarned);
+          import("@/services/puzzle-service").then(({ incrementCompleted }) =>
+            incrementCompleted(currentPuzzle.id),
+          );
+        }
+      } else {
+        useUserStore.getState().revealCipher(wStart);
+      }
+      checkStreak(true);
+      setTimeout(() => router.push("/"), 1200);
+      return;
+    }
 
     if (currentPuzzle.type === "wonder") {
       // Auto-advance if in a lesson path (like other puzzle types)
@@ -806,6 +839,8 @@ function PuzzlePlayView({
             puzzle={currentPuzzle}
             onComplete={handleComplete}
             onWrongAttempt={() => {
+              // Cipher puzzles don't consume hearts
+              if (currentPuzzle?.type === "cipher") return;
               const st = useUserStore.getState().tier;
               const sExp = useUserStore.getState().subscriptionExpiry;
               const premium = hasPremiumAccess(st, sExp);

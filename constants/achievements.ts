@@ -79,4 +79,28 @@ export const achievementsList = [
     xp: 250,
     gems: 60,
   },
+  {
+    id: "cipher_solver_1",
+    title: "Code Breaker",
+    description: "Crack your first weekly cipher",
+    icon: "Lock",
+    xp: 150,
+    gems: 25,
+  },
+  {
+    id: "cipher_solver_5",
+    title: "Cryptographer",
+    description: "Solve 5 weekly ciphers",
+    icon: "Lock",
+    xp: 500,
+    gems: 100,
+  },
+  {
+    id: "cipher_solver_10",
+    title: "Master Decoder",
+    description: "Solve 10 weekly ciphers",
+    icon: "Lock",
+    xp: 1000,
+    gems: 250,
+  },
 ] as const;

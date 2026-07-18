@@ -7,7 +7,7 @@ import { ArrowLeft, Save, Loader2, ImageUp, X, Loader as Spinner, ChevronDown } 
 import { createPuzzle, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
-import { type PuzzleFormData, type PuzzleType, type CrosswordData, type SudokuData } from "@/types/puzzle";
+import { type PuzzleFormData, type PuzzleType, type CrosswordData, type SudokuData, type CipherData } from "@/types/puzzle";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
 import { generateSudoku } from "@/services/sudoku-generator";
 import { toast } from "sonner";
@@ -38,6 +38,7 @@ export default function CreatePuzzlePage() {
     choices: ["", "", "", ""],
     correctAnswer: "",
     xpReward: 10,
+    cipherData: undefined,
   });
 
   const update = <K extends keyof PuzzleFormData>(key: K, value: PuzzleFormData[K]) => {
@@ -57,9 +58,10 @@ export default function CreatePuzzlePage() {
   const isSudoku = form.type === "sudoku";
   const isRiddle = form.type === "riddle";
   const isWonder = form.type === "wonder";
+  const isCipher = form.type === "cipher";
 
   useEffect(() => {
-    if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder)) {
+    if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder || isCipher)) {
       getLessonGroups(form.category).then(setLessonGroups);
     } else {
       setLessonGroups([]);
@@ -187,6 +189,8 @@ export default function CreatePuzzlePage() {
         crosswordData: undefined,
         sudokuData: undefined,
       }));
+    } else if (type === "cipher") {
+      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", crosswordData: undefined, sudokuData: undefined }));
     } else if (type === "sudoku") {
       const sudokuData = generateSudoku(form.difficulty);
       setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", crosswordData: undefined, sudokuData }));
@@ -222,7 +226,7 @@ export default function CreatePuzzlePage() {
         <div>
           <label className="mb-1.5 block text-sm font-medium">Type</label>
           <div className="flex gap-2 flex-wrap">
-            {(["multiple-choice", "true-false", "type-answer", "crossword", "sudoku", "riddle", "wonder"] as const).map((t) => (
+            {(["multiple-choice", "true-false", "type-answer", "crossword", "sudoku", "riddle", "wonder", "cipher"] as const).map((t) => (
               <button
                 key={t}
                 type="button"
@@ -233,7 +237,7 @@ export default function CreatePuzzlePage() {
                     : "hover:bg-muted/80 hover:border-primary/20"
                 }`}
               >
-                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : t === "sudoku" ? "Sudoku" : t === "riddle" ? "Riddle" : "Wonder"}
+                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : t === "sudoku" ? "Sudoku" : t === "riddle" ? "Riddle" : t === "wonder" ? "Wonder" : "Cipher"}
               </button>
             ))}
           </div>
@@ -528,7 +532,99 @@ export default function CreatePuzzlePage() {
           </>
         )}
 
-        {(isQuiz || isTypeAnswer || isRiddle) && (
+        {isCipher && (
+          <>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Title</label>
+              <input value={form.title} onChange={(e) => update("title", e.target.value)}
+                placeholder="e.g. Caesar's Secret"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Question / Context</label>
+              <textarea value={form.question} onChange={(e) => update("question", e.target.value)}
+                placeholder="Give context for the cipher — a story, a clue, or just leave blank..."
+                rows={3}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Encoded Message</label>
+              <textarea value={form.cipherData?.encodedMessage ?? ""} onChange={(e) => {
+                const current = form.cipherData || { encodedMessage: "", cipherType: "Custom", hint: undefined };
+                update("cipherData", { ...current, encodedMessage: e.target.value });
+              }}
+                placeholder="Paste the encoded/ciphertext message here..."
+                rows={4}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 font-mono text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
+              <p className="mt-1 text-xs text-muted-foreground">This is what the player will see and attempt to decode.</p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="mb-1.5 block text-sm font-medium">Cipher Type</label>
+                <select value={form.cipherData?.cipherType ?? "Custom"} onChange={(e) => {
+                  const current = form.cipherData || { encodedMessage: "", cipherType: "Custom", hint: undefined };
+                  update("cipherData", { ...current, cipherType: e.target.value });
+                }}
+                  className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10">
+                  <option value="Caesar Cipher">Caesar Cipher</option>
+                  <option value="Substitution">Substitution</option>
+                  <option value="Cryptogram">Cryptogram</option>
+                  <option value="Custom">Custom</option>
+                </select>
+              </div>
+              <div>
+                <label className="mb-1.5 block text-sm font-medium">Image (optional)</label>
+                <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+                {form.imageUrl ? (
+                  <div className="relative">
+                    <img src={form.imageUrl} alt="Preview" className="max-h-24 w-full rounded-xl object-contain bg-muted" />
+                    <button type="button" onClick={() => update("imageUrl", undefined)}
+                      className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-background/80 text-muted-foreground hover:text-foreground">
+                      <X className="size-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
+                    className="flex h-20 w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                    {uploading ? <Spinner className="size-5 animate-spin" /> : <ImageUp className="size-5" />}
+                    {uploading ? "Uploading..." : "Upload image"}
+                  </button>
+                )}
+              </div>
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">
+                Hint <span className="text-muted-foreground font-normal">(optional, one per line)</span>
+              </label>
+              <textarea value={form.cipherData?.hint ?? ""} onChange={(e) => {
+                const current = form.cipherData || { encodedMessage: "", cipherType: "Custom", hint: undefined };
+                update("cipherData", { ...current, hint: e.target.value });
+              }}
+                placeholder="First progressive hint...&#10;Second hint..."
+                rows={3}
+                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
+              <p className="mt-1 text-xs text-muted-foreground">Each line becomes a progressive hint during the cipher Sunday attempt.</p>
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Correct Answer</label>
+              <input value={form.correctAnswer} onChange={(e) => update("correctAnswer", e.target.value)}
+                placeholder="e.g. Meet me at dawn"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Alternate accepted answers (optional, comma-separated)</label>
+              <input
+                value={acceptedRaw}
+                onChange={(e) => setAcceptedRaw(e.target.value)}
+                onBlur={(e) => update("acceptedAnswers", e.target.value.split(",").map((s) => s.trim()).filter(Boolean))}
+                placeholder="e.g. meet at dawn, meet me at daybreak"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10"
+              />
+            </div>
+          </>
+        )}
+
+        {(isQuiz || isTypeAnswer || isRiddle || isCipher) && (
           <div className="space-y-4">
             <div>
               <label className="mb-1.5 block text-sm font-medium">Explanation (for correct answer)</label>
@@ -564,7 +660,7 @@ export default function CreatePuzzlePage() {
         )}
 
         {/* Lesson fields — collapsible */}
-        {(isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder) && (
+        {(isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder || isCipher) && (
           <>
             <hr className="border-muted" />
             <div className="rounded-xl border bg-card">

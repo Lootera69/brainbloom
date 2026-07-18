@@ -1,6 +1,6 @@
 "use client";
 
-import { type Puzzle, type PuzzleFormData, type PuzzleType, type Difficulty } from "@/types/puzzle";
+import { type Puzzle, type PuzzleFormData, type PuzzleType, type Difficulty, type CipherData } from "@/types/puzzle";
 import { getFirebase } from "@/services/firebase";
 import {
   collection,
@@ -61,6 +61,7 @@ export interface SeedPuzzleInput {
   imageUrl?: string;
   lessonImageUrl?: string;
   sharePrompt?: string;
+  cipherData?: CipherData;
 }
 
 export interface SeedData {
@@ -89,6 +90,7 @@ function seedPuzzleToFormData(input: SeedPuzzleInput): PuzzleFormData {
     imageUrl: input.imageUrl,
     lessonImageUrl: input.lessonImageUrl,
     sharePrompt: input.sharePrompt,
+    cipherData: input.cipherData,
   };
 }
 
@@ -147,6 +149,7 @@ export async function importPuzzleToStore(puzzle: Puzzle): Promise<void> {
         lessonGroupOrder: puzzle.lessonGroupOrder ?? null,
         hintText: puzzle.hintText ?? null,
         sharePrompt: puzzle.sharePrompt ?? null,
+        cipherData: puzzle.cipherData ?? null,
         createdBy: "seed-admin",
         createdAt: Timestamp.fromMillis(puzzle.createdAt),
         lastModifiedBy: "seed-admin",

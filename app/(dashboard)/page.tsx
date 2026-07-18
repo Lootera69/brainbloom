@@ -18,6 +18,7 @@ import { LeaderboardCard } from "@/features/home/components/LeaderboardCard";
 import { SectionHeader } from "@/features/home/components/SectionHeader";
 import { DailyQuests } from "@/features/home/components/DailyQuests";
 import { PracticeToHeal } from "@/features/home/components/PracticeToHeal";
+import { WeeklyCipherCard } from "@/features/home/components/WeeklyCipherCard";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
 import { motion } from "framer-motion";
 import { Play, Heart, Sparkles } from "lucide-react";
@@ -59,6 +60,10 @@ export default function HomePage() {
         <div className="md:col-span-2">
           <DailyChallengeCard puzzle={dailyPuzzle} loading={dailyLoading} />
         </div>
+      </div>
+
+      <div className="mb-6">
+        <WeeklyCipherCard />
       </div>
 
       <DailyQuests />

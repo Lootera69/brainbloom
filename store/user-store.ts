@@ -83,6 +83,10 @@ interface UserState {
   adsWatchedToday: number;
   adsWatchDate: string | null;
   experiencedWonderIds: string[];
+  currentCipherWeek: string | null;
+  currentCipherSolved: boolean;
+  cipherSolveCount: number;
+  cipherRevealed: boolean;
   _lastEvalDate: string;
 
   loginAsGuest: () => void;
@@ -125,6 +129,11 @@ interface UserState {
   buyHeartRefillWithGems: () => boolean;
   addStreakFreezes: (amount: number) => void;
   markWonderExperienced: (id: string) => void;
+  solveCipher: (weekStart: string) => void;
+  revealCipher: (weekStart: string) => void;
+  hasSolvedCurrentCipher: () => boolean;
+  getCipherState: () => "attempt" | "solved" | "revealed";
+  _getWeekStartWithOverride: () => { weekStart: string; isSundayOverride: boolean };
 }
 
 function generateId() {
@@ -249,6 +258,10 @@ export const useUserStore = create<UserState>()(
       adsWatchedToday: 0,
       adsWatchDate: null,
       experiencedWonderIds: [],
+      currentCipherWeek: null,
+      currentCipherSolved: false,
+      cipherSolveCount: 0,
+      cipherRevealed: false,
       _lastEvalDate: "",
 
       loginAsGuest: () => {
@@ -332,6 +345,10 @@ export const useUserStore = create<UserState>()(
             adsWatchedToday: s.adsWatchedToday,
             adsWatchDate: s.adsWatchDate,
             experiencedWonderIds: s.experiencedWonderIds,
+            currentCipherWeek: s.currentCipherWeek,
+            currentCipherSolved: s.currentCipherSolved,
+            cipherSolveCount: s.cipherSolveCount,
+            cipherRevealed: s.cipherRevealed,
           }),
         );
       },
@@ -384,9 +401,13 @@ export const useUserStore = create<UserState>()(
               subscriptionExpiry: data.subscriptionExpiry ?? s.subscriptionExpiry,
               puzzlesPlayedToday: data.puzzlesPlayedToday ?? s.puzzlesPlayedToday,
               puzzlesPlayedDate: data.puzzlesPlayedDate ?? s.puzzlesPlayedDate,
-        adsWatchedToday: data.adsWatchedToday ?? s.adsWatchedToday,
-        adsWatchDate: data.adsWatchDate ?? s.adsWatchDate,
-        experiencedWonderIds: data.experiencedWonderIds ?? s.experiencedWonderIds,
+              adsWatchedToday: data.adsWatchedToday ?? s.adsWatchedToday,
+              adsWatchDate: data.adsWatchDate ?? s.adsWatchDate,
+              experiencedWonderIds: data.experiencedWonderIds ?? s.experiencedWonderIds,
+              currentCipherWeek: data.currentCipherWeek ?? s.currentCipherWeek,
+              currentCipherSolved: data.currentCipherSolved ?? s.currentCipherSolved,
+              cipherSolveCount: data.cipherSolveCount ?? s.cipherSolveCount,
+              cipherRevealed: data.cipherRevealed ?? s.cipherRevealed,
       });
             get().checkWeeklyReset();
             get().checkStreak(false);
@@ -447,6 +468,10 @@ export const useUserStore = create<UserState>()(
       puzzlesPlayedDate: null,
       adsWatchedToday: 0,
       adsWatchDate: null,
+      currentCipherWeek: null,
+      currentCipherSolved: false,
+      cipherSolveCount: 0,
+      cipherRevealed: false,
 
         });
       },
@@ -859,6 +884,9 @@ export const useUserStore = create<UserState>()(
           { id: "level_5", condition: level >= 5 },
           { id: "hearts_saver", condition: !getHeartsLostFlag() && currentPuzzleHasLesson },
           { id: "daily_goal_week", condition: dailyGoalStreak >= 7 },
+          { id: "cipher_solver_1", condition: get().cipherSolveCount >= 1 },
+          { id: "cipher_solver_5", condition: get().cipherSolveCount >= 5 },
+          { id: "cipher_solver_10", condition: get().cipherSolveCount >= 10 },
         ];
 
         for (const { id, condition } of checks) {
@@ -962,6 +990,55 @@ export const useUserStore = create<UserState>()(
         set({ streakFreezes: get().streakFreezes + amount });
       },
 
+      solveCipher: (weekStart) => {
+        const { cipherSolveCount } = get();
+        set({
+          currentCipherWeek: weekStart,
+          currentCipherSolved: true,
+          cipherSolveCount: cipherSolveCount + 1,
+          cipherRevealed: false,
+        });
+        get().addGems(25);
+      },
+
+      revealCipher: (weekStart) => {
+        set({ currentCipherWeek: weekStart, cipherRevealed: true });
+      },
+
+      _getWeekStartWithOverride: (): { weekStart: string; isSundayOverride: boolean } => {
+        const d = new Date();
+        try {
+          const force = typeof localStorage !== "undefined" && localStorage.getItem("brainbloom-force-sunday");
+          if (force === "true") {
+            return { weekStart: d.toISOString().split("T")[0], isSundayOverride: true };
+          }
+        } catch { /* ignore */ }
+        const day = d.getUTCDay();
+        const diff = day === 0 ? 0 : -day;
+        const sunday = new Date(d);
+        sunday.setUTCDate(d.getUTCDate() + diff);
+        return { weekStart: sunday.toISOString().split("T")[0], isSundayOverride: day === 0 };
+      },
+
+      hasSolvedCurrentCipher: () => {
+        const { currentCipherWeek, currentCipherSolved } = get();
+        const { weekStart } = get()._getWeekStartWithOverride();
+        return currentCipherWeek === weekStart && currentCipherSolved;
+      },
+
+      getCipherState: () => {
+        const { currentCipherWeek, currentCipherSolved, cipherRevealed } = get();
+        const { weekStart, isSundayOverride } = get()._getWeekStartWithOverride();
+        if (currentCipherWeek !== weekStart) {
+          if (currentCipherSolved) return "solved";
+          if (isSundayOverride) return "attempt";
+          return "revealed";
+        }
+        if (currentCipherSolved) return "solved";
+        if (cipherRevealed) return "revealed";
+        return "attempt";
+      },
+
       markWonderExperienced: (id) => {
         const ids = get().experiencedWonderIds;
         if (!ids.includes(id)) set({ experiencedWonderIds: [...ids, id] });
@@ -1018,6 +1095,10 @@ export const useUserStore = create<UserState>()(
         adsWatchedToday: state.adsWatchedToday,
         adsWatchDate: state.adsWatchDate,
         experiencedWonderIds: state.experiencedWonderIds,
+        currentCipherWeek: state.currentCipherWeek,
+        currentCipherSolved: state.currentCipherSolved,
+        cipherSolveCount: state.cipherSolveCount,
+        cipherRevealed: state.cipherRevealed,
         _lastEvalDate: state._lastEvalDate,
       }),
       onRehydrateStorage: () => () => {

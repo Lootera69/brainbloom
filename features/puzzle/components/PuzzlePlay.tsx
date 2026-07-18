@@ -11,6 +11,7 @@ import { TypeAnswerPlay } from "./TypeAnswerPlay";
 import { SudokuPlay } from "./SudokuPlay";
 import { RiddlePlay } from "./RiddlePlay";
 import { WonderPlay } from "./WonderPlay";
+import { CipherPlay } from "./CipherPlay";
 import { setHeartsLostFlag, setPuzzleHasLesson } from "@/store/user-store";
 
 interface Props {
@@ -351,6 +352,9 @@ export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
     onWrongAttempt?.();
   };
 
+  if (puzzle.type === "cipher") {
+    return <CipherPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
+  }
   if (puzzle.type === "wonder") {
     return <WonderPlay puzzle={puzzle} onComplete={() => onComplete(true, 0)} />;
   }

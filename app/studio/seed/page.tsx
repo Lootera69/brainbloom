@@ -54,7 +54,7 @@ export default function SeedPage() {
       };
 
       await resetAndSeed(seedData, (msg) => {
-        addLog(msg);
+        log(msg);
         if (msg.startsWith("Creating")) setStep("groups");
         if (msg.startsWith("Importing")) setStep("puzzles");
         if (msg.startsWith("Seed complete")) {

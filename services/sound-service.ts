@@ -324,6 +324,26 @@ export const avatarSounds: Record<string, () => void> = {
 
 // --- Sound Toggle Effects (bypass _enabled — always play) ---
 
+export function playCipherSolve() {
+  if (!_enabled) return;
+  try {
+    const c = getCtx();
+    const g = gain(0.2);
+    const o = osc("sine", 150, c.currentTime, c.currentTime + 1.5);
+    o.frequency.setValueAtTime(150, c.currentTime);
+    o.frequency.linearRampToValueAtTime(600, c.currentTime + 0.8);
+    o.frequency.setValueAtTime(800, c.currentTime + 0.9);
+    o.frequency.setValueAtTime(1000, c.currentTime + 1.0);
+    o.connect(g);
+    g.gain.setValueAtTime(0.2, c.currentTime);
+    g.gain.setValueAtTime(0.2, c.currentTime + 1.0);
+    g.gain.exponentialRampToValueAtTime(0.01, c.currentTime + 1.5);
+    const g2 = gain(0.12);
+    const o2 = osc("triangle", 1200, c.currentTime + 0.9, c.currentTime + 1.4);
+    o2.connect(g2);
+  } catch { /* silent fallback */ }
+}
+
 export function playToggleOn() {
   try {
     const c = getCtx();
