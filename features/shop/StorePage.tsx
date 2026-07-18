@@ -78,7 +78,7 @@ export function StorePage() {
       </motion.div>
 
       {/* Tab bar */}
-      <div className="relative mb-6 flex rounded-2xl bg-white/[0.04] border border-white/[0.06] p-1">
+      <div className="relative mb-6 flex rounded-2xl bg-muted/20 border border-border/30 p-1 dark:bg-white/[0.04] dark:border-white/[0.06]">
         {TABS.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -136,7 +136,7 @@ export function StorePage() {
         transition={{ delay: 0.5 }}
         className="mt-10 text-center"
       >
-        <div className="inline-flex items-center gap-2 rounded-full bg-white/[0.03] border border-white/[0.06] px-4 py-2">
+        <div className="inline-flex items-center gap-2 rounded-full bg-muted/20 border border-border/30 px-4 py-2 dark:bg-white/[0.03] dark:border-white/[0.06]">
           <Sparkles className="size-3 text-amber-400/60" />
           <span className="text-[10px] text-muted-foreground/40">
             All purchases are simulated — no real charges

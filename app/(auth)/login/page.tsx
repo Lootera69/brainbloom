@@ -252,7 +252,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-y-auto px-6 pb-4 md:pb-0">
+    <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-y-auto px-6 pb-4 md:pb-0 bg-background dark:bg-gradient-to-br dark:from-[#0f0f1a] dark:via-[#1a1a2e] dark:to-[#0d0d1a]">
       <Toaster position="top-center" />
 
       <div className="pointer-events-none fixed inset-0 -z-10">
@@ -402,7 +402,7 @@ export default function LoginPage() {
                   placeholder="Email address"
                   autoComplete="email"
                   autoFocus
-                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                  className="w-full rounded-xl border bg-muted/30 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-muted/50 focus:ring-4 focus:ring-primary/15"
                 />
               </div>
 
@@ -414,7 +414,7 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                   autoComplete="current-password"
-                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                  className="w-full rounded-xl border bg-muted/30 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-muted/50 focus:ring-4 focus:ring-primary/15"
                 />
                 <button
                   type="button"
@@ -466,7 +466,7 @@ export default function LoginPage() {
                   placeholder="Your name"
                   autoComplete="name"
                   autoFocus
-                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                  className="w-full rounded-xl border bg-muted/30 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-muted/50 focus:ring-4 focus:ring-primary/15"
                 />
               </div>
 
@@ -478,7 +478,7 @@ export default function LoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email address"
                   autoComplete="email"
-                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                  className="w-full rounded-xl border bg-muted/30 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-muted/50 focus:ring-4 focus:ring-primary/15"
                 />
               </div>
 
@@ -490,7 +490,7 @@ export default function LoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password (min 6 characters)"
                   autoComplete="new-password"
-                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                  className="w-full rounded-xl border bg-muted/30 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-muted/50 focus:ring-4 focus:ring-primary/15"
                 />
                 <button
                   type="button"
@@ -510,7 +510,7 @@ export default function LoginPage() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Confirm password"
                   autoComplete="new-password"
-                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                  className="w-full rounded-xl border bg-muted/30 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-muted/50 focus:ring-4 focus:ring-primary/15"
                 />
                 <button
                   type="button"
@@ -566,7 +566,7 @@ export default function LoginPage() {
                   placeholder="Email address"
                   autoComplete="email"
                   autoFocus
-                  className="w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15"
+                  className="w-full rounded-xl border bg-muted/30 px-4 py-3 pl-10 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40 focus:border-primary focus:bg-muted/50 focus:ring-4 focus:ring-primary/15"
                 />
               </div>
 
@@ -615,7 +615,7 @@ export default function LoginPage() {
                 <button
                   onClick={handleResendVerification}
                   disabled={verifyingEmail}
-                  className="relative flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl border border-white/10 bg-card/60 text-sm font-semibold shadow-lg backdrop-blur-xl transition-all hover:border-primary/30 active:scale-[0.98] disabled:opacity-50"
+                  className="relative flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl border border-border/50 bg-card/60 text-sm font-semibold shadow-lg backdrop-blur-xl transition-all hover:border-primary/30 active:scale-[0.98] disabled:opacity-50"
                 >
                   {verifyingEmail ? <Loader2 className="size-4 animate-spin" /> : <Mail className="size-4" />}
                   {verifyingEmail ? "Sending…" : "Resend verification email"}
@@ -649,9 +649,9 @@ export default function LoginPage() {
         {mode !== "verify" && (
           <>
             <div className="my-4 md:my-5 flex items-center gap-3">
-              <span className="h-px flex-1 bg-white/10" />
+              <span className="h-px flex-1 bg-border/50" />
               <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground/40">or continue with</span>
-              <span className="h-px flex-1 bg-white/10" />
+              <span className="h-px flex-1 bg-border/50" />
             </div>
 
             <div className="flex flex-col gap-3">
@@ -676,7 +676,7 @@ export default function LoginPage() {
               <button
                 onClick={handleGuest}
                 disabled={loading}
-                className="group relative flex h-12 items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-card/60 text-sm font-semibold shadow-lg backdrop-blur-xl saturate-150 transition-all hover:border-primary/30 hover:shadow-primary/10 active:scale-[0.98] disabled:opacity-50"
+                className="group relative flex h-12 items-center justify-center gap-3 overflow-hidden rounded-xl border border-border/50 bg-card/60 text-sm font-semibold shadow-lg backdrop-blur-xl saturate-150 transition-all hover:border-primary/30 hover:shadow-primary/10 active:scale-[0.98] disabled:opacity-50"
               >
                 <span className="absolute inset-0 -z-10 translate-y-full bg-gradient-to-b from-primary/5 to-transparent transition-transform duration-300 group-hover:translate-y-0" />
                 <User className="size-4" />

@@ -48,7 +48,51 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-4 py-5 sm:p-6">
+    <main className="relative mx-auto min-h-screen max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+      {/* Animated aurora mesh — light mode only */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden dark:hidden">
+        <motion.div
+          animate={{
+            y: [0, -40, 0],
+            x: [0, 30, 0],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-48 -left-48 size-[600px] rounded-full opacity-70 blur-[100px]"
+          style={{ background: "radial-gradient(circle, rgba(167,139,250,0.35), rgba(139,92,246,0.15), transparent 70%)" }}
+        />
+        <motion.div
+          animate={{
+            y: [0, 35, 0],
+            x: [0, -25, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute -bottom-40 -right-40 size-[500px] rounded-full opacity-60 blur-[90px]"
+          style={{ background: "radial-gradient(circle, rgba(244,114,182,0.3), rgba(236,72,153,0.12), transparent 70%)" }}
+        />
+        <motion.div
+          animate={{
+            y: [0, -20, 0],
+            x: [0, -15, 0],
+            scale: [1, 1.05, 1],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+          className="absolute top-[40%] left-[30%] size-[350px] rounded-full opacity-50 blur-[80px]"
+          style={{ background: "radial-gradient(circle, rgba(34,211,238,0.2), rgba(6,182,212,0.08), transparent 70%)" }}
+        />
+        <motion.div
+          animate={{
+            y: [0, 25, 0],
+            x: [0, 20, 0],
+            scale: [1, 1.08, 1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 8 }}
+          className="absolute top-[60%] right-[20%] size-[280px] rounded-full opacity-40 blur-[70px]"
+          style={{ background: "radial-gradient(circle, rgba(251,191,36,0.2), rgba(245,158,11,0.08), transparent 70%)" }}
+        />
+      </div>
+
       <StreakBar />
 
       <DailyRewardChest />
@@ -78,7 +122,7 @@ export default function HomePage() {
         >
           <button
             onClick={() => setShowAd(true)}
-            className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-rose-500/30 bg-rose-500/5 px-4 py-3 text-sm font-medium text-rose-400 transition-all hover:bg-rose-500/10 active:scale-[0.98]"
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-rose-200 dark:border-rose-500/30 bg-gradient-to-r from-rose-50 to-pink-50 dark:from-rose-500/5 dark:to-pink-500/5 px-4 py-3 text-sm font-medium text-rose-600 dark:text-rose-400 transition-all hover:from-rose-100 hover:to-pink-100 dark:hover:from-rose-500/10 dark:hover:to-pink-500/10 active:scale-[0.98] shadow-sm"
           >
             <Play className="size-4" />
             Watch an Ad for 1 Free Heart

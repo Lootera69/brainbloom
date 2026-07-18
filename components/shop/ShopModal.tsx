@@ -113,10 +113,10 @@ export function ShopModal({ onClose }: ShopModalProps) {
           exit={{ opacity: 0, y: 40, scale: 0.95 }}
           transition={{ type: "spring", stiffness: 300, damping: 28 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative flex max-h-[85vh] w-full max-w-sm flex-col rounded-2xl sm:rounded-3xl border border-white/10 bg-card/95 backdrop-blur-2xl sm:mx-4 shadow-2xl"
+          className="relative flex max-h-[85vh] w-full max-w-sm flex-col rounded-2xl sm:rounded-3xl border border-border/50 bg-card/95 backdrop-blur-2xl sm:mx-4 shadow-2xl"
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4 shrink-0">
+          <div className="flex items-center justify-between border-b border-border/30 px-5 py-4 shrink-0">
             <div className="flex items-center gap-2">
               <ShoppingBag className="size-4 text-primary" />
               <h2 className="text-sm font-bold">Shop</h2>
@@ -128,7 +128,7 @@ export function ShopModal({ onClose }: ShopModalProps) {
               </span>
               <button
                 onClick={onClose}
-                className="flex size-7 items-center justify-center rounded-full bg-white/5 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+                className="flex size-7 items-center justify-center rounded-full bg-muted/30 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
               >
                 <X className="size-3.5" />
               </button>
@@ -136,7 +136,7 @@ export function ShopModal({ onClose }: ShopModalProps) {
           </div>
 
           {/* Tab bar */}
-          <div className="relative flex gap-1 border-b border-white/[0.06] px-5 py-2 shrink-0">
+          <div className="relative flex gap-1 border-b border-border/30 px-5 py-2 shrink-0">
             {MODAL_TABS.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -147,7 +147,7 @@ export function ShopModal({ onClose }: ShopModalProps) {
                   className={cn(
                     "relative px-3 py-2 text-[11px] font-semibold transition-colors rounded-lg",
                     isActive
-                      ? "text-foreground bg-white/[0.06]"
+                      ? "text-foreground bg-muted/30"
                       : "text-muted-foreground hover:text-foreground/80",
                   )}
                 >
@@ -208,13 +208,13 @@ export function ShopModal({ onClose }: ShopModalProps) {
             )}
 
             {/* View full store */}
-            <div className="mt-4 pt-3 border-t border-white/[0.06]">
+            <div className="mt-4 pt-3 border-t border-border/30">
               <button
                 onClick={() => {
                   onClose();
                   router.push("/shop");
                 }}
-                className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-white/[0.04] py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-white/[0.08] hover:text-foreground"
+                className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-muted/20 py-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted/40 hover:text-foreground"
               >
                 <Sparkles className="size-3" />
                 View full store

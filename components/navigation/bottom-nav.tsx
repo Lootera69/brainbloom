@@ -19,7 +19,7 @@ export function BottomNav() {
   return (
     <nav
       className="fixed bottom-0 left-0 right-0 z-50 md:hidden rounded-t-3xl
-        before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent
+        before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-primary/10 before:to-transparent dark:before:via-white/20
         bg-background/75 backdrop-blur-2xl saturate-[1.8] supports-[backdrop-filter]:bg-background/80
         dark:bg-background/60 dark:supports-[backdrop-filter]:bg-background/70"
       style={{

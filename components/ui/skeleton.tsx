@@ -159,18 +159,18 @@ function SkeletonDailyChallenge({ className }: { className?: string }) {
   return (
     <div className={cn("rounded-3xl bg-gradient-to-br from-indigo-500/30 to-purple-500/30 p-6 sm:p-8", className)}>
       <div className="mb-4 flex items-center gap-3">
-        <Skeleton className="size-11 rounded-xl bg-white/20" />
-        <Skeleton className="h-5 w-28 rounded-full bg-white/20" />
+        <Skeleton className="size-11 rounded-xl bg-muted/80" />
+        <Skeleton className="h-5 w-28 rounded-full bg-muted/80" />
       </div>
       <div className="space-y-3">
-        <Skeleton className="h-8 w-3/4 bg-white/20" />
-        <Skeleton className="h-4 w-full bg-white/20" />
-        <Skeleton className="h-4 w-2/3 bg-white/20" />
+        <Skeleton className="h-8 w-3/4 bg-muted/80" />
+        <Skeleton className="h-4 w-full bg-muted/80" />
+        <Skeleton className="h-4 w-2/3 bg-muted/80" />
         <div className="mt-4 flex gap-2">
-          <Skeleton className="h-5 w-24 bg-white/20" />
-          <Skeleton className="h-5 w-16 bg-white/20" />
+          <Skeleton className="h-5 w-24 bg-muted/80" />
+          <Skeleton className="h-5 w-16 bg-muted/80" />
         </div>
-        <Skeleton className="mt-5 h-12 w-40 rounded-xl bg-white/20" />
+        <Skeleton className="mt-5 h-12 w-40 rounded-xl bg-muted/80" />
       </div>
     </div>
   );

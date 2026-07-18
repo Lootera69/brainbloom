@@ -185,7 +185,7 @@ export function PricingCard({ onClose }: PricingCardProps) {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 + i * 0.03 }}
-              className="flex items-center gap-3 rounded-xl bg-white/5 px-4 py-2.5"
+              className="flex items-center gap-3 rounded-xl bg-muted/30 px-4 py-2.5"
             >
               <span className="flex size-8 items-center justify-center rounded-lg bg-primary/10 shrink-0">
                 <Icon className="size-4 text-primary" />

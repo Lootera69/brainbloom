@@ -50,59 +50,70 @@ export function CategoryCard({
         damping: 16,
       }}
     >
-      <GlassCard
-        tint={color}
-        hover
-        className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl p-5"
+      <div
+        className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-white/60 dark:border-white/[0.06] bg-white/70 dark:bg-white/[0.03] shadow-md shadow-black/[0.03] dark:shadow-black/20 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/[0.06] dark:hover:shadow-black/30"
       >
+        {/* Ambient color glow */}
         <div
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          className="pointer-events-none absolute -inset-2 opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-40"
           style={{
-            background: `radial-gradient(500px circle at 50% 50%, ${color}15, transparent 60%)`,
+            background: `radial-gradient(circle at 50% 50%, ${color}30, transparent 60%)`,
           }}
         />
 
-        <div className="relative z-10 flex items-center gap-3">
-          <motion.span
-            initial={{ scale: 0, rotate: -90 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{
-              delay: 0.3 + index * 0.08,
-              type: "spring",
-              stiffness: 200,
-            }}
-            className="relative flex size-11 shrink-0 items-center justify-center rounded-xl sm:size-12"
-            style={{ backgroundColor: `${color}18` }}
-          >
-            <span
-              className="absolute inset-0 rounded-xl opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-60"
-              style={{ backgroundColor: color }}
-            />
-            <Icon className="relative size-5 sm:size-6" style={{ color }} />
-          </motion.span>
-          <div className="min-w-0">
-            <h3 className="font-heading text-base font-semibold sm:text-lg">
-              {title}
-            </h3>
-            <p className="text-xs text-muted-foreground sm:text-sm">
-              {description}
-            </p>
+        {/* Top gradient accent */}
+        <div
+          className="absolute inset-x-0 top-0 h-1 opacity-60 transition-opacity duration-500 group-hover:opacity-100"
+          style={{
+            background: `linear-gradient(90deg, transparent, ${color}60, transparent)`,
+          }}
+        />
+
+        <div className="relative z-10 p-5 sm:p-6">
+          <div className="flex items-start gap-4">
+            <motion.span
+              initial={{ scale: 0, rotate: -90 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{
+                delay: 0.3 + index * 0.08,
+                type: "spring",
+                stiffness: 200,
+              }}
+              className="relative flex size-13 shrink-0 items-center justify-center rounded-2xl sm:size-14 shadow-lg"
+              style={{ 
+                backgroundColor: `${color}12`,
+                boxShadow: `0 4px 20px ${color}15, inset 0 1px 0 rgba(255,255,255,0.6)`,
+              }}
+            >
+              <span
+                className="absolute inset-0 rounded-2xl opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-50"
+                style={{ backgroundColor: `${color}40` }}
+              />
+              <Icon className="relative size-6 sm:size-7" style={{ color }} />
+            </motion.span>
+            <div className="min-w-0 flex-1 pt-0.5">
+              <h3 className="font-heading text-base font-bold text-foreground sm:text-lg">
+                {title}
+              </h3>
+              <p className="mt-0.5 text-xs text-muted-foreground sm:text-sm">
+                {description}
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="relative z-10 mt-auto">
+        <div className="relative z-10 mt-auto border-t border-black/[0.03] dark:border-white/[0.04] px-5 sm:px-6 py-3">
           <div className="flex items-center justify-end">
             <motion.span
               initial={{ x: 0 }}
-              whileHover={{ x: 3 }}
-              className="flex items-center gap-1 text-xs text-muted-foreground transition-colors group-hover:text-foreground"
+              className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors duration-300 group-hover:text-foreground"
             >
               Explore
-              <ArrowRight className="size-3.5" />
+              <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
             </motion.span>
           </div>
         </div>
-      </GlassCard>
+      </div>
     </motion.div>
   );
 }

@@ -371,14 +371,27 @@ Stored in Zustand with persist middleware. Key fields:
 - **Golden profile**: `PremiumAvatarBorder` (animated rotating golden ring), gradient name/level badges, amber glow on avatar border, crown badge
 - **Sidebar**: Golden gradient avatar ring, amber name text, golden `from-amber-500/10 via-yellow-500/10 to-orange-500/10` hover glow on user card
 
-### 16. Premium Avatars
+### 16. Theme System (Light / System / Dark)
+- **3-mode toggle** in Profile: Light (Sun icon), System (Monitor icon), Dark (Moon icon) — animated segmented control with `framer-motion layoutId` sliding indicator
+- **Default**: `"system"` — follows `prefers-color-scheme`
+- **Storage**: persisted in Zustand `brainbloom-user` (localStorage + Firestore `users/{uid}.theme`)
+- **Sync**: `components/providers/theme-sync.tsx` bridges user-store theme ↔ `next-themes` — covers cross-device sync
+- **Next-themes**: `attribute="class"` strategy — toggles `.dark` class on `<html>`
+- **Light palette** (`app/globals.css :root`): warm lavender-white (`#f2f0f9`), pure white cards, richer indigo primary (`#4f46e5`), soft muted tones (`#edeaf6`)
+- **Dark palette** (`.dark`): original noir aesthetic
+- **color-scheme**: `:root { color-scheme: light }`, `.dark { color-scheme: dark }` — proper form control/scrollbar styling per mode
+- **Viewport themeColor**: array with light/dark media queries (`#f2f0f9` light, `#07070a` dark)
+- **Profile**: Theme card with Sun/Monitor/Moon icons, shows current mode text, updates store + next-themes immediately
+- **No FOUC**: next-themes blocking script + `suppressHydrationWarning` on `<html>`
+
+### 17. Premium Avatars
 - 3 premium SVG avatars: Dragon (red), Phoenix (orange), Griffin (purple)
 - Procedural Web Audio sounds: `playDragonSfx()` (low growl + sub bass), `playPhoenixSfx()` (ethereal ascending chime), `playGriffinSfx()` (brass fanfare)
 - Locked state: golden border overlay + lock icon + `PremiumBadge` in AvatarSelector and onboarding AvatarStep
 - Clicking locked avatar opens ShopModal
 - Non-premium avatars remain free (Owl, Fox, Cat, Dog, UFO, Panda, Rooster, Turtle)
 
-### 17. Shop System
+### 18. Shop System
 - `ShopModal`: tabs for Gems, Hearts/Streak, Premium Membership
 - `ProfileShopModal`: lightweight modal for hearts/gems opened from profile stat cards
   - Profile hearts/gems stat cards are clickable → opens mini shop
@@ -394,7 +407,7 @@ Stored in Zustand with persist middleware. Key fields:
 - **Product prices**: dynamic from `PricingConfig` via `getProductPriceLabel()`, fallback to `SHOP_PRODUCTS.priceLabel`
 - All purchases are mock (`[MOCK PURCHASE]` console log + localStorage)
 
-### 18. Purchase Rain Effects
+### 19. Purchase Rain Effects
 - `PurchaseRainEffect`: canvas-based fullscreen particle rain triggered on successful purchase
   - **Gems**: faceted diamond shapes, fast fall with spin — density: 30/60/100 based on amount
   - **Hearts**: 3D bezier gradient hearts, gentle float with pulse — 45 particles
@@ -406,7 +419,7 @@ Stored in Zustand with persist middleware. Key fields:
   - Cleanup: cancelAnimationFrame on unmount, timer refs cleared on re-purchase
 
 ## UI / UX Patterns
-- **Mobile-first** (320px+), dark mode only (no light mode toggle)
+- **Mobile-first** (320px+), light/system/dark mode with 3-way toggle in Profile
 - **Glassmorphism**: `GlassCard` component, `backdrop-blur-2xl saturate-[1.8]`, `bg-card/60` patterns
 - **Design tokens**: No hardcoded colors. Uses Tailwind `primary`, `secondary`, `destructive`, `muted`, `card`, `background`, `foreground`, `muted-foreground`
 - **Framer Motion**: Spring animations, `AnimatePresence` for transitions, `motion.div` with `initial`/`animate`/`exit`. Stagger delays for lists.

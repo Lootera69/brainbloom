@@ -210,7 +210,7 @@ export function WonderPlay({ puzzle, onComplete }: Props) {
               <textarea
                 readOnly
                 placeholder="(your private thoughts — not saved)"
-                className="mb-4 w-full resize-none rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-foreground outline-none"
+                className="mb-4 w-full resize-none rounded-xl border border-border/50 bg-muted/30 p-4 text-sm text-foreground outline-none dark:border-white/10 dark:bg-white/5"
                 rows={3}
               />
               <div className="flex gap-3">
@@ -264,7 +264,7 @@ export function WonderPlay({ puzzle, onComplete }: Props) {
                 onClick={handleContinue}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
-                className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-white/10 px-4 py-3 text-sm font-medium text-muted-foreground transition-all hover:bg-white/5 hover:text-foreground active:scale-[0.98]"
+                className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-border/50 px-4 py-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted/40 hover:text-foreground active:scale-[0.98] dark:border-white/10 dark:hover:bg-white/5"
               >
                 <Share2 className="size-4" />
                 {puzzle.sharePrompt ? "Share this with someone" : "Done"}
@@ -319,7 +319,7 @@ export function WonderPlay({ puzzle, onComplete }: Props) {
                   onClick={onComplete}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
-                  className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 px-5 py-3 text-sm font-medium text-muted-foreground transition-all hover:bg-white/5 hover:text-foreground"
+                  className="flex items-center justify-center gap-2 rounded-2xl border border-border/50 px-5 py-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted/40 hover:text-foreground dark:border-white/10 dark:hover:bg-white/5"
                 >
                   {copied || shared ? "Done" : "Skip"}
                 </motion.button>

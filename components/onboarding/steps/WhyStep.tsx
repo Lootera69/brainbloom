@@ -52,10 +52,10 @@ export default function WhyStep({ onNext }: WhyStepProps) {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 + i * 0.12 }}
-            className={`group rounded-2xl border border-white/5 bg-gradient-to-br ${card.gradient} p-4 md:p-5 backdrop-blur-xl transition-all hover:border-white/10`}
+            className={`group rounded-2xl border border-border/30 bg-gradient-to-br ${card.gradient} p-4 md:p-5 backdrop-blur-xl transition-all hover:border-border/50 dark:border-white/5 dark:hover:border-white/10`}
           >
             <div className="flex items-start gap-3 md:gap-4">
-              <span className={`flex size-9 md:size-10 shrink-0 items-center justify-center rounded-xl bg-white/5 ${card.iconColor}`}>
+              <span className={`flex size-9 md:size-10 shrink-0 items-center justify-center rounded-xl bg-muted/30 dark:bg-white/5 ${card.iconColor}`}>
                 <card.icon className="size-4 md:size-5" />
               </span>
               <div className="min-w-0">

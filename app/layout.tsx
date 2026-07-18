@@ -4,6 +4,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { ThemeSync } from "@/components/providers/theme-sync";
 import { ServiceWorkerRegister } from "@/components/providers/service-worker";
 import { GlobalErrorHandler } from "@/components/providers/global-error-handler";
 
@@ -40,7 +41,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#6366f1",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f2f0f9" },
+    { media: "(prefers-color-scheme: dark)", color: "#07070a" },
+  ],
 };
 
 export default function RootLayout({
@@ -58,6 +62,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           {children}
+          <ThemeSync />
           <ServiceWorkerRegister />
           <GlobalErrorHandler />
         </ThemeProvider>

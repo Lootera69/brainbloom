@@ -58,11 +58,11 @@ export function PaywallModal({ type, onClose, onGoPremium }: PaywallModalProps) 
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 bg-card shadow-2xl"
+            className="relative w-full max-w-sm overflow-hidden rounded-3xl border border-border/50 bg-card shadow-2xl"
           >
             <button
               onClick={onClose}
-              className="absolute right-4 top-4 z-10 flex size-8 items-center justify-center rounded-full bg-white/5 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+              className="absolute right-4 top-4 z-10 flex size-8 items-center justify-center rounded-full bg-muted/30 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
             >
               <X className="size-4" />
             </button>
@@ -110,7 +110,7 @@ export function PaywallModal({ type, onClose, onGoPremium }: PaywallModalProps) 
                 {canWatchAd() && (
                   <button
                     onClick={() => setShowAd(true)}
-                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 text-sm font-semibold transition-all hover:bg-white/10 active:scale-[0.98]"
+                    className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-border/50 bg-muted/30 text-sm font-semibold transition-all hover:bg-muted/50 active:scale-[0.98]"
                   >
                     <Play className="size-4" />
                     Watch Ad{type === "hearts" ? " for +1 Heart" : " for +1 Play"}

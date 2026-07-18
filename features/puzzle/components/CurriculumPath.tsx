@@ -180,11 +180,11 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
                     className={cn(
                       "flex items-center gap-3 p-3.5 sm:p-4 transition-all",
                       !groupUnlocked && "opacity-50",
-                      groupDone && "ring-1 ring-success/20",
+                      groupDone && "ring-1 ring-success/30",
                     )}
                   >
                     <span className={cn(
-                      "flex size-9 shrink-0 items-center justify-center rounded-xl",
+                      "flex size-9 shrink-0 items-center justify-center rounded-xl shadow-sm",
                       groupDone && "bg-success/10",
                       groupUnlocked && !groupDone && "bg-primary/10",
                       !groupUnlocked && "bg-muted",
@@ -258,12 +258,12 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
                               className={cn(
                                 "flex items-center gap-3 p-3 transition-all sm:p-3.5",
                                 state === "locked" && "opacity-50",
-                                state === "completed" && "ring-1 ring-success/20",
+                                state === "completed" && "ring-1 ring-success/30",
                                 isFirstUnlocked && "ring-2 ring-primary/30",
                               )}
                             >
                               <span className={cn(
-                                "flex size-8 shrink-0 items-center justify-center rounded-lg",
+                                "flex size-8 shrink-0 items-center justify-center rounded-lg shadow-sm",
                                 state === "completed" && "bg-success/10",
                                 state === "available" && "bg-primary/10",
                                 state === "locked" && "bg-muted",

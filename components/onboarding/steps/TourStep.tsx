@@ -60,9 +60,9 @@ export default function TourStep({ onNext }: TourStepProps) {
             initial={{ opacity: 0, x: -16 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 0.1 + i * 0.1 }}
-            className={`flex items-center gap-3 md:gap-4 rounded-xl border border-white/5 bg-gradient-to-br ${item.gradient} p-4 backdrop-blur-xl`}
+            className={`flex items-center gap-3 md:gap-4 rounded-xl border border-border/30 bg-gradient-to-br ${item.gradient} p-4 backdrop-blur-xl dark:border-white/5`}
           >
-            <span className={`flex size-9 md:size-10 shrink-0 items-center justify-center rounded-xl bg-white/5 ${item.iconColor}`}>
+            <span className={`flex size-9 md:size-10 shrink-0 items-center justify-center rounded-xl bg-muted/30 dark:bg-white/5 ${item.iconColor}`}>
               <item.icon className="size-4 md:size-5" />
             </span>
             <div className="min-w-0">

@@ -39,7 +39,7 @@ export function AdModal({ onComplete, onClose }: AdModalProps) {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 bg-card p-8 text-center shadow-2xl"
+          className="relative w-full max-w-sm overflow-hidden rounded-3xl border border-border/50 bg-card p-8 text-center shadow-2xl dark:border-white/10"
         >
           {phase === "playing" && (
             <motion.div

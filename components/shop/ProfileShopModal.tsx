@@ -34,10 +34,10 @@ export function ProfileShopModal({ type, onClose }: Props) {
           exit={{ opacity: 0, y: 40, scale: 0.95 }}
           transition={{ type: "spring", stiffness: 300, damping: 28 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative flex max-h-[85vh] w-full max-w-sm flex-col rounded-2xl sm:rounded-3xl border border-white/10 bg-card/95 backdrop-blur-2xl sm:mx-4 shadow-2xl"
+          className="relative flex max-h-[85vh] w-full max-w-sm flex-col rounded-2xl sm:rounded-3xl border border-border/50 bg-card/95 backdrop-blur-2xl sm:mx-4 shadow-2xl"
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4 shrink-0">
+          <div className="flex items-center justify-between border-b border-border/30 px-5 py-4 shrink-0">
             <div className="flex items-center gap-2">
               {type === "gems" ? (
                 <Gem className="size-4 text-cyan-400" />
@@ -50,7 +50,7 @@ export function ProfileShopModal({ type, onClose }: Props) {
             </div>
             <button
               onClick={onClose}
-              className="flex size-7 items-center justify-center rounded-full bg-white/5 text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
+              className="flex size-7 items-center justify-center rounded-full bg-muted/30 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
             >
               <X className="size-3.5" />
             </button>

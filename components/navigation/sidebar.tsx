@@ -27,7 +27,7 @@ export function Sidebar() {
   return (
     <aside className="sticky top-0 hidden h-dvh w-64 flex-col md:flex">
       {/* Frosted glass body */}
-      <div className="absolute inset-0 rounded-r-3xl bg-background/75 backdrop-blur-2xl saturate-[1.8] supports-[backdrop-filter]:bg-background/80 dark:bg-background/60 dark:supports-[backdrop-filter]:bg-background/70 border-r border-white/10 dark:border-white/5 shadow-lg" />
+      <div className="absolute inset-0 rounded-r-3xl bg-background/75 backdrop-blur-2xl saturate-[1.8] supports-[backdrop-filter]:bg-background/80 dark:bg-background/60 dark:supports-[backdrop-filter]:bg-background/70 border-r border-border/50 shadow-lg dark:shadow-none" />
 
       {/* Logo */}
       <div className="relative flex items-center gap-3 px-6 pt-8 pb-7">
@@ -100,7 +100,7 @@ export function Sidebar() {
       </nav>
 
       {/* User card */}
-      <div className="relative border-t border-white/10 dark:border-white/5 p-4">
+      <div className="relative border-t border-border/50 p-4 dark:border-white/10">
         <Link
           href="/profile"
           className="group relative flex items-center gap-3 rounded-2xl px-3 py-3 transition-all hover:bg-muted/50"

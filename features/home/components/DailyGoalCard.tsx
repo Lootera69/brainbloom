@@ -4,7 +4,6 @@ import { useId } from "react";
 import { motion } from "framer-motion";
 import { Target } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
-import { GlassCard } from "@/components/ui/glass-card";
 
 
 const PARTICLES = Array.from({ length: 12 }).map((_, i) => ({
@@ -25,7 +24,9 @@ export function DailyGoalCard() {
   const complete = progress >= 1;
 
   return (
-    <GlassCard intensity="light" className="relative flex h-full flex-col items-center justify-center overflow-hidden p-5 sm:p-6">
+    <div className="relative flex h-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/60 dark:border-white/[0.06] bg-white/70 dark:bg-white/[0.03] shadow-lg shadow-black/[0.04] dark:shadow-black/20 backdrop-blur-xl p-5 sm:p-6">
+      {/* Top accent line */}
+      <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-primary/40 to-transparent dark:via-primary/20" />
 
       {/* Floating particles */}
       {PARTICLES.map((p, i) => (
@@ -131,6 +132,6 @@ export function DailyGoalCard() {
           {complete ? "Goal reached" : `${remaining} XP to go`}
         </motion.div>
       </div>
-    </GlassCard>
+    </div>
   );
 }

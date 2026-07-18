@@ -32,25 +32,26 @@
 }
 
 :root {
-  --background: #f5f5fa;
-  --foreground: #09090b;
+  color-scheme: light;
+  --background: #f4f2f8;
+  --foreground: #1a1a2e;
   --card: #ffffff;
-  --card-foreground: #09090b;
+  --card-foreground: #1a1a2e;
   --popover: #ffffff;
-  --popover-foreground: #09090b;
-  --primary: #6366f1;
+  --popover-foreground: #1a1a2e;
+  --primary: #4f46e5;
   --primary-foreground: #ffffff;
-  --secondary: #06b6d4;
+  --secondary: #0891b2;
   --secondary-foreground: #ffffff;
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
-  --accent: #f3f4f6;
-  --accent-foreground: #09090b;
+  --muted: #eae7f2;
+  --muted-foreground: #7a7596;
+  --accent: #eae7f2;
+  --accent-foreground: #1a1a2e;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.08);
-  --ring: #6366f1;
-  --input: #e5e7eb;
+  --border: rgba(30, 25, 60, 0.08);
+  --ring: #4f46e5;
+  --input: #e0dcf0;
   --success: #22c55e;
   --warning: #f59e0b;
   --radius: 24px;
@@ -59,6 +60,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   --background: #07070a;
   --foreground: #fafafa;
   --card: #121215;
@@ -94,14 +96,16 @@
   background: color-mix(in oklab, var(--card) 60%, transparent);
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in oklab, var(--border), transparent 20%);
+  box-shadow: 0 0 0 0.5px color-mix(in oklab, var(--card) 30%, transparent), inset 0 1px 0 color-mix(in oklab, white 15%, transparent);
 }
 
 @utility glass-strong {
   background: color-mix(in oklab, var(--card) 75%, transparent);
   backdrop-filter: blur(24px) saturate(1.6);
   -webkit-backdrop-filter: blur(24px) saturate(1.6);
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in oklab, var(--border), transparent 20%);
+  box-shadow: 0 0 0 0.5px color-mix(in oklab, var(--card) 30%, transparent), inset 0 1px 0 color-mix(in oklab, white 20%, transparent);
 }
 
 @utility glass-tint {
@@ -109,6 +113,7 @@
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
   border: 1px solid color-mix(in oklab, var(--border), transparent 30%);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, white 12%, transparent);
 }
 
 @utility glow-primary {
@@ -126,6 +131,18 @@
 @utility shimmer-bg {
   background-image: linear-gradient(110deg, var(--muted) 30%, color-mix(in oklab, var(--muted) 60%, var(--background)) 50%, var(--muted) 70%);
   background-size: 200% 100%;
+}
+
+@utility ambient-orb-1 {
+  background: radial-gradient(ellipse 100% 100% at 50% 50%, rgba(139, 92, 246, 0.08), transparent 70%);
+}
+
+@utility ambient-orb-2 {
+  background: radial-gradient(ellipse 100% 100% at 50% 50%, rgba(236, 72, 153, 0.06), transparent 70%);
+}
+
+@utility ambient-orb-3 {
+  background: radial-gradient(ellipse 100% 100% at 50% 50%, rgba(6, 182, 212, 0.05), transparent 70%);
 }
 
 @utility animate-shimmer {
@@ -159,11 +176,24 @@ body {
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
-  transition: background 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
+}
+
+/* Light mode ambient gradient background with floating orbs */
+:root body {
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(139, 92, 246, 0.07), transparent),
+    radial-gradient(ellipse 50% 40% at 85% 75%, rgba(236, 72, 153, 0.06), transparent),
+    radial-gradient(ellipse 40% 35% at 50% 50%, rgba(79, 70, 229, 0.04), transparent),
+    linear-gradient(135deg, #f5f3fa 0%, #f0edf6 30%, #eee9f5 60%, #f2eff8 100%);
+  transition: background 0.4s ease, color 0.3s ease;
+}
+
+.dark body {
+  background: var(--background);
+  transition: background 0.4s ease, color 0.3s ease;
 }
 
 h1,

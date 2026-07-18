@@ -73,7 +73,7 @@ export function AvatarSelector({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 40, scale: 0.95 }}
           transition={{ type: "spring", stiffness: 300, damping: 28 }}
-          className="relative flex w-full max-w-md flex-col rounded-2xl sm:rounded-3xl border border-white/10 bg-card/95 backdrop-blur-2xl sm:mx-4"
+          className="relative flex w-full max-w-md flex-col rounded-2xl sm:rounded-3xl border border-border/50 bg-card/95 backdrop-blur-2xl sm:mx-4 dark:border-white/10"
           style={{ maxHeight: "85dvh" }}
         >
           {/* Scrollable body */}
@@ -82,7 +82,7 @@ export function AvatarSelector({
             className="flex flex-col overflow-y-auto rounded-2xl sm:rounded-3xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-white/5 px-4 py-3 sm:px-6 sm:py-4 shrink-0">
+            <div className="flex items-center justify-between border-b border-border/30 px-4 py-3 sm:px-6 sm:py-4 shrink-0 dark:border-white/5">
               <div className="flex items-center gap-2">
                 <Sparkles className="size-4 text-primary" />
                 <h2 className="text-sm sm:text-base font-bold">Choose Avatar</h2>

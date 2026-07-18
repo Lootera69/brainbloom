@@ -52,7 +52,7 @@ export default function AvatarStep({ selectedAvatar, onSelect, onNext }: AvatarS
                   ? "border-primary bg-primary/10 shadow-lg shadow-primary/20"
                   : isPremium
                     ? "border-amber-500/20 bg-amber-500/5"
-                    : "border-white/5 bg-white/5 hover:border-white/15 hover:bg-white/10"
+                    : "border-border/30 bg-muted/30 dark:border-white/5 dark:bg-white/5 hover:border-border/50 hover:bg-muted/50 dark:hover:border-white/15 dark:hover:bg-white/10"
               }`}
             >
               <span className="relative">

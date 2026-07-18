@@ -9,6 +9,7 @@ import { getStudioSession, getStudioRole, CATEGORIES } from "@/services/puzzle-s
 import { getAllLessonGroups, addLessonGroup, removeLessonGroup, updateLessonGroup, reorderLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { useUserStore } from "@/store/user-store";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { SkeletonLessonGroup } from "@/components/ui/skeleton";
@@ -576,7 +577,7 @@ export default function StudioSettingsPage() {
                     <motion.div
                       initial={{ opacity: 0, x: -12 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-5"
+                      className="relative overflow-hidden rounded-2xl border border-border/30 bg-gradient-to-br from-muted/20 to-transparent p-5"
                     >
                       <div className="pointer-events-none absolute -right-8 -top-8 size-28 rounded-full bg-rose-500/10 blur-3xl" />
                       <div className="relative">
@@ -605,7 +606,7 @@ export default function StudioSettingsPage() {
                                 step="any"
                                 value={pricing.monthlyBase}
                                 onChange={(e) => set("monthlyBase", e.target.value)}
-                                className="no-spin w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-rose-400/50"
+                                className="no-spin w-full rounded-xl border border-border/50 bg-muted/30 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-rose-400/50"
                               />
                             </div>
                           </div>
@@ -623,8 +624,8 @@ export default function StudioSettingsPage() {
                                 step="any"
                                 value={pricing.monthlyOffer}
                                 onChange={(e) => set("monthlyOffer", e.target.value)}
-                                className={`no-spin w-full rounded-xl border bg-white/5 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-rose-400/50 ${
-                                  monthlyInvalid ? "border-destructive/60" : "border-white/10"
+                                className={`no-spin w-full rounded-xl border bg-muted/30 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-rose-400/50 ${
+                                  monthlyInvalid ? "border-destructive/60" : "border-border/50"
                                 }`}
                               />
                             </div>
@@ -661,7 +662,7 @@ export default function StudioSettingsPage() {
                     <motion.div
                       initial={{ opacity: 0, x: 12 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-5"
+                      className="relative overflow-hidden rounded-2xl border border-border/30 bg-gradient-to-br from-muted/20 to-transparent p-5"
                     >
                       <div className="pointer-events-none absolute -left-8 -top-8 size-28 rounded-full bg-amber-500/10 blur-3xl" />
                       <div className="relative">
@@ -690,7 +691,7 @@ export default function StudioSettingsPage() {
                                 step="any"
                                 value={pricing.yearlyBase}
                                 onChange={(e) => set("yearlyBase", e.target.value)}
-                                className="no-spin w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-amber-400/50"
+                                className="no-spin w-full rounded-xl border border-border/50 bg-muted/30 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-amber-400/50"
                               />
                             </div>
                           </div>
@@ -708,8 +709,8 @@ export default function StudioSettingsPage() {
                                 step="any"
                                 value={pricing.yearlyOffer}
                                 onChange={(e) => set("yearlyOffer", e.target.value)}
-                                className={`no-spin w-full rounded-xl border bg-white/5 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-amber-400/50 ${
-                                  yearlyInvalid ? "border-destructive/60" : "border-white/10"
+                                className={`no-spin w-full rounded-xl border bg-muted/30 px-3.5 py-2.5 pl-7 text-sm tabular-nums outline-none transition-colors focus:border-amber-400/50 ${
+                                  yearlyInvalid ? "border-destructive/60" : "border-border/50"
                                 }`}
                               />
                             </div>
@@ -763,10 +764,10 @@ export default function StudioSettingsPage() {
                           value={pricing.offerLabel}
                           onChange={(e) => setPricing({ ...pricing, offerLabel: e.target.value })}
                           placeholder="e.g. Launch Special"
-                          className="w-full rounded-xl border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary"
+                          className="w-full rounded-xl border border-border/50 bg-muted/30 px-3.5 py-2.5 text-sm outline-none transition-colors focus:border-primary"
                         />
                       </div>
-                      <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm transition-all hover:bg-white/5">
+                      <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-border/50 px-4 py-2.5 text-sm transition-all hover:bg-muted/40">
                         <input
                           type="checkbox"
                           checked={pricing.offerActive}
@@ -820,8 +821,8 @@ export default function StudioSettingsPage() {
                         { key: "streak_freeze_3", label: "Streak Freeze 3-Pack", icon: Gem, color: "text-blue-400", bg: "bg-blue-500/10" },
                       ] as const).map(({ key, label, icon: Icon, color, bg }) => (
                         <div key={key} className="group relative">
-                          <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none" />
-                          <div className="relative flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-3.5 py-3 transition-colors group-hover:border-white/[0.12]">
+                          <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-muted/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none" />
+                          <div className="relative flex items-center gap-3 rounded-xl border border-border/30 bg-muted/10 px-3.5 py-3 transition-colors group-hover:border-border/60">
                             <span className={`flex size-9 shrink-0 items-center justify-center rounded-lg ${bg}`}>
                               <Icon className={`size-4 ${color}`} />
                             </span>
@@ -856,7 +857,7 @@ export default function StudioSettingsPage() {
                         animate={{ opacity: 1, x: 0 }}
                         onClick={() => pricingInitial && setPricing({ ...pricingInitial })}
                         whileTap={{ scale: 0.98 }}
-                        className="flex h-10 items-center rounded-xl border border-white/10 px-5 text-sm font-medium text-muted-foreground transition-all hover:bg-white/5 hover:text-foreground"
+                        className="flex h-10 items-center rounded-xl border border-border/50 px-5 text-sm font-medium text-muted-foreground transition-all hover:bg-muted/40 hover:text-foreground"
                       >
                         Cancel
                       </motion.button>

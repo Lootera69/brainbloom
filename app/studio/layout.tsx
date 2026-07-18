@@ -76,14 +76,14 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   if (!mounted) return null;
 
   if (!authed) {
-    // Premium Studio Login — dark mode only, no rotation, luxury feel
+    // Premium Studio Login — theme-aware glassmorphism, luxury feel
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (e.key === "Enter") handleLogin(e);
       if (e.key === "Escape") setError(false);
     };
 
     return (
-      <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-background p-6">
+      <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-background dark:bg-gradient-to-br dark:from-[#0c0c18] dark:to-[#0a0a14] p-6">
         {/* Layered background: base → noise → slow orbs → dot grid */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
           {/* Noise texture */}
@@ -123,7 +123,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1, duration: prefersReducedMotion ? 0.01 : 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="relative rounded-2xl border border-white/10 bg-white/5 p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] shadow-primary/10 backdrop-blur-xl sm:p-10"
+            className="relative rounded-2xl border border-border/50 bg-muted/30 p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] shadow-primary/10 backdrop-blur-xl sm:p-10"
           >
             {/* Logo — static, subtle pulse on hover */}
             <motion.div
@@ -192,8 +192,8 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
                     autoComplete="username"
                     autoFocus
                     className={cn(
-                      "w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 pr-4 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40",
-                      "focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15 focus:ring-offset-0",
+                      "w-full rounded-xl border bg-muted/30 px-4 py-3 pl-10 pr-4 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40",
+                      "focus:border-primary focus:bg-muted/50 focus:ring-4 focus:ring-primary/15 focus:ring-offset-0",
                       error && "border-destructive/50 focus:border-destructive focus:ring-destructive/15"
                     )}
                   />
@@ -228,8 +228,8 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
                     placeholder="Enter your password"
                     autoComplete="current-password"
                     className={cn(
-                      "w-full rounded-xl border bg-white/5 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40",
-                      "focus:border-primary focus:bg-white/10 focus:ring-4 focus:ring-primary/15 focus:ring-offset-0",
+                      "w-full rounded-xl border bg-muted/30 px-4 py-3 pl-10 pr-12 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40",
+                      "focus:border-primary focus:bg-muted/50 focus:ring-4 focus:ring-primary/15 focus:ring-offset-0",
                       error && "border-destructive/50 focus:border-destructive focus:ring-destructive/15"
                     )}
                   />
@@ -317,9 +317,9 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
               className="mt-6 flex flex-col items-center gap-3"
             >
               <div className="w-full flex items-center gap-3">
-                <span className="h-px flex-1 bg-white/10" />
+                <span className="h-px flex-1 bg-border/50" />
                 <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground/40">Internal tool</span>
-                <span className="h-px flex-1 bg-white/10" />
+                <span className="h-px flex-1 bg-border/50" />
               </div>
               <span className="text-[10px] font-mono text-muted-foreground/30">
                 v1.0.0 · Studio

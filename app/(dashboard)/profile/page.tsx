@@ -27,6 +27,8 @@ import {
   Lock,
   Compass,
   Sun,
+  Moon,
+  Monitor,
   Target,
   Brain,
 } from "lucide-react";
@@ -43,6 +45,7 @@ import { ProfileShopModal } from "@/components/shop/ProfileShopModal";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { signOutUser, sendPasswordReset } from "@/services/firebase";
+import { useTheme } from "next-themes";
 import { playToggleOn, playToggleOff } from "@/services/sound-service";
 
 function getLevel(xp: number) {
@@ -86,6 +89,9 @@ export default function ProfilePage() {
   } = useUserStore();
   const soundEnabled = useUserStore((s) => s.soundEnabled);
   const setSoundEnabled = useUserStore((s) => s.setSoundEnabled);
+  const theme = useUserStore((s) => s.theme);
+  const setThemeStore = useUserStore((s) => s.setTheme);
+  const { theme: nextTheme, setTheme } = useTheme();
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
   const setShowShop = useUIStore((s) => s.setShowShop);
@@ -219,7 +225,7 @@ export default function ProfilePage() {
                   </motion.span>
                 )}
                 <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                  <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                  <span className="rounded-full bg-muted/80 dark:bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
                     Edit
                   </span>
                 </div>
@@ -573,12 +579,62 @@ export default function ProfilePage() {
         </GlassCard>
       </motion.div>
 
+      {/* Theme row */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
+        className="mt-5"
+      >
+        <GlassCard intensity="light" className="p-4">
+          <div className="mb-3 flex items-center gap-3">
+            <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10">
+              <Sun className="size-5 text-primary" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold">Theme</p>
+              <p className="text-[11px] text-muted-foreground capitalize">{theme}</p>
+            </div>
+          </div>
+          <div className="relative flex rounded-xl bg-muted p-0.5">
+            {(["light", "system", "dark"] as const).map((t) => {
+              const active = theme === t;
+              const icons: Record<string, typeof Sun> = { light: Sun, system: Monitor, dark: Moon };
+              const Icon = icons[t];
+              return (
+                <button
+                  key={t}
+                  onClick={() => {
+                    setTheme(t);
+                    setThemeStore(t);
+                  }}
+                  className={cn(
+                    "relative z-10 flex flex-1 items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-medium transition-colors",
+                    active ? "text-white" : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  <Icon className="size-3.5" />
+                  <span className="capitalize">{t === "system" ? "System" : t}</span>
+                  {active && (
+                    <motion.span
+                      layoutId="theme-bg"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      className="absolute inset-0 -z-10 rounded-lg bg-primary shadow-sm"
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </GlassCard>
+      </motion.div>
+
       {/* Sound + Logout row */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="mt-5 flex items-center justify-between gap-3"
+        className="mt-3 flex items-center justify-between gap-3"
       >
         <GlassCard intensity="light" className="flex flex-1 items-center justify-between p-4">
           <div className="flex items-center gap-3">

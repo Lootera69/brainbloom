@@ -111,7 +111,7 @@ export function ProductCard({ product, priceLabel, purchasing, purchased, onPurc
         "group relative flex w-full items-center gap-4 overflow-hidden rounded-2xl border p-4 text-left transition-all active:scale-[0.97]",
         purchased
           ? "border-emerald-500/20 bg-gradient-to-br from-emerald-500/5 to-emerald-500/[0.02]"
-          : "border-white/[0.06] bg-white/[0.03] hover:border-white/[0.12] hover:bg-white/[0.06] hover:shadow-lg hover:shadow-black/5",
+          : "border-border/30 bg-muted/20 hover:border-border/60 hover:bg-muted/40 hover:shadow-lg hover:shadow-black/5 dark:border-white/[0.06] dark:bg-white/[0.03] dark:hover:border-white/[0.12] dark:hover:bg-white/[0.06]",
       )}
     >
       {particleType && animConfig && (

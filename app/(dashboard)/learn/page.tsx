@@ -397,7 +397,21 @@ function LearnPage() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-5 sm:p-6">
+    <div className="relative mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+      {/* Ambient floating orbs — light mode only */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden dark:hidden">
+        <motion.div
+          animate={{ y: [0, -25, 0], x: [0, 10, 0] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-36 -right-36 size-[450px] rounded-full bg-gradient-to-br from-violet-400/8 via-purple-400/4 to-transparent blur-3xl"
+        />
+        <motion.div
+          animate={{ y: [0, 18, 0], x: [0, -15, 0] }}
+          transition={{ duration: 28, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+          className="absolute -bottom-28 -left-28 size-[350px] rounded-full bg-gradient-to-br from-rose-400/6 via-pink-400/3 to-transparent blur-3xl"
+        />
+      </div>
+
       <AnimatePresence mode="wait">
         {view === "categories" && (
           <motion.div
@@ -458,7 +472,7 @@ function LearnPage() {
               </motion.div>
             )}
             {!isPremium && hearts <= 0 ? (
-              <GlassCard intensity="light" className="mx-auto mt-6 max-w-md p-6 text-center">
+              <div className="mx-auto mt-6 max-w-md overflow-hidden rounded-2xl border border-white/60 dark:border-white/[0.06] bg-white/70 dark:bg-white/[0.03] shadow-lg shadow-black/[0.04] dark:shadow-black/20 backdrop-blur-xl p-6 text-center">
                 <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-destructive/10">
                   <Heart className="size-7 text-destructive" />
                 </div>
@@ -473,13 +487,13 @@ function LearnPage() {
                   <p className="mt-1 text-xs text-muted-foreground">until next heart</p>
                 </div>
                 <div className="mt-6 space-y-3">
-                  <div className="mx-auto flex max-w-xs items-center gap-3 rounded-xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-orange-500/10 px-4 py-3 text-left">
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500/20 to-yellow-500/20">
-                      <Sparkles className="size-4 text-amber-400" />
+                  <div className="mx-auto flex max-w-xs items-center gap-3 rounded-xl border border-amber-200 dark:border-amber-500/20 bg-gradient-to-br from-amber-50 dark:from-amber-500/10 via-amber-50/50 dark:via-yellow-500/5 to-orange-50 dark:to-orange-500/10 px-4 py-3 text-left">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-100 dark:from-amber-500/20 to-amber-200/50 dark:to-yellow-500/20">
+                      <Sparkles className="size-4 text-amber-600 dark:text-amber-400" />
                     </span>
                     <div>
-                      <p className="text-sm font-semibold text-amber-400">Hearts protected ∞</p>
-                      <p className="text-xs text-amber-400/60">With Premium, never worry about hearts</p>
+                      <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">Hearts protected ∞</p>
+                      <p className="text-xs text-amber-600/60 dark:text-amber-400/60">With Premium, never worry about hearts</p>
                     </div>
                   </div>
                   <button
@@ -490,7 +504,7 @@ function LearnPage() {
                     <Sparkles className="size-3.5" />
                   </button>
                 </div>
-              </GlassCard>
+              </div>
             ) : (
               <>
                 {!isPremium && hearts < 5 && timer > 0 && (
@@ -521,60 +535,64 @@ function LearnPage() {
                           damping: 16,
                         }}
                       >
-                        <GlassCard
-                          tint={cat.color}
-                          hover
+                        <div
                           onClick={() => handleSelectCategory(cat.id)}
-                          className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl p-5"
+                          className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-white/60 dark:border-white/[0.06] bg-white/70 dark:bg-white/[0.03] shadow-md shadow-black/[0.03] dark:shadow-black/20 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/[0.06] dark:hover:shadow-black/30"
                         >
+                          {/* Ambient color glow */}
                           <div
-                            className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                            style={{
-                              background: `radial-gradient(500px circle at 50% 50%, ${cat.color}15, transparent 60%)`,
-                            }}
+                            className="pointer-events-none absolute -inset-2 opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-40"
+                            style={{ background: `radial-gradient(circle at 50% 50%, ${cat.color}30, transparent 60%)` }}
                           />
 
-                          <div className="relative z-10 flex items-center gap-3">
-                            <motion.span
-                              initial={{ scale: 0, rotate: -90 }}
-                              animate={{ scale: 1, rotate: 0 }}
-                              transition={{
-                                delay: 0.3 + i * 0.08,
-                                type: "spring",
-                                stiffness: 200,
-                              }}
-                              className="relative flex size-11 shrink-0 items-center justify-center rounded-xl sm:size-12"
-                              style={{ backgroundColor: `${cat.color}18` }}
-                            >
-                              <span
-                                className="absolute inset-0 rounded-xl opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-60"
-                                style={{ backgroundColor: cat.color }}
-                              />
-                              <Icon className="relative size-5 sm:size-6" style={{ color: cat.color }} />
-                            </motion.span>
-                            <div className="min-w-0">
-                              <h3 className="font-heading text-base font-semibold sm:text-lg">
-                                {cat.title}
-                              </h3>
-                              <p className="text-xs text-muted-foreground sm:text-sm">
-                                {cat.description}
-                              </p>
+                          {/* Top accent line */}
+                          <div
+                            className="absolute inset-x-0 top-0 h-1 opacity-60 transition-opacity duration-500 group-hover:opacity-100"
+                            style={{ background: `linear-gradient(90deg, transparent, ${cat.color}60, transparent)` }}
+                          />
+
+                          <div className="relative z-10 p-5 sm:p-6">
+                            <div className="flex items-start gap-4">
+                              <motion.span
+                                initial={{ scale: 0, rotate: -90 }}
+                                animate={{ scale: 1, rotate: 0 }}
+                                transition={{
+                                  delay: 0.3 + i * 0.08,
+                                  type: "spring",
+                                  stiffness: 200,
+                                }}
+                                className="relative flex size-13 shrink-0 items-center justify-center rounded-2xl shadow-lg sm:size-14"
+                                style={{
+                                  backgroundColor: `${cat.color}12`,
+                                  boxShadow: `0 4px 20px ${cat.color}15, inset 0 1px 0 rgba(255,255,255,0.6)`,
+                                }}
+                              >
+                                <span
+                                  className="absolute inset-0 rounded-2xl opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-50"
+                                  style={{ backgroundColor: `${cat.color}40` }}
+                                />
+                                <Icon className="relative size-6 sm:size-7" style={{ color: cat.color }} />
+                              </motion.span>
+                              <div className="min-w-0 flex-1 pt-0.5">
+                                <h3 className="font-heading text-base font-bold text-foreground sm:text-lg">
+                                  {cat.title}
+                                </h3>
+                                <p className="mt-0.5 text-xs text-muted-foreground sm:text-sm">
+                                  {cat.description}
+                                </p>
+                              </div>
                             </div>
                           </div>
 
-                          <div className="relative z-10 mt-auto">
+                          <div className="relative z-10 mt-auto border-t border-black/[0.03] dark:border-white/[0.04] px-5 sm:px-6 py-3">
                             <div className="flex items-center justify-end">
-                              <motion.span
-                                initial={{ x: 0 }}
-                                whileHover={{ x: 3 }}
-                                className="flex items-center gap-1 text-xs text-muted-foreground transition-colors group-hover:text-foreground"
-                              >
+                              <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
                                 Explore
-                                <ArrowRight className="size-3.5" />
-                              </motion.span>
+                                <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                              </span>
                             </div>
                           </div>
-                        </GlassCard>
+                        </div>
                       </motion.div>
                     );
                   })}
@@ -618,7 +636,7 @@ function LearnPage() {
             )}
 
             {!isPremium && hearts <= 0 ? (
-              <GlassCard intensity="light" className="mx-auto mt-6 max-w-md p-6 text-center">
+              <div className="mx-auto mt-6 max-w-md overflow-hidden rounded-2xl border border-white/60 dark:border-white/[0.06] bg-white/70 dark:bg-white/[0.03] shadow-lg shadow-black/[0.04] dark:shadow-black/20 backdrop-blur-xl p-6 text-center">
                 <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-destructive/10">
                   <Heart className="size-7 text-destructive" />
                 </div>
@@ -633,13 +651,13 @@ function LearnPage() {
                   <p className="mt-1 text-xs text-muted-foreground">until next heart</p>
                 </div>
                 <div className="mt-6 space-y-3">
-                  <div className="mx-auto flex max-w-xs items-center gap-3 rounded-xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-orange-500/10 px-4 py-3 text-left">
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500/20 to-yellow-500/20">
-                      <Sparkles className="size-4 text-amber-400" />
+                  <div className="mx-auto flex max-w-xs items-center gap-3 rounded-xl border border-amber-200 dark:border-amber-500/20 bg-gradient-to-br from-amber-50 dark:from-amber-500/10 via-amber-50/50 dark:via-yellow-500/5 to-orange-50 dark:to-orange-500/10 px-4 py-3 text-left">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-100 dark:from-amber-500/20 to-amber-200/50 dark:to-yellow-500/20">
+                      <Sparkles className="size-4 text-amber-600 dark:text-amber-400" />
                     </span>
                     <div>
-                      <p className="text-sm font-semibold text-amber-400">Hearts protected ∞</p>
-                      <p className="text-xs text-amber-400/60">With Premium, never worry about hearts</p>
+                      <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">Hearts protected ∞</p>
+                      <p className="text-xs text-amber-600/60 dark:text-amber-400/60">With Premium, never worry about hearts</p>
                     </div>
                   </div>
                   <button
@@ -650,7 +668,7 @@ function LearnPage() {
                     <Sparkles className="size-3.5" />
                   </button>
                 </div>
-              </GlassCard>
+              </div>
             ) : (
               <>
                 {!isPremium && hearts < 5 && timer > 0 && (

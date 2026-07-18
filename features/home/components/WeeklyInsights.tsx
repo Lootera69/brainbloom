@@ -149,79 +149,87 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35 }}
           onClick={() => setOpen(true)}
-          className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#6366f1] via-[#7c3aed] to-[#8b5cf6] text-left text-white transition-all hover:shadow-xl hover:shadow-primary/20"
+          className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-indigo-200 dark:border-white/10 bg-gradient-to-br from-indigo-50 via-purple-50 to-fuchsia-50 dark:from-[#6366f1] dark:via-[#7c3aed] dark:to-[#8b5cf6] text-left text-indigo-900 dark:text-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-200/50 dark:hover:shadow-primary/20"
         >
           {/* Decorative blobs */}
           <motion.div
-            animate={{ y: [0, -8, 0], x: [0, 4, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-10 -right-10 size-28 rounded-full bg-white/10 blur-2xl"
+            animate={{ y: [0, -10, 0], scale: [1, 1.08, 1] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-12 -right-12 size-32 rounded-full bg-indigo-200/40 dark:bg-white/10 blur-2xl"
           />
           <motion.div
-            animate={{ y: [0, 6, 0], x: [0, -3, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute -bottom-8 -left-8 size-24 rounded-full bg-white/5 blur-xl"
+            animate={{ y: [0, 8, 0], scale: [1, 1.05, 1] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+            className="absolute -bottom-10 -left-10 size-28 rounded-full bg-purple-200/30 dark:bg-white/5 blur-xl"
           />
 
-          {/* Shimmer overlay on hover */}
-          <span className="absolute inset-0 -z-10 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.06)_50%,transparent_75%)] bg-[length:250%_250%] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+          {/* Sparkle particles — light mode only */}
+          <div className="pointer-events-none absolute inset-0 dark:hidden">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <motion.div
+                key={i}
+                className="absolute size-1 rounded-full bg-indigo-400/60"
+                style={{ left: `${15 + i * 18}%`, top: `${20 + (i % 3) * 25}%` }}
+                animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.7, ease: "easeInOut" }}
+              />
+            ))}
+          </div>
 
-          <div className="relative z-10 flex flex-1 flex-col p-4 sm:p-5">
+          {/* Shimmer overlay on hover */}
+          <span className="absolute inset-0 -z-10 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.4)_50%,transparent_75%)] dark:bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.06)_50%,transparent_75%)] bg-[length:250%_250%] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+
+          <div className="relative z-10 flex flex-1 flex-col p-5 sm:p-6">
             {/* Header */}
             <div className="flex items-center gap-3">
-              <span className="glass-tint flex size-10 items-center justify-center rounded-xl">
-                <BarChart3 className="size-5" />
+              <span className="inline-flex size-11 items-center justify-center rounded-xl bg-white/50 dark:bg-white/10 shadow-md shadow-indigo-500/10 dark:shadow-none backdrop-blur-sm">
+                <BarChart3 className="size-5 text-indigo-600 dark:text-white" />
               </span>
               <div>
-                <p className="text-xs font-semibold text-white/60 uppercase tracking-wider">This Week</p>
+                <p className="text-[11px] font-semibold text-indigo-400/70 dark:text-white/60 uppercase tracking-wider">This Week</p>
                 <p className="font-heading text-lg font-bold">Insights</p>
               </div>
             </div>
 
             {/* Hero stat — XP */}
-            <div className="mt-4 flex items-baseline gap-1.5">
-              <span className="font-heading text-4xl font-bold tabular-nums leading-none">
+            <div className="mt-5 flex items-baseline gap-2">
+              <span className="font-heading text-5xl font-bold tabular-nums leading-none bg-gradient-to-br from-indigo-600 via-purple-600 to-fuchsia-600 dark:from-white dark:via-white dark:to-white/80 bg-clip-text text-transparent">
                 {weeklyStats.totalXpWeek}
               </span>
-              <span className="text-sm font-semibold text-white/50">XP</span>
+              <span className="text-sm font-semibold text-indigo-400/60 dark:text-white/50">XP</span>
             </div>
-            <p className="mt-0.5 text-xs text-white/50">earned this week</p>
+            <p className="mt-1 text-xs text-indigo-400/50 dark:text-white/40">earned this week</p>
 
             {/* Mini stat row */}
-            <div className="mt-3.5 grid grid-cols-3 gap-1.5">
+            <div className="mt-4 grid grid-cols-3 gap-2">
               {[
                 { icon: Brain, label: "Puzzles", value: weeklyStats.weeklyPuzzles, always: true },
                 { icon: Flame, label: "Streak", value: `${streak}d`, always: true },
                 { icon: TrendingUp, label: "Accuracy", value: `${weeklyStats.accuracy}%`, always: true },
-                { icon: Clock, label: "Categories", value: weeklyStats.categoryCount, always: false },
-                { icon: Award, label: "Weakest", value: weeklyStats.weakest, always: false },
-                { icon: Zap, label: "Total XP", value: userXp.toLocaleString(), always: false },
               ].map((s, i) => (
                 <motion.div
                   key={s.label}
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 + i * 0.08 }}
-                  className={`glass-tint flex flex-col items-center gap-0.5 rounded-xl px-2 py-2 ${
-                    !s.always ? "hidden md:flex" : ""
-                  }`}
+                  className="flex flex-col items-center gap-1 rounded-xl bg-white/40 dark:bg-white/10 backdrop-blur-sm px-2 py-2.5 shadow-sm"
                 >
-                  <s.icon className="size-3.5 text-white/70" />
-                  <span className="text-sm font-bold tabular-nums leading-none">{s.value}</span>
-                  <span className="text-[9px] text-white/40">{s.label}</span>
+                  <s.icon className="size-3.5 text-indigo-500/70 dark:text-white/70" />
+                  <span className="text-sm font-bold tabular-nums leading-none text-indigo-700 dark:text-white">{s.value}</span>
+                  <span className="text-[9px] font-medium text-indigo-400/50 dark:text-white/40">{s.label}</span>
                 </motion.div>
               ))}
             </div>
           </div>
 
           {/* Bottom CTA */}
-          <div className="relative z-10 border-t border-white/10 px-4 py-2.5">
+          <div className="relative z-10 border-t border-indigo-200/50 dark:border-white/10 px-5 py-3">
             <span className="flex items-center justify-between">
-              <span className="text-[11px] font-semibold text-white/50 group-hover:text-white/80 transition-colors">View Full Report</span>
+              <span className="text-[11px] font-semibold text-indigo-400/60 dark:text-white/50 group-hover:text-indigo-600 dark:group-hover:text-white/80 transition-colors">View Full Report</span>
               <motion.span
                 animate={{ x: [0, 4, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.5 }}
-                className="text-white/40 group-hover:text-white/70 transition-colors"
+                className="text-indigo-400/40 dark:text-white/40 group-hover:text-indigo-600 dark:group-hover:text-white/70 transition-colors"
               >
                 &rarr;
               </motion.span>
@@ -272,24 +280,24 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 40, scale: 0.95 }}
               transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="relative w-full max-w-lg overflow-hidden rounded-2xl border bg-card shadow-2xl"
+              className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-white/60 dark:border-white/10 bg-white/80 dark:bg-gray-950 shadow-2xl shadow-black/10 dark:shadow-none backdrop-blur-xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close */}
               <button onClick={() => setOpen(false)}
-                className="absolute right-3 top-3 z-10 flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted">
+                className="absolute right-3 top-3 z-10 flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
                 <X className="size-4" />
               </button>
 
-              <div ref={reportRef} className="bg-white dark:bg-gray-950">
-              <div className="relative bg-gradient-to-br from-primary/5 via-purple-500/5 to-transparent px-6 pb-4 pt-8 sm:px-8">
+              <div ref={reportRef}>
+              <div className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-fuchsia-50 dark:from-primary/5 dark:via-purple-500/5 dark:to-transparent px-6 pb-4 pt-8 sm:px-8">
                 <div className="absolute -top-10 -right-10">
-                  <Sparkles className="size-28 text-primary/10" />
+                  <Sparkles className="size-28 text-indigo-200/60 dark:text-primary/10" />
                 </div>
 
                 <div className="relative flex items-center gap-3">
-                  <span className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-purple-500/10">
-                    <BarChart3 className="size-6 text-primary" />
+                  <span className="flex size-12 items-center justify-center rounded-2xl bg-white/60 dark:bg-gradient-to-br dark:from-primary/20 dark:to-purple-500/10 shadow-md shadow-indigo-500/10 dark:shadow-none">
+                    <BarChart3 className="size-6 text-indigo-600 dark:text-primary" />
                   </span>
                   <div>
                     <h2 className="font-heading text-xl font-bold text-gray-900 dark:text-white">Weekly Insights</h2>
@@ -302,7 +310,7 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
                 {stats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="flex flex-col items-center gap-2 rounded-xl p-4 text-center ring-1 ring-inset ring-gray-200 dark:ring-gray-700"
+                    className="flex flex-col items-center gap-2 rounded-xl p-4 text-center ring-1 ring-inset ring-indigo-100 dark:ring-gray-700 bg-white/50 dark:bg-transparent"
                   >
                     <span className={cn(
                       "flex size-10 items-center justify-center rounded-xl bg-gradient-to-br",
@@ -321,18 +329,18 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
               </div>
 
               {/* Footer */}
-              <div className="flex items-center gap-3 border-t px-6 py-4 sm:px-8">
+              <div className="flex items-center gap-3 border-t border-black/5 dark:border-white/10 px-6 py-4 sm:px-8">
                 <motion.button
                   onClick={handleShare}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
-                  className="flex h-10 flex-1 items-center justify-center gap-2 rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-all hover:brightness-110"
+                  className="flex h-10 flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all hover:brightness-110"
                 >
                   <Share2 className="size-4" />
                   Share Report
                 </motion.button>
                 <button onClick={() => setOpen(false)}
-                  className="flex h-10 flex-1 items-center justify-center rounded-xl border text-sm font-medium transition-colors hover:bg-muted">
+                  className="flex h-10 flex-1 items-center justify-center rounded-xl border border-black/10 dark:border-white/10 text-sm font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/5">
                   Close
                 </button>
               </div>

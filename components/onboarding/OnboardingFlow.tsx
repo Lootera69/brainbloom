@@ -58,7 +58,7 @@ export default function OnboardingFlow({ onComplete }: OnboardingFlowProps) {
           <div
             key={i}
             className={`h-1 rounded-full transition-all duration-300 ${
-              i <= step ? "bg-primary" : "bg-white/10"
+              i <= step ? "bg-primary" : "bg-muted/50 dark:bg-white/10"
             } ${i === step ? "w-6" : "w-3"}`}
           />
         ))}

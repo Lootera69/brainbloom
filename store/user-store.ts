@@ -68,6 +68,7 @@ interface UserState {
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
   soundEnabled: boolean;
+  theme: "light" | "dark" | "system";
   weeklyXp: number;
   weeklyStartDate: number;
   frozenDays: string[];
@@ -118,6 +119,7 @@ interface UserState {
   completeDailyPuzzle: () => void;
   hasCompletedDailyPuzzle: () => boolean;
   setSoundEnabled: (v: boolean) => void;
+  setTheme: (t: "light" | "dark" | "system") => void;
   clearCelebration: () => void;
   checkAchievements: () => void;
   claimDailyBonus: () => { type: "xp" | "gems" | "streak-freeze"; amount: number; label: string } | null;
@@ -243,6 +245,7 @@ export const useUserStore = create<UserState>()(
       dailyPuzzleStreak: 0,
       dailyPuzzleLastDate: null,
       soundEnabled: true,
+      theme: "system",
       weeklyXp: 0,
       weeklyStartDate: Date.now(),
       frozenDays: [],
@@ -331,6 +334,7 @@ export const useUserStore = create<UserState>()(
             dailyPuzzleStreak: s.dailyPuzzleStreak,
             dailyPuzzleLastDate: s.dailyPuzzleLastDate,
             soundEnabled: s.soundEnabled,
+            theme: s.theme,
             weeklyXp: s.weeklyXp,
             weeklyStartDate: s.weeklyStartDate,
             frozenDays: s.frozenDays,
@@ -390,6 +394,7 @@ export const useUserStore = create<UserState>()(
               dailyPuzzleStreak: data.dailyPuzzleStreak ?? s.dailyPuzzleStreak,
               dailyPuzzleLastDate: data.dailyPuzzleLastDate ?? s.dailyPuzzleLastDate,
               soundEnabled: data.soundEnabled ?? s.soundEnabled,
+              theme: data.theme ?? s.theme,
               weeklyXp: data.weeklyXp ?? s.weeklyXp,
               weeklyStartDate: data.weeklyStartDate ?? s.weeklyStartDate,
               frozenDays: data.frozenDays ?? s.frozenDays,
@@ -868,6 +873,8 @@ export const useUserStore = create<UserState>()(
         import("@/services/sound-service").then(({ setSoundEnabled }) => setSoundEnabled(v));
       },
 
+      setTheme: (t) => set({ theme: t }),
+
       clearCelebration: () => set({ pendingCelebration: null }),
 
       checkAchievements: () => {
@@ -1081,6 +1088,7 @@ export const useUserStore = create<UserState>()(
         dailyPuzzleStreak: state.dailyPuzzleStreak,
         dailyPuzzleLastDate: state.dailyPuzzleLastDate,
         soundEnabled: state.soundEnabled,
+        theme: state.theme,
         weeklyXp: state.weeklyXp,
         weeklyStartDate: state.weeklyStartDate,
         frozenDays: state.frozenDays,

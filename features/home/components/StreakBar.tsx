@@ -118,27 +118,25 @@ export function StreakBar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 20 }}
     >
-      <GlassCard intensity="light" className="mb-6 overflow-hidden sm:mb-8">
-        <div className="grid grid-cols-4 divide-x divide-muted/50">
-          {stats.map(({ icon: Icon, label, value, numClass, iconBg, onClick, bottom }, i) => (
+      <div className="mb-6 overflow-hidden rounded-2xl border border-white/60 dark:border-white/[0.06] bg-white/70 dark:bg-white/[0.03] shadow-lg shadow-black/[0.04] dark:shadow-black/20 backdrop-blur-xl sm:mb-8">
+        <div className="grid grid-cols-4 divide-x divide-black/[0.04] dark:divide-white/[0.05]">
+          {stats.map(({ icon: Icon, label, value, numClass, iconBg, ring, onClick, bottom }, i) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 + i * 0.06, type: "spring", stiffness: 140, damping: 18 }}
               className={cn(
-                "group relative flex flex-col items-center px-1 py-5 transition-colors hover:bg-muted/10 sm:px-2 sm:py-6",
+                "group relative flex flex-col items-center px-1 py-5 transition-all duration-300 hover:bg-black/[0.02] dark:hover:bg-white/[0.03] sm:px-2 sm:py-6",
                 onClick ? "cursor-pointer" : "cursor-default",
               )}
               onClick={() => handleClick(onClick)}
             >
-              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
               <span className={cn(
-                "relative flex size-10 items-center justify-center rounded-xl ring-1 ring-inset shadow-sm transition-transform duration-300 group-hover:scale-110 sm:size-11",
+                "relative flex size-11 items-center justify-center rounded-xl shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg sm:size-12",
                 iconBg,
               )}>
-                <Icon className={cn("size-4 sm:size-5", numClass)} />
+                <Icon className={cn("size-5 sm:size-6", numClass)} />
               </span>
 
               {label !== "Hearts" && (
@@ -156,7 +154,7 @@ export function StreakBar() {
             </motion.div>
           ))}
         </div>
-      </GlassCard>
+      </div>
 
       {/* Streak popup */}
       <AnimatePresence>
