@@ -6,7 +6,7 @@ import { Lock, Heart, Sparkles, Play, Gem, X } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
 import { AdModal } from "@/components/paywall/AdModal";
-import { FREE_TIER_DAILY_LIMIT, ADS_MAX_PER_DAY } from "@/lib/subscription";
+import { FREE_TIER_DAILY_LIMIT, ADS_MAX_PER_DAY, REWARDED_AD_HEART_AMOUNT } from "@/lib/subscription";
 
 interface PaywallModalProps {
   type: "limit" | "hearts";
@@ -16,11 +16,14 @@ interface PaywallModalProps {
 
 export function PaywallModal({ type, onClose, onGoPremium }: PaywallModalProps) {
   const [showAd, setShowAd] = useState(false);
+  const adsWatchedToday = useUserStore((s) => s.adsWatchedToday);
+  const adsWatchDate = useUserStore((s) => s.adsWatchDate);
   const canWatchAd = useUserStore((s) => s.canWatchAd);
   const incrementAdWatched = useUserStore((s) => s.incrementAdWatched);
   const incrementPuzzlePlayed = useUserStore((s) => s.incrementPuzzlePlayed);
-  const useHeart = useUserStore((s) => s.useHeart);
   const setShowShop = useUIStore((s) => s.setShowShop);
+  const today = new Date().toDateString();
+  const remaining = ADS_MAX_PER_DAY - (adsWatchDate === today ? adsWatchedToday : 0);
 
   const handleAdComplete = (rewarded: boolean) => {
     setShowAd(false);
@@ -29,9 +32,7 @@ export function PaywallModal({ type, onClose, onGoPremium }: PaywallModalProps) 
     if (type === "limit") {
       incrementPuzzlePlayed();
     } else {
-      useHeart();
-      useHeart();
-      useHeart();
+      useUserStore.setState((s) => ({ hearts: Math.min(5, s.hearts + REWARDED_AD_HEART_AMOUNT) }));
     }
     onClose();
   };
@@ -112,8 +113,8 @@ export function PaywallModal({ type, onClose, onGoPremium }: PaywallModalProps) 
                     className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 text-sm font-semibold transition-all hover:bg-white/10 active:scale-[0.98]"
                   >
                     <Play className="size-4" />
-                    Watch Ad{type === "hearts" ? " for 3 Hearts" : " for +1 Play"}
-                    <span className="text-[11px] text-muted-foreground">({ADS_MAX_PER_DAY - 1} left)</span>
+                    Watch Ad{type === "hearts" ? " for +1 Heart" : " for +1 Play"}
+                    <span className="text-[11px] text-muted-foreground">({remaining} left)</span>
                   </button>
                 )}
 

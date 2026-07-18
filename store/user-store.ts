@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist, type PersistStorage } from "zustand/middleware";
 import { questTemplates } from "@/constants/quests";
 import { achievementsList } from "@/constants/achievements";
+import { ADS_MAX_PER_DAY } from "@/lib/subscription";
 
 let heartsLostThisSession = false;
 let currentPuzzleHasLesson = false;
@@ -976,7 +977,7 @@ export const useUserStore = create<UserState>()(
         const { adsWatchedToday, adsWatchDate } = get();
         const today = new Date().toDateString();
         const count = adsWatchDate === today ? adsWatchedToday : 0;
-        return count < 3;
+        return count < ADS_MAX_PER_DAY;
       },
 
       buyHeartRefillWithGems: () => {

@@ -26,6 +26,7 @@ import { useUserStore } from "@/store/user-store";
 import { AdModal } from "@/components/paywall/AdModal";
 import { type Puzzle } from "@/types/puzzle";
 import { hasPremiumAccess } from "@/services/entitlement-service";
+import { REWARDED_AD_HEART_AMOUNT } from "@/lib/subscription";
 
 export default function HomePage() {
   const [dailyPuzzle, setDailyPuzzle] = useState<Puzzle | null>(null);
@@ -34,7 +35,6 @@ export default function HomePage() {
   const hearts = useUserStore((s) => s.hearts);
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
-  const useHeart = useUserStore((s) => s.useHeart);
   const canWatchAd = useUserStore((s) => s.canWatchAd);
   const incrementAdWatched = useUserStore((s) => s.incrementAdWatched);
   const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
@@ -93,7 +93,7 @@ export default function HomePage() {
             setShowAd(false);
             if (rewarded) {
               incrementAdWatched();
-              useHeart();
+              useUserStore.setState((s) => ({ hearts: Math.min(5, s.hearts + REWARDED_AD_HEART_AMOUNT) }));
             }
           }}
           onClose={() => setShowAd(false)}

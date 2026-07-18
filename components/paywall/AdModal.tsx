@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Loader2, CheckCircle2, XCircle } from "lucide-react";
 import { showRewardedAd } from "@/services/ad-service";
@@ -12,18 +12,18 @@ interface AdModalProps {
 
 export function AdModal({ onComplete, onClose }: AdModalProps) {
   const [phase, setPhase] = useState<"playing" | "rewarded" | "skipped">("playing");
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
     (async () => {
       const rewarded = await showRewardedAd();
       setPhase(rewarded ? "rewarded" : "skipped");
-      if (rewarded) {
-        setTimeout(() => onComplete(true), 1200);
-      } else {
-        setTimeout(() => onComplete(false), 1200);
-      }
+      timer = setTimeout(() => onCompleteRef.current(rewarded), 1200);
     })();
-  }, [onComplete]);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <AnimatePresence>
