@@ -999,7 +999,8 @@ export const useUserStore = create<UserState>()(
       },
 
       solveCipher: (weekStart) => {
-        const { cipherSolveCount } = get();
+        const { currentCipherWeek, currentCipherSolved, cipherSolveCount } = get();
+        if (currentCipherWeek === weekStart && currentCipherSolved) return;
         set({
           currentCipherWeek: weekStart,
           currentCipherSolved: true,
