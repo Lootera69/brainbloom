@@ -2,7 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BarChart3, Zap, Flame, Brain, Clock, Award, X, Sparkles, TrendingUp, Share2 } from "lucide-react";
+import { BarChart3, Zap, Flame, Brain, Award, X, Sparkles, CalendarDays, Layers, Share2 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { cn } from "@/lib/utils";
 import { toBlob } from "dom-to-image-more";
@@ -20,40 +20,41 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
   const reportRef = useRef<HTMLDivElement>(null);
   const streak = useUserStore((s) => s.streak);
   const history = useUserStore((s) => s.history);
-  const completedPuzzleIds = useUserStore((s) => s.completedPuzzleIds);
   const weeklyXp = useUserStore((s) => s.weeklyXp);
-  const userXp = useUserStore((s) => s.xp);
 
   const oneWeekAgo = Date.now() - 7 * 86400000;
 
   const weeklyStats = useMemo(() => {
     const weekly = history.filter((a) => a.timestamp >= oneWeekAgo);
-    const puzzlesSolved = completedPuzzleIds.length;
     const weeklyPuzzles = weekly.length;
     const totalXpWeek = weeklyXp;
 
-    const categoryStats: Record<string, { count: number; totalXp: number }> = {};
+    const categoryStats: Record<string, number> = {};
     for (const a of weekly) {
-      if (!categoryStats[a.category]) categoryStats[a.category] = { count: 0, totalXp: 0 };
-      categoryStats[a.category].count++;
-      categoryStats[a.category].totalXp += a.xp;
+      categoryStats[a.category] = (categoryStats[a.category] || 0) + 1;
     }
 
-    let weakest = "N/A";
-    let weakestCount = Infinity;
-    for (const [cat, stats] of Object.entries(categoryStats)) {
-      if (stats.count < weakestCount) {
-        weakestCount = stats.count;
-        weakest = cat.charAt(0).toUpperCase() + cat.slice(1);
+    // Most-played category this week — genuinely useful, unlike the old inverted "weakest"
+    let topCategory = "—";
+    let topCount = 0;
+    for (const [cat, count] of Object.entries(categoryStats)) {
+      if (count > topCount) {
+        topCount = count;
+        topCategory = cat.charAt(0).toUpperCase() + cat.slice(1);
       }
     }
 
-    const accuracy = weekly.length > 0
-      ? Math.round((weekly.filter((a) => a.xp > 0).length / weekly.length) * 100)
-      : 0;
+    // Distinct days active this week — reliable, drawn from the same data source
+    const activeDays = new Set(weekly.map((a) => new Date(a.timestamp).toDateString())).size;
 
-    return { weeklyPuzzles, totalXpWeek, accuracy, weakest, puzzlesSolved, categoryCount: Object.keys(categoryStats).length };
-  }, [history, completedPuzzleIds, oneWeekAgo, weeklyXp]);
+    return {
+      weeklyPuzzles,
+      totalXpWeek,
+      topCategory,
+      activeDays,
+      categoryCount: Object.keys(categoryStats).length,
+    };
+  }, [history, oneWeekAgo, weeklyXp]);
 
   const stats: Stat[] = [
     {
@@ -72,28 +73,28 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
     },
     {
       icon: Flame,
-      label: "Best Streak",
+      label: "Day Streak",
       value: streak,
       color: "text-orange-500",
       bgClass: "from-orange-500/20 to-amber-500/10",
     },
     {
-      icon: TrendingUp,
-      label: "Accuracy",
-      value: `${weeklyStats.accuracy}%`,
+      icon: CalendarDays,
+      label: "Active Days",
+      value: `${weeklyStats.activeDays}/7`,
       color: "text-cyan-500",
       bgClass: "from-cyan-500/20 to-blue-500/10",
     },
     {
       icon: Award,
-      label: "Weakest Category",
-      value: weeklyStats.weakest,
+      label: "Top Category",
+      value: weeklyStats.topCategory,
       color: "text-rose-500",
       bgClass: "from-rose-500/20 to-pink-500/10",
     },
     {
-      icon: Clock,
-      label: "Categories Explored",
+      icon: Layers,
+      label: "Categories",
       value: weeklyStats.categoryCount,
       color: "text-violet-500",
       bgClass: "from-violet-500/20 to-purple-500/10",
@@ -132,7 +133,7 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
       link.click();
       URL.revokeObjectURL(url);
     } catch {
-      const text = `🧠 BrainBloom Weekly Report\n\n📊 XP Earned: ${weeklyStats.totalXpWeek}\n🧩 Puzzles: ${weeklyStats.weeklyPuzzles}\n🔥 Streak: ${streak} days\n🎯 Accuracy: ${weeklyStats.accuracy}%\n\nTrain your mind with BrainBloom!`;
+      const text = `🧠 BrainBloom Weekly Report\n\n📊 XP Earned: ${weeklyStats.totalXpWeek}\n🧩 Puzzles: ${weeklyStats.weeklyPuzzles}\n🔥 Streak: ${streak} days\n📅 Active Days: ${weeklyStats.activeDays}/7\n\nTrain your mind with BrainBloom!`;
       if (navigator.share) {
         try { await navigator.share({ title: "My BrainBloom Week", text }); } catch {}
       } else {
@@ -149,18 +150,18 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35 }}
           onClick={() => setOpen(true)}
-          className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-indigo-200 dark:border-white/10 bg-gradient-to-br from-indigo-50 via-purple-50 to-fuchsia-50 dark:from-[#6366f1] dark:via-[#7c3aed] dark:to-[#8b5cf6] text-left text-indigo-900 dark:text-white transition-all duration-500 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-200/50 dark:hover:shadow-primary/20"
+          className="group relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-indigo-200 dark:border-white/10 bg-gradient-to-br from-indigo-50 via-purple-50 to-fuchsia-50 dark:from-[#312e81] dark:via-[#6d28d9] dark:to-[#a21caf] text-left text-indigo-900 dark:text-white shadow-lg shadow-indigo-200/40 dark:shadow-fuchsia-900/20 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-indigo-200/50 dark:hover:shadow-fuchsia-900/30"
         >
           {/* Decorative blobs */}
           <motion.div
             animate={{ y: [0, -10, 0], scale: [1, 1.08, 1] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-12 -right-12 size-32 rounded-full bg-indigo-200/40 dark:bg-white/10 blur-2xl"
+            className="absolute -top-12 -right-12 size-32 rounded-full bg-indigo-200/40 dark:bg-fuchsia-400/15 blur-2xl"
           />
           <motion.div
             animate={{ y: [0, 8, 0], scale: [1, 1.05, 1] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-            className="absolute -bottom-10 -left-10 size-28 rounded-full bg-purple-200/30 dark:bg-white/5 blur-xl"
+            className="absolute -bottom-10 -left-10 size-28 rounded-full bg-purple-200/30 dark:bg-indigo-400/15 blur-xl"
           />
 
           {/* Sparkle particles — light mode only */}
@@ -176,13 +177,16 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
             ))}
           </div>
 
-          {/* Shimmer overlay on hover */}
-          <span className="absolute inset-0 -z-10 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.4)_50%,transparent_75%)] dark:bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.06)_50%,transparent_75%)] bg-[length:250%_250%] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+          {/* Shimmer sweep on hover */}
+          <span className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.4)_50%,transparent_75%)] dark:bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.1)_50%,transparent_75%)] bg-[length:250%_250%] opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+
+          {/* Top glass highlight edge */}
+          <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 dark:via-white/40 to-transparent" />
 
           <div className="relative z-10 flex flex-1 flex-col p-5 sm:p-6">
             {/* Header */}
             <div className="flex items-center gap-3">
-              <span className="inline-flex size-11 items-center justify-center rounded-xl bg-white/50 dark:bg-white/10 shadow-md shadow-indigo-500/10 dark:shadow-none backdrop-blur-sm">
+              <span className="inline-flex size-11 items-center justify-center rounded-xl bg-white/50 dark:bg-white/15 shadow-md shadow-indigo-500/10 dark:shadow-none backdrop-blur-sm">
                 <BarChart3 className="size-5 text-indigo-600 dark:text-white" />
               </span>
               <div>
@@ -203,9 +207,9 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
             {/* Mini stat row */}
             <div className="mt-4 grid grid-cols-3 gap-2">
               {[
-                { icon: Brain, label: "Puzzles", value: weeklyStats.weeklyPuzzles, always: true },
-                { icon: Flame, label: "Streak", value: `${streak}d`, always: true },
-                { icon: TrendingUp, label: "Accuracy", value: `${weeklyStats.accuracy}%`, always: true },
+                { icon: Brain, label: "Puzzles", value: weeklyStats.weeklyPuzzles },
+                { icon: Flame, label: "Streak", value: `${streak}d` },
+                { icon: CalendarDays, label: "Active", value: `${weeklyStats.activeDays}/7` },
               ].map((s, i) => (
                 <motion.div
                   key={s.label}
@@ -280,37 +284,47 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 40, scale: 0.95 }}
               transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-white/60 dark:border-white/10 bg-white/80 dark:bg-gray-950 shadow-2xl shadow-black/10 dark:shadow-none backdrop-blur-xl"
+              className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/60 dark:border-white/10 bg-white/80 dark:bg-[#0d0d12] shadow-2xl shadow-black/20 dark:shadow-black/60 backdrop-blur-xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close */}
               <button onClick={() => setOpen(false)}
-                className="absolute right-3 top-3 z-10 flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+                className="absolute right-3 top-3 z-20 flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
                 <X className="size-4" />
               </button>
 
               <div ref={reportRef}>
-              <div className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-fuchsia-50 dark:from-primary/5 dark:via-purple-500/5 dark:to-transparent px-6 pb-4 pt-8 sm:px-8">
-                <div className="absolute -top-10 -right-10">
-                  <Sparkles className="size-28 text-indigo-200/60 dark:text-primary/10" />
-                </div>
+              <div className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-purple-50 to-fuchsia-50 dark:from-[#312e81] dark:via-[#6d28d9] dark:to-[#a21caf] px-6 pb-5 pt-8 sm:px-8">
+                {/* Ambient orb */}
+                <motion.div
+                  animate={{ y: [0, -8, 0], scale: [1, 1.06, 1] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -top-10 -right-10"
+                >
+                  <Sparkles className="size-28 text-indigo-200/60 dark:text-white/15" />
+                </motion.div>
+                {/* Top glass highlight */}
+                <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 dark:via-white/40 to-transparent" />
 
                 <div className="relative flex items-center gap-3">
-                  <span className="flex size-12 items-center justify-center rounded-2xl bg-white/60 dark:bg-gradient-to-br dark:from-primary/20 dark:to-purple-500/10 shadow-md shadow-indigo-500/10 dark:shadow-none">
-                    <BarChart3 className="size-6 text-indigo-600 dark:text-primary" />
+                  <span className="flex size-12 items-center justify-center rounded-2xl bg-white/60 dark:bg-white/15 shadow-md shadow-indigo-500/10 dark:shadow-none backdrop-blur-sm">
+                    <BarChart3 className="size-6 text-indigo-600 dark:text-white" />
                   </span>
                   <div>
                     <h2 className="font-heading text-xl font-bold text-gray-900 dark:text-white">Weekly Insights</h2>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Your learning summary this week</p>
+                    <p className="text-sm text-gray-500 dark:text-white/70">Your learning summary this week</p>
                   </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 px-6 py-5 sm:grid-cols-3 sm:px-8">
-                {stats.map((stat) => (
-                  <div
+              <div className="grid grid-cols-2 gap-3 bg-white/60 dark:bg-transparent px-6 py-5 sm:grid-cols-3 sm:px-8">
+                {stats.map((stat, i) => (
+                  <motion.div
                     key={stat.label}
-                    className="flex flex-col items-center gap-2 rounded-xl p-4 text-center ring-1 ring-inset ring-indigo-100 dark:ring-gray-700 bg-white/50 dark:bg-transparent"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05 + i * 0.05 }}
+                    className="flex flex-col items-center gap-2 rounded-2xl p-4 text-center ring-1 ring-inset ring-indigo-100 dark:ring-white/10 bg-white/50 dark:bg-white/[0.03] transition-colors hover:bg-white/80 dark:hover:bg-white/[0.06]"
                   >
                     <span className={cn(
                       "flex size-10 items-center justify-center rounded-xl bg-gradient-to-br",
@@ -320,9 +334,9 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
                     </span>
                     <div>
                       <p className={cn("text-lg font-bold tabular-nums", stat.color)}>{stat.value}</p>
-                      <p className="text-[11px] text-gray-500 dark:text-gray-400">{stat.label}</p>
+                      <p className="text-[11px] text-gray-500 dark:text-white/50">{stat.label}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 

@@ -575,13 +575,6 @@ export default function EditPuzzlePage() {
                 className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary" required />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium">Question / Context</label>
-              <textarea value={form.question} onChange={(e) => update("question", e.target.value)}
-                placeholder="Give context for the cipher — a story, a clue, or just leave blank..."
-                rows={3}
-                className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary" />
-            </div>
-            <div>
               <label className="mb-1.5 block text-sm font-medium">Encoded Message</label>
               <textarea value={form.cipherData?.encodedMessage ?? ""} onChange={(e) => {
                 const current = form.cipherData || { encodedMessage: "", cipherType: "Custom", hint: undefined };
@@ -628,16 +621,16 @@ export default function EditPuzzlePage() {
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">
-                Hint <span className="text-muted-foreground font-normal">(optional, one per line)</span>
+                Hint <span className="text-muted-foreground font-normal">(optional)</span>
               </label>
               <textarea value={form.cipherData?.hint ?? ""} onChange={(e) => {
                 const current = form.cipherData || { encodedMessage: "", cipherType: "Custom", hint: undefined };
                 update("cipherData", { ...current, hint: e.target.value });
               }}
-                placeholder="First progressive hint...&#10;Second hint..."
+                placeholder="A single cryptic hint — keep it obscure, not a giveaway..."
                 rows={3}
                 className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary" />
-              <p className="mt-1 text-xs text-muted-foreground">Each line becomes a progressive hint during the cipher Sunday attempt.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Stays hidden until Friday, then unlocks as the only hint. Make it oblique — hard words, not plain instructions.</p>
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Correct Answer</label>

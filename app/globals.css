@@ -191,6 +191,8 @@ body {
   transition: background 0.4s ease, color 0.3s ease;
 }
 
+/* Dark mode: flat near-black base — ambient depth lives on the fixed aurora layer
+   (page.tsx) so it never segments or scrolls into visible bands on long pages */
 .dark body {
   background: var(--background);
   transition: background 0.4s ease, color 0.3s ease;

@@ -44,8 +44,8 @@ export function DailyChallengeCard({ puzzle, loading }: Props) {
       <div className={cn(
         "group relative overflow-hidden rounded-3xl p-6 sm:p-8 shadow-xl shadow-primary/10 dark:shadow-primary/5",
         completed
-          ? "bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-100 dark:from-success/80 dark:to-emerald-600 text-emerald-800 dark:text-white"
-          : "bg-gradient-to-br from-indigo-50 via-purple-50 to-fuchsia-50 dark:from-[#6366f1] dark:via-[#7c3aed] dark:to-[#8b5cf6] text-indigo-900 dark:text-white",
+          ? "bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-100 dark:from-success/80 dark:via-emerald-700 dark:to-emerald-600 text-emerald-800 dark:text-white"
+          : "bg-gradient-to-br from-indigo-50 via-purple-50 to-fuchsia-50 dark:from-[#312e81] dark:via-[#6d28d9] dark:to-[#a21caf] text-indigo-900 dark:text-white",
       )}>
         {/* Shimmer overlay */}
         <div className={cn(
@@ -260,9 +260,13 @@ export function DailyChallengeCard({ puzzle, loading }: Props) {
               >
                 <Button
                   onClick={() => router.push("/learn?daily=true")}
-                  className="mt-5 h-11 rounded-xl px-6 text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-fuchsia-500 shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/30 hover:brightness-110 active:scale-[0.95] dark:from-white/20 dark:via-white/15 dark:to-white/20 dark:shadow-none dark:hover:shadow-none sm:mt-6 sm:h-12 sm:px-8"
+                  className="group/btn relative mt-5 h-11 overflow-hidden rounded-xl border border-white/40 bg-white/20 px-6 text-sm font-semibold text-indigo-900 shadow-lg shadow-indigo-500/10 backdrop-blur-xl transition-all duration-300 hover:bg-white/30 hover:shadow-xl hover:shadow-indigo-500/20 active:scale-[0.95] dark:border-white/20 dark:bg-white/10 dark:text-white dark:shadow-black/20 dark:hover:bg-white/20 sm:mt-6 sm:h-12 sm:px-8"
                 >
-                  Start Challenge
+                  {/* Glassy sheen sweep */}
+                  <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform duration-700 group-hover/btn:translate-x-full dark:via-white/20" />
+                  {/* Top highlight edge */}
+                  <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent dark:via-white/30" />
+                  <span className="relative">Start Challenge</span>
                 </Button>
               </motion.div>
             </>

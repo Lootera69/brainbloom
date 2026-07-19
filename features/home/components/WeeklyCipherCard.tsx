@@ -2,12 +2,11 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, CheckCircle2, Eye, Gem, ArrowRight, Crown, Shield, Fingerprint, BadgeCheck, Timer } from "lucide-react";
+import { Lock, CheckCircle2, Eye, Gem, ArrowRight, Crown, Shield, Fingerprint, BadgeCheck, Timer, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
-import { getWeeklyCipher, getWeekStart, getWeekEnd } from "@/services/weekly-cipher";
-import { isSunday } from "@/services/weekly-cipher";
+import { getWeeklyCipher, getWeekStart, getWeekEnd, getCipherPhase } from "@/services/weekly-cipher";
 import { useRouter } from "next/navigation";
 import { type Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";
@@ -72,16 +71,51 @@ function NextSundayCountdown() {
   );
 }
 
+// Counts down to the moment solving closes: Saturday 00:00 UTC.
+function SaturdayCloseCountdown() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    function calc() {
+      const now = new Date();
+      const day = now.getUTCDay(); // 0=Sun … 6=Sat
+      const diff = (6 - day + 7) % 7 || 7; // days until next Saturday (never 0)
+      const next = new Date(now);
+      next.setUTCDate(next.getUTCDate() + diff);
+      next.setUTCHours(0, 0, 0, 0);
+      const ms = next.getTime() - now.getTime();
+      if (ms <= 0) return;
+      const d = Math.floor(ms / 86400000);
+      const h = Math.floor((ms % 86400000) / 3600000);
+      const m = Math.floor((ms % 3600000) / 60000);
+      const s = Math.floor((ms % 60000) / 1000);
+      setTime(`${d.toString().padStart(2, "0")}:${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`);
+    }
+    calc();
+    const id = setInterval(calc, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <span className="font-mono tracking-[0.15em]">{time || "--:--:--:--"}</span>
+  );
+}
+
 export function WeeklyCipherCard({ onOpenCipher }: Props) {
   const router = useRouter();
   const [cipher, setCipher] = useState<Puzzle | null>(null);
   const [loading, setLoading] = useState(true);
   const getCipherState = useUserStore((s) => s.getCipherState);
-  const cipherState = getCipherState();
-  const dayState = isSunday() ? "sunday" : "week-reveal";
-  const isAttemptDay = dayState === "sunday";
-  const solved = cipherState === "solved";
-  const revealed = cipherState === "revealed";
+  const solved = getCipherState() === "solved";
+  const phase = getCipherPhase();
+  // Solving is open Sun–Fri (active + hint). Saturday closes it and reveals the answer.
+  const canSolve = !solved && (phase === "active" || phase === "hint");
+  const hintAvailable = phase === "hint";
+  // "revealed" = answer shown but NOT solved by the user (Saturday close). Kept
+  // mutually exclusive with `solved` so the card's styling cases don't overlap.
+  const revealed = !solved && phase === "closed";
+  // The decoded answer block shows for both solved and closed states.
+  const showAnswer = solved || revealed;
 
   useEffect(() => {
     (async () => {
@@ -123,6 +157,9 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
           !solved && !revealed && "bg-gradient-to-br from-amber-50 via-white to-amber-100 dark:from-amber-950/30 dark:via-black/70 dark:to-amber-900/20",
         )}>
           <SparkleOverlay />
+
+          {/* Top glass highlight edge — premium sheen */}
+          <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent dark:via-amber-400/30" />
 
           {!solved && !revealed && (
             <motion.div
@@ -172,14 +209,14 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
             </motion.div>
 
             {/* Header */}
-            <div className="mb-5 flex items-start justify-between">
-              <div className="space-y-1">
+            <div className="mb-5 flex items-start justify-between gap-3">
+              <div className="min-w-0 space-y-1">
                 <div className="flex items-center gap-2">
                   <motion.div
                     animate={!solved ? { rotate: [0, 4, -4, 0] } : { rotate: 0 }}
                     transition={{ duration: 5, repeat: !solved ? Infinity : 0, ease: "easeInOut" }}
                     className={cn(
-                      "flex size-10 items-center justify-center rounded-xl transition-all duration-500",
+                      "flex size-10 shrink-0 items-center justify-center rounded-xl transition-all duration-500",
                       solved && "bg-amber-100 shadow-lg shadow-amber-200/50 dark:bg-amber-500/10 dark:shadow-lg dark:shadow-amber-500/10",
                       revealed && "bg-amber-100/50 dark:bg-amber-600/5",
                       !solved && !revealed && "bg-amber-100/80 dark:bg-amber-500/[0.07]",
@@ -200,10 +237,10 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
                     )}>
                       {solved ? "CASE CLOSED" : revealed ? "FILE DECLASSIFIED" : "CIPHER OF THE WEEK"}
                     </h3>
-                    {isAttemptDay && !solved && !revealed ? (
-                      <p className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-amber-600/70 dark:text-amber-400/50">
-                        <span>ACTIVE — expires in</span>
-                        <span className="text-amber-600 dark:text-amber-400 font-semibold"><NextSundayCountdown /></span>
+                    {canSolve ? (
+                      <p className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[10px] font-mono uppercase tracking-wider text-amber-600/70 dark:text-amber-400/50">
+                        <span>{hintAvailable ? "Hint unlocked — closes in" : "Active — closes in"}</span>
+                        <span className="text-amber-600 dark:text-amber-400 font-semibold"><SaturdayCloseCountdown /></span>
                       </p>
                     ) : (
                       <p className={cn(
@@ -211,7 +248,7 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
                         solved && "text-amber-500/80 dark:text-amber-500/60",
                         revealed && "text-amber-500/60 dark:text-amber-600/40",
                       )}>
-                        {revealed ? "Declassified until Saturday" : solved ? "Case closed" : "New file every Sunday"}
+                        {revealed ? "Answer revealed — new file Sunday" : solved ? "Solved this week" : "New file every Sunday"}
                       </p>
                     )}
                   </div>
@@ -233,7 +270,7 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
 
             {/* Puzzle info */}
             <div className="mb-4 space-y-1.5">
-              <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider text-amber-600/70 dark:text-amber-500/50">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-mono uppercase tracking-wider text-amber-600/70 dark:text-amber-500/50">
                 <span>{cipher.difficulty}</span>
                 <span className="text-amber-600/40 dark:text-amber-500/30">&bull;</span>
                 <span>{cipher.cipherData?.cipherType ?? "CIPHER"}</span>
@@ -248,14 +285,16 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
               )}>
                 {cipher.title}
               </h4>
-              {cipher.question && (
+              {/* The cryptic hint (cipherData.hint). Withheld until Friday
+                  (hintAvailable), and always shown once the answer is out. */}
+              {cipher.cipherData?.hint && (hintAvailable || showAnswer) && (
                 <p className={cn(
                   "line-clamp-2 text-sm leading-relaxed",
                   solved && "text-amber-700/60 dark:text-amber-300/60",
                   revealed && "text-amber-600/70 dark:text-amber-400/50",
                   !solved && !revealed && "text-amber-700/60 dark:text-amber-300/60",
                 )}>
-                  {cipher.question}
+                  {cipher.cipherData.hint}
                 </p>
               )}
             </div>
@@ -310,8 +349,8 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
               </div>
             )}
 
-            {/* Revealed answer (Mon-Sat or after wrong) */}
-            {(revealed || solved) && (
+            {/* Decoded answer — shown to the solver, and to everyone on Saturday */}
+            {showAnswer && (
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -348,7 +387,7 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
             )}
 
             {/* Footer */}
-            <div className="flex items-center justify-between border-t border-amber-200 pt-4 dark:border-amber-500/10">
+            <div className="flex flex-col gap-3 border-t border-amber-200 pt-4 dark:border-amber-500/10 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-2.5">
                 {solved ? (
                   <div className="flex items-center gap-1.5 text-xs text-amber-600/80 dark:text-amber-400/60">
@@ -358,7 +397,7 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
                 ) : revealed ? (
                   <div className="flex items-center gap-1.5 text-xs text-amber-600/60 dark:text-amber-500/40">
                     <Eye className="size-3.5" />
-                    <span>File declassifies {weekEnd}</span>
+                    <span>Closed for solving &middot; next file Sunday</span>
                   </div>
                 ) : (
                   <Button
@@ -366,41 +405,34 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
                       onOpenCipher?.();
                       router.push(`/learn?cipher=${cipher.id}`);
                     }}
-                    className="h-9 gap-2 rounded-xl border border-amber-200 bg-gradient-to-r from-amber-500/20 to-amber-600/20 px-4 text-xs font-bold uppercase tracking-wider text-amber-700 shadow-lg shadow-amber-200/30 backdrop-blur-sm transition-all hover:from-amber-500/30 hover:to-amber-600/30 hover:shadow-xl hover:shadow-amber-200/40 active:scale-[0.97] dark:border-amber-500/30 dark:bg-gradient-to-r dark:from-amber-600/20 dark:to-amber-700/20 dark:text-amber-300 dark:shadow-lg dark:shadow-amber-900/20 dark:hover:from-amber-600/30 dark:hover:to-amber-700/30 dark:hover:shadow-xl dark:hover:shadow-amber-900/30"
+                    className="group/btn h-9 w-full justify-center gap-2 rounded-xl border border-amber-200 bg-gradient-to-r from-amber-500/20 to-amber-600/20 px-4 text-xs font-bold uppercase tracking-wider text-amber-700 shadow-lg shadow-amber-200/30 backdrop-blur-sm transition-all hover:from-amber-500/30 hover:to-amber-600/30 hover:shadow-xl hover:shadow-amber-200/40 active:scale-[0.97] dark:border-amber-500/30 dark:bg-gradient-to-r dark:from-amber-600/20 dark:to-amber-700/20 dark:text-amber-300 dark:shadow-lg dark:shadow-amber-900/20 dark:hover:from-amber-600/30 dark:hover:to-amber-700/30 dark:hover:shadow-xl dark:hover:shadow-amber-900/30 sm:w-auto"
                   >
-                    Decode <ArrowRight className="size-3.5" />
+                    {hintAvailable ? "Decode with hint" : "Decode"} <ArrowRight className="size-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5" />
                   </Button>
                 )}
               </div>
 
-              <div>
-                {isAttemptDay && !solved && !revealed && (
+              <div className="shrink-0">
+                {canSolve && (
                   <div className="flex items-center gap-2 text-[10px] font-mono text-amber-600/50 dark:text-amber-500/30">
-                    <Timer className="size-3" />
-                    <span className="uppercase tracking-wider">Time remaining</span>
-                    <span className="text-amber-500/70 dark:text-amber-400/50"><NextSundayCountdown /></span>
-                  </div>
-                )}
-
-                {!isAttemptDay && !solved && (
-                  <div className="flex items-center gap-2 text-[10px] font-mono text-amber-600/50 dark:text-amber-500/30">
-                    <Timer className="size-3" />
-                    <span className="uppercase tracking-wider">Next file in</span>
-                    <span className="text-amber-500/70 dark:text-amber-400/50"><NextSundayCountdown /></span>
+                    {hintAvailable ? <Lightbulb className="size-3 shrink-0 text-amber-500/70 dark:text-amber-400/60" /> : <Timer className="size-3 shrink-0" />}
+                    <span className="uppercase tracking-wider">{hintAvailable ? "Hint unlocked" : "Closes Saturday"}</span>
+                    <span className="text-amber-500/70 dark:text-amber-400/50"><SaturdayCloseCountdown /></span>
                   </div>
                 )}
 
                 {solved && (
                   <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-amber-600/60 dark:text-amber-500/40">
-                    <BadgeCheck className="size-3" />
-                    <span>Case closed this week</span>
+                    <BadgeCheck className="size-3 shrink-0" />
+                    <span>Solved this week</span>
                   </div>
                 )}
 
-                {isAttemptDay && revealed && (
-                  <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-amber-600/60 dark:text-amber-500/40">
-                    <Eye className="size-3" />
-                    <span>Solution revealed</span>
+                {revealed && (
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-amber-600/50 dark:text-amber-500/30">
+                    <Timer className="size-3 shrink-0" />
+                    <span className="uppercase tracking-wider">Next file in</span>
+                    <span className="text-amber-500/70 dark:text-amber-400/50"><NextSundayCountdown /></span>
                   </div>
                 )}
               </div>

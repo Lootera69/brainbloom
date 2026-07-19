@@ -2,9 +2,10 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { XCircle, ArrowRight, Lock, Shield, Fingerprint, Crown, BadgeCheck, Ghost } from "lucide-react";
+import { XCircle, ArrowRight, Lock, Shield, Fingerprint, Crown, BadgeCheck, Ghost, Lightbulb } from "lucide-react";
 import { type Puzzle } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
+import { getCipherPhase } from "@/services/weekly-cipher";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -15,6 +16,8 @@ interface Props {
 }
 
 function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
+  // Friday unlocks cipherData.hint as the sole hint (see getCipherPhase).
+  const hintUnlocked = getCipherPhase() === "hint";
   const [input, setInput] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [revealPhase, setRevealPhase] = useState<"idle" | "decoding" | "result">("idle");
@@ -43,6 +46,13 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !submitted && revealPhase === "idle") handleSubmit();
+  };
+
+  const handleRetry = () => {
+    setSubmitted(false);
+    setRevealPhase("idle");
+    setInput("");
+    setTimeout(() => inputRef.current?.focus(), 50);
   };
 
   return (
@@ -160,11 +170,9 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
             <h2 className="font-heading mb-2 text-xl font-bold tracking-tight text-amber-200/90 sm:text-2xl">
               {puzzle.title}
             </h2>
-            {puzzle.question && (
-              <p className="mb-4 text-sm leading-relaxed text-amber-300/50">
-                {puzzle.question}
-              </p>
-            )}
+
+            {/* No question/context is shown — a cipher is title + ciphertext
+                only. The cryptic hint (cipherData.hint) unlocks Friday below. */}
 
             {/* Encoded message */}
             {!submitted && puzzle.cipherData?.encodedMessage && (
@@ -245,7 +253,7 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-4 text-sm font-mono text-amber-500/40"
               >
-                This file remains classified until Monday.
+                Decryption failed. Keep working — the answer reveals Saturday.
               </motion.p>
             )}
           </div>
@@ -279,11 +287,29 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
             )}
           </div>
 
-          {/* No hints — cipher is meant to be hard. */}
-          <div className="mt-2 flex items-center justify-end gap-1.5">
-            <Lock className="size-2.5 text-amber-500/20" />
-            <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-amber-500/20">No hints available</span>
-          </div>
+          {/* Friday unlocks a single cryptic hint (cipherData.hint).
+              Before Friday the cipher is pure recognition (no hint). */}
+          {hintUnlocked && puzzle.cipherData?.hint ? (
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="mt-4 rounded-xl border border-amber-500/15 bg-amber-500/[0.04] px-4 py-3"
+            >
+              <div className="mb-1.5 flex items-center gap-1.5">
+                <Lightbulb className="size-3 text-amber-400/70" />
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-amber-400/60">
+                  Friday Hint
+                </span>
+              </div>
+              <p className="text-sm leading-relaxed text-amber-200/70">{puzzle.cipherData.hint}</p>
+            </motion.div>
+          ) : (
+            <div className="mt-2 flex items-center justify-end gap-1.5">
+              <Lock className="size-2.5 text-amber-500/20" />
+              <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-amber-500/20">Hint unlocks Friday</span>
+            </div>
+          )}
 
           <motion.button
             onClick={handleSubmit}
@@ -365,7 +391,7 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
                       transition={{ delay: 0.15 }}
                       className="mt-1.5 text-sm font-mono text-amber-500/40"
                     >
-                      This file remains classified until Monday.
+                      Not quite. Try a different approach — you can keep attempting until Saturday.
                     </motion.p>
                   )}
 
@@ -405,7 +431,7 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
             </motion.div>
 
             <motion.button
-              onClick={() => onComplete(isCorrect, 0)}
+              onClick={isCorrect ? () => onComplete(true, 0) : handleRetry}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: isCorrect ? 0 : 0.25 }}
@@ -415,15 +441,27 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
                 "mt-4 flex h-12 w-full items-center justify-center gap-2.5 rounded-2xl border text-sm font-bold uppercase tracking-wider shadow-lg transition-all active:scale-[0.98]",
                 isCorrect
                   ? "border-amber-500/20 bg-gradient-to-r from-amber-600/20 via-amber-500/15 to-amber-600/20 text-amber-300/90 shadow-amber-900/20 hover:from-amber-600/30 hover:via-amber-500/20 hover:to-amber-600/30"
-                  : "border-destructive/15 bg-gradient-to-r from-destructive/10 to-destructive/5 text-amber-300/60 shadow-destructive/10 hover:from-destructive/20 hover:to-destructive/10",
+                  : "border-amber-500/15 bg-gradient-to-r from-amber-600/10 to-amber-500/5 text-amber-300/70 shadow-amber-900/10 hover:from-amber-600/20 hover:to-amber-500/10",
               )}
             >
               {isCorrect ? (
                 <><Fingerprint className="size-4" /> Decrypt Complete <ArrowRight className="size-4" /></>
               ) : (
-                <><XCircle className="size-4" /> Close File <ArrowRight className="size-4" /></>
+                <><ArrowRight className="size-4 rotate-180" /> Try Again</>
               )}
             </motion.button>
+
+            {!isCorrect && (
+              <motion.button
+                onClick={() => onComplete(false, 0)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.35 }}
+                className="mt-2.5 flex h-10 w-full items-center justify-center gap-2 rounded-xl text-xs font-mono uppercase tracking-wider text-amber-500/40 transition-colors hover:text-amber-500/60"
+              >
+                <XCircle className="size-3.5" /> Close File
+              </motion.button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

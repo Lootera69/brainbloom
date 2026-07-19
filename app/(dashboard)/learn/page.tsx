@@ -17,7 +17,7 @@ import { type Puzzle } from "@/types/puzzle";
 import { toast } from "sonner";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
 import { getPublishedByCategory, getPuzzle } from "@/services/puzzle-service";
-import { getWeekStart } from "@/services/weekly-cipher";
+import { getWeekStart, getCipherPhase } from "@/services/weekly-cipher";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
 import { ErrorFallback } from "@/components/error-fallback";
@@ -135,6 +135,13 @@ function LearnPage() {
       const { hearts: h, hasCompletedDailyPuzzle: checkDaily } = useUserStore.getState();
 
       if (cipherId) {
+        // Cipher is closed for solving on Saturday, and once already solved this
+        // week. In both cases send the player home to see the reveal on the card.
+        const alreadySolved = useUserStore.getState().getCipherState() === "solved";
+        if (getCipherPhase() === "closed" || alreadySolved) {
+          router.push("/");
+          return;
+        }
         const puzzle = await getPuzzle(cipherId);
         if (puzzle) {
           setCurrentPuzzle(puzzle);
@@ -172,7 +179,7 @@ function LearnPage() {
       setAttempt(0);
       setCatPuzzles([]);
     })();
-  }, [searchParams, setFocusMode]);
+  }, [searchParams, setFocusMode, router]);
 
   const handleSelectCategory = (catId: string) => {
     setSelectedCat(catId);
@@ -239,6 +246,8 @@ function LearnPage() {
 
     if (currentPuzzle.type === "cipher") {
       const wStart = getWeekStart();
+      // Only a correct solve is terminal. Wrong answers no longer lock or reveal
+      // the cipher — the player can retry until Saturday, when it auto-reveals.
       if (correct) {
         const solveCipher = useUserStore.getState().solveCipher;
         solveCipher(wStart);
@@ -246,11 +255,15 @@ function LearnPage() {
         import("@/services/puzzle-service").then(({ incrementCompleted }) =>
           incrementCompleted(currentPuzzle.id),
         );
+        checkStreak(true);
+        setTimeout(() => router.push("/"), 1200);
       } else {
-        useUserStore.getState().revealCipher(wStart);
+        // "Close File" — the player is leaving without solving. Nothing is
+        // locked; they can return and retry until Saturday. Retries happen
+        // in-place inside CipherPlay and never reach handleComplete.
+        router.push("/");
       }
-      checkStreak(true);
-      setTimeout(() => router.push("/"), 1200);
+      setFocusMode(false);
       return;
     }
 
@@ -280,6 +293,15 @@ function LearnPage() {
           }
           return;
         }
+      }
+      // Daily wonder finished — return to the home page the user came from
+      if (isDaily) {
+        setCurrentPuzzle(null);
+        setIsDaily(false);
+        setLessonProgress(null);
+        setFocusMode(false);
+        router.push("/");
+        return;
       }
       setView("browse");
       setCurrentPuzzle(null);
@@ -361,12 +383,22 @@ function LearnPage() {
       xp: isDaily ? (currentPuzzle.xpReward * 2) : xpEarned,
     });
 
-    setView("browse");
+    const wasDaily = isDaily;
+
     setCurrentPuzzle(null);
     setIsDaily(false);
     setLessonProgress(null);
     setFocusMode(false);
-  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, setFocusMode, lessonProgress, catPuzzles]);
+
+    // Daily puzzle has no "next" — send the user back home where they started,
+    // rather than dropping them on an empty browse view.
+    if (wasDaily) {
+      setTimeout(() => router.push("/"), 1200);
+      return;
+    }
+
+    setView("browse");
+  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, setFocusMode, lessonProgress, catPuzzles, router]);
 
   const handleBack = () => {
     setView("browse");

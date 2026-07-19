@@ -135,7 +135,7 @@ interface UserState {
   solveCipher: (weekStart: string) => void;
   revealCipher: (weekStart: string) => void;
   hasSolvedCurrentCipher: () => boolean;
-  getCipherState: () => "attempt" | "solved" | "revealed";
+  getCipherState: () => "solved" | "unsolved";
   _getWeekStartWithOverride: () => { weekStart: string; isSundayOverride: boolean };
 }
 
@@ -1034,17 +1034,13 @@ export const useUserStore = create<UserState>()(
         return currentCipherWeek === weekStart && currentCipherSolved;
       },
 
+      // Whether THIS week's cipher has been solved by the user. The Saturday
+      // reveal is time-based (see getCipherPhase) and applies to everyone, so
+      // it is no longer tracked here — the card combines this with the phase.
       getCipherState: () => {
-        const { currentCipherWeek, currentCipherSolved, cipherRevealed } = get();
-        const { weekStart, isSundayOverride } = get()._getWeekStartWithOverride();
-        if (currentCipherWeek !== weekStart) {
-          if (currentCipherSolved) return "solved";
-          if (isSundayOverride) return "attempt";
-          return "revealed";
-        }
-        if (currentCipherSolved) return "solved";
-        if (cipherRevealed) return "revealed";
-        return "attempt";
+        const { currentCipherWeek, currentCipherSolved } = get();
+        const { weekStart } = get()._getWeekStartWithOverride();
+        return currentCipherWeek === weekStart && currentCipherSolved ? "solved" : "unsolved";
       },
 
       markWonderExperienced: (id) => {

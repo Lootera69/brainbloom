@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -14,7 +14,7 @@ import {
   ShieldAlert,
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
-import { setStudioRole } from "@/services/puzzle-service";
+import { isAdmin } from "@/services/puzzle-service";
 import { resetAndSeed } from "@/scripts/seed-data/importer";
 import seedData from "@/scripts/seed-data/data";
 
@@ -32,16 +32,28 @@ export default function SeedPage() {
   const [progress, setProgress] = useState<string[]>([]);
   const [counts, setCounts] = useState<{ groups: number; puzzles: number } | null>(null);
   const [confirmed, setConfirmed] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [admin, setAdmin] = useState(false);
+
+  // Role lives in sessionStorage, so it can only be read after mount.
+  useEffect(() => {
+    setMounted(true);
+    setAdmin(isAdmin());
+  }, []);
 
   const addLog = useCallback((msg: string) => {
     setProgress((prev) => [...prev, msg]);
   }, []);
 
   const handleSeed = async () => {
+    // Seeding is destructive and admin-only. Never self-promote the caller.
+    if (!isAdmin()) {
+      addLog("ERROR: Only admins can seed the database.");
+      return;
+    }
+
     setStep("clearing");
     addLog("Starting seed process...");
-
-    setStudioRole("admin");
 
     try {
       let groupsImported = 0;
@@ -67,6 +79,34 @@ export default function SeedPage() {
       setStep("idle");
     }
   };
+
+  // Contributors can reach this route directly; block them from the tool.
+  if (mounted && !admin) {
+    return (
+      <div className="mx-auto max-w-2xl space-y-6 px-4 py-8">
+        <button
+          onClick={() => router.push("/studio")}
+          className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
+        >
+          <ArrowLeft className="size-4" />
+          Back to Studio
+        </button>
+        <GlassCard intensity="strong" className="border-destructive/20 p-6">
+          <div className="flex items-start gap-3">
+            <ShieldAlert className="mt-0.5 size-6 shrink-0 text-destructive" />
+            <div>
+              <h3 className="font-semibold text-destructive">Admins only</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Seeding replaces all puzzles and lesson groups. Only studio
+                admins can run this tool. Reach out to an admin if you need a
+                database reset.
+              </p>
+            </div>
+          </div>
+        </GlassCard>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-2xl space-y-6 px-4 py-8">

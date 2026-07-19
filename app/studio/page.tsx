@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
-import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ChevronDown, ArrowUpDown, Database, Eye, Zap, LayoutGrid } from "lucide-react";
+import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ArrowUpDown, Database, Eye, Zap, LayoutGrid } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
@@ -13,6 +13,7 @@ import { getTodayDailyPuzzleId, setDailyPuzzle } from "@/services/daily-puzzle";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { toast } from "sonner";
 import { SkeletonPuzzleList, SkeletonFilterBar } from "@/components/ui/skeleton";
+import { SelectDropdown } from "@/components/ui/select-dropdown";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
 import { ErrorFallback } from "@/components/error-fallback";
@@ -78,6 +79,26 @@ const FILTER_TABS = [
   { value: "rejected", label: "Rejected", icon: XCircle },
   { value: "needs-discussion", label: "Discuss", icon: MessageSquare },
 ] as const;
+
+const TYPE_FILTER_OPTIONS = [
+  { value: "all", label: "All types" },
+  { value: "multiple-choice", label: "Multiple Choice" },
+  { value: "true-false", label: "True / False" },
+  { value: "type-answer", label: "Type Answer" },
+  { value: "crossword", label: "Crossword" },
+  { value: "sudoku", label: "Sudoku" },
+  { value: "riddle", label: "Riddle" },
+  { value: "wonder", label: "Wonder" },
+  { value: "cipher", label: "Cipher" },
+];
+
+const SORT_OPTIONS = [
+  { value: "createdAt", label: "Newest" },
+  { value: "updatedAt", label: "Modified" },
+  { value: "title", label: "Title" },
+  { value: "xpReward", label: "XP" },
+  { value: "completedBy", label: "Plays" },
+];
 
 function Clock(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -345,7 +366,7 @@ export default function StudioPage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-        className="relative mb-6 space-y-3"
+        className="relative z-30 mb-6 space-y-3"
       >
         {/* Filter Tabs */}
         <div className="flex flex-wrap items-center gap-1 rounded-2xl border border-border/50 bg-white/60 p-1.5 backdrop-blur-xl dark:border-white/[0.06] dark:bg-white/[0.03]">
@@ -386,34 +407,20 @@ export default function StudioPage() {
           <div className="mx-1 h-5 w-px bg-border/50 dark:bg-white/10" />
 
           {/* Type filter */}
-          <div className="relative">
-            <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}
-              className="h-9 appearance-none rounded-xl bg-transparent pl-3 pr-7 text-xs font-medium text-muted-foreground outline-none transition-colors hover:text-foreground">
-              <option value="all">All types</option>
-              <option value="multiple-choice">Multiple Choice</option>
-              <option value="true-false">True / False</option>
-              <option value="type-answer">Type Answer</option>
-              <option value="crossword">Crossword</option>
-              <option value="sudoku">Sudoku</option>
-              <option value="riddle">Riddle</option>
-              <option value="wonder">Wonder</option>
-              <option value="cipher">Cipher</option>
-            </select>
-            <ChevronDown className="pointer-events-none absolute right-1.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground/40" />
-          </div>
+          <SelectDropdown
+            value={typeFilter}
+            onChange={setTypeFilter}
+            options={TYPE_FILTER_OPTIONS}
+            ariaLabel="Filter by puzzle type"
+          />
 
           {/* Sort */}
-          <div className="relative">
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}
-              className="h-9 appearance-none rounded-xl bg-transparent pl-3 pr-7 text-xs font-medium text-muted-foreground outline-none transition-colors hover:text-foreground">
-              <option value="createdAt">Newest</option>
-              <option value="updatedAt">Modified</option>
-              <option value="title">Title</option>
-              <option value="xpReward">XP</option>
-              <option value="completedBy">Plays</option>
-            </select>
-            <ChevronDown className="pointer-events-none absolute right-1.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground/40" />
-          </div>
+          <SelectDropdown
+            value={sortBy}
+            onChange={setSortBy}
+            options={SORT_OPTIONS}
+            ariaLabel="Sort puzzles"
+          />
 
           <button onClick={() => setSortAsc(!sortAsc)}
             className={cn(

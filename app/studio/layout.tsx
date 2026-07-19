@@ -15,7 +15,7 @@ const navItems = [
   { href: "/studio", label: "Dashboard", icon: LayoutDashboard },
   { href: "/studio/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/studio/create", label: "Create Puzzle", icon: Plus },
-  { href: "/studio/seed", label: "Seed Data", icon: Database },
+  { href: "/studio/seed", label: "Seed Data", icon: Database, adminOnly: true },
   { href: "/studio/settings", label: "Settings", icon: Settings },
 ];
 
@@ -340,6 +340,9 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
     );
   }
 
+  // Admin-only nav entries (e.g. Seed Data) are hidden from contributors.
+  const visibleNavItems = navItems.filter((item) => !item.adminOnly || role === "admin");
+
   return (
     <div className="flex min-h-dvh flex-col bg-background">
       <header className="sticky top-0 z-50 border-b bg-card/70 backdrop-blur-xl">
@@ -386,10 +389,10 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
 
       {/* Mobile bottom nav */}
       <nav className="sticky bottom-0 z-40 flex items-center border-t bg-card/70 backdrop-blur-xl px-1 pb-safe md:hidden">
-        {navItems.map((item, idx) => {
+        {visibleNavItems.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;
-          const isCreate = idx === 2;
+          const isCreate = item.href === "/studio/create";
           return (
             <Link
               key={item.href}
@@ -423,7 +426,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
     return (
       <aside className="sticky top-14 z-40 hidden h-[calc(100dvh-3.5rem)] w-72 shrink-0 border-r bg-card/30 backdrop-blur-sm md:block">
         <nav className="flex flex-col gap-1 p-3 pt-4">
-          {navItems.map((item) => {
+          {visibleNavItems.map((item) => {
             const isActive = pathname === item.href;
             const Icon = item.icon;
             return (

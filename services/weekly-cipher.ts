@@ -186,8 +186,29 @@ export function isSunday(): boolean {
   return new Date().getUTCDay() === 0;
 }
 
-export function getCipherDayState(): "sunday" | "week-reveal" {
-  return isSunday() ? "sunday" : "week-reveal";
+/**
+ * Weekly cipher lifecycle (all boundaries in UTC):
+ *   Sun–Thu → "active"  : solving open, no hint shown (recognition only)
+ *   Fri      → "hint"    : solving still open, the descriptive question is shown as a hint
+ *   Sat      → "closed"  : solving disabled, answer + explanation revealed to everyone
+ * A new cipher is picked each Sunday (see autoPickWeeklyCipher).
+ *
+ * TEMP DEV OVERRIDE: localStorage.setItem("brainbloom-cipher-phase","active|hint|closed")
+ * to force a phase, or "brainbloom-force-sunday" to force the Sunday/active start.
+ * REVERT: remove the localStorage checks below to restore real date detection.
+ */
+export type CipherPhase = "active" | "hint" | "closed";
+
+export function getCipherPhase(): CipherPhase {
+  if (typeof window !== "undefined") {
+    const forced = localStorage.getItem("brainbloom-cipher-phase");
+    if (forced === "active" || forced === "hint" || forced === "closed") return forced;
+    if (localStorage.getItem("brainbloom-force-sunday")) return "active";
+  }
+  const day = new Date().getUTCDay(); // 0=Sun … 6=Sat
+  if (day === 6) return "closed"; // Saturday
+  if (day === 5) return "hint";   // Friday
+  return "active";                // Sunday–Thursday
 }
 
 // TEMP DEV OVERRIDE: also override getWeekStart so the auto-pick uses today as the "Sunday"

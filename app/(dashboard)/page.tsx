@@ -93,6 +93,43 @@ export default function HomePage() {
         />
       </div>
 
+      {/* Animated aurora mesh — dark mode: jewel-toned ambient light on near-black */}
+      <div className="pointer-events-none fixed inset-0 -z-10 hidden overflow-hidden dark:block">
+        {/* Deep indigo orb, top-left */}
+        <motion.div
+          animate={{ y: [0, -45, 0], x: [0, 35, 0], scale: [1, 1.18, 1] }}
+          transition={{ duration: 19, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-52 -left-52 size-[640px] rounded-full opacity-70 blur-[110px]"
+          style={{ background: "radial-gradient(circle, rgba(99,102,241,0.5), rgba(79,70,229,0.22), transparent 70%)" }}
+        />
+        {/* Royal magenta orb, bottom-right */}
+        <motion.div
+          animate={{ y: [0, 40, 0], x: [0, -30, 0], scale: [1, 1.12, 1] }}
+          transition={{ duration: 23, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute -bottom-44 -right-44 size-[540px] rounded-full opacity-60 blur-[100px]"
+          style={{ background: "radial-gradient(circle, rgba(217,70,239,0.42), rgba(168,85,247,0.18), transparent 70%)" }}
+        />
+        {/* Cyan accent orb, center-left */}
+        <motion.div
+          animate={{ y: [0, -24, 0], x: [0, -18, 0], scale: [1, 1.08, 1] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+          className="absolute top-[38%] left-[28%] size-[380px] rounded-full opacity-45 blur-[90px]"
+          style={{ background: "radial-gradient(circle, rgba(34,211,238,0.32), rgba(6,182,212,0.12), transparent 70%)" }}
+        />
+        {/* Gold shimmer orb, lower-right — the royal touch */}
+        <motion.div
+          animate={{ y: [0, 28, 0], x: [0, 22, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 21, repeat: Infinity, ease: "easeInOut", delay: 8 }}
+          className="absolute top-[58%] right-[18%] size-[300px] rounded-full opacity-40 blur-[80px]"
+          style={{ background: "radial-gradient(circle, rgba(251,191,36,0.28), rgba(245,158,11,0.1), transparent 70%)" }}
+        />
+        {/* Top vignette for OLED depth */}
+        <div
+          className="absolute inset-x-0 top-0 h-64"
+          style={{ background: "linear-gradient(to bottom, rgba(7,7,10,0.9), transparent)" }}
+        />
+      </div>
+
       <StreakBar />
 
       <DailyRewardChest />
