@@ -1007,7 +1007,6 @@ export const useUserStore = create<UserState>()(
           cipherSolveCount: cipherSolveCount + 1,
           cipherRevealed: false,
         });
-        get().addGems(25);
       },
 
       revealCipher: (weekStart) => {

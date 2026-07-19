@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, XCircle, Zap, ArrowRight, Lock, Shield, Fingerprint, Crown, BadgeCheck, Ghost } from "lucide-react";
+import { XCircle, ArrowRight, Lock, Shield, Fingerprint, Crown, BadgeCheck, Ghost } from "lucide-react";
 import { type Puzzle } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
 import { cn } from "@/lib/utils";
@@ -14,7 +14,7 @@ interface Props {
   isRepeat?: boolean;
 }
 
-function CipherPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
+function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
   const [input, setInput] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [revealPhase, setRevealPhase] = useState<"idle" | "decoding" | "result">("idle");
@@ -22,7 +22,6 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
 
   const isCorrect = input.trim().toLowerCase() === puzzle.correctAnswer.trim().toLowerCase() ||
     (puzzle.acceptedAnswers?.some((a) => a.trim().toLowerCase() === input.trim().toLowerCase()) ?? false);
-  const earned = isCorrect && !isRepeat ? puzzle.xpReward : 0;
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -112,14 +111,6 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
                 CLASSIFIED — EYES ONLY
               </span>
             </motion.div>
-
-            {isRepeat && (
-              <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
-                className="relative mb-4 flex items-center justify-center gap-1.5 rounded-lg bg-amber-500/5 px-3 py-1.5 text-xs font-medium text-amber-500/60">
-                <Lock className="size-3.5" />
-                File already processed — no additional rewards
-              </motion.div>
-            )}
 
             {puzzle.imageUrl && (
               <img src={puzzle.imageUrl} alt="" loading="lazy"
@@ -378,24 +369,6 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
                     </motion.p>
                   )}
 
-                  {isCorrect && !isRepeat && (
-                    <motion.div
-                      initial={{ opacity: 0, x: -8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 }}
-                      className="mt-3 inline-flex items-center gap-2 rounded-xl border border-amber-500/15 bg-amber-500/[0.05] px-4 py-2"
-                    >
-                      <Zap className="size-4 text-amber-400" />
-                      <span className="text-sm font-bold text-amber-300">+{earned} XP</span>
-                      <span className="text-amber-500/30">|</span>
-                      <Crown className="size-4 text-amber-400" />
-                      <span className="text-sm font-bold text-amber-300">25 Gems</span>
-                    </motion.div>
-                  )}
-
-                  {isCorrect && isRepeat && (
-                    <p className="mt-1.5 text-xs font-mono text-amber-500/40">File already processed this week.</p>
-                  )}
                 </div>
               </div>
 
@@ -432,12 +405,24 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
             </motion.div>
 
             <motion.button
-              onClick={() => onComplete(isCorrect, earned)}
+              onClick={() => onComplete(isCorrect, 0)}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: isCorrect ? 0 : 0.25 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
-              className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-2xl border border-amber-500/15 bg-gradient-to-r from-amber-600/10 to-amber-700/10 text-sm font-bold uppercase tracking-wider text-amber-300/80 shadow-lg shadow-amber-900/10 transition-all hover:from-amber-600/20 hover:to-amber-700/20 active:scale-[0.98]"
+              className={cn(
+                "mt-4 flex h-12 w-full items-center justify-center gap-2.5 rounded-2xl border text-sm font-bold uppercase tracking-wider shadow-lg transition-all active:scale-[0.98]",
+                isCorrect
+                  ? "border-amber-500/20 bg-gradient-to-r from-amber-600/20 via-amber-500/15 to-amber-600/20 text-amber-300/90 shadow-amber-900/20 hover:from-amber-600/30 hover:via-amber-500/20 hover:to-amber-600/30"
+                  : "border-destructive/15 bg-gradient-to-r from-destructive/10 to-destructive/5 text-amber-300/60 shadow-destructive/10 hover:from-destructive/20 hover:to-destructive/10",
+              )}
             >
-              Close File <ArrowRight className="size-4" />
+              {isCorrect ? (
+                <><Fingerprint className="size-4" /> Decrypt Complete <ArrowRight className="size-4" /></>
+              ) : (
+                <><XCircle className="size-4" /> Close File <ArrowRight className="size-4" /></>
+              )}
             </motion.button>
           </motion.div>
         )}

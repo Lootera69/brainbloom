@@ -351,14 +351,9 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
             <div className="flex items-center justify-between border-t border-amber-200 pt-4 dark:border-amber-500/10">
               <div className="flex items-center gap-2.5">
                 {solved ? (
-                  <div className="flex items-center gap-2 text-xs text-amber-600/80 dark:text-amber-400/60">
+                  <div className="flex items-center gap-1.5 text-xs text-amber-600/80 dark:text-amber-400/60">
                     <Crown className="size-3.5 text-amber-600 dark:text-amber-400" />
-                    <span>
-                      <span className="font-semibold text-amber-600 dark:text-amber-400">25 gems</span>
-                      {cipher.xpReward > 0 && (
-                        <> &middot; +{cipher.xpReward} XP</>
-                      )}
-                    </span>
+                    <span className="font-semibold text-amber-600 dark:text-amber-400">Case closed</span>
                   </div>
                 ) : revealed ? (
                   <div className="flex items-center gap-1.5 text-xs text-amber-600/60 dark:text-amber-500/40">
@@ -366,31 +361,19 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
                     <span>File declassifies {weekEnd}</span>
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2 text-xs text-amber-600/80 dark:text-amber-400/60">
-                    <Gem className="size-3.5 text-amber-600 dark:text-amber-400" />
-                    <span>
-                      <span className="font-semibold text-amber-600 dark:text-amber-400">25 gems</span>
-                      {cipher.xpReward > 0 && (
-                        <> &middot; +{cipher.xpReward} XP</>
-                      )}
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              <div>
-                {isAttemptDay && !solved && !revealed && (
                   <Button
                     onClick={() => {
                       onOpenCipher?.();
                       router.push(`/learn?cipher=${cipher.id}`);
                     }}
-                    className="h-10 gap-2 rounded-xl border border-amber-200 bg-gradient-to-r from-amber-500/20 to-amber-600/20 px-5 text-xs font-bold uppercase tracking-wider text-amber-700 shadow-lg shadow-amber-200/30 backdrop-blur-sm transition-all hover:from-amber-500/30 hover:to-amber-600/30 hover:shadow-xl hover:shadow-amber-200/40 active:scale-[0.97] dark:border-amber-500/30 dark:bg-gradient-to-r dark:from-amber-600/20 dark:to-amber-700/20 dark:text-amber-300 dark:shadow-lg dark:shadow-amber-900/20 dark:hover:from-amber-600/30 dark:hover:to-amber-700/30 dark:hover:shadow-xl dark:hover:shadow-amber-900/30"
+                    className="h-9 gap-2 rounded-xl border border-amber-200 bg-gradient-to-r from-amber-500/20 to-amber-600/20 px-4 text-xs font-bold uppercase tracking-wider text-amber-700 shadow-lg shadow-amber-200/30 backdrop-blur-sm transition-all hover:from-amber-500/30 hover:to-amber-600/30 hover:shadow-xl hover:shadow-amber-200/40 active:scale-[0.97] dark:border-amber-500/30 dark:bg-gradient-to-r dark:from-amber-600/20 dark:to-amber-700/20 dark:text-amber-300 dark:shadow-lg dark:shadow-amber-900/20 dark:hover:from-amber-600/30 dark:hover:to-amber-700/30 dark:hover:shadow-xl dark:hover:shadow-amber-900/30"
                   >
                     Decode <ArrowRight className="size-3.5" />
                   </Button>
                 )}
+              </div>
 
+              <div>
                 {isAttemptDay && !solved && !revealed && (
                   <div className="flex items-center gap-2 text-[10px] font-mono text-amber-600/50 dark:text-amber-500/30">
                     <Timer className="size-3" />

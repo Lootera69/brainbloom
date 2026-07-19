@@ -242,13 +242,10 @@ function LearnPage() {
       if (correct) {
         const solveCipher = useUserStore.getState().solveCipher;
         solveCipher(wStart);
-        const firstTime = markPuzzleCompleted(currentPuzzle.id);
-        if (firstTime) {
-          addXp(xpEarned);
-          import("@/services/puzzle-service").then(({ incrementCompleted }) =>
-            incrementCompleted(currentPuzzle.id),
-          );
-        }
+        markPuzzleCompleted(currentPuzzle.id);
+        import("@/services/puzzle-service").then(({ incrementCompleted }) =>
+          incrementCompleted(currentPuzzle.id),
+        );
       } else {
         useUserStore.getState().revealCipher(wStart);
       }
