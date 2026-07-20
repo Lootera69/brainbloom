@@ -2,13 +2,14 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles, Check, Lock } from "lucide-react";
+import { X, Sparkles, Check, Lock, ArrowRight } from "lucide-react";
 import { avatars } from "./avatar-svgs";
 import { AvatarDisplay } from "./AvatarDisplay";
 import { avatarSounds } from "@/services/sound-service";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
 import { hasPremiumAccess } from "@/services/entitlement-service";
+import { cn } from "@/lib/utils";
 interface AvatarSelectorProps {
   currentAvatarId: string | null;
   photoURL?: string | null;
@@ -45,9 +46,18 @@ export function AvatarSelector({
   }, []);
 
   const handleConfirm = () => {
+    const avatar = selected ? avatars.find((a) => a.id === selected) : null;
+    if (avatar?.premium && !isPremium) {
+      setShowShop(true);
+      onClose();
+      return;
+    }
     onSelect(selected);
     onClose();
   };
+
+  const selectedAvatar = selected ? avatars.find((a) => a.id === selected) : null;
+  const needsUpgrade = selectedAvatar?.premium && !isPremium;
 
   return (
     <AnimatePresence>
@@ -126,11 +136,6 @@ export function AvatarSelector({
                       key={avatar.id}
                       whileTap={{ scale: 0.92 }}
                       onClick={() => {
-                        if (locked) {
-                          setShowShop(true);
-                          onClose();
-                          return;
-                        }
                         setSelected(avatar.id);
                         avatarSounds[avatar.id]?.();
                       }}
@@ -190,11 +195,19 @@ export function AvatarSelector({
             <div className="px-4 sm:px-6 py-3 sm:py-4 shrink-0">
               <button
                 onClick={handleConfirm}
-                disabled={selected === currentAvatarId && selected !== null}
-                className="relative flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-40"
+                disabled={!needsUpgrade && selected === currentAvatarId && selected !== null}
+                className={cn(
+                  "relative flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-semibold text-white shadow-lg transition-all active:scale-[0.98] disabled:opacity-40",
+                  needsUpgrade
+                    ? "bg-gradient-to-r from-amber-500 to-orange-500 shadow-amber-500/25 hover:brightness-110 hover:shadow-xl hover:shadow-amber-500/30"
+                    : "bg-gradient-to-r from-primary to-[#8b5cf6] shadow-primary/25 hover:brightness-110 hover:shadow-xl hover:shadow-primary/30",
+                )}
               >
-                <Check className="size-4" />
-                {selected === null ? "Use fallback" : `Select ${avatars.find((a) => a.id === selected)?.name}`}
+                {needsUpgrade ? (
+                  <><Sparkles className="size-4" /> Upgrade <ArrowRight className="size-4" /></>
+                ) : (
+                  <><Check className="size-4" />{selected === null ? "Use fallback" : `Select ${selectedAvatar?.name}`}</>
+                )}
               </button>
             </div>
 
