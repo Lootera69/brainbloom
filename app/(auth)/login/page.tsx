@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
 import { signInWithGoogle, signUpWithEmailFull, signInWithEmailFull, sendPasswordReset, resendVerificationEmail } from "@/services/firebase";
 import { GoogleOneTap } from "@/components/auth/GoogleOneTap";
+
 import { Toaster, toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
@@ -108,6 +109,7 @@ export default function LoginPage() {
 
   const handleGoogle = async () => {
     if (!firebaseConfigured) return;
+
     setLoading(true);
     setError("");
     try {

@@ -4,6 +4,7 @@ import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
 import type { User } from "firebase/auth";
 
 const CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_ONE_TAP_CLIENT_ID;
+let _initialized = false;
 
 declare global {
   interface Window {
@@ -14,6 +15,7 @@ declare global {
             client_id: string;
             callback: (response: { credential: string }) => void;
             cancel_on_tap_outside?: boolean;
+            use_fedcm_for_prompt?: boolean;
           }) => void;
           prompt: (momentListener?: (moment: string) => void) => void;
           cancel: () => void;
@@ -43,7 +45,7 @@ export interface OneTapCallbacks {
 }
 
 export async function initOneTap(callbacks: OneTapCallbacks): Promise<void> {
-  if (!CLIENT_ID || typeof window === "undefined") return;
+  if (_initialized || !CLIENT_ID || typeof window === "undefined") return;
 
   const { getFirebase } = await import("@/services/firebase");
   const { auth } = getFirebase();
@@ -68,17 +70,23 @@ export async function initOneTap(callbacks: OneTapCallbacks): Promise<void> {
       }
     },
     cancel_on_tap_outside: false,
+    use_fedcm_for_prompt: false,
   });
 
-  window.google.accounts.id.prompt();
+  _initialized = true;
+}
+
+/** Call prompt() fresh — each mount triggers a fresh show, even after dismissal. */
+export function showOneTap(): void {
+  if (typeof window === "undefined") return;
+  window.google?.accounts?.id.prompt();
+}
+
+export function rePromptOneTap(): void {
+  showOneTap();
 }
 
 export function cancelOneTap(): void {
   if (typeof window === "undefined") return;
   window.google?.accounts?.id.cancel();
-}
-
-export function disableOneTap(): void {
-  if (typeof window === "undefined") return;
-  window.google?.accounts?.id.disableAutoSelect();
 }

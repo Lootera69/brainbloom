@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
-import { initOneTap, cancelOneTap } from "@/services/one-tap";
+import { initOneTap, showOneTap, cancelOneTap } from "@/services/one-tap";
 
 const firebaseConfigured =
   typeof process !== "undefined" &&
@@ -19,25 +19,29 @@ export function GoogleOneTap() {
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
 
   useEffect(() => {
-    if (initRef.current) return;
     if (!firebaseConfigured || !GOOGLE_ONE_TAP_CLIENT_ID || isAuthenticated) return;
 
-    initRef.current = true;
+    if (!initRef.current) {
+      initRef.current = true;
+      initOneTap({
+        onSuccess: (user) => {
+          setUser({
+            uid: user.uid,
+            displayName: user.displayName ?? "User",
+            email: user.email,
+            photoURL: user.photoURL,
+          });
+          router.replace("/");
+        },
+        onError: () => {},
+      });
+    }
 
-    initOneTap({
-      onSuccess: (user) => {
-        setUser({
-          uid: user.uid,
-          displayName: user.displayName ?? "User",
-          email: user.email,
-          photoURL: user.photoURL,
-        });
-        router.replace("/");
-      },
-      onError: () => {},
-    });
+    // Show One Tap fresh on every mount (every page load / refresh)
+    const timer = setTimeout(() => showOneTap(), 500);
 
     return () => {
+      clearTimeout(timer);
       cancelOneTap();
     };
   }, [isAuthenticated, router, setUser]);
