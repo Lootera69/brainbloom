@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Zap, Sparkles, Clock, Pencil } from "lucide-react";
 import type { Puzzle } from "@/types/puzzle";
@@ -107,6 +107,11 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Sud
   });
   const [shakeIndex, setShakeIndex] = useState<number | null>(null);
   const [conflictCells, setConflictCells] = useState<Conflict[]>([]);
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (showResult) resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [showResult]);
 
   const isClue = (index: number) => initialClues[index] > 0;
 
@@ -484,6 +489,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Sud
       <AnimatePresence>
         {showResult && (
           <motion.div
+            ref={resultRef}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

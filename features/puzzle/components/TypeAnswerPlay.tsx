@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Zap, ArrowRight, Info, Star, Sparkles, Brain } from "lucide-react";
 import { type Puzzle } from "@/types/puzzle";
@@ -36,6 +36,11 @@ export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }:
 
   const result = checkAnswer(input, puzzle.correctAnswer, puzzle.acceptedAnswers);
   const earned = result.correct && !isRepeat ? puzzle.xpReward : 0;
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (submitted) resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [submitted]);
 
   const handleSubmit = () => {
     if (!input.trim() || submitted) return;
@@ -142,6 +147,7 @@ export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }:
       <AnimatePresence>
         {submitted && (
           <motion.div
+            ref={resultRef}
             key="result"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

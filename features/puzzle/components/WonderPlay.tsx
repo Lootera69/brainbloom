@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Lightbulb, ArrowRight, Sparkles, Eye, Brain, Share2, CheckCheck, Copy } from "lucide-react";
 import { type Puzzle } from "@/types/puzzle";
@@ -40,6 +40,13 @@ export function WonderPlay({ puzzle, onComplete }: Props) {
 
   const isExperienced = experiencedWonderIds.includes(puzzle.id);
   const revealed = state === "reveal" || state === "share";
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (state === "reveal" || state === "share") {
+      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [state]);
 
   const handleReveal = useCallback(() => {
     setState("reveal");
@@ -230,6 +237,7 @@ export function WonderPlay({ puzzle, onComplete }: Props) {
 
         {state === "reveal" && (
           <motion.div
+            ref={resultRef}
             key="reveal"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

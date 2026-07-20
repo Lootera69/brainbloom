@@ -81,11 +81,16 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
     Array.from({ length: size }, () => Array(size).fill(false)),
   );
   const [showClues, setShowClues] = useState(true);
+  const resultRef = useRef<HTMLDivElement>(null);
   const inputRefs = useRef<(HTMLInputElement | null)[][]>([]);
 
   useEffect(() => {
     inputRefs.current = Array.from({ length: size }, () => Array(size).fill(null));
   }, [size]);
+
+  useEffect(() => {
+    if (submitted) resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [submitted]);
 
   useEffect(() => {
     if (selectedRow >= 0 && selectedCol >= 0) {
@@ -252,7 +257,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
 
         {/* Result banner */}
         {submitted && (
-          <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-4">
+          <motion.div ref={resultRef} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-4">
             <motion.div
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}

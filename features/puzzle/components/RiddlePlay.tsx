@@ -108,6 +108,11 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
 
   const earned = correct && !isRepeat ? puzzle.xpReward : 0;
   const hints = puzzle.hintText?.split("\n").filter(Boolean) ?? [];
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (state === "result") resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [state]);
 
   const handleRevealDone = useCallback(() => {
     revealDoneRef.current = true;
@@ -488,6 +493,7 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
         {/* Result phase */}
         {state === "result" && (
           <motion.div
+            ref={resultRef}
             key="result"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Zap, ArrowRight, Info, Sparkles, Brain, Star } from "lucide-react";
 import { type Puzzle } from "@/types/puzzle";
@@ -43,6 +43,16 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
 
   const isCorrect = selected === puzzle.correctAnswer;
   const earned = isCorrect && !isRepeat ? puzzle.xpReward : 0;
+  const resultRef = useRef<HTMLDivElement>(null);
+  const submitRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (submitted) resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [submitted]);
+
+  useEffect(() => {
+    if (selected !== null && !submitted) submitRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [selected, submitted]);
 
   const handleSubmit = () => {
     if (!selected || submitted) return;
@@ -196,6 +206,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
       <AnimatePresence>
         {submitted && (
           <motion.div
+            ref={resultRef}
             key="result"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -211,8 +222,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
                 isCorrect
                   ? "border-success/30 bg-gradient-to-b from-success/5 to-transparent"
                   : "border-destructive/30 bg-gradient-to-b from-destructive/5 to-transparent",
-              )}
-            >
+              )}>
               {isCorrect && (
                 <motion.div
                   initial={{ scale: 0 }}
@@ -314,19 +324,21 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
       </AnimatePresence>
 
       {/* Submit button */}
-      {!submitted && (
-        <motion.button onClick={handleSubmit} disabled={!selected}
-          className="relative mt-6 flex h-14 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-40">
-          {selected && (
-            <motion.span
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-              animate={{ x: ["-100%", "100%"] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            />
-          )}
-          <Zap className="size-5" /> Submit Answer
-        </motion.button>
-      )}
+      <div ref={submitRef}>
+        {!submitted && (
+          <motion.button onClick={handleSubmit} disabled={!selected}
+            className="relative mt-6 flex h-14 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-40">
+            {selected && (
+              <motion.span
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                animate={{ x: ["-100%", "100%"] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              />
+            )}
+            <Zap className="size-5" /> Submit Answer
+          </motion.button>
+        )}
+      </div>
     </div>
   );
 }

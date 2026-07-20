@@ -25,6 +25,11 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
 
   const isCorrect = input.trim().toLowerCase() === puzzle.correctAnswer.trim().toLowerCase() ||
     (puzzle.acceptedAnswers?.some((a) => a.trim().toLowerCase() === input.trim().toLowerCase()) ?? false);
+  const resultRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (submitted && revealPhase === "result") resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [submitted, revealPhase]);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -334,6 +339,7 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
       <AnimatePresence>
         {submitted && revealPhase === "result" && (
           <motion.div
+            ref={resultRef}
             key="result"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
