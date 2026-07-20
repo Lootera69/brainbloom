@@ -873,7 +873,10 @@ export const useUserStore = create<UserState>()(
         import("@/services/sound-service").then(({ setSoundEnabled }) => setSoundEnabled(v));
       },
 
-      setTheme: (t) => set({ theme: t }),
+      setTheme: (t) => {
+        set({ theme: t });
+        get().syncToFirestore();
+      },
 
       clearCelebration: () => set({ pendingCelebration: null }),
 
