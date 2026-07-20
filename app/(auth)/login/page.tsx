@@ -6,6 +6,7 @@ import { Sparkles, User, Loader2, Zap, Brain, Flame, Mail, Lock, Eye, EyeOff, Ar
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
 import { signInWithGoogle, signUpWithEmailFull, signInWithEmailFull, sendPasswordReset, resendVerificationEmail } from "@/services/firebase";
+import { GoogleOneTap } from "@/components/auth/GoogleOneTap";
 import { Toaster, toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
@@ -254,6 +255,7 @@ export default function LoginPage() {
   return (
     <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-y-auto px-6 pb-4 md:pb-0 bg-background dark:bg-gradient-to-br dark:from-[#0f0f1a] dark:via-[#1a1a2e] dark:to-[#0d0d1a]">
       <Toaster position="top-center" />
+      <GoogleOneTap />
 
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute left-1/2 top-1/4 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/5 blur-[120px]" />
