@@ -27,7 +27,7 @@ const sections = [
   {
     title: "V. Third-Party Stewardship",
     content:
-      "BrainBloom engages carefully selected third-party services to power its infrastructure: Firebase (authentication and database), imgbb (image hosting), and Google Identity Services (optional authentication). Each of these providers operates under contractual obligations that prohibit the unauthorised use or disclosure of your data. We do not permit third-party advertising networks, data brokers, or analytics firms with commercial surveillance models to operate within our ecosystem.",
+      "BrainBloom engages carefully selected third-party services to power its infrastructure: Firebase (authentication and database), imgbb (image hosting), Google Identity Services (optional authentication), and Google AdSense (advertising). AdSense may use cookies and web beacons to serve personalised ads based on your browsing activity. Each of these providers operates under contractual obligations that prohibit the unauthorised use or disclosure of your data. We do not permit data brokers or analytics firms with commercial surveillance models to operate within our ecosystem.",
   },
   {
     title: "VI. Cookies and Local Storage",

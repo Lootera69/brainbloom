@@ -5,6 +5,7 @@ import { Trophy, Zap, Brain, Flame, Gem, Lock } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
 import { achievementsList } from "@/constants/achievements";
+import { AdBanner } from "@/components/ads/AdBanner";
 
 const iconMap: Record<string, typeof Brain> = {
   Brain, Flame, Zap, Compass: Trophy, Sun: Trophy,
@@ -95,6 +96,8 @@ export default function AchievementsPage() {
           );
         })}
       </div>
+
+      <AdBanner className="mt-4" />
     </main>
   );
 }

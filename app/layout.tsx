@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -7,6 +8,8 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ThemeSync } from "@/components/providers/theme-sync";
 import { ServiceWorkerRegister } from "@/components/providers/service-worker";
 import { GlobalErrorHandler } from "@/components/providers/global-error-handler";
+
+const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 
 const inter = Inter({
   subsets: ["latin"],
@@ -53,11 +56,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-    >
-      <body
+      <html
+        lang="en"
+        suppressHydrationWarning
+      >
+        <head>
+          {adsenseId && (
+            <Script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseId}`}
+              crossOrigin="anonymous"
+              strategy="afterInteractive"
+            />
+          )}
+        </head>
+        <body
         className={`${inter.variable} ${jakarta.variable} antialiased`}
       >
         <ThemeProvider>

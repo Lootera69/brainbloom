@@ -24,6 +24,7 @@ import { motion } from "framer-motion";
 import { Play, Heart, Sparkles } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { AdModal } from "@/components/paywall/AdModal";
+import { AdBanner } from "@/components/ads/AdBanner";
 import { type Puzzle } from "@/types/puzzle";
 import { hasPremiumAccess } from "@/services/entitlement-service";
 import { REWARDED_AD_HEART_AMOUNT } from "@/lib/subscription";
@@ -212,6 +213,8 @@ export default function HomePage() {
           <WeeklyInsights compact />
         </div>
       </div>
+
+      <AdBanner className="mt-4" />
     </main>
   );
 }

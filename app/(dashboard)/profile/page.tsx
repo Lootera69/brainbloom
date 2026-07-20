@@ -42,6 +42,7 @@ import { PremiumBadge } from "@/components/paywall/PremiumBadge";
 import { hasPremiumAccess, daysRemaining, formatExpiry } from "@/services/entitlement-service";
 import { AvatarSelector } from "@/components/avatars/AvatarSelector";
 import { ProfileShopModal } from "@/components/shop/ProfileShopModal";
+import { AdBanner } from "@/components/ads/AdBanner";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { signOutUser, sendPasswordReset } from "@/services/firebase";
@@ -718,6 +719,8 @@ export default function ProfilePage() {
           onClose={() => setShowAvatarSelector(false)}
         />
       )}
+
+      <AdBanner className="mt-4" />
     </main>
   );
 }

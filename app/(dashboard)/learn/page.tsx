@@ -22,6 +22,7 @@ import { ErrorBoundary } from "@/components/error-boundary";
 import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
 import { ErrorFallback } from "@/components/error-fallback";
 import { PaywallModal } from "@/components/paywall/PaywallModal";
+import { AdBanner } from "@/components/ads/AdBanner";
 import { ShopModal } from "@/components/shop/ShopModal";
 import { hasPremiumAccess } from "@/services/entitlement-service";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -956,6 +957,7 @@ function PuzzlePlayView({
             </div>
           </div>
         )}
+      <AdBanner className="mt-8" />
       </motion.div>
     </ErrorBoundary>
   );
