@@ -137,7 +137,13 @@ export default function AvatarWithEyes({ avatarId, size = 64, className }: Avata
 
     const animate = () => {
       const containerRect = containerRef.current?.getBoundingClientRect();
-      if (!containerRect) { rafRef.current = requestAnimationFrame(animate); return; }
+      // Skip frames until the container has real dimensions. During scale-in
+      // animations the width can be 0, which would make scale Infinity and
+      // produce NaN pupil coordinates.
+      if (!containerRect || containerRect.width === 0 || containerRect.height === 0) {
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
 
       const scale = 100 / containerRect.width;
       let tx: number;

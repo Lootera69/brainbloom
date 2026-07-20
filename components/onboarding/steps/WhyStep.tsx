@@ -1,84 +1,100 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles, Flame, Brain, Bird } from "lucide-react";
+import { Brain, Flame, Sparkles, Leaf, Target, Coffee } from "lucide-react";
+import { playClick } from "@/services/sound-service";
 
-const cards = [
-  {
-    icon: Sparkles,
-    title: "Grow Beyond",
-    description:
-      "This isn't about puzzles. It's about expanding how you think, every single day.",
-    gradient: "from-primary/20 to-[#8b5cf6]/10",
-    iconColor: "text-primary",
-  },
-  {
-    icon: Flame,
-    title: "Build Discipline",
-    description:
-      "A streak isn't just a number — it's proof that you showed up for yourself.",
-    gradient: "from-[#f59e0b]/20 to-[#ef4444]/10",
-    iconColor: "text-[#f59e0b]",
-  },
-  {
-    icon: Brain,
-    title: "Train Your Mind",
-    description:
-      "Every puzzle rewires the way you approach problems. Sharpen your thinking daily.",
-    gradient: "from-secondary/20 to-[#06b6d4]/10",
-    iconColor: "text-secondary",
-  },
-  {
-    icon: Bird,
-    title: "Your Guide Awaits",
-    description:
-      "A spirit guide will accompany you through every puzzle. Pick yours when you start.",
-    gradient: "from-[#8b5cf6]/20 to-primary/10",
-    iconColor: "text-[#8b5cf6]",
-  },
+export interface Goal {
+  id: string;
+  icon: typeof Brain;
+  label: string;
+  gradient: string;
+  iconColor: string;
+}
+
+export const GOALS: Goal[] = [
+  { id: "sharper", icon: Brain, label: "Think sharper", gradient: "from-primary/20 to-[#8b5cf6]/10", iconColor: "text-primary" },
+  { id: "habit", icon: Flame, label: "Build a daily habit", gradient: "from-[#f59e0b]/20 to-[#ef4444]/10", iconColor: "text-[#f59e0b]" },
+  { id: "fun", icon: Sparkles, label: "Have fun", gradient: "from-secondary/20 to-[#06b6d4]/10", iconColor: "text-secondary" },
+  { id: "calm", icon: Leaf, label: "Unwind & focus", gradient: "from-[#22c55e]/20 to-[#06b6d4]/10", iconColor: "text-[#22c55e]" },
+  { id: "challenge", icon: Target, label: "Chase a challenge", gradient: "from-[#8b5cf6]/20 to-primary/10", iconColor: "text-[#8b5cf6]" },
+  { id: "break", icon: Coffee, label: "A smart break", gradient: "from-[#ec4899]/20 to-[#f59e0b]/10", iconColor: "text-[#ec4899]" },
 ];
 
 interface WhyStepProps {
+  selected: string[];
+  onToggle: (id: string) => void;
   onNext: () => void;
 }
 
-export default function WhyStep({ onNext }: WhyStepProps) {
+export default function WhyStep({ selected, onToggle, onNext }: WhyStepProps) {
+  const handleToggle = (id: string) => {
+    try { playClick(); } catch { /* no-op */ }
+    onToggle(id);
+  };
+
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center px-4 py-16">
-      <div className="flex w-full max-w-sm flex-col gap-3">
-        {cards.map((card, i) => (
-          <motion.div
-            key={card.title}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 + i * 0.12 }}
-            className={`group rounded-2xl border border-border/30 bg-gradient-to-br ${card.gradient} p-4 md:p-5 backdrop-blur-xl transition-all hover:border-border/50 dark:border-white/5 dark:hover:border-white/10`}
-          >
-            <div className="flex items-start gap-3 md:gap-4">
-              <span className={`flex size-9 md:size-10 shrink-0 items-center justify-center rounded-xl bg-muted/30 dark:bg-white/5 ${card.iconColor}`}>
-                <card.icon className="size-4 md:size-5" />
+    <div className="flex min-h-dvh flex-col items-center justify-center px-5 py-16">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-7 text-center"
+      >
+        <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl">
+          What brings you here?
+        </h2>
+        <p className="mt-1.5 text-sm text-muted-foreground/60">
+          Pick what matters — we&apos;ll shape the journey around it.
+        </p>
+      </motion.div>
+
+      <div className="grid w-full max-w-sm grid-cols-2 gap-2.5">
+        {GOALS.map((goal, i) => {
+          const isSelected = selected.includes(goal.id);
+          return (
+            <motion.button
+              key={goal.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.08 + i * 0.06 }}
+              onClick={() => handleToggle(goal.id)}
+              whileTap={{ scale: 0.96 }}
+              className={`relative flex flex-col items-start gap-2 overflow-hidden rounded-2xl border p-3.5 text-left transition-all ${
+                isSelected
+                  ? "border-primary bg-primary/10 shadow-lg shadow-primary/15"
+                  : `border-border/30 bg-gradient-to-br ${goal.gradient} backdrop-blur-xl hover:border-border/50 dark:border-white/5 dark:hover:border-white/10`
+              }`}
+            >
+              <span
+                className={`flex size-9 items-center justify-center rounded-xl bg-muted/40 dark:bg-white/10 ${goal.iconColor}`}
+              >
+                <goal.icon className="size-[18px]" />
               </span>
-              <div className="min-w-0">
-                <h3 className="mb-0.5 font-heading text-sm font-bold text-foreground md:text-base">
-                  {card.title}
-                </h3>
-                <p className="text-xs leading-relaxed text-muted-foreground/70 md:text-sm">
-                  {card.description}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+              <span className="text-sm font-semibold text-foreground">{goal.label}</span>
+              {isSelected && (
+                <motion.span
+                  layoutId={`check-${goal.id}`}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute right-2.5 top-2.5 flex size-5 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-white"
+                >
+                  ✓
+                </motion.span>
+              )}
+            </motion.button>
+          );
+        })}
       </div>
 
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
         onClick={onNext}
-        className="mt-8 flex h-12 w-48 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:brightness-110 hover:shadow-xl active:scale-[0.98]"
+        className="mt-8 flex h-12 w-52 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:brightness-110 hover:shadow-xl active:scale-[0.98]"
       >
-        Next
+        {selected.length > 0 ? `Continue with ${selected.length}` : "Skip for now"}
       </motion.button>
     </div>
   );
