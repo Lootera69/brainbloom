@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
 import { signInWithGoogle, signUpWithEmailFull, signInWithEmailFull, sendPasswordReset, resendVerificationEmail } from "@/services/firebase";
 import { GoogleOneTap } from "@/components/auth/GoogleOneTap";
+import { rePromptOneTap } from "@/services/one-tap";
 
 import { Toaster, toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -110,6 +111,9 @@ export default function LoginPage() {
 
   const handleGoogle = async () => {
     if (!firebaseConfigured) return;
+
+    // Try One Tap first if it was dismissed earlier
+    rePromptOneTap();
 
     setLoading(true);
     setError("");

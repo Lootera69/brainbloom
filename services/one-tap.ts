@@ -4,7 +4,7 @@ import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
 import type { User } from "firebase/auth";
 
 const CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_ONE_TAP_CLIENT_ID;
-let _initialized = false;
+let _scriptLoaded = false;
 
 declare global {
   interface Window {
@@ -27,14 +27,14 @@ declare global {
 }
 
 function loadGsiScript(): Promise<void> {
+  if (window.google?.accounts?.id || _scriptLoaded) return Promise.resolve();
   return new Promise((resolve, reject) => {
-    if (window.google?.accounts?.id) return resolve();
     const s = document.createElement("script");
     s.src = "https://accounts.google.com/gsi/client";
     s.async = true;
     s.defer = true;
     s.setAttribute("data-use_fedcm", "false");
-    s.onload = () => resolve();
+    s.onload = () => { _scriptLoaded = true; resolve(); };
     s.onerror = () => reject(new Error("Failed to load GIS script"));
     document.head.appendChild(s);
   });
@@ -46,7 +46,7 @@ export interface OneTapCallbacks {
 }
 
 export async function initOneTap(callbacks: OneTapCallbacks): Promise<void> {
-  if (_initialized || !CLIENT_ID || typeof window === "undefined") return;
+  if (!CLIENT_ID || typeof window === "undefined") return;
 
   const { getFirebase } = await import("@/services/firebase");
   const { auth } = getFirebase();
@@ -57,9 +57,9 @@ export async function initOneTap(callbacks: OneTapCallbacks): Promise<void> {
   } catch {
     return;
   }
-  if (!window.google?.accounts?.id) return;
 
-  window.google.accounts.id.initialize({
+  // Initialize is safe to call multiple times — GIS makes subsequent calls no-ops
+  window.google?.accounts?.id.initialize({
     client_id: CLIENT_ID,
     callback: async (response) => {
       try {
@@ -74,36 +74,17 @@ export async function initOneTap(callbacks: OneTapCallbacks): Promise<void> {
     use_fedcm_for_prompt: false,
   });
 
-  _initialized = true;
-  _readyResolve?.();
-  _readyResolve = null;
-}
-
-let _readyResolve: (() => void) | null = null;
-
-// Resolves once initialize() has been called. showOneTap awaits this so it
-// never tries to prompt() before the library is ready.
-function onReady(): Promise<void> {
-  if (_initialized && window.google?.accounts?.id) return Promise.resolve();
-  return new Promise((resolve) => { _readyResolve = resolve; });
-}
-
-/** Call prompt() fresh — each mount triggers a fresh show, even after dismissal. */
-export async function showOneTap(): Promise<void> {
-  if (typeof window === "undefined") return;
-  await onReady();
-  // Retry once if prompt isn't available yet
-  if (!window.google?.accounts?.id) {
-    await new Promise((r) => setTimeout(r, 1000));
-  }
+  // Show the One Tap dialog
   window.google?.accounts?.id.prompt();
-}
-
-export function rePromptOneTap(): void {
-  showOneTap();
 }
 
 export function cancelOneTap(): void {
   if (typeof window === "undefined") return;
   window.google?.accounts?.id.cancel();
+}
+
+/** Re-trigger the One Tap dialog (e.g. after user clicked the Google button). */
+export function rePromptOneTap(): void {
+  if (typeof window === "undefined") return;
+  window.google?.accounts?.id.prompt();
 }

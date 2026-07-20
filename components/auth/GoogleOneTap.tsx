@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
-import { initOneTap, showOneTap, cancelOneTap } from "@/services/one-tap";
+import { initOneTap, cancelOneTap } from "@/services/one-tap";
 
 const firebaseConfigured =
   typeof process !== "undefined" &&
@@ -14,7 +14,7 @@ const GOOGLE_ONE_TAP_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_ONE_TAP_CLIENT_I
 
 export function GoogleOneTap() {
   const router = useRouter();
-  const initRef = useRef(false);
+  const calledRef = useRef(false);
   const setUser = useUserStore((s) => s.setUser);
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
 
@@ -30,34 +30,23 @@ export function GoogleOneTap() {
   }, []);
 
   useEffect(() => {
-    if (!firebaseConfigured || !GOOGLE_ONE_TAP_CLIENT_ID || isAuthenticated) return;
+    if (!firebaseConfigured || !GOOGLE_ONE_TAP_CLIENT_ID || isAuthenticated || calledRef.current) return;
+    calledRef.current = true;
 
-    let cancelled = false;
-
-    (async () => {
-      // One-time initialization (script load + GIS initialize)
-      if (!initRef.current) {
-        initRef.current = true;
-        await initOneTap({
-          onSuccess: (user) => {
-            setUser({
-              uid: user.uid,
-              displayName: user.displayName ?? "User",
-              email: user.email,
-              photoURL: user.photoURL,
-            });
-            router.replace("/");
-          },
-          onError: () => {},
+    initOneTap({
+      onSuccess: (user) => {
+        setUser({
+          uid: user.uid,
+          displayName: user.displayName ?? "User",
+          email: user.email,
+          photoURL: user.photoURL,
         });
-      }
-
-      // Show One Tap fresh on every mount (after init is done)
-      if (!cancelled) await showOneTap();
-    })();
+        router.replace("/");
+      },
+      onError: () => {},
+    });
 
     return () => {
-      cancelled = true;
       cancelOneTap();
     };
   }, [isAuthenticated, router, setUser]);
