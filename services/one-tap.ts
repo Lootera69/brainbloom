@@ -74,6 +74,9 @@ export async function initOneTap(callbacks: OneTapCallbacks): Promise<void> {
     use_fedcm_for_prompt: false,
   });
 
+  // Reset the legacy cooldown so a previously-dismissed prompt reappears
+  clearOneTapCooldown();
+
   // Show the One Tap dialog
   window.google?.accounts?.id.prompt();
 }
@@ -81,6 +84,16 @@ export async function initOneTap(callbacks: OneTapCallbacks): Promise<void> {
 export function cancelOneTap(): void {
   if (typeof window === "undefined") return;
   window.google?.accounts?.id.cancel();
+}
+
+/**
+ * In legacy (non-FedCM) mode, GIS records a dismissal/cooldown in the `g_state`
+ * cookie. Clearing it lets the One Tap prompt reappear on the next load instead
+ * of staying suppressed after the user closed it.
+ */
+export function clearOneTapCooldown(): void {
+  if (typeof document === "undefined") return;
+  document.cookie = "g_state=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT";
 }
 
 /** Re-trigger the One Tap dialog (e.g. after user clicked the Google button). */
