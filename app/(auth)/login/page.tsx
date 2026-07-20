@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, User, Loader2, Zap, Brain, Flame, Mail, Lock, Eye, EyeOff, ArrowLeft, CheckCircle, AlertCircle } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
 import { signInWithGoogle, signUpWithEmailFull, signInWithEmailFull, sendPasswordReset, resendVerificationEmail } from "@/services/firebase";
@@ -695,9 +696,9 @@ export default function LoginPage() {
               className="mt-5 md:mt-6 text-center text-xs text-muted-foreground/60"
             >
               By signing in to BrainBloom, you agree to our{" "}
-              <span className="underline underline-offset-2 hover:text-muted-foreground cursor-pointer">Terms</span>{" "}
+              <Link href="/terms" className="underline underline-offset-2 hover:text-muted-foreground transition-colors">Terms</Link>{" "}
               and{" "}
-              <span className="underline underline-offset-2 hover:text-muted-foreground cursor-pointer">Privacy Policy</span>.
+              <Link href="/privacy" className="underline underline-offset-2 hover:text-muted-foreground transition-colors">Privacy Policy</Link>.
             </motion.p>
           </>
         )}

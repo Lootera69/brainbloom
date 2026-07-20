@@ -28,6 +28,9 @@ Deployed at **brainblooms.vercel.app**.
 ```
 app/
   (auth)/login/page.tsx            — Login page (guest, Google, email/password, verify)
+  (legal)/
+    terms/page.tsx                 — Terms of Service (sophisticated, philosophical)
+    privacy/page.tsx               — Privacy Policy (high-intellectual, rights-focused)
   (dashboard)/
     page.tsx                       — Home (daily puzzle, streak, weekly insights, daily reward chest, weekly cipher card)
     learn/page.tsx                 — Puzzle browser + learning path + curriculum + cipher/wonder support
@@ -244,6 +247,8 @@ Stored in Zustand with persist middleware. Key fields:
 | `/studio/analytics` | Analytics | Charts, stats, top/recent puzzles, premium stats |
 | `/studio/seed` | Seed | Content seeding (danger-guarded) |
 | `/manifest.webmanifest` | PWA | Webmanifest |
+| `/terms` | Legal | Terms of Service (philosophical, sophisticated) |
+| `/privacy` | Legal | Privacy Policy (rights-focused, high-intellectual) |
 
 **Shop page** is the only route with `loading.tsx` and `error.tsx`. Other routes still missing them.
 
