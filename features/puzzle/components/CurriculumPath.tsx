@@ -87,10 +87,13 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
   // Auto-expand the first group with remaining work on mount
   useEffect(() => {
     if (groups.length > 0 && expandedGroups.size === 0) {
-      const firstWithWork = groups.findIndex((g, gi) =>
-        !isGroupCompleted(g) && (gi === 0 || isGroupCompleted(groups[gi - 1])),
-      );
-      setExpandedGroups(new Set([groups[Math.max(0, firstWithWork)].name]));
+      const allDone = groups.every((g) => isGroupCompleted(g));
+      if (!allDone) {
+        const firstWithWork = groups.findIndex((g, gi) =>
+          !isGroupCompleted(g) && (gi === 0 || isGroupCompleted(groups[gi - 1])),
+        );
+        setExpandedGroups(new Set([groups[Math.max(0, firstWithWork)].name]));
+      }
     }
   }, [groups]); // eslint-disable-line react-hooks/exhaustive-deps
 
