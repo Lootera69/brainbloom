@@ -75,11 +75,27 @@ export async function initOneTap(callbacks: OneTapCallbacks): Promise<void> {
   });
 
   _initialized = true;
+  _readyResolve?.();
+  _readyResolve = null;
+}
+
+let _readyResolve: (() => void) | null = null;
+
+// Resolves once initialize() has been called. showOneTap awaits this so it
+// never tries to prompt() before the library is ready.
+function onReady(): Promise<void> {
+  if (_initialized && window.google?.accounts?.id) return Promise.resolve();
+  return new Promise((resolve) => { _readyResolve = resolve; });
 }
 
 /** Call prompt() fresh — each mount triggers a fresh show, even after dismissal. */
-export function showOneTap(): void {
+export async function showOneTap(): Promise<void> {
   if (typeof window === "undefined") return;
+  await onReady();
+  // Retry once if prompt isn't available yet
+  if (!window.google?.accounts?.id) {
+    await new Promise((r) => setTimeout(r, 1000));
+  }
   window.google?.accounts?.id.prompt();
 }
 

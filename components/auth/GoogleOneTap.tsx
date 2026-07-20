@@ -32,27 +32,32 @@ export function GoogleOneTap() {
   useEffect(() => {
     if (!firebaseConfigured || !GOOGLE_ONE_TAP_CLIENT_ID || isAuthenticated) return;
 
-    if (!initRef.current) {
-      initRef.current = true;
-      initOneTap({
-        onSuccess: (user) => {
-          setUser({
-            uid: user.uid,
-            displayName: user.displayName ?? "User",
-            email: user.email,
-            photoURL: user.photoURL,
-          });
-          router.replace("/");
-        },
-        onError: () => {},
-      });
-    }
+    let cancelled = false;
 
-    // Show One Tap fresh on every mount (every page load / refresh)
-    const timer = setTimeout(() => showOneTap(), 500);
+    (async () => {
+      // One-time initialization (script load + GIS initialize)
+      if (!initRef.current) {
+        initRef.current = true;
+        await initOneTap({
+          onSuccess: (user) => {
+            setUser({
+              uid: user.uid,
+              displayName: user.displayName ?? "User",
+              email: user.email,
+              photoURL: user.photoURL,
+            });
+            router.replace("/");
+          },
+          onError: () => {},
+        });
+      }
+
+      // Show One Tap fresh on every mount (after init is done)
+      if (!cancelled) await showOneTap();
+    })();
 
     return () => {
-      clearTimeout(timer);
+      cancelled = true;
       cancelOneTap();
     };
   }, [isAuthenticated, router, setUser]);
