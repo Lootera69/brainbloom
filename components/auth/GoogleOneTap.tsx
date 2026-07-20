@@ -18,6 +18,17 @@ export function GoogleOneTap() {
   const setUser = useUserStore((s) => s.setUser);
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
 
+  // Suppress only FedCM / GSI_LOGGER console noise (harmless on localhost)
+  useEffect(() => {
+    const orig = console.error;
+    console.error = (...args) => {
+      if (typeof args[0] === "string" && (args[0].includes("FedCM") || args[0].includes("GSI_LOGGER"))) return;
+      if (args[0] instanceof Error && (args[0].message?.includes("FedCM") || args[0].message?.includes("GSI_LOGGER"))) return;
+      orig.call(console, ...args);
+    };
+    return () => { console.error = orig; };
+  }, []);
+
   useEffect(() => {
     if (!firebaseConfigured || !GOOGLE_ONE_TAP_CLIENT_ID || isAuthenticated) return;
 

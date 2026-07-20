@@ -33,6 +33,7 @@ function loadGsiScript(): Promise<void> {
     s.src = "https://accounts.google.com/gsi/client";
     s.async = true;
     s.defer = true;
+    s.setAttribute("data-use_fedcm", "false");
     s.onload = () => resolve();
     s.onerror = () => reject(new Error("Failed to load GIS script"));
     document.head.appendChild(s);
