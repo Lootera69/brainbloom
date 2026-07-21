@@ -89,6 +89,7 @@ interface UserState {
   currentCipherSolved: boolean;
   cipherSolveCount: number;
   cipherRevealed: boolean;
+  updatedAt: number;
   _lastEvalDate: string;
 
   loginAsGuest: () => void;
@@ -266,6 +267,7 @@ export const useUserStore = create<UserState>()(
       currentCipherSolved: false,
       cipherSolveCount: 0,
       cipherRevealed: false,
+      updatedAt: Date.now(),
       _lastEvalDate: "",
 
       loginAsGuest: () => {
@@ -304,6 +306,7 @@ export const useUserStore = create<UserState>()(
       syncToFirestore: () => {
         const s = get();
         if (!s.userId || s.isGuest) return;
+        set({ updatedAt: Date.now() });
         import("@/services/user-service").then(({ saveUserData }) =>
           saveUserData(s.userId, {
             displayName: s.displayName,
@@ -354,6 +357,7 @@ export const useUserStore = create<UserState>()(
             currentCipherSolved: s.currentCipherSolved,
             cipherSolveCount: s.cipherSolveCount,
             cipherRevealed: s.cipherRevealed,
+            updatedAt: Date.now(),
           }),
         );
       },
@@ -365,6 +369,8 @@ export const useUserStore = create<UserState>()(
           const { loadUserData } = await import("@/services/user-service");
           const data = await loadUserData(s.userId);
           if (data) {
+            // If Firestore data is older than or equal to local, keep local state
+            if (data.updatedAt && s.updatedAt && data.updatedAt <= s.updatedAt) return;
             set({
               displayName: data.displayName ?? s.displayName,
               email: data.email ?? s.email,
@@ -414,7 +420,8 @@ export const useUserStore = create<UserState>()(
               currentCipherSolved: data.currentCipherSolved ?? s.currentCipherSolved,
               cipherSolveCount: data.cipherSolveCount ?? s.cipherSolveCount,
               cipherRevealed: data.cipherRevealed ?? s.cipherRevealed,
-      });
+              updatedAt: data.updatedAt ?? s.updatedAt,
+            });
             get().checkWeeklyReset();
             get().checkStreak(false);
           } else {
@@ -1107,6 +1114,7 @@ export const useUserStore = create<UserState>()(
         currentCipherSolved: state.currentCipherSolved,
         cipherSolveCount: state.cipherSolveCount,
         cipherRevealed: state.cipherRevealed,
+        updatedAt: state.updatedAt,
         _lastEvalDate: state._lastEvalDate,
       }),
       onRehydrateStorage: () => () => {

@@ -65,6 +65,7 @@ export interface UserDocument {
   currentCipherSolved: boolean;
   cipherSolveCount: number;
   cipherRevealed: boolean;
+  updatedAt: number;
 }
 
 export async function saveUserData(uid: string, data: UserDocument): Promise<void> {
@@ -129,6 +130,7 @@ export async function loadUserData(uid: string): Promise<Partial<UserDocument> |
       currentCipherSolved: (d.currentCipherSolved as boolean) ?? false,
       cipherSolveCount: (d.cipherSolveCount as number) ?? 0,
       cipherRevealed: (d.cipherRevealed as boolean) ?? false,
+      updatedAt: d.updatedAt as number | undefined,
     };
   } catch (e) {
     console.error("Failed to load user data from Firestore:", e);
