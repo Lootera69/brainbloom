@@ -1,4 +1,4 @@
-import type { SeedData } from "./importer";
+﻿import type { SeedData } from "./importer";
 
 const seedData: SeedData = {
   lessonGroups: [
@@ -36,7 +36,7 @@ const seedData: SeedData = {
 
   puzzles: [
     // ========================================================================
-    // LOGIC — Group 1: Think Straight
+    // LOGIC â€” Group 1: Think Straight
     // ========================================================================
     {
       type: "true-false",
@@ -51,7 +51,7 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 1,
       lessonContent:
-        "Logic is the study of correct reasoning.\nA statement is either true or false — this is called the 'law of excluded middle'.\nIn logic, we build arguments from premises to reach a conclusion.\nA valid argument is one where if the premises are true, the conclusion must also be true.\n\nShare this: ask a friend 'Is a square a rectangle?' and watch them justify their answer.",
+        "Logic is the study of correct reasoning.\nA statement is either true or false â€” this is called the 'law of excluded middle'.\nIn logic, we build arguments from premises to reach a conclusion.\nA valid argument is one where if the premises are true, the conclusion must also be true.\n\nShare this: ask a friend 'Is a square a rectangle?' and watch them justify their answer.",
       correctExplanation: "Correct! A square has 4 equal sides (so it IS a rectangle), but a rectangle can have 2 long and 2 short sides (so not all rectangles are squares).",
       incorrectExplanation: "Actually this is true. A square meets all the requirements of a rectangle (4 right angles, opposite sides parallel), so it IS a rectangle, but rectangles don't need equal sides.",
     },
@@ -69,8 +69,8 @@ const seedData: SeedData = {
       lessonGroupOrder: 1,
       lessonContent:
         "A syllogism is a logical argument with two premises and a conclusion.\nIf A is a subset of B, and B is a subset of C, then A is a subset of C.\nThis is called 'transitive reasoning'.\nSpotting valid syllogisms helps you evaluate arguments in daily life.\n\nShare this: ask a friend 'If all A are B and all B are C, does that mean all A are C?' Most people get it right, but asking WHY stretches the mind.",
-      correctExplanation: "Exactly! If all cats ⊆ mammals and mammals ⊆ warm-blooded, then cats ⊆ warm-blooded. This is a classic valid syllogism.",
-      incorrectExplanation: "Actually this IS valid. It's a classic syllogism — if A is a subset of B and B is a subset of C, then A is a subset of C. Cats are a subset of mammals, which are a subset of warm-blooded creatures.",
+      correctExplanation: "Exactly! If all cats âŠ† mammals and mammals âŠ† warm-blooded, then cats âŠ† warm-blooded. This is a classic valid syllogism.",
+      incorrectExplanation: "Actually this IS valid. It's a classic syllogism â€” if A is a subset of B and B is a subset of C, then A is a subset of C. Cats are a subset of mammals, which are a subset of warm-blooded creatures.",
     },
     {
       type: "multiple-choice",
@@ -85,9 +85,9 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 1,
       lessonContent:
-        "This is the 'fallacy of affirming the consequent' — just because Q follows from P, Q being true doesn't prove P.\nExample: 'If I study, I pass' + 'I passed' ≠ 'I studied' (I could have cheated!).\nTo correctly conclude P from Q, you need: 'If P then Q' and 'Not Q' → 'Not P' (modus tollens).\nUnderstanding these fallacies makes you a sharper thinker.\n\nShare this: next time someone says 'Well X happened, so Y must have caused it' — gently ask how they know.",
+        "This is the 'fallacy of affirming the consequent' â€” just because Q follows from P, Q being true doesn't prove P.\nExample: 'If I study, I pass' + 'I passed' â‰  'I studied' (I could have cheated!).\nTo correctly conclude P from Q, you need: 'If P then Q' and 'Not Q' â†’ 'Not P' (modus tollens).\nUnderstanding these fallacies makes you a sharper thinker.\n\nShare this: next time someone says 'Well X happened, so Y must have caused it' â€” gently ask how they know.",
       correctExplanation: "Right! The ground could be wet from a sprinkler, a spilled bucket, or someone washing their car. The statement 'if rain then wet ground' doesn't work backwards automatically.",
-      incorrectExplanation: "Not quite — this is a classic logical fallacy called 'affirming the consequent'. The ground could be wet from a hose, a sprinkler, or anything else. We can't conclude it must have rained.",
+      incorrectExplanation: "Not quite â€” this is a classic logical fallacy called 'affirming the consequent'. The ground could be wet from a hose, a sprinkler, or anything else. We can't conclude it must have rained.",
     },
     {
       type: "multiple-choice",
@@ -107,13 +107,13 @@ const seedData: SeedData = {
       lessonOrder: 4,
       lessonGroupOrder: 1,
       lessonContent:
-        "A logical fallacy is an error in reasoning that makes an argument invalid.\n'Argumentum ad populum' (appeal to popularity) — just because many people believe something doesn't make it true.\nOther common fallacies: ad hominem (attacking the person), straw man (misrepresenting the argument).\nLearning fallacies helps you spot weak arguments in debates, ads, and news.\n\nShare this: try to spot 3 logical fallacies in your next conversation or social media scroll. You'll start seeing them everywhere.",
-      correctExplanation: "Correct! 'Everyone believes it, so it must be true' is the 'appeal to popularity' fallacy. Popularity doesn't equal truth — at one point everyone believed the sun revolved around the earth.",
-      incorrectExplanation: "The first option is the fallacy here. It's 'argumentum ad populum' — believing something because everyone else does. The other options are actual valid reasoning (empirical evidence, logical deduction, causal explanation).",
+        "A logical fallacy is an error in reasoning that makes an argument invalid.\n'Argumentum ad populum' (appeal to popularity) â€” just because many people believe something doesn't make it true.\nOther common fallacies: ad hominem (attacking the person), straw man (misrepresenting the argument).\nLearning fallacies helps you spot weak arguments in debates, ads, and news.\n\nShare this: try to spot 3 logical fallacies in your next conversation or social media scroll. You'll start seeing them everywhere.",
+      correctExplanation: "Correct! 'Everyone believes it, so it must be true' is the 'appeal to popularity' fallacy. Popularity doesn't equal truth â€” at one point everyone believed the sun revolved around the earth.",
+      incorrectExplanation: "The first option is the fallacy here. It's 'argumentum ad populum' â€” believing something because everyone else does. The other options are actual valid reasoning (empirical evidence, logical deduction, causal explanation).",
     },
 
     // ========================================================================
-    // LOGIC — Group 2: Spot the Pattern
+    // LOGIC â€” Group 2: Spot the Pattern
     // ========================================================================
     {
       type: "type-answer",
@@ -128,9 +128,9 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 2,
       lessonContent:
-        "This is the 'Look and Say' sequence, invented by mathematician John Conway.\nYou 'read' the previous number aloud: 'one 1' = 11, 'two 1s' = 21, 'one 2, one 1' = 1211…\nSo 111221 = 'three 1s, two 2s, one 1' = 312211.\nConway proved the sequence grows infinitely and discovered it relates to chemistry.\nThis puzzle goes viral because the pattern is NOT arithmetic — it's linguistic.",
-      correctExplanation: "Yes! Read the digits aloud: 111221 = 'three 1s, two 2s, one 1' = 312211. The sequence describes itself — each term is the 'spoken' version of the previous term.",
-      incorrectExplanation: "Read the previous number as a series of digit-count pairs. 111221 = three 1s, two 2s, one 1 → 312211. This is the Look and Say sequence — each term describes the one before it.",
+        "This is the 'Look and Say' sequence, invented by mathematician John Conway.\nYou 'read' the previous number aloud: 'one 1' = 11, 'two 1s' = 21, 'one 2, one 1' = 1211â€¦\nSo 111221 = 'three 1s, two 2s, one 1' = 312211.\nConway proved the sequence grows infinitely and discovered it relates to chemistry.\nThis puzzle goes viral because the pattern is NOT arithmetic â€” it's linguistic.",
+      correctExplanation: "Yes! Read the digits aloud: 111221 = 'three 1s, two 2s, one 1' = 312211. The sequence describes itself â€” each term is the 'spoken' version of the previous term.",
+      incorrectExplanation: "Read the previous number as a series of digit-count pairs. 111221 = three 1s, two 2s, one 1 â†’ 312211. This is the Look and Say sequence â€” each term describes the one before it.",
     },
     {
       type: "multiple-choice",
@@ -145,7 +145,7 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 2,
       lessonContent:
-        "Finding the 'odd one out' tests your ability to classify and categorize.\nLook for shared properties: number of sides, angles, curves, symmetry.\nSometimes the difference is subtle — functional vs. structural.\nThis skill translates directly to data analysis and scientific classification.\n\nShare this: ask a friend 'Which is the odd one out: triangle, square, circle, rectangle?' Their answer reveals how they think.",
+        "Finding the 'odd one out' tests your ability to classify and categorize.\nLook for shared properties: number of sides, angles, curves, symmetry.\nSometimes the difference is subtle â€” functional vs. structural.\nThis skill translates directly to data analysis and scientific classification.\n\nShare this: ask a friend 'Which is the odd one out: triangle, square, circle, rectangle?' Their answer reveals how they think.",
       correctExplanation: "Right! Triangle, square, and rectangle all have straight sides/angles. A circle is curved with no angles or sides.",
       incorrectExplanation: "The circle is the odd one out. Triangle, square, and rectangle all have straight sides and angles. A circle is a continuous curve with no sides.",
     },
@@ -162,16 +162,16 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 2,
       lessonContent:
-        "Letter patterns work like number patterns — find the rule!\nSkip count: A→C is skip 1, C→F is skip 2, F→J is skip 3.\nSo the next skip is 4: J + 4 letters = N... wait, let me count.\nAlways double-check your pattern against ALL given terms before answering.\n\nShare this: write down the pattern A, C, F, J and ask a friend to find the next letter. Their frustration when they see the answer is priceless.",
-      correctExplanation: "Correct! A→C (+2), C→F (+3), F→J (+4), so next is J→? (+5). The 5th letter after J is O (J, K, L, M, N, O — that's +5, so O).",
-      incorrectExplanation: "The pattern increases the skip by 1 each time: A→C (skip 1), C→F (skip 2), F→J (skip 3), so J→? needs skip 4 → O.",
+        "Letter patterns work like number patterns â€” find the rule!\nSkip count: Aâ†’C is skip 1, Câ†’F is skip 2, Fâ†’J is skip 3.\nSo the next skip is 4: J + 4 letters = N... wait, let me count.\nAlways double-check your pattern against ALL given terms before answering.\n\nShare this: write down the pattern A, C, F, J and ask a friend to find the next letter. Their frustration when they see the answer is priceless.",
+      correctExplanation: "Correct! Aâ†’C (+2), Câ†’F (+3), Fâ†’J (+4), so next is Jâ†’? (+5). The 5th letter after J is O (J, K, L, M, N, O â€” that's +5, so O).",
+      incorrectExplanation: "The pattern increases the skip by 1 each time: Aâ†’C (skip 1), Câ†’F (skip 2), Fâ†’J (skip 3), so Jâ†’? needs skip 4 â†’ O.",
     },
     {
       type: "multiple-choice",
       category: "logic",
       difficulty: "medium",
       title: "Shape Logic",
-      question: "If ★ = 5 and ● = 3, what does ★ + ● × 2 equal?",
+      question: "If â˜… = 5 and â— = 3, what does â˜… + â— Ã— 2 equal?",
       choices: ["11", "16", "13", "10"],
       correctAnswer: "11",
       xpReward: 15,
@@ -180,12 +180,12 @@ const seedData: SeedData = {
       lessonGroupOrder: 2,
       lessonContent:
         "Follow order of operations: Multiplication and division come BEFORE addition and subtraction.\nPEMDAS / BODMAS: Parentheses, Exponents, Multiplication, Division, Addition, Subtraction.\nThis puzzle tests both symbol substitution and operation precedence.\nMany people get this wrong by adding before multiplying!\n\nShare this: post this puzzle on social media and watch adults argue about the answer. 90% of the debates will be people forgetting PEMDAS.",
-      correctExplanation: "Correct! Order of operations says multiplication first: ● × 2 = 3 × 2 = 6, then ★ + 6 = 5 + 6 = 11.",
-      incorrectExplanation: "Remember PEMDAS! Multiplication before addition: ● × 2 = 3 × 2 = 6. Then ★ + 6 = 5 + 6 = 11. The common mistake is adding first: 5+3=8, then ×2=16 — that's wrong.",
+      correctExplanation: "Correct! Order of operations says multiplication first: â— Ã— 2 = 3 Ã— 2 = 6, then â˜… + 6 = 5 + 6 = 11.",
+      incorrectExplanation: "Remember PEMDAS! Multiplication before addition: â— Ã— 2 = 3 Ã— 2 = 6. Then â˜… + 6 = 5 + 6 = 11. The common mistake is adding first: 5+3=8, then Ã—2=16 â€” that's wrong.",
     },
 
     // ========================================================================
-    // LOGIC — Group 3: Solve It
+    // LOGIC â€” Group 3: Solve It
     // ========================================================================
     {
       type: "multiple-choice",
@@ -200,9 +200,9 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 3,
       lessonContent:
-        "The river crossing puzzle is over 1,000 years old — first recorded in 8th-century Europe.\nIt's a classic 'state space search' problem used in AI planning.\nThe key insight: sometimes you need to bring something BACK across to solve it.\nThis teaches the concept of 'subgoal decomposition' in problem-solving.\n\nShare this: tell this puzzle to a friend on a road trip. The answer requires 7 trips — most people guess 5 or 9 first.",
-      correctExplanation: "Right! The solution: ① Take goat across ② Return alone ③ Take wolf across ④ Bring goat BACK ⑤ Take cabbage across ⑥ Return alone ⑦ Take goat across. That's 7 one-way trips.",
-      incorrectExplanation: "The solution needs 7 trips: Goat→, ←, Wolf→, Goat←, Cabbage→, ←, Goat→. You must bring the goat back on trip 4 to avoid leaving it with the cabbage.",
+        "The river crossing puzzle is over 1,000 years old â€” first recorded in 8th-century Europe.\nIt's a classic 'state space search' problem used in AI planning.\nThe key insight: sometimes you need to bring something BACK across to solve it.\nThis teaches the concept of 'subgoal decomposition' in problem-solving.\n\nShare this: tell this puzzle to a friend on a road trip. The answer requires 7 trips â€” most people guess 5 or 9 first.",
+      correctExplanation: "Right! The solution: â‘  Take goat across â‘¡ Return alone â‘¢ Take wolf across â‘£ Bring goat BACK â‘¤ Take cabbage across â‘¥ Return alone â‘¦ Take goat across. That's 7 one-way trips.",
+      incorrectExplanation: "The solution needs 7 trips: Goatâ†’, â†, Wolfâ†’, Goatâ†, Cabbageâ†’, â†, Goatâ†’. You must bring the goat back on trip 4 to avoid leaving it with the cabbage.",
     },
     {
       type: "multiple-choice",
@@ -222,7 +222,7 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 3,
       lessonContent:
-        "The 'knights and knaves' puzzle was popularized by logician Raymond Smullyan.\nThe trick: a truth-teller and a liar will give the SAME wrong answer about what the other would say.\nThis is because: truth-teller reports the liar's lie (false), liar lies about what truth-teller would say (also false).\nYou then take the OPPOSITE path to what they say.\n\nShare this: this puzzle is famous for a reason — ask someone 'What one question would you ask?' and watch their brain short-circuit.",
+        "The 'knights and knaves' puzzle was popularized by logician Raymond Smullyan.\nThe trick: a truth-teller and a liar will give the SAME wrong answer about what the other would say.\nThis is because: truth-teller reports the liar's lie (false), liar lies about what truth-teller would say (also false).\nYou then take the OPPOSITE path to what they say.\n\nShare this: this puzzle is famous for a reason â€” ask someone 'What one question would you ask?' and watch their brain short-circuit.",
       correctExplanation: "Correct! Both will point to the wrong path. The truth-teller will honestly say what the liar would say (wrong path), and the liar will lie about what the truth-teller would say (also wrong path). Take the opposite.",
       incorrectExplanation: "The clever trick: ask 'What would the other say?' Both will point to the WRONG path. The truth-teller reports the liar's lie (wrong), the liar lies about the truth-teller's answer (also wrong). Take the opposite path.",
     },
@@ -233,12 +233,12 @@ const seedData: SeedData = {
       title: "The Missing Dollar",
       question: "Three friends pay $30 for a hotel room ($10 each). Later the clerk realizes the room is only $25, so gives $5 to the bellboy to return. The bellboy keeps $2 and gives $1 back to each friend. Now each friend paid $9 ($27 total) plus the bellboy's $2 = $29. Where is the missing dollar?",
       choices: [
-        "There is no missing dollar — the logic is flawed",
+        "There is no missing dollar â€” the logic is flawed",
         "The bellboy stole it",
         "The hotel has it",
         "The friends miscounted",
       ],
-      correctAnswer: "There is no missing dollar — the logic is flawed",
+      correctAnswer: "There is no missing dollar â€” the logic is flawed",
       xpReward: 25,
       lessonGroup: "Solve It",
       lessonOrder: 3,
@@ -267,7 +267,7 @@ const seedData: SeedData = {
     },
 
     // ========================================================================
-    // LOGIC — Group 4: Master Mind
+    // LOGIC â€” Group 4: Master Mind
     // ========================================================================
     {
       type: "multiple-choice",
@@ -282,7 +282,7 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 4,
       lessonContent:
-        "This is often called 'Einstein's Riddle' — Einstein supposedly created it as a boy.\nGrid logic puzzles use a systematic elimination approach.\nStart with what you KNOW, fill in what follows, and keep iterating.\nPro tip: draw a 5×5 grid with categories (house, color, nationality, drink, smoke, pet) and use X's and checks.\n\nShare this: print the clues and give them to a friend on a long flight. It kills 45 minutes and makes you feel like a genius.",
+        "This is often called 'Einstein's Riddle' â€” Einstein supposedly created it as a boy.\nGrid logic puzzles use a systematic elimination approach.\nStart with what you KNOW, fill in what follows, and keep iterating.\nPro tip: draw a 5Ã—5 grid with categories (house, color, nationality, drink, smoke, pet) and use X's and checks.\n\nShare this: print the clues and give them to a friend on a long flight. It kills 45 minutes and makes you feel like a genius.",
       correctExplanation: "Impressive! After systematically applying all 15 clues, the German is the only one left for the fish. The complete arrangement: Yellow (Norwegian, water, Dunhill, cats), Blue (Dane, tea, Blends, horses), Red (Brit, milk, Pall Mall, birds), Green (German, coffee, Prince, FISH), White (Swede, beer, Blue Master, dogs).",
       incorrectExplanation: "Work through the clues systematically. Using a grid: The Norwegian is in house 1 (blue? no, clue 14 says Norwegian lives next to blue, so house 2 is blue)... The German drinks coffee, smokes Prince, and after full deduction ends up in the green house with the fish.",
     },
@@ -291,7 +291,7 @@ const seedData: SeedData = {
       category: "logic",
       difficulty: "hard",
       title: "The Hardest Logic Puzzle",
-      question: "Three gods: A (always truth), B (always lie), C (random). You can ask three yes/no questions, each to any god. They answer in their language — 'da' means yes or no (you don't know which). How do you find out which god is which?",
+      question: "Three gods: A (always truth), B (always lie), C (random). You can ask three yes/no questions, each to any god. They answer in their language â€” 'da' means yes or no (you don't know which). How do you find out which god is which?",
       choices: [
         "It's impossible with only 3 questions",
         "Ask 'If I asked you Q, would you say da?'",
@@ -306,7 +306,7 @@ const seedData: SeedData = {
       lessonContent:
         "This puzzle was created by philosopher George Boolos in 1996.\nThe trick: 'If I asked you Q, would you say da?' normalizes the answer.\nRegardless of whether da=yes or da=no, a truth-teller answers da exactly when Q is true.\nA liar ALSO answers da when Q is true (because they'd lie about what they'd say).",
       correctExplanation: "Correct! The embedded question trick works because: for truth-teller, if Q is true they say da (would answer da), if false they say 'no' (wouldn't). For liar, they'd lie about what they'd say, which flips twice and gives the same result. Complex but brilliant!",
-      incorrectExplanation: "The trick uses an embedded question: 'If I asked Q, would you say da?' This normalizes the meaning of 'da' — both truth-teller and liar will answer da exactly when the answer to Q is yes, regardless of what 'da' actually means.",
+      incorrectExplanation: "The trick uses an embedded question: 'If I asked Q, would you say da?' This normalizes the meaning of 'da' â€” both truth-teller and liar will answer da exactly when the answer to Q is yes, regardless of what 'da' actually means.",
     },
     {
       type: "type-answer",
@@ -321,9 +321,9 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 4,
       lessonContent:
-        "This puzzle tricks you into looking for complex math patterns.\nThe answer has nothing to do with the numbers' values!\nHint: Look at the digits themselves — what do they contain?\nThe answer is the count of 'closed loops' in each digit.\n\nShare this: this one stumps EVERYONE. Text a friend 'What does 2468 equal? Here's a hint — it's not math.' The frustration is real.",
+        "This puzzle tricks you into looking for complex math patterns.\nThe answer has nothing to do with the numbers' values!\nHint: Look at the digits themselves â€” what do they contain?\nThe answer is the count of 'closed loops' in each digit.\n\nShare this: this one stumps EVERYONE. Text a friend 'What does 2468 equal? Here's a hint â€” it's not math.' The frustration is real.",
       correctExplanation: "Correct! The value equals the number of closed loops in each digit: 0 has 1 loop, 6 has 1, 8 has 2, 9 has 1. All other digits have 0 loops. So 2468 = 0 (2) + 0 (4) + 1 (6) + 2 (8) = 3.",
-      incorrectExplanation: "Count closed loops in each digit: 2→0, 4→0, 6→1, 8→2. Total = 0+0+1+2 = 3. It's a visual pattern, not a math problem!",
+      incorrectExplanation: "Count closed loops in each digit: 2â†’0, 4â†’0, 6â†’1, 8â†’2. Total = 0+0+1+2 = 3. It's a visual pattern, not a math problem!",
     },
     {
       type: "multiple-choice",
@@ -338,13 +338,13 @@ const seedData: SeedData = {
       lessonOrder: 4,
       lessonGroupOrder: 4,
       lessonContent:
-        "This puzzle tests your ability to visualize — don't just do math!\nVolume I is on the LEFT. Page 1 of Volume I is on the RIGHT side of Volume I (books are shelved with page 1 on the right).\nLast page of Volume III is on the LEFT side of Volume III.\nSo the bookworm only travels through Volume II (between the right cover of I and left cover of III).\n\nShare this: the answer is 3cm — almost EVERYONE guesses 10cm or 17cm. Ask a friend 'How far does a bookworm travel through 3 encyclopedias?' and watch them overthink.",
+        "This puzzle tests your ability to visualize â€” don't just do math!\nVolume I is on the LEFT. Page 1 of Volume I is on the RIGHT side of Volume I (books are shelved with page 1 on the right).\nLast page of Volume III is on the LEFT side of Volume III.\nSo the bookworm only travels through Volume II (between the right cover of I and left cover of III).\n\nShare this: the answer is 3cm â€” almost EVERYONE guesses 10cm or 17cm. Ask a friend 'How far does a bookworm travel through 3 encyclopedias?' and watch them overthink.",
       correctExplanation: "Correct! The trick: Volume I is on the left. Page 1 is on the RIGHT side of Volume I. The last page of Volume III is on the LEFT side of Volume III. So the bookworm only passes through the pages of Volume II (3cm). Not through Volume I or III covers at all!",
-      incorrectExplanation: "Picture the books: Volume I (left) has page 1 on its RIGHT side. Volume III (right) has last page on its LEFT side. The bookworm starts at Vol I's right edge and ends at Vol III's left edge — it only traverses Volume II's 3cm of pages.",
+      incorrectExplanation: "Picture the books: Volume I (left) has page 1 on its RIGHT side. Volume III (right) has last page on its LEFT side. The bookworm starts at Vol I's right edge and ends at Vol III's left edge â€” it only traverses Volume II's 3cm of pages.",
     },
 
     // ========================================================================
-    // RIDDLES — Group 1: Classic Riddles
+    // RIDDLES â€” Group 1: Classic Riddles
     // ========================================================================
     {
       type: "riddle",
@@ -360,7 +360,7 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 1,
       lessonContent:
-        "This is the most famous riddle in history — from the Greek myth of Oedipus and the Sphinx.\nThe Sphinx guarded the gates of Thebes and devoured anyone who couldn't solve it.\nOedipus solved it, causing the Sphinx to destroy herself.\nThe answer describes the human lifespan through metaphor.\n\nShare this: it's the oldest riddle still told today. Ask someone 'What walks on 4 legs in the morning, 2 at noon, and 3 in the evening?' The answer has stayed the same for 2,500 years.",
+        "This is the most famous riddle in history â€” from the Greek myth of Oedipus and the Sphinx.\nThe Sphinx guarded the gates of Thebes and devoured anyone who couldn't solve it.\nOedipus solved it, causing the Sphinx to destroy herself.\nThe answer describes the human lifespan through metaphor.\n\nShare this: it's the oldest riddle still told today. Ask someone 'What walks on 4 legs in the morning, 2 at noon, and 3 in the evening?' The answer has stayed the same for 2,500 years.",
       correctExplanation: "Yes! A human crawls as a baby (4 legs), walks upright as an adult (2 legs), and uses a cane in old age (3 legs).",
       incorrectExplanation: "The answer is a human. 'Morning' = infancy (crawling on all fours), 'Noon' = adulthood (walking on two legs), 'Evening' = old age (walking with a cane).",
     },
@@ -378,7 +378,7 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 1,
       lessonContent:
-        "An echo is the reflection of sound waves off a surface.\nSound travels at roughly 343 meters per second in air.\nYou need at least 17 meters distance to hear a distinct echo (your ear can distinguish sounds 0.1 seconds apart).\nThe word 'echo' comes from Greek mythology — Echo was a nymph who could only repeat others' words.\n\nShare this: next time you're in a canyon or large hall, shout and count how many echoes come back. The world record is 7 echoes from a single shout in a Scottish cave.",
+        "An echo is the reflection of sound waves off a surface.\nSound travels at roughly 343 meters per second in air.\nYou need at least 17 meters distance to hear a distinct echo (your ear can distinguish sounds 0.1 seconds apart).\nThe word 'echo' comes from Greek mythology â€” Echo was a nymph who could only repeat others' words.\n\nShare this: next time you're in a canyon or large hall, shout and count how many echoes come back. The world record is 7 echoes from a single shout in a Scottish cave.",
       correctExplanation: "Yes! An echo 'speaks' (repeats sound) without a mouth, 'hears' without ears, and needs wind (air to carry sound) but has no body.",
       incorrectExplanation: "It's an echo! Sound bounces off distant surfaces and returns to you. The echo seems to 'speak' by repeating what you said, but it has no mouth, ears, or body.",
     },
@@ -396,7 +396,7 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 1,
       lessonContent:
-        "This is one of the oldest known English riddles, dating back centuries.\nIt plays on the double meaning of 'take' — taking a step vs. taking an object.\nThe more steps you 'take', the more footprints (footsteps) you leave behind.\nSimple but clever wordplay is the hallmark of great riddles.\n\nShare this: whisper this riddle to someone on a walk. The answer becomes obvious when you're literally taking steps.",
+        "This is one of the oldest known English riddles, dating back centuries.\nIt plays on the double meaning of 'take' â€” taking a step vs. taking an object.\nThe more steps you 'take', the more footprints (footsteps) you leave behind.\nSimple but clever wordplay is the hallmark of great riddles.\n\nShare this: whisper this riddle to someone on a walk. The answer becomes obvious when you're literally taking steps.",
       correctExplanation: "Correct! Every step you 'take' leaves a footprint behind. The more steps you take, the more footsteps trail behind you.",
       incorrectExplanation: "The answer is footsteps. Each step you 'take' leaves a footprint behind. So the more steps you take, the more footsteps you've left behind you.",
     },
@@ -414,13 +414,13 @@ const seedData: SeedData = {
       lessonOrder: 4,
       lessonGroupOrder: 1,
       lessonContent:
-        "A map is a symbolic representation of geographical features.\nMaps date back over 8,000 years — the oldest known map is a Babylonian clay tablet.\nModern maps use symbols: dots for cities, green for forests, blue lines for rivers.\nThe riddle works because maps SHOW these features but don't contain the actual things.\n\nShare this: ask someone 'What has cities but no houses?' while holding a map. The context makes it either trivially easy or maddeningly hard.",
-      correctExplanation: "Yes! A map shows cities, forests, and rivers as symbols, but doesn't contain actual houses, trees, or water — just paper and ink.",
-      incorrectExplanation: "It's a map. Maps represent real places with symbols — cities are dots (not actual houses), forests are colored areas (not real trees), rivers are lines (not actual water).",
+        "A map is a symbolic representation of geographical features.\nMaps date back over 8,000 years â€” the oldest known map is a Babylonian clay tablet.\nModern maps use symbols: dots for cities, green for forests, blue lines for rivers.\nThe riddle works because maps SHOW these features but don't contain the actual things.\n\nShare this: ask someone 'What has cities but no houses?' while holding a map. The context makes it either trivially easy or maddeningly hard.",
+      correctExplanation: "Yes! A map shows cities, forests, and rivers as symbols, but doesn't contain actual houses, trees, or water â€” just paper and ink.",
+      incorrectExplanation: "It's a map. Maps represent real places with symbols â€” cities are dots (not actual houses), forests are colored areas (not real trees), rivers are lines (not actual water).",
     },
 
     // ========================================================================
-    // RIDDLES — Group 2: Funny Business
+    // RIDDLES â€” Group 2: Funny Business
     // ========================================================================
     {
       type: "riddle",
@@ -431,14 +431,14 @@ const seedData: SeedData = {
       correctAnswer: "An impasta",
       acceptedAnswers: ["An impasta", "Impasta", "Im-pasta", "An im-pasta"],
       xpReward: 10,
-      hintText: "It's a pun — think 'imposter' but with pasta.\nSay it out loud: 'im-pasta'.",
+      hintText: "It's a pun â€” think 'imposter' but with pasta.\nSay it out loud: 'im-pasta'.",
       lessonGroup: "Funny Business",
       lessonOrder: 1,
       lessonGroupOrder: 2,
       lessonContent:
         "Puns are a form of wordplay that exploit multiple meanings of words.\nThey're considered the lowest form of humor AND the highest form of wit (depending on who you ask).\nShakespeare used over 3,000 puns in his plays.\nA good pun gives you a moment of confusion followed by an 'aha!' groan.",
-      correctExplanation: "Haha, yes! 'Impasta' sounds like 'imposter' — a fake person, but with pasta instead! Pun-ishingly good.",
-      incorrectExplanation: "It's an 'impasta' — a pun on 'imposter' (a fake/fraud) mixed with 'pasta' (noodles). The joke is you expect 'impostor' but get a pasta-themed word instead!",
+      correctExplanation: "Haha, yes! 'Impasta' sounds like 'imposter' â€” a fake person, but with pasta instead! Pun-ishingly good.",
+      incorrectExplanation: "It's an 'impasta' â€” a pun on 'imposter' (a fake/fraud) mixed with 'pasta' (noodles). The joke is you expect 'impostor' but get a pasta-themed word instead!",
     },
     {
       type: "riddle",
@@ -453,14 +453,14 @@ const seedData: SeedData = {
         "Because he was outstanding",
       ],
       xpReward: 10,
-      hintText: "Think about what a scarecrow does for a living — and what 'outstanding' can mean.\nIt's a double meaning joke.",
+      hintText: "Think about what a scarecrow does for a living â€” and what 'outstanding' can mean.\nIt's a double meaning joke.",
       lessonGroup: "Funny Business",
       lessonOrder: 2,
       lessonGroupOrder: 2,
       lessonContent:
         "This is a classic 'double meaning' joke.\n'Outstanding' can mean excellent/noteworthy, OR literally 'standing out' in a field.\nScarecrows literally stand out in fields to scare birds.\nThe humor comes from the unexpected second meaning.",
       correctExplanation: "Yes! 'Outstanding' has two meanings: (1) exceptionally good, and (2) literally standing outside in a field. The scarecrow qualifies for both!",
-      incorrectExplanation: "Because he was 'outstanding in his field' — he's a scarecrow who stands in a field (literal), and 'outstanding' also means excellent (figurative). The pun works both ways!",
+      incorrectExplanation: "Because he was 'outstanding in his field' â€” he's a scarecrow who stands in a field (literal), and 'outstanding' also means excellent (figurative). The pun works both ways!",
     },
     {
       type: "riddle",
@@ -476,7 +476,7 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 2,
       lessonContent:
-        "This riddle plays on the double meaning of 'key' — piano keys vs. door keys.\nA piano's 'grand voice' refers to its rich sound.\nThe piano has 88 keys but can't unlock anything.\nThis riddle is a classic that people love sharing because the answer feels obvious once you hear it — but stumps you at first.\nTell this to a friend and watch their face when the answer clicks.",
+        "This riddle plays on the double meaning of 'key' â€” piano keys vs. door keys.\nA piano's 'grand voice' refers to its rich sound.\nThe piano has 88 keys but can't unlock anything.\nThis riddle is a classic that people love sharing because the answer feels obvious once you hear it â€” but stumps you at first.\nTell this to a friend and watch their face when the answer clicks.",
       correctExplanation: "A piano! It has 88 keys but none of them open a door. Its 'grand voice' is the music it produces. A perfect riddle for the double meaning of 'key.'",
       incorrectExplanation: "The answer is a piano. 'Keys' on a piano are pressed to make sound, not unlock doors. The 'grand voice' hints at a grand piano. A classic riddle people share for the 'aha' moment.",
     },
@@ -494,31 +494,31 @@ const seedData: SeedData = {
       lessonOrder: 4,
       lessonGroupOrder: 2,
       lessonContent:
-        "This riddle is a perfect paradox: the action of drying makes the tool wetter.\nA towel's job is to absorb water — so the more it dries you, the more water it absorbs.\nIt's one of the most famous 'paradox riddles' and works because your brain immediately visualizes the contradiction.\nThis is a great riddle to ask someone on a walk — especially near water.",
-      correctExplanation: "A towel! The more you use it to dry, the wetter it becomes. The paradox is what makes it genius — drying and wetting happening at the same time.",
+        "This riddle is a perfect paradox: the action of drying makes the tool wetter.\nA towel's job is to absorb water â€” so the more it dries you, the more water it absorbs.\nIt's one of the most famous 'paradox riddles' and works because your brain immediately visualizes the contradiction.\nThis is a great riddle to ask someone on a walk â€” especially near water.",
+      correctExplanation: "A towel! The more you use it to dry, the wetter it becomes. The paradox is what makes it genius â€” drying and wetting happening at the same time.",
       incorrectExplanation: "A towel! When you dry yourself, the towel absorbs water and becomes wet. The 'dries' in the riddle means 'dries something else,' not itself. A classic paradox riddle.",
     },
 
     // ========================================================================
-    // RIDDLES — Group 3: Tricky Words
+    // RIDDLES â€” Group 3: Tricky Words
     // ========================================================================
     {
       type: "type-answer",
       category: "riddles",
       difficulty: "medium",
       title: "Word Ladder",
-      question: "Change one letter at a time:\nCAT → ? → DOG\nWhat's the middle word?",
+      question: "Change one letter at a time:\nCAT â†’ ? â†’ DOG\nWhat's the middle word?",
       correctAnswer: "COT",
       acceptedAnswers: ["COT", "Cog", "cog"],
       xpReward: 15,
-      hintText: "You need a valid 3-letter word in between.\nCAT to ? (change one letter) → ? to DOG (change one letter).\nTry changing the vowel first.",
+      hintText: "You need a valid 3-letter word in between.\nCAT to ? (change one letter) â†’ ? to DOG (change one letter).\nTry changing the vowel first.",
       lessonGroup: "Tricky Words",
       lessonOrder: 1,
       lessonGroupOrder: 3,
       lessonContent:
         "Word Ladders were invented by Lewis Carroll (author of Alice in Wonderland) in 1877.\nAlso called 'doublets', they transform one word into another by changing one letter at a time.\nEach intermediate step must be a valid word.\nThe game was first published in Vanity Fair magazine.",
-      correctExplanation: "Yes! CAT → C**O**T (change A to O) → **D**OT or C**O**T → **D**OG... actually CAT → COT (change A to O) → COG (change T to G) → DOG (change C to D). So either COT or COG works!",
-      incorrectExplanation: "Possible answers: CAT → COT → DOG (change A→O, then C→D) or CAT → COG → DOG. Both work since each step changes exactly one letter to make a valid word.",
+      correctExplanation: "Yes! CAT â†’ C**O**T (change A to O) â†’ **D**OT or C**O**T â†’ **D**OG... actually CAT â†’ COT (change A to O) â†’ COG (change T to G) â†’ DOG (change C to D). So either COT or COG works!",
+      incorrectExplanation: "Possible answers: CAT â†’ COT â†’ DOG (change Aâ†’O, then Câ†’D) or CAT â†’ COG â†’ DOG. Both work since each step changes exactly one letter to make a valid word.",
     },
     {
       type: "riddle",
@@ -529,14 +529,14 @@ const seedData: SeedData = {
       correctAnswer: "Wrong",
       acceptedAnswers: ["Wrong", "The word 'wrong'"],
       xpReward: 15,
-      hintText: "Think about the riddle itself. It says 'What word is always spelled wrong?' — that's a clue.\nThe answer is the word in the question!",
+      hintText: "Think about the riddle itself. It says 'What word is always spelled wrong?' â€” that's a clue.\nThe answer is the word in the question!",
       lessonGroup: "Tricky Words",
       lessonOrder: 2,
       lessonGroupOrder: 3,
       lessonContent:
-        "This is a self-referential riddle — it refers to itself.\nSelf-reference creates paradoxes: 'This statement is false'.\nThe word in the question that's 'always spelled wrong' is literally 'wrong'.\nBut wait... 'wrong' IS spelled correctly here! The paradox is part of the fun.",
-      correctExplanation: "Yes! The word 'wrong' is always spelled W-R-O-N-G. So it's 'always spelled wrong' — meaning the word 'wrong' spells 'wrong'. Meta!",
-      incorrectExplanation: "The answer is 'wrong' — the word itself. The question says 'what word is always spelled wrong?' and the answer is the word 'wrong' (which IS spelled correctly, creating the playful paradox).",
+        "This is a self-referential riddle â€” it refers to itself.\nSelf-reference creates paradoxes: 'This statement is false'.\nThe word in the question that's 'always spelled wrong' is literally 'wrong'.\nBut wait... 'wrong' IS spelled correctly here! The paradox is part of the fun.",
+      correctExplanation: "Yes! The word 'wrong' is always spelled W-R-O-N-G. So it's 'always spelled wrong' â€” meaning the word 'wrong' spells 'wrong'. Meta!",
+      incorrectExplanation: "The answer is 'wrong' â€” the word itself. The question says 'what word is always spelled wrong?' and the answer is the word 'wrong' (which IS spelled correctly, creating the playful paradox).",
     },
     {
       type: "type-answer",
@@ -552,9 +552,9 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 3,
       lessonContent:
-        "An anagram rearranges letters of a word or phrase to form another word.\n'Listen' and 'silent' use the exact same 6 letters.\nOther anagrams: 'astronomer' → 'moon starer', 'debit card' → 'bad credit'.\nAnagrams were considered a mystical art in ancient Greece and Rome.",
-      correctExplanation: "Yes! L-I-S-T-E-N rearranged is S-I-L-E-N-T. Both use the same letters — a perfect anagram!",
-      incorrectExplanation: "The answer is 'silent'. Listen → Silent. Both use the same 6 letters: E, I, L, N, S, T. Or 'inlets' is also valid!",
+        "An anagram rearranges letters of a word or phrase to form another word.\n'Listen' and 'silent' use the exact same 6 letters.\nOther anagrams: 'astronomer' â†’ 'moon starer', 'debit card' â†’ 'bad credit'.\nAnagrams were considered a mystical art in ancient Greece and Rome.",
+      correctExplanation: "Yes! L-I-S-T-E-N rearranged is S-I-L-E-N-T. Both use the same letters â€” a perfect anagram!",
+      incorrectExplanation: "The answer is 'silent'. Listen â†’ Silent. Both use the same 6 letters: E, I, L, N, S, T. Or 'inlets' is also valid!",
     },
     {
       type: "multiple-choice",
@@ -575,7 +575,7 @@ const seedData: SeedData = {
     },
 
     // ========================================================================
-    // RIDDLES — Group 4: Brain Busters
+    // RIDDLES â€” Group 4: Brain Busters
     // ========================================================================
     {
       type: "riddle",
@@ -598,7 +598,7 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 4,
       lessonContent:
-        "This is a famous 'lateral thinking' puzzle.\nThe key: he can reach the ground floor button (it's near the bottom), but not the 10th floor button (too high).\nHe can reach the 7th floor button, so he goes to 7 and walks the rest.\nThe answer seems obvious once you know it — that's the hallmark of a great lateral puzzle!",
+        "This is a famous 'lateral thinking' puzzle.\nThe key: he can reach the ground floor button (it's near the bottom), but not the 10th floor button (too high).\nHe can reach the 7th floor button, so he goes to 7 and walks the rest.\nThe answer seems obvious once you know it â€” that's the hallmark of a great lateral puzzle!",
       correctExplanation: "Correct! He's a short person (a dwarf) who can only reach buttons up to the 7th floor. In the morning, he presses 1 (ground, bottom row). In the evening, he presses 7 (highest he can reach) and walks up 3 flights.",
       incorrectExplanation: "He's too short to reach the 10th floor button! He can press the ground floor button (1, bottom row) to go down, but coming back up, he can only reach up to 7. So he goes to 7 and takes the stairs the rest of the way.",
     },
@@ -623,16 +623,16 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 4,
       lessonContent:
-        "Bertrand Russell created this paradox in 1901 to expose a flaw in set theory.\nIt's the same as: 'Does the set of all sets that don't contain themselves contain itself?'\nIf yes → it contains itself, so it shouldn't be in the set.\nIf no → it should be in the set. This broke Frege's entire logical system!",
+        "Bertrand Russell created this paradox in 1901 to expose a flaw in set theory.\nIt's the same as: 'Does the set of all sets that don't contain themselves contain itself?'\nIf yes â†’ it contains itself, so it shouldn't be in the set.\nIf no â†’ it should be in the set. This broke Frege's entire logical system!",
       correctExplanation: "Exactly! It's a paradox. If the barber shaves himself, he's shaving someone who shaves himself (against the rule). If someone else shaves him, he doesn't shave himself (but then the barber should shave him). Impossible!",
-      incorrectExplanation: "Nobody can shave the barber without breaking the rule. This is Russell's Paradox — the barber both must and cannot shave himself. The only resolution: the barber doesn't shave (bald?) or the paradox is inherent in the premise.",
+      incorrectExplanation: "Nobody can shave the barber without breaking the rule. This is Russell's Paradox â€” the barber both must and cannot shave himself. The only resolution: the barber doesn't shave (bald?) or the paradox is inherent in the premise.",
     },
     {
       type: "riddle",
       category: "riddles",
       difficulty: "hard",
       title: "Two Doors, Two Guards",
-      question: "You stand before two doors. One leads to certain death, the other to freedom. Two guards guard the doors — one always tells the truth, one always lies. You may ask ONE question to ONE guard. What do you ask?",
+      question: "You stand before two doors. One leads to certain death, the other to freedom. Two guards guard the doors â€” one always tells the truth, one always lies. You may ask ONE question to ONE guard. What do you ask?",
       correctAnswer: "If I asked the other guard which door leads to freedom, what would they say?",
       acceptedAnswers: [
         "Which door would the other guard say leads to freedom",
@@ -646,9 +646,9 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 4,
       lessonContent:
-        "This is a harder version of the truth-teller/liar puzzle.\nThe key: embed a question about 'what the OTHER would say'.\nBoth guards point to the SAME door — the WRONG one.\nYou then choose the OTHER door. This works because a double-negative equals a negative!",
+        "This is a harder version of the truth-teller/liar puzzle.\nThe key: embed a question about 'what the OTHER would say'.\nBoth guards point to the SAME door â€” the WRONG one.\nYou then choose the OTHER door. This works because a double-negative equals a negative!",
       correctExplanation: "Correct! Ask either guard: 'What would the other guard say leads to freedom?' Both will point to the DEATH door. The truth-teller reports the liar's lie (wrong), the liar lies about the truth-teller's answer (also wrong). Take the other door!",
-      incorrectExplanation: "Ask 'Which door would the other guard point to?' Both will point to the death door. The truth-teller truthfully says the liar's wrong answer. The liar lies about the truth-teller's correct answer. Both give the wrong door — so choose the opposite.",
+      incorrectExplanation: "Ask 'Which door would the other guard point to?' Both will point to the death door. The truth-teller truthfully says the liar's wrong answer. The liar lies about the truth-teller's correct answer. Both give the wrong door â€” so choose the opposite.",
     },
     {
       type: "riddle",
@@ -665,18 +665,18 @@ const seedData: SeedData = {
         "Pencil lead (graphite)",
       ],
       xpReward: 25,
-      hintText: "What's inside a pencil that comes from mining?\nIt's not actual lead — it's a form of carbon.\nThe 'wooden case' is the pencil body.",
+      hintText: "What's inside a pencil that comes from mining?\nIt's not actual lead â€” it's a form of carbon.\nThe 'wooden case' is the pencil body.",
       lessonGroup: "Brain Busters",
       lessonOrder: 4,
       lessonGroupOrder: 4,
       lessonContent:
-        "This riddle by J.R.R. Tolkien (yes, The Hobbit/Lord of the Rings author!) is a classic.\nPencil 'lead' is actually graphite — a form of carbon.\nIt's 'mined' from the ground, then 'shut up in wood' (the pencil).\nIt's 'never released' because you use it until the pencil is gone — the lead is consumed, never freed!",
-      correctExplanation: "Yes! Pencil lead (graphite) is mined, encased in wood, and is gradually used up — never 'released' from its wooden prison. A brilliant riddle by J.R.R. Tolkien!",
-      incorrectExplanation: "The answer is pencil lead/graphite. It's mined from the earth, enclosed in a wooden pencil case, and as you write with it, it wears away — it's never 'released' from the wood.",
+        "This riddle by J.R.R. Tolkien (yes, The Hobbit/Lord of the Rings author!) is a classic.\nPencil 'lead' is actually graphite â€” a form of carbon.\nIt's 'mined' from the ground, then 'shut up in wood' (the pencil).\nIt's 'never released' because you use it until the pencil is gone â€” the lead is consumed, never freed!",
+      correctExplanation: "Yes! Pencil lead (graphite) is mined, encased in wood, and is gradually used up â€” never 'released' from its wooden prison. A brilliant riddle by J.R.R. Tolkien!",
+      incorrectExplanation: "The answer is pencil lead/graphite. It's mined from the earth, enclosed in a wooden pencil case, and as you write with it, it wears away â€” it's never 'released' from the wood.",
     },
 
     // ========================================================================
-    // SCIENCE — Group 1: Body & Biology (leveled up)
+    // SCIENCE â€” Group 1: Body & Biology (leveled up)
     // ========================================================================
     {
       type: "multiple-choice",
@@ -691,8 +691,8 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 1,
       lessonContent:
-        "Your body is a walking ecosystem! For every one human cell, there's about one bacterial cell living in and on you.\nMost of these bacteria live in your gut and help digest food, produce vitamins, and train your immune system.\nYour microbiome is as unique as your fingerprint.\nThis changes the question: are 'you' really just you — or a whole civilization?",
-      correctExplanation: "Yes! The human body has roughly a 1:1 ratio of human cells to bacterial cells. You're a walking colony — a superorganism!",
+        "Your body is a walking ecosystem! For every one human cell, there's about one bacterial cell living in and on you.\nMost of these bacteria live in your gut and help digest food, produce vitamins, and train your immune system.\nYour microbiome is as unique as your fingerprint.\nThis changes the question: are 'you' really just you â€” or a whole civilization?",
+      correctExplanation: "Yes! The human body has roughly a 1:1 ratio of human cells to bacterial cells. You're a walking colony â€” a superorganism!",
       incorrectExplanation: "There are roughly equal numbers of human cells and bacterial cells in your body! You're about 50% bacteria by cell count. Most live in your gut and are essential for digestion and immunity.",
     },
     {
@@ -708,9 +708,9 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 1,
       lessonContent:
-        "It's true! Humans share about 50-60% of their DNA with bananas.\nAll life on Earth shares a common ancestor — the more closely related, the more DNA we share.\nWe share ~99% with chimpanzees, ~85% with mice, ~60% with chickens.\nThe banana number is a conversation starter at every dinner party.",
+        "It's true! Humans share about 50-60% of their DNA with bananas.\nAll life on Earth shares a common ancestor â€” the more closely related, the more DNA we share.\nWe share ~99% with chimpanzees, ~85% with mice, ~60% with chickens.\nThe banana number is a conversation starter at every dinner party.",
       correctExplanation: "True! About 50-60% of your genes have a match in banana DNA. We share a common ancestor from over a billion years ago!",
-      incorrectExplanation: "It's true! Humans and bananas share about 50-60% of their DNA. This doesn't mean we're 'half banana' — it means all life shares basic genetic machinery for survival.",
+      incorrectExplanation: "It's true! Humans and bananas share about 50-60% of their DNA. This doesn't mean we're 'half banana' â€” it means all life shares basic genetic machinery for survival.",
     },
     {
       type: "multiple-choice",
@@ -725,9 +725,9 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 1,
       lessonContent:
-        "Your brain is just 2% of your body weight but consumes 20% of your energy — that's 10× more energy per gram than any other organ.\nThe brain uses about 350-450 calories per day just thinking.\nThis is why mental work can feel as exhausting as physical work.\nEvolution gave us this energy-hungry organ because thinking paid survival dividends.",
-      correctExplanation: "Correct! 2% of body weight but 20% of energy. Your brain is the most energy-hungry organ per gram — it's a power-hungry supercomputer.",
-      incorrectExplanation: "The brain is only about 2% of body weight but uses 20% of your energy. That's 10× more energy per gram than the rest of your body. Thinking is literally hard work!",
+        "Your brain is just 2% of your body weight but consumes 20% of your energy â€” that's 10Ã— more energy per gram than any other organ.\nThe brain uses about 350-450 calories per day just thinking.\nThis is why mental work can feel as exhausting as physical work.\nEvolution gave us this energy-hungry organ because thinking paid survival dividends.",
+      correctExplanation: "Correct! 2% of body weight but 20% of energy. Your brain is the most energy-hungry organ per gram â€” it's a power-hungry supercomputer.",
+      incorrectExplanation: "The brain is only about 2% of body weight but uses 20% of your energy. That's 10Ã— more energy per gram than the rest of your body. Thinking is literally hard work!",
     },
     {
       type: "multiple-choice",
@@ -747,13 +747,13 @@ const seedData: SeedData = {
       lessonOrder: 4,
       lessonGroupOrder: 1,
       lessonContent:
-        "Henrietta Lacks was a Black woman whose cancer cells were taken without her knowledge in 1951.\nHer cells (HeLa) had a unique mutation that made them 'immortal' — they could divide infinitely in a lab.\nHeLa cells have been used in developing the polio vaccine, cancer treatments, gene mapping, and COVID vaccines.\nHer story raises deep questions about consent, ethics, and who 'owns' your body after it leaves you.",
-      correctExplanation: "Correct! HeLa cells were the first 'immortal' human cell line — they can divide indefinitely. They've been used in over 75,000 studies and multiple Nobel Prize-winning discoveries.",
-      incorrectExplanation: "Henrietta Lacks' cells (HeLa) were the first human cells to survive and multiply indefinitely in culture. They've been essential to countless medical breakthroughs — and her family never consented or was compensated.",
+        "Henrietta Lacks was a Black woman whose cancer cells were taken without her knowledge in 1951.\nHer cells (HeLa) had a unique mutation that made them 'immortal' â€” they could divide infinitely in a lab.\nHeLa cells have been used in developing the polio vaccine, cancer treatments, gene mapping, and COVID vaccines.\nHer story raises deep questions about consent, ethics, and who 'owns' your body after it leaves you.",
+      correctExplanation: "Correct! HeLa cells were the first 'immortal' human cell line â€” they can divide indefinitely. They've been used in over 75,000 studies and multiple Nobel Prize-winning discoveries.",
+      incorrectExplanation: "Henrietta Lacks' cells (HeLa) were the first human cells to survive and multiply indefinitely in culture. They've been essential to countless medical breakthroughs â€” and her family never consented or was compensated.",
     },
 
     // ========================================================================
-    // SCIENCE — Group 2: Physics Fun (leveled up)
+    // SCIENCE â€” Group 2: Physics Fun (leveled up)
     // ========================================================================
     {
       type: "multiple-choice",
@@ -761,14 +761,14 @@ const seedData: SeedData = {
       difficulty: "easy",
       title: "The Moon Drop",
       question: "Apollo 15 astronauts dropped a feather and a hammer on the Moon. Which hit the ground first?",
-      choices: ["The hammer — it's heavier", "The feather — less air resistance", "Both hit at the same time", "Neither — the Moon's gravity is too weak"],
+      choices: ["The hammer â€” it's heavier", "The feather â€” less air resistance", "Both hit at the same time", "Neither â€” the Moon's gravity is too weak"],
       correctAnswer: "Both hit at the same time",
       xpReward: 10,
       lessonGroup: "Physics Fun",
       lessonOrder: 1,
       lessonGroupOrder: 2,
       lessonContent:
-        "Apollo 15 astronaut David Scott actually did this experiment on the Moon in 1971!\nWithout air resistance, all objects fall at the same rate regardless of mass.\nEarth's gravity accelerates everything at 9.8 m/s² (in a vacuum).\nAristotle thought heavier objects fall faster — Galileo proved him wrong with a thought experiment.",
+        "Apollo 15 astronaut David Scott actually did this experiment on the Moon in 1971!\nWithout air resistance, all objects fall at the same rate regardless of mass.\nEarth's gravity accelerates everything at 9.8 m/sÂ² (in a vacuum).\nAristotle thought heavier objects fall faster â€” Galileo proved him wrong with a thought experiment.",
       correctExplanation: "Both hit simultaneously! Without air, gravity accelerates all objects the same. On the Moon (no atmosphere), a feather and hammer fall identically. Proof that Galileo was right and Aristotle wrong.",
       incorrectExplanation: "Both hit the ground at exactly the same time! Without air resistance, gravity pulls all objects at the same acceleration regardless of mass. The Apollo 15 astronauts proved this on the airless Moon in 1971.",
     },
@@ -780,18 +780,18 @@ const seedData: SeedData = {
       question: "If you traveled back in time and prevented your grandparents from meeting, what happens?",
       choices: [
         "You vanish instantly",
-        "You create a parallel universe — you still exist in your timeline",
-        "Nothing — time travel is impossible because of this paradox",
+        "You create a parallel universe â€” you still exist in your timeline",
+        "Nothing â€” time travel is impossible because of this paradox",
         "The universe self-corrects",
       ],
-      correctAnswer: "You create a parallel universe — you still exist in your timeline",
+      correctAnswer: "You create a parallel universe â€” you still exist in your timeline",
       xpReward: 15,
       lessonGroup: "Physics Fun",
       lessonOrder: 2,
       lessonGroupOrder: 2,
       lessonContent:
-        "The 'many-worlds interpretation' of quantum mechanics resolves this neatly.\nWhen you go back and change something, you split into a parallel timeline.\nIn the new timeline, your grandparents never meet — but YOU still exist because you came from the original timeline.\nThis avoids the paradox: every quantum choice creates a branching universe.\nWhether this is real physics or philosophy depends on which physicist you ask!",
-      correctExplanation: "The many-worlds interpretation solves it: your time travel creates a branching parallel universe where your grandparents never meet — but you still exist because you came from the original timeline.",
+        "The 'many-worlds interpretation' of quantum mechanics resolves this neatly.\nWhen you go back and change something, you split into a parallel timeline.\nIn the new timeline, your grandparents never meet â€” but YOU still exist because you came from the original timeline.\nThis avoids the paradox: every quantum choice creates a branching universe.\nWhether this is real physics or philosophy depends on which physicist you ask!",
+      correctExplanation: "The many-worlds interpretation solves it: your time travel creates a branching parallel universe where your grandparents never meet â€” but you still exist because you came from the original timeline.",
       incorrectExplanation: "Under the many-worlds interpretation, your time travel creates a new parallel timeline. Your grandparents don't meet in THAT timeline, but you still exist because you originated from the original. No paradox!",
     },
     {
@@ -807,8 +807,8 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 2,
       lessonContent:
-        "Nothing can travel faster than 299,792,458 m/s (light speed in a vacuum).\nAs an object approaches light speed, its mass increases toward infinity — requiring infinite energy to accelerate further.\nThis isn't just a technical limit — it's a fundamental law of the universe.\nThe cool part: light itself slows down in water or glass, but in a vacuum, nothing beats it.\nIf you could travel at 99.999% light speed, 1 year for you = 224 years on Earth.",
-      correctExplanation: "Correct! Light speed in a vacuum (~300,000 km/s) is the cosmic speed limit. As objects approach it, their mass increases infinitely — making it impossible to reach.",
+        "Nothing can travel faster than 299,792,458 m/s (light speed in a vacuum).\nAs an object approaches light speed, its mass increases toward infinity â€” requiring infinite energy to accelerate further.\nThis isn't just a technical limit â€” it's a fundamental law of the universe.\nThe cool part: light itself slows down in water or glass, but in a vacuum, nothing beats it.\nIf you could travel at 99.999% light speed, 1 year for you = 224 years on Earth.",
+      correctExplanation: "Correct! Light speed in a vacuum (~300,000 km/s) is the cosmic speed limit. As objects approach it, their mass increases infinitely â€” making it impossible to reach.",
       incorrectExplanation: "The speed of light in a vacuum is the universe's speed limit (about 300,000 km/s). As matter approaches this speed, its mass increases toward infinity, requiring infinite energy to accelerate further.",
     },
     {
@@ -816,7 +816,7 @@ const seedData: SeedData = {
       category: "science",
       difficulty: "hard",
       title: "Quantum Spookiness",
-      question: "Quantum entanglement means that measuring one particle instantly affects its entangled partner, no matter how far apart they are — even across the universe.",
+      question: "Quantum entanglement means that measuring one particle instantly affects its entangled partner, no matter how far apart they are â€” even across the universe.",
       choices: ["True", "False"],
       correctAnswer: "True",
       xpReward: 20,
@@ -824,20 +824,20 @@ const seedData: SeedData = {
       lessonOrder: 4,
       lessonGroupOrder: 2,
       lessonContent:
-        "Einstein called this 'spooky action at a distance' and refused to believe it.\nBut experiments (including the 2022 Nobel Prize winners) proved it's real.\nWhen two particles are entangled, measuring the state of one instantly determines the state of the other.\nThis CANNOT be used for faster-than-light communication — the measurement result is random.\nIt's the basis for quantum computing and quantum cryptography.",
-      correctExplanation: "True! Quantum entanglement is experimentally proven — Einstein was wrong to doubt it. Measuring one entangled particle instantly influences its partner, but the result is random so you can't send information faster than light.",
-      incorrectExplanation: "True — entanglement has been experimentally confirmed (2022 Nobel Prize). But it doesn't allow faster-than-light COMMUNICATION because the measurements are random. You can't control what the other particle shows.",
+        "Einstein called this 'spooky action at a distance' and refused to believe it.\nBut experiments (including the 2022 Nobel Prize winners) proved it's real.\nWhen two particles are entangled, measuring the state of one instantly determines the state of the other.\nThis CANNOT be used for faster-than-light communication â€” the measurement result is random.\nIt's the basis for quantum computing and quantum cryptography.",
+      correctExplanation: "True! Quantum entanglement is experimentally proven â€” Einstein was wrong to doubt it. Measuring one entangled particle instantly influences its partner, but the result is random so you can't send information faster than light.",
+      incorrectExplanation: "True â€” entanglement has been experimentally confirmed (2022 Nobel Prize). But it doesn't allow faster-than-light COMMUNICATION because the measurements are random. You can't control what the other particle shows.",
     },
 
     // ========================================================================
-    // SCIENCE — Group 3: Earth & Space (leveled up)
+    // SCIENCE â€” Group 3: Earth & Space (leveled up)
     // ========================================================================
     {
       type: "multiple-choice",
       category: "science",
       difficulty: "easy",
       title: "The Glass Planet",
-      question: "There's a planet where it rains glass — sideways. Strong winds carry the glass horizontally at thousands of km/h. Which planet is this?",
+      question: "There's a planet where it rains glass â€” sideways. Strong winds carry the glass horizontally at thousands of km/h. Which planet is this?",
       choices: ["Venus", "Mars", "HD 189733b (an exoplanet)", "Jupiter"],
       correctAnswer: "HD 189733b (an exoplanet)",
       xpReward: 10,
@@ -845,9 +845,9 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 3,
       lessonContent:
-        "HD 189733b is a 'hot Jupiter' exoplanet 63 light-years away.\nIts atmosphere contains silicate particles (glass) that rain down sideways in 8,700 km/h winds.\nThe planet appears deep blue — like Earth from space, but for completely different reasons.\nIts temperature is over 900°C — so the glass is molten before it condenses and falls.\nThis is our universe: beautiful, violent, and nothing like home.",
+        "HD 189733b is a 'hot Jupiter' exoplanet 63 light-years away.\nIts atmosphere contains silicate particles (glass) that rain down sideways in 8,700 km/h winds.\nThe planet appears deep blue â€” like Earth from space, but for completely different reasons.\nIts temperature is over 900Â°C â€” so the glass is molten before it condenses and falls.\nThis is our universe: beautiful, violent, and nothing like home.",
       correctExplanation: "Correct! HD 189733b is an exoplanet where it rains molten glass sideways at thousands of km/h. The planet looks blue like Earth, but it's a fiery hellscape.",
-      incorrectExplanation: "It's HD 189733b, a 'hot Jupiter' exoplanet 63 light-years away. Temperatures reach 900°C with 8,700 km/h winds carrying molten glass horizontally. A beautiful nightmare.",
+      incorrectExplanation: "It's HD 189733b, a 'hot Jupiter' exoplanet 63 light-years away. Temperatures reach 900Â°C with 8,700 km/h winds carrying molten glass horizontally. A beautiful nightmare.",
     },
     {
       type: "multiple-choice",
@@ -862,8 +862,8 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 3,
       lessonContent:
-        "More than 80% of Earth's oceans remain unmapped, unobserved, and unexplored.\nWe have higher-resolution maps of the entire surface of Mars and the Moon than we do of our own ocean floor.\nThe average ocean depth is 3,700 meters — deeper than the Grand Canyon is tall.\nThere are entire mountain ranges, volcanoes, and ecosystems we know nothing about.\nThe ocean covers 71% of Earth, yet we've seen less than 20%.",
-      correctExplanation: "Yes! We've mapped more of Mars than Earth's ocean floor. Over 80% of our own planet's oceans remain unexplored — there are species and landscapes we've never seen.",
+        "More than 80% of Earth's oceans remain unmapped, unobserved, and unexplored.\nWe have higher-resolution maps of the entire surface of Mars and the Moon than we do of our own ocean floor.\nThe average ocean depth is 3,700 meters â€” deeper than the Grand Canyon is tall.\nThere are entire mountain ranges, volcanoes, and ecosystems we know nothing about.\nThe ocean covers 71% of Earth, yet we've seen less than 20%.",
+      correctExplanation: "Yes! We've mapped more of Mars than Earth's ocean floor. Over 80% of our own planet's oceans remain unexplored â€” there are species and landscapes we've never seen.",
       incorrectExplanation: "The deep ocean floor! We've mapped about 100% of Mars' surface but less than 20% of Earth's ocean floor. More of our own planet is unknown than known.",
     },
     {
@@ -879,9 +879,9 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 3,
       lessonContent:
-        "The Moon drifts away because of tidal forces — Earth's rotation is slowing down, and the Moon gains energy.\n3.8 cm per year × 4.5 billion years = the Moon was MUCH closer in the past.\nWhen it first formed (from a giant impact), the Moon was about 5× closer than today.\nEarth's days were only 5 hours long back then! The Moon's gravity has been slowing us down.\nEventually (billions of years from now), Earth and Moon will be tidally locked, always showing the same face.",
+        "The Moon drifts away because of tidal forces â€” Earth's rotation is slowing down, and the Moon gains energy.\n3.8 cm per year Ã— 4.5 billion years = the Moon was MUCH closer in the past.\nWhen it first formed (from a giant impact), the Moon was about 5Ã— closer than today.\nEarth's days were only 5 hours long back then! The Moon's gravity has been slowing us down.\nEventually (billions of years from now), Earth and Moon will be tidally locked, always showing the same face.",
       correctExplanation: "True! The Moon drifts 3.8 cm farther each year. When dinosaurs roamed, the Moon was closer and Earth's days were shorter. Eventually, Earth and Moon will be tidally locked.",
-      incorrectExplanation: "True! The Moon escapes at 3.8 cm/year due to tidal forces. This also means Earth's rotation slows over time — when dinosaurs lived, a day was only 23 hours long.",
+      incorrectExplanation: "True! The Moon escapes at 3.8 cm/year due to tidal forces. This also means Earth's rotation slows over time â€” when dinosaurs lived, a day was only 23 hours long.",
     },
     {
       type: "multiple-choice",
@@ -891,23 +891,23 @@ const seedData: SeedData = {
       question: "The Fermi Paradox asks: if the universe is so vast and old, why haven't we found evidence of alien civilizations? One proposed answer is 'The Great Filter.' What is this theory?",
       choices: [
         "Aliens are hiding from us",
-        "There's a stage of evolution that almost no civilization survives — we may have already passed it or it's still ahead",
+        "There's a stage of evolution that almost no civilization survives â€” we may have already passed it or it's still ahead",
         "Space is too big to cross",
         "Aliens exist but choose not to communicate",
       ],
-      correctAnswer: "There's a stage of evolution that almost no civilization survives — we may have already passed it or it's still ahead",
+      correctAnswer: "There's a stage of evolution that almost no civilization survives â€” we may have already passed it or it's still ahead",
       xpReward: 20,
       lessonGroup: "Earth & Space",
       lessonOrder: 4,
       lessonGroupOrder: 3,
       lessonContent:
-        "The Great Filter is a terrifying and humbling idea.\nIf the universe is teeming with planets, but we see no signs of intelligent life — maybe something prevents life from reaching space.\nEither we're the first (nothing filters us), or the filter is AHEAD of us (we'll destroy ourselves before becoming interstellar).\nThis is why some people worry about AI, nuclear war, or climate change more than usual — those could be THE filter.\nLook up at the stars and ask: are we alone because we're special, or because no one makes it?",
+        "The Great Filter is a terrifying and humbling idea.\nIf the universe is teeming with planets, but we see no signs of intelligent life â€” maybe something prevents life from reaching space.\nEither we're the first (nothing filters us), or the filter is AHEAD of us (we'll destroy ourselves before becoming interstellar).\nThis is why some people worry about AI, nuclear war, or climate change more than usual â€” those could be THE filter.\nLook up at the stars and ask: are we alone because we're special, or because no one makes it?",
       correctExplanation: "Correct! The Great Filter suggests some evolutionary step is so hard that almost no civilization passes it. If it's behind us (abiogenesis?), we're lucky. If it's ahead (self-destruction?), we're not safe.",
-      incorrectExplanation: "The Great Filter theory says there's a 'filter' — a stage of development so difficult that nearly all civilizations die before passing it. The scary question: is it behind us or ahead of us?",
+      incorrectExplanation: "The Great Filter theory says there's a 'filter' â€” a stage of development so difficult that nearly all civilizations die before passing it. The scary question: is it behind us or ahead of us?",
     },
 
     // ========================================================================
-    // SCIENCE — Group 4: Crazy Chemistry (leveled up)
+    // SCIENCE â€” Group 4: Crazy Chemistry (leveled up)
     // ========================================================================
     {
       type: "multiple-choice",
@@ -922,9 +922,9 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 4,
       lessonContent:
-        "Atoms are 99.999999999999% empty space.\nIf you removed all the space between every atom's nucleus and its electrons — across all 8 billion humans — we'd occupy about the volume of a sugar cube.\nBut that sugar cube would weigh the same as all of humanity (about 500 billion kg).\nThat's how unreal the 'solid' matter around you really is.\nEverything you see is 99.999999999999% nothing. Touch is just electromagnetic repulsion between electron fields.",
-      correctExplanation: "Yes! Atoms are mostly empty space — all of humanity condensed down would fit in a sugar cube. The chair you're sitting on is 99.999999999999% nothing. You're floating above it, not touching it.",
-      incorrectExplanation: "A sugar cube! Atoms are almost entirely empty space. The nucleus is like a marble in a football stadium — the rest is nothing. All humans compressed to just atomic nuclei = a sugar cube.",
+        "Atoms are 99.999999999999% empty space.\nIf you removed all the space between every atom's nucleus and its electrons â€” across all 8 billion humans â€” we'd occupy about the volume of a sugar cube.\nBut that sugar cube would weigh the same as all of humanity (about 500 billion kg).\nThat's how unreal the 'solid' matter around you really is.\nEverything you see is 99.999999999999% nothing. Touch is just electromagnetic repulsion between electron fields.",
+      correctExplanation: "Yes! Atoms are mostly empty space â€” all of humanity condensed down would fit in a sugar cube. The chair you're sitting on is 99.999999999999% nothing. You're floating above it, not touching it.",
+      incorrectExplanation: "A sugar cube! Atoms are almost entirely empty space. The nucleus is like a marble in a football stadium â€” the rest is nothing. All humans compressed to just atomic nuclei = a sugar cube.",
     },
     {
       type: "multiple-choice",
@@ -939,16 +939,16 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 4,
       lessonContent:
-        "Vinegar (acetic acid) + baking soda (sodium bicarbonate) → carbon dioxide + water + sodium acetate.\nThe fizzing bubbles are CO₂ gas being released.\nThis is an acid-base reaction — the classic 'volcano' science experiment.\nThe same reaction makes bread rise (baking powder reacts with liquid to produce CO₂ bubbles).",
-      correctExplanation: "Correct! The acid (vinegar) reacts with the base (baking soda) to produce carbon dioxide gas — that's the fizzing you see!",
-      incorrectExplanation: "They react to produce carbon dioxide gas — that's the fizzing and bubbling you see. The chemical equation: CH₃COOH + NaHCO₃ → CO₂ + H₂O + CH₃COONa (vinegar + baking soda → CO₂ + water + sodium acetate).",
+        "Vinegar (acetic acid) + baking soda (sodium bicarbonate) â†’ carbon dioxide + water + sodium acetate.\nThe fizzing bubbles are COâ‚‚ gas being released.\nThis is an acid-base reaction â€” the classic 'volcano' science experiment.\nThe same reaction makes bread rise (baking powder reacts with liquid to produce COâ‚‚ bubbles).",
+      correctExplanation: "Correct! The acid (vinegar) reacts with the base (baking soda) to produce carbon dioxide gas â€” that's the fizzing you see!",
+      incorrectExplanation: "They react to produce carbon dioxide gas â€” that's the fizzing and bubbling you see. The chemical equation: CHâ‚ƒCOOH + NaHCOâ‚ƒ â†’ COâ‚‚ + Hâ‚‚O + CHâ‚ƒCOONa (vinegar + baking soda â†’ COâ‚‚ + water + sodium acetate).",
     },
     {
       type: "true-false",
       category: "science",
       difficulty: "medium",
       title: "The Poison Paradox",
-      question: "Everything is toxic — it's only a matter of dose. Even water can kill you if you drink too much too quickly.",
+      question: "Everything is toxic â€” it's only a matter of dose. Even water can kill you if you drink too much too quickly.",
       choices: ["True", "False"],
       correctAnswer: "True",
       xpReward: 15,
@@ -956,9 +956,9 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 4,
       lessonContent:
-        "This is 'the dose makes the poison' — the first principle of toxicology.\nWater intoxication (hyponatremia) dilutes your blood sodium, causing cells to swell.\nYour brain can't expand in your skull — so water poisoning can cause seizures, coma, and death.\nYou'd need about 6 liters in a few hours (a gallon and a half).\nEven oxygen is toxic at high pressures (divers know this). There are no 'safe' substances — only safe amounts.",
-      correctExplanation: "True! Water poisoning (hyponatremia) is real — drink too much too fast and your brain swells. The dose makes the poison: even oxygen can kill at the wrong concentration.",
-      incorrectExplanation: "True! Every substance is toxic at a high enough dose — including water. Drink 6+ liters in a few hours and your blood sodium plummets, causing brain swelling. This is why 'natural' doesn't mean 'safe.'",
+        "This is 'the dose makes the poison' â€” the first principle of toxicology.\nWater intoxication (hyponatremia) dilutes your blood sodium, causing cells to swell.\nYour brain can't expand in your skull â€” so water poisoning can cause seizures, coma, and death.\nYou'd need about 6 liters in a few hours (a gallon and a half).\nEven oxygen is toxic at high pressures (divers know this). There are no 'safe' substances â€” only safe amounts.",
+      correctExplanation: "True! Water poisoning (hyponatremia) is real â€” drink too much too fast and your brain swells. The dose makes the poison: even oxygen can kill at the wrong concentration.",
+      incorrectExplanation: "True! Every substance is toxic at a high enough dose â€” including water. Drink 6+ liters in a few hours and your blood sodium plummets, causing brain swelling. This is why 'natural' doesn't mean 'safe.'",
     },
     {
       type: "type-answer",
@@ -973,13 +973,13 @@ const seedData: SeedData = {
       lessonOrder: 4,
       lessonGroupOrder: 4,
       lessonContent:
-        "The periodic table has 118 elements, all with 1- or 2-letter symbols.\nEvery letter of the alphabet appears EXCEPT 'J'.\nQ appears only in the temporary name 'Ununquadium' (now Flerovium, Fl).\n'J' is the only letter missing entirely — there's no element symbol with J.\nSome proposed names like 'Jupiterium' were rejected. Poor J.",
-      correctExplanation: "Correct! The letter J is the only letter missing from the periodic table. Every other letter appears in at least one element symbol — but not J!",
+        "The periodic table has 118 elements, all with 1- or 2-letter symbols.\nEvery letter of the alphabet appears EXCEPT 'J'.\nQ appears only in the temporary name 'Ununquadium' (now Flerovium, Fl).\n'J' is the only letter missing entirely â€” there's no element symbol with J.\nSome proposed names like 'Jupiterium' were rejected. Poor J.",
+      correctExplanation: "Correct! The letter J is the only letter missing from the periodic table. Every other letter appears in at least one element symbol â€” but not J!",
       incorrectExplanation: "The letter J! All 25 other letters of the alphabet appear in at least one element symbol (like H, He, Li, etc.), but no element uses J in its symbol. J is the periodic table's missing alphabet member.",
     },
 
     // ========================================================================
-    // SCIENCE — Group 5: Science Mix (leveled up)
+    // SCIENCE â€” Group 5: Science Mix (leveled up)
     // ========================================================================
     {
       type: "true-false",
@@ -994,9 +994,9 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 5,
       lessonContent:
-        "Venus takes 243 Earth days to rotate ONCE on its axis (a day).\nBut it takes only 225 Earth days to orbit the Sun (a year).\nSo a Venusian day is longer than a Venusian year!\nVenus also rotates backwards compared to most planets (retrograde rotation).\nTry telling a Venusian: 'Happy New Year — that's still longer than today.'",
-      correctExplanation: "True! A Venus day = 243 Earth days (rotation). A Venus year = 225 Earth days (orbit). So the day is longer than the year — and the Sun rises in the west there!",
-      incorrectExplanation: "Believe it or not, it's true! Venus rotates extremely slowly — one full rotation takes 243 Earth days, while orbiting the Sun takes only 225 Earth days. So a Venusian day > a Venusian year.",
+        "Venus takes 243 Earth days to rotate ONCE on its axis (a day).\nBut it takes only 225 Earth days to orbit the Sun (a year).\nSo a Venusian day is longer than a Venusian year!\nVenus also rotates backwards compared to most planets (retrograde rotation).\nTry telling a Venusian: 'Happy New Year â€” that's still longer than today.'",
+      correctExplanation: "True! A Venus day = 243 Earth days (rotation). A Venus year = 225 Earth days (orbit). So the day is longer than the year â€” and the Sun rises in the west there!",
+      incorrectExplanation: "Believe it or not, it's true! Venus rotates extremely slowly â€” one full rotation takes 243 Earth days, while orbiting the Sun takes only 225 Earth days. So a Venusian day > a Venusian year.",
     },
     {
       type: "multiple-choice",
@@ -1016,7 +1016,7 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 5,
       lessonContent:
-        "In 1877, astronomer Giovanni Schiaparelli observed lines on Mars and called them 'canali' (channels).\nBut 'canali' was mistranslated to English as 'canals' (artificial waterways).\nThis sparked decades of belief in Martian civilization!\nWe now know they were optical illusions — the lines don't actually exist.\nOne mistranslation. Decades of alien fever. Words have power.",
+        "In 1877, astronomer Giovanni Schiaparelli observed lines on Mars and called them 'canali' (channels).\nBut 'canali' was mistranslated to English as 'canals' (artificial waterways).\nThis sparked decades of belief in Martian civilization!\nWe now know they were optical illusions â€” the lines don't actually exist.\nOne mistranslation. Decades of alien fever. Words have power.",
       correctExplanation: "Correct! 'Canali' was mistranslated from Italian as 'canals' instead of 'channels', leading many to believe intelligent Martians built irrigation systems. A classic science translation blunder!",
       incorrectExplanation: "They were misinterpreted as artificial canals built by intelligent Martians! The Italian word 'canali' meant channels (natural), but was mistranslated to 'canals' (man-made). This sparked a belief in Martian civilization that lasted decades.",
     },
@@ -1038,7 +1038,7 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 5,
       lessonContent:
-        "Microwaves are electromagnetic waves at 2.45 GHz (about 12 cm wavelength).\nThey cause water molecules in food to vibrate rapidly, creating heat through friction.\nThis is why 'dry' foods (like bread) don't heat well — less water content.\nMetal sparks in microwaves because it reflects the waves, creating electric arcs.",
+        "Microwaves are electromagnetic waves at 2.45 GHz (about 12 cm wavelength).\nThey cause water molecules in food to vibrate rapidly, creating heat through friction.\nThis is why 'dry' foods (like bread) don't heat well â€” less water content.\nMetal sparks in microwaves because it reflects the waves, creating electric arcs.",
       correctExplanation: "Yes! Microwaves at 2.45 GHz specifically excite water molecules, making them vibrate and generate heat. That's why food with more water heats faster!",
       incorrectExplanation: "Microwaves work by emitting 2.45 GHz radiation that causes water molecules to vibrate rapidly. The vibration creates friction, which generates heat. Metal objects reflect these waves, causing sparking.",
     },
@@ -1047,11 +1047,11 @@ const seedData: SeedData = {
       category: "science",
       difficulty: "hard",
       title: "GPS & Einstein",
-      question: "GPS satellites have to account for Einstein's relativity — otherwise, your GPS would be off by how much each day?",
+      question: "GPS satellites have to account for Einstein's relativity â€” otherwise, your GPS would be off by how much each day?",
       choices: [
         "A few meters",
         "About 10 km per day",
-        "It wouldn't matter — GPS is purely geometric",
+        "It wouldn't matter â€” GPS is purely geometric",
         "A few centimeters",
       ],
       correctAnswer: "About 10 km per day",
@@ -1060,13 +1060,13 @@ const seedData: SeedData = {
       lessonOrder: 4,
       lessonGroupOrder: 5,
       lessonContent:
-        "GPS satellites orbit at 20,000 km altitude moving at 14,000 km/h.\nSpecial Relativity: their fast motion slows their clocks by 7 microseconds/day vs. Earth.\nGeneral Relativity: the weaker gravity at altitude speeds their clocks by 45 microseconds/day vs. Earth.\nNet: they gain 38 microseconds every day.\nSince light travels 300 km in 1 millisecond, 38 microseconds of clock error = 11 km of position error — per day.\nYour phone's GPS corrects for relativity. You use Einstein's theories every single day.",
+        "GPS satellites orbit at 20,000 km altitude moving at 14,000 km/h.\nSpecial Relativity: their fast motion slows their clocks by 7 microseconds/day vs. Earth.\nGeneral Relativity: the weaker gravity at altitude speeds their clocks by 45 microseconds/day vs. Earth.\nNet: they gain 38 microseconds every day.\nSince light travels 300 km in 1 millisecond, 38 microseconds of clock error = 11 km of position error â€” per day.\nYour phone's GPS corrects for relativity. You use Einstein's theories every single day.",
       correctExplanation: "About 10 km per day! GPS satellites gain 38 microseconds/day due to relativity. Without correction, your GPS would drift 10 km daily. You literally use Einstein's theories every time you navigate.",
-      incorrectExplanation: "About 10 km per day! GPS satellites' clocks gain 38 μs/day due to relativity (special + general combined). Light travels 300 km in 1 ms, so 38 μs = 11 km error. Without Einstein, your GPS is useless in one day.",
+      incorrectExplanation: "About 10 km per day! GPS satellites' clocks gain 38 Î¼s/day due to relativity (special + general combined). Light travels 300 km in 1 ms, so 38 Î¼s = 11 km error. Without Einstein, your GPS is useless in one day.",
     },
 
     // ========================================================================
-    // PUZZLES — Group 1: Number Crunch
+    // PUZZLES â€” Group 1: Number Crunch
     // ========================================================================
     {
       type: "type-answer",
@@ -1081,8 +1081,8 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 1,
       lessonContent:
-        "This is the Fibonacci sequence — each number is the sum of the two before it.\nNamed after Leonardo of Pisa (Fibonacci), who introduced it to Europe in 1202.\nFibonacci appears in nature: pinecones, sunflowers, seashells.\nThe ratio of consecutive numbers approaches the 'golden ratio' (1.618...).",
-      correctExplanation: "Yes! 8 + 13 = 21. The Fibonacci sequence appears everywhere in nature — from pinecones to galaxy spirals!",
+        "This is the Fibonacci sequence â€” each number is the sum of the two before it.\nNamed after Leonardo of Pisa (Fibonacci), who introduced it to Europe in 1202.\nFibonacci appears in nature: pinecones, sunflowers, seashells.\nThe ratio of consecutive numbers approaches the 'golden ratio' (1.618...).",
+      correctExplanation: "Yes! 8 + 13 = 21. The Fibonacci sequence appears everywhere in nature â€” from pinecones to galaxy spirals!",
       incorrectExplanation: "The answer is 21. In the Fibonacci sequence, each number is the sum of the previous two: 1+1=2, 1+2=3, 2+3=5, 3+5=8, 5+8=13, so 8+13=21.",
     },
     {
@@ -1098,9 +1098,9 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 1,
       lessonContent:
-        "Most people guess 23/365 ≈ 6%. The real answer: about 50.7%.\nThe trick: you're not comparing one person to 22 others — you're comparing every PAIR.\n23 people = 253 unique pairs. Each pair has a 364/365 chance of NOT sharing a birthday.\n(364/365)^253 ≈ 0.4995. So 1 - 0.4995 = 50.05% chance of a match.\nAt 75 people, the probability hits 99.9%. Your intuition about probability is terrible — and that's normal.",
-      correctExplanation: "About 50%! With 23 people, there are 253 pairs. The chance NO pair shares a birthday is (364/365)^253 ≈ 49.95%. So chance SOME pair shares = ~50%. Your intuition is wrong.",
-      incorrectExplanation: "About 50%! It sounds impossible but it's math: 23 people = 253 pairs. The probability no pair shares a birthday is (364/365)^253 ≈ 50%. So there's a 50% chance at least one pair matches.",
+        "Most people guess 23/365 â‰ˆ 6%. The real answer: about 50.7%.\nThe trick: you're not comparing one person to 22 others â€” you're comparing every PAIR.\n23 people = 253 unique pairs. Each pair has a 364/365 chance of NOT sharing a birthday.\n(364/365)^253 â‰ˆ 0.4995. So 1 - 0.4995 = 50.05% chance of a match.\nAt 75 people, the probability hits 99.9%. Your intuition about probability is terrible â€” and that's normal.",
+      correctExplanation: "About 50%! With 23 people, there are 253 pairs. The chance NO pair shares a birthday is (364/365)^253 â‰ˆ 49.95%. So chance SOME pair shares = ~50%. Your intuition is wrong.",
+      incorrectExplanation: "About 50%! It sounds impossible but it's math: 23 people = 253 pairs. The probability no pair shares a birthday is (364/365)^253 â‰ˆ 50%. So there's a 50% chance at least one pair matches.",
     },
     {
       type: "type-answer",
@@ -1115,9 +1115,9 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 1,
       lessonContent:
-        "This pattern is: multiply by 2 and add 1.\n3 × 2 + 1 = 7, 7 × 2 + 1 = 15, 15 × 2 + 1 = 31.\nAnother way: each number is 2^(n+1) - 1.\n3 = 2²-1, 7 = 2³-1, 15 = 2⁴-1, 31 = 2⁵-1, so next = 2⁶-1 = 63.",
-      correctExplanation: "Yes! Each number follows: × 2 + 1. 31 × 2 + 1 = 63. Or: 2⁶ - 1 = 64 - 1 = 63.",
-      incorrectExplanation: "The pattern is 'double and add 1': 3→7 (×2+1), 7→15, 15→31, so 31→63 (×2+1=63). Also: all are 2^n-1: 3=2²-1, 7=2³-1... so next is 2⁶-1=63.",
+        "This pattern is: multiply by 2 and add 1.\n3 Ã— 2 + 1 = 7, 7 Ã— 2 + 1 = 15, 15 Ã— 2 + 1 = 31.\nAnother way: each number is 2^(n+1) - 1.\n3 = 2Â²-1, 7 = 2Â³-1, 15 = 2â´-1, 31 = 2âµ-1, so next = 2â¶-1 = 63.",
+      correctExplanation: "Yes! Each number follows: Ã— 2 + 1. 31 Ã— 2 + 1 = 63. Or: 2â¶ - 1 = 64 - 1 = 63.",
+      incorrectExplanation: "The pattern is 'double and add 1': 3â†’7 (Ã—2+1), 7â†’15, 15â†’31, so 31â†’63 (Ã—2+1=63). Also: all are 2^n-1: 3=2Â²-1, 7=2Â³-1... so next is 2â¶-1=63.",
     },
     {
       type: "multiple-choice",
@@ -1137,13 +1137,13 @@ const seedData: SeedData = {
       lessonOrder: 4,
       lessonGroupOrder: 1,
       lessonContent:
-        "Real proofs: induction (prove base case + step), contradiction (assume false, derive conflict), exhaustion (check all cases).\n'Proof by intimidation' is a joke name for when a mathematician says 'it's obvious' without explanation.\nFermat's Last Theorem had a famous 'proof too small to fit in the margin' — it took 358 years to actually prove.\nReal mathematicians have a dark sense of humor: there's also 'proof by omission', 'proof by hand-waving', and 'proof by referring to the previous proof that doesn't exist.'",
-      correctExplanation: "Correct! 'Proof by intimidation' isn't a real proof — it's a joke name for when someone avoids explaining. The other three are real mathematical proof techniques.",
+        "Real proofs: induction (prove base case + step), contradiction (assume false, derive conflict), exhaustion (check all cases).\n'Proof by intimidation' is a joke name for when a mathematician says 'it's obvious' without explanation.\nFermat's Last Theorem had a famous 'proof too small to fit in the margin' â€” it took 358 years to actually prove.\nReal mathematicians have a dark sense of humor: there's also 'proof by omission', 'proof by hand-waving', and 'proof by referring to the previous proof that doesn't exist.'",
+      correctExplanation: "Correct! 'Proof by intimidation' isn't a real proof â€” it's a joke name for when someone avoids explaining. The other three are real mathematical proof techniques.",
       incorrectExplanation: "Proof by intimidation is not a real proof method! It's a playful term for saying 'it's obvious, trust me.' Real proofs include induction, contradiction, and exhaustion.",
     },
 
     // ========================================================================
-    // PUZZLES — Group 2: Word Play
+    // PUZZLES â€” Group 2: Word Play
     // ========================================================================
     {
       type: "multiple-choice",
@@ -1158,8 +1158,8 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 2,
       lessonContent:
-        "Words that read the same forwards and backwards are called 'palindromes'.\n'Radar', 'level', 'civic', 'racecar' are all palindromes.\nSome sentences can be palindromes: 'A man, a plan, a canal, Panama'.\nPalindromes date back to ancient Greece — the word comes from Greek 'palin' (again) + 'dromos' (direction).",
-      correctExplanation: "Yes! R-A-D-A-R is a palindrome — it reads the same backwards. Other examples: racecar, level, civic, kayak.",
+        "Words that read the same forwards and backwards are called 'palindromes'.\n'Radar', 'level', 'civic', 'racecar' are all palindromes.\nSome sentences can be palindromes: 'A man, a plan, a canal, Panama'.\nPalindromes date back to ancient Greece â€” the word comes from Greek 'palin' (again) + 'dromos' (direction).",
+      correctExplanation: "Yes! R-A-D-A-R is a palindrome â€” it reads the same backwards. Other examples: racecar, level, civic, kayak.",
       incorrectExplanation: "'Radar' is a palindrome (reads same forwards and backwards). 'Pencil' reversed is 'licnep', 'Window' is 'wodniW', 'Garden' is 'nedraG'. None of those are palindromes.",
     },
     {
@@ -1185,14 +1185,14 @@ const seedData: SeedData = {
       difficulty: "medium",
       title: "Rhyme Time",
       question: "Which word rhymes with 'orange'?",
-      choices: ["Range", "Sponge", "Door hinge", "None — there's no perfect rhyme"],
-      correctAnswer: "None — there's no perfect rhyme",
+      choices: ["Range", "Sponge", "Door hinge", "None â€” there's no perfect rhyme"],
+      correctAnswer: "None â€” there's no perfect rhyme",
       xpReward: 15,
       lessonGroup: "Word Play",
       lessonOrder: 3,
       lessonGroupOrder: 2,
       lessonContent:
-        "'Orange' has no perfect rhyme in English! It's one of the most famous unrhyamable words.\nOther words with no perfect rhyme: silver, purple, month, ninth, pint, wolf.\n'Sporange' (a plant spore case) is the closest — but it's pronounced differently.\nThis is the basis for the phrase 'orange rhymes with nothing'.",
+        "'Orange' has no perfect rhyme in English! It's one of the most famous unrhyamable words.\nOther words with no perfect rhyme: silver, purple, month, ninth, pint, wolf.\n'Sporange' (a plant spore case) is the closest â€” but it's pronounced differently.\nThis is the basis for the phrase 'orange rhymes with nothing'.",
       correctExplanation: "Correct! 'Orange' famously has no perfect rhyme in English. 'Door hinge' is a near-rhyme (not perfect), 'range' has a different ending sound. The closest is 'sporange' (pronounced spuh-RANJ).",
       incorrectExplanation: "There is no perfect rhyme for 'orange' in English. 'Sporange' (a spore case) is the only word that rhymes if pronounced differently. Other unrhymable words: silver, purple, month, ninth.",
     },
@@ -1210,12 +1210,12 @@ const seedData: SeedData = {
       lessonGroupOrder: 2,
       lessonContent:
         "English vowels are A, E, I, O, U (and sometimes Y).\nRemoving vowels from words creates fun puzzles.\n'Rhythm' and 'syzygy' have no vowels (Y acts as a vowel here).\nThe longest English word with no vowels? 'Tsktsks' (7 letters).",
-      correctExplanation: "Right! S-K-E-L-E-T-O-N. Fill in E, E, O — the word is skeleton. The underscores represent the missing vowels.",
+      correctExplanation: "Right! S-K-E-L-E-T-O-N. Fill in E, E, O â€” the word is skeleton. The underscores represent the missing vowels.",
       incorrectExplanation: "The answer is 'skeleton'. With vowels: SkeLeTOn (E, E, O). The consonants give you the 'frame' of the word, and you fill in the vowels.",
     },
 
     // ========================================================================
-    // PUZZLES — Group 3: Think Different
+    // PUZZLES â€” Group 3: Think Different
     // ========================================================================
     {
       type: "riddle",
@@ -1236,8 +1236,8 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 3,
       lessonContent:
-        "This is a famous lateral thinking puzzle — requiring a creative leap.\nThe man had hiccups. He asked for water to cure them.\nThe bartender recognized this and used the scare tactic instead (which also cures hiccups).\nThe man's hiccups were cured, so he thanked the bartender and left!",
-      correctExplanation: "Correct! The man had hiccups and wanted water. The bartender knew a sudden scare can cure hiccups, so he pointed the gun. It worked — hiccups gone, hence the 'thank you'!",
+        "This is a famous lateral thinking puzzle â€” requiring a creative leap.\nThe man had hiccups. He asked for water to cure them.\nThe bartender recognized this and used the scare tactic instead (which also cures hiccups).\nThe man's hiccups were cured, so he thanked the bartender and left!",
+      correctExplanation: "Correct! The man had hiccups and wanted water. The bartender knew a sudden scare can cure hiccups, so he pointed the gun. It worked â€” hiccups gone, hence the 'thank you'!",
       incorrectExplanation: "The man had hiccups! He asked for water to cure them. The bartender, recognizing this, used a sudden scare instead (a known hiccup cure). It worked, so the man thanked him. The puzzle requires thinking of medical context.",
     },
     {
@@ -1258,7 +1258,7 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 3,
       lessonContent:
-        "Connection puzzles test your ability to find abstract links.\nBirthday candle → aging/celebration.\nWedding ring → marriage/commitment.\nTraffic light → direction/change.\nAll three represent TRANSITIONS or CHANGES in life or state.",
+        "Connection puzzles test your ability to find abstract links.\nBirthday candle â†’ aging/celebration.\nWedding ring â†’ marriage/commitment.\nTraffic light â†’ direction/change.\nAll three represent TRANSITIONS or CHANGES in life or state.",
       correctExplanation: "Yes! All three mark transitions: a birthday candle marks aging, a wedding ring marks marital status change, a traffic light signals safe/stop transitions.",
       incorrectExplanation: "They all relate to change/transitions. A birthday candle marks another year (growing up), a wedding ring marks marriage (life change), a traffic light signals a state change (stop/go). The common theme is 'change'.",
     },
@@ -1269,8 +1269,8 @@ const seedData: SeedData = {
       title: "The Unexpected",
       question: "You have a 3-gallon jug and a 5-gallon jug. How can you measure exactly 4 gallons?",
       choices: [
-        "Fill 3, pour into 5, fill 3 again, pour into 5 until full — 1 remains in 3, empty 5, pour the 1 into 5, fill 3 again, pour into 5 = 4",
-        "Fill 5, pour into 3 — 2 remains, empty 3, pour the 2 into 3, fill 5 again, pour into 3 until full = 4 in 5",
+        "Fill 3, pour into 5, fill 3 again, pour into 5 until full â€” 1 remains in 3, empty 5, pour the 1 into 5, fill 3 again, pour into 5 = 4",
+        "Fill 5, pour into 3 â€” 2 remains, empty 3, pour the 2 into 3, fill 5 again, pour into 3 until full = 4 in 5",
         "Both methods work",
         "It's impossible",
       ],
@@ -1280,8 +1280,8 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 3,
       lessonContent:
-        "This classic 'water jug' puzzle was featured in the movie Die Hard with a Vengeance.\nIt teaches state-space search — exploring possible actions.\nAction types: fill, empty, or pour between jugs.\nBoth approaches work because the math is symmetric (gcd of 3 and 5 = 1, so any amount from 1-5 is measurable).",
-      correctExplanation: "Yes! Both methods work. Method 1: Fill 3→5, Fill 3→5 (1 left), Empty 5→Pour 1→Fill 3→Pour=4 in 5. Method 2: Fill 5→3 (2 left), Empty 3→Pour 2→Fill 5→Pour=4 in 5.",
+        "This classic 'water jug' puzzle was featured in the movie Die Hard with a Vengeance.\nIt teaches state-space search â€” exploring possible actions.\nAction types: fill, empty, or pour between jugs.\nBoth approaches work because the math is symmetric (gcd of 3 and 5 = 1, so any amount from 1-5 is measurable).",
+      correctExplanation: "Yes! Both methods work. Method 1: Fill 3â†’5, Fill 3â†’5 (1 left), Empty 5â†’Pour 1â†’Fill 3â†’Pour=4 in 5. Method 2: Fill 5â†’3 (2 left), Empty 3â†’Pour 2â†’Fill 5â†’Pour=4 in 5.",
       incorrectExplanation: "Both methods work because 3 and 5 are coprime (GCD=1). The puzzle is a classic example of using a state-space search to solve measurement problems.",
     },
     {
@@ -1297,13 +1297,13 @@ const seedData: SeedData = {
       lessonOrder: 4,
       lessonGroupOrder: 3,
       lessonContent:
-        "Work backwards one step at a time.\n'Three days before Saturday' = Wednesday (Sat→Fri, Thu, Wed).\nSo 'the day after tomorrow' = Wednesday.\nIf day after tomorrow is Wednesday → tomorrow is Tuesday → today is Monday.",
+        "Work backwards one step at a time.\n'Three days before Saturday' = Wednesday (Satâ†’Fri, Thu, Wed).\nSo 'the day after tomorrow' = Wednesday.\nIf day after tomorrow is Wednesday â†’ tomorrow is Tuesday â†’ today is Monday.",
       correctExplanation: "The answer is Monday. Day after tomorrow = 3 days before Saturday = Wednesday. So tomorrow is Tuesday, today is Monday.",
-      incorrectExplanation: "Let's work through it: 'Three days before Saturday' = Wednesday. 'The day after tomorrow is Wednesday' → tomorrow is Tuesday → today is Monday.",
+      incorrectExplanation: "Let's work through it: 'Three days before Saturday' = Wednesday. 'The day after tomorrow is Wednesday' â†’ tomorrow is Tuesday â†’ today is Monday.",
     },
 
     // ========================================================================
-    // PUZZLES — Group 4: Bonus Round
+    // PUZZLES â€” Group 4: Bonus Round
     // ========================================================================
     {
       type: "multiple-choice",
@@ -1320,7 +1320,7 @@ const seedData: SeedData = {
       lessonContent:
         "This is a paradox-style riddle based on the nature of secrets.\nA secret is only 'yours' if you don't tell anyone.\nOnce shared, it's no longer exclusively yours.\nThis highlights the interesting property of information: sharing doesn't divide it, but you 'lose' exclusive ownership.",
       correctExplanation: "Yes! A secret is something you 'have' only as long as you don't share it. Once shared, it's no longer your exclusive secret.",
-      incorrectExplanation: "The answer is 'a secret'. You possess a secret as long as you don't tell anyone. But once you share it, it's no longer just your secret — you've 'lost' exclusive ownership.",
+      incorrectExplanation: "The answer is 'a secret'. You possess a secret as long as you don't tell anyone. But once you share it, it's no longer just your secret â€” you've 'lost' exclusive ownership.",
     },
     {
       type: "multiple-choice",
@@ -1335,9 +1335,9 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 4,
       lessonContent:
-        "Trick questions test whether you accept false premises.\nOnly female chickens (hens) lay eggs — roosters are male.\nThe question makes a false assumption (that a rooster can lay an egg).\nAlways question the premises of a problem before solving it!",
-      correctExplanation: "Correct! Roosters are male chickens — they don't lay eggs! The question tricks you with a false premise. Always question your assumptions first.",
-      incorrectExplanation: "Roosters don't lay eggs — only hens do! This is a classic trick question that makes you focus on the wrong detail (which way it rolls) while the real answer is exposing the false premise.",
+        "Trick questions test whether you accept false premises.\nOnly female chickens (hens) lay eggs â€” roosters are male.\nThe question makes a false assumption (that a rooster can lay an egg).\nAlways question the premises of a problem before solving it!",
+      correctExplanation: "Correct! Roosters are male chickens â€” they don't lay eggs! The question tricks you with a false premise. Always question your assumptions first.",
+      incorrectExplanation: "Roosters don't lay eggs â€” only hens do! This is a classic trick question that makes you focus on the wrong detail (which way it rolls) while the real answer is exposing the false premise.",
     },
     {
       type: "true-false",
@@ -1352,8 +1352,8 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 4,
       lessonContent:
-        "According to Oxfam and Credit Suisse data, the richest 1% own over 45% of global wealth.\nThe bottom 50% own less than 1.5%.\nTotal global wealth is about $450 trillion — so ~$90,000 per adult if divided equally.\nBut 3 billion people live on less than $10,000 total.\nThis isn't a puzzle with a 'gotcha' answer — it's a real-world distribution that's worth knowing and questioning.",
-      correctExplanation: "True. The richest 1% own more than the bottom 50% combined. This isn't left or right — it's just the data. What you think about it is up to you.",
+        "According to Oxfam and Credit Suisse data, the richest 1% own over 45% of global wealth.\nThe bottom 50% own less than 1.5%.\nTotal global wealth is about $450 trillion â€” so ~$90,000 per adult if divided equally.\nBut 3 billion people live on less than $10,000 total.\nThis isn't a puzzle with a 'gotcha' answer â€” it's a real-world distribution that's worth knowing and questioning.",
+      correctExplanation: "True. The richest 1% own more than the bottom 50% combined. This isn't left or right â€” it's just the data. What you think about it is up to you.",
       incorrectExplanation: "True. The wealth gap is staggering: the top 1% hold ~45% of global wealth, while the bottom 50% share just 1.5%. Equal distribution would give every adult ~$90,000.",
     },
     {
@@ -1365,7 +1365,7 @@ const seedData: SeedData = {
       choices: [
         "Fold one rope in half, cut both ropes in quarters",
         "Light both ends of one rope AND one end of the other simultaneously",
-        "Light one rope from both ends (30 min) and the other from both ends (30 min) — overlap = 15 min",
+        "Light one rope from both ends (30 min) and the other from both ends (30 min) â€” overlap = 15 min",
         "Light Rope A at both ends and Rope B at one end. When A burns out (30 min), light B's other end. When B burns out, 45 min total",
       ],
       correctAnswer: "Light Rope A at both ends and Rope B at one end. When A burns out (30 min), light B's other end. When B burns out, 45 min total",
@@ -1379,21 +1379,20 @@ const seedData: SeedData = {
     },
 
     // ========================================================================
-    // WONDERS — Group 1: Think Deeper (Logic-style wonders)
+    // WONDERS â€” Group 1: Think Deeper (Logic-style wonders)
     // ========================================================================
     {
       type: "wonder",
       category: "wonders",
       difficulty: "easy",
       title: "The Map Is Not the Territory",
-      question: "A map of a city is NOT the city itself — it's a simplified representation. We all carry mental 'maps' of reality: beliefs about how the world works. But when the map conflicts with the territory, which one do you trust?",
+      question: "A map of a city is NOT the city itself â€” it's a simplified representation. We all carry mental 'maps' of reality: beliefs about how the world works. But when the map conflicts with the territory, which one do you trust?",
       xpReward: 0,
       lessonGroup: "Think Deeper",
       lessonOrder: 1,
       lessonGroupOrder: 1,
       lessonContent:
         "The map-territory distinction was coined by Alfred Korzybski. The menu is not the meal. The name is not the thing named.\nWe confuse our mental models with reality every day: 'This person is lazy' (a map) vs. 'This person didn't do the dishes today' (territory).\nThe map feels real because we live inside it. But wisdom is knowing when to set down the map and just look at the land.\nAsk yourself today: where is my map outdated?",
-      sharePrompt: "Ask a friend: 'What's a belief you used to hold strongly that you've since changed your mind about? What changed it?'",
     },
     {
       type: "wonder",
@@ -1406,8 +1405,7 @@ const seedData: SeedData = {
       lessonOrder: 2,
       lessonGroupOrder: 1,
       lessonContent:
-        "This paradox has puzzled philosophers for 2,000+ years.\nYour cells regenerate constantly — after 7 years, you're physically almost entirely new.\nYet you feel like the same 'you' because of continuity: memory, personality, consciousness flowing forward.\nThe ship is 'the same' because of the story connecting its parts across time.\nYou are not your atoms. You are a pattern. And patterns persist even when the pieces change.",
-      sharePrompt: "Ask someone: 'Are you the same person you were 7 years ago? If every cell has been replaced, what makes you still you?'",
+        "This paradox has puzzled philosophers for 2,000+ years.\nYour cells regenerate constantly â€” after 7 years, you're physically almost entirely new.\nYet you feel like the same 'you' because of continuity: memory, personality, consciousness flowing forward.\nThe ship is 'the same' because of the story connecting its parts across time.\nYou are not your atoms. You are a pattern. And patterns persist even when the pieces change.",
     },
     {
       type: "wonder",
@@ -1420,8 +1418,7 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 1,
       lessonContent:
-        "G.K. Chesterton's principle: reforms should understand the past before dismantling it.\nThat 'useless' rule, tradition, or habit might be solving a problem you haven't encountered yet.\nThe fence wasn't built by accident. Someone paid to build it. It served a purpose — even if that purpose is now obsolete.\nProgress doesn't mean knocking down every fence. It means understanding why it was built, then deciding.\nWhere in your life have you dismissed something as 'useless' without understanding it first?",
-      sharePrompt: "Think of a rule or tradition you dislike. Ask a friend: 'Can you think of a reason it might have been created in the first place?'",
+        "G.K. Chesterton's principle: reforms should understand the past before dismantling it.\nThat 'useless' rule, tradition, or habit might be solving a problem you haven't encountered yet.\nThe fence wasn't built by accident. Someone paid to build it. It served a purpose â€” even if that purpose is now obsolete.\nProgress doesn't mean knocking down every fence. It means understanding why it was built, then deciding.\nWhere in your life have you dismissed something as 'useless' without understanding it first?",
     },
     {
       type: "wonder",
@@ -1435,39 +1432,36 @@ const seedData: SeedData = {
       lessonGroupOrder: 1,
       lessonContent:
         "Shallow truths: '2+2=4.' Opposite: false.\nDeep truths: 'You must be selfish to succeed.' Opposite: 'You must be selfless to succeed.' Both are true in different contexts.\n'The more you give, the more you receive.' 'The more you hold, the more you keep.' Both true.\nThis is why simple answers often fail in complex situations: reality is layered.\nThe mark of a wise person: holding two opposing truths without rejecting either.",
-      sharePrompt: "Challenge a friend: 'Tell me a piece of advice that's true — but whose opposite is ALSO true in some situations.'",
     },
 
     // ========================================================================
-    // WONDERS — Group 2: Mind Stretchers (Riddle-style wonders)
+    // WONDERS â€” Group 2: Mind Stretchers (Riddle-style wonders)
     // ========================================================================
     {
       type: "wonder",
       category: "wonders",
       difficulty: "easy",
       title: "The Present Moment",
-      question: "Everything you've ever experienced — joy, pain, love, fear — has happened in the present moment. The past is memory. The future is imagination. So why do we spend so little time in the only thing that's real?",
+      question: "Everything you've ever experienced â€” joy, pain, love, fear â€” has happened in the present moment. The past is memory. The future is imagination. So why do we spend so little time in the only thing that's real?",
       xpReward: 0,
       lessonGroup: "Mind Stretchers",
       lessonOrder: 1,
       lessonGroupOrder: 2,
       lessonContent:
-        "The present moment is all that exists. Yet your mind spends most of its time elsewhere.\nStudies show people's minds wander 47% of the time — and they're consistently less happy when wandering.\nRegret pulls you backward. Anxiety pulls you forward. Only peace lives in the now.\nThis isn't spiritual fluff — it's neuroscience. The default mode network (DMN) in your brain runs past/future simulations.\nThe practice of presence is simply noticing when your mind has left, and gently bringing it home.",
-      sharePrompt: "Right now, pause for 10 seconds. Just breathe and notice. Then ask a friend: 'When was the last time you felt fully present?'",
+        "The present moment is all that exists. Yet your mind spends most of its time elsewhere.\nStudies show people's minds wander 47% of the time â€” and they're consistently less happy when wandering.\nRegret pulls you backward. Anxiety pulls you forward. Only peace lives in the now.\nThis isn't spiritual fluff â€” it's neuroscience. The default mode network (DMN) in your brain runs past/future simulations.\nThe practice of presence is simply noticing when your mind has left, and gently bringing it home.",
     },
     {
       type: "wonder",
       category: "wonders",
       difficulty: "easy",
       title: "The Invisible Forces",
-      question: "The most powerful things in your life are invisible: gravity, time, love, radio waves, the economy, culture. What's the strongest invisible force in your daily life — one you almost never think about?",
+      question: "The most powerful things in your life are invisible: gravity, time, love, radio waves, the economy, culture. What's the strongest invisible force in your daily life â€” one you almost never think about?",
       xpReward: 0,
       lessonGroup: "Mind Stretchers",
       lessonOrder: 2,
       lessonGroupOrder: 2,
       lessonContent:
-        "We're surrounded by forces we can't see that shape everything.\nTrust makes society function — but you can't hold it.\nLanguage shapes thought — but you never see it.\nNorms and culture dictate your behavior — but they're invisible agreements.\nThe internet is a web of invisible connections.\nMost of reality is unseen. The visible world is just the surface.\nWhat if the most real things are the ones you cannot touch?",
-      sharePrompt: "Ask someone: 'What's an invisible force that affects you every day but you never think about?'",
+        "We're surrounded by forces we can't see that shape everything.\nTrust makes society function â€” but you can't hold it.\nLanguage shapes thought â€” but you never see it.\nNorms and culture dictate your behavior â€” but they're invisible agreements.\nThe internet is a web of invisible connections.\nMost of reality is unseen. The visible world is just the surface.\nWhat if the most real things are the ones you cannot touch?",
     },
     {
       type: "wonder",
@@ -1480,86 +1474,80 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 2,
       lessonContent:
-        "Consciousness is the only thing that can't be turned into an object of study — because it's the thing doing the studying.\nYour eye can see everything except itself (without another mirror).\nYour brain can study other brains, but the brain studying itself is a feedback loop.\nThis is 'the hard problem of consciousness' — the subjective experience of being alive.\nScience can map the brain, but it can't explain WHY there is a 'someone' inside experiencing it.\nThat 'someone' — the one reading these words right now — is the universe's deepest mystery.",
-      sharePrompt: "Look at yourself in a mirror for 30 seconds. Really look. Ask a friend: 'Do you ever feel like the person in the mirror isn't quite who you thought you were?'",
+        "Consciousness is the only thing that can't be turned into an object of study â€” because it's the thing doing the studying.\nYour eye can see everything except itself (without another mirror).\nYour brain can study other brains, but the brain studying itself is a feedback loop.\nThis is 'the hard problem of consciousness' â€” the subjective experience of being alive.\nScience can map the brain, but it can't explain WHY there is a 'someone' inside experiencing it.\nThat 'someone' â€” the one reading these words right now â€” is the universe's deepest mystery.",
     },
     {
       type: "wonder",
       category: "wonders",
       difficulty: "hard",
       title: "The Storyteller Within",
-      question: "Every person you meet is living a story you know nothing about. If everyone is the main character of their own life — with their own fears, dreams, and struggles — how does that change how you see a stranger?",
+      question: "Every person you meet is living a story you know nothing about. If everyone is the main character of their own life â€” with their own fears, dreams, and struggles â€” how does that change how you see a stranger?",
       xpReward: 0,
       lessonGroup: "Mind Stretchers",
       lessonOrder: 4,
       lessonGroupOrder: 2,
       lessonContent:
-        "There are 8 billion main characters on Earth right now. Each one with a full inner world.\nThat person who cut you off in traffic might be rushing to a dying relative.\nThe cashier who didn't smile might be fighting depression.\nThe 'villain' in your story is the 'hero' in theirs.\nThis isn't just empathy — it's accuracy. Your map of others is always incomplete.\nThe simple act of remembering that everyone has an inner world is the beginning of wisdom.\nTry it today: look at a stranger and wonder what their story is.",
-      sharePrompt: "Next time you interact with a stranger, silently imagine their full life story. Then ask a friend: 'Do you think most people are doing their best, or just barely getting by?'",
+        "There are 8 billion main characters on Earth right now. Each one with a full inner world.\nThat person who cut you off in traffic might be rushing to a dying relative.\nThe cashier who didn't smile might be fighting depression.\nThe 'villain' in your story is the 'hero' in theirs.\nThis isn't just empathy â€” it's accuracy. Your map of others is always incomplete.\nThe simple act of remembering that everyone has an inner world is the beginning of wisdom.\nTry it today: look at a stranger and wonder what their story is.",
     },
 
     // ========================================================================
-    // WONDERS — Group 3: Cosmic Wonders (Science-style wonders)
+    // WONDERS â€” Group 3: Cosmic Wonders (Science-style wonders)
     // ========================================================================
     {
       type: "wonder",
       category: "wonders",
       difficulty: "easy",
       title: "The Cosmic Calendar",
-      question: "If Earth's 4.5 billion-year history were compressed into one calendar year — January 1 to December 31 — when do humans appear?",
+      question: "If Earth's 4.5 billion-year history were compressed into one calendar year â€” January 1 to December 31 â€” when do humans appear?",
       xpReward: 0,
       lessonGroup: "Cosmic Wonders",
       lessonOrder: 1,
       lessonGroupOrder: 3,
       lessonContent:
-        "On the cosmic calendar (popularized by Carl Sagan):\nJanuary 1: Earth forms\nFebruary: Earliest life\nNovember: Complex life appears\nDecember 26: Dinosaurs appear\nDecember 30: Dinosaurs go extinct\nDecember 31, 11:30 PM: First humans\nDecember 31, 11:59:56 PM: Recorded history (last 4 seconds of the year)\nEverything you know — every empire, every war, every song, every person you've ever heard of — happens in the final 4 seconds.\nYou are living in the last millisecond of the cosmic year.",
-      sharePrompt: "Ask a friend: 'If Earth's history was one year, what would you do with your last second of December 31?'",
+        "On the cosmic calendar (popularized by Carl Sagan):\nJanuary 1: Earth forms\nFebruary: Earliest life\nNovember: Complex life appears\nDecember 26: Dinosaurs appear\nDecember 30: Dinosaurs go extinct\nDecember 31, 11:30 PM: First humans\nDecember 31, 11:59:56 PM: Recorded history (last 4 seconds of the year)\nEverything you know â€” every empire, every war, every song, every person you've ever heard of â€” happens in the final 4 seconds.\nYou are living in the last millisecond of the cosmic year.",
     },
     {
       type: "wonder",
       category: "wonders",
       difficulty: "easy",
       title: "The Pale Blue Dot",
-      question: "In 1990, Voyager 1 turned back and photographed Earth from 6 billion km away. Earth was a 'pale blue dot' — less than a pixel. Carl Sagan wrote about that photo. What does this perspective do to your sense of scale?",
+      question: "In 1990, Voyager 1 turned back and photographed Earth from 6 billion km away. Earth was a 'pale blue dot' â€” less than a pixel. Carl Sagan wrote about that photo. What does this perspective do to your sense of scale?",
       xpReward: 0,
       lessonGroup: "Cosmic Wonders",
       lessonOrder: 2,
       lessonGroupOrder: 3,
       lessonContent:
-        "Carl Sagan: 'Look again at that dot. That's here. That's home. That's us. On it everyone you love, everyone you know, everyone you ever heard of, every human being who ever was, lived out their lives…\nEvery hunter and forager, every hero and coward, every creator and destroyer of civilization, every king and peasant, every young couple in love, every mother and father, hopeful child, inventor and explorer, every teacher of morals, every corrupt politician, every 'superstar,' every 'supreme leader,' every saint and sinner in the history of our species lived there — on a mote of dust suspended in a sunbeam.'\nEvery war is fought over a pixel. Every border divides a speck. Every drama happens on a dot.\nAnd yet — that dot is all we have.",
-      sharePrompt: "Watch the 'Pale Blue Dot' speech online (it's 3 minutes). Ask a friend: 'Does this make you feel small or connected?'",
+        "Carl Sagan: 'Look again at that dot. That's here. That's home. That's us. On it everyone you love, everyone you know, everyone you ever heard of, every human being who ever was, lived out their livesâ€¦\nEvery hunter and forager, every hero and coward, every creator and destroyer of civilization, every king and peasant, every young couple in love, every mother and father, hopeful child, inventor and explorer, every teacher of morals, every corrupt politician, every 'superstar,' every 'supreme leader,' every saint and sinner in the history of our species lived there â€” on a mote of dust suspended in a sunbeam.'\nEvery war is fought over a pixel. Every border divides a speck. Every drama happens on a dot.\nAnd yet â€” that dot is all we have.",
     },
     {
       type: "wonder",
       category: "wonders",
       difficulty: "medium",
       title: "The Quantum Observer",
-      question: "In quantum mechanics, observing a particle changes its behavior. The act of measurement affects reality. Do you think your attention — what you choose to notice — changes your personal reality too?",
+      question: "In quantum mechanics, observing a particle changes its behavior. The act of measurement affects reality. Do you think your attention â€” what you choose to notice â€” changes your personal reality too?",
       xpReward: 0,
       lessonGroup: "Cosmic Wonders",
       lessonOrder: 3,
       lessonGroupOrder: 3,
       lessonContent:
-        "In quantum physics, the observer effect isn't about consciousness — it's that measurement requires interaction.\nBut there IS a metaphorical truth: what you focus on grows.\nYour brain has a 'reticular activating system' (RAS) that filters reality. When you buy a red car, you suddenly see red cars everywhere. They were always there — you just weren't noticing.\nAttention is a spotlight. Where you point it determines what your reality looks like.\nTwo people can experience the same event completely differently based on what they focus on.\nIs it possible that by choosing what to notice, you are literally constructing your reality?",
-      sharePrompt: "Try this today: notice 3 things you're grateful for. Ask a friend: 'Do you think reality is the same for everyone, or do we each create our own version?'",
+        "In quantum physics, the observer effect isn't about consciousness â€” it's that measurement requires interaction.\nBut there IS a metaphorical truth: what you focus on grows.\nYour brain has a 'reticular activating system' (RAS) that filters reality. When you buy a red car, you suddenly see red cars everywhere. They were always there â€” you just weren't noticing.\nAttention is a spotlight. Where you point it determines what your reality looks like.\nTwo people can experience the same event completely differently based on what they focus on.\nIs it possible that by choosing what to notice, you are literally constructing your reality?",
     },
     {
       type: "wonder",
       category: "wonders",
       difficulty: "hard",
       title: "The Humbling Number",
-      question: "There are more stars in the observable universe than grains of sand on every beach on Earth. Roughly 100 sextillion stars (10²³). Does that number make you feel insignificant — or part of something unimaginably vast?",
+      question: "There are more stars in the observable universe than grains of sand on every beach on Earth. Roughly 100 sextillion stars (10Â²Â³). Does that number make you feel insignificant â€” or part of something unimaginably vast?",
       xpReward: 0,
       lessonGroup: "Cosmic Wonders",
       lessonOrder: 4,
       lessonGroupOrder: 3,
       lessonContent:
-        "100,000,000,000,000,000,000,000 stars.\nFor every grain of sand, there are 10,000 stars.\nEach of those stars could have planets. Each planet could have life. Each life could be asking the same question.\nAnd yet — you are the universe experiencing itself. The atoms in your body were forged in stars that died billions of years ago.\nYou are not separate from the cosmos. You ARE the cosmos — a small but conscious piece of it.\nInsignificant? Maybe. But you're the part of the universe that can wonder about the rest of it.\nThat makes you the most significant thing the universe has produced.",
-      sharePrompt: "Tonight, look up at the stars. Pick one. Realize it might have planets. Ask a friend: 'Do you think there's someone on another planet, looking back at their sky, thinking the same thing right now?'",
+        "100,000,000,000,000,000,000,000 stars.\nFor every grain of sand, there are 10,000 stars.\nEach of those stars could have planets. Each planet could have life. Each life could be asking the same question.\nAnd yet â€” you are the universe experiencing itself. The atoms in your body were forged in stars that died billions of years ago.\nYou are not separate from the cosmos. You ARE the cosmos â€” a small but conscious piece of it.\nInsignificant? Maybe. But you're the part of the universe that can wonder about the rest of it.\nThat makes you the most significant thing the universe has produced.",
     },
 
     // ========================================================================
-    // WONDERS — Group 4: Life Puzzles (Practical & social wonders)
+    // WONDERS â€” Group 4: Life Puzzles (Practical & social wonders)
     // ========================================================================
     {
       type: "wonder",
@@ -1572,22 +1560,20 @@ const seedData: SeedData = {
       lessonOrder: 1,
       lessonGroupOrder: 4,
       lessonContent:
-        "Events don't come with meanings attached — we ASSIGN meaning.\nTwo people fail the same test. One thinks 'I'm stupid.' The other thinks 'I need a better study method.'\nSame event. Different meaning. Different future.\nThe past is fixed. Its MEANING is not.\nYou can't change what happened. You CAN change what it means.\nA breakup can mean 'I'm unlovable' OR 'I learned what I need in a partner.'\nA failure can mean 'I'm not good enough' OR 'I found one way that doesn't work.'\nThe event is the same. The story is yours.",
-      sharePrompt: "Think of a 'negative' event in your past. Ask a friend: 'Can you help me find a different meaning for it — one that serves me better?'",
+        "Events don't come with meanings attached â€” we ASSIGN meaning.\nTwo people fail the same test. One thinks 'I'm stupid.' The other thinks 'I need a better study method.'\nSame event. Different meaning. Different future.\nThe past is fixed. Its MEANING is not.\nYou can't change what happened. You CAN change what it means.\nA breakup can mean 'I'm unlovable' OR 'I learned what I need in a partner.'\nA failure can mean 'I'm not good enough' OR 'I found one way that doesn't work.'\nThe event is the same. The story is yours.",
     },
     {
       type: "wonder",
       category: "wonders",
       difficulty: "easy",
       title: "The Happiness Paradox",
-      question: "The more you chase happiness, the more it slips away. Happiness seems to arrive when you're not looking for it — when you're fully engaged in something else. Why does pursuing it directly backfire?",
+      question: "The more you chase happiness, the more it slips away. Happiness seems to arrive when you're not looking for it â€” when you're fully engaged in something else. Why does pursuing it directly backfire?",
       xpReward: 0,
       lessonGroup: "Life Puzzles",
       lessonOrder: 2,
       lessonGroupOrder: 4,
       lessonContent:
-        "Psychologists call this the 'paradox of happiness.'\nHappiness is a byproduct, not a direct goal. Like a shadow — chase it and it runs. Turn toward the light (meaning, connection, flow) and it follows.\nResearch shows that people who prioritize happiness directly are actually LESS happy.\nInstead, happiness correlates most strongly with: meaningful relationships, engaging work/play, and a sense of purpose.\nThe secret: don't pursue happiness. Pursue things that make you forget to check if you're happy.\nFlow states — when you're so absorbed in something that time disappears — are the closest thing to guaranteed happiness.",
-      sharePrompt: "Ask a friend: 'When was the last time you were so absorbed in something you lost track of time? What were you doing?'",
+        "Psychologists call this the 'paradox of happiness.'\nHappiness is a byproduct, not a direct goal. Like a shadow â€” chase it and it runs. Turn toward the light (meaning, connection, flow) and it follows.\nResearch shows that people who prioritize happiness directly are actually LESS happy.\nInstead, happiness correlates most strongly with: meaningful relationships, engaging work/play, and a sense of purpose.\nThe secret: don't pursue happiness. Pursue things that make you forget to check if you're happy.\nFlow states â€” when you're so absorbed in something that time disappears â€” are the closest thing to guaranteed happiness.",
     },
     {
       type: "wonder",
@@ -1600,28 +1586,26 @@ const seedData: SeedData = {
       lessonOrder: 3,
       lessonGroupOrder: 4,
       lessonContent:
-        "The spotlight effect — a well-documented cognitive bias — makes us believe others pay more attention to us than they do.\nWe are the center of our own universe, so we assume we're the center of everyone else's too.\nBut here's the truth: others are the center of THEIR universe, not yours.\nThat embarrassing moment you replay at 3 AM? No one else remembers it.\nThat outfit you're nervous about? People are too busy thinking about themselves.\nThe spotlight effect is a cage of your own making. Step out: no one is watching. And if they are — they'll forget in 5 minutes anyway.",
-      sharePrompt: "The next time you feel self-conscious, remember: no one cares as much as you think. Ask a friend: 'What's one thing you'd do differently if you truly believed no one was judging you?'",
+        "The spotlight effect â€” a well-documented cognitive bias â€” makes us believe others pay more attention to us than they do.\nWe are the center of our own universe, so we assume we're the center of everyone else's too.\nBut here's the truth: others are the center of THEIR universe, not yours.\nThat embarrassing moment you replay at 3 AM? No one else remembers it.\nThat outfit you're nervous about? People are too busy thinking about themselves.\nThe spotlight effect is a cage of your own making. Step out: no one is watching. And if they are â€” they'll forget in 5 minutes anyway.",
     },
     {
       type: "wonder",
       category: "wonders",
       difficulty: "hard",
       title: "The Last Question",
-      question: "If you knew you couldn't fail, what would you try? Now here's the harder one: if failure were guaranteed, but you'd learn something invaluable — would you still do it?",
+      question: "If you knew you couldn't fail, what would you try? Now here's the harder one: if failure were guaranteed, but you'd learn something invaluable â€” would you still do it?",
       xpReward: 0,
       lessonGroup: "Life Puzzles",
       lessonOrder: 4,
       lessonGroupOrder: 4,
       lessonContent:
-        "The first question is a classic: fear of failure holds most people back.\nBut the second question is deeper: some things are worth doing even if they fail.\nA conversation that doesn't go well — but you were honest.\nA creative project that flops — but you expressed yourself.\nA business that folds — but you learned what you're made of.\nFailure is the tuition you pay for wisdom. The only real failure is the thing you didn't try because you were afraid.\nWhat would you do if failure was simply one of the possible outcomes — not the end of the world?\nThe answer to that question is your life.",
-      sharePrompt: "Ask a friend: 'If you could attempt something knowing it would fail, but you'd gain incredible wisdom from it — would you do it? What would it be?'",
+        "The first question is a classic: fear of failure holds most people back.\nBut the second question is deeper: some things are worth doing even if they fail.\nA conversation that doesn't go well â€” but you were honest.\nA creative project that flops â€” but you expressed yourself.\nA business that folds â€” but you learned what you're made of.\nFailure is the tuition you pay for wisdom. The only real failure is the thing you didn't try because you were afraid.\nWhat would you do if failure was simply one of the possible outcomes â€” not the end of the world?\nThe answer to that question is your life.",
     },
 
     // ========================================================================
-    // CIPHERS — Weekly cipher puzzles (Sunday-only decode)
+    // CIPHERS â€” Weekly cipher puzzles (Sunday-only decode)
     // ========================================================================
-    // Each cipher below is fair (fully deducible from what's shown — no
+    // Each cipher below is fair (fully deducible from what's shown â€” no
     // guess-the-key traps) but demands real recognition + layered decoding.
     // Every ciphertext was generated and round-trip verified against its answer.
     {
@@ -1638,7 +1622,7 @@ const seedData: SeedData = {
         cipherType: "Morse Code",
         hint: "The oldest electric dialect confesses in nothing but the brief and the sustained; honour the caesura between them.",
       },
-      correctExplanation: "This is International Morse Code. A space separates letters, ' / ' separates words. Decoded: '... - .- -.--' = STAY, '.. -.' = IN, '- .... .' = THE, '... .... .- -.. --- .-- ...' = SHADOWS → 'stay in the shadows'.",
+      correctExplanation: "This is International Morse Code. A space separates letters, ' / ' separates words. Decoded: '... - .- -.--' = STAY, '.. -.' = IN, '- .... .' = THE, '... .... .- -.. --- .-- ...' = SHADOWS â†’ 'stay in the shadows'.",
       incorrectExplanation: "Read the dots and dashes as Morse. Single spaces break letters; the ' / ' marks break words. Map each group back to its letter using a Morse table.",
     },
     {
@@ -1655,8 +1639,8 @@ const seedData: SeedData = {
         cipherType: "Rail Fence (3 rails)",
         hint: "Nothing was disguised, only made to descend and ascend across a palisade of three tiers before being harvested tier by tier.",
       },
-      correctExplanation: "This is a Rail Fence transposition with 3 rails. Writing 'thewallshaveears' in a zig-zag over 3 rails and reading each rail left-to-right gives the ciphertext. Reverse the process — map each ciphertext letter back onto the zig-zag path — to recover 'the walls have ears'.",
-      incorrectExplanation: "No letters were substituted — only reordered. This is a Rail Fence cipher on 3 rails: the plaintext zig-zags down and up across 3 lines, then each line is read out in order. Reconstruct the zig-zag to undo it.",
+      correctExplanation: "This is a Rail Fence transposition with 3 rails. Writing 'thewallshaveears' in a zig-zag over 3 rails and reading each rail left-to-right gives the ciphertext. Reverse the process â€” map each ciphertext letter back onto the zig-zag path â€” to recover 'the walls have ears'.",
+      incorrectExplanation: "No letters were substituted â€” only reordered. This is a Rail Fence cipher on 3 rails: the plaintext zig-zags down and up across 3 lines, then each line is read out in order. Reconstruct the zig-zag to undo it.",
     },
     {
       type: "cipher",
@@ -1672,8 +1656,8 @@ const seedData: SeedData = {
         cipherType: "A1Z26 + Riddle",
         hint: "Each ordinal is merely its letter's rank in the alphabet; the sentence you recover is itself an enigma, and the true answer lies one riddle deeper.",
       },
-      correctExplanation: "Map each number to a letter (23=W, 8=H, 1=A, 20=T…): the message decodes to 'what has keys but opens no locks'. The answer to that riddle is a piano — its keys make music, not entry.",
-      incorrectExplanation: "First convert the numbers to letters (1=A … 26=Z, double spaces = new word). That reveals a riddle: 'what has keys but opens no locks'. The final answer isn't the decoded sentence — it's the solution to the riddle.",
+      correctExplanation: "Map each number to a letter (23=W, 8=H, 1=A, 20=Tâ€¦): the message decodes to 'what has keys but opens no locks'. The answer to that riddle is a piano â€” its keys make music, not entry.",
+      incorrectExplanation: "First convert the numbers to letters (1=A â€¦ 26=Z, double spaces = new word). That reveals a riddle: 'what has keys but opens no locks'. The final answer isn't the decoded sentence â€” it's the solution to the riddle.",
     },
     {
       type: "cipher",
@@ -1686,11 +1670,11 @@ const seedData: SeedData = {
       xpReward: 150,
       cipherData: {
         encodedMessage: "CFTP BZS OWIBZM EIP XSGK",
-        cipherType: "Vigenère",
-        hint: "A repeating watchword drives this many-alphabet drift. Seek the green-skinned arbiter of the Duat who weighs hearts against a feather — his six letters are your key.",
+        cipherType: "VigenÃ¨re",
+        hint: "A repeating watchword drives this many-alphabet drift. Seek the green-skinned arbiter of the Duat who weighs hearts against a feather â€” his six letters are your key.",
       },
-      correctExplanation: "The god is OSIRIS (6 letters). Using OSIRIS as a Vigenère keyword and shifting each ciphertext letter backward by the keyword letter's alphabet position (O=14, S=18, I=8, R=17, I=8, S=18), 'CFTP BZS OWIBZM EIP XSGK' decodes to 'only the worthy may pass'.",
-      incorrectExplanation: "This is a Vigenère cipher. Identify the six-letter keyword — the Egyptian god of the afterlife is OSIRIS — align it repeatedly under the ciphertext, and shift each letter backward by the keyword letter's position (A=0, B=1 … Z=25).",
+      correctExplanation: "The god is OSIRIS (6 letters). Using OSIRIS as a VigenÃ¨re keyword and shifting each ciphertext letter backward by the keyword letter's alphabet position (O=14, S=18, I=8, R=17, I=8, S=18), 'CFTP BZS OWIBZM EIP XSGK' decodes to 'only the worthy may pass'.",
+      incorrectExplanation: "This is a VigenÃ¨re cipher. Identify the six-letter keyword â€” the Egyptian god of the afterlife is OSIRIS â€” align it repeatedly under the ciphertext, and shift each letter backward by the keyword letter's position (A=0, B=1 â€¦ Z=25).",
     },
     {
       type: "cipher",
@@ -1706,8 +1690,8 @@ const seedData: SeedData = {
         cipherType: "Polybius Square",
         hint: "Every pair is a latitude and longitude upon a five-by-five lattice bearing the alphabet in sequence, where the twins I and J are forced to cohabit one cell.",
       },
-      correctExplanation: "This is a Polybius square: fill a 5×5 grid A–Z left-to-right (I/J share a cell), then each digit pair is (row, column). 43=S, 15=E, 13=C, 42=R, 15=E, 44=T, 43=S, 25=K, 15=E, 15=E, 35=P → 'secrets keep'.",
-      incorrectExplanation: "Each two-digit number is a coordinate. Build a 5×5 grid with the alphabet in order (combine I/J), read the first digit as the row and the second as the column, and look up each letter.",
+      correctExplanation: "This is a Polybius square: fill a 5Ã—5 grid Aâ€“Z left-to-right (I/J share a cell), then each digit pair is (row, column). 43=S, 15=E, 13=C, 42=R, 15=E, 44=T, 43=S, 25=K, 15=E, 15=E, 35=P â†’ 'secrets keep'.",
+      incorrectExplanation: "Each two-digit number is a coordinate. Build a 5Ã—5 grid with the alphabet in order (combine I/J), read the first digit as the row and the second as the column, and look up each letter.",
     },
     {
       type: "cipher",
@@ -1723,8 +1707,8 @@ const seedData: SeedData = {
         cipherType: "Base64 + Caesar",
         hint: "The outer husk is the six-bit armour machines don to ferry bytes unscathed; peel it and a Roman general's uniform displacement still bars the way.",
       },
-      correctExplanation: "Layer one is Base64 — decoding 'bXZzc3ZkIGFvbCB1dnlhbyB6YWh5' yields 'mvssvk aol uvyao zahy'. That's still shifted: a Caesar cipher of +7. Shift each letter back by 7 to get 'follow the north star'.",
-      incorrectExplanation: "The trailing '=' and mixed-case block are the giveaway for Base64 — decode that first. The result is still gibberish because a Caesar shift of 7 sits underneath. Undo the shift to finish.",
+      correctExplanation: "Layer one is Base64 â€” decoding 'bXZzc3ZkIGFvbCB1dnlhbyB6YWh5' yields 'mvssvk aol uvyao zahy'. That's still shifted: a Caesar cipher of +7. Shift each letter back by 7 to get 'follow the north star'.",
+      incorrectExplanation: "The trailing '=' and mixed-case block are the giveaway for Base64 â€” decode that first. The result is still gibberish because a Caesar shift of 7 sits underneath. Undo the shift to finish.",
     },
     {
       type: "cipher",
@@ -1740,8 +1724,8 @@ const seedData: SeedData = {
         cipherType: "Binary + Atbash",
         hint: "Gather the base-two glyphs into octets and read them as machine characters; what emerges is still ensnared by the ancient Hebrew looking-glass that folds A onto Z.",
       },
-      correctExplanation: "Each 8-bit group is an ASCII character. Converting the binary gives 'gsv kslvmrc irhvh zg wfhp' — which is Atbash (A↔Z, B↔Y, C↔X…). Applying Atbash reveals 'the phoenix rises at dusk'.",
-      incorrectExplanation: "Read each group of 8 bits as a byte and convert to ASCII text first. The result is still encrypted with Atbash — the alphabet reversed onto itself (A↔Z, B↔Y…). Mirror each letter to finish.",
+      correctExplanation: "Each 8-bit group is an ASCII character. Converting the binary gives 'gsv kslvmrc irhvh zg wfhp' â€” which is Atbash (Aâ†”Z, Bâ†”Y, Câ†”Xâ€¦). Applying Atbash reveals 'the phoenix rises at dusk'.",
+      incorrectExplanation: "Read each group of 8 bits as a byte and convert to ASCII text first. The result is still encrypted with Atbash â€” the alphabet reversed onto itself (Aâ†”Z, Bâ†”Yâ€¦). Mirror each letter to finish.",
     },
     {
       type: "cipher",
@@ -1757,7 +1741,7 @@ const seedData: SeedData = {
         cipherType: "Hexadecimal + Riddle",
         hint: "Read the base-sixteen couplets as the tint-and-character code every screen obeys; the sentence unveiled is a paradox, and its resolution is what you seek.",
       },
-      correctExplanation: "Each hex pair is an ASCII code (74=t, 68=h, 65=e, 20=space…). Decoded, it reads 'the more you take the more you leave behind'. The answer to that riddle is footsteps — the more you take, the more you leave behind you.",
+      correctExplanation: "Each hex pair is an ASCII code (74=t, 68=h, 65=e, 20=spaceâ€¦). Decoded, it reads 'the more you take the more you leave behind'. The answer to that riddle is footsteps â€” the more you take, the more you leave behind you.",
       incorrectExplanation: "Convert each two-digit hexadecimal number to its ASCII character (20 is a space). That spells out a riddle: 'the more you take the more you leave behind'. The final answer is the riddle's solution, not the decoded line.",
     },
     {
@@ -1772,9 +1756,9 @@ const seedData: SeedData = {
       cipherData: {
         encodedMessage: "77 68 61 74 20 68 61 73 20 61 6e 20 65 79 65 20 62 75 74 20 63 61 6e 6e 6f 74 20 73 65 65",
         cipherType: "Hexadecimal + Riddle",
-        hint: "Interpret each base-sixteen duet as the glyph-code every display obeys; the aphorism it exhumes is a paradox, and its resolution — not the sentence — is your quarry.",
+        hint: "Interpret each base-sixteen duet as the glyph-code every display obeys; the aphorism it exhumes is a paradox, and its resolution â€” not the sentence â€” is your quarry.",
       },
-      correctExplanation: "Each hex pair is an ASCII code (77=w, 68=h, 61=a, 74=t, 20=space…). Decoded it reads 'what has an eye but cannot see'. The answer to that riddle is a needle — its eye holds thread, not sight.",
+      correctExplanation: "Each hex pair is an ASCII code (77=w, 68=h, 61=a, 74=t, 20=spaceâ€¦). Decoded it reads 'what has an eye but cannot see'. The answer to that riddle is a needle â€” its eye holds thread, not sight.",
       incorrectExplanation: "Convert each two-digit hexadecimal number to its ASCII character (20 is a space). That spells the riddle 'what has an eye but cannot see'. The final answer is the riddle's solution, not the decoded line.",
     },
     {
@@ -1791,8 +1775,8 @@ const seedData: SeedData = {
         cipherType: "A1Z26 + Riddle",
         hint: "Every integer is nothing but its letter's station in the alphabet; the twin gaps sever the words. What surfaces is a contradiction whose solution you must name.",
       },
-      correctExplanation: "Map each number to a letter (23=W, 8=H, 1=A, 20=T…): the message decodes to 'what gets wetter the more it dries'. The answer is a towel — it soaks up water while drying you.",
-      incorrectExplanation: "First convert the numbers to letters (1=A … 26=Z, double spaces mark word breaks). That reveals a riddle: 'what gets wetter the more it dries'. The final answer is the riddle's solution, not the decoded line.",
+      correctExplanation: "Map each number to a letter (23=W, 8=H, 1=A, 20=Tâ€¦): the message decodes to 'what gets wetter the more it dries'. The answer is a towel â€” it soaks up water while drying you.",
+      incorrectExplanation: "First convert the numbers to letters (1=A â€¦ 26=Z, double spaces mark word breaks). That reveals a riddle: 'what gets wetter the more it dries'. The final answer is the riddle's solution, not the decoded line.",
     },
     {
       type: "cipher",
@@ -1808,8 +1792,8 @@ const seedData: SeedData = {
         cipherType: "Morse + Riddle",
         hint: "The staccato dialect of the wire yields a conundrum once you honour its brief-and-sustained pulses and the slashes cleaving word from word; the answer lies past the sentence.",
       },
-      correctExplanation: "Read the Morse (' / ' marks word breaks): '.-- .... .- -' = WHAT, '.... .- ...' = HAS, '.... .- -. -.. ...' = HANDS, '-... ..- -' = BUT, '-.-. .- -. -. --- -' = CANNOT, '-.-. .-.. .- .--.' = CLAP → 'what has hands but cannot clap'. The answer is a clock.",
-      incorrectExplanation: "Decode the Morse first — single spaces break letters, ' / ' breaks words — to get the riddle 'what has hands but cannot clap'. The final answer is the riddle's solution: a clock.",
+      correctExplanation: "Read the Morse (' / ' marks word breaks): '.-- .... .- -' = WHAT, '.... .- ...' = HAS, '.... .- -. -.. ...' = HANDS, '-... ..- -' = BUT, '-.-. .- -. -. --- -' = CANNOT, '-.-. .-.. .- .--.' = CLAP â†’ 'what has hands but cannot clap'. The answer is a clock.",
+      incorrectExplanation: "Decode the Morse first â€” single spaces break letters, ' / ' breaks words â€” to get the riddle 'what has hands but cannot clap'. The final answer is the riddle's solution: a clock.",
     },
     {
       type: "cipher",
@@ -1825,8 +1809,8 @@ const seedData: SeedData = {
         cipherType: "Polybius Square + Riddle",
         hint: "Each numeral pair is a coordinate on a five-by-five lattice bearing the alphabet in order, the twins I and J sharing one cell; the recovered line is a riddle whose answer you must supply.",
       },
-      correctExplanation: "Build a 5×5 Polybius grid (A–Z in order, I/J share a cell); each pair is (row, column). 52=W, 23=H, 11=A, 44=T… decodes to 'what has a neck but no head'. The answer is a bottle.",
-      incorrectExplanation: "Each two-digit number is a coordinate on a 5×5 grid filled with the alphabet in order (I/J combined): first digit is the row, second the column. That spells 'what has a neck but no head'. The final answer is the riddle's solution: a bottle.",
+      correctExplanation: "Build a 5Ã—5 Polybius grid (Aâ€“Z in order, I/J share a cell); each pair is (row, column). 52=W, 23=H, 11=A, 44=Tâ€¦ decodes to 'what has a neck but no head'. The answer is a bottle.",
+      incorrectExplanation: "Each two-digit number is a coordinate on a 5Ã—5 grid filled with the alphabet in order (I/J combined): first digit is the row, second the column. That spells 'what has a neck but no head'. The final answer is the riddle's solution: a bottle.",
     },
     {
       type: "cipher",
@@ -1840,10 +1824,10 @@ const seedData: SeedData = {
       cipherData: {
         encodedMessage: "tfziw gsv tzgv zg nrwmrtsg",
         cipherType: "Atbash",
-        hint: "No letter kept its seat — each was reflected across the alphabet's axis, so the first becomes the last and the fifth from the front the fifth from the rear (A↔Z, B↔Y).",
+        hint: "No letter kept its seat â€” each was reflected across the alphabet's axis, so the first becomes the last and the fifth from the front the fifth from the rear (Aâ†”Z, Bâ†”Y).",
       },
-      correctExplanation: "This is Atbash — the alphabet reversed onto itself (A↔Z, B↔Y, C↔X…). Mirroring each letter: 'tfziw'→GUARD, 'gsv'→THE, 'tzgv'→GATE, 'zg'→AT, 'nrwmrtsg'→MIDNIGHT → 'guard the gate at midnight'.",
-      incorrectExplanation: "No letters were shifted by a fixed amount — the whole alphabet is mirrored (A↔Z, B↔Y, C↔X…). Replace each letter with its mirror-image partner to recover the message.",
+      correctExplanation: "This is Atbash â€” the alphabet reversed onto itself (Aâ†”Z, Bâ†”Y, Câ†”Xâ€¦). Mirroring each letter: 'tfziw'â†’GUARD, 'gsv'â†’THE, 'tzgv'â†’GATE, 'zg'â†’AT, 'nrwmrtsg'â†’MIDNIGHT â†’ 'guard the gate at midnight'.",
+      incorrectExplanation: "No letters were shifted by a fixed amount â€” the whole alphabet is mirrored (Aâ†”Z, Bâ†”Y, Câ†”Xâ€¦). Replace each letter with its mirror-image partner to recover the message.",
     },
   ],
 };
