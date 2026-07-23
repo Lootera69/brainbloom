@@ -57,7 +57,7 @@ export function StreakBar() {
       gradient: "from-orange-500/20 to-amber-500/10",
       iconBg: "bg-gradient-to-br from-orange-500/25 to-amber-500/10",
       ring: "ring-orange-500/20",
-      onClick: streak > 0 ? () => setShowStreak(true) : undefined,
+      onClick: () => setShowStreak(true),
       bottom: null,
     },
     {
