@@ -5,7 +5,8 @@ import { useRouter, useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Save, Loader2, Trash2, ImageUp, X, Loader as Spinner, Send, CheckCircle2, XCircle, MessageSquare, ChevronDown } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
-import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
+import { RichTextEditor } from "@/components/ui/rich-text-editor";
+import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, updatePuzzleNote, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
 import { type PuzzleFormData, type PuzzleType, type CrosswordData, type SudokuData, type CipherData, type ReviewStatus } from "@/types/puzzle";
@@ -272,6 +273,16 @@ export default function EditPuzzlePage() {
       toast.success(`Marked as "${STATUS_LABELS[status]}".`);
     }
     setSubmitting(false);
+  };
+
+  const handleSendNote = async () => {
+    if (!reviewNoteInput.trim()) return;
+    setSubmitting(true);
+    await updatePuzzleNote(id, reviewNoteInput);
+    setPuzzleReviewNote(reviewNoteInput);
+    setReviewNoteInput("");
+    setSubmitting(false);
+    toast.success("Review note saved.");
   };
 
   const handleTogglePublish = async () => {
@@ -941,10 +952,18 @@ export default function EditPuzzlePage() {
                 </button>
               ))}
             </div>
-            <textarea value={reviewNoteInput} onChange={(e) => setReviewNoteInput(e.target.value)}
-              placeholder="Add a review note (optional)..."
-              rows={2}
-              className="w-full resize-none rounded-xl border bg-background px-3 py-2 text-xs outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
+            <RichTextEditor
+              value={reviewNoteInput}
+              onChange={setReviewNoteInput}
+              placeholder="Add a review note..."
+            />
+            <div className="flex justify-end">
+              <button type="button" onClick={handleSendNote} disabled={submitting || !reviewNoteInput.trim()}
+                className="flex h-8 items-center gap-1.5 rounded-xl bg-primary/10 px-3 text-xs font-semibold text-primary ring-1 ring-inset ring-primary/20 transition-all hover:bg-primary/20 active:scale-[0.97] disabled:opacity-40 disabled:pointer-events-none">
+                {submitting ? <Loader2 className="size-3.5 animate-spin" /> : <Send className="size-3.5" />}
+                Send
+              </button>
+            </div>
           </div>
         )}
 

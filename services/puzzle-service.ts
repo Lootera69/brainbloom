@@ -454,6 +454,39 @@ export async function updatePuzzleReview(
   return local[idx];
 }
 
+export async function updatePuzzleNote(id: string, note: string): Promise<void> {
+  const user = getStudioSession() || "unknown";
+  const now = Date.now();
+
+  if (isFirestoreAvailable()) {
+    try {
+      const { db } = getFirebase();
+      if (db) {
+        const ref = doc(db, "puzzles", id);
+        await updateDoc(ref, {
+          reviewNote: note || null,
+          lastModifiedBy: user,
+          updatedAt: Timestamp.fromMillis(now),
+        });
+      }
+    } catch (e) {
+      console.error("Firestore updatePuzzleNote failed:", e);
+    }
+  }
+
+  const local = getLocalPuzzles();
+  const idx = local.findIndex((p) => p.id === id);
+  if (idx === -1) return;
+  local[idx] = {
+    ...local[idx],
+    reviewNote: note || undefined,
+    lastModifiedBy: user,
+    updatedAt: now,
+  };
+  saveLocalPuzzles(local);
+  clearPuzzlesCache();
+}
+
 export function getStudioSession(): string | null {
   if (typeof sessionStorage === "undefined") return null;
   return sessionStorage.getItem("studio-authed");

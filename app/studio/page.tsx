@@ -615,6 +615,12 @@ export default function StudioPage() {
                         <XCircle className="size-3.5" />
                         Reject
                       </button>
+                      <button onClick={() => handleQuickReview(puzzle.id, "needs-discussion")}
+                        className="flex h-8 items-center gap-1.5 rounded-xl bg-blue-500/10 px-3 text-[11px] font-semibold text-blue-600 ring-1 ring-inset ring-blue-500/20 transition-all duration-200 hover:bg-blue-500/20 hover:shadow-sm hover:shadow-blue-500/10 active:scale-[0.97] dark:text-blue-400"
+                        title="Needs Discussion">
+                        <MessageSquare className="size-3.5" />
+                        Discuss
+                      </button>
                     </div>
                   )}
 
