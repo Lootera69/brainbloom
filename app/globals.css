@@ -170,6 +170,11 @@
   100% { background-position: 0% 50%; }
 }
 
+@keyframes sudoku-glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(129,140,248,0.25), 0 0 40px rgba(129,140,248,0.08); }
+  50% { box-shadow: 0 0 22px rgba(129,140,248,0.45), 0 0 60px rgba(129,140,248,0.15); }
+}
+
 html,
 body {
   height: 100%;

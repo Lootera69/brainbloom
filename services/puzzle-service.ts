@@ -1,4 +1,4 @@
-import { type Puzzle, type PuzzleFormData, type CrosswordData, type SudokuData, type CipherData, type ReviewStatus } from "@/types/puzzle";
+import { type Puzzle, type PuzzleFormData, type CrosswordData, type SudokuData, type CipherData, type ReviewStatus, type ReviewComment } from "@/types/puzzle";
 import { getFirebase } from "@/services/firebase";
 import {
   collection,
@@ -60,6 +60,13 @@ function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle 
     reviewStatus: (data.reviewStatus as ReviewStatus) ?? "draft",
     reviewedBy: (data.reviewedBy as string) ?? undefined,
     reviewNote: (data.reviewNote as string) ?? undefined,
+    reviewComments: (() => {
+      const raw = data.reviewComments as ReviewComment[] | undefined;
+      if (raw && Array.isArray(raw) && raw.length > 0) return raw;
+      const note = data.reviewNote as string | undefined;
+      if (note) return [{ text: note, author: (data.reviewedBy as string) || "unknown", timestamp: (data.updatedAt as Timestamp)?.toMillis?.() ?? (data.updatedAt as number) ?? 0 }];
+      return undefined;
+    })(),
     lessonContent: (data.lessonContent as string) ?? undefined,
     lessonOrder: (data.lessonOrder as number) ?? undefined,
     lessonGroup: (data.lessonGroup as string) ?? undefined,
@@ -103,6 +110,7 @@ function puzzleToFirestore(puzzle: Puzzle) {
     reviewStatus: puzzle.reviewStatus ?? "draft",
     reviewedBy: puzzle.reviewedBy ?? null,
     reviewNote: puzzle.reviewNote ?? null,
+    reviewComments: puzzle.reviewComments ?? null,
     lessonContent: puzzle.lessonContent ?? null,
     lessonOrder: puzzle.lessonOrder ?? null,
     lessonGroup: puzzle.lessonGroup ?? null,
@@ -407,6 +415,10 @@ export async function updatePuzzleReview(
   const now = Date.now();
   let updated: Puzzle | null = null;
 
+  const newComment: ReviewComment | undefined = reviewNote
+    ? { text: reviewNote, author: user, timestamp: now }
+    : undefined;
+
   if (isFirestoreAvailable()) {
     try {
       const { db } = getFirebase();
@@ -415,13 +427,17 @@ export async function updatePuzzleReview(
         const snap = await getDoc(ref);
         if (snap.exists()) {
           const isReview = reviewStatus === "approved" || reviewStatus === "rejected" || reviewStatus === "needs-discussion";
-          await updateDoc(ref, {
+          const existing = (snap.data()?.reviewComments as ReviewComment[] | undefined) ?? [];
+          const updateData: Record<string, unknown> = {
             reviewStatus,
             reviewedBy: isReview ? user : null,
-            reviewNote: reviewNote ?? null,
             lastModifiedBy: user,
             updatedAt: Timestamp.fromMillis(now),
-          });
+          };
+          if (newComment) {
+            updateData.reviewComments = [...existing, newComment];
+          }
+          await updateDoc(ref, updateData);
           const snap2 = await getDoc(ref);
           updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
         }
@@ -441,11 +457,12 @@ export async function updatePuzzleReview(
   const idx = local.findIndex((p) => p.id === id);
   if (idx === -1) return null;
   const isReview = reviewStatus === "approved" || reviewStatus === "rejected" || reviewStatus === "needs-discussion";
+  const existing = local[idx].reviewComments ?? [];
   local[idx] = {
     ...local[idx],
     reviewStatus,
     reviewedBy: isReview ? user : undefined,
-    reviewNote: reviewNote ?? undefined,
+    reviewComments: newComment ? [...existing, newComment] : existing,
     lastModifiedBy: user,
     updatedAt: now,
   };
@@ -457,14 +474,17 @@ export async function updatePuzzleReview(
 export async function updatePuzzleNote(id: string, note: string): Promise<void> {
   const user = getStudioSession() || "unknown";
   const now = Date.now();
+  const comment: ReviewComment = { text: note, author: user, timestamp: now };
 
   if (isFirestoreAvailable()) {
     try {
       const { db } = getFirebase();
       if (db) {
         const ref = doc(db, "puzzles", id);
+        const snap = await getDoc(ref);
+        const existing = snap.exists() ? (snap.data()?.reviewComments as ReviewComment[] | undefined) ?? [] : [];
         await updateDoc(ref, {
-          reviewNote: note || null,
+          reviewComments: [...existing, comment],
           lastModifiedBy: user,
           updatedAt: Timestamp.fromMillis(now),
         });
@@ -477,9 +497,10 @@ export async function updatePuzzleNote(id: string, note: string): Promise<void> 
   const local = getLocalPuzzles();
   const idx = local.findIndex((p) => p.id === id);
   if (idx === -1) return;
+  const existing = local[idx].reviewComments ?? [];
   local[idx] = {
     ...local[idx],
-    reviewNote: note || undefined,
+    reviewComments: [...existing, comment],
     lastModifiedBy: user,
     updatedAt: now,
   };

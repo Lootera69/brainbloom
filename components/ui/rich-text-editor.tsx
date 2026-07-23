@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
@@ -70,6 +70,12 @@ export function RichTextEditor({ value, onChange, placeholder, className }: Prop
       editor.commands.setContent(value);
     }
   }
+
+  useEffect(() => {
+    if (editor && value === "" && editor.getHTML() !== "<p></p>") {
+      editor.commands.clearContent();
+    }
+  }, [editor, value]);
 
   const toggleBold = useCallback(() => editor?.chain().focus().toggleBold().run(), [editor]);
   const toggleItalic = useCallback(() => editor?.chain().focus().toggleItalic().run(), [editor]);

@@ -529,10 +529,10 @@ export default function StudioPage() {
                             Daily
                           </span>
                         )}
-                        {!puzzle.published && puzzle.reviewNote && (
-                          <span className="inline-flex items-center gap-1 rounded-lg bg-muted/60 px-2 py-0.5 text-[10px] font-medium text-muted-foreground ring-1 ring-inset ring-border/50" title={puzzle.reviewNote.replace(/<[^>]*>/g, '')}>
+                        {!puzzle.published && (puzzle.reviewComments?.length ?? 0) > 0 && (
+                          <span className="inline-flex items-center gap-1 rounded-lg bg-muted/60 px-2 py-0.5 text-[10px] font-medium text-muted-foreground ring-1 ring-inset ring-border/50" title={puzzle.reviewComments?.[puzzle.reviewComments.length - 1]?.text.replace(/<[^>]*>/g, '') ?? ""}>
                             <MessageSquare className="size-2.5" />
-                            Note
+                            {puzzle.reviewComments?.length} {puzzle.reviewComments?.length === 1 ? "Note" : "Notes"}
                           </span>
                         )}
                       </div>
@@ -574,9 +574,20 @@ export default function StudioPage() {
                       <span className="inline-flex items-center gap-1"><MessageSquare className="size-3" />Reviewed by {puzzle.reviewedBy}</span>
                     )}
                   </div>
-                  {!puzzle.published && puzzle.reviewNote && (
+                  {!puzzle.published && (puzzle.reviewComments?.length ?? 0) > 0 && (
                     <div className="mt-1.5 sm:ml-[52px]">
-                      <div className="rounded-lg border-l-2 border-muted-foreground/15 bg-muted/30 px-3 py-1.5 text-[11px] italic text-muted-foreground/50 [&_p]:mb-1 last:[&_p]:mb-0 [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:list-decimal [&_ol]:pl-4" dangerouslySetInnerHTML={{ __html: puzzle.reviewNote }} />
+                      {(() => {
+                        const latest = puzzle.reviewComments![puzzle.reviewComments!.length - 1];
+                        return (
+                          <div className="rounded-lg border-l-2 border-muted-foreground/15 bg-muted/30 px-3 py-1.5">
+                            <span className="text-[10px] font-semibold text-foreground/70">{latest.author}</span>
+                            <span className="ml-1.5 text-[10px] text-muted-foreground/40">
+                              {new Date(latest.timestamp).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                            </span>
+                            <div className="mt-0.5 text-[11px] italic text-muted-foreground/50 [&_p]:mb-1 last:[&_p]:mb-0 [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:list-decimal [&_ol]:pl-4" dangerouslySetInnerHTML={{ __html: latest.text }} />
+                          </div>
+                        );
+                      })()}
                     </div>
                   )}
                 </div>

@@ -519,6 +519,8 @@ Stored in Zustand with persist middleware. Key fields:
 8. **Local dev IP** — `192.168.1.3` in `next.config.ts` `allowedDevOrigins`
 9. **No test infrastructure** — zero tests across the project
 10. **`shadcn` in `dependencies`** instead of `devDependencies`
+11. **Firestore bundler issue**: Turbopack may split `@firebase/firestore` across chunks, causing `instanceof Firestore` checks in `collection()`/`doc()` to fail. `initFirebase()` in `services/firebase.ts` validates `db` with both `collection()` and `doc()` — if either fails, `db` is set to `null` and `initFailed = true`, gracefully falling back to localStorage for all Firestore operations while keeping Auth functional.
+12. **Review notes** stored as TipTap HTML. Display uses `dangerouslySetInnerHTML` on studio dashboard (review note balloon) and strips HTML for the badge tooltip.
 
 ---
 

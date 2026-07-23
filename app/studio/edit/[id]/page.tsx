@@ -9,7 +9,7 @@ import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, updatePuzzleNote, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
-import { type PuzzleFormData, type PuzzleType, type CrosswordData, type SudokuData, type CipherData, type ReviewStatus } from "@/types/puzzle";
+import { type PuzzleFormData, type PuzzleType, type CrosswordData, type SudokuData, type CipherData, type ReviewStatus, type ReviewComment } from "@/types/puzzle";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
 import { generateSudoku } from "@/services/sudoku-generator";
 import { toast } from "sonner";
@@ -53,13 +53,14 @@ export default function EditPuzzlePage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [generating, setGenerating] = useState(false);
   const [dirty, setDirty] = useState(false);
   const { confirmLeave, LeaveWarningModal } = useUnsavedChanges(dirty);
   const [notFound, setNotFound] = useState(false);
   const [puzzleStatus, setPuzzleStatus] = useState<ReviewStatus | null>(null);
   const [puzzlePublished, setPuzzlePublished] = useState(false);
   const [puzzleReviewedBy, setPuzzleReviewedBy] = useState<string | undefined>();
-  const [puzzleReviewNote, setPuzzleReviewNote] = useState<string | undefined>();
+  const [puzzleReviewComments, setPuzzleReviewComments] = useState<ReviewComment[]>([]);
   const [reviewNoteInput, setReviewNoteInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [publishing, setPublishing] = useState(false);
@@ -111,7 +112,7 @@ export default function EditPuzzlePage() {
       setPuzzleStatus(puzzle.reviewStatus ?? "draft");
       setPuzzlePublished(puzzle.published);
       setPuzzleReviewedBy(puzzle.reviewedBy);
-      setPuzzleReviewNote(puzzle.reviewNote);
+      setPuzzleReviewComments(puzzle.reviewComments ?? []);
       setLoading(false);
     })();
   }, [id]);
@@ -134,6 +135,14 @@ export default function EditPuzzlePage() {
   const isRiddle = form.type === "riddle";
   const isWonder = form.type === "wonder";
   const isCipher = form.type === "cipher";
+
+  const handleGenerateSudoku = async (difficulty: "easy" | "medium" | "hard") => {
+    setGenerating(true);
+    await new Promise((r) => setTimeout(r, 500));
+    const data = generateSudoku(difficulty);
+    setGenerating(false);
+    update("sudokuData", data);
+  };
 
   useEffect(() => {
     if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder || isCipher)) {
@@ -268,7 +277,9 @@ export default function EditPuzzlePage() {
     if (updated) {
       setPuzzleStatus(status);
       setPuzzleReviewedBy(getStudioSession() ?? undefined);
-      setPuzzleReviewNote(reviewNoteInput || undefined);
+      if (reviewNoteInput.trim()) {
+        setPuzzleReviewComments(updated.reviewComments ?? []);
+      }
       setReviewNoteInput("");
       toast.success(`Marked as "${STATUS_LABELS[status]}".`);
     }
@@ -279,7 +290,11 @@ export default function EditPuzzlePage() {
     if (!reviewNoteInput.trim()) return;
     setSubmitting(true);
     await updatePuzzleNote(id, reviewNoteInput);
-    setPuzzleReviewNote(reviewNoteInput);
+    const user = getStudioSession() || "unknown";
+    setPuzzleReviewComments((prev) => [
+      ...prev,
+      { text: reviewNoteInput, author: user, timestamp: Date.now() },
+    ]);
     setReviewNoteInput("");
     setSubmitting(false);
     toast.success("Review note saved.");
@@ -390,7 +405,7 @@ export default function EditPuzzlePage() {
             <select value={form.difficulty} onChange={(e) => {
                 const d = e.target.value as "easy" | "medium" | "hard";
                 update("difficulty", d);
-                if (isSudoku) update("sudokuData", generateSudoku(d));
+                if (isSudoku) handleGenerateSudoku(d);
               }}
               className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary">
               {DIFFICULTIES.map((d) => <option key={d.value} value={d.value}>{d.label}</option>)}
@@ -716,46 +731,115 @@ export default function EditPuzzlePage() {
               </p>
               {form.sudokuData ? (
                 <div className="space-y-3">
-                  <div className="mx-auto grid aspect-square w-full max-w-[270px] select-none grid-cols-9 gap-0 overflow-hidden rounded-md border-2 border-border">
-                    {form.sudokuData.puzzle.map((val, i) => {
-                      const row = Math.floor(i / 9);
-                      const col = i % 9;
-                      return (
-                        <div
-                          key={i}
-                          className={`flex items-center justify-center text-xs font-medium ${
-                            val > 0 ? "text-foreground" : "bg-card/30 text-muted-foreground"
-                          } ${col === 2 || col === 5 ? "border-r-[2px] border-r-border" : "border-r border-r-border/30"} ${
-                            row === 2 || row === 5 ? "border-b-[2px] border-b-border" : "border-b border-b-border/30"
-                          } bg-card`}
-                          style={{ aspectRatio: "1" }}
-                        >
-                          {val > 0 ? val : ""}
-                        </div>
-                      );
-                    })}
+                  <div style={{ perspective: 800 }}>
+                    <div
+                      key={form.sudokuData.puzzle.join(",") || "empty"}
+                      className={cn(
+                        "mx-auto grid aspect-square w-full max-w-[270px] select-none grid-cols-9 gap-0 overflow-hidden rounded-md border-2 transition-all duration-500",
+                        generating
+                          ? "border-indigo-400/50 shadow-[0_0_20px_rgba(129,140,248,0.25)]"
+                          : "border-border",
+                      )}
+                    >
+                      {form.sudokuData.puzzle.map((val, i) => {
+                        const row = Math.floor(i / 9);
+                        const col = i % 9;
+                        const isChecker = (row + col) % 2 === 0;
+                        return (
+                          <motion.div
+                            key={i}
+                            initial="enter"
+                            animate={generating ? "dissolve" : "visible"}
+                            custom={i}
+                            variants={{
+                              enter: {
+                                opacity: 0,
+                                scale: 0.2,
+                                rotateX: 90,
+                                filter: "blur(8px)",
+                              },
+                              visible: (c: number) => {
+                                const r = Math.floor(c / 9);
+                                const cl = c % 9;
+                                const d = Math.sqrt((r - 4) ** 2 + (cl - 4) ** 2);
+                                return {
+                                  opacity: 1,
+                                  scale: 1,
+                                  rotateX: 0,
+                                  filter: "blur(0px)",
+                                  transition: {
+                                    delay: (d / 5.66) * 0.4,
+                                    type: "spring",
+                                    stiffness: 350,
+                                    damping: 20,
+                                  },
+                                };
+                              },
+                              dissolve: (c: number) => {
+                                const r = Math.floor(c / 9);
+                                const cl = c % 9;
+                                const d = Math.sqrt((r - 4) ** 2 + (cl - 4) ** 2);
+                                return {
+                                  opacity: 0,
+                                  scale: 0.1,
+                                  rotateX: -90,
+                                  filter: "blur(10px)",
+                                  transition: {
+                                    delay: ((5.66 - d) / 5.66) * 0.3,
+                                    duration: 0.3,
+                                    ease: [0.4, 0, 1, 1],
+                                  },
+                                };
+                              },
+                            }}
+                            className={cn(
+                              "flex items-center justify-center text-xs font-medium",
+                              val > 0 ? "text-foreground" : "text-muted-foreground",
+                              col === 2 || col === 5
+                                ? "border-r-[2px] border-r-border"
+                                : "border-r border-r-border/30",
+                              row === 2 || row === 5
+                                ? "border-b-[2px] border-b-border"
+                                : "border-b border-b-border/30",
+                              isChecker ? "bg-muted/20" : "bg-card",
+                            )}
+                            style={{ aspectRatio: "1" }}
+                          >
+                            {val > 0 ? val : ""}
+                          </motion.div>
+                        );
+                      })}
+                    </div>
                   </div>
                   <button
                     type="button"
-                    onClick={() => {
-                      const sudokuData = generateSudoku(form.difficulty);
-                      update("sudokuData", sudokuData);
-                    }}
-                    className="flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-primary/30 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
+                    disabled={generating}
+                    onClick={() => handleGenerateSudoku(form.difficulty)}
+                    className={cn(
+                      "flex h-10 w-full items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-all disabled:opacity-50",
+                      generating
+                        ? "border-indigo-400/40 text-indigo-500 shadow-[0_0_12px_rgba(129,140,248,0.2)]"
+                        : "border-primary/30 text-primary hover:bg-primary/10",
+                    )}
                   >
-                    Regenerate Puzzle
+                    {generating && (
+                      <span className="relative flex size-4">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-40" />
+                        <span className="relative inline-flex size-4 rounded-full bg-indigo-500" />
+                      </span>
+                    )}
+                    {generating ? "SYNTHESIZING..." : "Regenerate Puzzle"}
                   </button>
                 </div>
               ) : (
                 <button
                   type="button"
-                  onClick={() => {
-                    const sudokuData = generateSudoku(form.difficulty);
-                    update("sudokuData", sudokuData);
-                  }}
-                  className="flex h-20 w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                  disabled={generating}
+                  onClick={() => handleGenerateSudoku(form.difficulty)}
+                  className="flex h-20 w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50"
                 >
-                  Generate Sudoku Puzzle
+                  {generating ? <Loader2 className="size-5 animate-spin" /> : null}
+                  {generating ? "SYNTHESIZING..." : "Generate Sudoku Puzzle"}
                 </button>
               )}
             </div>
@@ -920,10 +1004,27 @@ export default function EditPuzzlePage() {
           )}
         </div>
 
-        {!puzzlePublished && puzzleReviewNote && (
-          <div className="flex items-start gap-2 rounded-xl bg-muted/50 p-3">
-            <MessageSquare className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
-            <p className="text-xs text-muted-foreground">{puzzleReviewNote}</p>
+        {!puzzlePublished && puzzleReviewComments.length > 0 && (
+          <div className="space-y-2 rounded-xl bg-muted/50 p-3">
+            {puzzleReviewComments.map((c, i) => (
+              <div key={i} className="flex items-start gap-2">
+                <MessageSquare className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-semibold text-foreground/80">{c.author}</span>
+                    <span className="text-[10px] text-muted-foreground/60">
+                      {new Date(c.timestamp).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                      {" "}
+                      {new Date(c.timestamp).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })}
+                    </span>
+                  </div>
+                  <p
+                    className="mt-0.5 text-xs text-muted-foreground"
+                    dangerouslySetInnerHTML={{ __html: c.text }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         )}
 

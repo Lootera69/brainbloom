@@ -8,6 +8,12 @@ export interface CipherData {
 export type Difficulty = "easy" | "medium" | "hard";
 export type ReviewStatus = "draft" | "pending" | "approved" | "rejected" | "needs-discussion";
 
+export interface ReviewComment {
+  text: string;
+  author: string;
+  timestamp: number;
+}
+
 export interface CrosswordClue {
   number: number;
   clue: string;
@@ -47,6 +53,7 @@ export interface Puzzle {
   reviewStatus: ReviewStatus;
   reviewedBy?: string;
   reviewNote?: string;
+  reviewComments?: ReviewComment[];
   correctExplanation?: string;
   incorrectExplanation?: string;
   createdBy: string;
