@@ -530,7 +530,7 @@ export default function StudioPage() {
                           </span>
                         )}
                         {!puzzle.published && puzzle.reviewNote && (
-                          <span className="inline-flex items-center gap-1 rounded-lg bg-muted/60 px-2 py-0.5 text-[10px] font-medium text-muted-foreground ring-1 ring-inset ring-border/50" title={puzzle.reviewNote}>
+                          <span className="inline-flex items-center gap-1 rounded-lg bg-muted/60 px-2 py-0.5 text-[10px] font-medium text-muted-foreground ring-1 ring-inset ring-border/50" title={puzzle.reviewNote.replace(/<[^>]*>/g, '')}>
                             <MessageSquare className="size-2.5" />
                             Note
                           </span>
@@ -576,7 +576,7 @@ export default function StudioPage() {
                   </div>
                   {!puzzle.published && puzzle.reviewNote && (
                     <div className="mt-1.5 sm:ml-[52px]">
-                      <p className="rounded-lg border-l-2 border-muted-foreground/15 bg-muted/30 px-3 py-1.5 text-[11px] italic text-muted-foreground/50">&ldquo;{puzzle.reviewNote}&rdquo;</p>
+                      <div className="rounded-lg border-l-2 border-muted-foreground/15 bg-muted/30 px-3 py-1.5 text-[11px] italic text-muted-foreground/50 [&_p]:mb-1 last:[&_p]:mb-0 [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:list-decimal [&_ol]:pl-4" dangerouslySetInnerHTML={{ __html: puzzle.reviewNote }} />
                     </div>
                   )}
                 </div>
