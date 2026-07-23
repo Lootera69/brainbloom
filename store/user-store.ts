@@ -267,7 +267,7 @@ export const useUserStore = create<UserState>()(
       currentCipherSolved: false,
       cipherSolveCount: 0,
       cipherRevealed: false,
-      updatedAt: Date.now(),
+      updatedAt: 0,
       _lastEvalDate: "",
 
       loginAsGuest: () => {
@@ -291,6 +291,7 @@ export const useUserStore = create<UserState>()(
           avatarId: null,
           isGuest: false,
           isAuthenticated: true,
+          updatedAt: 0,
         });
         setTimeout(async () => {
           await get().loadFromFirestore();
@@ -370,7 +371,7 @@ export const useUserStore = create<UserState>()(
           const data = await loadUserData(s.userId);
           if (data) {
             // If Firestore data is older than or equal to local, keep local state
-            if (data.updatedAt && s.updatedAt && data.updatedAt <= s.updatedAt) return;
+            if (data.updatedAt && s.updatedAt && data.updatedAt < s.updatedAt) return;
             set({
               displayName: data.displayName ?? s.displayName,
               email: data.email ?? s.email,
@@ -485,6 +486,7 @@ export const useUserStore = create<UserState>()(
       currentCipherSolved: false,
       cipherSolveCount: 0,
       cipherRevealed: false,
+      updatedAt: 0,
 
         });
       },
@@ -552,7 +554,7 @@ export const useUserStore = create<UserState>()(
 
         if (s.lastActiveDate === today) {
           if (s.lastQuestRefresh !== today) {
-            set({ dailyQuests: getRefreshedQuests(), lastQuestRefresh: today, questsRewarded: [] });
+            set({ dailyQuests: getRefreshedQuests(), lastQuestRefresh: today, questsRewarded: [], updatedAt: Date.now() });
           }
           return;
         }
@@ -575,6 +577,7 @@ export const useUserStore = create<UserState>()(
               streakStartDate: today,
               activeDates: [today],
               _lastEvalDate: today,
+              updatedAt: Date.now(),
             });
           }
           return;
@@ -627,6 +630,7 @@ export const useUserStore = create<UserState>()(
             frozenDays: prune(newFrozenDays),
             brokenDays: prune(newBrokenDays),
             _lastEvalDate: today,
+            updatedAt: Date.now(),
           });
           return;
         }
@@ -650,6 +654,7 @@ export const useUserStore = create<UserState>()(
             questsRewarded: [],
             practiceHeartsToday: 0,
             lastPracticeDate: today,
+            updatedAt: Date.now(),
           });
           return;
         }
@@ -712,6 +717,7 @@ export const useUserStore = create<UserState>()(
           streakStartDate: newStreakStartDate,
           activeDates: newActiveDates,
           _lastEvalDate: today,
+          updatedAt: Date.now(),
         });
       },
 
@@ -1118,8 +1124,16 @@ export const useUserStore = create<UserState>()(
         _lastEvalDate: state._lastEvalDate,
       }),
       onRehydrateStorage: () => () => {
-        useUserStore.getState().checkStreak(false);
-        useUserStore.getState().checkWeeklyReset();
+        const state = useUserStore.getState();
+        if (!state.userId || state.isGuest) {
+          state.checkStreak(false);
+          state.checkWeeklyReset();
+        } else {
+          state.loadFromFirestore().then(() => {
+            useUserStore.getState().checkStreak(false);
+            useUserStore.getState().checkWeeklyReset();
+          });
+        }
       },
     },
   ),
