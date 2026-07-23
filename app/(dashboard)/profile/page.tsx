@@ -47,7 +47,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { signOutUser, sendPasswordReset } from "@/services/firebase";
 import { useTheme } from "next-themes";
-import { playToggleOn, playToggleOff } from "@/services/sound-service";
+import { playClick, playToggleOn, playToggleOff } from "@/services/sound-service";
 
 function getLevel(xp: number) {
   return getLevelProgress(xp);
@@ -606,6 +606,7 @@ export default function ProfilePage() {
                 <button
                   key={t}
                   onClick={() => {
+                    playClick();
                     setTheme(t);
                     setThemeStore(t);
                   }}

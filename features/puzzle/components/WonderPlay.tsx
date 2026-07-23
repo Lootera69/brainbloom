@@ -331,16 +331,6 @@ export function WonderPlay({ puzzle, onComplete }: Props) {
                   {copied || shared ? "Done" : "Skip"}
                 </motion.button>
               </div>
-              {!copied && !shared && (
-                <motion.button
-                  onClick={() => navigator.clipboard.writeText(puzzle.title)}
-                  whileTap={{ scale: 0.97 }}
-                  className="mt-3 flex w-full items-center justify-center gap-1.5 text-xs text-muted-foreground/50 transition-colors hover:text-muted-foreground"
-                >
-                  <Copy className="size-3" />
-                  Copy link
-                </motion.button>
-              )}
             </GlassCard>
           </motion.div>
         )}
