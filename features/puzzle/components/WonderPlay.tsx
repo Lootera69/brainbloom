@@ -56,13 +56,16 @@ export function WonderPlay({ puzzle, onComplete }: Props) {
 
   const handleContinue = useCallback(() => {
     if (state === "reveal") {
+      markWonderExperienced(puzzle.id);
       setState("share");
     } else {
+      markWonderExperienced(puzzle.id);
       onComplete();
     }
-  }, [state, onComplete]);
+  }, [state, puzzle.id, markWonderExperienced, onComplete]);
 
   const handleShare = useCallback(async () => {
+    markWonderExperienced(puzzle.id);
     const text = puzzle.sharePrompt
       ? `${puzzle.sharePrompt}\n\n— from BrainBloom`
       : `Check out this brain teaser: ${puzzle.title}\n\n— from BrainBloom`;
@@ -277,7 +280,7 @@ export function WonderPlay({ puzzle, onComplete }: Props) {
                 {puzzle.sharePrompt ? "Share this with someone" : "Done"}
               </motion.button>
               <motion.button
-                onClick={onComplete}
+                onClick={() => { markWonderExperienced(puzzle.id); onComplete(); }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
                 className="flex-[2] flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"
@@ -323,7 +326,7 @@ export function WonderPlay({ puzzle, onComplete }: Props) {
                   )}
                 </motion.button>
                 <motion.button
-                  onClick={onComplete}
+                  onClick={() => { markWonderExperienced(puzzle.id); onComplete(); }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   className="flex items-center justify-center gap-2 rounded-2xl border border-border/50 px-5 py-3 text-sm font-medium text-muted-foreground transition-all hover:bg-muted/40 hover:text-foreground dark:border-white/10 dark:hover:bg-white/5"
