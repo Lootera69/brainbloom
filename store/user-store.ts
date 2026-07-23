@@ -629,6 +629,13 @@ export const useUserStore = create<UserState>()(
             streakFreezes: s.streakFreezes - freezesToConsume,
             frozenDays: prune(newFrozenDays),
             brokenDays: prune(newBrokenDays),
+            streakStartDate: newStreak === 0 ? null : s.streakStartDate,
+            xpToday: 0,
+            dailyQuests: getRefreshedQuests(),
+            lastQuestRefresh: today,
+            questsRewarded: [],
+            practiceHeartsToday: 0,
+            lastPracticeDate: today,
             _lastEvalDate: today,
             updatedAt: Date.now(),
           });
@@ -639,9 +646,8 @@ export const useUserStore = create<UserState>()(
         // If evaluation already ran today, skip re-evaluation — just mark active
         if (s._lastEvalDate === today) {
           const newStreak = s.streak > 0 ? s.streak + 1 : 1;
-          const newActiveDates = s.streak > 0
-            ? (s.activeDates.includes(today) ? s.activeDates : [...s.activeDates, today])
-            : [today];
+          // activeDates is append-only history; a reset streak only affects streakStartDate.
+          const newActiveDates = s.activeDates.includes(today) ? s.activeDates : [...s.activeDates, today];
           const newStreakStartDate = s.streak > 0 ? (s.streakStartDate ?? today) : today;
           set({
             streak: newStreak,
@@ -672,7 +678,7 @@ export const useUserStore = create<UserState>()(
             if (!newFrozenDays.includes(d)) newFrozenDays.push(d);
           }
         } else {
-          newStreak = 0;
+          newStreak = 1;
           const frozenPortion = gapDates.slice(0, freezesToConsume);
           const brokenPortion = gapDates.slice(freezesToConsume);
           for (const d of frozenPortion) {
@@ -683,19 +689,17 @@ export const useUserStore = create<UserState>()(
           }
         }
 
-        let newActiveDates = [...s.activeDates];
-        let newStreakStartDate = s.streakStartDate;
-        if (missedDays === 0 || (freezesToConsume === missedDays && missedDays > 0)) {
-          if (!newActiveDates.includes(today)) newActiveDates.push(today);
-        } else {
-          newActiveDates = [today];
-          newStreakStartDate = today;
-        }
+        // activeDates is an append-only history feeding the monthly calendar —
+        // today is always added; a broken streak only resets streakStartDate.
+        const activeDatesWithToday = [...s.activeDates];
+        if (!activeDatesWithToday.includes(today)) activeDatesWithToday.push(today);
+        const streakBroke = missedDays > 0 && freezesToConsume !== missedDays;
+        const newStreakStartDate = streakBroke ? today : s.streakStartDate;
 
         const yearCutoff = new Date();
         yearCutoff.setDate(yearCutoff.getDate() - 365);
         const yearCutoffMs = yearCutoff.getTime();
-        newActiveDates = newActiveDates.filter((d) => new Date(d).getTime() >= yearCutoffMs);
+        const newActiveDates = activeDatesWithToday.filter((d) => new Date(d).getTime() >= yearCutoffMs);
 
         const cutoff = new Date();
         cutoff.setDate(cutoff.getDate() - 14);

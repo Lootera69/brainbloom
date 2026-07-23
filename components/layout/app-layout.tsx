@@ -21,6 +21,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
+  const checkStreak = useUserStore((s) => s.checkStreak);
   const hearts = useUserStore((s) => s.hearts);
   const focusMode = useUIStore((s) => s.focusMode);
   const showShop = useUIStore((s) => s.showShop);
@@ -29,6 +30,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
+    checkStreak(false);
     processHeartRefill();
     import("@/services/sound-service").then(({ initSounds }) => initSounds());
     const interval = setInterval(() => {
@@ -57,7 +59,18 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       }
     }, 30_000);
     return () => clearInterval(interval);
-  }, [processHeartRefill]);
+  }, [processHeartRefill, checkStreak]);
+
+  // Re-evaluate streak when the user returns to the tab (e.g. left open past midnight)
+  useEffect(() => {
+    const onVisible = () => {
+      if (document.visibilityState === "visible") {
+        useUserStore.getState().checkStreak(false);
+      }
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, []);
 
   useEffect(() => {
     if (mounted && !isAuthenticated) {
