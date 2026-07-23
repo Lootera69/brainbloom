@@ -387,7 +387,11 @@ export default function EditPuzzlePage() {
           </div>
           <div>
             <label className="mb-1.5 block text-sm font-medium">Difficulty</label>
-            <select value={form.difficulty} onChange={(e) => update("difficulty", e.target.value as "easy" | "medium" | "hard")}
+            <select value={form.difficulty} onChange={(e) => {
+                const d = e.target.value as "easy" | "medium" | "hard";
+                update("difficulty", d);
+                if (isSudoku) update("sudokuData", generateSudoku(d));
+              }}
               className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary">
               {DIFFICULTIES.map((d) => <option key={d.value} value={d.value}>{d.label}</option>)}
             </select>
