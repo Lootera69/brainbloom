@@ -215,7 +215,6 @@ export function WonderPlay({ puzzle, onComplete }: Props) {
                 What does this bring up for you?
               </p>
               <textarea
-                readOnly
                 placeholder="(your private thoughts — not saved)"
                 className="mb-4 w-full resize-none rounded-xl border border-border/50 bg-muted/30 p-4 text-sm text-foreground outline-none dark:border-white/10 dark:bg-white/5"
                 rows={3}
