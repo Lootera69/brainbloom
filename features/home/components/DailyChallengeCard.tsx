@@ -127,23 +127,6 @@ export function DailyChallengeCard({ puzzle, loading }: Props) {
               <Sparkles className="size-3" />
               {completed ? "Completed" : "Daily Puzzle"}
             </motion.span>
-
-            {dailyPuzzleStreak > 0 && (
-              <motion.span
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.55 }}
-                className={cn(
-                  "inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium backdrop-blur-sm shadow-sm",
-                  completed
-                    ? "bg-emerald-100/60 dark:bg-emerald-400/10 text-emerald-700 dark:text-emerald-200"
-                    : "bg-white/50 dark:bg-white/10 text-indigo-700 dark:text-white"
-                )}
-              >
-                <Flame className="size-3" />
-                {dailyPuzzleStreak} day streak
-              </motion.span>
-            )}
           </div>
 
           {loading ? (
