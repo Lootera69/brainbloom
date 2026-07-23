@@ -11,7 +11,7 @@ import {
   sendEmailVerification,
   type User,
 } from "firebase/auth";
-import { getFirestore, type Firestore } from "firebase/firestore";
+import { getFirestore, collection, type Firestore } from "firebase/firestore";
 import {
   initializeAppCheck,
   ReCaptchaV3Provider,
@@ -36,6 +36,7 @@ let app: FirebaseApp | null = null;
 let auth: ReturnType<typeof getAuth> | null = null;
 let db: Firestore | null = null;
 let appCheck: AppCheck | null = null;
+let initFailed = false;
 
 const recaptchaSiteKey =
   typeof process !== "undefined"
@@ -43,15 +44,22 @@ const recaptchaSiteKey =
     : undefined;
 
 function initFirebase() {
-  if (!app && firebaseConfigured) {
-    app = initializeApp(firebaseConfig);
-    auth = getAuth(app);
-    db = getFirestore(app);
-    if (recaptchaSiteKey) {
-      appCheck = initializeAppCheck(app, {
-        provider: new ReCaptchaV3Provider(recaptchaSiteKey),
-        isTokenAutoRefreshEnabled: true,
-      });
+  if (!app && firebaseConfigured && !initFailed) {
+    try {
+      app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      db = getFirestore(app);
+      if (recaptchaSiteKey) {
+        appCheck = initializeAppCheck(app, {
+          provider: new ReCaptchaV3Provider(recaptchaSiteKey),
+          isTokenAutoRefreshEnabled: true,
+        });
+      }
+      collection(db, "__firestore_check__");
+    } catch (e) {
+      console.error("Firebase init failed — falling back to local storage:", e);
+      db = null;
+      initFailed = true;
     }
   }
   return { app, auth, db, appCheck };
