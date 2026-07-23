@@ -221,20 +221,22 @@ export function DailyChallengeCard({ puzzle, loading }: Props) {
                   : puzzle.question}
               </motion.p>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.55 }}
-                className="mt-4 flex items-center gap-3 text-sm sm:mt-5"
-              >
-                <span className="flex items-center gap-1.5 text-indigo-600/70 dark:text-white/70">
-                  <Zap className="size-4" />
-                  <span>+{bonusXp} XP today</span>
-                </span>
-                <span className="rounded-full bg-amber-400/30 dark:bg-amber-400/20 px-2 py-0.5 text-[10px] font-semibold uppercase text-amber-600 dark:text-amber-200">
-                  2x Bonus
-                </span>
-              </motion.div>
+              {bonusXp > 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.55 }}
+                  className="mt-4 flex items-center gap-3 text-sm sm:mt-5"
+                >
+                  <span className="flex items-center gap-1.5 text-indigo-600/70 dark:text-white/70">
+                    <Zap className="size-4" />
+                    <span>+{bonusXp} XP today</span>
+                  </span>
+                  <span className="rounded-full bg-amber-400/30 dark:bg-amber-400/20 px-2 py-0.5 text-[10px] font-semibold uppercase text-amber-600 dark:text-amber-200">
+                    2x Bonus
+                  </span>
+                </motion.div>
+              )}
 
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
