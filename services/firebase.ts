@@ -11,7 +11,7 @@ import {
   sendEmailVerification,
   type User,
 } from "firebase/auth";
-import { getFirestore, collection, type Firestore } from "firebase/firestore";
+import { getFirestore, collection, doc, type Firestore } from "firebase/firestore";
 import {
   initializeAppCheck,
   ReCaptchaV3Provider,
@@ -56,6 +56,7 @@ function initFirebase() {
         });
       }
       collection(db, "__firestore_check__");
+      doc(db, "__firestore_check__", "__check__");
     } catch (e) {
       console.error("Firebase init failed — falling back to local storage:", e);
       db = null;
