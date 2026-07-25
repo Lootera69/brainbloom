@@ -747,7 +747,7 @@ export default function EditPuzzlePage() {
                     <div className="mt-2">
                       {slide.imageUrl ? (
                         <div className="relative inline-block">
-                          <img src={slide.imageUrl} alt="" className="h-16 rounded-lg object-contain bg-muted" />
+                          <img src={slide.imageUrl} alt="" className="h-32 rounded-lg object-contain bg-muted" />
                           <button type="button" onClick={() => {
                             const slides = [...(form.storyData?.questionSlides ?? [])];
                             slides[i] = { ...slides[i], imageUrl: undefined };
@@ -807,7 +807,7 @@ export default function EditPuzzlePage() {
                     <div className="mt-2">
                       {slide.imageUrl ? (
                         <div className="relative inline-block">
-                          <img src={slide.imageUrl} alt="" className="h-16 rounded-lg object-contain bg-muted" />
+                          <img src={slide.imageUrl} alt="" className="h-32 rounded-lg object-contain bg-muted" />
                           <button type="button" onClick={() => {
                             const slides = [...(form.storyData?.answerSlides ?? [])];
                             slides[i] = { ...slides[i], imageUrl: undefined };

@@ -47,6 +47,21 @@ export function StoryPlay({ puzzle, onComplete }: Props) {
   const [thinkNote, setThinkNote] = useState("");
   const [showThink, setShowThink] = useState(false);
   const thinkRef = useRef<HTMLTextAreaElement>(null);
+  const preloaded = useRef<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (!slides?.questionSlides && !slides?.answerSlides) return;
+    const urls = [
+      ...slides.questionSlides.map((s) => s.imageUrl),
+      ...slides.answerSlides.map((s) => s.imageUrl),
+    ].filter((u): u is string => !!u && !preloaded.current.has(u));
+    for (const url of urls) {
+      preloaded.current.add(url);
+      const img = new Image();
+      img.onerror = () => { preloaded.current.delete(url); console.warn("Failed to preload story image:", url); };
+      img.src = url;
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (phase === "think" && showThink) {
@@ -102,7 +117,7 @@ export function StoryPlay({ puzzle, onComplete }: Props) {
   };
 
   const renderDots = (current: number, total: number) => (
-    <div className="flex items-center justify-center gap-1.5">
+    <div className="mt-4 flex items-center justify-center gap-1.5">
       {Array.from({ length: total }).map((_, i) => (
         <button
           key={i}
