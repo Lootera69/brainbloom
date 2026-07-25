@@ -9,7 +9,7 @@ import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, updatePuzzleNote, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
-import { type PuzzleFormData, type PuzzleType, type CrosswordData, type SudokuData, type CipherData, type ReviewStatus, type ReviewComment } from "@/types/puzzle";
+import { type PuzzleFormData, type PuzzleType, type StorySlide, type StoryData, type CrosswordData, type SudokuData, type CipherData, type ReviewStatus, type ReviewComment } from "@/types/puzzle";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
 import { generateSudoku } from "@/services/sudoku-generator";
 import { toast } from "sonner";
@@ -69,6 +69,8 @@ export default function EditPuzzlePage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const lessonFileInputRef = useRef<HTMLInputElement>(null);
   const [lessonUploading, setLessonUploading] = useState(false);
+  const storyFileInputRef = useRef<HTMLInputElement>(null);
+  const [uploadTarget, setUploadTarget] = useState<{ section: "question" | "answer"; index: number } | null>(null);
   const [form, setForm] = useState<PuzzleFormData>({
     type: "multiple-choice",
     category: "logic",
@@ -101,6 +103,7 @@ export default function EditPuzzlePage() {
         imageUrl: puzzle.imageUrl ?? undefined,
         lessonImageUrl: puzzle.lessonImageUrl ?? undefined,
         cipherData: puzzle.cipherData ? { ...puzzle.cipherData } : undefined,
+        storyData: puzzle.storyData ? { questionSlides: puzzle.storyData.questionSlides.map((s) => ({ ...s })), answerSlides: puzzle.storyData.answerSlides.map((s) => ({ ...s })) } : undefined,
         acceptedAnswers: puzzle.acceptedAnswers ?? undefined,
         lessonContent: puzzle.lessonContent ?? undefined,
         lessonOrder: puzzle.lessonOrder ?? undefined,
@@ -135,6 +138,7 @@ export default function EditPuzzlePage() {
   const isRiddle = form.type === "riddle";
   const isWonder = form.type === "wonder";
   const isCipher = form.type === "cipher";
+  const isStory = form.type === "story";
 
   const handleGenerateSudoku = async (difficulty: "easy" | "medium" | "hard") => {
     setGenerating(true);
@@ -145,7 +149,7 @@ export default function EditPuzzlePage() {
   };
 
   useEffect(() => {
-    if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder || isCipher)) {
+    if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder || isCipher || isStory)) {
       getLessonGroups(form.category).then(setLessonGroups);
     } else {
       setLessonGroups([]);
@@ -323,6 +327,8 @@ export default function EditPuzzlePage() {
       setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", xpReward: 0, crosswordData: undefined, sudokuData: undefined }));
     } else if (type === "type-answer" || type === "riddle") {
       setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", crosswordData: undefined, sudokuData: undefined }));
+    } else if (type === "story") {
+      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", xpReward: 0, crosswordData: undefined, sudokuData: undefined, storyData: { questionSlides: [{ content: "" }], answerSlides: [{ content: "" }] } }));
     } else if (type === "cipher") {
       setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", crosswordData: undefined, sudokuData: undefined }));
     } else if (type === "sudoku") {
@@ -377,7 +383,7 @@ export default function EditPuzzlePage() {
         <div>
           <label className="mb-1.5 block text-sm font-medium">Type</label>
           <div className="flex gap-2 flex-wrap">
-            {(["multiple-choice", "true-false", "type-answer", "crossword", "sudoku", "riddle", "wonder", "cipher"] as const).map((t) => (
+            {(["multiple-choice", "true-false", "type-answer", "crossword", "sudoku", "riddle", "wonder", "cipher", "story"] as const).map((t) => (
               <button key={t} type="button" disabled
                 className={`flex-1 rounded-xl border px-4 py-2.5 text-sm font-medium transition-all cursor-not-allowed ${
                   form.type === t
@@ -385,7 +391,7 @@ export default function EditPuzzlePage() {
                     : "border-border/30 text-muted-foreground/30"
                 }`}
               >
-                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : t === "sudoku" ? "Sudoku" : t === "riddle" ? "Riddle" : t === "wonder" ? "Wonder" : "Cipher"}
+                {t === "multiple-choice" ? "Multiple Choice" : t === "true-false" ? "True / False" : t === "type-answer" ? "Type Answer" : t === "crossword" ? "Crossword" : t === "sudoku" ? "Sudoku" : t === "riddle" ? "Riddle" : t === "wonder" ? "Wonder" : t === "cipher" ? "Cipher" : "Story"}
               </button>
             ))}
           </div>
@@ -681,6 +687,160 @@ export default function EditPuzzlePage() {
           </>
         )}
 
+        {isStory && (
+          <>
+            {/* Single shared file input for all story slide image uploads */}
+            <input ref={storyFileInputRef} type="file" accept="image/*" onChange={async (e) => {
+              const target = uploadTarget;
+              if (!target) { if (e.target) e.target.value = ""; return; }
+              const file = e.target.files?.[0];
+              if (!file) return;
+              if (file.size > 2 * 1024 * 1024) { toast.error("Image must be smaller than 2MB."); if (e.target) e.target.value = ""; return; }
+              const img = new Image();
+              const url = URL.createObjectURL(file);
+              await new Promise((resolve) => { img.onload = resolve; img.src = url; });
+              URL.revokeObjectURL(url);
+              if (img.width > 4096 || img.height > 4096) { toast.error("Image dimensions must be under 4096×4096px."); if (e.target) e.target.value = ""; return; }
+              setUploading(true);
+              try {
+                const imageUrl = await uploadToImgbb(file);
+                const section = target.section === "question" ? "questionSlides" as const : "answerSlides" as const;
+                const slides = [...(form.storyData?.[section] ?? [])];
+                slides[target.index] = { ...slides[target.index], imageUrl };
+                update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), [section]: slides });
+              } catch { toast.error("Failed to upload image"); }
+              setUploading(false);
+              setUploadTarget(null);
+              if (e.target) e.target.value = "";
+            }} className="hidden" />
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Title</label>
+              <input value={form.title} onChange={(e) => update("title", e.target.value)}
+                placeholder="e.g. The Lost Key"
+                className="w-full rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Question Slides <span className="text-muted-foreground font-normal">(1–5, shown before thinking)</span></label>
+              <p className="mb-3 text-xs text-muted-foreground">These slides set up the story or scenario. Each slide is shown one at a time.</p>
+              <div className="space-y-3">
+                {(form.storyData?.questionSlides ?? []).map((slide, i) => (
+                  <div key={i} className="rounded-xl border bg-card p-4">
+                    <div className="mb-2 flex items-center justify-between">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Slide {i + 1}</span>
+                      <button type="button" onClick={() => {
+                        const slides = [...(form.storyData?.questionSlides ?? [])];
+                        slides.splice(i, 1);
+                        update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), questionSlides: slides });
+                      }} disabled={form.storyData!.questionSlides.length <= 1}
+                        className="text-xs text-destructive hover:underline disabled:opacity-30">
+                        Remove
+                      </button>
+                    </div>
+                    <textarea value={slide.content} onChange={(e) => {
+                      const slides = [...(form.storyData?.questionSlides ?? [])];
+                      slides[i] = { ...slides[i], content: e.target.value };
+                      update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), questionSlides: slides });
+                    }}
+                      placeholder="Write the story content for this slide..."
+                      rows={4}
+                      className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
+                    <div className="mt-2">
+                      {slide.imageUrl ? (
+                        <div className="relative inline-block">
+                          <img src={slide.imageUrl} alt="" className="h-16 rounded-lg object-contain bg-muted" />
+                          <button type="button" onClick={() => {
+                            const slides = [...(form.storyData?.questionSlides ?? [])];
+                            slides[i] = { ...slides[i], imageUrl: undefined };
+                            update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), questionSlides: slides });
+                          }} className="absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full bg-background text-muted-foreground hover:text-foreground">
+                            <X className="size-3" />
+                          </button>
+                        </div>
+                      ) : (
+                        <button type="button" onClick={() => { setUploadTarget({ section: "question", index: i }); storyFileInputRef.current?.click(); }} disabled={uploading}
+                          className="flex h-10 items-center justify-center gap-1.5 rounded-lg border border-dashed border-muted-foreground/30 px-4 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                          {uploading && uploadTarget?.section === "question" && uploadTarget?.index === i ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
+                          {uploading && uploadTarget?.section === "question" && uploadTarget?.index === i ? "Uploading..." : "Add image"}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {(form.storyData?.questionSlides ?? []).length < 5 && (
+                <button type="button" onClick={() => {
+                  const slides = [...(form.storyData?.questionSlides ?? [])];
+                  slides.push({ content: "" });
+                  update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), questionSlides: slides });
+                }}
+                  className="mt-2 flex h-10 w-full items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary">
+                  + Add question slide
+                </button>
+              )}
+            </div>
+            <hr className="border-muted" />
+            <div>
+              <label className="mb-1.5 block text-sm font-medium">Answer Slides <span className="text-muted-foreground font-normal">(1–5, shown after thinking)</span></label>
+              <p className="mb-3 text-xs text-muted-foreground">These slides reveal the explanation or resolution.</p>
+              <div className="space-y-3">
+                {(form.storyData?.answerSlides ?? []).map((slide, i) => (
+                  <div key={i} className="rounded-xl border bg-card p-4">
+                    <div className="mb-2 flex items-center justify-between">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Slide {i + 1}</span>
+                      <button type="button" onClick={() => {
+                        const slides = [...(form.storyData?.answerSlides ?? [])];
+                        slides.splice(i, 1);
+                        update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), answerSlides: slides });
+                      }} disabled={form.storyData!.answerSlides.length <= 1}
+                        className="text-xs text-destructive hover:underline disabled:opacity-30">
+                        Remove
+                      </button>
+                    </div>
+                    <textarea value={slide.content} onChange={(e) => {
+                      const slides = [...(form.storyData?.answerSlides ?? [])];
+                      slides[i] = { ...slides[i], content: e.target.value };
+                      update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), answerSlides: slides });
+                    }}
+                      placeholder="Write the answer/reveal content for this slide..."
+                      rows={4}
+                      className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
+                    <div className="mt-2">
+                      {slide.imageUrl ? (
+                        <div className="relative inline-block">
+                          <img src={slide.imageUrl} alt="" className="h-16 rounded-lg object-contain bg-muted" />
+                          <button type="button" onClick={() => {
+                            const slides = [...(form.storyData?.answerSlides ?? [])];
+                            slides[i] = { ...slides[i], imageUrl: undefined };
+                            update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), answerSlides: slides });
+                          }} className="absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full bg-background text-muted-foreground hover:text-foreground">
+                            <X className="size-3" />
+                          </button>
+                        </div>
+                      ) : (
+                        <button type="button" onClick={() => { setUploadTarget({ section: "answer", index: i }); storyFileInputRef.current?.click(); }} disabled={uploading}
+                          className="flex h-10 items-center justify-center gap-1.5 rounded-lg border border-dashed border-muted-foreground/30 px-4 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                          {uploading && uploadTarget?.section === "answer" && uploadTarget?.index === i ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
+                          {uploading && uploadTarget?.section === "answer" && uploadTarget?.index === i ? "Uploading..." : "Add image"}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {(form.storyData?.answerSlides ?? []).length < 5 && (
+                <button type="button" onClick={() => {
+                  const slides = [...(form.storyData?.answerSlides ?? [])];
+                  slides.push({ content: "" });
+                  update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), answerSlides: slides });
+                }}
+                  className="mt-2 flex h-10 w-full items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary">
+                  + Add answer slide
+                </button>
+              )}
+            </div>
+          </>
+        )}
+
         {(isQuiz || isTypeAnswer || isRiddle || isCipher) && (
           <div className="space-y-4">
             <div>
@@ -847,7 +1007,7 @@ export default function EditPuzzlePage() {
         )}
 
         {/* Lesson fields */}
-        {(isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder || isCipher) && (
+        {(isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder || isCipher || isStory) && (
           <>
             <hr className="border-muted" />
             <button
@@ -1090,7 +1250,10 @@ export default function EditPuzzlePage() {
             {saving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
             Save
           </button>
-          <button type="button" onClick={() => setShowDeleteConfirm(true)}
+          <button type="button" onClick={() => {
+              if (puzzlePublished) { toast.error("Unpublish the puzzle before deleting."); return; }
+              setShowDeleteConfirm(true);
+            }}
             disabled={!isAdmin() && puzzlePublished}
             title={!isAdmin() && puzzlePublished ? "Cannot delete live puzzles" : ""}
             className="flex h-11 items-center justify-center gap-2 rounded-xl border border-destructive/30 px-6 text-sm font-medium text-destructive transition-colors hover:bg-destructive/10 disabled:cursor-not-allowed disabled:opacity-30">

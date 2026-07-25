@@ -195,6 +195,22 @@ function LearnPage() {
   };
 
   const handleStartPuzzle = useCallback(async (puzzle: Puzzle, progress?: LessonProgress) => {
+    // Story bypasses hearts, daily limits, and puzzle-played counting
+    if (puzzle.type === "story") {
+      resetHeartsLostFlag();
+      setPuzzleHasLesson(false);
+      setIsDaily(false);
+      setLastPlayedCategory(puzzle.category);
+      setLessonProgress(progress ?? null);
+      setAttempt(0);
+      const pz = await getPublishedByCategory(puzzle.category);
+      setCatPuzzles(pz);
+      setCurrentPuzzle(puzzle);
+      setView("play");
+      setFocusMode(true);
+      return;
+    }
+
     // Wonders bypass hearts, daily limits, and puzzle-played counting
     if (puzzle.type === "wonder") {
       resetHeartsLostFlag();
@@ -264,6 +280,44 @@ function LearnPage() {
         // in-place inside CipherPlay and never reach handleComplete.
         router.push("/");
       }
+      setFocusMode(false);
+      return;
+    }
+
+    if (currentPuzzle.type === "story") {
+      markPuzzleCompleted(currentPuzzle.id);
+      import("@/services/puzzle-service").then(({ incrementCompleted }) =>
+        incrementCompleted(currentPuzzle.id),
+      );
+      if (lessonProgress) {
+        logActivity({
+          type: "daily",
+          category: currentPuzzle.category || "general",
+          title: currentPuzzle.title || "Puzzle",
+          xp: 0,
+        });
+        const next = findNextInGroup(currentPuzzle, catPuzzles);
+        if (next) {
+          setAttempt(0);
+          setLessonProgress({
+            ...lessonProgress,
+            currentOrder: next.lessonOrder ?? 1,
+            completedInGroup: lessonProgress.completedInGroup + 1,
+          });
+          if (next.lessonContent?.trim()) {
+            setCurrentPuzzle(next);
+            setView("lesson");
+          } else {
+            setCurrentPuzzle(next);
+            setView("play");
+          }
+          return;
+        }
+      }
+      setView("browse");
+      setCurrentPuzzle(null);
+      setIsDaily(false);
+      setLessonProgress(null);
       setFocusMode(false);
       return;
     }

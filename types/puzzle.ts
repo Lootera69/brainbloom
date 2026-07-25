@@ -1,4 +1,14 @@
-export type PuzzleType = "multiple-choice" | "true-false" | "crossword" | "type-answer" | "sudoku" | "riddle" | "wonder" | "cipher";
+export type PuzzleType = "multiple-choice" | "true-false" | "crossword" | "type-answer" | "sudoku" | "riddle" | "wonder" | "cipher" | "story";
+
+export interface StorySlide {
+  content: string;
+  imageUrl?: string;
+}
+
+export interface StoryData {
+  questionSlides: StorySlide[];
+  answerSlides: StorySlide[];
+}
 
 export interface CipherData {
   encodedMessage: string;
@@ -68,6 +78,7 @@ export interface Puzzle {
   hintText?: string;
   sharePrompt?: string;
   cipherData?: CipherData;
+  storyData?: StoryData;
 }
 
 export interface PuzzleFormData {
@@ -94,4 +105,5 @@ export interface PuzzleFormData {
   lessonGroupOrder?: number;
   hintText?: string;
   sharePrompt?: string;
+  storyData?: StoryData;
 }
