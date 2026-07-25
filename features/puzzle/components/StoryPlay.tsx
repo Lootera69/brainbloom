@@ -241,14 +241,20 @@ export function StoryPlay({ puzzle, onComplete }: Props) {
                 />
               </GlassCard>
 
-              <motion.button
-                onClick={startAnswers}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-                className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"
-              >
-                Reveal the answers <Sparkles className="size-4" />
-              </motion.button>
+              <div className="mt-3 flex items-center gap-3">
+                <button onClick={() => { setDirection(-1); setPhase("questions"); }}
+                  className="flex items-center justify-center gap-1.5 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:bg-muted hover:text-foreground">
+                  <ArrowLeft className="size-4" /> Back to questions
+                </button>
+                <motion.button
+                  onClick={startAnswers}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex h-12 flex-1 items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"
+                >
+                  Reveal the answers <Sparkles className="size-4" />
+                </motion.button>
+              </div>
             </motion.div>
           )}
 
