@@ -32,6 +32,7 @@ export default function SeedPage() {
   const [progress, setProgress] = useState<string[]>([]);
   const [counts, setCounts] = useState<{ groups: number; puzzles: number } | null>(null);
   const [confirmed, setConfirmed] = useState(false);
+  const [importing, setImporting] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [admin, setAdmin] = useState(false);
 
@@ -52,6 +53,7 @@ export default function SeedPage() {
       return;
     }
 
+    setImporting(true);
     setStep("clearing");
     addLog("Starting seed process...");
 
@@ -74,9 +76,11 @@ export default function SeedPage() {
           setCounts({ groups: groupsImported, puzzles: puzzlesImported });
         }
       });
+      setImporting(false);
     } catch (e) {
       addLog(`ERROR: ${e instanceof Error ? e.message : "Unknown error"}`);
       setStep("idle");
+      setImporting(false);
     }
   };
 
@@ -155,13 +159,20 @@ export default function SeedPage() {
       )}
 
       {confirmed && step === "idle" && (
-        <button
+        <motion.button
           onClick={handleSeed}
-          className="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40"
+          disabled={importing}
+          whileTap={importing ? undefined : { scale: 0.98 }}
+          className="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40 disabled:opacity-60"
         >
-          <Database className="size-5" />
-          Start Import
-        </button>
+          {importing ? (
+            <span className="relative flex size-5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40" />
+              <span className="relative inline-flex size-5 rounded-full bg-white" />
+            </span>
+          ) : <Database className="size-5" />}
+          {importing ? "Starting..." : "Start Import"}
+        </motion.button>
       )}
 
       <AnimatePresence>

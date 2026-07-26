@@ -44,6 +44,8 @@ export default function StudioSettingsPage() {
   const currentCode = getStudioSession();
   const [codesLoading, setCodesLoading] = useState(true);
   const [deleteTarget, setDeleteTarget] = useState<InviteCodeEntry | null>(null);
+  const [savingGroup, setSavingGroup] = useState(false);
+  const [savingCode, setSavingCode] = useState(false);
 
   // Lesson groups state
   const [groups, setGroups] = useState<LessonGroupEntry[]>([]);
@@ -96,9 +98,11 @@ export default function StudioSettingsPage() {
       toast.error("Fill in both code and password.");
       return;
     }
+    setSavingCode(true);
     const ok = await addInviteCode(newCode.trim(), newPassword.trim(), newRole, getStudioSession() ?? undefined);
     if (!ok) {
       toast.error("That invite code already exists.");
+      setSavingCode(false);
       return;
     }
     toast.success("Invite code added.");
@@ -106,13 +110,16 @@ export default function StudioSettingsPage() {
     setNewPassword("");
     setNewRole("contributor");
     await refreshCodes();
+    setSavingCode(false);
   };
 
   const handleRemoveCode = async (code: string) => {
+    setSavingCode(true);
     await removeInviteCode(code);
     toast.success("Invite code removed.");
     setDeleteTarget(null);
     await refreshCodes();
+    setSavingCode(false);
   };
 
   const catGroups = groups.filter((g) => g.category === selectedCat).sort((a, b) => a.order - b.order);
@@ -127,21 +134,26 @@ export default function StudioSettingsPage() {
       toast.error("Order must be a positive number.");
       return;
     }
+    setSavingGroup(true);
     const ok = await addLessonGroup(selectedCat, newGroupName.trim(), order, getStudioSession() ?? undefined);
     if (!ok) {
       toast.error("A group with that name already exists in this category.");
+      setSavingGroup(false);
       return;
     }
     toast.success("Lesson group added.");
     setNewGroupName("");
     setNewGroupOrder("");
     await refreshGroups();
+    setSavingGroup(false);
   };
 
   const handleRemoveGroup = async (name: string) => {
+    setSavingGroup(true);
     await removeLessonGroup(selectedCat, name);
     toast.success("Lesson group removed.");
     await refreshGroups();
+    setSavingGroup(false);
   };
 
   const handleEditGroup = async (oldName: string) => {
@@ -154,12 +166,14 @@ export default function StudioSettingsPage() {
       toast.error("Order must be a positive number.");
       return;
     }
+    setSavingGroup(true);
     await updateLessonGroup(selectedCat, oldName, editName.trim(), order);
     toast.success("Lesson group updated.");
     setEditingGroup(null);
     setEditName("");
     setEditOrder("");
     await refreshGroups();
+    setSavingGroup(false);
   };
 
   const availableTabs = TABS.filter((t) => !t.adminOnly || (t.adminOnly && isAdmin));
@@ -310,7 +324,14 @@ export default function StudioSettingsPage() {
                         />
                         <div className="flex gap-1">
                           <button onClick={() => handleEditGroup(g.name)}
-                            className="rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:brightness-110">
+                            disabled={savingGroup}
+                            className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-all hover:brightness-110 disabled:opacity-50">
+                            {savingGroup ? (
+                              <span className="relative flex size-3">
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40" />
+                                <span className="relative inline-flex size-3 rounded-full bg-white" />
+                              </span>
+                            ) : null}
                             Save
                           </button>
                           <button onClick={() => setEditingGroup(null)}
@@ -333,9 +354,15 @@ export default function StudioSettingsPage() {
                         </button>
                         <button
                           onClick={() => handleRemoveGroup(g.name)}
-                          className="flex size-7 items-center justify-center rounded-lg text-destructive/60 opacity-0 transition-all hover:bg-destructive/10 hover:text-destructive group-hover:opacity-100"
+                          disabled={savingGroup}
+                          className="flex size-7 items-center justify-center rounded-lg text-destructive/60 opacity-0 transition-all hover:bg-destructive/10 hover:text-destructive disabled:opacity-30 group-hover:opacity-100"
                         >
-                          <Trash2 className="size-3.5" />
+                          {savingGroup ? (
+                            <span className="relative flex size-3.5">
+                              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-40" />
+                              <span className="relative inline-flex size-3.5 rounded-full bg-destructive" />
+                            </span>
+                          ) : <Trash2 className="size-3.5" />}
                         </button>
                       </>
                     )}
@@ -374,9 +401,15 @@ export default function StudioSettingsPage() {
                 </div>
                 <button
                   onClick={handleAddGroup}
-                  className="flex h-10 items-center gap-1.5 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 active:scale-[0.98]"
+                  disabled={savingGroup}
+                  className="flex h-10 items-center gap-1.5 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-50"
                 >
-                  <Plus className="size-4" />
+                  {savingGroup ? (
+                    <span className="relative flex size-4">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40" />
+                      <span className="relative inline-flex size-4 rounded-full bg-white" />
+                    </span>
+                  ) : <Plus className="size-4" />}
                   Add
                 </button>
               </div>
@@ -511,9 +544,15 @@ export default function StudioSettingsPage() {
                 </div>
                 <button
                   onClick={handleAddCode}
-                  className="flex h-10 w-full items-center justify-center gap-1.5 rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 active:scale-[0.98]"
+                  disabled={savingCode}
+                  className="flex h-10 w-full items-center justify-center gap-1.5 rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-50"
                 >
-                  <Plus className="size-4" />
+                  {savingCode ? (
+                    <span className="relative flex size-4">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40" />
+                      <span className="relative inline-flex size-4 rounded-full bg-white" />
+                    </span>
+                  ) : <Plus className="size-4" />}
                   Add Code
                 </button>
               </div>
@@ -909,7 +948,7 @@ export default function StudioSettingsPage() {
         title="Delete Invite Code"
         description={`Are you sure you want to delete the invite code "${deleteTarget?.code}"? Users with this code will no longer be able to access the studio.`}
         confirmLabel="Delete"
-        confirmVariant="danger"
+        loading={savingCode}
       />
     </main>
   );

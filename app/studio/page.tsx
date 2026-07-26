@@ -169,6 +169,8 @@ export default function StudioPage() {
   const [sortAsc, setSortAsc] = useState(false);
   const [dailyPuzzleId, setDailyPuzzleId] = useState<string | null>(null);
   const [settingDaily, setSettingDaily] = useState(false);
+  const [reviewingId, setReviewingId] = useState<string | null>(null);
+  const [submittingId, setSubmittingId] = useState<string | null>(null);
   const admin = isAdmin();
   const { timedOut: loadTimedOut, reset: resetLoadTimeout } = useLoadingTimeout(6000);
 
@@ -252,8 +254,10 @@ export default function StudioPage() {
   };
 
   const handleQuickReview = async (id: string, status: ReviewStatus) => {
+    setReviewingId(id);
     await updatePuzzleReview(id, status);
     toast.success(`Marked as "${STATUS_LABELS[status]}".`);
+    setReviewingId(null);
     load();
   };
 
@@ -615,30 +619,54 @@ export default function StudioPage() {
                   {!puzzle.published && admin && puzzle.reviewStatus === "pending" && (
                     <div className="flex gap-1">
                       <button onClick={() => handleQuickReview(puzzle.id, "approved")}
-                        className="flex h-8 items-center gap-1.5 rounded-xl bg-success/10 px-3 text-[11px] font-semibold text-success ring-1 ring-inset ring-success/20 transition-all duration-200 hover:bg-success/20 hover:shadow-sm hover:shadow-success/10 active:scale-[0.97]"
+                        disabled={reviewingId !== null}
+                        className="flex h-8 items-center gap-1.5 rounded-xl bg-success/10 px-3 text-[11px] font-semibold text-success ring-1 ring-inset ring-success/20 transition-all duration-200 hover:bg-success/20 hover:shadow-sm hover:shadow-success/10 active:scale-[0.97] disabled:opacity-50"
                         title="Approve">
-                        <CheckCircle2 className="size-3.5" />
+                        {reviewingId === puzzle.id ? (
+                          <span className="relative flex size-3.5">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-40" />
+                            <span className="relative inline-flex size-3.5 rounded-full bg-success" />
+                          </span>
+                        ) : <CheckCircle2 className="size-3.5" />}
                         Approve
                       </button>
                       <button onClick={() => handleQuickReview(puzzle.id, "rejected")}
-                        className="flex h-8 items-center gap-1.5 rounded-xl bg-destructive/10 px-3 text-[11px] font-semibold text-destructive ring-1 ring-inset ring-destructive/20 transition-all duration-200 hover:bg-destructive/20 hover:shadow-sm hover:shadow-destructive/10 active:scale-[0.97]"
+                        disabled={reviewingId !== null}
+                        className="flex h-8 items-center gap-1.5 rounded-xl bg-destructive/10 px-3 text-[11px] font-semibold text-destructive ring-1 ring-inset ring-destructive/20 transition-all duration-200 hover:bg-destructive/20 hover:shadow-sm hover:shadow-destructive/10 active:scale-[0.97] disabled:opacity-50"
                         title="Reject">
-                        <XCircle className="size-3.5" />
+                        {reviewingId === puzzle.id ? (
+                          <span className="relative flex size-3.5">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-40" />
+                            <span className="relative inline-flex size-3.5 rounded-full bg-destructive" />
+                          </span>
+                        ) : <XCircle className="size-3.5" />}
                         Reject
                       </button>
                       <button onClick={() => handleQuickReview(puzzle.id, "needs-discussion")}
-                        className="flex h-8 items-center gap-1.5 rounded-xl bg-blue-500/10 px-3 text-[11px] font-semibold text-blue-600 ring-1 ring-inset ring-blue-500/20 transition-all duration-200 hover:bg-blue-500/20 hover:shadow-sm hover:shadow-blue-500/10 active:scale-[0.97] dark:text-blue-400"
+                        disabled={reviewingId !== null}
+                        className="flex h-8 items-center gap-1.5 rounded-xl bg-blue-500/10 px-3 text-[11px] font-semibold text-blue-600 ring-1 ring-inset ring-blue-500/20 transition-all duration-200 hover:bg-blue-500/20 hover:shadow-sm hover:shadow-blue-500/10 active:scale-[0.97] disabled:opacity-50 dark:text-blue-400"
                         title="Needs Discussion">
-                        <MessageSquare className="size-3.5" />
+                        {reviewingId === puzzle.id ? (
+                          <span className="relative flex size-3.5">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-40" />
+                            <span className="relative inline-flex size-3.5 rounded-full bg-blue-500" />
+                          </span>
+                        ) : <MessageSquare className="size-3.5" />}
                         Discuss
                       </button>
                     </div>
                   )}
 
                   {!puzzle.published && !admin && (puzzle.reviewStatus === "draft" || puzzle.reviewStatus === "rejected" || puzzle.reviewStatus === "needs-discussion") && (
-                    <button onClick={async () => { await updatePuzzleReview(puzzle.id, "pending"); toast.success("Submitted for approval."); load(); }}
-                      className="flex h-8 items-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500/15 to-orange-500/10 px-3 text-[11px] font-semibold text-amber-600 ring-1 ring-inset ring-amber-500/20 transition-all duration-200 hover:from-amber-500/25 hover:to-orange-500/15 hover:shadow-sm hover:shadow-amber-500/10 active:scale-[0.97] dark:text-amber-400">
-                      <Send className="size-3" />
+                    <button onClick={async () => { setSubmittingId(puzzle.id); await updatePuzzleReview(puzzle.id, "pending"); toast.success("Submitted for approval."); setSubmittingId(null); load(); }}
+                      disabled={submittingId === puzzle.id}
+                      className="flex h-8 items-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-500/15 to-orange-500/10 px-3 text-[11px] font-semibold text-amber-600 ring-1 ring-inset ring-amber-500/20 transition-all duration-200 hover:from-amber-500/25 hover:to-orange-500/15 hover:shadow-sm hover:shadow-amber-500/10 active:scale-[0.97] disabled:opacity-50 dark:text-amber-400">
+                      {submittingId === puzzle.id ? (
+                        <span className="relative flex size-3">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-40" />
+                          <span className="relative inline-flex size-3 rounded-full bg-amber-500" />
+                        </span>
+                      ) : <Send className="size-3" />}
                       Submit
                     </button>
                   )}

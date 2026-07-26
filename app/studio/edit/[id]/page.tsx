@@ -67,6 +67,7 @@ export default function EditPuzzlePage() {
   const [publishing, setPublishing] = useState(false);
   const [showPublishConfirm, setShowPublishConfirm] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const lessonFileInputRef = useRef<HTMLInputElement>(null);
   const [lessonUploading, setLessonUploading] = useState(false);
@@ -316,8 +317,9 @@ export default function EditPuzzlePage() {
   };
 
   const handleDelete = async () => {
-    setShowDeleteConfirm(false);
+    setDeleting(true);
     await deletePuzzle(id);
+    setDeleting(false);
     router.push("/studio");
   };
 
@@ -1301,6 +1303,7 @@ export default function EditPuzzlePage() {
         description="Are you sure you want to delete this puzzle? This action cannot be undone."
         confirmLabel="Delete"
         confirmVariant="danger"
+        loading={deleting}
       />
       {LeaveWarningModal}
     </main>
