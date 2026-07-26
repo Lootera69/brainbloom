@@ -48,7 +48,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
     (async () => {
       const [all, h] = await Promise.all([getPublishedByCategory(category), categoryHasLessons(category)]);
       setHasLessons(h);
-      setPuzzles(all);
+      setPuzzles(all.filter((p) => p.type !== "cipher"));
       setLoading(false);
     })();
   }, [category]);

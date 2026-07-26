@@ -10,6 +10,7 @@ import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, updatePuzzle
 import { uploadToImgbb } from "@/services/imgbb";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
 import { type PuzzleFormData, type PuzzleType, type StorySlide, type StoryData, type CrosswordData, type SudokuData, type CipherData, type ReviewStatus, type ReviewComment } from "@/types/puzzle";
+import { CopyPromptButton } from "@/components/ui/copy-prompt-button";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
 import { generateSudoku } from "@/services/sudoku-generator";
 import { toast } from "sonner";
@@ -445,7 +446,10 @@ export default function EditPuzzlePage() {
                 rows={4} className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none focus:border-primary" required />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium">Image (optional)</label>
+              <div className="mb-1.5 flex items-center justify-between">
+                <label className="text-sm font-medium">Image (optional)</label>
+                <CopyPromptButton subject={`${form.title} - ${form.question}`} />
+              </div>
               <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
               {form.imageUrl ? (
                 <div className="relative">
@@ -482,7 +486,10 @@ export default function EditPuzzlePage() {
                 className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" required />
             </div>
             <div>
-              <label className="mb-1.5 block text-sm font-medium">Image (optional)</label>
+              <div className="mb-1.5 flex items-center justify-between">
+                <label className="text-sm font-medium">Image (optional)</label>
+                <CopyPromptButton subject={`${form.title} - ${form.question}`} />
+              </div>
               <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
               {form.imageUrl ? (
                 <div className="relative">
@@ -636,7 +643,10 @@ export default function EditPuzzlePage() {
                 </select>
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium">Image (optional)</label>
+                <div className="mb-1.5 flex items-center justify-between">
+                  <label className="text-sm font-medium">Image (optional)</label>
+                  <CopyPromptButton subject={`${form.title} - ${form.cipherData?.encodedMessage ?? ""}`} />
+                </div>
                 <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                 {form.imageUrl ? (
                   <div className="relative">
@@ -745,6 +755,7 @@ export default function EditPuzzlePage() {
                       rows={4}
                       className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
                     <div className="mt-2">
+                      <CopyPromptButton subject={slide.content || "Story slide"} />
                       {slide.imageUrl ? (
                         <div className="relative inline-block">
                           <img src={slide.imageUrl} alt="" className="h-32 rounded-lg object-contain bg-muted" />
@@ -805,6 +816,7 @@ export default function EditPuzzlePage() {
                       rows={4}
                       className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
                     <div className="mt-2">
+                      <CopyPromptButton subject={slide.content || "Story answer slide"} />
                       {slide.imageUrl ? (
                         <div className="relative inline-block">
                           <img src={slide.imageUrl} alt="" className="h-32 rounded-lg object-contain bg-muted" />
@@ -1121,9 +1133,12 @@ export default function EditPuzzlePage() {
                       </p>
                     </div>
                     <div>
-                      <label className="mb-1.5 block text-sm font-medium">
-                        Lesson Image <span className="text-muted-foreground font-normal">(optional)</span>
-                      </label>
+                      <div className="mb-1.5 flex items-center justify-between">
+                        <label className="text-sm font-medium">
+                          Lesson Image <span className="text-muted-foreground font-normal">(optional)</span>
+                        </label>
+                        <CopyPromptButton subject={`Lesson illustration for: ${form.title} - ${form.lessonContent ?? ""}`} />
+                      </div>
                       <input ref={lessonFileInputRef} type="file" accept="image/*" onChange={handleLessonImageUpload} className="hidden" />
                       {form.lessonImageUrl ? (
                         <div className="relative">
