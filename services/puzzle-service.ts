@@ -281,7 +281,7 @@ export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): P
         const ref = doc(db, "puzzles", id);
         const snap = await getDoc(ref);
         if (snap.exists()) {
-          const clean = Object.fromEntries(Object.entries(data).filter(([_, v]) => v !== undefined));
+          const clean = Object.fromEntries(Object.entries(data).map(([k, v]) => [k, v === undefined ? null : v]));
           await updateDoc(ref, { ...clean, lastModifiedBy: user, updatedAt: Timestamp.fromMillis(now) });
           const snap2 = await getDoc(ref);
           updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);

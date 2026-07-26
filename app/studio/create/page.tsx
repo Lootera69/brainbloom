@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Save, Loader2, ImageUp, X, Loader as Spinner, ChevronDown } from "lucide-react";
+import { ArrowLeft, Save, Loader2, ImageUp, X, Loader as Spinner, ChevronDown, Trash2 } from "lucide-react";
 import { createPuzzle, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
@@ -979,8 +979,8 @@ export default function CreatePuzzlePage() {
                           <div className="relative">
                             <img src={form.lessonImageUrl} alt="Lesson preview" className="max-h-48 w-full rounded-xl object-contain bg-muted" />
                             <button type="button" onClick={() => update("lessonImageUrl", undefined)}
-                              className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-background/80 text-muted-foreground hover:text-foreground">
-                              <X className="size-4" />
+                              className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-destructive/10 text-destructive hover:bg-destructive/20">
+                              <Trash2 className="size-4" />
                             </button>
                           </div>
                         ) : (

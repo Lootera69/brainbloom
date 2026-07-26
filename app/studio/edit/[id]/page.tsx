@@ -1129,8 +1129,8 @@ export default function EditPuzzlePage() {
                         <div className="relative">
                           <img src={form.lessonImageUrl} alt="Lesson preview" className="max-h-48 w-full rounded-xl object-contain bg-muted" />
                           <button type="button" onClick={() => update("lessonImageUrl", undefined)}
-                            className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-background/80 text-muted-foreground hover:text-foreground">
-                            <X className="size-4" />
+                            className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-destructive/10 text-destructive hover:bg-destructive/20">
+                            <Trash2 className="size-4" />
                           </button>
                         </div>
                       ) : (
