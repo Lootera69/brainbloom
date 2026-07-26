@@ -36,6 +36,7 @@ export default function StudioSettingsPage() {
   const [pricing, setPricing] = useState<PricingConfig>(DEFAULT_PRICING);
   const [pricingInitial, setPricingInitial] = useState<PricingConfig | null>(null);
   const [pricingLoaded, setPricingLoaded] = useState(false);
+  const [pricingSaving, setPricingSaving] = useState(false);
   const [newCode, setNewCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newRole, setNewRole] = useState<"admin" | "contributor">("contributor");
@@ -863,21 +864,30 @@ export default function StudioSettingsPage() {
                       </motion.button>
                     )}
                     <motion.button
-                      disabled={!canSave}
+                      disabled={!canSave || pricingSaving}
                       onClick={async () => {
-                        await savePricingConfig(pricing);
-                        setPricingInitial({ ...pricing });
-                        toast.success("Pricing saved!");
+                        setPricingSaving(true);
+                        try {
+                          await savePricingConfig(pricing);
+                          setPricingInitial({ ...pricing });
+                          toast.success("Pricing saved!");
+                        } finally {
+                          setPricingSaving(false);
+                        }
                       }}
-                      whileTap={canSave ? { scale: 0.98 } : undefined}
+                      whileTap={canSave && !pricingSaving ? { scale: 0.98 } : undefined}
                       className={`flex h-10 items-center gap-1.5 rounded-xl px-6 text-sm font-semibold transition-all ${
-                        canSave
+                        canSave && !pricingSaving
                           ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/25 hover:brightness-110"
                           : "bg-muted text-muted-foreground cursor-not-allowed"
                       }`}
                     >
-                      <Sparkles className="size-4" />
-                      Save Changes
+                      {pricingSaving ? (
+                        <div className="size-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      ) : (
+                        <Sparkles className="size-4" />
+                      )}
+                      {pricingSaving ? "Saving..." : "Save Changes"}
                     </motion.button>
                   </div>
                 </>
