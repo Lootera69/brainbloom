@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { Sidebar } from "@/components/navigation/sidebar";
 import { BottomNav } from "@/components/navigation/bottom-nav";
 import { PageTransition } from "@/components/common/page-transition";
@@ -23,10 +23,16 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const checkStreak = useUserStore((s) => s.checkStreak);
   const hearts = useUserStore((s) => s.hearts);
+  const pathname = usePathname();
   const focusMode = useUIStore((s) => s.focusMode);
+  const setFocusMode = useUIStore((s) => s.setFocusMode);
   const showShop = useUIStore((s) => s.showShop);
   const setShowShop = useUIStore((s) => s.setShowShop);
   const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    if (!pathname.startsWith("/learn")) setFocusMode(false);
+  }, [pathname, setFocusMode]);
 
   useEffect(() => {
     setMounted(true);

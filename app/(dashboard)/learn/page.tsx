@@ -278,9 +278,10 @@ function LearnPage() {
         // "Close File" — the player is leaving without solving. Nothing is
         // locked; they can return and retry until Saturday. Retries happen
         // in-place inside CipherPlay and never reach handleComplete.
+        setFocusMode(false);
         router.push("/");
       }
-      setFocusMode(false);
+      
       return;
     }
 

@@ -67,31 +67,52 @@ function generateCompleteGrid(): number[] {
 }
 
 export function generateSudoku(difficulty: Difficulty): SudokuData {
-  const startTime = Date.now();
-  const TIMEOUT = 2000;
+  const TIMEOUT = 5000;
+  const MAX_ATTEMPTS = 3;
 
-  const solution = generateCompleteGrid();
-  const puzzle = [...solution];
-  const targetClues = clueCounts[difficulty];
-  const positions = shuffle([...Array(SIZE * SIZE).keys()]);
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const startTime = Date.now();
+    const solution = generateCompleteGrid();
+    const puzzle = [...solution];
+    const targetClues = clueCounts[difficulty];
+    const positions = shuffle([...Array(SIZE * SIZE).keys()]);
 
-  let clues = SIZE * SIZE;
-  for (const pos of positions) {
-    if (Date.now() - startTime > TIMEOUT) {
-      console.warn("Sudoku generation timed out — returning partial puzzle");
-      break;
+    let clues = SIZE * SIZE;
+    let timedOut = false;
+    for (const pos of positions) {
+      if (Date.now() - startTime > TIMEOUT) {
+        console.warn(`Sudoku generation timed out (attempt ${attempt}) — generated ${clues} clues`);
+        timedOut = true;
+        break;
+      }
+      if (clues <= targetClues) break;
+      const backup = puzzle[pos];
+      puzzle[pos] = 0;
+      if (countSolutions(puzzle) === 1) {
+        clues--;
+      } else {
+        puzzle[pos] = backup;
+      }
     }
-    if (clues <= targetClues) break;
-    const backup = puzzle[pos];
-    puzzle[pos] = 0;
-    if (countSolutions(puzzle) === 1) {
-      clues--;
-    } else {
-      puzzle[pos] = backup;
+
+    if (!timedOut) return { puzzle, solution };
+
+    if (clues <= targetClues + 10) {
+      console.warn("Sudoku generation close enough to target — accepting partial result");
+      return { puzzle, solution };
     }
   }
 
-  return { puzzle, solution };
+  console.warn("Sudoku generation failed after max attempts — returning safe fallback puzzle");
+  return getFallbackPuzzle();
+}
+
+const FALLBACK_PUZZLE: number[] = [5, 3, 0, 0, 7, 0, 0, 0, 0, 6, 0, 0, 1, 9, 5, 0, 0, 0, 0, 9, 8, 0, 0, 0, 0, 6, 0, 8, 0, 0, 0, 6, 0, 0, 0, 3, 4, 0, 0, 8, 0, 3, 0, 0, 1, 7, 0, 0, 0, 2, 0, 0, 0, 6, 0, 6, 0, 0, 0, 0, 2, 8, 0, 0, 0, 0, 4, 1, 9, 0, 0, 5, 0, 0, 0, 0, 8, 0, 0, 7, 9];
+
+const FALLBACK_SOLUTION: number[] = [5, 3, 4, 6, 7, 8, 9, 1, 2, 6, 7, 2, 1, 9, 5, 3, 4, 8, 1, 9, 8, 3, 4, 2, 5, 6, 7, 8, 5, 9, 7, 6, 1, 4, 2, 3, 4, 2, 6, 8, 5, 3, 7, 9, 1, 7, 1, 3, 9, 2, 4, 8, 5, 6, 9, 6, 1, 5, 3, 7, 2, 8, 4, 2, 8, 7, 4, 1, 9, 6, 3, 5, 3, 4, 5, 2, 8, 6, 1, 7, 9];
+
+function getFallbackPuzzle(): SudokuData {
+  return { puzzle: [...FALLBACK_PUZZLE], solution: [...FALLBACK_SOLUTION] };
 }
 
 export function isValidSudokuMove(
