@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gift, Zap, Gem, Snowflake, Sparkles } from "lucide-react";
+import { Gift, Zap, Gem, Snowflake } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
 import { cn } from "@/lib/utils";

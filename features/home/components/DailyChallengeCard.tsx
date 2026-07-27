@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, Zap, Sparkles, Flame, CheckCircle2 } from "lucide-react";
+import { Brain, Zap, Sparkles, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/user-store";
@@ -23,7 +23,6 @@ const TYPE_LABELS: Record<string, string> = {
 export function DailyChallengeCard({ puzzle, loading }: Props) {
   const router = useRouter();
   const hasCompletedDaily = useUserStore((s) => s.hasCompletedDailyPuzzle);
-  const dailyPuzzleStreak = useUserStore((s) => s.dailyPuzzleStreak);
   const completed = hasCompletedDaily();
   const bonusXp = puzzle ? puzzle.xpReward * 2 : 0;
 

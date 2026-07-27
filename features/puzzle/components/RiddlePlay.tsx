@@ -71,8 +71,11 @@ function SparkleBurst() {
   const particles = useMemo(() => {
     return Array.from({ length: 12 }).map((_, i) => ({
       angle: (i / 12) * 360,
+      // eslint-disable-next-line react-hooks/purity
       distance: 40 + Math.random() * 60,
+      // eslint-disable-next-line react-hooks/purity
       size: 2 + Math.random() * 4,
+      // eslint-disable-next-line react-hooks/purity
       delay: Math.random() * 0.2,
     }));
   }, []);

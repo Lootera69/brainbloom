@@ -2,12 +2,11 @@
 
 import { useEffect, useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
-import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, Settings, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ArrowUpDown, Database, Eye, Zap, LayoutGrid } from "lucide-react";
+import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ArrowUpDown, Database, Eye, Zap, LayoutGrid } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
-import { type Puzzle, type ReviewStatus, type PuzzleType } from "@/types/puzzle";
-import { EmptyState } from "@/components/ui/empty-state";
+import { type Puzzle, type ReviewStatus } from "@/types/puzzle";
 import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 import { getTodayDailyPuzzleId, setDailyPuzzle } from "@/services/daily-puzzle";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
@@ -43,24 +42,6 @@ const STATUS_ACCENTS: Record<string, string> = {
   rejected: "from-destructive to-destructive/0",
   "needs-discussion": "from-blue-500 to-blue-500/0",
   live: "from-emerald-500 to-emerald-500/0",
-};
-
-const STATUS_BORDER: Record<string, string> = {
-  draft: "border-l-muted-foreground/20",
-  pending: "border-l-amber-500",
-  approved: "border-l-success",
-  rejected: "border-l-destructive",
-  "needs-discussion": "border-l-blue-500",
-  live: "border-l-emerald-500",
-};
-
-const STATUS_GLOW: Record<string, string> = {
-  draft: "",
-  pending: "shadow-amber-500/10",
-  approved: "shadow-success/10",
-  rejected: "shadow-destructive/10",
-  "needs-discussion": "shadow-blue-500/10",
-  live: "shadow-emerald-500/10",
 };
 
 const STATUS_BADGE: Record<string, string> = {
@@ -183,10 +164,12 @@ export default function StudioPage() {
     setLoading(false);
   };
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (deleteTarget) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setDeleteCountdown(5);
       deleteIntervalRef.current = setInterval(() => {
         setDeleteCountdown((prev) => {

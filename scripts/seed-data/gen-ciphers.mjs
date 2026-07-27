@@ -38,7 +38,6 @@ function vigDec(t, key) {
   });
 }
 
-function egcd(a, b) { return b ? egcd(b, a % b) : a; }
 function modInv(a, m) {
   a = ((a % m) + m) % m;
   for (let x = 1; x < m; x++) if ((a * x) % m === 1) return x;

@@ -1,6 +1,6 @@
 "use client";
 
-import type { PremiumFeature, Tier } from "@/lib/subscription";
+import type { Tier } from "@/lib/subscription";
 
 function isExpired(expiry: number | null): boolean {
   if (expiry === null) return false;
@@ -15,7 +15,6 @@ export function hasPremiumAccess(tier: Tier, subscriptionExpiry: number | null):
 export function canAccessFeature(
   tier: Tier,
   subscriptionExpiry: number | null,
-  feature: PremiumFeature,
 ): boolean {
   return hasPremiumAccess(tier, subscriptionExpiry);
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, Check, Lock, ArrowRight } from "lucide-react";
 import { avatars } from "./avatar-svgs";
@@ -31,19 +31,7 @@ export function AvatarSelector({
   const setShowShop = useUIStore((s) => s.setShowShop);
   const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
   const gridRef = useRef<HTMLDivElement>(null);
-  const [scrollable, setScrollable] = useState(false);
 
-  useEffect(() => {
-    const check = () => {
-      if (gridRef.current) {
-        const el = gridRef.current.closest("[data-scroll]");
-        if (el) setScrollable(el.scrollHeight > el.clientHeight);
-      }
-    };
-    check();
-    const raf = requestAnimationFrame(check);
-    return () => cancelAnimationFrame(raf);
-  }, []);
 
   const handleConfirm = () => {
     const avatar = selected ? avatars.find((a) => a.id === selected) : null;

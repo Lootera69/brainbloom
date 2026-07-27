@@ -52,7 +52,7 @@ export function HeartsTab() {
     }
     setPurchased(product.id);
     toast.custom(
-      (tid) => (
+      () => (
         <div className="flex items-center gap-3 rounded-xl border border-rose-500/20 bg-gradient-to-br from-rose-500/10 to-pink-500/5 px-4 py-3 shadow-lg">
           <span className="flex size-8 items-center justify-center rounded-lg bg-rose-500/20">
             {product.effect.hearts ? (
@@ -77,7 +77,6 @@ export function HeartsTab() {
     [],
   );
 
-  const heartFill = Math.min(hearts / 5, 1);
   const heartBars = Array.from({ length: 5 }, (_, i) => i < hearts);
 
   return (

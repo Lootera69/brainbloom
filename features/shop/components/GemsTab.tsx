@@ -39,7 +39,7 @@ export function GemsTab() {
     if (rainTimer.current) clearTimeout(rainTimer.current);
     rainTimer.current = setTimeout(() => setRainAmount(null), 3000);
     toast.custom(
-      (tid) => (
+      () => (
         <div className="flex items-center gap-3 rounded-xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 to-blue-500/5 px-4 py-3 shadow-lg">
           <span className="flex size-8 items-center justify-center rounded-lg bg-cyan-500/20">
             <Gem className="size-4 text-cyan-400" />

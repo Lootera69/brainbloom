@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight, Eye, EyeOff, XCircle, Loader2 } from "lucide-react";
@@ -20,7 +20,6 @@ const navItems = [
 ];
 
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
   const [authed, setAuthed] = useState(false);
   const [inviteCode, setInviteCode] = useState("");
   const [password, setPassword] = useState("");

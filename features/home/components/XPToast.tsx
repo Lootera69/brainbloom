@@ -13,7 +13,7 @@ export function XPToast() {
     if (lastXpGain > 0 && lastXpGain !== prevRef.current) {
       prevRef.current = lastXpGain;
       toast.custom(
-        (t) => (
+        () => (
           <div className="flex items-center gap-3 rounded-xl border bg-card px-4 py-3 shadow-lg">
             <span className="flex size-8 items-center justify-center rounded-lg bg-primary/10">
               <Sparkles className="size-4 text-primary" />

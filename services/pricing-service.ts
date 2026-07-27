@@ -2,15 +2,17 @@
 
 import type { PricingConfig } from "@/lib/subscription";
 import { DEFAULT_PRICING } from "@/lib/subscription";
+import { getFirebase } from "@/services/firebase";
+import type { Firestore } from "firebase/firestore";
 
 const STORAGE_KEY = "brainbloom-pricing-config";
 
-let firestore: any = null;
+let firestore: Firestore | null = null;
 
 function getFs() {
   if (firestore) return firestore;
   try {
-    const f = require("./firebase").getFirebase();
+    const f = getFirebase();
     firestore = f.db;
     return firestore;
   } catch {

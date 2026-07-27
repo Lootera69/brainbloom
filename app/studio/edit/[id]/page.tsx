@@ -9,7 +9,7 @@ import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, updatePuzzleNote, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
-import { type PuzzleFormData, type PuzzleType, type StorySlide, type StoryData, type CrosswordData, type SudokuData, type CipherData, type ReviewStatus, type ReviewComment } from "@/types/puzzle";
+import { type PuzzleFormData, type CrosswordData, type ReviewStatus, type ReviewComment } from "@/types/puzzle";
 import { CopyPromptButton } from "@/components/ui/copy-prompt-button";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
 import { generateSudoku } from "@/services/sudoku-generator";
@@ -85,6 +85,17 @@ export default function EditPuzzlePage() {
     cipherData: undefined,
   });
 
+  const update = <K extends keyof PuzzleFormData>(key: K, value: PuzzleFormData[K]) => {
+    setForm((f) => ({ ...f, [key]: value }));
+    setDirty(true);
+  };
+
+  // Lesson group state
+  const [lessonGroups, setLessonGroups] = useState<LessonGroupEntry[]>([]);
+  const [availableOrders, setAvailableOrders] = useState<number[]>([]);
+  const [lessonOpen, setLessonOpen] = useState(false);
+  const [acceptedRaw, setAcceptedRaw] = useState("");
+
   useEffect(() => {
     (async () => {
       const puzzle = await getPuzzle(id);
@@ -122,17 +133,6 @@ export default function EditPuzzlePage() {
     })();
   }, [id]);
 
-  const update = <K extends keyof PuzzleFormData>(key: K, value: PuzzleFormData[K]) => {
-    setForm((f) => ({ ...f, [key]: value }));
-    setDirty(true);
-  };
-
-  // Lesson group state
-  const [lessonGroups, setLessonGroups] = useState<LessonGroupEntry[]>([]);
-  const [availableOrders, setAvailableOrders] = useState<number[]>([]);
-  const [lessonOpen, setLessonOpen] = useState(false);
-  const [acceptedRaw, setAcceptedRaw] = useState("");
-
   const isQuiz = form.type === "multiple-choice" || form.type === "true-false";
   const isTypeAnswer = form.type === "type-answer";
   const isCrossword = form.type === "crossword";
@@ -154,6 +154,7 @@ export default function EditPuzzlePage() {
     if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder || isCipher || isStory)) {
       getLessonGroups(form.category).then(setLessonGroups);
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLessonGroups([]);
     }
   }, [form.category, form.type]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -165,6 +166,7 @@ export default function EditPuzzlePage() {
         setAvailableOrders(all.filter((o) => !used.includes(o) || o === form.lessonOrder));
       });
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAvailableOrders([]);
     }
   }, [form.category, form.lessonGroup]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -321,26 +323,6 @@ export default function EditPuzzlePage() {
     await deletePuzzle(id);
     setDeleting(false);
     router.push("/studio");
-  };
-
-  const handleTypeChange = (type: PuzzleType) => {
-    if (type === "crossword") {
-      setForm((f) => ({ ...f, type, crosswordData: defaultCrossword, sudokuData: undefined }));
-    } else if (type === "wonder") {
-      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", xpReward: 0, crosswordData: undefined, sudokuData: undefined }));
-    } else if (type === "type-answer" || type === "riddle") {
-      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", crosswordData: undefined, sudokuData: undefined }));
-    } else if (type === "story") {
-      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", xpReward: 0, crosswordData: undefined, sudokuData: undefined, storyData: { questionSlides: [{ content: "" }], answerSlides: [{ content: "" }] } }));
-    } else if (type === "cipher") {
-      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", crosswordData: undefined, sudokuData: undefined }));
-    } else if (type === "sudoku") {
-      const sudokuData = generateSudoku(form.difficulty);
-      setForm((f) => ({ ...f, type, choices: [], correctAnswer: "", crosswordData: undefined, sudokuData }));
-    } else {
-      const choices = type === "true-false" ? ["True", "False"] : ["", "", "", ""];
-      setForm((f) => ({ ...f, type, choices, correctAnswer: "", crosswordData: undefined, sudokuData: undefined }));
-    }
   };
 
   if (loading) {

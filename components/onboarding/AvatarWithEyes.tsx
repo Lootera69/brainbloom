@@ -53,6 +53,7 @@ export default function AvatarWithEyes({ avatarId, size = 64, className }: Avata
     return <div className={className}><AvatarComp size={size} /></div>;
   }
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");

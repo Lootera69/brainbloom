@@ -32,6 +32,7 @@ export function useLoadingTimeout(ms = 6000): UseLoadingTimeoutResult {
 
   useEffect(() => {
     mountedRef.current = true;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     start();
     return () => {
       mountedRef.current = false;

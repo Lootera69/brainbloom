@@ -53,6 +53,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     const complete = localStorage.getItem("brainbloom-onboarding-complete") === "true";
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setShowOnboarding(!complete);
     setReady(true);
     const avatarId = localStorage.getItem("brainbloom-selected-avatar");
@@ -84,6 +85,7 @@ export default function LoginPage() {
 
   // Reset form when switching modes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setError("");
     setSuccess("");
     setPassword("");
@@ -562,7 +564,7 @@ export default function LoginPage() {
               </button>
 
               <p className="text-sm text-muted-foreground">
-                Enter your email and we'll send you a link to reset your password.
+                Enter your email and we&apos;ll send you a link to reset your password.
               </p>
 
               <div className="relative">
@@ -641,7 +643,7 @@ export default function LoginPage() {
               </div>
 
               <p className="text-center text-xs text-muted-foreground">
-                Didn't receive the email? Check your spam folder or{" "}
+                Didn&apos;t receive the email? Check your spam folder or{" "}
                 <button
                   onClick={handleResendVerification}
                   disabled={verifyingEmail}

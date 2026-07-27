@@ -20,16 +20,12 @@ import {
   VolumeX,
   TrendingUp,
   Mail,
-  Shield,
   KeyRound,
-  Loader2,
   Crown,
   Lock,
-  Compass,
   Sun,
   Moon,
   Monitor,
-  Target,
   Brain,
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -39,7 +35,7 @@ import { useUIStore } from "@/store/ui-store";
 import { achievementsList } from "@/constants/achievements";
 import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
 import { PremiumBadge } from "@/components/paywall/PremiumBadge";
-import { hasPremiumAccess, daysRemaining, formatExpiry } from "@/services/entitlement-service";
+import { hasPremiumAccess, formatExpiry } from "@/services/entitlement-service";
 import { AvatarSelector } from "@/components/avatars/AvatarSelector";
 import { ProfileShopModal } from "@/components/shop/ProfileShopModal";
 import { AdBanner } from "@/components/ads/AdBanner";
@@ -83,7 +79,6 @@ export default function ProfilePage() {
     xp,
     streak,
     hearts,
-    level: storeLevel,
     gems,
     logout,
     setAvatarId,
@@ -92,7 +87,7 @@ export default function ProfilePage() {
   const setSoundEnabled = useUserStore((s) => s.setSoundEnabled);
   const theme = useUserStore((s) => s.theme);
   const setThemeStore = useUserStore((s) => s.setTheme);
-  const { theme: nextTheme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
   const setShowShop = useUIStore((s) => s.setShowShop);

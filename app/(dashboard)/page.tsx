@@ -21,7 +21,7 @@ import { PracticeToHeal } from "@/features/home/components/PracticeToHeal";
 import { WeeklyCipherCard } from "@/features/home/components/WeeklyCipherCard";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
 import { motion } from "framer-motion";
-import { Play, Heart, Sparkles } from "lucide-react";
+import { Play, Heart } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { AdModal } from "@/components/paywall/AdModal";
 import { AdBanner } from "@/components/ads/AdBanner";

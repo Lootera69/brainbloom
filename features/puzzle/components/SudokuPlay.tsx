@@ -52,7 +52,7 @@ const MistakeDots = ({ count }: { count: number }) => {
   );
 };
 
-export function SudokuPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: SudokuPlayProps) {
+export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayProps) {
   const sudokuData = puzzle.sudokuData!;
   const initialClues = sudokuData.puzzle;
   const solution = sudokuData.solution;
@@ -254,7 +254,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Sud
         setNotes((prev) => {
           const next = [...prev];
           const s = new Set(next[target]);
-          s.has(num) ? s.delete(num) : s.add(num);
+          if (s.has(num)) s.delete(num); else s.add(num);
           next[target] = s;
           return next;
         });

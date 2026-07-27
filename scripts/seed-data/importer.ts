@@ -11,7 +11,7 @@ import {
   writeBatch,
   Timestamp,
 } from "firebase/firestore";
-import { getAllLessonGroups, addLessonGroup, removeLessonGroup, type LessonGroupEntry } from "@/services/lesson-service";
+import { addLessonGroup, type LessonGroupEntry } from "@/services/lesson-service";
 
 const STORAGE_KEY = "brainbloom-puzzles";
 const LESSON_STORAGE_KEY = "brainbloom-lesson-groups";

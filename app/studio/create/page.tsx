@@ -8,7 +8,7 @@ import { CopyPromptButton } from "@/components/ui/copy-prompt-button";
 import { createPuzzle, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
-import { type PuzzleFormData, type PuzzleType, type StorySlide, type StoryData, type CrosswordData, type SudokuData, type CipherData } from "@/types/puzzle";
+import { type PuzzleFormData, type PuzzleType, type CrosswordData } from "@/types/puzzle";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
 import { generateSudoku } from "@/services/sudoku-generator";
 import { toast } from "sonner";
@@ -77,6 +77,7 @@ export default function CreatePuzzlePage() {
     if (form.category && (isQuiz || isTypeAnswer || isCrossword || isSudoku || isRiddle || isWonder || isCipher || isStory)) {
       getLessonGroups(form.category).then(setLessonGroups);
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLessonGroups([]);
     }
   }, [form.category, form.type]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -88,6 +89,7 @@ export default function CreatePuzzlePage() {
         setAvailableOrders(all.filter((o) => !used.includes(o)));
       });
     } else {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setAvailableOrders([]);
     }
   }, [form.category, form.lessonGroup]);

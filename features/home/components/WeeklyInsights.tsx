@@ -22,6 +22,7 @@ export function WeeklyInsights({ compact }: { compact?: boolean }) {
   const history = useUserStore((s) => s.history);
   const weeklyXp = useUserStore((s) => s.weeklyXp);
 
+  // eslint-disable-next-line react-hooks/purity
   const oneWeekAgo = Date.now() - 7 * 86400000;
 
   const weeklyStats = useMemo(() => {

@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
   Database,
-  AlertTriangle,
   CheckCircle2,
   Loader2,
   Sparkles,
@@ -38,6 +37,7 @@ export default function SeedPage() {
 
   // Role lives in sessionStorage, so it can only be read after mount.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     setAdmin(isAdmin());
   }, []);

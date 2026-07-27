@@ -13,6 +13,7 @@ interface AdModalProps {
 export function AdModal({ onComplete, onClose }: AdModalProps) {
   const [phase, setPhase] = useState<"playing" | "rewarded" | "skipped">("playing");
   const onCompleteRef = useRef(onComplete);
+  // eslint-disable-next-line react-hooks/refs
   onCompleteRef.current = onComplete;
 
   useEffect(() => {
@@ -55,7 +56,7 @@ export function AdModal({ onComplete, onClose }: AdModalProps) {
                 <Loader2 className="size-10 text-primary" />
               </motion.div>
               <p className="text-sm font-semibold">Playing ad...</p>
-              <p className="text-xs text-muted-foreground">You'll get a reward in just a moment</p>
+              <p className="text-xs text-muted-foreground">You&apos;ll get a reward in just a moment</p>
             </motion.div>
           )}
 

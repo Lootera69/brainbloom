@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Lock, CheckCircle2, Eye, Gem, ArrowRight, Crown, Shield, Fingerprint, BadgeCheck, Timer, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
-import { getWeeklyCipher, getWeekStart, getWeekEnd, getCipherPhase } from "@/services/weekly-cipher";
+import { getWeeklyCipher, getCipherPhase } from "@/services/weekly-cipher";
 import { useRouter } from "next/navigation";
 import { type Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";
@@ -23,7 +23,9 @@ function SparkleOverlay() {
           key={i}
           className="absolute size-0.5 rounded-full bg-amber-500/60 dark:bg-amber-400/60"
           style={{
+            // eslint-disable-next-line react-hooks/purity
             left: `${10 + Math.random() * 80}%`,
+            // eslint-disable-next-line react-hooks/purity
             top: `${10 + Math.random() * 80}%`,
           }}
           animate={{
@@ -31,8 +33,10 @@ function SparkleOverlay() {
             scale: [0, 1.5, 0],
           }}
           transition={{
+            // eslint-disable-next-line react-hooks/purity
             duration: 2 + Math.random() * 3,
             repeat: Infinity,
+            // eslint-disable-next-line react-hooks/purity
             delay: Math.random() * 2,
             ease: "easeInOut",
           }}
@@ -134,9 +138,6 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
   }
 
   if (!cipher) return null;
-
-  const weekStart = getWeekStart();
-  const weekEnd = getWeekEnd(weekStart);
 
   return (
     <motion.div

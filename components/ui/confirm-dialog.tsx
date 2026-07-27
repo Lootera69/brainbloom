@@ -22,6 +22,7 @@ export function ConfirmDialog({ open, onClose, onConfirm, title, description, co
 
   useEffect(() => {
     if (open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCountdown(5);
       intervalRef.current = setInterval(() => {
         setCountdown((prev) => {

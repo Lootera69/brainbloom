@@ -40,10 +40,6 @@ export function getWeekEnd(weekStart: string): string {
   return d.toISOString().split("T")[0];
 }
 
-function isSameWeek(storedWeekStart: string): boolean {
-  return storedWeekStart === getWeekStart();
-}
-
 function weeksSinceEpoch(weekStart: string): number {
   return Math.floor(new Date(weekStart + "T00:00:00Z").getTime() / 604800000);
 }

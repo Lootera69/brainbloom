@@ -22,7 +22,6 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const checkStreak = useUserStore((s) => s.checkStreak);
-  const hearts = useUserStore((s) => s.hearts);
   const pathname = usePathname();
   const focusMode = useUIStore((s) => s.focusMode);
   const setFocusMode = useUIStore((s) => s.setFocusMode);
@@ -35,6 +34,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   }, [pathname, setFocusMode]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     checkStreak(false);
     processHeartRefill();
@@ -48,7 +48,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       const next = useUserStore.getState().hearts;
       if (next > prev && prev < 5) {
         toast.custom(
-          (t) => (
+          () => (
             <motion.div initial={{ opacity: 0, scale: 0.8, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: -10 }}
               className="flex items-center gap-3 rounded-xl border border-success/20 bg-card px-4 py-3 shadow-lg">
               <span className="flex size-8 items-center justify-center rounded-lg bg-success/10">

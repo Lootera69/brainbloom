@@ -526,7 +526,7 @@ export const useUserStore = create<UserState>()(
       },
 
       checkWeeklyReset: () => {
-        const { weeklyXp, weeklyStartDate } = get();
+        const { weeklyStartDate } = get();
         if (hasWeekChanged(weeklyStartDate)) {
           set({ weeklyXp: 0, weeklyStartDate: Date.now() });
         }
@@ -929,7 +929,7 @@ export const useUserStore = create<UserState>()(
       },
 
       claimDailyBonus: () => {
-        const { lastRewardClaim, xp, gems, streakFreezes } = get();
+        const { lastRewardClaim, gems, streakFreezes } = get();
         const today = new Date().toDateString();
         if (lastRewardClaim === today) return null;
 

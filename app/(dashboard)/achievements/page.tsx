@@ -68,8 +68,6 @@ export default function AchievementsPage() {
         })}
 
         {locked.map((achievement, i) => {
-          const Icon = iconMap[achievement.icon] ?? Trophy;
-
           return (
             <motion.div
               key={achievement.id}

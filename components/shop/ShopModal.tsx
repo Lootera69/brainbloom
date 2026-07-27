@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Gem, Heart, Snowflake, Sparkles, X, Crown, ShoppingBag, ChevronRight,
+  Gem, Heart, Sparkles, X, Crown, ShoppingBag, ChevronRight,
 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { useRouter } from "next/navigation";

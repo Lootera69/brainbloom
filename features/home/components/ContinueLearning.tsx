@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { categories } from "@/constants/home";
-import { GlassCard } from "@/components/ui/glass-card";
 
 export function ContinueLearning() {
   const lastPlayedCategory = useUserStore((s) => s.lastPlayedCategory);

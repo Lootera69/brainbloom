@@ -64,6 +64,7 @@ export function RichTextEditor({ value, onChange, placeholder, className }: Prop
     },
   });
 
+  // eslint-disable-next-line react-hooks/refs
   if (editor && !initializedRef.current) {
     initializedRef.current = true;
     if (value && editor.getHTML() !== value) {

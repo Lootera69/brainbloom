@@ -2,13 +2,14 @@
 
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import type { Activity, Achievement, DailyQuest } from "@/store/user-store";
+import { getFirebase } from "@/services/firebase";
 
 let firestore: ReturnType<typeof import("firebase/firestore").getFirestore> | null = null;
 
 function getDb() {
   if (firestore) return firestore;
   try {
-    const { db } = require("./firebase").getFirebase();
+    const { db } = getFirebase();
     firestore = db;
     return db;
   } catch {

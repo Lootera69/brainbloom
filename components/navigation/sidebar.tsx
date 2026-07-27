@@ -3,12 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { House, Brain, Trophy, User, Sparkles, Heart, Zap, Gem, Crown } from "lucide-react";
+import { House, Brain, Trophy, User, Sparkles, Heart, Zap, Gem } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
 import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
-import { PremiumBadge } from "@/components/paywall/PremiumBadge";
 import { hasPremiumAccess } from "@/services/entitlement-service";
 
 const navItems = [
@@ -20,7 +19,7 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
-  const { displayName, photoURL, avatarId, isGuest, level, xp, hearts, gems, tier, subscriptionExpiry } = useUserStore();
+  const { displayName, photoURL, avatarId, level, xp, hearts, gems, tier, subscriptionExpiry } = useUserStore();
   const setShowShop = useUIStore((s) => s.setShowShop);
   const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
 

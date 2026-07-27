@@ -30,6 +30,7 @@ export function StorePage() {
 
   useEffect(() => {
     if (tabParam && TABS.some((t) => t.id === tabParam)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveTab(tabParam);
     }
   }, [tabParam]);
@@ -112,9 +113,11 @@ export function StorePage() {
 
       {/* Tab content */}
       <div className="relative overflow-hidden">
+        {/* eslint-disable-next-line react-hooks/refs */}
         <AnimatePresence mode="wait" custom={directionRef.current} initial={false}>
           <motion.div
             key={activeTab}
+            // eslint-disable-next-line react-hooks/refs
             custom={directionRef.current}
             variants={slideVariants}
             initial="enter"

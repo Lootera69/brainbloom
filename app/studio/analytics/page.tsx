@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, type ComponentType } from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import {
   Puzzle, Globe, Trophy, Layers, ArrowLeft, TrendingUp, Clock, BookOpen,
-  Loader2, Eye, ListOrdered, ChevronDown, BarChart3, Sparkles, Activity,
-  CheckCircle2, AlertCircle, Crown, Users, DollarSign, ArrowUpRight,
+  BarChart3, Activity,
+  Crown, Users, DollarSign,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getAnalytics, type AnalyticsData } from "@/services/analytics-service";
@@ -59,19 +59,6 @@ const CHART_COLORS = [
   "from-cyan-500 to-cyan-400",
 ];
 
-const CHART_BG = [
-  "bg-violet-500/10",
-  "bg-emerald-500/10",
-  "bg-amber-500/10",
-  "bg-rose-500/10",
-  "bg-sky-500/10",
-  "bg-indigo-500/10",
-  "bg-teal-500/10",
-  "bg-orange-500/10",
-  "bg-pink-500/10",
-  "bg-cyan-500/10",
-];
-
 function fmtNum(n: number) {
   if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
   if (n >= 1000) return (n / 1000).toFixed(1) + "K";
@@ -110,7 +97,7 @@ function StatCard({
   gradient,
   delay = 0,
 }: {
-  icon: any;
+  icon: ComponentType<{ className?: string }>;
   label: string;
   value: number;
   sub?: string;
@@ -141,7 +128,7 @@ function StatCard({
 }
 
 function SectionHeader({ icon: Icon, title, subtitle }: {
-  icon: any;
+  icon: ComponentType<{ className?: string }>;
   title: string;
   subtitle?: string;
 }) {
@@ -171,13 +158,13 @@ function ChartCard({
 }: {
   title: string;
   subtitle?: string;
-  data: Record<string, any>;
+  data: Record<string, Record<string, number>>;
   valueKey: string;
   labelFormatter?: (key: string) => string;
   emptyMessage?: string;
 }) {
-  const entries = Object.entries(data).sort(([, a], [, b]) => (b as any)[valueKey] - (a as any)[valueKey]);
-  const maxVal = Math.max(...entries.map(([, v]) => (v as any)[valueKey]), 1);
+  const entries = Object.entries(data).sort(([, a], [, b]) => b[valueKey] - a[valueKey]);
+  const maxVal = Math.max(...entries.map(([, v]) => v[valueKey]), 1);
 
   if (entries.length === 0) {
     return (
@@ -197,7 +184,7 @@ function ChartCard({
       <SectionHeader icon={BarChart3} title={title} subtitle={subtitle} />
       <div className="space-y-4">
         {entries.map(([key, val], i) => {
-          const v = (val as any)[valueKey];
+          const v = val[valueKey];
           const label = labelFormatter ? labelFormatter(key) : key;
           const pct = maxVal > 0 ? (v / maxVal) * 100 : 0;
           const colorIdx = i % CHART_COLORS.length;
@@ -459,6 +446,7 @@ export default function AnalyticsPage() {
   const { timedOut: loadTimedOut, reset: resetLoadTimeout } = useLoadingTimeout(6000);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     resetLoadTimeout();
     getAnalytics(timeRange).then((result) => {

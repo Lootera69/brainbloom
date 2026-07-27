@@ -132,8 +132,10 @@ export function MonthlyStreakView({ activeDates, frozenDays, brokenDays }: Month
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={monthKey}
+            // eslint-disable-next-line react-hooks/refs
             initial={{ opacity: 0, x: directionRef.current * 24 }}
             animate={{ opacity: 1, x: 0 }}
+            // eslint-disable-next-line react-hooks/refs
             exit={{ opacity: 0, x: directionRef.current * -24 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >

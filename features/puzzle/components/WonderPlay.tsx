@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lightbulb, ArrowRight, Sparkles, Eye, Brain, Share2, CheckCheck, Copy } from "lucide-react";
+import { Lightbulb, ArrowRight, Sparkles, Eye, Brain, Share2, CheckCheck } from "lucide-react";
 import { type Puzzle } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
 import { cn } from "@/lib/utils";

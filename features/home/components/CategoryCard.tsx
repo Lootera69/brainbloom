@@ -9,7 +9,6 @@ import {
   Sparkles,
   ArrowRight,
 } from "lucide-react";
-import { GlassCard } from "@/components/ui/glass-card";
 
 interface Props {
   title: string;
@@ -31,7 +30,6 @@ const icons = {
 export function CategoryCard({
   title,
   icon,
-  progress,
   color,
   description,
   index,

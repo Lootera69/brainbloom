@@ -84,6 +84,10 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
 
   const extras = puzzles.filter((p) => p.lessonOrder == null);
 
+  // Check if all sub-lessons in a group are completed
+  const isGroupCompleted = (group: LessonGroup) =>
+    group.puzzles.length > 0 && group.puzzles.every((p) => isPuzzleCompleted(p));
+
   // Auto-expand the first group with remaining work on mount
   useEffect(() => {
     if (groups.length > 0 && expandedGroups.size === 0) {
@@ -92,14 +96,11 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
         const firstWithWork = groups.findIndex((g, gi) =>
           !isGroupCompleted(g) && (gi === 0 || isGroupCompleted(groups[gi - 1])),
         );
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setExpandedGroups(new Set([groups[Math.max(0, firstWithWork)].name]));
       }
     }
   }, [groups]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Check if all sub-lessons in a group are completed
-  const isGroupCompleted = (group: LessonGroup) =>
-    group.puzzles.length > 0 && group.puzzles.every((p) => isPuzzleCompleted(p));
 
   // Check if a group is unlocked (previous group fully completed, or it's the first)
   const isGroupUnlocked = (groupIndex: number) => {
@@ -165,10 +166,6 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
             const groupUnlocked = isGroupUnlocked(gi);
             const groupDone = isGroupCompleted(group);
             const isExpanded = expandedGroups.has(group.name);
-            const firstUnlockedSub = group.puzzles.findIndex(
-              (p, si) => getSubLessonState(p, si, gi) === "available"
-            );
-
             return (
               <div key={gi} className="space-y-1.5">
                 {/* Group header */}

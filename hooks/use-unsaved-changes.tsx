@@ -6,6 +6,7 @@ import { AlertTriangle, X } from "lucide-react";
 
 export function useUnsavedChanges(dirty: boolean) {
   const dirtyRef = useRef(dirty);
+  // eslint-disable-next-line react-hooks/refs
   dirtyRef.current = dirty;
 
   const [showModal, setShowModal] = useState(false);

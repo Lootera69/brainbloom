@@ -20,7 +20,6 @@ import { getPublishedByCategory, getPuzzle } from "@/services/puzzle-service";
 import { getWeekStart, getCipherPhase } from "@/services/weekly-cipher";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
-import { ErrorFallback } from "@/components/error-fallback";
 import { PaywallModal } from "@/components/paywall/PaywallModal";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { ShopModal } from "@/components/shop/ShopModal";
@@ -54,6 +53,7 @@ function LearnPage() {
   const router = useRouter();
   const [view, setView] = useState<View>("categories");
   const viewRef = useRef(view);
+  // eslint-disable-next-line react-hooks/refs
   viewRef.current = view;
   const [currentPuzzle, setCurrentPuzzle] = useState<Puzzle | null>(null);
   const [timer, setTimer] = useState(0);
@@ -78,10 +78,8 @@ function LearnPage() {
   const markPuzzleCompleted = useUserStore((s) => s.markPuzzleCompleted);
   const hasCompletedPuzzle = useUserStore((s) => s.hasCompletedPuzzle);
   const completeDailyPuzzle = useUserStore((s) => s.completeDailyPuzzle);
-  const hasCompletedDailyPuzzle = useUserStore((s) => s.hasCompletedDailyPuzzle);
   const setLastPlayedCategory = useUserStore((s) => s.setLastPlayedCategory);
   const checkAchievements = useUserStore((s) => s.checkAchievements);
-  const canPlayPuzzle = useUserStore((s) => s.canPlayPuzzle);
   const incrementPuzzlePlayed = useUserStore((s) => s.incrementPuzzlePlayed);
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
@@ -257,6 +255,17 @@ function LearnPage() {
   const handleStartQuiz = useCallback(() => {
     setView("play");
   }, []);
+
+  function findNextInGroup(current: Puzzle, all: Puzzle[]): Puzzle | null {
+    const sameGroup = all
+      .filter((p) => p.lessonGroup === current.lessonGroup && p.id !== current.id)
+      .sort((a, b) => (a.lessonOrder ?? 0) - (b.lessonOrder ?? 0));
+    const currentOrder = current.lessonOrder ?? 0;
+    for (const p of sameGroup) {
+      if ((p.lessonOrder ?? 0) > currentOrder) return p;
+    }
+    return null;
+  }
 
   const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
     if (!currentPuzzle) return;
@@ -463,23 +472,6 @@ function LearnPage() {
     setLessonProgress(null);
     setFocusMode(false);
   };
-
-  const handleCategoryChange = (cat: string | null) => {
-    if (cat === null) {
-      handleBackToCategories();
-    }
-  };
-
-  function findNextInGroup(current: Puzzle, all: Puzzle[]): Puzzle | null {
-    const sameGroup = all
-      .filter((p) => p.lessonGroup === current.lessonGroup && p.id !== current.id)
-      .sort((a, b) => (a.lessonOrder ?? 0) - (b.lessonOrder ?? 0));
-    const currentOrder = current.lessonOrder ?? 0;
-    for (const p of sameGroup) {
-      if ((p.lessonOrder ?? 0) > currentOrder) return p;
-    }
-    return null;
-  }
 
   return (
     <div className="relative mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
@@ -775,7 +767,7 @@ function LearnPage() {
                     <span className="font-semibold text-foreground">{streak} Day Streak</span>
                     <span className="text-muted-foreground">&middot;</span>
                     {streakMaintainedToday ? (
-                      <span className="font-medium text-success">Today's done</span>
+                      <span className="font-medium text-success">Today&apos;s done</span>
                     ) : (
                       <span className="font-medium text-amber-500">Do a lesson</span>
                     )}
@@ -947,6 +939,7 @@ function PuzzlePlayView({
               const st = useUserStore.getState().tier;
               const sExp = useUserStore.getState().subscriptionExpiry;
               const premium = hasPremiumAccess(st, sExp);
+              // eslint-disable-next-line react-hooks/rules-of-hooks
               useHeart();
               if (!premium && useUserStore.getState().hearts <= 0) {
                 handleBack();
@@ -954,7 +947,7 @@ function PuzzlePlayView({
                 return;
               }
               toast.custom(
-                (toastId) => (
+                () => (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.8, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}

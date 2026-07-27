@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
-  CheckCircle2, Sparkles, Infinity, Heart, Crown, BarChart3, Zap, Ban, Gem, Loader2,
+  CheckCircle2, Sparkles, Infinity, Heart, Crown, BarChart3, Zap, Ban, Loader2,
 } from "lucide-react";
 import { PREMIUM_BENEFITS, type PricingConfig } from "@/lib/subscription";
 import { getPricingConfig } from "@/services/pricing-service";

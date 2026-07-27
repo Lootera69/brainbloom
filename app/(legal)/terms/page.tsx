@@ -2,7 +2,6 @@
 
 import { LegalLayout } from "@/components/legal/LegalLayout";
 import { GlassCard } from "@/components/ui/glass-card";
-import { cn } from "@/lib/utils";
 
 const sections = [
   {

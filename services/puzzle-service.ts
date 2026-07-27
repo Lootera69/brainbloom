@@ -167,7 +167,6 @@ export async function getPuzzles(): Promise<Puzzle[]> {
     const firestore = await getFirestorePuzzles();
     // Merge: prefer whichever version is newer by updatedAt
     const merged = [...firestore];
-    const fsMap = new Map(merged.map((p) => [p.id, true]));
     for (const lp of local) {
       const idx = merged.findIndex((p) => p.id === lp.id);
       if (idx >= 0) {

@@ -24,6 +24,7 @@ export function Greeting() {
   const [greeting, setGreeting] = useState(greetings[0]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     setGreeting(getGreeting());
     const id = setInterval(() => setGreeting(getGreeting()), 60_000);

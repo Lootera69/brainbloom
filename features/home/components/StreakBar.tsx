@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Flame, Zap, Heart, Gem, X, CheckCircle2, Snowflake, CalendarDays, Calendar } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { CountUp } from "@/features/home/components/CountUp";
-import { GlassCard } from "@/components/ui/glass-card";
 import { MonthlyStreakView } from "@/features/home/components/MonthlyStreakView";
 import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
@@ -120,7 +119,7 @@ export function StreakBar() {
     >
       <div className="mb-6 overflow-hidden rounded-2xl border border-white/60 dark:border-white/[0.06] bg-white/70 dark:bg-white/[0.03] shadow-lg shadow-black/[0.04] dark:shadow-black/20 backdrop-blur-xl sm:mb-8">
         <div className="grid grid-cols-4 divide-x divide-black/[0.04] dark:divide-white/[0.05]">
-          {stats.map(({ icon: Icon, label, value, numClass, iconBg, ring, onClick, bottom }, i) => (
+          {stats.map(({ icon: Icon, label, value, numClass, iconBg, onClick, bottom }, i) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 12 }}

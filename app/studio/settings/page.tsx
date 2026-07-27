@@ -3,13 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Plus, Trash2, Key, Lock, Eye, EyeOff, Shield, PenTool, BookOpen, Edit3, Layers, Users, GripVertical, AlertTriangle, DollarSign, Sparkles, Gem } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, Key, Eye, EyeOff, Shield, PenTool, BookOpen, Edit3, Layers, Users, GripVertical, AlertTriangle, DollarSign, Sparkles, Gem } from "lucide-react";
 import { getInviteCodes, addInviteCode, removeInviteCode, type InviteCodeEntry } from "@/services/studio-settings";
 import { getStudioSession, getStudioRole, CATEGORIES } from "@/services/puzzle-service";
 import { getAllLessonGroups, addLessonGroup, removeLessonGroup, updateLessonGroup, reorderLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { useUserStore } from "@/store/user-store";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { SkeletonLessonGroup } from "@/components/ui/skeleton";
@@ -41,7 +40,6 @@ export default function StudioSettingsPage() {
   const [newPassword, setNewPassword] = useState("");
   const [newRole, setNewRole] = useState<"admin" | "contributor">("contributor");
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
-  const currentCode = getStudioSession();
   const [codesLoading, setCodesLoading] = useState(true);
   const [deleteTarget, setDeleteTarget] = useState<InviteCodeEntry | null>(null);
   const [savingGroup, setSavingGroup] = useState(false);
@@ -75,6 +73,7 @@ export default function StudioSettingsPage() {
   // Auto-switch tab if admin-only tab is inaccessible
   useEffect(() => {
     if (activeTab === "invites" && !isAdmin) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveTab("lessons");
     }
   }, [activeTab, isAdmin]);

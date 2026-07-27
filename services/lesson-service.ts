@@ -1,7 +1,7 @@
 "use client";
 
 import { getFirebase } from "@/services/firebase";
-import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export interface LessonGroupEntry {
   category: string;
