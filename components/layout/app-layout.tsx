@@ -115,14 +115,14 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="flex min-h-dvh">
+    <div className="flex h-dvh overflow-hidden">
       <XPToast />
       <Toaster position="top-center" />
       <CelebrationProvider />
       <AnimatedBackground />
       {!focusMode && <Sidebar />}
       <main
-        className="relative flex-1"
+        className="relative flex-1 overflow-y-auto"
         style={
           focusMode
             ? {}
