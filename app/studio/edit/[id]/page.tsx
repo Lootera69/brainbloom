@@ -348,7 +348,7 @@ export default function EditPuzzlePage() {
 
   return (
     <main className="mx-auto w-full px-4 py-6" style={{ maxWidth: "85%" }}>
-      <div className="sticky top-0 z-10 -mx-4 -mt-6 bg-background/80 backdrop-blur-sm px-4 pb-3 pt-4">
+      <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm -mx-4 px-4 py-3">
         <button onClick={handleBack} className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
           <ArrowLeft className="size-4" />
           Back to puzzles
