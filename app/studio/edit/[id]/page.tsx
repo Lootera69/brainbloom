@@ -348,10 +348,12 @@ export default function EditPuzzlePage() {
 
   return (
     <main className="mx-auto w-full px-4 py-6" style={{ maxWidth: "85%" }}>
-      <button onClick={handleBack} className="mb-4 flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
-        <ArrowLeft className="size-4" />
-        Back to puzzles
-      </button>
+      <div className="sticky top-0 z-10 -mx-4 -mt-6 bg-background/80 backdrop-blur-sm px-4 pb-3 pt-4">
+        <button onClick={handleBack} className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
+          <ArrowLeft className="size-4" />
+          Back to puzzles
+        </button>
+      </div>
 
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Edit Puzzle</h1>
@@ -436,12 +438,20 @@ export default function EditPuzzlePage() {
               </div>
               <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
               {form.imageUrl ? (
-                <div className="relative">
+                <div>
                   <img src={form.imageUrl} alt="Preview" className="max-h-48 w-full rounded-xl object-contain bg-muted" />
-                  <button type="button" onClick={() => update("imageUrl", undefined)}
-                    className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-background/80 text-muted-foreground hover:text-foreground">
-                    <X className="size-4" />
-                  </button>
+                  <div className="mt-2 flex gap-2">
+                    <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
+                      className="flex items-center gap-1.5 rounded-xl border border-muted-foreground/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                      {uploading ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
+                      {uploading ? "Uploading..." : "Replace image"}
+                    </button>
+                    <button type="button" onClick={() => update("imageUrl", undefined)}
+                      className="flex items-center gap-1.5 rounded-xl border border-destructive/30 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/10">
+                      <Trash2 className="size-3.5" />
+                      Remove image
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
@@ -476,12 +486,20 @@ export default function EditPuzzlePage() {
               </div>
               <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
               {form.imageUrl ? (
-                <div className="relative">
+                <div>
                   <img src={form.imageUrl} alt="Preview" className="max-h-48 w-full rounded-xl object-contain bg-muted" />
-                  <button type="button" onClick={() => update("imageUrl", undefined)}
-                    className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-background/80 text-muted-foreground hover:text-foreground">
-                    <X className="size-4" />
-                  </button>
+                  <div className="mt-2 flex gap-2">
+                    <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
+                      className="flex items-center gap-1.5 rounded-xl border border-muted-foreground/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                      {uploading ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
+                      {uploading ? "Uploading..." : "Replace image"}
+                    </button>
+                    <button type="button" onClick={() => update("imageUrl", undefined)}
+                      className="flex items-center gap-1.5 rounded-xl border border-destructive/30 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/10">
+                      <Trash2 className="size-3.5" />
+                      Remove image
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
@@ -633,12 +651,20 @@ export default function EditPuzzlePage() {
                 </div>
                 <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                 {form.imageUrl ? (
-                  <div className="relative">
+                  <div>
                     <img src={form.imageUrl} alt="Preview" className="max-h-24 w-full rounded-xl object-contain bg-muted" />
-                    <button type="button" onClick={() => update("imageUrl", undefined)}
-                      className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-background/80 text-muted-foreground hover:text-foreground">
-                      <X className="size-4" />
-                    </button>
+                    <div className="mt-2 flex gap-2">
+                      <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
+                        className="flex items-center gap-1.5 rounded-xl border border-muted-foreground/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                        {uploading ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
+                        {uploading ? "Uploading..." : "Replace image"}
+                      </button>
+                      <button type="button" onClick={() => update("imageUrl", undefined)}
+                        className="flex items-center gap-1.5 rounded-xl border border-destructive/30 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/10">
+                        <Trash2 className="size-3.5" />
+                        Remove image
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
@@ -741,15 +767,24 @@ export default function EditPuzzlePage() {
                     <div className="mt-2">
                       <CopyPromptButton subject={slide.content || "Story slide"} />
                       {slide.imageUrl ? (
-                        <div className="relative inline-block">
+                        <div>
                           <img src={slide.imageUrl} alt="" className="h-32 rounded-lg object-contain bg-muted" />
-                          <button type="button" onClick={() => {
-                            const slides = [...(form.storyData?.questionSlides ?? [])];
-                            slides[i] = { ...slides[i], imageUrl: undefined };
-                            update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), questionSlides: slides });
-                          }} className="absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full bg-background text-muted-foreground hover:text-foreground">
-                            <X className="size-3" />
-                          </button>
+                          <div className="mt-2 flex gap-2">
+                            <button type="button" onClick={() => { setUploadTarget({ section: "question", index: i }); storyFileInputRef.current?.click(); }} disabled={uploading}
+                              className="flex items-center gap-1.5 rounded-xl border border-muted-foreground/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                              {uploading && uploadTarget?.section === "question" && uploadTarget?.index === i ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
+                              {uploading && uploadTarget?.section === "question" && uploadTarget?.index === i ? "Uploading..." : "Replace image"}
+                            </button>
+                            <button type="button" onClick={() => {
+                              const slides = [...(form.storyData?.questionSlides ?? [])];
+                              slides[i] = { ...slides[i], imageUrl: undefined };
+                              update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), questionSlides: slides });
+                            }}
+                              className="flex items-center gap-1.5 rounded-xl border border-destructive/30 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/10">
+                              <Trash2 className="size-3.5" />
+                              Remove image
+                            </button>
+                          </div>
                         </div>
                       ) : (
                         <button type="button" onClick={() => { setUploadTarget({ section: "question", index: i }); storyFileInputRef.current?.click(); }} disabled={uploading}
@@ -802,15 +837,24 @@ export default function EditPuzzlePage() {
                     <div className="mt-2">
                       <CopyPromptButton subject={slide.content || "Story answer slide"} />
                       {slide.imageUrl ? (
-                        <div className="relative inline-block">
+                        <div>
                           <img src={slide.imageUrl} alt="" className="h-32 rounded-lg object-contain bg-muted" />
-                          <button type="button" onClick={() => {
-                            const slides = [...(form.storyData?.answerSlides ?? [])];
-                            slides[i] = { ...slides[i], imageUrl: undefined };
-                            update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), answerSlides: slides });
-                          }} className="absolute -top-1.5 -right-1.5 flex size-5 items-center justify-center rounded-full bg-background text-muted-foreground hover:text-foreground">
-                            <X className="size-3" />
-                          </button>
+                          <div className="mt-2 flex gap-2">
+                            <button type="button" onClick={() => { setUploadTarget({ section: "answer", index: i }); storyFileInputRef.current?.click(); }} disabled={uploading}
+                              className="flex items-center gap-1.5 rounded-xl border border-muted-foreground/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                              {uploading && uploadTarget?.section === "answer" && uploadTarget?.index === i ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
+                              {uploading && uploadTarget?.section === "answer" && uploadTarget?.index === i ? "Uploading..." : "Replace image"}
+                            </button>
+                            <button type="button" onClick={() => {
+                              const slides = [...(form.storyData?.answerSlides ?? [])];
+                              slides[i] = { ...slides[i], imageUrl: undefined };
+                              update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), answerSlides: slides });
+                            }}
+                              className="flex items-center gap-1.5 rounded-xl border border-destructive/30 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/10">
+                              <Trash2 className="size-3.5" />
+                              Remove image
+                            </button>
+                          </div>
                         </div>
                       ) : (
                         <button type="button" onClick={() => { setUploadTarget({ section: "answer", index: i }); storyFileInputRef.current?.click(); }} disabled={uploading}
@@ -1125,12 +1169,20 @@ export default function EditPuzzlePage() {
                       </div>
                       <input ref={lessonFileInputRef} type="file" accept="image/*" onChange={handleLessonImageUpload} className="hidden" />
                       {form.lessonImageUrl ? (
-                        <div className="relative">
+                        <div>
                           <img src={form.lessonImageUrl} alt="Lesson preview" className="max-h-48 w-full rounded-xl object-contain bg-muted" />
-                          <button type="button" onClick={() => update("lessonImageUrl", undefined)}
-                            className="absolute right-2 top-2 flex size-7 items-center justify-center rounded-full bg-destructive/10 text-destructive hover:bg-destructive/20">
-                            <Trash2 className="size-4" />
-                          </button>
+                          <div className="mt-2 flex gap-2">
+                            <button type="button" onClick={() => lessonFileInputRef.current?.click()} disabled={lessonUploading}
+                              className="flex items-center gap-1.5 rounded-xl border border-muted-foreground/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
+                              {lessonUploading ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
+                              {lessonUploading ? "Uploading..." : "Replace image"}
+                            </button>
+                            <button type="button" onClick={() => update("lessonImageUrl", undefined)}
+                              className="flex items-center gap-1.5 rounded-xl border border-destructive/30 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/10">
+                              <Trash2 className="size-3.5" />
+                              Remove image
+                            </button>
+                          </div>
                         </div>
                       ) : (
                         <button type="button" onClick={() => lessonFileInputRef.current?.click()} disabled={lessonUploading}
