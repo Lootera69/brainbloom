@@ -3,7 +3,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Save, Loader2, Trash2, ImageUp, X, Loader as Spinner, Send, CheckCircle2, XCircle, MessageSquare, ChevronDown } from "lucide-react";
+import { Save, Loader2, Trash2, ImageUp, X, Loader as Spinner, Send, CheckCircle2, XCircle, MessageSquare, ChevronDown } from "lucide-react";
+import { BackNavigation } from "@/components/studio/back-navigation";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, updatePuzzleNote, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
@@ -265,10 +266,6 @@ export default function EditPuzzlePage() {
     }
   };
 
-  const handleBack = () => {
-    confirmLeave(() => router.push("/studio"));
-  };
-
   const handleSubmitForReview = async () => {
     setSubmitting(true);
     const updated = await updatePuzzleReview(id, "pending");
@@ -348,12 +345,7 @@ export default function EditPuzzlePage() {
 
   return (
     <main className="mx-auto w-full px-4 py-6" style={{ maxWidth: "85%" }}>
-      <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm -mx-4 px-4 py-3">
-        <button onClick={handleBack} className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
-          <ArrowLeft className="size-4" />
-          Back to puzzles
-        </button>
-      </div>
+      <BackNavigation href="/studio" label="Back to puzzles" onClick={() => confirmLeave(() => router.push("/studio"))} />
 
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Edit Puzzle</h1>

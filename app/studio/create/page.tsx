@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Save, Loader2, ImageUp, X, Loader as Spinner, ChevronDown, Trash2 } from "lucide-react";
+import { Save, Loader2, ImageUp, X, Loader as Spinner, ChevronDown, Trash2 } from "lucide-react";
+import { BackNavigation } from "@/components/studio/back-navigation";
 import { CopyPromptButton } from "@/components/ui/copy-prompt-button";
 import { createPuzzle, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { uploadToImgbb } from "@/services/imgbb";
@@ -185,10 +186,6 @@ export default function CreatePuzzlePage() {
     }
   };
 
-  const handleBack = () => {
-    confirmLeave(() => router.push("/studio"));
-  };
-
   const handleTypeChange = (type: PuzzleType) => {
     setAcceptedRaw("");
     if (type === "crossword") {
@@ -219,15 +216,7 @@ export default function CreatePuzzlePage() {
 
   return (
     <main className="mx-auto w-full px-4 py-6" style={{ maxWidth: "85%" }}>
-      <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm -mx-4 px-4 py-3">
-        <button
-          onClick={handleBack}
-          className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="size-4" />
-          Back to puzzles
-        </button>
-      </div>
+      <BackNavigation href="/studio" label="Back to puzzles" onClick={() => confirmLeave(() => router.push("/studio"))} />
 
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">New Puzzle</h1>
