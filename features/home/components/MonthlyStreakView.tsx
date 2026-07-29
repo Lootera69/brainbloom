@@ -160,19 +160,19 @@ export function MonthlyStreakView({ activeDates, frozenDays, brokenDays }: Month
                         transition={{ type: "spring", stiffness: 400, damping: 20, delay: i * 0.002 }}
                         className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-amber-500 shadow-sm shadow-orange-500/30"
                       >
-                        <CheckCircle2 className="size-4 text-white drop-shadow-sm" />
+                        <CheckCircle2 className="size-5 text-white drop-shadow-sm" />
                       </motion.span>
                     )}
 
                     {status === "frozen" && (
                       <span className="flex size-8 items-center justify-center rounded-full border-2 border-blue-400/60 bg-blue-500/10">
-                        <Snowflake className="size-3.5 text-blue-400" />
+                        <Snowflake className="size-5 text-blue-400" />
                       </span>
                     )}
 
                     {status === "broken" && (
                       <span className="flex size-8 items-center justify-center rounded-full border-2 border-red-400/60 bg-red-500/10">
-                        <X className="size-3.5 text-red-400" />
+                        <X className="size-5 text-red-400" />
                       </span>
                     )}
 
@@ -185,13 +185,13 @@ export function MonthlyStreakView({ activeDates, frozenDays, brokenDays }: Month
                     )}
 
                     {cell.isToday && status === "empty" && (
-                      <span className="flex size-8 items-center justify-center rounded-full border-2 border-dashed border-muted-foreground/30">
+                      <span className="flex size-7 items-center justify-center rounded-full border-2 border-dashed border-muted-foreground/30">
                         <span className="text-[10px] font-medium text-muted-foreground/40">{cell.day}</span>
                       </span>
                     )}
 
                     {cell.isToday && (status === "active" || status === "frozen" || status === "broken") && (
-                      <div className="pointer-events-none absolute -inset-0.5 rounded-full ring-2 ring-primary/40 ring-offset-2 ring-offset-background" />
+                      <div className="pointer-events-none absolute inset-[3px] rounded-full ring-2 ring-primary/40" />
                     )}
 
                     {status === "active" && !cell.isToday && (
