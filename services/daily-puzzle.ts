@@ -75,7 +75,7 @@ export async function getDailyPuzzle(): Promise<Puzzle | null> {
 }
 
 async function autoPickAndSave(today: string): Promise<Puzzle | null> {
-  const published = await getPublishedPuzzles();
+  const published = (await getPublishedPuzzles()).filter((p) => p.type !== "cipher");
   if (published.length === 0) return null;
 
   const sorted = [...published].sort((a, b) => a.id.localeCompare(b.id));
@@ -112,7 +112,7 @@ async function autoPickAndSave(today: string): Promise<Puzzle | null> {
 }
 
 async function fallbackPick(today: string): Promise<Puzzle | null> {
-  const published = await getPublishedPuzzles();
+  const published = (await getPublishedPuzzles()).filter((p) => p.type !== "cipher");
   if (published.length === 0) return null;
 
   const sorted = [...published].sort((a, b) => a.id.localeCompare(b.id));
@@ -127,7 +127,7 @@ async function fallbackPick(today: string): Promise<Puzzle | null> {
 export async function setDailyPuzzle(puzzleId: string, setByUser?: string): Promise<boolean> {
   const today = getToday();
   const puzzle = await getPuzzle(puzzleId);
-  if (!puzzle?.published) return false;
+  if (!puzzle?.published || puzzle.type === "cipher") return false;
 
   const docData: DailyPuzzleDoc = {
     puzzleId,

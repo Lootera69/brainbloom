@@ -667,7 +667,7 @@ export default function StudioPage() {
                     </button>
                   )}
 
-                  {admin && puzzle.published && (
+                  {admin && puzzle.published && puzzle.type !== "cipher" && (
                     <button onClick={() => handleSetDaily(puzzle.id)} disabled={settingDaily}
                       title="Set as today's daily puzzle"
                       className={cn(
