@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Save, Loader2, ImageUp, X, Loader as Spinner, ChevronDown, Trash2 } from "lucide-react";
+import { Save, Loader2, ChevronDown } from "lucide-react";
 import { BackNavigation } from "@/components/studio/back-navigation";
 import { CopyPromptButton } from "@/components/ui/copy-prompt-button";
+import { ImageUploader } from "@/components/ui/image-uploader";
 import { createPuzzle, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
-import { uploadToImgbb } from "@/services/imgbb";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
 import { type PuzzleFormData, type PuzzleType, type CrosswordData } from "@/types/puzzle";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
@@ -25,15 +25,9 @@ const defaultCrossword: CrosswordData = {
 export default function CreatePuzzlePage() {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
-  const [uploading, setUploading] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [dirty, setDirty] = useState(false);
   const { confirmLeave, LeaveWarningModal } = useUnsavedChanges(dirty);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const lessonFileInputRef = useRef<HTMLInputElement>(null);
-  const [lessonUploading, setLessonUploading] = useState(false);
-  const storyFileInputRef = useRef<HTMLInputElement>(null);
-  const [uploadTarget, setUploadTarget] = useState<{ section: "question" | "answer"; index: number } | null>(null);
   const [form, setForm] = useState<PuzzleFormData>({
     type: "multiple-choice",
     category: "logic",
@@ -99,67 +93,6 @@ export default function CreatePuzzlePage() {
     const choices = [...(form.choices || ["", "", "", ""])];
     choices[i] = value;
     update("choices", choices);
-  };
-
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (file.size > 2 * 1024 * 1024) {
-      toast.error("Image must be smaller than 2MB.");
-      if (fileInputRef.current) fileInputRef.current.value = "";
-      return;
-    }
-
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    await new Promise((resolve) => { img.onload = resolve; img.src = url; });
-    URL.revokeObjectURL(url);
-    if (img.width > 4096 || img.height > 4096) {
-      toast.error("Image dimensions must be under 4096×4096px.");
-      if (fileInputRef.current) fileInputRef.current.value = "";
-      return;
-    }
-
-    setUploading(true);
-    try {
-      const imageUrl = await uploadToImgbb(file);
-      update("imageUrl", imageUrl);
-      toast.success("Image uploaded");
-    } catch {
-      toast.error("Failed to upload image");
-    }
-    setUploading(false);
-    if (fileInputRef.current) fileInputRef.current.value = "";
-  };
-
-  const handleLessonImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    if (file.size > 2 * 1024 * 1024) {
-      toast.error("Image must be smaller than 2MB.");
-      if (lessonFileInputRef.current) lessonFileInputRef.current.value = "";
-      return;
-    }
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    await new Promise((resolve) => { img.onload = resolve; img.src = url; });
-    URL.revokeObjectURL(url);
-    if (img.width > 4096 || img.height > 4096) {
-      toast.error("Image dimensions must be under 4096×4096px.");
-      if (lessonFileInputRef.current) lessonFileInputRef.current.value = "";
-      return;
-    }
-    setLessonUploading(true);
-    try {
-      const imageUrl = await uploadToImgbb(file);
-      update("lessonImageUrl", imageUrl);
-      toast.success("Lesson image uploaded");
-    } catch {
-      toast.error("Failed to upload image");
-    }
-    setLessonUploading(false);
-    if (lessonFileInputRef.current) lessonFileInputRef.current.value = "";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -450,30 +383,11 @@ export default function CreatePuzzlePage() {
                 <label className="text-sm font-medium">Image (optional)</label>
                 <CopyPromptButton subject={`${form.title} - ${form.question}`} />
               </div>
-              <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-              {form.imageUrl ? (
-                <div>
-                  <img src={form.imageUrl} alt="Preview" className="max-h-48 w-full rounded-xl object-contain bg-muted" />
-                  <div className="mt-2 flex gap-2">
-                    <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
-                      className="flex items-center gap-1.5 rounded-lg border border-muted-foreground/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                      {uploading ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
-                      {uploading ? "Uploading..." : "Replace image"}
-                    </button>
-                    <button type="button" onClick={() => update("imageUrl", undefined)}
-                      className="flex items-center gap-1.5 rounded-lg border border-destructive/30 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/10">
-                      <Trash2 className="size-3.5" />
-                      Remove image
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
-                  className="flex h-20 w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                  {uploading ? <Spinner className="size-5 animate-spin" /> : <ImageUp className="size-5" />}
-                  {uploading ? "Uploading..." : "Upload image"}
-                </button>
-              )}
+              <ImageUploader
+                imageUrl={form.imageUrl}
+                onUpload={(url) => update("imageUrl", url)}
+                onRemove={() => update("imageUrl", undefined)}
+              />
             </div>
           </>
         )}
@@ -498,30 +412,11 @@ export default function CreatePuzzlePage() {
                 <label className="text-sm font-medium">Image (optional)</label>
                 <CopyPromptButton subject={`${form.title} - ${form.question}`} />
               </div>
-              <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-              {form.imageUrl ? (
-                <div>
-                  <img src={form.imageUrl} alt="Preview" className="max-h-48 w-full rounded-xl object-contain bg-muted" />
-                  <div className="mt-2 flex gap-2">
-                    <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
-                      className="flex items-center gap-1.5 rounded-lg border border-muted-foreground/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                      {uploading ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
-                      {uploading ? "Uploading..." : "Replace image"}
-                    </button>
-                    <button type="button" onClick={() => update("imageUrl", undefined)}
-                      className="flex items-center gap-1.5 rounded-lg border border-destructive/30 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/10">
-                      <Trash2 className="size-3.5" />
-                      Remove image
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
-                  className="flex h-20 w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                  {uploading ? <Spinner className="size-5 animate-spin" /> : <ImageUp className="size-5" />}
-                  {uploading ? "Uploading..." : "Upload image"}
-                </button>
-              )}
+              <ImageUploader
+                imageUrl={form.imageUrl}
+                onUpload={(url) => update("imageUrl", url)}
+                onRemove={() => update("imageUrl", undefined)}
+              />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium">Insight / Reveal</label>
@@ -673,30 +568,12 @@ export default function CreatePuzzlePage() {
                   <label className="text-sm font-medium">Image (optional)</label>
                   <CopyPromptButton subject={`${form.title} - ${form.cipherData?.encodedMessage ?? ""}`} />
                 </div>
-                <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-                {form.imageUrl ? (
-                  <div>
-                    <img src={form.imageUrl} alt="Preview" className="max-h-24 w-full rounded-xl object-contain bg-muted" />
-                    <div className="mt-2 flex gap-2">
-                      <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
-                        className="flex items-center gap-1.5 rounded-lg border border-muted-foreground/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                        {uploading ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
-                        {uploading ? "Uploading..." : "Replace image"}
-                      </button>
-                      <button type="button" onClick={() => update("imageUrl", undefined)}
-                        className="flex items-center gap-1.5 rounded-lg border border-destructive/30 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/10">
-                        <Trash2 className="size-3.5" />
-                        Remove image
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <button type="button" onClick={() => fileInputRef.current?.click()} disabled={uploading}
-                    className="flex h-20 w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                    {uploading ? <Spinner className="size-5 animate-spin" /> : <ImageUp className="size-5" />}
-                    {uploading ? "Uploading..." : "Upload image"}
-                  </button>
-                )}
+                <ImageUploader
+                  imageUrl={form.imageUrl}
+                  onUpload={(url) => update("imageUrl", url)}
+                  onRemove={() => update("imageUrl", undefined)}
+                  size="small"
+                />
               </div>
             </div>
             <div>
@@ -733,30 +610,6 @@ export default function CreatePuzzlePage() {
 
         {isStory && (
           <>
-            {/* Single shared file input for all story slide image uploads */}
-            <input ref={storyFileInputRef} type="file" accept="image/*" onChange={async (e) => {
-              const target = uploadTarget;
-              if (!target) { if (e.target) e.target.value = ""; return; }
-              const file = e.target.files?.[0];
-              if (!file) return;
-              if (file.size > 2 * 1024 * 1024) { toast.error("Image must be smaller than 2MB."); if (e.target) e.target.value = ""; return; }
-              const img = new Image();
-              const url = URL.createObjectURL(file);
-              await new Promise((resolve) => { img.onload = resolve; img.src = url; });
-              URL.revokeObjectURL(url);
-              if (img.width > 4096 || img.height > 4096) { toast.error("Image dimensions must be under 4096×4096px."); if (e.target) e.target.value = ""; return; }
-              setUploading(true);
-              try {
-                const imageUrl = await uploadToImgbb(file);
-                const section = target.section === "question" ? "questionSlides" as const : "answerSlides" as const;
-                const slides = [...(form.storyData?.[section] ?? [])];
-                slides[target.index] = { ...slides[target.index], imageUrl };
-                update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), [section]: slides });
-              } catch { toast.error("Failed to upload image"); }
-              setUploading(false);
-              setUploadTarget(null);
-              if (e.target) e.target.value = "";
-            }} className="hidden" />
             <div>
               <label className="mb-1.5 block text-sm font-medium">Title</label>
               <input value={form.title} onChange={(e) => update("title", e.target.value)}
@@ -790,33 +643,20 @@ export default function CreatePuzzlePage() {
                       className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
                     <div className="mt-2">
                       <CopyPromptButton subject={slide.content || "Story slide"} />
-                      {slide.imageUrl ? (
-                        <div>
-                          <img src={slide.imageUrl} alt="" className="h-32 rounded-lg object-contain bg-muted" />
-                          <div className="mt-1.5 flex gap-1.5">
-                            <button type="button" onClick={() => { setUploadTarget({ section: "question", index: i }); storyFileInputRef.current?.click(); }} disabled={uploading}
-                              className="flex items-center gap-1 rounded-lg border border-muted-foreground/30 px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                              {uploading && uploadTarget?.section === "question" && uploadTarget?.index === i ? <Spinner className="size-3 animate-spin" /> : <ImageUp className="size-3" />}
-                              {uploading && uploadTarget?.section === "question" && uploadTarget?.index === i ? "Uploading..." : "Replace"}
-                            </button>
-                            <button type="button" onClick={() => {
-                              const slides = [...(form.storyData?.questionSlides ?? [])];
-                              slides[i] = { ...slides[i], imageUrl: undefined };
-                              update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), questionSlides: slides });
-                            }}
-                              className="flex items-center gap-1 rounded-lg border border-destructive/30 px-2 py-1 text-[11px] text-destructive transition-colors hover:bg-destructive/10">
-                              <Trash2 className="size-3" />
-                              Remove
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <button type="button" onClick={() => { setUploadTarget({ section: "question", index: i }); storyFileInputRef.current?.click(); }} disabled={uploading}
-                          className="flex h-10 items-center justify-center gap-1.5 rounded-lg border border-dashed border-muted-foreground/30 px-4 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                          {uploading && uploadTarget?.section === "question" && uploadTarget?.index === i ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
-                          {uploading && uploadTarget?.section === "question" && uploadTarget?.index === i ? "Uploading..." : "Add image"}
-                        </button>
-                      )}
+                      <ImageUploader
+                        imageUrl={slide.imageUrl}
+                        size="small"
+                        onUpload={(url) => {
+                          const slides = [...(form.storyData?.questionSlides ?? [])];
+                          slides[i] = { ...slides[i], imageUrl: url };
+                          update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), questionSlides: slides });
+                        }}
+                        onRemove={() => {
+                          const slides = [...(form.storyData?.questionSlides ?? [])];
+                          slides[i] = { ...slides[i], imageUrl: undefined };
+                          update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), questionSlides: slides });
+                        }}
+                      />
                     </div>
                   </div>
                 ))}
@@ -860,33 +700,20 @@ export default function CreatePuzzlePage() {
                       className="w-full resize-none rounded-xl border bg-card px-4 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/10" />
                     <div className="mt-2">
                       <CopyPromptButton subject={slide.content || "Story slide"} />
-                      {slide.imageUrl ? (
-                        <div>
-                          <img src={slide.imageUrl} alt="" className="h-32 rounded-lg object-contain bg-muted" />
-                          <div className="mt-1.5 flex gap-1.5">
-                            <button type="button" onClick={() => { setUploadTarget({ section: "answer", index: i }); storyFileInputRef.current?.click(); }} disabled={uploading}
-                              className="flex items-center gap-1 rounded-lg border border-muted-foreground/30 px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                              {uploading && uploadTarget?.section === "answer" && uploadTarget?.index === i ? <Spinner className="size-3 animate-spin" /> : <ImageUp className="size-3" />}
-                              {uploading && uploadTarget?.section === "answer" && uploadTarget?.index === i ? "Uploading..." : "Replace"}
-                            </button>
-                            <button type="button" onClick={() => {
-                              const slides = [...(form.storyData?.answerSlides ?? [])];
-                              slides[i] = { ...slides[i], imageUrl: undefined };
-                              update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), answerSlides: slides });
-                            }}
-                              className="flex items-center gap-1 rounded-lg border border-destructive/30 px-2 py-1 text-[11px] text-destructive transition-colors hover:bg-destructive/10">
-                              <Trash2 className="size-3" />
-                              Remove
-                            </button>
-                          </div>
-                        </div>
-                      ) : (
-                        <button type="button" onClick={() => { setUploadTarget({ section: "answer", index: i }); storyFileInputRef.current?.click(); }} disabled={uploading}
-                          className="flex h-10 items-center justify-center gap-1.5 rounded-lg border border-dashed border-muted-foreground/30 px-4 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                          {uploading && uploadTarget?.section === "answer" && uploadTarget?.index === i ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
-                          {uploading && uploadTarget?.section === "answer" && uploadTarget?.index === i ? "Uploading..." : "Add image"}
-                        </button>
-                      )}
+                      <ImageUploader
+                        imageUrl={slide.imageUrl}
+                        size="small"
+                        onUpload={(url) => {
+                          const slides = [...(form.storyData?.answerSlides ?? [])];
+                          slides[i] = { ...slides[i], imageUrl: url };
+                          update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), answerSlides: slides });
+                        }}
+                        onRemove={() => {
+                          const slides = [...(form.storyData?.answerSlides ?? [])];
+                          slides[i] = { ...slides[i], imageUrl: undefined };
+                          update("storyData", { ...(form.storyData ?? { questionSlides: [], answerSlides: [] }), answerSlides: slides });
+                        }}
+                      />
                     </div>
                   </div>
                 ))}
@@ -1024,30 +851,11 @@ export default function CreatePuzzlePage() {
                           </label>
                           <CopyPromptButton subject={`Lesson illustration for: ${form.title} - ${form.lessonContent ?? ""}`} />
                         </div>
-                        <input ref={lessonFileInputRef} type="file" accept="image/*" onChange={handleLessonImageUpload} className="hidden" />
-                        {form.lessonImageUrl ? (
-                          <div>
-                            <img src={form.lessonImageUrl} alt="Lesson preview" className="max-h-48 w-full rounded-xl object-contain bg-muted" />
-                            <div className="mt-2 flex gap-2">
-                              <button type="button" onClick={() => lessonFileInputRef.current?.click()} disabled={lessonUploading}
-                                className="flex items-center gap-1.5 rounded-lg border border-muted-foreground/30 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                                {lessonUploading ? <Spinner className="size-3.5 animate-spin" /> : <ImageUp className="size-3.5" />}
-                                {lessonUploading ? "Uploading..." : "Replace image"}
-                              </button>
-                              <button type="button" onClick={() => update("lessonImageUrl", undefined)}
-                                className="flex items-center gap-1.5 rounded-lg border border-destructive/30 px-3 py-1.5 text-xs text-destructive transition-colors hover:bg-destructive/10">
-                                <Trash2 className="size-3.5" />
-                                Remove image
-                              </button>
-                            </div>
-                          </div>
-                        ) : (
-                          <button type="button" onClick={() => lessonFileInputRef.current?.click()} disabled={lessonUploading}
-                            className="flex h-20 w-full items-center justify-center gap-2 rounded-xl border-2 border-dashed border-muted-foreground/30 text-sm text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-50">
-                            {lessonUploading ? <Spinner className="size-5 animate-spin" /> : <ImageUp className="size-5" />}
-                            {lessonUploading ? "Uploading..." : "Upload lesson image"}
-                          </button>
-                        )}
+                        <ImageUploader
+                          imageUrl={form.lessonImageUrl}
+                          onUpload={(url) => update("lessonImageUrl", url)}
+                          onRemove={() => update("lessonImageUrl", undefined)}
+                        />
                       </div>
                     </div>
                   </motion.div>

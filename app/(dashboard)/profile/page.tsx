@@ -401,29 +401,36 @@ export default function ProfilePage() {
             </div>
             <div className="flex flex-1 items-center justify-center">
               <div className="grid w-full grid-cols-3 gap-1">
-              {previewAchievements.map((a) => {
+              {previewAchievements.map((a, i) => {
                 const Icon = iconMap[a.icon] ?? Trophy;
                 const unlocked = unlockedIds.has(a.id);
                 return (
-                  <div
+                  <motion.div
                     key={a.id}
-                    className={`flex flex-col items-center gap-0.5 rounded-lg p-1.5 ${
-                      unlocked ? "bg-primary/5" : "bg-muted/30"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 + i * 0.05, type: "spring", stiffness: 300, damping: 20 }}
+                    className={`group relative flex flex-col items-center gap-0.5 rounded-xl p-2 transition-all duration-300 ${
+                      unlocked
+                        ? "bg-primary/5 ring-1 ring-primary/15 hover:bg-primary/10 hover:ring-primary/25 hover:shadow-md hover:shadow-primary/10"
+                        : "bg-muted/30 hover:bg-muted/50"
                     }`}
                   >
-                    <span className={`flex size-6 items-center justify-center rounded-md ${
-                      unlocked ? "bg-primary/15" : "bg-muted"
+                    <span className={`relative flex size-7 items-center justify-center rounded-lg transition-all duration-300 ${
+                      unlocked
+                        ? "bg-primary/15 shadow-sm shadow-primary/10 group-hover:scale-110 group-hover:shadow-md group-hover:shadow-primary/20"
+                        : "bg-muted"
                     }`}>
                       {unlocked ? (
-                        <Icon className="size-5 text-primary" />
+                        <Icon className="size-4 text-primary" />
                       ) : (
-                        <Lock className="size-5 text-muted-foreground/50" />
+                        <Lock className="size-4 text-muted-foreground/50" />
                       )}
                     </span>
                     <span className="text-center text-[10px] font-medium leading-tight text-muted-foreground">
                       {a.title}
                     </span>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>

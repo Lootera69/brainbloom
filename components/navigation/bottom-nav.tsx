@@ -45,7 +45,7 @@ export function BottomNav() {
               {isActive && (
                 <motion.div
                   layoutId="bottom-nav-active"
-                  className="absolute inset-0 rounded-xl bg-primary/10"
+                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/15 via-primary/10 to-primary/5"
                   transition={{ type: "spring", stiffness: 500, damping: 35 }}
                 />
               )}

@@ -61,7 +61,7 @@ export function Sidebar() {
               {isActive && (
                 <motion.div
                   layoutId="sidebar-active-bg"
-                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/10 to-transparent"
+                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/15 via-primary/10 to-transparent"
                   transition={{ type: "spring", stiffness: 500, damping: 35 }}
                 />
               )}

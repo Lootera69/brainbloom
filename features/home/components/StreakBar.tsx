@@ -114,7 +114,10 @@ export function StreakBar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 20 }}
     >
-      <div className="mb-6 overflow-hidden rounded-2xl border border-white/60 dark:border-white/[0.06] bg-white/70 dark:bg-white/[0.03] shadow-lg shadow-black/[0.04] dark:shadow-black/20 backdrop-blur-xl sm:mb-8">
+      <div className="relative mb-6 overflow-hidden rounded-2xl border border-white/60 dark:border-white/[0.06] bg-white/70 dark:bg-white/[0.03] shadow-lg shadow-black/[0.04] dark:shadow-black/20 backdrop-blur-xl sm:mb-8">
+        <div className="pointer-events-none absolute -left-12 -top-12 h-40 w-40 rounded-full bg-gradient-to-br from-orange-400/15 to-amber-300/10 blur-2xl" />
+        <div className="pointer-events-none absolute -bottom-10 -right-10 h-36 w-36 rounded-full bg-gradient-to-br from-rose-400/10 to-pink-300/8 blur-2xl" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-400/30 to-transparent" />
         <div className="grid grid-cols-4 divide-x divide-black/[0.04] dark:divide-white/[0.05]">
           {stats.map(({ icon: Icon, label, value, numClass, iconBg, onClick, bottom }, i) => (
             <motion.div
