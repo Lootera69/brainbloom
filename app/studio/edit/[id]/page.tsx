@@ -17,7 +17,7 @@ import { generateSudoku } from "@/services/sudoku-generator";
 import { toast } from "sonner";
 import { SkeletonForm } from "@/components/ui/skeleton";
 import { useUnsavedChanges } from "@/hooks/use-unsaved-changes";
-import { cn } from "@/lib/utils";
+import { cn, stripHtml } from "@/lib/utils";
 
 const STATUS_LABELS: Record<ReviewStatus, string> = {
   draft: "Draft",
@@ -1030,9 +1030,10 @@ export default function EditPuzzlePage() {
                     </span>
                   </div>
                   <p
-                    className="mt-0.5 text-xs text-muted-foreground"
-                    dangerouslySetInnerHTML={{ __html: c.text }}
-                  />
+                    className="mt-0.5 text-xs text-muted-foreground whitespace-pre-wrap"
+                  >
+                    {stripHtml(c.text)}
+                  </p>
                 </div>
               </div>
             ))}

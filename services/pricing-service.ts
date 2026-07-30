@@ -7,6 +7,9 @@ import type { Firestore } from "firebase/firestore";
 
 const STORAGE_KEY = "brainbloom-pricing-config";
 
+let pricingCache: { data: PricingConfig; ts: number } | null = null;
+const CACHE_TTL = 600_000; // 10 minutes — pricing changes rarely
+
 let firestore: Firestore | null = null;
 
 function getFs() {
@@ -21,6 +24,10 @@ function getFs() {
 }
 
 export async function getPricingConfig(): Promise<PricingConfig> {
+  if (pricingCache && Date.now() - pricingCache.ts < CACHE_TTL) {
+    return pricingCache.data;
+  }
+
   const db = getFs();
   if (db) {
     try {
@@ -28,7 +35,9 @@ export async function getPricingConfig(): Promise<PricingConfig> {
       const ref = doc(db, "settings", "pricing");
       const snap = await getDoc(ref);
       if (snap.exists()) {
-        return { ...DEFAULT_PRICING, ...snap.data() } as PricingConfig;
+        const config = { ...DEFAULT_PRICING, ...snap.data() } as PricingConfig;
+        pricingCache = { data: config, ts: Date.now() };
+        return config;
       }
     } catch {
       // Firestore unavailable — fall through to localStorage
@@ -37,15 +46,23 @@ export async function getPricingConfig(): Promise<PricingConfig> {
 
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return { ...DEFAULT_PRICING, ...JSON.parse(raw) };
+    if (raw) {
+      const config = { ...DEFAULT_PRICING, ...JSON.parse(raw) };
+      pricingCache = { data: config, ts: Date.now() };
+      return config;
+    }
   } catch {
     // ignore
   }
 
-  return DEFAULT_PRICING;
+  const config = DEFAULT_PRICING;
+  pricingCache = { data: config, ts: Date.now() };
+  return config;
 }
 
 export async function savePricingConfig(config: PricingConfig): Promise<void> {
+  pricingCache = null;
+
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
   } catch {

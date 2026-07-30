@@ -107,11 +107,8 @@ interface UserState {
   setLastPlayedCategory: (id: string) => void;
   logActivity: (activity: Omit<Activity, "id" | "timestamp">) => void;
   unlockAchievement: (id: string) => boolean;
-  claimDailyReward: () => number;
-  canClaimReward: () => boolean;
   buyStreakFreeze: () => boolean;
   usePracticeHeart: () => boolean;
-  refreshDailyQuests: () => void;
   advanceQuest: (questId: string, amount?: number) => void;
   markPuzzleCompleted: (id: string) => boolean;
   hasCompletedPuzzle: (id: string) => boolean;
@@ -210,6 +207,8 @@ function getRefreshedQuests(): DailyQuest[] {
     icon: qt.icon,
   }));
 }
+
+let _loadPromise: Promise<void> | null = null;
 
 export const useUserStore = create<UserState>()(
   persist(
@@ -366,74 +365,80 @@ export const useUserStore = create<UserState>()(
       loadFromFirestore: async () => {
         const s = get();
         if (!s.userId || s.isGuest) return;
-        try {
-          const { loadUserData } = await import("@/services/user-service");
-          const data = await loadUserData(s.userId);
-          if (data) {
-            // If Firestore data is older than or equal to local, keep local state
-            if (data.updatedAt && s.updatedAt && data.updatedAt < s.updatedAt) return;
-            set({
-              displayName: data.displayName ?? s.displayName,
-              email: data.email ?? s.email,
-              photoURL: data.photoURL ?? s.photoURL,
-              avatarId: data.avatarId ?? s.avatarId,
-              xp: data.xp ?? s.xp,
-              xpToday: data.xpToday ?? s.xpToday,
-              streak: data.streak ?? s.streak,
-              lastActiveDate: data.lastActiveDate ?? s.lastActiveDate,
-              hearts: data.hearts !== undefined ? Math.min(5, data.hearts) : s.hearts,
-              nextHeartAt: data.nextHeartAt ?? s.nextHeartAt,
-              level: data.level ?? s.level,
-              gems: data.gems ?? s.gems,
-              dailyGoal: data.dailyGoal ?? s.dailyGoal,
-              lastPlayedCategory: data.lastPlayedCategory ?? s.lastPlayedCategory,
-              history: data.history ?? s.history,
-              achievements: data.achievements ?? s.achievements,
-              lastRewardClaim: data.lastRewardClaim ?? s.lastRewardClaim,
-              streakFreezes: data.streakFreezes ?? s.streakFreezes,
-              practiceHeartsToday: data.practiceHeartsToday ?? s.practiceHeartsToday,
-              lastPracticeDate: data.lastPracticeDate ?? s.lastPracticeDate,
-              dailyQuests: data.dailyQuests ?? s.dailyQuests,
-              lastQuestRefresh: data.lastQuestRefresh ?? s.lastQuestRefresh,
-              completedPuzzleIds: data.completedPuzzleIds ?? s.completedPuzzleIds,
-              questsRewarded: data.questsRewarded ?? s.questsRewarded,
-              dailyPuzzleCompletedDate: data.dailyPuzzleCompletedDate ?? s.dailyPuzzleCompletedDate,
-              dailyPuzzleStreak: data.dailyPuzzleStreak ?? s.dailyPuzzleStreak,
-              dailyPuzzleLastDate: data.dailyPuzzleLastDate ?? s.dailyPuzzleLastDate,
-              soundEnabled: data.soundEnabled ?? s.soundEnabled,
-              theme: data.theme ?? s.theme,
-              weeklyXp: data.weeklyXp ?? s.weeklyXp,
-              weeklyStartDate: data.weeklyStartDate ?? s.weeklyStartDate,
-              frozenDays: data.frozenDays ?? s.frozenDays,
-              brokenDays: data.brokenDays ?? s.brokenDays,
-              dailyGoalStreak: data.dailyGoalStreak ?? s.dailyGoalStreak,
-              dailyGoalLastHitDate: data.dailyGoalLastHitDate ?? s.dailyGoalLastHitDate,
-              streakStartDate: data.streakStartDate ?? s.streakStartDate,
-              activeDates: data.activeDates ?? s.activeDates,
-              tier: data.tier ?? s.tier,
-              subscriptionExpiry: data.subscriptionExpiry ?? s.subscriptionExpiry,
-              puzzlesPlayedToday: data.puzzlesPlayedToday ?? s.puzzlesPlayedToday,
-              puzzlesPlayedDate: data.puzzlesPlayedDate ?? s.puzzlesPlayedDate,
-              adsWatchedToday: data.adsWatchedToday ?? s.adsWatchedToday,
-              adsWatchDate: data.adsWatchDate ?? s.adsWatchDate,
-              experiencedWonderIds: data.experiencedWonderIds ?? s.experiencedWonderIds,
-              currentCipherWeek: data.currentCipherWeek ?? s.currentCipherWeek,
-              currentCipherSolved: data.currentCipherSolved ?? s.currentCipherSolved,
-              cipherSolveCount: data.cipherSolveCount ?? s.cipherSolveCount,
-              cipherRevealed: data.cipherRevealed ?? s.cipherRevealed,
-              updatedAt: data.updatedAt ?? s.updatedAt,
-            });
-            get().checkWeeklyReset();
-            get().checkStreak(false);
-          } else {
-            get().syncToFirestore();
+        if (_loadPromise) return _loadPromise;
+
+        _loadPromise = (async () => {
+          try {
+            const { loadUserData } = await import("@/services/user-service");
+            const data = await loadUserData(s.userId);
+            if (data) {
+              if (data.updatedAt && s.updatedAt && data.updatedAt < s.updatedAt) return;
+              set({
+                displayName: data.displayName ?? s.displayName,
+                email: data.email ?? s.email,
+                photoURL: data.photoURL ?? s.photoURL,
+                avatarId: data.avatarId ?? s.avatarId,
+                xp: data.xp ?? s.xp,
+                xpToday: data.xpToday ?? s.xpToday,
+                streak: data.streak ?? s.streak,
+                lastActiveDate: data.lastActiveDate ?? s.lastActiveDate,
+                hearts: data.hearts !== undefined ? Math.min(5, data.hearts) : s.hearts,
+                nextHeartAt: data.nextHeartAt ?? s.nextHeartAt,
+                level: data.level ?? s.level,
+                gems: data.gems ?? s.gems,
+                dailyGoal: data.dailyGoal ?? s.dailyGoal,
+                lastPlayedCategory: data.lastPlayedCategory ?? s.lastPlayedCategory,
+                history: data.history ?? s.history,
+                achievements: data.achievements ?? s.achievements,
+                lastRewardClaim: data.lastRewardClaim ?? s.lastRewardClaim,
+                streakFreezes: data.streakFreezes ?? s.streakFreezes,
+                practiceHeartsToday: data.practiceHeartsToday ?? s.practiceHeartsToday,
+                lastPracticeDate: data.lastPracticeDate ?? s.lastPracticeDate,
+                dailyQuests: data.dailyQuests ?? s.dailyQuests,
+                lastQuestRefresh: data.lastQuestRefresh ?? s.lastQuestRefresh,
+                completedPuzzleIds: data.completedPuzzleIds ?? s.completedPuzzleIds,
+                questsRewarded: data.questsRewarded ?? s.questsRewarded,
+                dailyPuzzleCompletedDate: data.dailyPuzzleCompletedDate ?? s.dailyPuzzleCompletedDate,
+                dailyPuzzleStreak: data.dailyPuzzleStreak ?? s.dailyPuzzleStreak,
+                dailyPuzzleLastDate: data.dailyPuzzleLastDate ?? s.dailyPuzzleLastDate,
+                soundEnabled: data.soundEnabled ?? s.soundEnabled,
+                theme: data.theme ?? s.theme,
+                weeklyXp: data.weeklyXp ?? s.weeklyXp,
+                weeklyStartDate: data.weeklyStartDate ?? s.weeklyStartDate,
+                frozenDays: data.frozenDays ?? s.frozenDays,
+                brokenDays: data.brokenDays ?? s.brokenDays,
+                dailyGoalStreak: data.dailyGoalStreak ?? s.dailyGoalStreak,
+                dailyGoalLastHitDate: data.dailyGoalLastHitDate ?? s.dailyGoalLastHitDate,
+                streakStartDate: data.streakStartDate ?? s.streakStartDate,
+                activeDates: data.activeDates ?? s.activeDates,
+                tier: data.tier ?? s.tier,
+                subscriptionExpiry: data.subscriptionExpiry ?? s.subscriptionExpiry,
+                puzzlesPlayedToday: data.puzzlesPlayedToday ?? s.puzzlesPlayedToday,
+                puzzlesPlayedDate: data.puzzlesPlayedDate ?? s.puzzlesPlayedDate,
+                adsWatchedToday: data.adsWatchedToday ?? s.adsWatchedToday,
+                adsWatchDate: data.adsWatchDate ?? s.adsWatchDate,
+                experiencedWonderIds: data.experiencedWonderIds ?? s.experiencedWonderIds,
+                currentCipherWeek: data.currentCipherWeek ?? s.currentCipherWeek,
+                currentCipherSolved: data.currentCipherSolved ?? s.currentCipherSolved,
+                cipherSolveCount: data.cipherSolveCount ?? s.cipherSolveCount,
+                cipherRevealed: data.cipherRevealed ?? s.cipherRevealed,
+                updatedAt: data.updatedAt ?? s.updatedAt,
+              });
+              get().checkWeeklyReset();
+              get().checkStreak(false);
+            } else {
+              get().syncToFirestore();
+            }
+          } catch (e) {
+            console.warn("loadFromFirestore failed — keeping local state:", e);
+          } finally {
+            _loadPromise = null;
           }
-        } catch (e) {
-          console.warn("loadFromFirestore failed — keeping local state:", e);
-        }
+        })();
       },
 
       logout: () => {
+        _loadPromise = null;
         set({
           userId: "",
           displayName: "",
@@ -766,22 +771,6 @@ export const useUserStore = create<UserState>()(
         return true;
       },
 
-      claimDailyReward: () => {
-        const { streak } = get();
-        const reward = Math.min(5 + streak * 2, 50);
-        set({
-          gems: get().gems + reward,
-          lastRewardClaim: new Date().toDateString(),
-        });
-        get().advanceQuest("streak-keeper", 1);
-        return reward;
-      },
-
-      canClaimReward: () => {
-        const { lastRewardClaim } = get();
-        return lastRewardClaim !== new Date().toDateString();
-      },
-
       buyStreakFreeze: () => {
         const { gems } = get();
         if (gems < 200) return false;
@@ -800,10 +789,6 @@ export const useUserStore = create<UserState>()(
           lastPracticeDate: today,
         });
         return true;
-      },
-
-      refreshDailyQuests: () => {
-        set({ dailyQuests: getRefreshedQuests(), lastQuestRefresh: new Date().toDateString(), questsRewarded: [] });
       },
 
       advanceQuest: (questId, amount = 1) => {

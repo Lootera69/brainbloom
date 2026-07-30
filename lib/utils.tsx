@@ -29,6 +29,10 @@ export function normalizeAnswer(input: string): string {
   return input.trim().toLowerCase();
 }
 
+export function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, "").trim();
+}
+
 export function checkAnswer(input: string, correctAnswer: string, acceptedAnswers?: string[]): { correct: boolean; close: boolean } {
   const normalized = normalizeAnswer(input);
   const main = normalizeAnswer(correctAnswer);

@@ -175,11 +175,11 @@ Stored in Zustand with persist middleware. Key fields:
 - `streak`, `lastActiveDate`, `streakStartDate`, `activeDates` (ISO date strings)
 - `streakFreezes` (count)
 - `weeklyXp`, `weeklyStartDate`
-- `dailyQuestProgress`, `dailyGoalStreak`, `dailyGoalLastHitDate`
+- `dailyQuests: DailyQuest[]`, `dailyGoalStreak`, `dailyGoalLastHitDate`
 - `completedPuzzleIds: string[]`
 - `achievements: Record<string, number>` (achievement ID → unlocked count)
 - `gems`, `totalXpEarned`, `puzzlesCompleted`, `totalCorrect`, `totalAttempts`
-- `soundEnabled`, `dailyRewardClaimed`, `dailyRewardDate`
+- `soundEnabled`, `lastRewardClaim` (date string for daily bonus gating)
 - `heartsLostThisSession` (module-level flag for hearts_saver achievement)
 - `tier: "free" | "premium"`, `subscriptionExpiry?: number` (ms timestamp)
 - `avatarId: string | null` — selected avatar ID
@@ -250,7 +250,7 @@ Stored in Zustand with persist middleware. Key fields:
 | `/terms` | Legal | Terms of Service (philosophical, sophisticated) |
 | `/privacy` | Legal | Privacy Policy (rights-focused, high-intellectual) |
 
-**Shop page** is the only route with `loading.tsx` and `error.tsx`. Other routes still missing them.
+**Shop page** is the only route with dedicated `loading.tsx` + `error.tsx`. Other routes use group-level boundaries; studio sub-routes (create, edit, analytics, settings, seed) have page-specific loading skeletons.
 
 ---
 
@@ -510,14 +510,12 @@ Stored in Zustand with persist middleware. Key fields:
 
 ## Known Issues & Gotchas
 1. **`/offline` page missing** — SW precaches it but page doesn't exist → SW install fails
-2. **`npm run lint` broken** — script is `"eslint"` with no glob (should be `"eslint ."`)
-3. **4 unused store actions** — `restoreHearts`, `claimDailyReward`, `canClaimReward`, `refreshDailyQuests` never called from UI
-4. **No `loading.tsx` / `error.tsx`** at most route levels — only `/shop` has them
-5. **Sudoku generator 2s timeout** can produce partial/invalid puzzles
-6. **`acceptedAnswers` save inconsistency** — type-answer uses `onChange`, riddle uses `onBlur`
-7. **Starter SVGs** — `public/window.svg`, `globe.svg`, `file.svg` unused
-8. **Local dev IP** — `192.168.1.3` in `next.config.ts` `allowedDevOrigins`
-9. **No test infrastructure** — zero tests across the project
+2. **1 unused store action** — `restoreHearts` never called from UI (used by ShopModal/HeartsTab, actually alive)
+3. **Loading/error boundaries** — Route groups have shared boundaries; studio sub-routes now have page-specific skeletons
+4. **Sudoku generator 2s timeout** can produce partial/invalid puzzles
+5. **`acceptedAnswers` save inconsistency** — type-answer uses `onChange`, riddle uses `onBlur`
+6. **Local dev IP** — `192.168.1.3` in `next.config.ts` `allowedDevOrigins`
+7. **No test infrastructure** — zero tests across the project
 10. **`shadcn` in `dependencies`** instead of `devDependencies`
 11. **Firestore bundler issue**: Turbopack may split `@firebase/firestore` across chunks, causing `instanceof Firestore` checks in `collection()`/`doc()` to fail. `initFirebase()` in `services/firebase.ts` validates `db` with both `collection()` and `doc()` — if either fails, `db` is set to `null` and `initFailed = true`, gracefully falling back to localStorage for all Firestore operations while keeping Auth functional.
 12. **Review notes** stored as TipTap HTML. Display uses `dangerouslySetInnerHTML` on studio dashboard (review note balloon) and strips HTML for the badge tooltip.

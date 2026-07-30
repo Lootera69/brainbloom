@@ -13,6 +13,9 @@ export interface InviteCodeEntry {
 
 const CODES_KEY = "brainbloom-invite-codes";
 
+let codesCache: { data: InviteCodeEntry[]; ts: number } | null = null;
+const CACHE_TTL = 300_000; // 5 minutes — invite codes change rarely
+
 const DEFAULT_CODES: InviteCodeEntry[] = [
   { code: "alpha-2026", password: "bloom@123", role: "admin" },
   { code: "beta-2026", password: "bloom@456", role: "contributor" },
@@ -93,6 +96,10 @@ async function saveFirestoreCodes(codes: InviteCodeEntry[]) {
 }
 
 export async function getInviteCodes(): Promise<InviteCodeEntry[]> {
+  if (codesCache && Date.now() - codesCache.ts < CACHE_TTL) {
+    return codesCache.data;
+  }
+
   if (isFirestoreAvailable()) {
     const fs = await getFirestoreCodes();
     // Merge local overrides on top of Firestore (local wins for dev)
@@ -108,9 +115,12 @@ export async function getInviteCodes(): Promise<InviteCodeEntry[]> {
     }
     // Sync merged back to localStorage
     saveLocalCodes(merged);
+    codesCache = { data: merged, ts: Date.now() };
     return merged;
   }
-  return getLocalCodes();
+  const local = getLocalCodes();
+  codesCache = { data: local, ts: Date.now() };
+  return local;
 }
 
 export async function addInviteCode(code: string, password: string, role: "admin" | "contributor", createdBy?: string): Promise<boolean> {
@@ -128,6 +138,7 @@ export async function addInviteCode(code: string, password: string, role: "admin
     await saveFirestoreCodes(codes);
   }
   saveLocalCodes(codes);
+  codesCache = null;
   return true;
 }
 
@@ -138,6 +149,7 @@ export async function removeInviteCode(code: string) {
     await saveFirestoreCodes(codes);
   }
   saveLocalCodes(codes);
+  codesCache = null;
 }
 
 export async function verifyStudioCredentials(code: string, password: string): Promise<InviteCodeEntry | null> {

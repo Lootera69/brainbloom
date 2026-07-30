@@ -7,6 +7,8 @@ import type { Puzzle } from "@/types/puzzle";
 
 const DAILY_PUZZLE_KEY = "brainbloom-daily-puzzle";
 
+let dailyPuzzleCache: { puzzle: Puzzle | null; date: string } | null = null;
+
 interface DailyPuzzleDoc {
   puzzleId: string;
   date: string;
@@ -41,27 +43,34 @@ function getToday(): string {
 export async function getDailyPuzzle(): Promise<Puzzle | null> {
   const today = getToday();
 
+  if (dailyPuzzleCache && dailyPuzzleCache.date === today) {
+    return dailyPuzzleCache.puzzle;
+  }
+
+  let result: Puzzle | null = null;
+
   // 1. Try local first — fastest path, no network
   const local = getLocalDaily();
   if (local && local.date === today) {
     const puzzle = await getPuzzle(local.puzzleId);
-    if (puzzle?.published) return puzzle;
+    if (puzzle?.published) result = puzzle;
   }
 
   // 2. Try Firestore
-  if (isFirestoreAvailable()) {
+  if (!result && isFirestoreAvailable()) {
     try {
       const { db } = getFirebase();
-      if (!db) return fallbackPick(today);
-      const ref = doc(db, "settings", "daily-puzzle");
-      const snap = await getDoc(ref);
-      if (snap.exists()) {
-        const data = snap.data() as DailyPuzzleDoc & { updatedAt?: Timestamp };
-        if (data.date === today) {
-          const puzzle = await getPuzzle(data.puzzleId);
-          if (puzzle?.published) {
-            saveLocalDaily({ puzzleId: data.puzzleId, date: data.date, setBy: data.setBy, setByUser: data.setByUser });
-            return puzzle;
+      if (db) {
+        const ref = doc(db, "settings", "daily-puzzle");
+        const snap = await getDoc(ref);
+        if (snap.exists()) {
+          const data = snap.data() as DailyPuzzleDoc & { updatedAt?: Timestamp };
+          if (data.date === today) {
+            const puzzle = await getPuzzle(data.puzzleId);
+            if (puzzle?.published) {
+              saveLocalDaily({ puzzleId: data.puzzleId, date: data.date, setBy: data.setBy, setByUser: data.setByUser });
+              result = puzzle;
+            }
           }
         }
       }
@@ -71,7 +80,12 @@ export async function getDailyPuzzle(): Promise<Puzzle | null> {
   }
 
   // 3. Auto-pick and save
-  return autoPickAndSave(today);
+  if (!result) {
+    result = await autoPickAndSave(today);
+  }
+
+  dailyPuzzleCache = { puzzle: result, date: today };
+  return result;
 }
 
 async function autoPickAndSave(today: string): Promise<Puzzle | null> {
@@ -111,19 +125,6 @@ async function autoPickAndSave(today: string): Promise<Puzzle | null> {
   return pick;
 }
 
-async function fallbackPick(today: string): Promise<Puzzle | null> {
-  const published = (await getPublishedPuzzles()).filter((p) => p.type !== "cipher");
-  if (published.length === 0) return null;
-
-  const sorted = [...published].sort((a, b) => a.id.localeCompare(b.id));
-  const daysSinceEpoch = Math.floor(Date.now() / 86400000);
-  const idx = daysSinceEpoch % sorted.length;
-  const pick = sorted[idx];
-
-  saveLocalDaily({ puzzleId: pick.id, date: today, setBy: "auto" });
-  return pick;
-}
-
 export async function setDailyPuzzle(puzzleId: string, setByUser?: string): Promise<boolean> {
   const today = getToday();
   const puzzle = await getPuzzle(puzzleId);
@@ -149,6 +150,7 @@ export async function setDailyPuzzle(puzzleId: string, setByUser?: string): Prom
   }
 
   saveLocalDaily(docData);
+  dailyPuzzleCache = null;
   return true;
 }
 

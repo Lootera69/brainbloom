@@ -13,6 +13,9 @@ export interface LessonGroupEntry {
 
 const STORAGE_KEY = "brainbloom-lesson-groups";
 
+let lessonsCache: { data: LessonGroupEntry[]; ts: number } | null = null;
+const CACHE_TTL = 300_000; // 5 minutes — lesson groups change rarely
+
 function isFirestoreAvailable() {
   const { db } = getFirebase();
   return !!db;
@@ -62,6 +65,10 @@ async function saveFirestoreGroups(groups: LessonGroupEntry[]) {
 }
 
 export async function getAllLessonGroups(): Promise<LessonGroupEntry[]> {
+  if (lessonsCache && Date.now() - lessonsCache.ts < CACHE_TTL) {
+    return lessonsCache.data;
+  }
+
   if (isFirestoreAvailable()) {
     const fs = await getFirestoreGroups();
     const local = getLocalGroups();
@@ -75,9 +82,12 @@ export async function getAllLessonGroups(): Promise<LessonGroupEntry[]> {
       }
     }
     saveLocalGroups(merged);
+    lessonsCache = { data: merged, ts: Date.now() };
     return merged;
   }
-  return getLocalGroups();
+  const local = getLocalGroups();
+  lessonsCache = { data: local, ts: Date.now() };
+  return local;
 }
 
 export async function getLessonGroups(category: string): Promise<LessonGroupEntry[]> {
@@ -100,6 +110,7 @@ export async function addLessonGroup(category: string, name: string, order: numb
     await saveFirestoreGroups(groups);
   }
   saveLocalGroups(groups);
+  lessonsCache = null;
   return true;
 }
 
@@ -110,6 +121,7 @@ export async function removeLessonGroup(category: string, name: string) {
     await saveFirestoreGroups(filtered);
   }
   saveLocalGroups(filtered);
+  lessonsCache = null;
 }
 
 export async function updateLessonGroup(category: string, oldName: string, newName: string, newOrder: number) {
@@ -121,6 +133,7 @@ export async function updateLessonGroup(category: string, oldName: string, newNa
     await saveFirestoreGroups(groups);
   }
   saveLocalGroups(groups);
+  lessonsCache = null;
 }
 
 export async function reorderLessonGroups(category: string, orderedNames: string[]) {
@@ -136,4 +149,5 @@ export async function reorderLessonGroups(category: string, orderedNames: string
     await saveFirestoreGroups(merged);
   }
   saveLocalGroups(merged);
+  lessonsCache = null;
 }

@@ -7,6 +7,8 @@ import type { Puzzle } from "@/types/puzzle";
 
 const WEEKLY_CIPHER_KEY = "brainbloom-weekly-cipher";
 
+let weeklyCipherCache: { puzzle: Puzzle | null; weekStart: string } | null = null;
+
 interface WeeklyCipherDoc {
   puzzleId: string;
   weekStart: string;
@@ -47,25 +49,32 @@ function weeksSinceEpoch(weekStart: string): number {
 export async function getWeeklyCipher(): Promise<Puzzle | null> {
   const weekStart = getWeekStart();
 
+  if (weeklyCipherCache && weeklyCipherCache.weekStart === weekStart) {
+    return weeklyCipherCache.puzzle;
+  }
+
+  let result: Puzzle | null = null;
+
   const local = getLocalWeekly();
   if (local && local.weekStart === weekStart) {
     const puzzle = await getPuzzle(local.puzzleId);
-    if (puzzle?.published && puzzle.type === "cipher") return puzzle;
+    if (puzzle?.published && puzzle.type === "cipher") result = puzzle;
   }
 
-  if (isFirestoreAvailable()) {
+  if (!result && isFirestoreAvailable()) {
     try {
       const { db } = getFirebase();
-      if (!db) return fallbackPick(weekStart);
-      const ref = doc(db, "settings", "weekly-cipher");
-      const snap = await getDoc(ref);
-      if (snap.exists()) {
-        const data = snap.data() as WeeklyCipherDoc & { updatedAt?: Timestamp };
-        if (data.weekStart === weekStart) {
-          const puzzle = await getPuzzle(data.puzzleId);
-          if (puzzle?.published && puzzle.type === "cipher") {
-            saveLocalWeekly({ puzzleId: data.puzzleId, weekStart: data.weekStart, setBy: data.setBy, setByUser: data.setByUser });
-            return puzzle;
+      if (db) {
+        const ref = doc(db, "settings", "weekly-cipher");
+        const snap = await getDoc(ref);
+        if (snap.exists()) {
+          const data = snap.data() as WeeklyCipherDoc & { updatedAt?: Timestamp };
+          if (data.weekStart === weekStart) {
+            const puzzle = await getPuzzle(data.puzzleId);
+            if (puzzle?.published && puzzle.type === "cipher") {
+              saveLocalWeekly({ puzzleId: data.puzzleId, weekStart: data.weekStart, setBy: data.setBy, setByUser: data.setByUser });
+              result = puzzle;
+            }
           }
         }
       }
@@ -74,7 +83,12 @@ export async function getWeeklyCipher(): Promise<Puzzle | null> {
     }
   }
 
-  return autoPickWeeklyCipher(weekStart);
+  if (!result) {
+    result = await autoPickWeeklyCipher(weekStart);
+  }
+
+  weeklyCipherCache = { puzzle: result, weekStart };
+  return result;
 }
 
 async function autoPickWeeklyCipher(weekStart: string): Promise<Puzzle | null> {
@@ -113,19 +127,6 @@ async function autoPickWeeklyCipher(weekStart: string): Promise<Puzzle | null> {
   return pick;
 }
 
-async function fallbackPick(weekStart: string): Promise<Puzzle | null> {
-  const all = await getPublishedPuzzles();
-  const ciphers = all.filter((p) => p.type === "cipher");
-  if (ciphers.length === 0) return null;
-
-  const sorted = [...ciphers].sort((a, b) => a.id.localeCompare(b.id));
-  const idx = weeksSinceEpoch(weekStart) % sorted.length;
-  const pick = sorted[idx];
-
-  saveLocalWeekly({ puzzleId: pick.id, weekStart, setBy: "auto" });
-  return pick;
-}
-
 export async function setWeeklyCipher(puzzleId: string, setByUser?: string): Promise<boolean> {
   const weekStart = getWeekStart();
   const puzzle = await getPuzzle(puzzleId);
@@ -151,6 +152,7 @@ export async function setWeeklyCipher(puzzleId: string, setByUser?: string): Pro
   }
 
   saveLocalWeekly(docData);
+  weeklyCipherCache = null;
   return true;
 }
 

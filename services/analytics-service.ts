@@ -18,6 +18,9 @@ export interface AnalyticsData {
   premiumConversionRate: number;
 }
 
+let analyticsCache: { data: AnalyticsData; ts: number; key: string } | null = null;
+const CACHE_TTL = 120_000; // 2 minutes — analytics derived from puzzles
+
 async function getPremiumStats(): Promise<{ premiumUsers: number; estimatedMonthlyRevenue: number; premiumConversionRate: number }> {
   let premiumCount = 0;
   let totalUsers = 0;
@@ -57,6 +60,11 @@ async function getPremiumStats(): Promise<{ premiumUsers: number; estimatedMonth
 }
 
 export async function getAnalytics(timeRange?: "7d" | "30d" | "all"): Promise<AnalyticsData> {
+  const cacheKey = timeRange ?? "all";
+  if (analyticsCache && analyticsCache.key === cacheKey && Date.now() - analyticsCache.ts < CACHE_TTL) {
+    return analyticsCache.data;
+  }
+
   const allPuzzles = await getPuzzles();
   const cutoff = timeRange && timeRange !== "all"
     ? Date.now() - (timeRange === "7d" ? 7 : 30) * 86400000
@@ -103,7 +111,7 @@ export async function getAnalytics(timeRange?: "7d" | "30d" | "all"): Promise<An
 
   const premiumStats = await getPremiumStats();
 
-  return {
+  const result: AnalyticsData = {
     totalPuzzles,
     publishedPuzzles,
     totalCompletions,
@@ -116,4 +124,7 @@ export async function getAnalytics(timeRange?: "7d" | "30d" | "all"): Promise<An
     recentPuzzles,
     ...premiumStats,
   };
+
+  analyticsCache = { data: result, ts: Date.now(), key: cacheKey };
+  return result;
 }

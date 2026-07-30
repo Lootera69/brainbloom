@@ -142,7 +142,8 @@ function isFirestoreAvailable() {
 }
 
 let puzzlesCache: { data: Puzzle[]; ts: number } | null = null;
-const CACHE_TTL = 30_000;
+const puzzleByIdCache: Map<string, { data: Puzzle | null; ts: number }> = new Map();
+const CACHE_TTL = 120_000; // 2 minutes — puzzle data changes infrequently
 
 async function getFirestorePuzzles(): Promise<Puzzle[]> {
   const { db } = getFirebase();
@@ -154,6 +155,7 @@ async function getFirestorePuzzles(): Promise<Puzzle[]> {
 
 export function clearPuzzlesCache() {
   puzzlesCache = null;
+  puzzleByIdCache.clear();
 }
 
 export async function getPuzzles(): Promise<Puzzle[]> {
@@ -204,9 +206,17 @@ export async function getPublishedByCategory(category: string): Promise<Puzzle[]
 }
 
 export async function getPuzzle(id: string): Promise<Puzzle | null> {
+  const cached = puzzleByIdCache.get(id);
+  if (cached && Date.now() - cached.ts < CACHE_TTL) {
+    return cached.data;
+  }
+
   // Check local first — avoids Firestore read for already-known puzzles
   const local = getLocalPuzzles().find((p) => p.id === id);
-  if (local) return local;
+  if (local) {
+    puzzleByIdCache.set(id, { data: local, ts: Date.now() });
+    return local;
+  }
 
   if (isFirestoreAvailable()) {
     try {
@@ -214,11 +224,16 @@ export async function getPuzzle(id: string): Promise<Puzzle | null> {
       if (!db) return null;
       const ref = doc(db, "puzzles", id);
       const snap = await getDoc(ref);
-      if (snap.exists()) return puzzleFromFirestore(snap.id, snap.data() as Record<string, unknown>);
+      if (snap.exists()) {
+        const puzzle = puzzleFromFirestore(snap.id, snap.data() as Record<string, unknown>);
+        puzzleByIdCache.set(id, { data: puzzle, ts: Date.now() });
+        return puzzle;
+      }
     } catch (e) {
       console.error("Firestore getPuzzle failed:", e);
     }
   }
+  puzzleByIdCache.set(id, { data: null, ts: Date.now() });
   return null;
 }
 

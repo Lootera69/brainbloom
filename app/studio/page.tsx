@@ -16,7 +16,7 @@ import { SelectDropdown } from "@/components/ui/select-dropdown";
 import { ErrorBoundary } from "@/components/error-boundary";
 import { useLoadingTimeout } from "@/hooks/use-loading-timeout";
 import { ErrorFallback } from "@/components/error-fallback";
-import { cn } from "@/lib/utils";
+import { cn, stripHtml } from "@/lib/utils";
 
 const STATUS_LABELS: Record<ReviewStatus, string> = {
   draft: "Draft",
@@ -517,7 +517,7 @@ export default function StudioPage() {
                           </span>
                         )}
                         {!puzzle.published && (puzzle.reviewComments?.length ?? 0) > 0 && (
-                          <span className="inline-flex items-center gap-1 rounded-lg bg-muted/60 px-2 py-0.5 text-[10px] font-medium text-muted-foreground ring-1 ring-inset ring-border/50" title={puzzle.reviewComments?.[puzzle.reviewComments.length - 1]?.text.replace(/<[^>]*>/g, '') ?? ""}>
+                          <span className="inline-flex items-center gap-1 rounded-lg bg-muted/60 px-2 py-0.5 text-[10px] font-medium text-muted-foreground ring-1 ring-inset ring-border/50" title={stripHtml(puzzle.reviewComments?.[puzzle.reviewComments.length - 1]?.text ?? "")}>
                             <MessageSquare className="size-2.5" />
                             {puzzle.reviewComments?.length} {puzzle.reviewComments?.length === 1 ? "Note" : "Notes"}
                           </span>
@@ -571,7 +571,7 @@ export default function StudioPage() {
                             <span className="ml-1.5 text-[10px] text-muted-foreground/40">
                               {new Date(latest.timestamp).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
                             </span>
-                            <div className="mt-0.5 text-[11px] italic text-muted-foreground/50 [&_p]:mb-1 last:[&_p]:mb-0 [&_ul]:list-disc [&_ul]:pl-4 [&_ol]:list-decimal [&_ol]:pl-4" dangerouslySetInnerHTML={{ __html: latest.text }} />
+                            <div className="mt-0.5 text-[11px] italic text-muted-foreground/50 whitespace-pre-wrap">{stripHtml(latest.text)}</div>
                           </div>
                         );
                       })()}
