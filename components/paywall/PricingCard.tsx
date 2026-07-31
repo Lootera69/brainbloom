@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
-  CheckCircle2, Sparkles, Infinity, Heart, Crown, BarChart3, Zap, Ban, Loader2,
+  CheckCircle2, Sparkles, Repeat, Heart, Crown, BarChart3, Zap, Ban, Loader2, Snowflake,
 } from "lucide-react";
 import { PREMIUM_BENEFITS, type PricingConfig } from "@/lib/subscription";
 import { getPricingConfig } from "@/services/pricing-service";
@@ -11,10 +11,22 @@ import { purchaseProduct } from "@/services/purchase-service";
 import { useUserStore } from "@/store/user-store";
 import { hasPremiumAccess } from "@/services/entitlement-service";
 import { toast } from "sonner";
+import type { LucideIcon } from "lucide-react";
 
-const benefitIconMap: Record<string, typeof Infinity> = {
-  Infinity, Heart, Sparkles, Crown, Frame: Crown, BarChart3, Zap, Ban,
-};
+function getBenefitIcon(name: string): LucideIcon {
+  switch (name) {
+    case "Infinity": return Repeat;
+    case "Heart": return Heart;
+    case "Sparkles": return Sparkles;
+    case "Crown": return Crown;
+    case "Frame": return Crown;
+    case "BarChart3": return BarChart3;
+    case "Zap": return Zap;
+    case "Ban": return Ban;
+    case "Snowflake": return Snowflake;
+    default: return Sparkles;
+  }
+}
 
 interface PricingCardProps {
   onClose: () => void;
@@ -47,7 +59,7 @@ export function PricingCard({ onClose }: PricingCardProps) {
 
     const days = plan === "monthly" ? 30 : 365;
     const expiry = Date.now() + days * 86400000;
-    setTier("premium", expiry);
+    setTier("premium", expiry, plan === "yearly" ? 3 : undefined);
     toast.success("Welcome to Premium! 🎉", { position: "top-center" });
     setPurchasing(null);
     onClose();
@@ -114,6 +126,42 @@ export function PricingCard({ onClose }: PricingCardProps) {
         </motion.div>
       )}
 
+      {/* Yearly bonus banner */}
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+        className={`relative mx-auto flex w-full items-center gap-3 overflow-hidden rounded-xl border px-4 py-3 transition-colors ${
+          plan === "yearly"
+            ? "border-blue-500/30 bg-blue-500/[0.04]"
+            : "border-border"
+        }`}
+      >
+        <span className="relative z-10 flex size-9 shrink-0 items-center justify-center rounded-lg bg-blue-500/15">
+          <Snowflake className="size-4 text-blue-400" />
+        </span>
+        <div className="relative z-10 min-w-0 flex-1">
+          <p className="text-sm font-semibold">Yearly Bonus: 3 Free Streak Freezes</p>
+          <p className="text-[11px] text-muted-foreground">Protect your streak every year — included free</p>
+        </div>
+        {plan === "yearly" && (
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="relative z-10 rounded-full bg-blue-500/15 px-2.5 py-1 text-[10px] font-bold text-blue-400"
+          >
+            FREE
+          </motion.span>
+        )}
+        {plan === "yearly" && (
+          <motion.span
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/[0.06] to-transparent"
+            animate={{ left: ["-100%", "200%"] }}
+            transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+          />
+        )}
+      </motion.div>
+
       {/* Plan toggle */}
       <div className="relative mx-auto flex rounded-xl bg-muted p-1">
         {(["monthly", "yearly"] as const).map((p) => (
@@ -125,6 +173,12 @@ export function PricingCard({ onClose }: PricingCardProps) {
             }`}
           >
             {p === "monthly" ? "Monthly" : "Yearly"}
+            {p === "yearly" && (
+              <span className="ml-1 inline-flex items-center gap-0.5 rounded-full bg-blue-500/15 px-1.5 py-0.5 text-[9px] font-bold text-blue-400">
+                <Snowflake className="size-2" />
+                3 FREE
+              </span>
+            )}
             {pricing.offerActive && p !== plan && (
               <span className="ml-1 text-[10px] text-emerald-500">
                 Save {p === "monthly" ? monthlyPercentOff : yearlyPercentOff}%
@@ -177,27 +231,42 @@ export function PricingCard({ onClose }: PricingCardProps) {
 
       {/* Benefits list */}
       <div className="space-y-2">
-        {PREMIUM_BENEFITS.map((benefit, i) => {
-          const Icon = benefitIconMap[benefit.icon] || Sparkles;
-          return (
-            <motion.div
-              key={benefit.title}
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 + i * 0.03 }}
-              className="flex items-center gap-3 rounded-xl bg-muted/30 px-4 py-2.5"
-            >
-              <span className="flex size-8 items-center justify-center rounded-lg bg-primary/10 shrink-0">
-                <Icon className="size-4 text-primary" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-sm font-semibold">{benefit.title}</p>
-                <p className="text-[11px] text-muted-foreground">{benefit.description}</p>
-              </div>
-              <CheckCircle2 className="ml-auto size-4 shrink-0 text-emerald-500" />
-            </motion.div>
-          );
-        })}
+        {PREMIUM_BENEFITS
+          .filter((b) => !b.plan || plan === b.plan)
+          .map((benefit, i) => {
+            const IconComponent = getBenefitIcon(String(benefit.icon));
+            const isYearlyBonus = benefit.plan === "yearly" && plan === "yearly";
+            return (
+              <motion.div
+                key={benefit.title}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 + i * 0.03 }}
+                className={`flex items-center gap-3 rounded-xl px-4 py-2.5 ${
+                  isYearlyBonus
+                    ? "bg-gradient-to-r from-blue-500/15 via-blue-500/10 to-cyan-500/15 border border-blue-500/20"
+                    : "bg-muted/30"
+                }`}
+              >
+                <span className={`flex size-8 items-center justify-center rounded-lg shrink-0 ${
+                  isYearlyBonus ? "bg-blue-500/20" : "bg-primary/10"
+                }`}>
+                  <IconComponent className={`size-4 ${isYearlyBonus ? "text-blue-400" : "text-primary"}`} />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold">{benefit.title}</p>
+                  <p className="text-[11px] text-muted-foreground">{benefit.description}</p>
+                </div>
+                {isYearlyBonus ? (
+                  <span className="shrink-0 rounded-full bg-blue-500/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">
+                    FREE
+                  </span>
+                ) : (
+                  <CheckCircle2 className="ml-auto size-4 shrink-0 text-emerald-500" />
+                )}
+              </motion.div>
+            );
+          })}
       </div>
 
       {/* CTA */}

@@ -139,6 +139,7 @@ export interface PremiumBenefit {
   icon: string;
   title: string;
   description: string;
+  plan?: "yearly";
 }
 
 export const PREMIUM_BENEFITS: PremiumBenefit[] = [
@@ -148,4 +149,5 @@ export const PREMIUM_BENEFITS: PremiumBenefit[] = [
   { icon: "Crown", title: "VIP Profile", description: "Luxurious golden profile with animated borders and shimmer effects" },
   { icon: "Zap", title: "2x XP Boost", description: "Level up twice as fast" },
   { icon: "Ban", title: "Ad-Free", description: "No ads, no interruptions" },
+  { icon: "Snowflake", title: "3 Free Streak Freezes", description: "Protect your streak every year — free with your membership", plan: "yearly" },
 ];

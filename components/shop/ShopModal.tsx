@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { useRouter } from "next/navigation";
+import { hasPremiumAccess } from "@/services/entitlement-service";
 import { SHOP_PRODUCTS, type PricingConfig, getProductPriceLabel } from "@/lib/subscription";
 import { getPricingConfig } from "@/services/pricing-service";
 import { purchaseProduct } from "@/services/purchase-service";
@@ -36,6 +37,9 @@ export function ShopModal({ onClose }: ShopModalProps) {
   const [rainParams, setRainParams] = useState<{ type: "gems" | "hearts" | "snowflakes"; amount: number } | null>(null);
   const rainTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const gems = useUserStore((s) => s.gems);
+  const tier = useUserStore((s) => s.tier);
+  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
+  const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
   const router = useRouter();
 
   useEffect(() => {
@@ -170,7 +174,9 @@ export function ShopModal({ onClose }: ShopModalProps) {
                   .filter((p) =>
                     activeTab === "gems"
                       ? p.category === "gems"
-                      : p.category === "hearts" || p.category === "streak_freeze",
+                      : isPremium
+                        ? p.category === "streak_freeze"
+                        : p.category === "hearts" || p.category === "streak_freeze",
                   )
                   .map((product, i) => (
                     <ProductCard

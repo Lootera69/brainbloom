@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Heart, Snowflake, Gem, Infinity, Shield } from "lucide-react";
+import { Heart, Snowflake, Gem, Repeat, Shield } from "lucide-react";
 import { SHOP_PRODUCTS, GEM_HEART_REFILL_COST, GEM_STREAK_FREEZE_COST } from "@/lib/subscription";
 import { purchaseProduct } from "@/services/purchase-service";
 import { useUserStore } from "@/store/user-store";
@@ -73,8 +73,12 @@ export function HeartsTab() {
   }, [purchasing, restoreHearts, addStreakFreezes]);
 
   const products = useMemo(
-    () => SHOP_PRODUCTS.filter((p) => p.category === "hearts" || p.category === "streak_freeze"),
-    [],
+    () => SHOP_PRODUCTS.filter((p) => {
+      if (p.category === "streak_freeze") return true;
+      if (p.category === "hearts" && isPremium) return false;
+      return p.category === "hearts";
+    }),
+    [isPremium],
   );
 
   const heartBars = Array.from({ length: 5 }, (_, i) => i < hearts);
@@ -110,7 +114,7 @@ export function HeartsTab() {
                 : "bg-rose-500/10",
             )}>
               {isPremium ? (
-                <Infinity className="size-5 text-amber-400" />
+                <Repeat className="size-5 text-amber-400" />
               ) : (
                 <Heart className="size-5 fill-rose-400 text-rose-400" />
               )}
@@ -132,7 +136,7 @@ export function HeartsTab() {
           )}
           {isPremium && (
             <div className="mt-3 flex items-center gap-1.5 text-[11px] font-medium text-amber-400/60">
-              <Infinity className="size-3" />
+              <Repeat className="size-3" />
               Unlimited
             </div>
           )}
@@ -168,23 +172,46 @@ export function HeartsTab() {
       </div>
 
       {/* Product list */}
-      <div className="space-y-2">
-        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1">
-          Quick Buy
-        </h3>
-        {products.map((product, i) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            priceLabel={product.priceLabel}
-            purchasing={purchasing === product.id}
-            purchased={purchased === product.id}
-            onPurchase={() => handlePurchase(product)}
-            index={i}
-            particleType={product.category === "streak_freeze" ? "snowflakes" : "hearts"}
-          />
-        ))}
-      </div>
+      {isPremium && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-3 rounded-xl border border-amber-500/15 bg-amber-500/[0.04] px-4 py-3"
+        >
+          <span className="flex size-8 items-center justify-center rounded-lg bg-amber-400/10 shrink-0">
+            <Repeat className="size-4 text-amber-400" />
+          </span>
+          <p className="text-sm text-muted-foreground">
+            Hearts are unlimited with <span className="font-semibold text-amber-400">Premium</span> — no refills needed
+          </p>
+        </motion.div>
+      )}
+      {products.length > 0 && (
+        <div className="space-y-2">
+          {!isPremium && (
+            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1">
+              Quick Buy
+            </h3>
+          )}
+          {isPremium && products.length > 0 && (
+            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-1">
+              Streak Protection
+            </h3>
+          )}
+          {products.map((product, i) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              priceLabel={product.priceLabel}
+              purchasing={purchasing === product.id}
+              purchased={purchased === product.id}
+              onPurchase={() => handlePurchase(product)}
+              index={i}
+              particleType={product.category === "streak_freeze" ? "snowflakes" : "hearts"}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Gem Exchange */}
       <div className="relative overflow-hidden rounded-2xl border border-cyan-500/10 bg-gradient-to-br from-cyan-500/[0.04] via-blue-500/[0.02] to-transparent p-4">
@@ -199,26 +226,28 @@ export function HeartsTab() {
             </span>
           </div>
           <div className="space-y-2">
-            <motion.div
-              initial={{ opacity: 0, x: -8 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 }}
-              className="flex items-center justify-between rounded-xl bg-white/[0.04] px-4 py-3 hover:bg-white/[0.06] transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-rose-500/15 to-pink-500/15">
-                  <Heart className="size-4 text-rose-400" />
-                </span>
-                <div>
-                  <p className="text-sm font-medium">Heart Refill</p>
-                  <p className="text-[10px] text-muted-foreground/50">Restore all 5 hearts instantly</p>
+            {!isPremium && (
+              <motion.div
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 }}
+                className="flex items-center justify-between rounded-xl bg-white/[0.04] px-4 py-3 hover:bg-white/[0.06] transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-rose-500/15 to-pink-500/15">
+                    <Heart className="size-4 text-rose-400" />
+                  </span>
+                  <div>
+                    <p className="text-sm font-medium">Heart Refill</p>
+                    <p className="text-[10px] text-muted-foreground/50">Restore all 5 hearts instantly</p>
+                  </div>
                 </div>
-              </div>
-              <span className="flex items-center gap-1.5 rounded-lg bg-cyan-500/10 px-2.5 py-1.5 text-xs font-bold text-cyan-400">
-                <Gem className="size-3" />
-                {GEM_HEART_REFILL_COST}
-              </span>
-            </motion.div>
+                <span className="flex items-center gap-1.5 rounded-lg bg-cyan-500/10 px-2.5 py-1.5 text-xs font-bold text-cyan-400">
+                  <Gem className="size-3" />
+                  {GEM_HEART_REFILL_COST}
+                </span>
+              </motion.div>
+            )}
             <motion.div
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}

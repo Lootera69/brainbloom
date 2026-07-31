@@ -122,7 +122,7 @@ interface UserState {
   checkAchievements: () => void;
   claimDailyBonus: () => { type: "xp" | "gems" | "streak-freeze"; amount: number; label: string } | null;
   canClaimDailyBonus: () => boolean;
-  setTier: (tier: "free" | "premium", expiry?: number | null) => void;
+  setTier: (tier: "free" | "premium", expiry?: number | null, grantStreakFreezes?: number) => void;
   incrementPuzzlePlayed: () => void;
   canPlayPuzzle: () => boolean;
   incrementAdWatched: () => void;
@@ -953,8 +953,13 @@ export const useUserStore = create<UserState>()(
         return picked;
       },
 
-      setTier: (tier, expiry = null) => {
-        set({ tier, subscriptionExpiry: expiry });
+      setTier: (tier, expiry = null, grantStreakFreezes) => {
+        const { streakFreezes } = get();
+        set({
+          tier,
+          subscriptionExpiry: expiry,
+          ...(grantStreakFreezes ? { streakFreezes: streakFreezes + grantStreakFreezes } : {}),
+        });
         get().syncToFirestore();
       },
 
@@ -993,8 +998,8 @@ export const useUserStore = create<UserState>()(
       },
 
       buyHeartRefillWithGems: () => {
-        const { gems } = get();
-        if (gems < 50) return false;
+        const { gems, tier } = get();
+        if (tier === "premium" || gems < 50) return false;
         set({ gems: gems - 50, hearts: Math.min(5, get().hearts + 5), nextHeartAt: null });
         return true;
       },
