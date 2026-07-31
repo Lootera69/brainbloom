@@ -77,7 +77,7 @@ export function AvatarSelector({
           {/* Scrollable body */}
           <div
             data-scroll
-            className="flex flex-col overflow-y-auto rounded-2xl sm:rounded-3xl"
+            className="flex flex-col overflow-y-auto overscroll-contain rounded-2xl sm:rounded-3xl"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-border/30 px-4 py-3 sm:px-6 sm:py-4 shrink-0 dark:border-white/5">

@@ -28,6 +28,14 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const showShop = useUIStore((s) => s.showShop);
   const setShowShop = useUIStore((s) => s.setShowShop);
   const [mounted, setMounted] = useState(false);
+  const mainRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      mainRef.current?.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [pathname]);
 
   useEffect(() => {
     if (!pathname.startsWith("/learn")) setFocusMode(false);
@@ -122,7 +130,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       <AnimatedBackground />
       {!focusMode && <Sidebar />}
       <main
-        className="relative flex-1 overflow-y-auto"
+        ref={mainRef}
+        className="relative flex-1 overflow-y-auto overflow-x-hidden overscroll-y-none"
         style={
           focusMode
             ? {}

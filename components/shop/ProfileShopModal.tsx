@@ -57,7 +57,7 @@ export function ProfileShopModal({ type, onClose }: Props) {
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto px-5 py-4">
+          <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-4">
             {type === "gems" ? <GemsTab /> : <HeartsTab />}
           </div>
         </motion.div>

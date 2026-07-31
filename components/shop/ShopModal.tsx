@@ -163,7 +163,7 @@ export function ShopModal({ onClose }: ShopModalProps) {
           </div>
 
           {/* Scrollable content */}
-          <div className="flex-1 overflow-y-auto px-5 py-4">
+          <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-4">
             {activeTab === "premium" && (
               <PremiumTab onClose={onClose} />
             )}

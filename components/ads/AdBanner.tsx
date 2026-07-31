@@ -20,10 +20,10 @@ export function AdBanner({ className, slot, format = "auto" }: AdBannerProps) {
   if (isPremium || !adsenseId) return null;
 
   return (
-    <div className={cn("my-6 flex justify-center", className)}>
+    <div className={cn("my-6 flex w-full justify-center overflow-hidden", className)}>
       <ins
         className="adsbygoogle"
-        style={{ display: "block" }}
+        style={{ display: "block", maxWidth: "100%" }}
         data-ad-client={adsenseId}
         data-ad-slot={slot ?? undefined}
         data-ad-format={format}
