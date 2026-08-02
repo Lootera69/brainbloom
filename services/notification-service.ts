@@ -122,8 +122,8 @@ export async function subscribeToPush(user: PushUser): Promise<{ success: boolea
   }
 }
 
-export async function unsubscribeFromPush(user: PushUser): Promise<void> {
-  if (!isPushSupported()) return;
+export async function unsubscribeFromPush(user: PushUser): Promise<{ success: boolean }> {
+  if (!isPushSupported()) return { success: true };
   try {
     const registration = await navigator.serviceWorker.ready;
     const subscription = await registration.pushManager.getSubscription();
@@ -131,8 +131,10 @@ export async function unsubscribeFromPush(user: PushUser): Promise<void> {
       await subscription.unsubscribe();
       await deleteToken(user.uid, subscription);
     }
+    return { success: true };
   } catch (e) {
     console.error("Failed to unsubscribe from push:", e);
+    return { success: false };
   }
 }
 

@@ -148,25 +148,34 @@ export default function ProfilePage() {
   }, [isGuest, userId]);
 
   const toggleNotifications = async () => {
-    if (!userId) return;
+    if (!userId || notificationsLoading) return;
+    const previous = notificationsEnabled;
+    setNotificationsEnabled(!previous);
     setNotificationsLoading(true);
     try {
-      if (notificationsEnabled) {
-        await unsubscribeFromPush({ uid: userId });
-        setNotificationsEnabled(false);
+      if (previous) {
+        const result = await unsubscribeFromPush({ uid: userId });
+        if (!result.success) {
+          setNotificationsEnabled(true);
+          toast.error("Failed to disable notifications. Please try again.", { position: "top-center" });
+          return;
+        }
         toast.success("Notifications disabled", { position: "top-center" });
       } else {
         const status = getPushStatus();
         if (!status.supported) {
+          setNotificationsEnabled(false);
           toast.error("Push notifications are not supported on this browser.", { position: "top-center" });
           return;
         }
         if (!status.configured) {
+          setNotificationsEnabled(false);
           toast.error("Push notifications are not configured yet.", { position: "top-center" });
           return;
         }
         const perm = await requestNotificationPermission();
         if (perm !== "granted") {
+          setNotificationsEnabled(false);
           if (perm === "denied") {
             toast.error("Notifications blocked. Enable them in your browser settings.", { position: "top-center" });
           }
@@ -174,13 +183,14 @@ export default function ProfilePage() {
         }
         const result = await subscribeToPush({ uid: userId });
         if (!result.success) {
+          setNotificationsEnabled(false);
           toast.error(result.error ?? "Failed to enable notifications", { position: "top-center" });
           return;
         }
-        setNotificationsEnabled(true);
         toast.success("Notifications enabled", { position: "top-center" });
       }
     } catch {
+      setNotificationsEnabled(previous);
       toast.error("Failed to update notifications", { position: "top-center" });
     } finally {
       setNotificationsLoading(false);
