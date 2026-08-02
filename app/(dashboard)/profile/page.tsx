@@ -748,12 +748,12 @@ export default function ProfilePage() {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="mt-3 grid grid-cols-2 gap-3"
+        className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2"
       >
-        <GlassCard intensity="light" className="flex items-center justify-between p-4">
-          <div className="flex items-center gap-3">
+        <GlassCard intensity="light" className="flex items-center justify-between gap-3 p-3 sm:p-4">
+          <div className="flex min-w-0 items-center gap-3">
             <span className={cn(
-              "flex size-10 items-center justify-center rounded-xl",
+              "flex size-10 shrink-0 items-center justify-center rounded-xl",
               soundEnabled ? "bg-primary/10" : "bg-muted",
             )}>
               {soundEnabled ? (
@@ -762,20 +762,21 @@ export default function ProfilePage() {
                 <VolumeX className="size-5 text-muted-foreground" />
               )}
             </span>
-            <div>
-              <p className="text-sm font-semibold">Sound Effects</p>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold">Sound Effects</p>
               <p className="text-[11px] text-muted-foreground">
                 {soundEnabled ? "On" : "Off"}
               </p>
             </div>
           </div>
           <button
+            aria-label="Toggle sound effects"
             onClick={() => {
               if (soundEnabled) playToggleOff(); else playToggleOn();
               setSoundEnabled(!soundEnabled);
             }}
             className={cn(
-              "relative inline-flex h-6 w-11 items-center rounded-full transition-colors",
+              "relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors",
               soundEnabled ? "bg-primary" : "bg-muted-foreground/30",
             )}
           >
@@ -784,17 +785,17 @@ export default function ProfilePage() {
               transition={{ type: "spring", stiffness: 500, damping: 30 }}
               className="inline-block size-5 rounded-full bg-white shadow-sm"
               style={{
-                marginLeft: soundEnabled ? "22px" : "2px",
+                marginLeft: soundEnabled ? "26px" : "2px",
               }}
             />
           </button>
         </GlassCard>
 
         {!isGuest && (
-          <GlassCard intensity="light" className="flex items-center justify-between p-4">
-            <div className="flex items-center gap-3">
+          <GlassCard intensity="light" className="flex items-center justify-between gap-3 p-3 sm:p-4">
+            <div className="flex min-w-0 items-center gap-3">
               <span className={cn(
-                "flex size-10 items-center justify-center rounded-xl",
+                "flex size-10 shrink-0 items-center justify-center rounded-xl",
                 notificationsEnabled ? "bg-primary/10" : "bg-muted",
               )}>
                 {notificationsEnabled ? (
@@ -803,18 +804,19 @@ export default function ProfilePage() {
                   <BellOff className="size-5 text-muted-foreground" />
                 )}
               </span>
-              <div>
-                <p className="text-sm font-semibold">Push Notifications</p>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold">Push Notifications</p>
                 <p className="text-[11px] text-muted-foreground">
                   {notificationsEnabled ? "On" : "Off"}
                 </p>
               </div>
             </div>
             <button
+              aria-label="Toggle push notifications"
               onClick={toggleNotifications}
               disabled={notificationsLoading}
               className={cn(
-                "relative inline-flex h-6 w-11 items-center rounded-full transition-colors disabled:opacity-50",
+                "relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors disabled:opacity-50",
                 notificationsEnabled ? "bg-primary" : "bg-muted-foreground/30",
               )}
             >
@@ -823,7 +825,7 @@ export default function ProfilePage() {
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 className="inline-block size-5 rounded-full bg-white shadow-sm"
                 style={{
-                  marginLeft: notificationsEnabled ? "22px" : "2px",
+                  marginLeft: notificationsEnabled ? "26px" : "2px",
                 }}
               />
             </button>

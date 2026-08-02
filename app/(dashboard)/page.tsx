@@ -18,6 +18,7 @@ import { LeaderboardCard } from "@/features/home/components/LeaderboardCard";
 import { SectionHeader } from "@/features/home/components/SectionHeader";
 import { DailyQuests } from "@/features/home/components/DailyQuests";
 import { PracticeToHeal } from "@/features/home/components/PracticeToHeal";
+import { PushReminderBanner } from "@/features/home/components/PushReminderBanner";
 import { WeeklyCipherCard } from "@/features/home/components/WeeklyCipherCard";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
 import { motion } from "framer-motion";
@@ -132,6 +133,8 @@ export default function HomePage() {
       </div>
 
       <StreakBar />
+
+      <PushReminderBanner />
 
       <DailyRewardChest />
 

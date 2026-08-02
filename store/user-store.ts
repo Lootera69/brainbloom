@@ -83,6 +83,7 @@ interface UserState {
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
   soundEnabled: boolean;
+  pushPromptedDate: string | null;
   theme: "light" | "dark" | "system";
   weeklyXp: number;
   weeklyStartDate: number;
@@ -133,6 +134,7 @@ interface UserState {
   completeDailyPuzzle: () => void;
   hasCompletedDailyPuzzle: () => boolean;
   setSoundEnabled: (v: boolean) => void;
+  markPushPrompted: () => void;
   setTheme: (t: "light" | "dark" | "system") => void;
   clearCelebration: () => void;
   checkAchievements: () => void;
@@ -263,6 +265,7 @@ export const useUserStore = create<UserState>()(
       dailyPuzzleStreak: 0,
       dailyPuzzleLastDate: null,
       soundEnabled: true,
+      pushPromptedDate: null,
       theme: "system",
       weeklyXp: 0,
       weeklyStartDate: Date.now(),
@@ -1014,6 +1017,8 @@ export const useUserStore = create<UserState>()(
         import("@/services/sound-service").then(({ setSoundEnabled }) => setSoundEnabled(v));
       },
 
+      markPushPrompted: () => set({ pushPromptedDate: new Date().toDateString() }),
+
       setTheme: (t) => {
         set({ theme: t });
         get().syncToFirestore();
@@ -1249,6 +1254,7 @@ export const useUserStore = create<UserState>()(
         dailyPuzzleStreak: state.dailyPuzzleStreak,
         dailyPuzzleLastDate: state.dailyPuzzleLastDate,
         soundEnabled: state.soundEnabled,
+        pushPromptedDate: state.pushPromptedDate,
         theme: state.theme,
         weeklyXp: state.weeklyXp,
         weeklyStartDate: state.weeklyStartDate,
