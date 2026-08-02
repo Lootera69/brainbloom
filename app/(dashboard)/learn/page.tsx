@@ -155,6 +155,12 @@ function LearnPage() {
       if (daily === "true") {
         const puzzle = await getDailyPuzzle();
         if (puzzle && h > 0 && !checkDaily()) {
+          // The daily puzzle counts toward the free-tier daily limit (strict 3/day)
+          if (!useUserStore.getState().canPlayPuzzle()) {
+            setPaywallType("limit");
+            return;
+          }
+          useUserStore.getState().incrementPuzzlePlayed();
           setCurrentPuzzle(puzzle);
           setIsDaily(true);
           setView("play");
@@ -268,6 +274,51 @@ function LearnPage() {
     return null;
   }
 
+  const advanceToNextPuzzle = useCallback((next: Puzzle, progress: LessonProgress) => {
+    // Story and wonder puzzles bypass hearts, daily limits, and play counting
+    if (next.type === "story" || next.type === "wonder") {
+      setAttempt(0);
+      setLessonProgress({
+        ...progress,
+        currentOrder: next.lessonOrder ?? 1,
+        completedInGroup: progress.completedInGroup + 1,
+      });
+      if (next.lessonContent?.trim()) {
+        setCurrentPuzzle(next);
+        setView("lesson");
+      } else {
+        setCurrentPuzzle(next);
+        setView("play");
+      }
+      return;
+    }
+
+    // Every regular puzzle consumed during a lesson counts toward the daily limit
+    if (!useUserStore.getState().canPlayPuzzle()) {
+      setPaywallType("limit");
+      setCurrentPuzzle(null);
+      setLessonProgress(null);
+      setFocusMode(false);
+      setView("browse");
+      return;
+    }
+
+    incrementPuzzlePlayed();
+    setAttempt(0);
+    setLessonProgress({
+      ...progress,
+      currentOrder: next.lessonOrder ?? 1,
+      completedInGroup: progress.completedInGroup + 1,
+    });
+    if (next.lessonContent?.trim()) {
+      setCurrentPuzzle(next);
+      setView("lesson");
+    } else {
+      setCurrentPuzzle(next);
+      setView("play");
+    }
+  }, [incrementPuzzlePlayed, setFocusMode]);
+
   const handleComplete = useCallback((correct: boolean, xpEarned: number) => {
     if (!currentPuzzle) return;
 
@@ -309,19 +360,7 @@ function LearnPage() {
         });
         const next = findNextInGroup(currentPuzzle, catPuzzles);
         if (next) {
-          setAttempt(0);
-          setLessonProgress({
-            ...lessonProgress,
-            currentOrder: next.lessonOrder ?? 1,
-            completedInGroup: lessonProgress.completedInGroup + 1,
-          });
-          if (next.lessonContent?.trim()) {
-            setCurrentPuzzle(next);
-            setView("lesson");
-          } else {
-            setCurrentPuzzle(next);
-            setView("play");
-          }
+          advanceToNextPuzzle(next, lessonProgress);
           return;
         }
       }
@@ -344,19 +383,7 @@ function LearnPage() {
         });
         const next = findNextInGroup(currentPuzzle, catPuzzles);
         if (next) {
-          setAttempt(0);
-          setLessonProgress({
-            ...lessonProgress,
-            currentOrder: next.lessonOrder ?? 1,
-            completedInGroup: lessonProgress.completedInGroup + 1,
-          });
-          if (next.lessonContent?.trim()) {
-            setCurrentPuzzle(next);
-            setView("lesson");
-          } else {
-            setCurrentPuzzle(next);
-            setView("play");
-          }
+          advanceToNextPuzzle(next, lessonProgress);
           return;
         }
       }
@@ -418,19 +445,7 @@ function LearnPage() {
 
         const next = findNextInGroup(currentPuzzle, catPuzzles);
         if (next) {
-          setAttempt(0);
-          setLessonProgress({
-            ...lessonProgress,
-            currentOrder: next.lessonOrder ?? 1,
-            completedInGroup: lessonProgress.completedInGroup + 1,
-          });
-          if (next.lessonContent?.trim()) {
-            setCurrentPuzzle(next);
-            setView("lesson");
-          } else {
-            setCurrentPuzzle(next);
-            setView("play");
-          }
+          advanceToNextPuzzle(next, lessonProgress);
           return;
         }
         // Last in group — falls through to return to browse
@@ -464,7 +479,7 @@ function LearnPage() {
     }
 
     setView("browse");
-  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, setFocusMode, lessonProgress, catPuzzles, router]);
+  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, setFocusMode, lessonProgress, catPuzzles, router, advanceToNextPuzzle]);
 
   const handleBack = () => {
     setView("browse");
