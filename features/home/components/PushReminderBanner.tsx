@@ -69,7 +69,7 @@ export function PushReminderBanner() {
         return;
       }
       setSubscribed(true);
-      toast.success("Daily reminders enabled — see you at 12:00!", { position: "top-center" });
+      toast.success("You're in — we'll nudge you when your next challenge awaits!", { position: "top-center" });
     } finally {
       setLoading(false);
     }
@@ -90,9 +90,9 @@ export function PushReminderBanner() {
               <Bell className="size-5 text-primary" />
             </span>
             <div className="min-w-0">
-              <p className="text-sm font-semibold">Never miss your daily puzzle</p>
+              <p className="text-sm font-semibold">Keep your mind sharp, every day</p>
               <p className="truncate text-xs text-muted-foreground">
-                A reminder lands at 12:00 every day — keep your streak alive.
+                We'll call you when a new challenge awaits — your streak deserves it.
               </p>
             </div>
           </div>
