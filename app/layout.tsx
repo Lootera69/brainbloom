@@ -9,6 +9,8 @@ import { ThemeSync } from "@/components/providers/theme-sync";
 import { ServiceWorkerRegister } from "@/components/providers/service-worker";
 import { GlobalErrorHandler } from "@/components/providers/global-error-handler";
 import { SafeHistory } from "@/components/providers/safe-history";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 
@@ -80,6 +82,8 @@ export default function RootLayout({
           <ServiceWorkerRegister />
           <GlobalErrorHandler />
           <SafeHistory />
+          <SpeedInsights />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
