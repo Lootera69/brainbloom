@@ -27,6 +27,13 @@ import {
   Moon,
   Monitor,
   Brain,
+  Download,
+  Trash2,
+  ShieldCheck,
+  Loader2,
+  Share2,
+  Bell,
+  BellOff,
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
@@ -41,7 +48,10 @@ import { ProfileShopModal } from "@/components/shop/ProfileShopModal";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-import { signOutUser, sendPasswordReset } from "@/services/firebase";
+import { signOutUser, sendPasswordReset, deleteAccount } from "@/services/firebase";
+import { exportUserData, deleteUserData } from "@/services/user-service";
+import { ShareStatsModal } from "@/components/share/ShareStatsModal";
+import { subscribeToPush, unsubscribeFromPush, requestNotificationPermission } from "@/services/notification-service";
 import { useTheme } from "next-themes";
 import { playClick, playToggleOn, playToggleOff } from "@/services/sound-service";
 
@@ -82,6 +92,7 @@ export default function ProfilePage() {
     gems,
     logout,
     setAvatarId,
+    userId,
   } = useUserStore();
   const soundEnabled = useUserStore((s) => s.soundEnabled);
   const setSoundEnabled = useUserStore((s) => s.setSoundEnabled);
@@ -115,6 +126,12 @@ export default function ProfilePage() {
   const [timer, setTimer] = useState(0);
   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
   const [profileShop, setProfileShop] = useState<"gems" | "hearts" | null>(null);
+  const [exporting, setExporting] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [showShare, setShowShare] = useState(false);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [notificationsLoading, setNotificationsLoading] = useState(false);
 
   useEffect(() => {
     const tick = () => {
@@ -125,6 +142,45 @@ export default function ProfilePage() {
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
   }, [processHeartRefill, getHeartTimer]);
+
+  useEffect(() => {
+    if (!isGuest && userId && "Notification" in window) {
+      Notification.requestPermission().then((perm) => {
+        if (perm === "granted") {
+          navigator.serviceWorker.ready.then((reg) => {
+            reg.pushManager.getSubscription().then((sub) => {
+              setNotificationsEnabled(!!sub);
+            });
+          });
+        }
+      });
+    }
+  }, [isGuest, userId]);
+
+  const toggleNotifications = async () => {
+    if (!userId) return;
+    setNotificationsLoading(true);
+    try {
+      if (notificationsEnabled) {
+        await unsubscribeFromPush({ uid: userId });
+        setNotificationsEnabled(false);
+        toast.success("Notifications disabled", { position: "top-center" });
+      } else {
+        const perm = await requestNotificationPermission();
+        if (perm !== "granted") {
+          toast.error("Permission denied", { position: "top-center" });
+          return;
+        }
+        await subscribeToPush({ uid: userId });
+        setNotificationsEnabled(true);
+        toast.success("Notifications enabled", { position: "top-center" });
+      }
+    } catch {
+      toast.error("Failed to update notifications", { position: "top-center" });
+    } finally {
+      setNotificationsLoading(false);
+    }
+  };
 
   const { level, progress, xpToNext } = useMemo(() => getLevel(xp), [xp]);
 
@@ -147,6 +203,50 @@ export default function ProfilePage() {
   };
 
   const authType = isGuest ? "guest" : photoURL ? "google" : email ? "email" : "guest";
+
+  const handleExport = async () => {
+    if (!userId) return;
+    setExporting(true);
+    try {
+      const payload = await exportUserData(userId);
+      if (!payload) {
+        toast.error("No cloud data found to export", { position: "top-center" });
+        return;
+      }
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `brainbloom-export-${new Date().toISOString().split("T")[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      toast.success("Your data was exported", { position: "top-center" });
+    } catch {
+      toast.error("Export failed. Please try again.", { position: "top-center" });
+    } finally {
+      setExporting(false);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!userId) return;
+    setDeleting(true);
+    const result = await deleteAccount();
+    if (!result.success) {
+      setDeleting(false);
+      setConfirmDelete(false);
+      toast.error(result.error ?? "Deletion failed. Please try again.", { position: "top-center" });
+      return;
+    }
+    await deleteUserData(userId);
+    setDeleting(false);
+    setConfirmDelete(false);
+    toast.success("Your account was deleted. Sorry to see you go!", { position: "top-center" });
+    logout();
+    router.push("/login");
+  };
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-5 sm:p-6">
@@ -304,6 +404,18 @@ export default function ProfilePage() {
               <TrendingUp className="size-3" />
               {xp.toLocaleString()} XP earned
             </motion.p>
+
+            {/* Share Stats button */}
+            <motion.button
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              onClick={() => setShowShare(true)}
+              className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-primary/20 bg-primary/10 px-4 text-sm font-semibold text-primary transition-all hover:bg-primary/20 active:scale-[0.98]"
+            >
+              <Share2 className="size-4" />
+              Share Stats
+            </motion.button>
           </div>
         </GlassCard>
       </motion.section>
@@ -633,14 +745,14 @@ export default function ProfilePage() {
         </GlassCard>
       </motion.div>
 
-      {/* Sound + Logout row */}
+      {/* Sound & Notifications row */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="mt-3 flex items-center justify-between gap-3"
+        className="mt-3 grid grid-cols-2 gap-3"
       >
-        <GlassCard intensity="light" className="flex flex-1 items-center justify-between p-4">
+        <GlassCard intensity="light" className="flex items-center justify-between p-4">
           <div className="flex items-center gap-3">
             <span className={cn(
               "flex size-10 items-center justify-center rounded-xl",
@@ -679,7 +791,100 @@ export default function ProfilePage() {
             />
           </button>
         </GlassCard>
+
+        {!isGuest && (
+          <GlassCard intensity="light" className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-3">
+              <span className={cn(
+                "flex size-10 items-center justify-center rounded-xl",
+                notificationsEnabled ? "bg-primary/10" : "bg-muted",
+              )}>
+                {notificationsEnabled ? (
+                  <Bell className="size-5 text-primary" />
+                ) : (
+                  <BellOff className="size-5 text-muted-foreground" />
+                )}
+              </span>
+              <div>
+                <p className="text-sm font-semibold">Push Notifications</p>
+                <p className="text-[11px] text-muted-foreground">
+                  {notificationsEnabled ? "On" : "Off"}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={toggleNotifications}
+              disabled={notificationsLoading}
+              className={cn(
+                "relative inline-flex h-6 w-11 items-center rounded-full transition-colors disabled:opacity-50",
+                notificationsEnabled ? "bg-primary" : "bg-muted-foreground/30",
+              )}
+            >
+              <motion.span
+                layout
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                className="inline-block size-5 rounded-full bg-white shadow-sm"
+                style={{
+                  marginLeft: notificationsEnabled ? "22px" : "2px",
+                }}
+              />
+            </button>
+          </GlassCard>
+        )}
       </motion.div>
+
+      {/* Privacy & Data (signed-in users only) */}
+      {!isGuest && (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.32 }}
+          className="mt-3"
+        >
+          <GlassCard intensity="light" className="p-4">
+            <div className="mb-3 flex items-center gap-3">
+              <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10">
+                <ShieldCheck className="size-5 text-primary" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold">Privacy & Data</p>
+                <p className="text-[11px] text-muted-foreground">Your data belongs to you</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-between gap-3 rounded-xl bg-muted/30 px-3 py-2.5">
+              <div className="min-w-0">
+                <p className="text-xs font-medium">Export my data</p>
+                <p className="text-[10px] text-muted-foreground">Download everything as JSON</p>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleExport}
+                disabled={exporting}
+                className="h-8 shrink-0 gap-1.5 text-xs"
+              >
+                {exporting ? <Loader2 className="size-3.5 animate-spin" /> : <Download className="size-3.5" />}
+                {exporting ? "Exporting…" : "Export"}
+              </Button>
+            </div>
+            <div className="mt-2 flex items-center justify-between gap-3 rounded-xl bg-destructive/5 px-3 py-2.5">
+              <div className="min-w-0">
+                <p className="text-xs font-medium">Delete account</p>
+                <p className="text-[10px] text-muted-foreground">Permanently remove your account and data</p>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setConfirmDelete(true)}
+                className="h-8 shrink-0 gap-1.5 border-destructive/30 text-xs text-destructive hover:bg-destructive/10 hover:text-destructive"
+              >
+                <Trash2 className="size-3.5" />
+                Delete
+              </Button>
+            </div>
+          </GlassCard>
+        </motion.div>
+      )}
 
       {/* Logout */}
       <motion.div
@@ -724,6 +929,60 @@ export default function ProfilePage() {
       )}
 
       <AdBanner className="mt-4" />
+
+      {confirmDelete && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setConfirmDelete(false)} />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="relative w-full max-w-sm rounded-3xl border border-border/50 bg-card/95 p-6 shadow-2xl backdrop-blur-2xl"
+          >
+            <span className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-destructive/10">
+              <Trash2 className="size-7 text-destructive" />
+            </span>
+            <h2 className="text-center text-lg font-bold">Delete your account?</h2>
+            <p className="mt-1.5 text-center text-xs text-muted-foreground">
+              This permanently deletes your account, progress, achievements and streak. This cannot be undone.
+              Consider exporting your data first.
+            </p>
+            <div className="mt-5 flex flex-col gap-2.5">
+              <Button
+                variant="destructive"
+                onClick={handleDeleteAccount}
+                disabled={deleting}
+                className="h-12 w-full rounded-xl text-sm"
+              >
+                {deleting ? <Loader2 className="size-4 animate-spin" /> : <Trash2 className="size-4" />}
+                {deleting ? "Deleting…" : "Delete Forever"}
+              </Button>
+              <button
+                onClick={() => setConfirmDelete(false)}
+                disabled={deleting}
+                className="flex h-11 w-full items-center justify-center rounded-xl text-xs font-medium text-muted-foreground transition-colors hover:bg-muted/40 hover:text-foreground"
+              >
+                Cancel
+              </button>
+            </div>
+          </motion.div>
+        </div>
+)}
+      
+      <ShareStatsModal
+        open={showShare}
+        onClose={() => setShowShare(false)}
+        data={{
+          displayName,
+          avatarId,
+          level,
+          xp,
+          streak,
+          puzzlesCompleted: useUserStore.getState().completedPuzzleIds.length,
+          achievements: useUserStore.getState().achievements.length,
+          tier,
+          theme,
+        }}
+      />
     </main>
   );
 }

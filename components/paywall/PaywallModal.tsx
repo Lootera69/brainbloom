@@ -20,7 +20,7 @@ export function PaywallModal({ type, onClose, onGoPremium }: PaywallModalProps) 
   const adsWatchDate = useUserStore((s) => s.adsWatchDate);
   const canWatchAd = useUserStore((s) => s.canWatchAd);
   const incrementAdWatched = useUserStore((s) => s.incrementAdWatched);
-  const incrementPuzzlePlayed = useUserStore((s) => s.incrementPuzzlePlayed);
+  const grantPuzzlePlay = useUserStore((s) => s.grantPuzzlePlay);
   const setShowShop = useUIStore((s) => s.setShowShop);
   const today = new Date().toDateString();
   const remaining = ADS_MAX_PER_DAY - (adsWatchDate === today ? adsWatchedToday : 0);
@@ -30,7 +30,7 @@ export function PaywallModal({ type, onClose, onGoPremium }: PaywallModalProps) 
     if (!rewarded) return;
     incrementAdWatched();
     if (type === "limit") {
-      incrementPuzzlePlayed();
+      grantPuzzlePlay();
     } else {
       useUserStore.setState((s) => ({ hearts: Math.min(5, s.hearts + REWARDED_AD_HEART_AMOUNT) }));
     }

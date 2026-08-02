@@ -5,10 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, User, Loader2, Zap, Brain, Flame, Mail, Lock, Eye, EyeOff, ArrowLeft, CheckCircle, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useUserStore } from "@/store/user-store";
+import { useUserStore, type AuthUserInput } from "@/store/user-store";
 import { signInWithGoogle, signUpWithEmailFull, signInWithEmailFull, sendPasswordReset, resendVerificationEmail } from "@/services/firebase";
 import { GoogleOneTap } from "@/components/auth/GoogleOneTap";
+import { GuestMergeDialog } from "@/components/auth/GuestMergeDialog";
 import { rePromptOneTap } from "@/services/one-tap";
+import { hasMeaningfulGuestData, guestMergeSummary, type GuestMergeData } from "@/lib/user-merge";
 
 import { Toaster, toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -50,6 +52,10 @@ export default function LoginPage() {
   const [ready, setReady] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [selectedAvatarId, setSelectedAvatarId] = useState<string | null>(null);
+  const [mergeCandidate, setMergeCandidate] = useState<{
+    user: AuthUserInput;
+    guest: GuestMergeData;
+  } | null>(null);
 
   useEffect(() => {
     const complete = localStorage.getItem("brainbloom-onboarding-complete") === "true";
@@ -101,6 +107,54 @@ export default function LoginPage() {
     if (avatarId) setSelectedAvatarId(avatarId);
   };
 
+  const captureGuestData = (): GuestMergeData | null => {
+    const s = useUserStore.getState();
+    if (!s.isGuest) return null;
+    const data: GuestMergeData = {
+      xp: s.xp,
+      gems: s.gems,
+      streak: s.streak,
+      streakFreezes: s.streakFreezes,
+      level: s.level,
+      weeklyXp: s.weeklyXp,
+      dailyPuzzleStreak: s.dailyPuzzleStreak,
+      cipherSolveCount: s.cipherSolveCount,
+      xpToday: s.xpToday,
+      puzzlesPlayedToday: s.puzzlesPlayedToday,
+      hearts: s.hearts,
+      nextHeartAt: s.nextHeartAt,
+      completedPuzzleIds: s.completedPuzzleIds,
+      experiencedWonderIds: s.experiencedWonderIds,
+      questsRewarded: s.questsRewarded,
+      activeDates: s.activeDates,
+      frozenDays: s.frozenDays,
+      brokenDays: s.brokenDays,
+      history: s.history,
+      achievements: s.achievements,
+    };
+    return hasMeaningfulGuestData(data) ? data : null;
+  };
+
+  const finishAuth = (user: AuthUserInput, guest: GuestMergeData | null, merge: boolean) => {
+    setUser(
+      user,
+      guest ? (merge ? { guestData: guest } : { dropGuest: true }) : undefined,
+    );
+    if (guest && merge) {
+      toast.success("Guest progress merged into your account", { position: "top-center" });
+    }
+    router.push("/");
+  };
+
+  const completeAuth = (user: AuthUserInput) => {
+    const guest = captureGuestData();
+    if (guest) {
+      setMergeCandidate({ user, guest });
+      return;
+    }
+    finishAuth(user, null, false);
+  };
+
   const handleGuest = () => {
     loginAsGuest();
     // Apply avatar from onboarding if selected
@@ -122,13 +176,12 @@ export default function LoginPage() {
     try {
       const user = await signInWithGoogle();
       if (user) {
-        setUser({
+        completeAuth({
           uid: user.uid,
           displayName: user.displayName ?? "User",
           email: user.email,
           photoURL: user.photoURL,
         });
-        router.push("/");
       }
     } catch {
       setError("Google sign-in failed. Please try again.");
@@ -161,13 +214,12 @@ export default function LoginPage() {
       return;
     }
     if (result.user) {
-      setUser({
+      completeAuth({
         uid: result.user.uid,
         displayName: result.user.displayName ?? email.split("@")[0],
         email: result.user.email,
         photoURL: result.user.photoURL,
       });
-      router.push("/");
     }
   };
 
@@ -213,13 +265,12 @@ export default function LoginPage() {
       return;
     }
     if (result.user) {
-      setUser({
+      completeAuth({
         uid: result.user.uid,
         displayName: result.user.displayName ?? email.split("@")[0],
         email: result.user.email,
         photoURL: result.user.photoURL,
       });
-      router.push("/");
     }
   };
 
@@ -264,7 +315,7 @@ export default function LoginPage() {
   return (
     <main className="relative flex min-h-dvh select-none flex-col items-center justify-center overflow-y-auto px-6 pb-4 md:pb-0 bg-background dark:bg-gradient-to-br dark:from-[#0f0f1a] dark:via-[#1a1a2e] dark:to-[#0d0d1a]">
       <Toaster position="top-center" />
-      <GoogleOneTap />
+      <GoogleOneTap onBeforeSetUser={completeAuth} />
 
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute left-1/2 top-1/4 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/5 blur-[120px]" />
@@ -709,6 +760,22 @@ export default function LoginPage() {
           </>
         )}
       </motion.div>
+
+      {mergeCandidate && (
+        <GuestMergeDialog
+          summary={guestMergeSummary(mergeCandidate.guest)}
+          onMerge={() => {
+            const { user, guest } = mergeCandidate;
+            setMergeCandidate(null);
+            finishAuth(user, guest, true);
+          }}
+          onSkip={() => {
+            const { user, guest } = mergeCandidate;
+            setMergeCandidate(null);
+            finishAuth(user, guest, false);
+          }}
+        />
+      )}
     </main>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { useUserStore } from "@/store/user-store";
+import { useUserStore, type AuthUserInput } from "@/store/user-store";
 import { initOneTap, cancelOneTap } from "@/services/one-tap";
 
 const firebaseConfigured =
@@ -12,7 +12,11 @@ const firebaseConfigured =
 
 const GOOGLE_ONE_TAP_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_ONE_TAP_CLIENT_ID;
 
-export function GoogleOneTap() {
+interface GoogleOneTapProps {
+  onBeforeSetUser?: (user: AuthUserInput) => void;
+}
+
+export function GoogleOneTap({ onBeforeSetUser }: GoogleOneTapProps) {
   const router = useRouter();
   const calledRef = useRef(false);
   const setUser = useUserStore((s) => s.setUser);
@@ -35,12 +39,17 @@ export function GoogleOneTap() {
 
     initOneTap({
       onSuccess: (user) => {
-        setUser({
+        const payload: AuthUserInput = {
           uid: user.uid,
           displayName: user.displayName ?? "User",
           email: user.email,
           photoURL: user.photoURL,
-        });
+        };
+        if (onBeforeSetUser) {
+          onBeforeSetUser(payload);
+          return;
+        }
+        setUser(payload);
         router.replace("/");
       },
       onError: () => {},
@@ -49,7 +58,7 @@ export function GoogleOneTap() {
     return () => {
       cancelOneTap();
     };
-  }, [isAuthenticated, router, setUser]);
+  }, [isAuthenticated, router, setUser, onBeforeSetUser]);
 
   return null;
 }

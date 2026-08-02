@@ -9,6 +9,7 @@ import {
   sendPasswordResetEmail,
   updateProfile,
   sendEmailVerification,
+  deleteUser,
   type User,
 } from "firebase/auth";
 import { getFirestore, collection, doc, type Firestore } from "firebase/firestore";
@@ -86,6 +87,26 @@ export async function signOutUser(): Promise<void> {
   const { auth: fbAuth } = initFirebase();
   if (!fbAuth) return;
   await firebaseSignOut(fbAuth);
+}
+
+export async function deleteAccount(): Promise<{ success: boolean; error?: string }> {
+  const { auth: fbAuth } = initFirebase();
+  if (!fbAuth || !fbAuth.currentUser) {
+    return { success: false, error: "No signed-in account found." };
+  }
+  try {
+    await deleteUser(fbAuth.currentUser);
+    return { success: true };
+  } catch (e) {
+    const code = (e as { code?: string }).code;
+    if (code === "auth/requires-recent-login") {
+      return {
+        success: false,
+        error: "For security, please sign out and sign back in, then try deleting again.",
+      };
+    }
+    return { success: false, error: "Account deletion failed. Please try again." };
+  }
 }
 
 export function onAuthChanged(callback: (user: User | null) => void) {

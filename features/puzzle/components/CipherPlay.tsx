@@ -7,17 +7,20 @@ import { type Puzzle } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
 import { getCipherPhase } from "@/services/weekly-cipher";
 import { cn } from "@/lib/utils";
+import { haptic } from "@/lib/haptics";
 
 interface Props {
   puzzle: Puzzle;
   onComplete: (correct: boolean, xpEarned: number) => void;
   onWrongAttempt?: () => void;
   isRepeat?: boolean;
+  practice?: boolean;
 }
 
-function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
+function CipherPlay({ puzzle, onComplete, onWrongAttempt, practice = false }: Props) {
   // Friday unlocks cipherData.hint as the sole hint (see getCipherPhase).
-  const hintUnlocked = getCipherPhase() === "hint";
+  // Practice (archive replay) always shows the hint.
+  const hintUnlocked = practice || getCipherPhase() === "hint";
   const [input, setInput] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [revealPhase, setRevealPhase] = useState<"idle" | "decoding" | "result">("idle");
@@ -44,6 +47,7 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
       if (!isCorrect) {
         onWrongAttempt?.();
       } else {
+        haptic([60]);
         import("@/services/sound-service").then(({ playCipherSolve }) => playCipherSolve());
       }
     }, 1800);
@@ -258,7 +262,7 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-4 text-sm font-mono text-amber-500/40"
               >
-                Decryption failed. Keep working — the answer reveals Saturday.
+                Decryption failed. Keep working — {practice ? "you can keep decoding." : "the answer reveals Saturday."}
               </motion.p>
             )}
           </div>
@@ -312,7 +316,7 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
           ) : (
             <div className="mt-2 flex items-center justify-end gap-1.5">
               <Lock className="size-2.5 text-amber-500/20" />
-              <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-amber-500/20">Hint unlocks Friday</span>
+              <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-amber-500/20">{practice ? "Practice mode" : "Hint unlocks Friday"}</span>
             </div>
           )}
 
@@ -397,7 +401,7 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt }: Props) {
                       transition={{ delay: 0.15 }}
                       className="mt-1.5 text-sm font-mono text-amber-500/40"
                     >
-                      Not quite. Try a different approach — you can keep attempting until Saturday.
+                      Not quite. Try a different approach — {practice ? "keep decoding." : "you can keep attempting until Saturday."}
                     </motion.p>
                   )}
 

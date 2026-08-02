@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Lock, CheckCircle2, Eye, Gem, ArrowRight, Crown, Shield, Fingerprint, BadgeCheck, Timer, Lightbulb } from "lucide-react";
+import { Lock, CheckCircle2, Eye, Gem, ArrowRight, Crown, Shield, Fingerprint, BadgeCheck, Timer, Lightbulb, Archive } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
@@ -437,6 +437,15 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
                   </div>
                 )}
               </div>
+            </div>
+
+            <div className="flex justify-end">
+              <button
+                onClick={() => router.push("/archive")}
+                className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-amber-600/40 transition-colors hover:text-amber-600/70 dark:text-amber-500/30 dark:hover:text-amber-400/60"
+              >
+                <Archive className="size-3" /> Past cases
+              </button>
             </div>
           </div>
         </div>

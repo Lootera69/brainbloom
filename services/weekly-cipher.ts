@@ -6,8 +6,16 @@ import { getPublishedPuzzles, getPuzzle } from "@/services/puzzle-service";
 import type { Puzzle } from "@/types/puzzle";
 
 const WEEKLY_CIPHER_KEY = "brainbloom-weekly-cipher";
+const CIPHER_HISTORY_KEY = "brainbloom-cipher-history";
+const CIPHER_HISTORY_MAX = 26;
 
 let weeklyCipherCache: { puzzle: Puzzle | null; weekStart: string } | null = null;
+
+export interface CipherHistoryEntry {
+  weekStart: string;
+  puzzleId: string;
+  setBy: "auto" | "admin";
+}
 
 interface WeeklyCipherDoc {
   puzzleId: string;
@@ -34,6 +42,76 @@ function getLocalWeekly(): WeeklyCipherDoc | null {
 function saveLocalWeekly(doc: WeeklyCipherDoc) {
   if (typeof window === "undefined") return;
   localStorage.setItem(WEEKLY_CIPHER_KEY, JSON.stringify(doc));
+}
+
+function getLocalHistory(): CipherHistoryEntry[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(CIPHER_HISTORY_KEY);
+    const parsed = raw ? JSON.parse(raw) : null;
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveLocalHistory(entries: CipherHistoryEntry[]) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(CIPHER_HISTORY_KEY, JSON.stringify(entries));
+}
+
+function mergeHistory(a: CipherHistoryEntry[], b: CipherHistoryEntry[]): CipherHistoryEntry[] {
+  const map = new Map<string, CipherHistoryEntry>();
+  for (const e of [...b, ...a]) {
+    if (!map.has(e.weekStart)) map.set(e.weekStart, e);
+  }
+  return [...map.values()]
+    .sort((x, y) => y.weekStart.localeCompare(x.weekStart))
+    .slice(0, CIPHER_HISTORY_MAX);
+}
+
+async function rememberCipherWeek(entry: CipherHistoryEntry) {
+  const local = getLocalHistory();
+  if (local.length > 0 && local[0].weekStart === entry.weekStart && local[0].puzzleId === entry.puzzleId) {
+    return;
+  }
+  const merged = mergeHistory([entry], local);
+  saveLocalHistory(merged);
+  if (isFirestoreAvailable()) {
+    try {
+      const { db } = getFirebase();
+      if (db) {
+        const ref = doc(db, "settings", "cipher-history");
+        await setDoc(ref, { weeks: merged, updatedAt: Timestamp.fromMillis(Date.now()) }, { merge: true });
+      }
+    } catch (e) {
+      console.error("Firestore rememberCipherWeek failed:", e);
+    }
+  }
+}
+
+export async function getCipherHistory(): Promise<CipherHistoryEntry[]> {
+  const local = getLocalHistory();
+  if (isFirestoreAvailable()) {
+    try {
+      const { db } = getFirebase();
+      if (db) {
+        const ref = doc(db, "settings", "cipher-history");
+        const snap = await getDoc(ref);
+        if (snap.exists()) {
+          const data = snap.data() as { weeks?: CipherHistoryEntry[] };
+          if (Array.isArray(data.weeks) && data.weeks.length > 0) {
+            const merged = mergeHistory(data.weeks, local);
+            saveLocalHistory(merged);
+            return merged;
+          }
+        }
+      }
+    } catch (e) {
+      console.error("Firestore getCipherHistory failed:", e);
+    }
+  }
+  return local;
 }
 
 export function getWeekEnd(weekStart: string): string {
@@ -87,6 +165,11 @@ export async function getWeeklyCipher(): Promise<Puzzle | null> {
     result = await autoPickWeeklyCipher(weekStart);
   }
 
+  if (result) {
+    const local = getLocalWeekly();
+    rememberCipherWeek({ puzzleId: result.id, weekStart, setBy: local?.setBy ?? "auto" });
+  }
+
   weeklyCipherCache = { puzzle: result, weekStart };
   return result;
 }
@@ -124,6 +207,7 @@ async function autoPickWeeklyCipher(weekStart: string): Promise<Puzzle | null> {
   }
 
   saveLocalWeekly(docData);
+  rememberCipherWeek(docData);
   return pick;
 }
 
@@ -152,6 +236,7 @@ export async function setWeeklyCipher(puzzleId: string, setByUser?: string): Pro
   }
 
   saveLocalWeekly(docData);
+  rememberCipherWeek(docData);
   weeklyCipherCache = null;
   return true;
 }

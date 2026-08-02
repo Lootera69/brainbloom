@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CelebrationProvider } from "@/components/ui/celebration-provider";
 import { ShopModal } from "@/components/shop/ShopModal";
+import { InstallPrompt } from "@/components/layout/InstallPrompt";
 import { AnimatePresence } from "framer-motion";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
@@ -141,6 +142,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <PageTransition>{children}</PageTransition>
       </main>
       {!focusMode && <BottomNav />}
+      {!focusMode && <InstallPrompt />}
       <AnimatePresence>
         {showShop && <ShopModal onClose={() => setShowShop(false)} />}
       </AnimatePresence>

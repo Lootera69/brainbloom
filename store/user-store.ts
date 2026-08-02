@@ -3,6 +3,8 @@ import { persist, type PersistStorage } from "zustand/middleware";
 import { questTemplates } from "@/constants/quests";
 import { achievementsList } from "@/constants/achievements";
 import { ADS_MAX_PER_DAY } from "@/lib/subscription";
+import { mergeGuestProgress, type GuestMergeData } from "@/lib/user-merge";
+import { remainingFreePlays, canPlayPuzzleFree, isPremiumActive } from "@/lib/daily-limit";
 
 let heartsLostThisSession = false;
 let currentPuzzleHasLesson = false;
@@ -33,6 +35,18 @@ export interface DailyQuest {
   progress: number;
   reward: number;
   icon: string;
+}
+
+export interface AuthUserInput {
+  uid: string;
+  displayName: string;
+  email: string | null;
+  photoURL: string | null;
+}
+
+export interface SetUserOptions {
+  guestData?: GuestMergeData;
+  dropGuest?: boolean;
 }
 
 interface UserState {
@@ -89,11 +103,12 @@ interface UserState {
   currentCipherSolved: boolean;
   cipherSolveCount: number;
   cipherRevealed: boolean;
+  cipherSolvedWeeks: string[];
   updatedAt: number;
   _lastEvalDate: string;
 
   loginAsGuest: () => void;
-  setUser: (user: { uid: string; displayName: string; email: string | null; photoURL: string | null }) => void;
+  setUser: (user: AuthUserInput, opts?: SetUserOptions) => void;
   setAvatarId: (avatarId: string | null) => void;
   logout: () => void;
   syncToFirestore: () => void;
@@ -124,7 +139,9 @@ interface UserState {
   canClaimDailyBonus: () => boolean;
   setTier: (tier: "free" | "premium", expiry?: number | null, grantStreakFreezes?: number) => void;
   incrementPuzzlePlayed: () => void;
+  grantPuzzlePlay: () => void;
   canPlayPuzzle: () => boolean;
+  remainingPuzzlesToday: () => number;
   incrementAdWatched: () => void;
   canWatchAd: () => boolean;
   buyHeartRefillWithGems: () => boolean;
@@ -266,6 +283,7 @@ export const useUserStore = create<UserState>()(
       currentCipherSolved: false,
       cipherSolveCount: 0,
       cipherRevealed: false,
+      cipherSolvedWeeks: [],
       updatedAt: 0,
       _lastEvalDate: "",
 
@@ -281,8 +299,52 @@ export const useUserStore = create<UserState>()(
         });
       },
 
-      setUser: (user) => {
+      setUser: (user, opts) => {
         set({
+          ...(opts?.dropGuest
+            ? {
+                xp: 0,
+                xpToday: 0,
+                lastXpGain: 0,
+                streak: 0,
+                lastActiveDate: null,
+                hearts: 5,
+                level: 1,
+                gems: 0,
+                history: [],
+                achievements: [],
+                lastRewardClaim: null,
+                streakFreezes: 0,
+                practiceHeartsToday: 0,
+                lastPracticeDate: null,
+                dailyQuests: [],
+                lastQuestRefresh: null,
+                completedPuzzleIds: [],
+                questsRewarded: [],
+                dailyPuzzleCompletedDate: null,
+                dailyPuzzleStreak: 0,
+                dailyPuzzleLastDate: null,
+                weeklyXp: 0,
+                weeklyStartDate: Date.now(),
+                frozenDays: [],
+                brokenDays: [],
+                dailyGoalStreak: 0,
+                dailyGoalLastHitDate: null,
+                streakStartDate: null,
+                activeDates: [],
+                puzzlesPlayedToday: 0,
+                puzzlesPlayedDate: null,
+                adsWatchedToday: 0,
+                adsWatchDate: null,
+                experiencedWonderIds: [],
+                currentCipherWeek: null,
+                currentCipherSolved: false,
+                cipherSolveCount: 0,
+                cipherRevealed: false,
+                cipherSolvedWeeks: [],
+                nextHeartAt: null,
+              }
+            : {}),
           userId: user.uid,
           displayName: user.displayName,
           email: user.email,
@@ -294,6 +356,12 @@ export const useUserStore = create<UserState>()(
         });
         setTimeout(async () => {
           await get().loadFromFirestore();
+          if (opts?.guestData) {
+            const s = get();
+            set({ ...mergeGuestProgress(opts.guestData, s), updatedAt: Date.now() });
+            get().checkWeeklyReset();
+            get().checkStreak(false);
+          }
           setTimeout(() => get().syncToFirestore(), 200);
         }, 100);
       },
@@ -357,6 +425,7 @@ export const useUserStore = create<UserState>()(
             currentCipherSolved: s.currentCipherSolved,
             cipherSolveCount: s.cipherSolveCount,
             cipherRevealed: s.cipherRevealed,
+            cipherSolvedWeeks: s.cipherSolvedWeeks,
             updatedAt: Date.now(),
           }),
         );
@@ -422,6 +491,7 @@ export const useUserStore = create<UserState>()(
                 currentCipherSolved: data.currentCipherSolved ?? s.currentCipherSolved,
                 cipherSolveCount: data.cipherSolveCount ?? s.cipherSolveCount,
                 cipherRevealed: data.cipherRevealed ?? s.cipherRevealed,
+                cipherSolvedWeeks: data.cipherSolvedWeeks ?? s.cipherSolvedWeeks,
                 updatedAt: data.updatedAt ?? s.updatedAt,
               });
               get().checkWeeklyReset();
@@ -491,6 +561,7 @@ export const useUserStore = create<UserState>()(
       currentCipherSolved: false,
       cipherSolveCount: 0,
       cipherRevealed: false,
+      cipherSolvedWeeks: [],
       updatedAt: 0,
 
         });
@@ -973,12 +1044,25 @@ export const useUserStore = create<UserState>()(
         });
       },
 
+      grantPuzzlePlay: () => {
+        const { puzzlesPlayedToday, puzzlesPlayedDate } = get();
+        const today = new Date().toDateString();
+        set({
+          puzzlesPlayedToday: Math.max(0, (puzzlesPlayedDate === today ? puzzlesPlayedToday : 0) - 1),
+          puzzlesPlayedDate: today,
+        });
+      },
+
       canPlayPuzzle: () => {
         const { tier, puzzlesPlayedToday, puzzlesPlayedDate, subscriptionExpiry } = get();
-        if (tier === "premium" && (!subscriptionExpiry || Date.now() < subscriptionExpiry)) return true;
-        const today = new Date().toDateString();
-        const count = puzzlesPlayedDate === today ? puzzlesPlayedToday : 0;
-        return count < 3;
+        if (isPremiumActive(tier, subscriptionExpiry)) return true;
+        return canPlayPuzzleFree(puzzlesPlayedToday, puzzlesPlayedDate, new Date().toDateString());
+      },
+
+      remainingPuzzlesToday: () => {
+        const { tier, puzzlesPlayedToday, puzzlesPlayedDate, subscriptionExpiry } = get();
+        if (isPremiumActive(tier, subscriptionExpiry)) return Infinity;
+        return remainingFreePlays(puzzlesPlayedToday, puzzlesPlayedDate, new Date().toDateString());
       },
 
       incrementAdWatched: () => {
@@ -1009,13 +1093,16 @@ export const useUserStore = create<UserState>()(
       },
 
       solveCipher: (weekStart) => {
-        const { currentCipherWeek, currentCipherSolved, cipherSolveCount } = get();
+        const { currentCipherWeek, currentCipherSolved, cipherSolveCount, cipherSolvedWeeks } = get();
         if (currentCipherWeek === weekStart && currentCipherSolved) return;
         set({
           currentCipherWeek: weekStart,
           currentCipherSolved: true,
           cipherSolveCount: cipherSolveCount + 1,
           cipherRevealed: false,
+          cipherSolvedWeeks: cipherSolvedWeeks.includes(weekStart)
+            ? cipherSolvedWeeks
+            : [...cipherSolvedWeeks, weekStart],
         });
       },
 
@@ -1114,6 +1201,7 @@ export const useUserStore = create<UserState>()(
         currentCipherSolved: state.currentCipherSolved,
         cipherSolveCount: state.cipherSolveCount,
         cipherRevealed: state.cipherRevealed,
+        cipherSolvedWeeks: state.cipherSolvedWeeks,
         updatedAt: state.updatedAt,
         _lastEvalDate: state._lastEvalDate,
       }),

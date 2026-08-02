@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, Loader2, Gem, Heart, Snowflake, Sparkles, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ShopProduct } from "@/lib/subscription";
+import { haptic } from "@/lib/haptics";
 
 const iconMap: Record<string, typeof Gem> = {
   Gem, Heart, Snowflake, Sparkles, ShoppingBag,
@@ -86,6 +87,10 @@ function getAnimation(type: ParticleType, intensity: ParticleIntensity) {
 
 export function ProductCard({ product, priceLabel, purchasing, purchased, onPurchase, index = 0, particleType, particleCount, particleIntensity = "medium" }: ProductCardProps) {
   const Icon = iconMap[product.icon] || ShoppingBag;
+
+  useEffect(() => {
+    if (purchased) haptic([15]);
+  }, [purchased]);
 
   const particles = useMemo(() => {
     if (!particleType) return [];

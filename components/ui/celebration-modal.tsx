@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, Gem, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { haptic } from "@/lib/haptics";
 
 interface Props {
   open: boolean;
@@ -82,6 +83,10 @@ function useConfetti(active: boolean) {
 
 export function CelebrationModal({ open, onClose, type, title, subtitle, rewards }: Props) {
   const canvasRef = useConfetti(open);
+
+  useEffect(() => {
+    if (open) haptic([20, 40, 20, 40, 80]);
+  }, [open]);
 
   return (
     <AnimatePresence>

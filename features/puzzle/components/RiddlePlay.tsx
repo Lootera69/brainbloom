@@ -6,6 +6,7 @@ import { Lightbulb, Zap, ArrowRight, CheckCircle2, XCircle, Sparkles, Eye, Info,
 import { type Puzzle } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
 import { cn } from "@/lib/utils";
+import { haptic } from "@/lib/haptics";
 
 interface Props {
   puzzle: Puzzle;
@@ -126,6 +127,7 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
 
   const handleReveal = () => {
     setState("revealing");
+    haptic([35]);
     import("@/services/sound-service").then(({ playRiddleReveal }) => playRiddleReveal());
   };
 

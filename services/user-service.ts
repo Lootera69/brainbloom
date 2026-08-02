@@ -1,6 +1,6 @@
 "use client";
 
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import type { Activity, Achievement, DailyQuest } from "@/store/user-store";
 import { getFirebase } from "@/services/firebase";
 
@@ -66,6 +66,7 @@ export interface UserDocument {
   currentCipherSolved: boolean;
   cipherSolveCount: number;
   cipherRevealed: boolean;
+  cipherSolvedWeeks: string[];
   updatedAt: number;
 }
 
@@ -80,8 +81,7 @@ export async function saveUserData(uid: string, data: UserDocument): Promise<voi
   }
 }
 
-export async function loadUserData(uid: string): Promise<Partial<UserDocument> | null> {
-  const db = getDb();
+export async function loadUserData(uid: string): Promise<Partial<UserDocument> | null> {  const db = getDb();
   if (!db) return null;
   try {
     const ref = doc(db, "users", uid);
@@ -131,10 +131,48 @@ export async function loadUserData(uid: string): Promise<Partial<UserDocument> |
       currentCipherSolved: (d.currentCipherSolved as boolean) ?? false,
       cipherSolveCount: (d.cipherSolveCount as number) ?? 0,
       cipherRevealed: (d.cipherRevealed as boolean) ?? false,
+      cipherSolvedWeeks: (d.cipherSolvedWeeks as string[]) ?? [],
       updatedAt: d.updatedAt as number | undefined,
     };
   } catch (e) {
     console.error("Failed to load user data from Firestore:", e);
     return null;
   }
+}
+
+export async function deleteUserData(uid: string): Promise<void> {
+  const db = getDb();
+  if (!db) return;
+  try {
+    const ref = doc(db, "users", uid);
+    await deleteDoc(ref);
+  } catch (e) {
+    console.error("Failed to delete user data from Firestore:", e);
+  }
+}
+
+export interface ExportPayload {
+  exportedAt: string;
+  app: string;
+  user: Partial<UserDocument>;
+  stats: {
+    puzzlesCompleted: number;
+    achievementsUnlocked: number;
+    wondersExperienced: number;
+  };
+}
+
+export async function exportUserData(uid: string): Promise<ExportPayload | null> {
+  const data = await loadUserData(uid);
+  if (!data) return null;
+  return {
+    exportedAt: new Date().toISOString(),
+    app: "BrainBloom",
+    user: data,
+    stats: {
+      puzzlesCompleted: (data.completedPuzzleIds ?? []).length,
+      achievementsUnlocked: (data.achievements ?? []).length,
+      wondersExperienced: (data.experiencedWonderIds ?? []).length,
+    },
+  };
 }

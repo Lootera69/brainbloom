@@ -81,6 +81,7 @@ function LearnPage() {
   const setLastPlayedCategory = useUserStore((s) => s.setLastPlayedCategory);
   const checkAchievements = useUserStore((s) => s.checkAchievements);
   const incrementPuzzlePlayed = useUserStore((s) => s.incrementPuzzlePlayed);
+  const remainingPuzzlesToday = useUserStore((s) => s.remainingPuzzlesToday);
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
   const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
@@ -498,6 +499,31 @@ function LearnPage() {
             exit={{ opacity: 0, y: -10 }}
           >
             <SectionHeader title="Learn" subtitle="Pick a category to explore" />
+
+            {!isPremium && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-5 flex items-center justify-between rounded-2xl border border-primary/15 bg-primary/[0.04] px-4 py-3"
+              >
+                <p className="text-sm text-muted-foreground">
+                  {remainingPuzzlesToday() > 0 ? (
+                    <span>
+                      <span className="font-medium text-foreground">{remainingPuzzlesToday()}</span>{" "}
+                      puzzle{remainingPuzzlesToday() === 1 ? "" : "s"} left today
+                    </span>
+                  ) : (
+                    "Daily limit reached — 3 puzzles per day on free tier"
+                  )}
+                </p>
+                <button
+                  onClick={() => setPaywallType("limit")}
+                  className="shrink-0 rounded-lg bg-gradient-to-r from-primary to-[#8b5cf6] px-3 py-1.5 text-xs font-bold text-white shadow-lg shadow-primary/20 transition-transform active:scale-95"
+                >
+                  Go Premium
+                </button>
+              </motion.div>
+            )}
 
             {streak > 0 && (
               <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="mb-5">

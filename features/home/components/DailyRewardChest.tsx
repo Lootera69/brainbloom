@@ -6,6 +6,7 @@ import { Gift, Zap, Gem, Snowflake } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
 import { cn } from "@/lib/utils";
+import { haptic } from "@/lib/haptics";
 
 const rewardIcons: Record<string, typeof Zap> = {
   xp: Zap,
@@ -436,6 +437,7 @@ export function DailyRewardChest() {
     const t2 = setTimeout(() => {
       setPhase("opening");
       setShowBeams(true);
+      haptic([10, 20, 30]);
       const result = claim();
       if (result) setReward(result);
     }, 900);

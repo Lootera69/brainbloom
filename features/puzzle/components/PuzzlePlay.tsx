@@ -14,6 +14,7 @@ import { WonderPlay } from "./WonderPlay";
 import { CipherPlay } from "./CipherPlay";
 import { StoryPlay } from "./StoryPlay";
 import { setHeartsLostFlag, setPuzzleHasLesson } from "@/store/user-store";
+import { haptic } from "@/lib/haptics";
 
 interface Props {
   puzzle: Puzzle;
@@ -349,6 +350,7 @@ export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
 
   const handleComplete = (correct: boolean, xpEarned: number) => {
     if (correct) {
+      haptic([15]);
       import("@/services/sound-service").then(({ playComplete }) => {
         setTimeout(playComplete, 400);
       });
@@ -358,6 +360,7 @@ export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
 
   const handleWrongAttempt = () => {
     setHeartsLostFlag();
+    haptic([40, 60, 40]);
     import("@/services/sound-service").then(({ playWrong, playHeartbreak }) => {
       playWrong();
       playHeartbreak();
