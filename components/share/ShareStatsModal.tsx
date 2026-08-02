@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Download, Share2 } from "lucide-react";
+import { X, Download, Share2, RefreshCw } from "lucide-react";
 import { generateShareCard, type ShareCardData } from "@/lib/share-card";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -13,37 +13,95 @@ interface ShareStatsModalProps {
   data: ShareCardData;
 }
 
+const GENERATION_TIMEOUT_MS = 20000;
+
+function dataKey(data: ShareCardData | undefined): string {
+  try {
+    return JSON.stringify(data) ?? "share-card-data";
+  } catch {
+    return "share-card-data";
+  }
+}
+
 export function ShareStatsModal({ open, onClose, data }: ShareStatsModalProps) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [generating, setGenerating] = useState(false);
   const [sharing, setSharing] = useState(false);
+  const [error, setError] = useState(false);
+  const [retryNonce, setRetryNonce] = useState(0);
   const urlRef = useRef<string | null>(null);
+  const dataKeyRef = useRef<string | null>(null);
+  const dataKeyStr = dataKey(data);
 
   useEffect(() => {
     if (!open) {
+      dataKeyRef.current = null;
+      setImageUrl(null);
+      setError(false);
+      if (urlRef.current) {
+        URL.revokeObjectURL(urlRef.current);
+        urlRef.current = null;
+      }
       return;
     }
+
+    if (dataKeyStr === dataKeyRef.current) return;
+    dataKeyRef.current = dataKeyStr;
+
+    let cancelled = false;
+    let timeoutId: number | undefined;
+
+    if (urlRef.current) {
+      URL.revokeObjectURL(urlRef.current);
+      urlRef.current = null;
+    }
     // eslint-disable-next-line react-hooks/set-state-in-effect
+    setImageUrl(null);
+    setError(false);
     setGenerating(true);
-    generateShareCard(data)
+
+    Promise.race([
+      generateShareCard(data),
+      new Promise<never>((_, reject) => {
+        timeoutId = window.setTimeout(
+          () => reject(new Error("Share card generation timed out")),
+          GENERATION_TIMEOUT_MS,
+        );
+      }),
+    ])
       .then((blob) => {
+        if (cancelled) return;
+        if (!blob || blob.size === 0) {
+          throw new Error("Share card image is empty");
+        }
         const url = URL.createObjectURL(blob);
         urlRef.current = url;
         setImageUrl(url);
       })
       .catch(() => {
+        if (cancelled) return;
+        setError(true);
         toast.error("Failed to generate share card", { position: "top-center" });
       })
-      .finally(() => setGenerating(false));
+      .finally(() => {
+        if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+        if (!cancelled) setGenerating(false);
+      });
 
     return () => {
+      cancelled = true;
       if (urlRef.current) {
         URL.revokeObjectURL(urlRef.current);
         urlRef.current = null;
       }
-      setImageUrl(null);
     };
-  }, [open, data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, dataKeyStr, retryNonce]);
+
+  const handleRetry = () => {
+    dataKeyRef.current = null;
+    setRetryNonce((n) => n + 1);
+  };
 
   const handleShare = async () => {
     if (!imageUrl) return;
@@ -59,7 +117,7 @@ export function ShareStatsModal({ open, onClose, data }: ShareStatsModalProps) {
       } else if (navigator.share) {
         await navigator.share({
           title: "My BrainBloom Stats",
-          text: `I'm Level ${data.level} with ${data.xp.toLocaleString()} XP on BrainBloom! 🧠`,
+          text: `I'm Level ${data.level ?? 1} with ${(data.xp ?? 0).toLocaleString()} XP on BrainBloom! 🧠`,
           url: "https://brainblooms.vercel.app",
         });
         toast.success("Shared!", { position: "top-center" });
@@ -67,8 +125,13 @@ export function ShareStatsModal({ open, onClose, data }: ShareStatsModalProps) {
         await handleDownload();
       }
     } catch (e) {
-      if ((e as Error).name !== "AbortError") {
-        await handleDownload();
+      const name = (e as Error)?.name ?? "";
+      if (name !== "AbortError") {
+        try {
+          await handleDownload();
+        } catch {
+          toast.error("Sharing failed", { position: "top-center" });
+        }
       }
     } finally {
       setSharing(false);
@@ -117,12 +180,26 @@ export function ShareStatsModal({ open, onClose, data }: ShareStatsModalProps) {
               <div className="flex h-[400px] items-center justify-center">
                 <div className="size-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
               </div>
+            ) : error ? (
+              <div className="flex h-[400px] flex-col items-center justify-center gap-4 p-6">
+                <p className="text-center text-sm font-medium text-muted-foreground">
+                  Couldn&apos;t generate your share card. Try again.
+                </p>
+                <button
+                  onClick={handleRetry}
+                  className="flex h-11 items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] px-5 text-sm font-semibold text-white transition-all active:scale-[0.98]"
+                >
+                  <RefreshCw className="size-4" />
+                  Try Again
+                </button>
+              </div>
             ) : imageUrl ? (
               <>
                 <img
                   src={imageUrl}
                   alt="BrainBloom stats"
                   className="w-full aspect-square object-cover"
+                  onError={() => handleRetry()}
                 />
                 <div className="p-5 space-y-3">
                   <p className="text-center text-sm font-medium text-muted-foreground">Your share card is ready</p>

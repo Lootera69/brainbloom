@@ -143,12 +143,36 @@ export default function LoginPage() {
     );
     if (guest && merge) {
       toast.success("Guest progress merged into your account", { position: "top-center" });
+    } else if (guest) {
+      toast.info("Signed in — guest progress discarded", { position: "top-center" });
     }
     router.push("/");
   };
 
-  const completeAuth = (user: AuthUserInput) => {
+  const completeAuth = async (user: AuthUserInput) => {
     const guest = captureGuestData();
+    try {
+      const { loadUserData } = await import("@/services/user-service");
+      const cloud = await loadUserData(user.uid);
+      if (cloud) {
+        const cloudHasProgress = hasMeaningfulGuestData({
+          xp: cloud.xp ?? 0,
+          gems: cloud.gems ?? 0,
+          streak: cloud.streak ?? 0,
+          streakFreezes: cloud.streakFreezes ?? 0,
+          cipherSolveCount: cloud.cipherSolveCount ?? 0,
+          completedPuzzleIds: cloud.completedPuzzleIds ?? [],
+          experiencedWonderIds: cloud.experiencedWonderIds ?? [],
+          achievements: cloud.achievements ?? [],
+        });
+        if (cloudHasProgress) {
+          finishAuth(user, guest, false);
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn("completeAuth cloud check failed — falling back to merge prompt:", e);
+    }
     if (guest) {
       setMergeCandidate({ user, guest });
       return;

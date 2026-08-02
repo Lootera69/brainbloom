@@ -221,3 +221,14 @@ h6 {
   background: var(--primary);
   color: white;
 }
+
+nextjs-portal {
+  color-scheme: dark;
+  --color-font: #ededed !important;
+  --color-backdrop: rgba(0, 0, 0, 0.8) !important;
+  --color-title-color: #ededed !important;
+  --color-stack-notes: #a9a9a9 !important;
+  --color-background-100: #0a0a0a !important;
+  --color-background-200: #000000 !important;
+  --color-border-shadow: rgba(255, 255, 255, 0.145) !important;
+}

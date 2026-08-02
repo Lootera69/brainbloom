@@ -150,29 +150,3 @@ export async function deleteUserData(uid: string): Promise<void> {
     console.error("Failed to delete user data from Firestore:", e);
   }
 }
-
-export interface ExportPayload {
-  exportedAt: string;
-  app: string;
-  user: Partial<UserDocument>;
-  stats: {
-    puzzlesCompleted: number;
-    achievementsUnlocked: number;
-    wondersExperienced: number;
-  };
-}
-
-export async function exportUserData(uid: string): Promise<ExportPayload | null> {
-  const data = await loadUserData(uid);
-  if (!data) return null;
-  return {
-    exportedAt: new Date().toISOString(),
-    app: "BrainBloom",
-    user: data,
-    stats: {
-      puzzlesCompleted: (data.completedPuzzleIds ?? []).length,
-      achievementsUnlocked: (data.achievements ?? []).length,
-      wondersExperienced: (data.experiencedWonderIds ?? []).length,
-    },
-  };
-}

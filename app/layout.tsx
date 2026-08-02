@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ThemeSync } from "@/components/providers/theme-sync";
 import { ServiceWorkerRegister } from "@/components/providers/service-worker";
 import { GlobalErrorHandler } from "@/components/providers/global-error-handler";
+import { SafeHistory } from "@/components/providers/safe-history";
 
 const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 
@@ -78,6 +79,7 @@ export default function RootLayout({
           <ThemeSync />
           <ServiceWorkerRegister />
           <GlobalErrorHandler />
+          <SafeHistory />
         </ThemeProvider>
       </body>
     </html>
