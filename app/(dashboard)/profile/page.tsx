@@ -51,7 +51,7 @@ import { toast } from "sonner";
 import { signOutUser, sendPasswordReset } from "@/services/firebase";
 import { ShareStatsModal } from "@/components/share/ShareStatsModal";
 import { DeleteAccountDialog } from "@/components/delete-account-dialog";
-import { subscribeToPush, unsubscribeFromPush, requestNotificationPermission } from "@/services/notification-service";
+import { subscribeToPush, unsubscribeFromPush, requestNotificationPermission, checkExistingSubscription, getPushStatus } from "@/services/notification-service";
 import { useTheme } from "next-themes";
 import { playClick, playToggleOn, playToggleOff } from "@/services/sound-service";
 
@@ -142,16 +142,8 @@ export default function ProfilePage() {
   }, [processHeartRefill, getHeartTimer]);
 
   useEffect(() => {
-    if (!isGuest && userId && "Notification" in window) {
-      Notification.requestPermission().then((perm) => {
-        if (perm === "granted") {
-          navigator.serviceWorker.ready.then((reg) => {
-            reg.pushManager.getSubscription().then((sub) => {
-              setNotificationsEnabled(!!sub);
-            });
-          });
-        }
-      });
+    if (!isGuest && userId) {
+      checkExistingSubscription().then(setNotificationsEnabled);
     }
   }, [isGuest, userId]);
 
@@ -164,14 +156,25 @@ export default function ProfilePage() {
         setNotificationsEnabled(false);
         toast.success("Notifications disabled", { position: "top-center" });
       } else {
-        const perm = await requestNotificationPermission();
-        if (perm !== "granted") {
-          toast.error("Permission denied", { position: "top-center" });
+        const status = getPushStatus();
+        if (!status.supported) {
+          toast.error("Push notifications are not supported on this browser.", { position: "top-center" });
           return;
         }
-        const token = await subscribeToPush({ uid: userId });
-        if (!token) {
-          toast.error("Push notifications are not available on this device or browser", { position: "top-center" });
+        if (!status.configured) {
+          toast.error("Push notifications are not configured yet.", { position: "top-center" });
+          return;
+        }
+        const perm = await requestNotificationPermission();
+        if (perm !== "granted") {
+          if (perm === "denied") {
+            toast.error("Notifications blocked. Enable them in your browser settings.", { position: "top-center" });
+          }
+          return;
+        }
+        const result = await subscribeToPush({ uid: userId });
+        if (!result.success) {
+          toast.error(result.error ?? "Failed to enable notifications", { position: "top-center" });
           return;
         }
         setNotificationsEnabled(true);
