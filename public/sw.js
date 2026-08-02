@@ -1,4 +1,4 @@
-const CACHE = "brainbloom-v1";
+const CACHE = "brainbloom-v2";
 const PRECACHE_URLS = ["/", "/offline"];
 
 self.addEventListener("install", (event) => {
@@ -17,6 +17,25 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const isNavigation = event.request.mode === "navigate";
+
+  if (isNavigation) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+          }
+          return response;
+        })
+        .catch(async () => {
+          const cached = await caches.match(event.request);
+          return cached || caches.match("/offline");
+        }),
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cached) => {
       const fetched = fetch(event.request)
@@ -27,10 +46,7 @@ self.addEventListener("fetch", (event) => {
           }
           return response;
         })
-        .catch(() => {
-          if (isNavigation) return caches.match("/offline");
-          return cached;
-        });
+        .catch(() => cached);
       return cached || fetched;
     }),
   );
