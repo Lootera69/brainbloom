@@ -85,7 +85,7 @@ export function PushReminderBanner() {
       transition={{ type: "spring", stiffness: 300, damping: 28 }}
       className="mb-6"
     >
-      <div className="relative overflow-hidden rounded-2xl border border-indigo-200/70 bg-gradient-to-r from-indigo-50 via-violet-50 to-fuchsia-50 px-4 py-3.5 shadow-sm dark:border-indigo-500/20 dark:from-indigo-500/10 dark:via-violet-500/10 dark:to-fuchsia-500/10">
+      <div className="relative overflow-hidden rounded-2xl border border-indigo-200/70 bg-gradient-to-r from-indigo-50 via-violet-50 to-fuchsia-50 px-4 py-3.5 shadow-sm dark:border-white/[0.06] dark:from-indigo-500/[0.04] dark:via-violet-500/[0.04] dark:to-fuchsia-500/[0.04] dark:shadow-black/20 dark:backdrop-blur-xl">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex min-w-0 items-center gap-3">
             <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10">
