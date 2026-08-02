@@ -72,10 +72,10 @@ function formatHeartTimer(ms: number): string {
 
 
 const statCards = [
-  { icon: Zap, label: "Total XP", color: "text-primary", bg: "bg-primary/10" },
-  { icon: Flame, label: "Streak", color: "text-warning", bg: "bg-warning/10" },
-  { icon: Gem, label: "Gems", color: "text-cyan-500", bg: "bg-cyan-500/10" },
-  { icon: Heart, label: "Hearts", color: "text-destructive", bg: "bg-destructive/10" },
+  { icon: Zap, label: "Total XP", color: "text-primary", bg: "bg-primary/10", gradient: "from-primary/20 via-primary/5 to-transparent", ring: "ring-primary/20" },
+  { icon: Flame, label: "Streak", color: "text-warning", bg: "bg-warning/10", gradient: "from-warning/20 via-warning/5 to-transparent", ring: "ring-warning/20" },
+  { icon: Gem, label: "Gems", color: "text-cyan-500", bg: "bg-cyan-500/10", gradient: "from-cyan-500/20 via-cyan-500/5 to-transparent", ring: "ring-cyan-500/20" },
+  { icon: Heart, label: "Hearts", color: "text-destructive", bg: "bg-destructive/10", gradient: "from-destructive/20 via-destructive/5 to-transparent", ring: "ring-destructive/20" },
 ];
 
 export default function ProfilePage() {
@@ -378,8 +378,8 @@ export default function ProfilePage() {
         </GlassCard>
       </motion.section>
 
-      {/* Guest sign-in CTA */}
-      {isGuest && (
+      {/* Guest sign-in CTA — only show when guest has real progress */}
+      {isGuest && level > 1 && (
         <motion.section
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -419,7 +419,7 @@ export default function ProfilePage() {
         transition={{ delay: 0.1 }}
       >
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {statCards.map(({ icon: Icon, label, color, bg }, i) => {
+          {statCards.map(({ icon: Icon, label, color, bg, gradient, ring }, i) => {
             const isClickable = label === "Gems" || label === "Hearts";
             return (
               <motion.div
@@ -427,26 +427,29 @@ export default function ProfilePage() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.05 }}
+                whileHover={isClickable ? { scale: 1.03 } : undefined}
+                whileTap={isClickable ? { scale: 0.97 } : undefined}
               >
                 <GlassCard
                   intensity="light"
                   hover={isClickable}
                   className={cn(
-                    "flex h-full flex-col items-center justify-center gap-2 p-3 sm:p-4 text-center",
+                    "relative flex h-full flex-col items-center justify-center gap-2.5 p-4 text-center overflow-hidden",
                     isClickable && "cursor-pointer",
                   )}
                   onClick={isClickable ? () => setProfileShop(label.toLowerCase() as "gems" | "hearts") : undefined}
                 >
-                  <span className={cn("flex size-10 items-center justify-center rounded-xl", bg)}>
+                  <div className={cn("absolute inset-0 bg-gradient-to-b opacity-60", gradient)} />
+                  <span className={cn("relative flex size-11 items-center justify-center rounded-2xl ring-1", bg, ring)}>
                     <Icon className={cn("size-5", color)} />
                   </span>
-                  <div>
-                    <p className="text-[11px] text-muted-foreground">{label}</p>
-                    <p className="font-heading text-lg font-bold tabular-nums leading-tight">
+                  <div className="relative">
+                    <p className="text-[11px] font-medium text-muted-foreground">{label}</p>
+                    <p className="font-heading text-xl font-bold tabular-nums leading-tight mt-0.5">
                       {label === "Streak" ? `${streak}d` : label === "Hearts" ? (isPremium ? "∞" : hearts) : label === "Total XP" ? xp.toLocaleString() : gems}
                     </p>
                     {label === "Streak" && streakFreezes > 0 && (
-                      <span className="flex items-center justify-center gap-1 text-[10px] font-medium text-blue-400/70">
+                      <span className="flex items-center justify-center gap-1 text-[10px] font-medium text-blue-400/70 mt-0.5">
                         <Snowflake className="size-3" />
                         {streakFreezes} freeze{streakFreezes !== 1 ? "s" : ""}
                       </span>

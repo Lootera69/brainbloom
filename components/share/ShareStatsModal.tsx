@@ -111,13 +111,17 @@ export function ShareStatsModal({ open, onClose, data }: ShareStatsModalProps) {
       const blob = await response.blob();
       const file = new File([blob], "brainbloom-stats.png", { type: "image/png" });
 
+      const shareText = data.puzzlesCompleted > 0
+        ? `I'm Level ${data.level ?? 1} with ${(data.xp ?? 0).toLocaleString()} XP and ${(data.puzzlesCompleted ?? 0).toLocaleString()} puzzles solved on BrainBloom! 🧠`
+        : `I just started my brain training journey on BrainBloom! 🧠 Come join me!`;
+
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({ files: [file], title: "My BrainBloom Stats" });
+        await navigator.share({ files: [file], title: "My BrainBloom Stats", text: shareText });
         toast.success("Shared!", { position: "top-center" });
       } else if (navigator.share) {
         await navigator.share({
           title: "My BrainBloom Stats",
-          text: `I'm Level ${data.level ?? 1} with ${(data.xp ?? 0).toLocaleString()} XP on BrainBloom! 🧠`,
+          text: shareText,
           url: "https://brainblooms.vercel.app",
         });
         toast.success("Shared!", { position: "top-center" });
@@ -177,8 +181,15 @@ export function ShareStatsModal({ open, onClose, data }: ShareStatsModalProps) {
             </button>
 
             {generating ? (
-              <div className="flex h-[400px] items-center justify-center">
-                <div className="size-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+              <div className="flex h-[400px] flex-col items-center justify-center gap-4 p-6">
+                <div className="relative">
+                  <div className="size-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+                  <div className="absolute inset-0 size-10 border-4 border-transparent border-b-primary/40 rounded-full animate-spin" style={{ animationDirection: "reverse", animationDuration: "1.5s" }} />
+                </div>
+                <div className="text-center">
+                  <p className="text-sm font-semibold">Creating your share card...</p>
+                  <p className="text-xs text-muted-foreground mt-1">Making it look good ✨</p>
+                </div>
               </div>
             ) : error ? (
               <div className="flex h-[400px] flex-col items-center justify-center gap-4 p-6">

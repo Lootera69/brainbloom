@@ -22,27 +22,6 @@ function safeText(value: unknown, fallback: string): string {
   return typeof value === "string" && value.trim().length > 0 ? value : fallback;
 }
 
-function drawGradientBackground(ctx: CanvasRenderingContext2D, size: number): void {
-  const grad = ctx.createLinearGradient(0, 0, size, size);
-  grad.addColorStop(0, "#1e1b4b");
-  grad.addColorStop(0.5, "#0f0c29");
-  grad.addColorStop(1, "#1e1b4b");
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, size, size);
-
-  const orb1 = ctx.createRadialGradient(size * 0.15, size * 0.2, 0, size * 0.15, size * 0.2, size * 0.6);
-  orb1.addColorStop(0, "rgba(99, 102, 241, 0.15)");
-  orb1.addColorStop(1, "rgba(99, 102, 241, 0)");
-  ctx.fillStyle = orb1;
-  ctx.fillRect(0, 0, size, size);
-
-  const orb2 = ctx.createRadialGradient(size * 0.85, size * 0.8, 0, size * 0.85, size * 0.8, size * 0.55);
-  orb2.addColorStop(0, "rgba(245, 158, 11, 0.1)");
-  orb2.addColorStop(1, "rgba(245, 158, 11, 0)");
-  ctx.fillStyle = orb2;
-  ctx.fillRect(0, 0, size, size);
-}
-
 function drawText(
   ctx: CanvasRenderingContext2D,
   text: unknown,
@@ -75,6 +54,96 @@ function getInitial(name: string): string {
   return initial || "B";
 }
 
+function drawRoundedRect(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  r: number,
+): void {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function drawProgressBar(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  progress: number,
+  color1: string,
+  color2: string,
+): void {
+  drawRoundedRect(ctx, x, y, w, h, h / 2);
+  ctx.fillStyle = "rgba(255,255,255,0.08)";
+  ctx.fill();
+
+  const clamped = Math.min(Math.max(progress, 0), 1);
+  if (clamped > 0) {
+    const pw = Math.max(h, w * clamped);
+    drawRoundedRect(ctx, x, y, pw, h, h / 2);
+    const grad = ctx.createLinearGradient(x, y, x + pw, y);
+    grad.addColorStop(0, color1);
+    grad.addColorStop(1, color2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+  }
+}
+
+function drawStatCard(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  value: string,
+  label: string,
+  icon: string,
+  bg: string,
+  fg: string,
+): void {
+  drawRoundedRect(ctx, x, y, w, h, 20);
+  const grad = ctx.createLinearGradient(x, y, x, y + h);
+  grad.addColorStop(0, bg);
+  grad.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  ctx.strokeStyle = "rgba(255,255,255,0.06)";
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  drawText(ctx, icon, x + w / 2, y + 40, {
+    font: "36px Noto Color Emoji, Apple Color Emoji, Segoe UI Emoji",
+    color: fg,
+    align: "center",
+    baseline: "middle",
+  });
+
+  drawText(ctx, value, x + w / 2, y + 80, {
+    font: "700 38px Inter, system-ui",
+    color: "#f4f2f8",
+    align: "center",
+  });
+
+  drawText(ctx, label, x + w / 2, y + h - 16, {
+    font: "500 15px Inter, system-ui",
+    color: "rgba(244,242,248,0.5)",
+    align: "center",
+  });
+}
+
 function dataURLToBlob(dataURL: string): Blob {
   const commaIndex = dataURL.indexOf(",");
   const header = commaIndex >= 0 ? dataURL.slice(0, commaIndex) : "";
@@ -89,78 +158,23 @@ function dataURLToBlob(dataURL: string): Blob {
   return new Blob([bytes], { type: mime });
 }
 
-function canvasToPngBlob(canvas: HTMLCanvasElement): Promise<Blob> {
-  return new Promise((resolve, reject) => {
-    try {
-      canvas.toBlob(
-        (blob) => {
-          if (blob && blob.size > 0) {
-            resolve(blob);
-          } else {
-            reject(new Error("toBlob produced no image"));
-          }
-        },
-        "image/png",
-      );
-    } catch (e) {
-      reject(e instanceof Error ? e : new Error("toBlob threw"));
-    }
-  });
-}
-
 async function exportCanvasAsBlob(canvas: HTMLCanvasElement): Promise<Blob> {
   try {
-    return await canvasToPngBlob(canvas);
+    const blob = await new Promise<Blob | null>((resolve) => {
+      canvas.toBlob((b) => resolve(b), "image/png");
+    });
+    if (blob && blob.size > 0) return blob;
   } catch {
-    try {
-      const dataURL = canvas.toDataURL("image/png");
-      const blob = dataURLToBlob(dataURL);
-      if (blob.size > 0) return blob;
-    } catch {
-      // fall through
-    }
+    // fall through
+  }
+  try {
+    const dataURL = canvas.toDataURL("image/png");
+    const blob = dataURLToBlob(dataURL);
+    if (blob.size > 0) return blob;
+  } catch {
+    // fall through
   }
   throw new Error("Share card image generation failed");
-}
-
-function drawMinimalCard(
-  ctx: CanvasRenderingContext2D,
-  size: number,
-  displayName: string,
-  level: number,
-  xp: number,
-  streak: number,
-  puzzlesCompleted: number,
-  achievements: number,
-): void {
-  const centerX = size / 2;
-  ctx.fillStyle = "#0f0c29";
-  ctx.fillRect(0, 0, size, size);
-  drawText(ctx, "BrainBloom", centerX, size * 0.12, {
-    font: "700 48px system-ui, sans-serif",
-    color: "#f4f2f8",
-    align: "center",
-  });
-  drawText(ctx, displayName, centerX, size * 0.3, {
-    font: "700 42px system-ui, sans-serif",
-    color: "#f4f2f8",
-    align: "center",
-  });
-  drawText(ctx, `Level ${level}`, centerX, size * 0.4, {
-    font: "600 32px system-ui, sans-serif",
-    color: "#a5b4fc",
-    align: "center",
-  });
-  drawText(ctx, `XP ${xp.toLocaleString()}  |  Streak ${streak}d  |  Puzzles ${puzzlesCompleted}  |  Achievements ${achievements}`, centerX, size * 0.55, {
-    font: "400 28px system-ui, sans-serif",
-    color: "#f4f2f8",
-    align: "center",
-  });
-  drawText(ctx, "brainblooms.vercel.app", centerX, size * 0.92, {
-    font: "400 20px system-ui, sans-serif",
-    color: "rgba(244,242,248,0.5)",
-    align: "center",
-  });
 }
 
 export async function generateShareCard(data: ShareCardData): Promise<Blob> {
@@ -172,7 +186,7 @@ export async function generateShareCard(data: ShareCardData): Promise<Blob> {
       new Promise((resolve) => setTimeout(resolve, 400)),
     ]);
   } catch {
-    // Font readiness is non-fatal — fall back to system fonts
+    // Font readiness is non-fatal
   }
 
   const canvas = document.createElement("canvas");
@@ -188,50 +202,83 @@ export async function generateShareCard(data: ShareCardData): Promise<Blob> {
   const puzzlesCompleted = safeNumber(data.puzzlesCompleted, 0);
   const achievements = safeNumber(data.achievements, 0);
   const tier = data.tier === "premium" ? "premium" : "free";
+  const isStart = xp === 0 && streak === 0 && puzzlesCompleted === 0;
 
   try {
-    drawGradientBackground(ctx, size);
+    const grad = ctx.createLinearGradient(0, 0, size, size);
+    grad.addColorStop(0, "#1e1b4b");
+    grad.addColorStop(0.4, "#0f0c29");
+    grad.addColorStop(0.7, "#1a1040");
+    grad.addColorStop(1, "#1e1b4b");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, size, size);
 
-    const centerX = size / 2;
+    const orb1 = ctx.createRadialGradient(size * 0.1, size * 0.15, 0, size * 0.1, size * 0.15, size * 0.7);
+    orb1.addColorStop(0, "rgba(99, 102, 241, 0.2)");
+    orb1.addColorStop(1, "rgba(99, 102, 241, 0)");
+    ctx.fillStyle = orb1;
+    ctx.fillRect(0, 0, size, size);
 
-    drawText(ctx, "🧠 BrainBloom", centerX, size * 0.1, {
-      font: "700 42px Inter, system-ui",
+    const orb2 = ctx.createRadialGradient(size * 0.9, size * 0.85, 0, size * 0.9, size * 0.85, size * 0.6);
+    orb2.addColorStop(0, tier === "premium" ? "rgba(245, 158, 11, 0.12)" : "rgba(139, 92, 246, 0.12)");
+    orb2.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = orb2;
+    ctx.fillRect(0, 0, size, size);
+
+    if (tier === "premium") {
+      const orb3 = ctx.createRadialGradient(size * 0.5, size * 0.3, 0, size * 0.5, size * 0.3, size * 0.4);
+      orb3.addColorStop(0, "rgba(251, 191, 36, 0.06)");
+      orb3.addColorStop(1, "rgba(251, 191, 36, 0)");
+      ctx.fillStyle = orb3;
+      ctx.fillRect(0, 0, size, size);
+    }
+
+    for (let i = 0; i < 6; i++) {
+      const sx = 80 + Math.random() * (size - 160);
+      const sy = 80 + Math.random() * (size - 160);
+      const sr = 1 + Math.random() * 2;
+      ctx.beginPath();
+      ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${0.1 + Math.random() * 0.15})`;
+      ctx.fill();
+    }
+
+    const cx = size / 2;
+
+    drawText(ctx, "🧠 BrainBloom", cx, 80, {
+      font: "700 40px Inter, system-ui",
       color: "#f4f2f8",
       align: "center",
     });
-
-    drawText(ctx, "Daily brain training", centerX, size * 0.155, {
-      font: "400 20px Inter, system-ui",
-      color: "rgba(244,242,248,0.6)",
+    drawText(ctx, "Daily brain training", cx, 118, {
+      font: "400 18px Inter, system-ui",
+      color: "rgba(244,242,248,0.45)",
       align: "center",
     });
 
-    const avatarCenterY = size * 0.28;
-    const avatarRadius = 80;
+    const avatarY = 240;
+    const avatarR = 72;
 
     ctx.save();
     ctx.beginPath();
-    ctx.arc(centerX, avatarCenterY, avatarRadius, 0, Math.PI * 2);
+    ctx.arc(cx, avatarY, avatarR, 0, Math.PI * 2);
     ctx.clip();
 
-    const avatarGrad = ctx.createLinearGradient(
-      centerX - avatarRadius,
-      avatarCenterY - avatarRadius,
-      centerX + avatarRadius,
-      avatarCenterY + avatarRadius,
-    );
+    const avatarGrad = ctx.createLinearGradient(cx - avatarR, avatarY - avatarR, cx + avatarR, avatarY + avatarR);
     if (tier === "premium") {
       avatarGrad.addColorStop(0, "#fbbf24");
-      avatarGrad.addColorStop(1, "#f59e0b");
+      avatarGrad.addColorStop(0.5, "#f59e0b");
+      avatarGrad.addColorStop(1, "#d97706");
     } else {
       avatarGrad.addColorStop(0, "#6366f1");
+      avatarGrad.addColorStop(0.5, "#818cf8");
       avatarGrad.addColorStop(1, "#8b5cf6");
     }
     ctx.fillStyle = avatarGrad;
-    ctx.fillRect(centerX - avatarRadius, avatarCenterY - avatarRadius, avatarRadius * 2, avatarRadius * 2);
+    ctx.fillRect(cx - avatarR, avatarY - avatarR, avatarR * 2, avatarR * 2);
 
-    drawText(ctx, getInitial(displayName), centerX, avatarCenterY + 28, {
-      font: "700 72px Inter, system-ui",
+    drawText(ctx, getInitial(displayName), cx, avatarY + 4, {
+      font: "700 64px Inter, system-ui",
       color: "#ffffff",
       align: "center",
       baseline: "middle",
@@ -242,65 +289,148 @@ export async function generateShareCard(data: ShareCardData): Promise<Blob> {
       ctx.save();
       ctx.strokeStyle = "#fbbf24";
       ctx.lineWidth = 4;
+      ctx.shadowColor = "rgba(251, 191, 36, 0.4)";
+      ctx.shadowBlur = 12;
       ctx.beginPath();
-      ctx.arc(centerX, avatarCenterY, avatarRadius + 8, 0, Math.PI * 2);
+      ctx.arc(cx, avatarY, avatarR + 8, 0, Math.PI * 2);
       ctx.stroke();
       ctx.restore();
+
+      drawText(ctx, "⭐", cx + avatarR + 4, avatarY - avatarR - 4, {
+        font: "28px Noto Color Emoji, Apple Color Emoji, Segoe UI Emoji",
+        color: "#fbbf24",
+        align: "center",
+      });
     }
 
-    drawText(ctx, displayName, centerX, size * 0.42, {
+    drawText(ctx, displayName, cx, 350, {
       font: "700 36px Inter, system-ui",
       color: "#f4f2f8",
       align: "center",
+      maxWidth: 600,
     });
 
-    drawText(ctx, `Level ${level}`, centerX, size * 0.475, {
-      font: "600 28px Inter, system-ui",
-      color: tier === "premium" ? "#fbbf24" : "#a5b4fc",
+    const levelColor = tier === "premium" ? "#fbbf24" : "#a5b4fc";
+    drawText(ctx, `Level ${level}`, cx, 390, {
+      font: "600 24px Inter, system-ui",
+      color: levelColor,
       align: "center",
     });
 
-    const statY = size * 0.58;
-    const statGap = 180;
-    const startX = centerX - statGap * 1.5;
+    const xpForNext = level * 100;
+    const xpInLevel = xp % xpForNext;
+    const progress = xpForNext > 0 ? xpInLevel / xpForNext : 0;
+    drawProgressBar(ctx, cx - 200, 410, 400, 10, progress, tier === "premium" ? "#fbbf24" : "#818cf8", tier === "premium" ? "#f59e0b" : "#6366f1");
 
-    const stats = [
-      { label: "XP", value: xp.toLocaleString(), emoji: "⚡" },
-      { label: "Streak", value: `${streak}d`, emoji: "🔥" },
-      { label: "Puzzles", value: puzzlesCompleted.toString(), emoji: "🧩" },
-      { label: "Achievements", value: achievements.toString(), emoji: "🏆" },
+    const remaining = xpForNext - xpInLevel;
+    drawText(ctx, isStart ? "Your journey begins here!" : `${remaining.toLocaleString()} XP to Level ${level + 1}`, cx, 448, {
+      font: "400 16px Inter, system-ui",
+      color: "rgba(244,242,248,0.4)",
+      align: "center",
+    });
+
+    const cardW = 210;
+    const cardH = 150;
+    const gap = 30;
+    const row1Y = 490;
+    const row2Y = row1Y + cardH + 24;
+    const totalW = cardW * 2 + gap;
+    const startX = cx - totalW / 2;
+
+    const statsGrid = [
+      {
+        value: xp.toLocaleString(),
+        label: "Total XP",
+        icon: "⚡",
+        bg: "rgba(99, 102, 241, 0.15)",
+        fg: "#818cf8",
+      },
+      {
+        value: `${streak}`,
+        label: "Day Streak",
+        icon: "🔥",
+        bg: "rgba(245, 158, 11, 0.15)",
+        fg: "#fbbf24",
+      },
+      {
+        value: `${puzzlesCompleted}`,
+        label: "Puzzles",
+        icon: "🧩",
+        bg: "rgba(34, 211, 238, 0.12)",
+        fg: "#22d3ee",
+      },
+      {
+        value: `${achievements}`,
+        label: "Achievements",
+        icon: "🏆",
+        bg: "rgba(34, 197, 94, 0.12)",
+        fg: "#22c55e",
+      },
     ];
 
-    stats.forEach((s, i) => {
-      const x = startX + i * statGap;
-      drawText(ctx, s.emoji, x, statY, {
-        font: "28px Noto Color Emoji, Apple Color Emoji, Segoe UI Emoji",
-        color: "#f4f2f8",
+    statsGrid.forEach((s, i) => {
+      const col = i % 2;
+      const row = Math.floor(i / 2);
+      const x = startX + col * (cardW + gap);
+      const y = row === 0 ? row1Y : row2Y;
+      drawStatCard(ctx, x, y, cardW, cardH, s.value, s.label, s.icon, s.bg, s.fg);
+    });
+
+    if (isStart) {
+      drawRoundedRect(ctx, cx - 180, 860, 360, 50, 25);
+      const btnGrad = ctx.createLinearGradient(cx - 180, 860, cx + 180, 860);
+      btnGrad.addColorStop(0, "#6366f1");
+      btnGrad.addColorStop(1, "#8b5cf6");
+      ctx.fillStyle = btnGrad;
+      ctx.fill();
+      drawText(ctx, "🚀 Start Your Journey", cx, 890, {
+        font: "600 20px Inter, system-ui",
+        color: "#ffffff",
         align: "center",
-        baseline: "top",
       });
-      drawText(ctx, s.value, x, statY + 38, {
-        font: "700 32px Inter, system-ui",
-        color: "#f4f2f8",
-        align: "center",
-      });
-      drawText(ctx, s.label, x, statY + 76, {
-        font: "400 16px Inter, system-ui",
+    } else {
+      const tagline = streak >= 7
+        ? `${streak} day streak — unstoppable! 🔥`
+        : streak >= 3
+          ? `${streak} day streak and growing! 💪`
+          : puzzlesCompleted >= 50
+            ? `${puzzlesCompleted} puzzles conquered! 🧩`
+            : achievements >= 5
+              ? `${achievements} achievements unlocked! 🏆`
+              : "Training my brain every day 🧠";
+      drawText(ctx, tagline, cx, 880, {
+        font: "500 18px Inter, system-ui",
         color: "rgba(244,242,248,0.6)",
         align: "center",
       });
-    });
+    }
 
-    drawText(ctx, "brainblooms.vercel.app", centerX, size * 0.92, {
-      font: "400 18px Inter, system-ui",
-      color: "rgba(244,242,248,0.4)",
+    drawText(ctx, "brainblooms.vercel.app", cx, size - 40, {
+      font: "400 16px Inter, system-ui",
+      color: "rgba(244,242,248,0.25)",
       align: "center",
     });
 
     return await exportCanvasAsBlob(canvas);
   } catch {
     ctx.clearRect(0, 0, size, size);
-    drawMinimalCard(ctx, size, displayName, level, xp, streak, puzzlesCompleted, achievements);
+    ctx.fillStyle = "#0f0c29";
+    ctx.fillRect(0, 0, size, size);
+    drawText(ctx, "🧠 BrainBloom", size / 2, size * 0.3, {
+      font: "700 48px system-ui, sans-serif",
+      color: "#f4f2f8",
+      align: "center",
+    });
+    drawText(ctx, displayName, size / 2, size * 0.45, {
+      font: "700 42px system-ui, sans-serif",
+      color: "#f4f2f8",
+      align: "center",
+    });
+    drawText(ctx, `Level ${level}  •  ${xp.toLocaleString()} XP`, size / 2, size * 0.55, {
+      font: "400 28px system-ui, sans-serif",
+      color: "#a5b4fc",
+      align: "center",
+    });
     try {
       return await exportCanvasAsBlob(canvas);
     } catch {

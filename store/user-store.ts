@@ -47,6 +47,7 @@ export interface AuthUserInput {
 export interface SetUserOptions {
   guestData?: GuestMergeData;
   dropGuest?: boolean;
+  cloudData?: Record<string, unknown> | null;
 }
 
 interface UserState {
@@ -300,70 +301,137 @@ export const useUserStore = create<UserState>()(
       },
 
       setUser: (user, opts) => {
-        set({
-          ...(opts?.dropGuest
-            ? {
-                xp: 0,
-                xpToday: 0,
-                lastXpGain: 0,
-                streak: 0,
-                lastActiveDate: null,
-                hearts: 5,
-                level: 1,
-                gems: 0,
-                history: [],
-                achievements: [],
-                lastRewardClaim: null,
-                streakFreezes: 0,
-                practiceHeartsToday: 0,
-                lastPracticeDate: null,
-                dailyQuests: [],
-                lastQuestRefresh: null,
-                completedPuzzleIds: [],
-                questsRewarded: [],
-                dailyPuzzleCompletedDate: null,
-                dailyPuzzleStreak: 0,
-                dailyPuzzleLastDate: null,
-                weeklyXp: 0,
-                weeklyStartDate: Date.now(),
-                frozenDays: [],
-                brokenDays: [],
-                dailyGoalStreak: 0,
-                dailyGoalLastHitDate: null,
-                streakStartDate: null,
-                activeDates: [],
-                puzzlesPlayedToday: 0,
-                puzzlesPlayedDate: null,
-                adsWatchedToday: 0,
-                adsWatchDate: null,
-                experiencedWonderIds: [],
-                currentCipherWeek: null,
-                currentCipherSolved: false,
-                cipherSolveCount: 0,
-                cipherRevealed: false,
-                cipherSolvedWeeks: [],
-                nextHeartAt: null,
-              }
-            : {}),
-          userId: user.uid,
-          displayName: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-          avatarId: null,
-          isGuest: false,
-          isAuthenticated: true,
-          updatedAt: 0,
-        });
-        setTimeout(async () => {
-          await get().loadFromFirestore();
-          if (opts?.guestData) {
-            const s = get();
-            set({ ...mergeGuestProgress(opts.guestData, s), updatedAt: Date.now() });
+        if (opts?.cloudData) {
+          const cd = opts.cloudData as Record<string, unknown>;
+          set({
+            userId: user.uid,
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+            avatarId: (cd.avatarId as string | null) ?? null,
+            isGuest: false,
+            isAuthenticated: true,
+            xp: (cd.xp as number) ?? 0,
+            xpToday: (cd.xpToday as number) ?? 0,
+            lastXpGain: (cd.lastXpGain as number) ?? 0,
+            streak: (cd.streak as number) ?? 0,
+            lastActiveDate: (cd.lastActiveDate as string | null) ?? null,
+            hearts: (cd.hearts as number) ?? 5,
+            nextHeartAt: (cd.nextHeartAt as number | null) ?? null,
+            level: (cd.level as number) ?? 1,
+            gems: (cd.gems as number) ?? 0,
+            dailyGoal: (cd.dailyGoal as number) ?? 100,
+            lastPlayedCategory: (cd.lastPlayedCategory as string | null) ?? null,
+            history: (cd.history as Activity[]) ?? [],
+            achievements: (cd.achievements as Achievement[]) ?? [],
+            lastRewardClaim: (cd.lastRewardClaim as string | null) ?? null,
+            streakFreezes: (cd.streakFreezes as number) ?? 0,
+            practiceHeartsToday: (cd.practiceHeartsToday as number) ?? 0,
+            lastPracticeDate: (cd.lastPracticeDate as string | null) ?? null,
+            dailyQuests: (cd.dailyQuests as DailyQuest[]) ?? [],
+            lastQuestRefresh: (cd.lastQuestRefresh as string | null) ?? null,
+            completedPuzzleIds: (cd.completedPuzzleIds as string[]) ?? [],
+            questsRewarded: (cd.questsRewarded as string[]) ?? [],
+            dailyPuzzleCompletedDate: (cd.dailyPuzzleCompletedDate as string | null) ?? null,
+            dailyPuzzleStreak: (cd.dailyPuzzleStreak as number) ?? 0,
+            dailyPuzzleLastDate: (cd.dailyPuzzleLastDate as string | null) ?? null,
+            soundEnabled: (cd.soundEnabled as boolean) ?? true,
+            theme: (cd.theme as "light" | "dark" | "system") ?? "system",
+            weeklyXp: (cd.weeklyXp as number) ?? 0,
+            weeklyStartDate: (cd.weeklyStartDate as number) ?? Date.now(),
+            frozenDays: (cd.frozenDays as string[]) ?? [],
+            brokenDays: (cd.brokenDays as string[]) ?? [],
+            dailyGoalStreak: (cd.dailyGoalStreak as number) ?? 0,
+            dailyGoalLastHitDate: (cd.dailyGoalLastHitDate as string | null) ?? null,
+            streakStartDate: (cd.streakStartDate as string | null) ?? null,
+            activeDates: (cd.activeDates as string[]) ?? [],
+            tier: (cd.tier as "free" | "premium") ?? "free",
+            subscriptionExpiry: (cd.subscriptionExpiry as number | null) ?? null,
+            puzzlesPlayedToday: (cd.puzzlesPlayedToday as number) ?? 0,
+            puzzlesPlayedDate: (cd.puzzlesPlayedDate as string | null) ?? null,
+            adsWatchedToday: (cd.adsWatchedToday as number) ?? 0,
+            adsWatchDate: (cd.adsWatchDate as string | null) ?? null,
+            experiencedWonderIds: (cd.experiencedWonderIds as string[]) ?? [],
+            currentCipherWeek: (cd.currentCipherWeek as string | null) ?? null,
+            currentCipherSolved: (cd.currentCipherSolved as boolean) ?? false,
+            cipherSolveCount: (cd.cipherSolveCount as number) ?? 0,
+            cipherRevealed: (cd.cipherRevealed as boolean) ?? false,
+            cipherSolvedWeeks: (cd.cipherSolvedWeeks as string[]) ?? [],
+            updatedAt: (cd.updatedAt as number) ?? Date.now(),
+          });
+          setTimeout(() => {
+            if (opts?.guestData) {
+              const s = get();
+              set({ ...mergeGuestProgress(opts.guestData, s), updatedAt: Date.now() });
+            }
             get().checkWeeklyReset();
             get().checkStreak(false);
-          }
-          setTimeout(() => get().syncToFirestore(), 200);
-        }, 100);
+          }, 50);
+        } else {
+          set({
+            ...(opts?.dropGuest
+              ? {
+                  xp: 0,
+                  xpToday: 0,
+                  lastXpGain: 0,
+                  streak: 0,
+                  lastActiveDate: null,
+                  hearts: 5,
+                  level: 1,
+                  gems: 0,
+                  history: [],
+                  achievements: [],
+                  lastRewardClaim: null,
+                  streakFreezes: 0,
+                  practiceHeartsToday: 0,
+                  lastPracticeDate: null,
+                  dailyQuests: [],
+                  lastQuestRefresh: null,
+                  completedPuzzleIds: [],
+                  questsRewarded: [],
+                  dailyPuzzleCompletedDate: null,
+                  dailyPuzzleStreak: 0,
+                  dailyPuzzleLastDate: null,
+                  weeklyXp: 0,
+                  weeklyStartDate: Date.now(),
+                  frozenDays: [],
+                  brokenDays: [],
+                  dailyGoalStreak: 0,
+                  dailyGoalLastHitDate: null,
+                  streakStartDate: null,
+                  activeDates: [],
+                  puzzlesPlayedToday: 0,
+                  puzzlesPlayedDate: null,
+                  adsWatchedToday: 0,
+                  adsWatchDate: null,
+                  experiencedWonderIds: [],
+                  currentCipherWeek: null,
+                  currentCipherSolved: false,
+                  cipherSolveCount: 0,
+                  cipherRevealed: false,
+                  cipherSolvedWeeks: [],
+                  nextHeartAt: null,
+                }
+              : {}),
+            userId: user.uid,
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+            avatarId: null,
+            isGuest: false,
+            isAuthenticated: true,
+            updatedAt: 0,
+          });
+          setTimeout(async () => {
+            await get().loadFromFirestore();
+            if (opts?.guestData) {
+              const s = get();
+              set({ ...mergeGuestProgress(opts.guestData, s), updatedAt: Date.now() });
+              get().checkWeeklyReset();
+              get().checkStreak(false);
+            }
+          }, 100);
+        }
       },
 
       setAvatarId: (avatarId) => {

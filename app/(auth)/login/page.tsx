@@ -55,6 +55,7 @@ export default function LoginPage() {
   const [mergeCandidate, setMergeCandidate] = useState<{
     user: AuthUserInput;
     guest: GuestMergeData;
+    cloud: Record<string, unknown> | null;
   } | null>(null);
 
   useEffect(() => {
@@ -136,10 +137,10 @@ export default function LoginPage() {
     return hasMeaningfulGuestData(data) ? data : null;
   };
 
-  const finishAuth = (user: AuthUserInput, guest: GuestMergeData | null, merge: boolean) => {
+  const finishAuth = (user: AuthUserInput, guest: GuestMergeData | null, merge: boolean, cloud?: Record<string, unknown> | null) => {
     setUser(
       user,
-      guest ? (merge ? { guestData: guest } : { dropGuest: true }) : undefined,
+      guest ? (merge ? { guestData: guest, cloudData: cloud } : { dropGuest: true, cloudData: cloud }) : { cloudData: cloud },
     );
     if (guest && merge) {
       toast.success("Guest progress merged into your account", { position: "top-center" });
@@ -151,10 +152,12 @@ export default function LoginPage() {
 
   const completeAuth = async (user: AuthUserInput) => {
     const guest = captureGuestData();
+    let cloudData: Record<string, unknown> | null = null;
     try {
       const { loadUserData } = await import("@/services/user-service");
       const cloud = await loadUserData(user.uid);
       if (cloud) {
+        cloudData = cloud as unknown as Record<string, unknown>;
         const cloudHasProgress = hasMeaningfulGuestData({
           xp: cloud.xp ?? 0,
           gems: cloud.gems ?? 0,
@@ -166,7 +169,7 @@ export default function LoginPage() {
           achievements: cloud.achievements ?? [],
         });
         if (cloudHasProgress) {
-          finishAuth(user, guest, false);
+          finishAuth(user, guest, false, cloudData);
           return;
         }
       }
@@ -174,10 +177,10 @@ export default function LoginPage() {
       console.warn("completeAuth cloud check failed — falling back to merge prompt:", e);
     }
     if (guest) {
-      setMergeCandidate({ user, guest });
+      setMergeCandidate({ user, guest, cloud: cloudData });
       return;
     }
-    finishAuth(user, null, false);
+    finishAuth(user, null, false, cloudData);
   };
 
   const handleGuest = () => {
@@ -790,14 +793,14 @@ export default function LoginPage() {
         <GuestMergeDialog
           summary={guestMergeSummary(mergeCandidate.guest)}
           onMerge={() => {
-            const { user, guest } = mergeCandidate;
+            const { user, guest, cloud } = mergeCandidate;
             setMergeCandidate(null);
-            finishAuth(user, guest, true);
+            finishAuth(user, guest, true, cloud);
           }}
           onSkip={() => {
-            const { user, guest } = mergeCandidate;
+            const { user, guest, cloud } = mergeCandidate;
             setMergeCandidate(null);
-            finishAuth(user, guest, false);
+            finishAuth(user, guest, false, cloud);
           }}
         />
       )}
