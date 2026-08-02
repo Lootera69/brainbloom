@@ -151,6 +151,7 @@ export default function ProfilePage() {
     if (!userId || notificationsLoading) return;
     const previous = notificationsEnabled;
     setNotificationsEnabled(!previous);
+    if (previous) playToggleOff(); else playToggleOn();
     setNotificationsLoading(true);
     try {
       if (previous) {

@@ -12,6 +12,7 @@ import {
   requestNotificationPermission,
   subscribeToPush,
 } from "@/services/notification-service";
+import { playToggleOn } from "@/services/sound-service";
 
 export function PushReminderBanner() {
   const userId = useUserStore((s) => s.userId);
@@ -69,6 +70,7 @@ export function PushReminderBanner() {
         return;
       }
       setSubscribed(true);
+      playToggleOn();
       toast.success("You're in — we'll nudge you when your next challenge awaits!", { position: "top-center" });
     } finally {
       setLoading(false);

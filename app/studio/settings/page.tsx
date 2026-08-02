@@ -281,23 +281,32 @@ export default function StudioSettingsPage() {
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: gi * 0.03 }}
-                    draggable={!editingGroup}
-                    onDragStart={() => setDragIdx(gi)}
-                    onDragOver={(e) => { e.preventDefault(); dragOverIdx.current = gi; }}
-                    onDragEnd={() => {
-                      if (dragIdx !== null && dragOverIdx.current !== null && dragIdx !== dragOverIdx.current) {
-                        const reordered = [...catGroups];
-                        const [moved] = reordered.splice(dragIdx, 1);
-                        reordered.splice(dragOverIdx.current, 0, moved);
-                        reorderLessonGroups(selectedCat, reordered.map((r) => r.name));
-                      }
-                      setDragIdx(null);
-                      dragOverIdx.current = null;
-                    }}
-                    className={`group flex items-center gap-3 rounded-xl border bg-card px-4 py-3 transition-all hover:border-primary/20 ${
+                    className={`group rounded-xl border bg-card px-4 py-3 transition-all hover:border-primary/20 ${
                       dragIdx === gi ? "opacity-50" : ""
                     }`}
                   >
+                    <div
+                      draggable={!editingGroup}
+                      onDragStart={() => setDragIdx(gi)}
+                      onDragOver={(e) => { e.preventDefault(); dragOverIdx.current = gi; }}
+                      onDragEnd={async () => {
+                        if (dragIdx !== null && dragOverIdx.current !== null && dragIdx !== dragOverIdx.current) {
+                          const reordered = [...catGroups];
+                          const [moved] = reordered.splice(dragIdx, 1);
+                          reordered.splice(dragOverIdx.current, 0, moved);
+                          const newOrders = reordered.map((r, i) => ({ ...r, order: i + 1 }));
+                          setGroups((prev) => {
+                            const others = prev.filter((g) => !(g.category === selectedCat));
+                            return [...others, ...newOrders];
+                          });
+                          await reorderLessonGroups(selectedCat, newOrders.map((r) => r.name));
+                          await refreshGroups();
+                        }
+                        setDragIdx(null);
+                        dragOverIdx.current = null;
+                      }}
+                      className="flex items-center gap-3"
+                    >
                     <GripVertical className="size-3.5 shrink-0 cursor-grab text-muted-foreground/30 active:cursor-grabbing" />
                     <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/5">
                       <BookOpen className="size-4 text-primary" />
@@ -365,6 +374,7 @@ export default function StudioSettingsPage() {
                         </button>
                       </>
                     )}
+                    </div>
                   </motion.div>
                 ))}
               </div>
