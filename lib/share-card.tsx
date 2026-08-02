@@ -22,15 +22,15 @@ export const SHARE_CARD_SIZE = 1080;
 const cx = SHARE_CARD_SIZE / 2;
 
 const avatarCY = 240;
-const avatarR = 78;
-const ringR = 90;
+const avatarR = 88;
+const ringR = 100;
 const ringThickness = 5;
 
-const statsTileW = 460;
-const statsTileH = 108;
-const statsGap = 24;
+const statsTileW = 474;
+const statsTileH = 158;
+const statsGap = 26;
 const statsStartX = (SHARE_CARD_SIZE - statsTileW * 2 - statsGap) / 2;
-const statsRow0Y = 478;
+const statsRow0Y = 500;
 const statsRow1Y = statsRow0Y + statsTileH + statsGap;
 
 function safeNumber(value: unknown, fallback: number): number {
@@ -129,7 +129,7 @@ function drawStatTile(
   accentG: number,
   accentB: number,
 ): void {
-  const r = 18;
+  const r = 22;
 
   drawRoundedRect(ctx, x, y, w, h, r);
   ctx.fillStyle = "rgba(255,255,255,0.03)";
@@ -140,15 +140,15 @@ function drawStatTile(
 
   const sheenX = x + w - 80;
   const sheenY = y - 20;
-  const sheen = ctx.createRadialGradient(sheenX, sheenY, 0, sheenX, sheenY, 120);
-  sheen.addColorStop(0, `rgba(${accentR},${accentG},${accentB},0.06)`);
+  const sheen = ctx.createRadialGradient(sheenX, sheenY, 0, sheenX, sheenY, 140);
+  sheen.addColorStop(0, `rgba(${accentR},${accentG},${accentB},0.07)`);
   sheen.addColorStop(1, "rgba(255,255,255,0)");
   ctx.fillStyle = sheen;
   ctx.fillRect(x, y, w, h);
 
-  const iconCX = x + 44;
+  const iconCX = x + 56;
   const iconCY = y + h / 2;
-  const iconR = 22;
+  const iconR = 30;
 
   ctx.beginPath();
   ctx.arc(iconCX, iconCY, iconR, 0, Math.PI * 2);
@@ -156,30 +156,31 @@ function drawStatTile(
   ctx.fill();
 
   ctx.beginPath();
-  ctx.arc(iconCX, iconCY, iconR + 16, 0, Math.PI * 2);
-  const iconGlow = ctx.createRadialGradient(iconCX, iconCY, iconR, iconCX, iconCY, iconR + 16);
-  iconGlow.addColorStop(0, `rgba(${accentR},${accentG},${accentB},0.06)`);
+  ctx.arc(iconCX, iconCY, iconR + 20, 0, Math.PI * 2);
+  const iconGlow = ctx.createRadialGradient(iconCX, iconCY, iconR, iconCX, iconCY, iconR + 20);
+  iconGlow.addColorStop(0, `rgba(${accentR},${accentG},${accentB},0.07)`);
   iconGlow.addColorStop(1, "rgba(0,0,0,0)");
   ctx.fillStyle = iconGlow;
   ctx.fill();
 
   drawText(ctx, emoji, iconCX, iconCY, {
-    font: "26px Noto Color Emoji, Apple Color Emoji, Segoe UI Emoji",
+    font: "36px Noto Color Emoji, Apple Color Emoji, Segoe UI Emoji",
     color: `rgb(${accentR},${accentG},${accentB})`,
     align: "center",
     baseline: "middle",
   });
 
-  drawText(ctx, value, x + 88, y + h / 2 - 4, {
-    font: "700 40px Inter, system-ui",
+  drawText(ctx, value, x + 108, y + h / 2 + 20, {
+    font: "700 54px Inter, system-ui",
     color: "#f4f2f8",
     align: "left",
-    baseline: "alphabetic",
+    baseline: "middle",
+    maxWidth: w - 132,
   });
 
-  drawText(ctx, label, x + 88, y + h / 2 + 22, {
-    font: "500 14px Inter, system-ui",
-    color: "rgba(244,242,248,0.4)",
+  drawText(ctx, label, x + 108, y + h / 2 + 48, {
+    font: "600 17px Inter, system-ui",
+    color: "rgba(244,242,248,0.42)",
     align: "left",
     baseline: "alphabetic",
   });
@@ -478,8 +479,8 @@ export async function generateShareCard(data: ShareCardData): Promise<Blob> {
 
     drawProgressRing(ctx, cx, avatarCY, ringR, ringThickness, levelProgress, accentC1, accentC2);
 
-    drawText(ctx, displayName, cx, 350, {
-      font: "700 48px Inter, system-ui",
+    drawText(ctx, displayName, cx, 388, {
+      font: "700 52px Inter, system-ui",
       color: isPremium ? "#fbbf24" : "#f4f2f8",
       align: "center",
       maxWidth: 620,
@@ -490,7 +491,7 @@ export async function generateShareCard(data: ShareCardData): Promise<Blob> {
     const chipW = 280;
     const chipH = 34;
     const chipX = cx - chipW / 2;
-    const chipY = 375;
+    const chipY = 420;
 
     drawRoundedRect(ctx, chipX, chipY, chipW, chipH, chipH / 2);
     ctx.fillStyle = "rgba(255,255,255,0.04)";
@@ -517,13 +518,13 @@ export async function generateShareCard(data: ShareCardData): Promise<Blob> {
 
     if (!isStart) {
       const remaining = xpForNext - xpInLevel;
-      drawText(ctx, `${remaining.toLocaleString()} XP to Level ${level + 1}`, cx, 432, {
+      drawText(ctx, `${remaining.toLocaleString()} XP to Level ${level + 1}`, cx, 468, {
         font: "400 16px Inter, system-ui",
         color: "rgba(244,242,248,0.35)",
         align: "center",
       });
     } else {
-      drawText(ctx, "Your journey begins here!", cx, 432, {
+      drawText(ctx, "Your journey begins here!", cx, 468, {
         font: "400 16px Inter, system-ui",
         color: "rgba(244,242,248,0.35)",
         align: "center",
@@ -566,7 +567,7 @@ export async function generateShareCard(data: ShareCardData): Promise<Blob> {
     });
 
     const tagline = getTagline(data);
-    drawText(ctx, tagline, cx, 768, {
+    drawText(ctx, tagline, cx, 880, {
       font: "500 18px Inter, system-ui",
       color: "rgba(244,242,248,0.45)",
       align: "center",
@@ -575,7 +576,7 @@ export async function generateShareCard(data: ShareCardData): Promise<Blob> {
     const ctaW = 360;
     const ctaH = 48;
     const ctaX = cx - ctaW / 2;
-    const ctaY = 810;
+    const ctaY = 918;
 
     drawRoundedRect(ctx, ctaX, ctaY, ctaW, ctaH, ctaH / 2);
     const ctaGrad = ctx.createLinearGradient(ctaX, ctaY, ctaX + ctaW, ctaY);
