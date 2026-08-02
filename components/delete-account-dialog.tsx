@@ -7,7 +7,6 @@ import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { deleteUserData } from "@/services/user-service";
-import { useUserStore } from "@/store/user-store";
 import { toast } from "sonner";
 
 const SOFT_MESSAGES = [
@@ -53,7 +52,6 @@ export function DeleteAccountDialog({
   displayName,
   email,
 }: DeleteAccountDialogProps) {
-  const logout = useUserStore((s) => s.logout);
   const [step, setStep] = useState<Step>("soft");
   const [softTimer, setSoftTimer] = useState(5);
   const [finalTimer, setFinalTimer] = useState(10);
@@ -110,11 +108,10 @@ export function DeleteAccountDialog({
     for (const key of keys) {
       if (key.startsWith("brainbloom")) localStorage.removeItem(key);
     }
-    logout();
     setStep("done");
     toast.success("Your account was deleted. Sorry to see you go!", { position: "top-center" });
     setTimeout(() => { window.location.href = "/login"; }, 1200);
-  }, [userId, logout]);
+  }, [userId]);
 
   const performDelete = useCallback(async () => {
     setDeleting(true);
@@ -133,7 +130,6 @@ export function DeleteAccountDialog({
       for (const key of keys) {
         if (key.startsWith("brainbloom")) localStorage.removeItem(key);
       }
-      logout();
       setStep("done");
       toast.success("Guest data cleared. See you next time!", { position: "top-center" });
       setTimeout(() => { window.location.href = "/login"; }, 1200);
@@ -164,7 +160,7 @@ export function DeleteAccountDialog({
       setStep("final");
       setError("An unexpected error occurred. Please try again.");
     }
-  }, [isGuest, logout, cleanupAfterDelete]);
+  }, [isGuest, cleanupAfterDelete]);
 
   const handleReauthGoogle = useCallback(async () => {
     setReauthError(null);

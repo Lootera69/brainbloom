@@ -1,5 +1,5 @@
-const CACHE = "brainbloom-v2";
-const PRECACHE_URLS = ["/", "/offline"];
+const CACHE = "brainbloom-v3";
+const PRECACHE_URLS = ["/"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -28,10 +28,7 @@ self.addEventListener("fetch", (event) => {
           }
           return response;
         })
-        .catch(async () => {
-          const cached = await caches.match(event.request);
-          return cached || caches.match("/offline");
-        }),
+        .catch(() => caches.match("/")),
     );
     return;
   }
