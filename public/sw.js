@@ -1,4 +1,4 @@
-const CACHE = "brainbloom-v3";
+const CACHE = "brainbloom-v4";
 const PRECACHE_URLS = ["/"];
 
 self.addEventListener("install", (event) => {
