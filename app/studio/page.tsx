@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
-import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ArrowUpDown, Database, Eye, Zap, LayoutGrid, Bell } from "lucide-react";
+import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ArrowUpDown, Database, Eye, Zap, LayoutGrid, Megaphone } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
@@ -254,6 +254,10 @@ export default function StudioPage() {
   const diffLabel = (v: string) => DIFFICULTIES.find((d) => d.value === v)?.label ?? v;
 
   const sendBroadcast = async () => {
+    if (!isAdmin()) {
+      toast.error("Only admins can send broadcasts.");
+      return;
+    }
     if (!bcastTitle.trim() || !bcastPassword) return;
     setSending(true);
     try {
@@ -342,8 +346,8 @@ export default function StudioPage() {
             {admin && (
               <button onClick={() => setBroadcastOpen(true)}
                 className="group flex h-11 items-center gap-2 rounded-xl border border-border/50 bg-white/60 px-3 text-sm font-medium text-muted-foreground backdrop-blur-xl transition-all duration-300 hover:border-primary/20 hover:bg-primary/5 hover:text-foreground hover:shadow-md hover:shadow-primary/5 sm:px-4 dark:border-white/[0.06] dark:bg-white/[0.03]">
-                <Bell className="size-4 transition-transform duration-300 group-hover:scale-110" />
-                <span className="hidden sm:inline">Notify</span>
+                <Megaphone className="size-4 transition-transform duration-300 group-hover:scale-110" />
+                <span className="hidden sm:inline">Broadcast</span>
               </button>
             )}
             <button onClick={() => router.push("/studio/analytics")}
@@ -846,7 +850,7 @@ export default function StudioPage() {
                 <div className="mb-5 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10">
-                      <Bell className="size-5 text-primary" />
+                      <Megaphone className="size-5 text-primary" />
                     </div>
                     <h2 className="font-heading text-lg font-bold">Push broadcast</h2>
                   </div>
