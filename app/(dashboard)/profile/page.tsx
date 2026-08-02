@@ -34,6 +34,7 @@ import {
   Share2,
   Bell,
   BellOff,
+  LogIn,
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
@@ -171,7 +172,11 @@ export default function ProfilePage() {
           toast.error("Permission denied", { position: "top-center" });
           return;
         }
-        await subscribeToPush({ uid: userId });
+        const token = await subscribeToPush({ uid: userId });
+        if (!token) {
+          toast.error("Push notifications are not available on this device or browser", { position: "top-center" });
+          return;
+        }
         setNotificationsEnabled(true);
         toast.success("Notifications enabled", { position: "top-center" });
       }
@@ -419,6 +424,40 @@ export default function ProfilePage() {
           </div>
         </GlassCard>
       </motion.section>
+
+      {/* Guest sign-in CTA */}
+      {isGuest && (
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05 }}
+          className="mb-6"
+        >
+          <GlassCard className="relative overflow-hidden p-5">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-[#8b5cf6]/10" />
+            <div className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-primary/10 blur-3xl" />
+            <div className="relative flex items-center gap-4">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] shadow-lg shadow-primary/25">
+                <LogIn className="size-6 text-white" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <h3 className="text-sm font-bold">Save your progress</h3>
+                <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
+                  Sign in to keep your streak, XP, gems & achievements — and sync them across
+                  devices.
+                </p>
+              </div>
+            </div>
+            <Button
+              onClick={() => router.push("/login")}
+              className="relative mt-4 h-12 w-full gap-2 rounded-xl text-sm font-semibold"
+            >
+              <LogIn className="size-4" />
+              Sign In / Sign Up
+            </Button>
+          </GlassCard>
+        </motion.section>
+      )}
 
       {/* Stats Grid */}
       <motion.section

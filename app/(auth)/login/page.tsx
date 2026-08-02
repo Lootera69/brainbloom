@@ -70,17 +70,18 @@ export default function LoginPage() {
   const setUser = useUserStore((s) => s.setUser);
   const setAvatarId = useUserStore((s) => s.setAvatarId);
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
+  const isGuest = useUserStore((s) => s.isGuest);
 
   const emailRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && !isGuest) {
       router.replace("/");
     } else {
       const timer = setTimeout(() => setPageLoading(false), 300);
       return () => clearTimeout(timer);
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, isGuest, router]);
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -16,6 +16,7 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+  const isNavigation = event.request.mode === "navigate";
   event.respondWith(
     caches.match(event.request).then((cached) => {
       const fetched = fetch(event.request)
@@ -26,7 +27,10 @@ self.addEventListener("fetch", (event) => {
           }
           return response;
         })
-        .catch(() => cached);
+        .catch(() => {
+          if (isNavigation) return caches.match("/offline");
+          return cached;
+        });
       return cached || fetched;
     }),
   );
@@ -38,8 +42,8 @@ self.addEventListener("push", (event) => {
   const title = data.title ?? "BrainBloom";
   const options = {
     body: data.body ?? "",
-    icon: "/icons/icon-192.png",
-    badge: "/icons/icon-72.png",
+    icon: "/icon.svg",
+    badge: "/icon.svg",
     data: data.data ?? {},
     tag: data.tag ?? "brainbloom-notification",
     renotify: true,

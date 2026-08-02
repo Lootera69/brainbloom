@@ -21,6 +21,7 @@ export function GoogleOneTap({ onBeforeSetUser }: GoogleOneTapProps) {
   const calledRef = useRef(false);
   const setUser = useUserStore((s) => s.setUser);
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
+  const isGuest = useUserStore((s) => s.isGuest);
 
   // Suppress only FedCM / GSI_LOGGER console noise (harmless on localhost)
   useEffect(() => {
@@ -34,7 +35,7 @@ export function GoogleOneTap({ onBeforeSetUser }: GoogleOneTapProps) {
   }, []);
 
   useEffect(() => {
-    if (!firebaseConfigured || !GOOGLE_ONE_TAP_CLIENT_ID || isAuthenticated || calledRef.current) return;
+    if (!firebaseConfigured || !GOOGLE_ONE_TAP_CLIENT_ID || (isAuthenticated && !isGuest) || calledRef.current) return;
     calledRef.current = true;
 
     initOneTap({
@@ -58,7 +59,7 @@ export function GoogleOneTap({ onBeforeSetUser }: GoogleOneTapProps) {
     return () => {
       cancelOneTap();
     };
-  }, [isAuthenticated, router, setUser, onBeforeSetUser]);
+  }, [isAuthenticated, isGuest, router, setUser, onBeforeSetUser]);
 
   return null;
 }
