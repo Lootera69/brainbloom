@@ -53,7 +53,16 @@ const MistakeDots = ({ count }: { count: number }) => {
 };
 
 export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayProps) {
-  const sudokuData = puzzle.sudokuData!;
+  const sudokuData = puzzle.sudokuData;
+  if (!sudokuData || !Array.isArray(sudokuData.puzzle) || sudokuData.puzzle.length !== SIZE * SIZE || !Array.isArray(sudokuData.solution)) {
+    return (
+      <div className="flex min-h-64 flex-col items-center justify-center gap-3 rounded-2xl border border-border/50 bg-card/60 p-8 text-center backdrop-blur-xl">
+        <span className="text-4xl">🧩</span>
+        <p className="font-semibold text-foreground">This sudoku is missing its grid data.</p>
+        <p className="text-sm text-muted-foreground">It may have been corrupted during creation. Try another puzzle.</p>
+      </div>
+    );
+  }
   const initialClues = sudokuData.puzzle;
   const solution = sudokuData.solution;
 

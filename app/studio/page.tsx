@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
-import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ArrowUpDown, Database, Eye, Zap, LayoutGrid } from "lucide-react";
+import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ArrowUpDown, Database, Eye, Zap, LayoutGrid, Bell } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
@@ -153,6 +153,12 @@ export default function StudioPage() {
   const [reviewingId, setReviewingId] = useState<string | null>(null);
   const [submittingId, setSubmittingId] = useState<string | null>(null);
   const admin = isAdmin();
+  const [broadcastOpen, setBroadcastOpen] = useState(false);
+  const [bcastTitle, setBcastTitle] = useState("");
+  const [bcastBody, setBcastBody] = useState("");
+  const [bcastUrl, setBcastUrl] = useState("/");
+  const [bcastPassword, setBcastPassword] = useState("");
+  const [sending, setSending] = useState(false);
   const { timedOut: loadTimedOut, reset: resetLoadTimeout } = useLoadingTimeout(6000);
 
   const load = async () => {
@@ -247,6 +253,40 @@ export default function StudioPage() {
   const catLabel = (v: string) => CATEGORIES.find((c) => c.value === v)?.label ?? v;
   const diffLabel = (v: string) => DIFFICULTIES.find((d) => d.value === v)?.label ?? v;
 
+  const sendBroadcast = async () => {
+    if (!bcastTitle.trim() || !bcastPassword) return;
+    setSending(true);
+    try {
+      const res = await fetch("/api/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: getStudioSession() ?? "",
+          password: bcastPassword,
+          title: bcastTitle.trim(),
+          message: bcastBody,
+          url: bcastUrl || "/",
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        const pruned = data.removed ? ` · ${data.removed} expired removed` : "";
+        toast.success(`Sent to ${data.delivered}/${data.tokenCount} devices${pruned}`);
+        setBroadcastOpen(false);
+        setBcastTitle("");
+        setBcastBody("");
+        setBcastUrl("/");
+        setBcastPassword("");
+      } else {
+        toast.error(data.error ?? "Broadcast failed");
+      }
+    } catch {
+      toast.error("Network error — could not send broadcast");
+    } finally {
+      setSending(false);
+    }
+  };
+
   const pendingCount = puzzles.filter((p) => p.reviewStatus === "pending").length;
   const discussCount = puzzles.filter((p) => p.reviewStatus === "needs-discussion").length;
   const liveCount = puzzles.filter((p) => p.published).length;
@@ -299,6 +339,13 @@ export default function StudioPage() {
           </div>
 
           <div className="flex items-center gap-2">
+            {admin && (
+              <button onClick={() => setBroadcastOpen(true)}
+                className="group flex h-11 items-center gap-2 rounded-xl border border-border/50 bg-white/60 px-3 text-sm font-medium text-muted-foreground backdrop-blur-xl transition-all duration-300 hover:border-primary/20 hover:bg-primary/5 hover:text-foreground hover:shadow-md hover:shadow-primary/5 sm:px-4 dark:border-white/[0.06] dark:bg-white/[0.03]">
+                <Bell className="size-4 transition-transform duration-300 group-hover:scale-110" />
+                <span className="hidden sm:inline">Notify</span>
+              </button>
+            )}
             <button onClick={() => router.push("/studio/analytics")}
               className="group flex h-11 items-center gap-2 rounded-xl border border-border/50 bg-white/60 px-3 text-sm font-medium text-muted-foreground backdrop-blur-xl transition-all duration-300 hover:border-primary/20 hover:bg-primary/5 hover:text-foreground hover:shadow-md hover:shadow-primary/5 sm:px-4 dark:border-white/[0.06] dark:bg-white/[0.03]">
               <BarChart3 className="size-4 transition-transform duration-300 group-hover:scale-110" />
@@ -779,6 +826,73 @@ export default function StudioPage() {
                 <button onClick={() => setTestPuzzle(null)}
                   className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-muted/60"><X className="size-4" /></button>
                 <PuzzlePlay puzzle={testPuzzle} onComplete={() => setTestPuzzle(null)} />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Broadcast modal */}
+      <AnimatePresence>
+        {broadcastOpen && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-md"
+            onClick={() => { if (!sending) setBroadcastOpen(false); }}>
+            <motion.div initial={{ scale: 0.92, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.92, opacity: 0, y: 20 }} transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md overflow-hidden rounded-3xl border border-border/50 bg-white/90 shadow-2xl backdrop-blur-2xl dark:border-white/[0.08] dark:bg-white/[0.06]">
+              <div className="h-1 bg-gradient-to-r from-primary via-violet-500 to-fuchsia-500" />
+              <div className="p-6">
+                <div className="mb-5 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10">
+                      <Bell className="size-5 text-primary" />
+                    </div>
+                    <h2 className="font-heading text-lg font-bold">Push broadcast</h2>
+                  </div>
+                  <button onClick={() => { if (!sending) setBroadcastOpen(false); }}
+                    className="flex size-8 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-muted/60"><X className="size-4" /></button>
+                </div>
+
+                <div className="space-y-3.5">
+                  <div>
+                    <p className="mb-1.5 text-xs font-medium text-muted-foreground/60">Title</p>
+                    <input value={bcastTitle} onChange={(e) => setBcastTitle(e.target.value)}
+                      placeholder="e.g. New Science puzzles are live!"
+                      maxLength={60}
+                      className="w-full rounded-xl border border-border/50 bg-white/60 px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-muted-foreground/30 focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-white/[0.06] dark:bg-white/[0.03]" />
+                  </div>
+                  <div>
+                    <p className="mb-1.5 text-xs font-medium text-muted-foreground/60">Message</p>
+                    <textarea value={bcastBody} onChange={(e) => setBcastBody(e.target.value)}
+                      placeholder="Optional message body"
+                      rows={3} maxLength={200}
+                      className="w-full resize-none rounded-xl border border-border/50 bg-white/60 px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-muted-foreground/30 focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-white/[0.06] dark:bg-white/[0.03]" />
+                  </div>
+                  <div>
+                    <p className="mb-1.5 text-xs font-medium text-muted-foreground/60">Open link (tap action)</p>
+                    <input value={bcastUrl} onChange={(e) => setBcastUrl(e.target.value)}
+                      placeholder="/learn"
+                      className="w-full rounded-xl border border-border/50 bg-white/60 px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-muted-foreground/30 focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-white/[0.06] dark:bg-white/[0.03]" />
+                  </div>
+                  <div>
+                    <p className="mb-1.5 text-xs font-medium text-muted-foreground/60">Studio password (confirm identity)</p>
+                    <input value={bcastPassword} onChange={(e) => setBcastPassword(e.target.value)}
+                      type="password"
+                      placeholder="Your studio password"
+                      className="w-full rounded-xl border border-border/50 bg-white/60 px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-muted-foreground/30 focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-white/[0.06] dark:bg-white/[0.03]" />
+                  </div>
+                </div>
+
+                <div className="mt-5 flex gap-3">
+                  <button onClick={() => { if (!sending) setBroadcastOpen(false); }}
+                    className="flex h-11 flex-1 items-center justify-center rounded-xl border border-border/50 text-sm font-medium transition-all duration-200 hover:bg-muted/50 dark:border-white/[0.06]">Cancel</button>
+                  <button onClick={sendBroadcast} disabled={!bcastTitle.trim() || !bcastPassword || sending}
+                    className="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-violet-500 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-40 dark:shadow-primary/15">
+                    {sending ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
+                    Broadcast
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>

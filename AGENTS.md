@@ -249,6 +249,8 @@ Stored in Zustand with persist middleware. Key fields:
 | `/manifest.webmanifest` | PWA | Webmanifest |
 | `/terms` | Legal | Terms of Service (philosophical, sophisticated) |
 | `/privacy` | Legal | Privacy Policy (rights-focused, high-intellectual) |
+| `/api/notify` | API | Push broadcast — POST `{code, password, title, message, url}`, admin-verified server-side against `settings/studio` codes, sends via web-push to all `users/{uid}/pushTokens` |
+| `/api/cron/daily` | API | Daily puzzle reminder — GET with `Authorization: Bearer <CRON_SECRET>` (fails closed without it), triggered by `vercel.json` cron `0 12 * * *` (once/day = allowed on Hobby plan) |
 
 **Shop page** is the only route with dedicated `loading.tsx` + `error.tsx`. Other routes use group-level boundaries; studio sub-routes (create, edit, analytics, settings, seed) have page-specific loading skeletons.
 
@@ -480,6 +482,20 @@ Stored in Zustand with persist middleware. Key fields:
   - z-index: 200 (above ShopModal's 100)
   - Cleanup: cancelAnimationFrame on unmount, timer refs cleared on re-purchase
 
+### 20. Push Notifications (web-push)
+- **Stack**: client subscribes via raw Web Push API (`pushManager.subscribe`) → saves full subscription (`endpoint` + `keys.p256dh` + `keys.auth`) to `users/{uid}/pushTokens` (Firestore doc id = SHA-256 of endpoint → stable upsert, no duplicates)
+- **Server** (`lib/push-send.ts` + `app/api/notify/route.ts` + `app/api/cron/daily/route.ts`): `firebase-admin` + `web-push` library — signs with the VAPID pair and POSTs to each subscription's own endpoint (NOT FCM multicast — FCM rejects raw browser endpoints)
+  - 25 concurrent sends via shared cursor; dedupes by endpoint; 404/410 → pruned via Firestore batch delete (reported as `removed`)
+  - Requires both `p256dh` + `auth` keys — legacy endpoint-only docs are skipped
+  - Admin gate: `POST /api/notify` verifies `{code, password}` against `settings/studio` with role `admin` (server-side)
+  - `GET /api/cron/daily` fails closed: 401 without `Authorization: Bearer <CRON_SECRET>`
+- **Client** (`services/notification-service.ts`): reads `NEXT_PUBLIC_VAPID_PUBLIC_KEY` (not the Firebase key — its private half is never exposed); `matchesCurrentVapidKey()` unsubscribes + resubscribes when the stored `applicationServerKey` differs (migrates old Firebase-key subscriptions)
+- **SW** (`public/sw.js`): renders `push` payload `{title, body, data: {url}, tag}`, `notificationclick` focuses/closes window for `data.url`
+- **Broadcast UI**: Studio dashboard header → Bell → "Push broadcast" modal (admin-only) → title/message/link/password → toast reports `delivered/tokenCount` + pruned count
+- **VAPID keys**: generated via `npx web-push generate-vapid-keys` (public+private must MATCH — verified by deriving public from private via ECDH P-256); `NEXT_PUBLIC_FIREBASE_VAPID_KEY` is legacy/unused
+- **Deploy notes**: SW only registers in production (`NODE_ENV === "production"`) → testing requires a deployed build; Vercel Hobby cron allowed once/day (`0 12 * * *` OK, fires within the hour)
+- **Known limitation**: `settings/studio` codes are world-readable (client-side studio auth) — custom invite passwords are readable by anyone; sending endpoints are server-gated, but full hardening (server-only code verification) is future work
+
 ## UI / UX Patterns
 - **Mobile-first** (320px+), light/system/dark mode with 3-way toggle in Profile
 - **Glassmorphism**: `GlassCard` component, `backdrop-blur-2xl saturate-[1.8]`, `bg-card/60` patterns
@@ -532,6 +548,12 @@ NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
 NEXT_PUBLIC_FIREBASE_APP_ID=
 NEXT_PUBLIC_IMGBB_API_KEY=
 NEXT_PUBLIC_GOOGLE_ONE_TAP_CLIENT_ID=   # Google Identity Services OAuth client ID for One Tap
+# Push notifications (web-push, NOT Firebase's Web Push certificate):
+NEXT_PUBLIC_VAPID_PUBLIC_KEY=           # generate: npx web-push generate-vapid-keys
+VAPID_PRIVATE_KEY=                      # private half — must MATCH the public key above
+VAPID_SUBJECT=                          # e.g. https://brainblooms.vercel.app
+CRON_SECRET=                            # any long random string; Bearer token for /api/cron/daily
+FIREBASE_SERVICE_ACCOUNT=               # base64 of Firebase service-account JSON (firebase-admin, server-only)
 ```
 
 ---
