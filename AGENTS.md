@@ -180,6 +180,7 @@ Stored in Zustand with persist middleware. Key fields:
 - `achievements: Record<string, number>` (achievement ID → unlocked count)
 - `gems`, `totalXpEarned`, `puzzlesCompleted`, `totalCorrect`, `totalAttempts`
 - `soundEnabled`, `lastRewardClaim` (date string for daily bonus gating)
+- `pushPromptedDate: string | null` — last date the Home push banner asked (once/day snooze; local-only, NOT synced to Firestore)
 - `heartsLostThisSession` (module-level flag for hearts_saver achievement)
 - `tier: "free" | "premium"`, `subscriptionExpiry?: number` (ms timestamp)
 - `avatarId: string | null` — selected avatar ID
@@ -187,7 +188,7 @@ Stored in Zustand with persist middleware. Key fields:
 - `experiencedWonderIds: string[]` — IDs of completed wonders
 - `currentCipherWeek: string | null`, `currentCipherSolved: boolean`, `cipherSolveCount: number`, `cipherRevealed: boolean`
 
-### Settings (Firestore `settings/studio` / localStorage `brainbloom-settings`)
+### Settings (Firestore `settings/studio` / localStorage `brainbloom-invite-codes` + `brainbloom-lesson-groups`)
 ```ts
 {
   lessonGroups: { name: string, order: number }[],
@@ -195,7 +196,7 @@ Stored in Zustand with persist middleware. Key fields:
 }
 ```
 
-### PricingConfig (Firestore `settings/pricing` / localStorage `brainbloom-pricing`)
+### PricingConfig (Firestore `settings/pricing` / localStorage `brainbloom-pricing-config`)
 ```ts
 {
   monthlyBase: number,           // e.g. 4.99
@@ -491,9 +492,23 @@ Stored in Zustand with persist middleware. Key fields:
   - `GET /api/cron/daily` fails closed: 401 without `Authorization: Bearer <CRON_SECRET>`
 - **Client** (`services/notification-service.ts`): reads `NEXT_PUBLIC_VAPID_PUBLIC_KEY` (not the Firebase key — its private half is never exposed); `matchesCurrentVapidKey()` unsubscribes + resubscribes when the stored `applicationServerKey` differs (migrates old Firebase-key subscriptions)
 - **SW** (`public/sw.js`): renders `push` payload `{title, body, data: {url}, tag}`, `notificationclick` focuses/closes window for `data.url`
-- **Broadcast UI**: Studio dashboard header → Bell → "Push broadcast" modal (admin-only) → title/message/link/password → toast reports `delivered/tokenCount` + pruned count
+- **Broadcast UI**: Studio dashboard header → **Broadcast** button (Megaphone icon, NOT "Notify") → "Push broadcast" modal (admin-only) → title/message/link/password → toast reports `delivered/tokenCount` + pruned count
+  - Admin-only enforced at 3 levels: button hidden for contributors (`{admin && ...}` from session role), `sendBroadcast()` client guard, server verifies admin code+password against `settings/studio`
 - **VAPID keys**: generated via `npx web-push generate-vapid-keys` (public+private must MATCH — verified by deriving public from private via ECDH P-256); `NEXT_PUBLIC_FIREBASE_VAPID_KEY` is legacy/unused
+  - **Gotcha**: the deployed `NEXT_PUBLIC_VAPID_PUBLIC_KEY` is inlined into the client bundle — a truncated paste (e.g. missing trailing `-Q`) passes the configured check but makes `pushManager.subscribe` throw → "Push subscription failed. Please try again." Verify exact length (87 chars) on Vercel after pasting
 - **Deploy notes**: SW only registers in production (`NODE_ENV === "production"`) → testing requires a deployed build; Vercel Hobby cron allowed once/day (`0 12 * * *` OK, fires within the hour)
+- **Broadcast limits** (free tier):
+  - Vercel Hobby serverless **default 10s timeout** (no `maxDuration` set) → ~300–1,000 devices per broadcast at 25 concurrent sends. Add `export const maxDuration = 60` to both API routes when scale demands (~3–7K devices)
+  - Automated reminders capped at **1/day** on Hobby cron (24h min interval) — more needs Pro
+  - Firestore Spark: 50K reads/day → ~1 read per token per broadcast; ~25K subscribed devices before quota pressure
+  - Payload is tiny (`{title, body, url}`) vs Chrome's 4KB cap; TTL 86400 keeps messages for offline devices up to 24h
+- **Push Reminder Banner** (`features/home/components/PushReminderBanner.tsx`): Home-page opt-in card shown right after `<StreakBar />`
+  - Shows only for: signed-in (`!isGuest`), push supported + configured, **not already subscribed** (`checkExistingSubscription()`), and not prompted today (`pushPromptedDate !== today`)
+  - "Enable" → same permission + subscribe flow as Profile; "Not now" → snoozes 1 day. Disappears forever once subscribed
+  - **Gotcha (fixed)**: the subscription check was originally inverted (`setSubscribed(!has)`) — showed the banner to subscribed users. Keep `setSubscribed(has)` semantics: `subscribed === false` renders
+  - Copy is aspirational on purpose — never mention concrete times (e.g. "12:00") to users
+- **Optimistic notification toggle** (Profile): flips instantly on tap, runs permission/subscribe/unsubscribe in background, **reverts the switch + error toast on failure**. `unsubscribeFromPush()` returns `{ success: boolean }` (only caller is the profile page) so failures are detectable
+- **Profile toggle mobile layout**: Sound & Notifications row is `grid-cols-1 sm:grid-cols-2` (was `grid-cols-2` → cards crushed to ~138px on phones); switches are `h-7 w-12` (44px+ tap target) with knob `marginLeft: 26px/2px`
 - **Known limitation**: `settings/studio` codes are world-readable (client-side studio auth) — custom invite passwords are readable by anyone; sending endpoints are server-gated, but full hardening (server-only code verification) is future work
 
 ## UI / UX Patterns
@@ -525,7 +540,7 @@ Stored in Zustand with persist middleware. Key fields:
 ---
 
 ## Known Issues & Gotchas
-1. **`/offline` page missing** — SW precaches it but page doesn't exist → SW install fails
+1. **`/offline` page exists now** (`app/offline/page.tsx`, static) — the old SW precache failure is gone; SW v3 precaches only `/`
 2. **1 unused store action** — `restoreHearts` never called from UI (used by ShopModal/HeartsTab, actually alive)
 3. **Loading/error boundaries** — Route groups have shared boundaries; studio sub-routes now have page-specific skeletons
 4. **Sudoku generator 2s timeout** can produce partial/invalid puzzles
@@ -606,3 +621,96 @@ Moving from horizontal progression (puzzle → XP → level up) to **vertical co
 - Commits on `main` branch
 - Push to `origin/main` (GitHub: Lootera69/brainbloom)
 - Always `git status` + `git diff --stat` before committing
+
+---
+
+## Appendix — "BrainBloom" Name Reference Map (rename guide)
+
+**"BrainBloom" is a working/dummy name.** This is the complete inventory of every place it appears, categorized for a future rename. `brainblooms.vercel.app` is the deployed domain (Vercel project "brainblooms"); `brainbloom-40` is the Firebase project id.
+
+### A. User-visible brand text (display name)
+| Where | File:line |
+|-------|-----------|
+| Sidebar logo | `components/navigation/sidebar.tsx:40` |
+| Onboarding welcome | `components/onboarding/steps/WelcomeStep.tsx:40` |
+| Login page (logo + sign-in agreement) | `app/(auth)/login/page.tsx:376, 783` |
+| PWA manifest name + short_name | `app/manifest.ts:5-6` |
+| Page metadata `<title>` | `app/layout.tsx:26, 31` |
+| Install prompt card | `components/layout/InstallPrompt.tsx:89` |
+| Share card watermark | `lib/share-card.ts:248, 419` |
+| Share card footer URL | `lib/share-card.ts:408` |
+| Weekly report share text | `features/home/components/WeeklyInsights.tsx:119-120, 137` |
+| PricingCard thank-you | `components/paywall/PricingCard.tsx:89` |
+| Daily reminder push body | `app/api/cron/daily/route.ts:22` |
+| Wonder share footer ("— from BrainBloom") | `features/puzzle/components/WonderPlay.tsx:70-71` |
+| Push notification default title | `public/sw.js:55` |
+| Legal pages (Terms/Privacy — many occurrences) | `app/(legal)/terms/page.tsx`, `app/(legal)/privacy/page.tsx` |
+| AI illustration prompt (copy-prompt tool) | `components/ui/copy-prompt-button.tsx:6, 8, 153, 155` |
+
+### B. localStorage keys (prefix `brainbloom-`)
+Renaming the prefix **orphans existing users' data** unless a one-time migration map (old → new) is added. `components/delete-account-dialog.tsx:109,131` wipes keys via `key.startsWith("brainbloom")` — must match the new prefix.
+
+| Key | Where |
+|-----|-------|
+| `brainbloom-user` (Zustand persist) | `store/user-store.ts:1222`; read raw in `services/analytics-service.ts:30` |
+| `brainbloom-puzzles` | `services/puzzle-service.ts:17`; `scripts/seed-data/importer.ts:16` |
+| `brainbloom-daily-puzzle` | `services/daily-puzzle.ts:8` |
+| `brainbloom-weekly-cipher` | `services/weekly-cipher.ts:8` |
+| `brainbloom-cipher-history` | `services/weekly-cipher.ts:9` |
+| `brainbloom-lesson-groups` | `services/lesson-service.ts:14`; `scripts/seed-data/importer.ts:17` |
+| `brainbloom-invite-codes` | `services/studio-settings.ts:14` |
+| `brainbloom-pricing-config` | `services/pricing-service.ts:8` |
+| `brainbloom-purchases` | `services/purchase-service.ts:37, 39, 54` |
+| `brainbloom-sudoku-{id}` | `features/puzzle/components/SudokuPlay.tsx:21` |
+| `brainbloom-onboarding-complete` | `components/onboarding/OnboardingFlow.tsx:35, 46`; `app/(auth)/login/page.tsx:62` |
+| `brainbloom-selected-avatar` | `components/onboarding/OnboardingFlow.tsx:37`; `app/(auth)/login/page.tsx:66, 108, 189` |
+| `brainbloom-goals` | `components/onboarding/OnboardingFlow.tsx:40` |
+| `brainbloom-install-dismissed` | `components/layout/InstallPrompt.tsx:7` |
+| `brainbloom-force-sunday` (TEMP dev override) | `store/user-store.ts:1189`; `services/weekly-cipher.ts:265, 268, 280, 289, 300` |
+| `brainbloom-cipher-phase` (TEMP dev override) | `services/weekly-cipher.ts:279, 287` |
+| Wipe-by-prefix on account delete | `components/delete-account-dialog.tsx:109, 131` |
+
+### C. Push / service-worker identifiers
+| Identifier | Where |
+|------------|-------|
+| SW cache name `brainbloom-v3` (bump version on rename) | `public/sw.js:1` |
+| Push notification `tag: "brainbloom-notification"` | `public/sw.js:61`; `lib/push-send.ts:119` |
+| firebase-admin app instance name `"brainbloom"` | `lib/push-send.ts:24, 31` |
+| Window flag `__brainbloomSafeHistory` | `components/providers/safe-history.tsx:7, 17, 18` |
+| Console warn prefix `[BrainBloom]` | `components/providers/safe-history.tsx:12` |
+
+### D. Share / download filenames
+| Filename | Where |
+|----------|-------|
+| `brainbloom-weekly.png` | `features/home/components/WeeklyInsights.tsx:115, 132` |
+| `brainbloom-stats.png` | `components/share/ShareStatsModal.tsx:112, 150` |
+
+### E. URLs & domains
+| Reference | Where |
+|-----------|-------|
+| `https://brainblooms.vercel.app` (deployed site + VAPID_SUBJECT) | `.env.local` (`VAPID_SUBJECT`); fallback `lib/push-send.ts:46`; share card `lib/share-card.ts:408`; `AGENTS.md` |
+| GitHub issues URL | `components/error-fallback.tsx:86` (`github.com/Lootera69/brainbloom/issues/new`) |
+| Vercel project (external, console) | "brainblooms" — deploy settings, env vars, cron |
+
+### F. External platform identifiers (change in consoles, not code)
+| Platform | Identifier | Notes |
+|----------|-----------|-------|
+| Firebase project | `brainbloom-40` | project id, auth domain `brainbloom-40.firebaseapp.com`, storage bucket `brainbloom-40.firebasestorage.app`, app id `1:9915105865:web:...`, service-account client email `firebase-adminsdk-fbsvc@brainbloom-40.iam.gserviceaccount.com` (in `FIREBASE_SERVICE_ACCOUNT`) — all in `.env.local`, mirrored to Vercel |
+| Google Identity (One Tap) | client id `9915105865-...` | `NEXT_PUBLIC_GOOGLE_ONE_TAP_CLIENT_ID` — linked to Firebase auth provider |
+| GitHub repo | `Lootera69/brainbloom` | remote `origin`; `components/error-fallback.tsx:86` |
+
+### G. Package & docs
+| Where | Notes |
+|-------|-------|
+| `package.json:2` / `package-lock.json:2,8` | `"name": "brainbloom"` — cosmetic, no runtime impact |
+| `AGENTS.md` (this file) | project title + references throughout |
+| `AI_CONTEXT.md:1` | "You are working on BrainBloom." |
+| `plan.md:1, 11` | "Project BrainBloom (Working Name)" — the vision doc |
+
+### Rename order of operations (suggested)
+1. **Code-first rename** (brand text A, identifiers C, filenames D, package G) → build + deploy
+2. **localStorage migration** (B): add a one-time legacy-key mapper before bumping the prefix; update the delete-account wipe to the new prefix
+3. **Domain** (E): change Vercel domain → update `VAPID_SUBJECT` + share-card URL → **all existing push subscriptions become invalid** (endpoints embed the origin) — users re-subscribe via the Profile toggle's auto-migration (`matchesCurrentVapidKey`)
+4. **GitHub** (F): rename repo → update remote + issue URL
+5. **Firebase** (F): renaming `brainbloom-40` is the heaviest (data + auth + service account + rules + console) — only worth it if the name change is permanent
+6. Bump SW cache to `v4` and clear-cache on activate so old shells don't linger
