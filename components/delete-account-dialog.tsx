@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trash2, X, Heart, Shield } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -54,7 +53,6 @@ export function DeleteAccountDialog({
   displayName,
   email,
 }: DeleteAccountDialogProps) {
-  const router = useRouter();
   const logout = useUserStore((s) => s.logout);
   const [step, setStep] = useState<Step>("soft");
   const [softTimer, setSoftTimer] = useState(5);
@@ -115,8 +113,8 @@ export function DeleteAccountDialog({
     logout();
     setStep("done");
     toast.success("Your account was deleted. Sorry to see you go!", { position: "top-center" });
-    setTimeout(() => router.push("/login"), 1800);
-  }, [userId, logout, router]);
+    setTimeout(() => { window.location.href = "/login"; }, 1200);
+  }, [userId, logout]);
 
   const performDelete = useCallback(async () => {
     setDeleting(true);
@@ -138,7 +136,7 @@ export function DeleteAccountDialog({
       logout();
       setStep("done");
       toast.success("Guest data cleared. See you next time!", { position: "top-center" });
-      setTimeout(() => router.push("/login"), 1800);
+      setTimeout(() => { window.location.href = "/login"; }, 1200);
       return;
     }
 
@@ -166,7 +164,7 @@ export function DeleteAccountDialog({
       setStep("final");
       setError("An unexpected error occurred. Please try again.");
     }
-  }, [isGuest, logout, router, cleanupAfterDelete]);
+  }, [isGuest, logout, cleanupAfterDelete]);
 
   const handleReauthGoogle = useCallback(async () => {
     setReauthError(null);
