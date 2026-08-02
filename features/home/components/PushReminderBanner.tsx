@@ -31,7 +31,7 @@ export function PushReminderBanner() {
       return;
     }
     checkExistingSubscription().then((has) => {
-      if (!cancelled) setSubscribed(!has);
+      if (!cancelled) setSubscribed(has);
     });
     return () => {
       cancelled = true;
