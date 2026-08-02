@@ -10,6 +10,9 @@ import {
   updateProfile,
   sendEmailVerification,
   deleteUser,
+  reauthenticateWithPopup,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
   type User,
 } from "firebase/auth";
 import { getFirestore, collection, doc, type Firestore } from "firebase/firestore";
@@ -89,7 +92,7 @@ export async function signOutUser(): Promise<void> {
   await firebaseSignOut(fbAuth);
 }
 
-export async function deleteAccount(): Promise<{ success: boolean; error?: string }> {
+export async function deleteAccount(): Promise<{ success: boolean; error?: string; needsReauth?: boolean }> {
   const { auth: fbAuth } = initFirebase();
   if (!fbAuth || !fbAuth.currentUser) {
     return { success: false, error: "No signed-in account found." };
@@ -100,12 +103,42 @@ export async function deleteAccount(): Promise<{ success: boolean; error?: strin
   } catch (e) {
     const code = (e as { code?: string }).code;
     if (code === "auth/requires-recent-login") {
-      return {
-        success: false,
-        error: "For security, please sign out and sign back in, then try deleting again.",
-      };
+      return { success: false, needsReauth: true };
     }
     return { success: false, error: "Account deletion failed. Please try again." };
+  }
+}
+
+export function isGoogleUser(): boolean {
+  const { auth: fbAuth } = initFirebase();
+  if (!fbAuth?.currentUser) return false;
+  return fbAuth.currentUser.providerData.some((p) => p?.providerId === "google.com");
+}
+
+export async function reauthenticateGoogle(): Promise<{ success: boolean }> {
+  const { auth: fbAuth } = initFirebase();
+  if (!fbAuth?.currentUser) return { success: false };
+  try {
+    const provider = new GoogleAuthProvider();
+    await reauthenticateWithPopup(fbAuth.currentUser, provider);
+    return { success: true };
+  } catch {
+    return { success: false };
+  }
+}
+
+export async function reauthenticateEmail(
+  email: string,
+  password: string,
+): Promise<{ success: boolean }> {
+  const { auth: fbAuth } = initFirebase();
+  if (!fbAuth?.currentUser) return { success: false };
+  try {
+    const credential = EmailAuthProvider.credential(email, password);
+    await reauthenticateWithCredential(fbAuth.currentUser, credential);
+    return { success: true };
+  } catch {
+    return { success: false };
   }
 }
 

@@ -914,6 +914,7 @@ export default function ProfilePage() {
         avatarId={avatarId}
         photoURL={photoURL}
         displayName={displayName}
+        email={email ?? undefined}
       />
 
       <ShareStatsModal

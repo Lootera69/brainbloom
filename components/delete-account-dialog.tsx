@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trash2, X, Heart } from "lucide-react";
+import { Trash2, X, Heart, Shield } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
 import { Button } from "@/components/ui/button";
@@ -39,9 +39,10 @@ interface DeleteAccountDialogProps {
   avatarId: string | null;
   photoURL: string | null;
   displayName: string;
+  email?: string;
 }
 
-type Step = "soft" | "final" | "processing" | "done";
+type Step = "soft" | "final" | "reauth" | "processing" | "done";
 
 export function DeleteAccountDialog({
   open,
@@ -51,6 +52,7 @@ export function DeleteAccountDialog({
   avatarId,
   photoURL,
   displayName,
+  email,
 }: DeleteAccountDialogProps) {
   const router = useRouter();
   const logout = useUserStore((s) => s.logout);
@@ -60,6 +62,9 @@ export function DeleteAccountDialog({
   const [messageIdx, setMessageIdx] = useState(0);
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [reauthPassword, setReauthPassword] = useState("");
+  const [reauthError, setReauthError] = useState<string | null>(null);
+  const [isGoogle, setIsGoogle] = useState(true);
 
   useEffect(() => {
     if (!open || step !== "soft") return;
@@ -93,8 +98,25 @@ export function DeleteAccountDialog({
       setError(null);
       setDeleting(false);
       setMessageIdx(0);
+      setReauthPassword("");
+      setReauthError(null);
     }
   }, [open]);
+
+  const cleanupAfterDelete = useCallback(async () => {
+    try {
+      await deleteUserData(userId);
+    } catch { /* Auth user deleted — Firestore orphan is acceptable */ }
+
+    const keys = Object.keys(localStorage);
+    for (const key of keys) {
+      if (key.startsWith("brainbloom")) localStorage.removeItem(key);
+    }
+    logout();
+    setStep("done");
+    toast.success("Your account was deleted. Sorry to see you go!", { position: "top-center" });
+    setTimeout(() => router.push("/login"), 1800);
+  }, [userId, logout, router]);
 
   const performDelete = useCallback(async () => {
     setDeleting(true);
@@ -121,43 +143,72 @@ export function DeleteAccountDialog({
     }
 
     try {
-      const { deleteAccount } = await import("@/services/firebase");
+      const { deleteAccount, isGoogleUser } = await import("@/services/firebase");
       const result = await deleteAccount();
 
       if (!result.success) {
+        if (result.needsReauth) {
+          const googleUser = isGoogleUser();
+          setIsGoogle(googleUser);
+          setDeleting(false);
+          setStep("reauth");
+          return;
+        }
         setDeleting(false);
         setStep("final");
-        if (result.error?.includes("requires-recent-login")) {
-          setError(
-            "For security, Firebase requires a recent login to delete accounts. Please sign out, sign back in, then try deleting again.",
-          );
-        } else {
-          setError(result.error ?? "Deletion failed. Please try again.");
-        }
+        setError(result.error ?? "Deletion failed. Please try again.");
         return;
       }
 
-      try {
-        await deleteUserData(userId);
-      } catch {
-        /* Auth user deleted — Firestore doc orphaned is acceptable */
-      }
-
-      localStorage.removeItem("brainbloom-user");
-      const keys = Object.keys(localStorage);
-      for (const key of keys) {
-        if (key.startsWith("brainbloom")) localStorage.removeItem(key);
-      }
-      logout();
-      setStep("done");
-      toast.success("Your account was deleted. Sorry to see you go!", { position: "top-center" });
-      setTimeout(() => router.push("/login"), 1800);
+      await cleanupAfterDelete();
     } catch {
       setDeleting(false);
       setStep("final");
       setError("An unexpected error occurred. Please try again.");
     }
-  }, [isGuest, userId, logout, router]);
+  }, [isGuest, logout, router, cleanupAfterDelete]);
+
+  const handleReauthGoogle = useCallback(async () => {
+    setReauthError(null);
+    setDeleting(true);
+    const { reauthenticateGoogle, deleteAccount } = await import("@/services/firebase");
+    const authResult = await reauthenticateGoogle();
+    if (!authResult.success) {
+      setDeleting(false);
+      setReauthError("Google sign-in was cancelled or failed. Try again.");
+      return;
+    }
+    const result = await deleteAccount();
+    if (!result.success) {
+      setDeleting(false);
+      setReauthError("Deletion still failed after re-authentication. Please try again later.");
+      return;
+    }
+    await cleanupAfterDelete();
+  }, [cleanupAfterDelete]);
+
+  const handleReauthEmail = useCallback(async () => {
+    setReauthError(null);
+    if (!reauthPassword.trim() || !email) {
+      setReauthError("Please enter your password.");
+      return;
+    }
+    setDeleting(true);
+    const { reauthenticateEmail, deleteAccount } = await import("@/services/firebase");
+    const authResult = await reauthenticateEmail(email, reauthPassword);
+    if (!authResult.success) {
+      setDeleting(false);
+      setReauthError("Wrong password. Please try again.");
+      return;
+    }
+    const result = await deleteAccount();
+    if (!result.success) {
+      setDeleting(false);
+      setReauthError("Deletion still failed after re-authentication. Please try again later.");
+      return;
+    }
+    await cleanupAfterDelete();
+  }, [email, reauthPassword, cleanupAfterDelete]);
 
   if (!open) return null;
 
@@ -194,17 +245,17 @@ export function DeleteAccountDialog({
               <div className="relative mx-auto mb-5 flex size-24 items-center justify-center">
                 <motion.div
                   animate={
-                    step === "final"
+                    step === "final" || step === "reauth"
                       ? { rotate: [-3, 3, -3, 3, 0], scale: [1, 1.02, 1] }
                       : { scale: [1, 1.01, 1] }
                   }
                   transition={{ repeat: Infinity, duration: step === "final" ? 1.5 : 3 }}
                 >
-                  <div className={cn("rounded-full", step === "final" && "opacity-70")}>
+                  <div className={cn("rounded-full", (step === "final" || step === "reauth") && "opacity-70")}>
                     <AvatarDisplay avatarId={avatarId} photoURL={photoURL} name={displayName} size={96} />
                   </div>
                 </motion.div>
-                <CryingTears active={step !== "done"} intense={step === "final"} />
+                <CryingTears active={step !== "done"} intense={step === "final" || step === "reauth"} />
                 <motion.div
                   className="absolute -right-2 -top-2 text-2xl"
                   animate={{
@@ -242,6 +293,79 @@ export function DeleteAccountDialog({
                     <p className="text-sm font-bold">Deleting everything...</p>
                     <p className="mt-1 text-xs text-muted-foreground">Goodbye, friend.</p>
                     <div className="mx-auto mt-4 size-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                  </motion.div>
+                ) : step === "reauth" ? (
+                  <motion.div
+                    key="reauth"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="text-center"
+                  >
+                    <h2 className="text-lg font-bold">One more step</h2>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      For your security, please verify your identity before we delete your account.
+                    </p>
+
+                    {isGoogle ? (
+                      <div className="mt-5 flex flex-col gap-2.5">
+                        <Button
+                          variant="outline"
+                          onClick={handleReauthGoogle}
+                          disabled={deleting}
+                          className="h-12 w-full rounded-xl text-sm font-semibold"
+                        >
+                          <Shield className="mr-2 size-4" />
+                          {deleting ? "Verifying..." : "Verify with Google"}
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          onClick={onClose}
+                          className="h-11 rounded-xl text-sm font-semibold"
+                        >
+                          <Heart className="size-4" />
+                          I&apos;ll stay!
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className="mt-5 flex flex-col gap-2.5">
+                        <input
+                          type="password"
+                          placeholder="Enter your password"
+                          value={reauthPassword}
+                          onChange={(e) => { setReauthPassword(e.target.value); setReauthError(null); }}
+                          onKeyDown={(e) => { if (e.key === "Enter") handleReauthEmail(); }}
+                          className="h-12 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary"
+                          autoFocus
+                        />
+                        {reauthError && (
+                          <motion.p
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            className="text-xs text-destructive text-left"
+                          >
+                            {reauthError}
+                          </motion.p>
+                        )}
+                        <Button
+                          variant="destructive"
+                          onClick={handleReauthEmail}
+                          disabled={deleting || !reauthPassword.trim()}
+                          className="h-12 w-full rounded-xl text-sm"
+                        >
+                          <Trash2 className="mr-2 size-4" />
+                          {deleting ? "Deleting..." : "Verify & Delete"}
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          onClick={onClose}
+                          className="h-11 rounded-xl text-sm font-semibold"
+                        >
+                          <Heart className="size-4" />
+                          I&apos;ll stay!
+                        </Button>
+                      </div>
+                    )}
                   </motion.div>
                 ) : step === "soft" ? (
                   <motion.div
