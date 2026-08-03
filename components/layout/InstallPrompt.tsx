@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, X, Share, Sparkles } from "lucide-react";
 
@@ -14,6 +15,7 @@ interface BeforeInstallPromptEvent extends Event {
 export function InstallPrompt() {
   const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
   const [visible, setVisible] = useState(false);
+  const pathname = usePathname();
   const [isIOS] = useState(
     () =>
       typeof navigator !== "undefined" &&
@@ -40,6 +42,11 @@ export function InstallPrompt() {
     const onInstalled = () => {
       setDeferred(null);
       setVisible(false);
+      try {
+        localStorage.setItem(DISMISS_KEY, "1");
+      } catch {
+        /* storage unavailable */
+      }
     };
     window.addEventListener("beforeinstallprompt", onPrompt);
     window.addEventListener("appinstalled", onInstalled);
@@ -69,7 +76,14 @@ export function InstallPrompt() {
     await deferred.userChoice;
     setDeferred(null);
     setVisible(false);
+    try {
+      localStorage.setItem(DISMISS_KEY, "1");
+    } catch {
+      /* storage unavailable */
+    }
   };
+
+  if (pathname !== "/") return null;
 
   return (
     <AnimatePresence>
