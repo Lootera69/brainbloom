@@ -55,6 +55,7 @@ import { DeleteAccountDialog } from "@/components/delete-account-dialog";
 import { subscribeToPush, unsubscribeFromPush, requestNotificationPermission, checkExistingSubscription, getPushStatus } from "@/services/notification-service";
 import { useTheme } from "next-themes";
 import { playClick, playToggleOn, playToggleOff } from "@/services/sound-service";
+import { haptic } from "@/lib/haptics";
 
 function getLevel(xp: number) {
   return getLevelProgress(xp);
@@ -829,8 +830,8 @@ export default function ProfilePage() {
           <button
             aria-label="Toggle vibration"
             onClick={() => {
-              if (hapticsEnabled) playToggleOff(); else playToggleOn();
               setHapticsEnabled(!hapticsEnabled);
+              haptic([35], true);
             }}
             className={cn(
               "relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors",
