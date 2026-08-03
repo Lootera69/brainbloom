@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight, Eye, EyeOff, XCircle, Loader2 } from "lucide-react";
+import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight, Eye, EyeOff, XCircle, Loader2, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getStudioSession, setStudioSession, clearStudioSession } from "@/services/puzzle-service";
 import { verifyStudioCredentials } from "@/services/studio-settings";
@@ -14,6 +14,7 @@ import { Toaster } from "sonner";
 const navItems = [
   { href: "/studio", label: "Dashboard", icon: LayoutDashboard },
   { href: "/studio/analytics", label: "Analytics", icon: BarChart3 },
+  { href: "/studio/users", label: "Users", icon: Users, adminOnly: true },
   { href: "/studio/create", label: "Create Puzzle", icon: Plus },
   { href: "/studio/seed", label: "Seed Data", icon: Database, adminOnly: true },
   { href: "/studio/settings", label: "Settings", icon: Settings },

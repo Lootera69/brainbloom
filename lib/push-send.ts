@@ -21,7 +21,7 @@ export interface PushSendResult {
   removed: number;
 }
 
-function getAdminApp(): App | null {
+export function getAdminApp(): App | null {
   const existing = getApps().find((a) => a.name === "brainbloom");
   if (existing) return existing;
   const raw = process.env.FIREBASE_SERVICE_ACCOUNT ?? "";
