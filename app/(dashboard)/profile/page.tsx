@@ -134,11 +134,8 @@ export default function ProfilePage() {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const [notificationsLoading, setNotificationsLoading] = useState(false);
-  const [isIOS] = useState(
-    () =>
-      typeof navigator !== "undefined" &&
-      /iPad|iPhone|iPod/.test(navigator.userAgent) &&
-      !(window as unknown as { MSStream?: unknown }).MSStream,
+  const [supportsVibration] = useState(
+    () => typeof navigator !== "undefined" && typeof navigator.vibrate === "function",
   );
 
   useEffect(() => {
@@ -812,7 +809,8 @@ export default function ProfilePage() {
           </button>
         </GlassCard>
 
-        <GlassCard intensity="light" className="flex items-center justify-between gap-3 p-3 sm:p-4">
+        {supportsVibration && (
+          <GlassCard intensity="light" className="flex items-center justify-between gap-3 p-3 sm:p-4">
           <div className="flex min-w-0 items-center gap-3">
             <span className={cn(
               "flex size-10 shrink-0 items-center justify-center rounded-xl",
@@ -823,7 +821,7 @@ export default function ProfilePage() {
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold">Vibration</p>
               <p className="text-[11px] text-muted-foreground">
-                {isIOS ? "Not available on iPhone" : hapticsEnabled ? "On" : "Off"}
+                {hapticsEnabled ? "On" : "Off"}
               </p>
             </div>
           </div>
@@ -848,6 +846,7 @@ export default function ProfilePage() {
             />
           </button>
         </GlassCard>
+        )}
 
         {!isGuest && (
           <GlassCard intensity="light" className="flex items-center justify-between gap-3 p-3 sm:p-4">
