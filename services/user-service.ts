@@ -48,6 +48,7 @@ export interface UserDocument {
   soundEnabled: boolean;
   hapticsEnabled: boolean;
   theme: "light" | "dark" | "system";
+  timeZone: string | null;
   weeklyXp: number;
   weeklyStartDate: number;
   frozenDays: string[];

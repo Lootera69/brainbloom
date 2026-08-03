@@ -1,8 +1,8 @@
 {
   "crons": [
     {
-      "path": "/api/cron/daily",
-      "schedule": "0 12 * * *"
+      "path": "/api/cron/hourly",
+      "schedule": "30 1 * * *"
     }
   ]
 }

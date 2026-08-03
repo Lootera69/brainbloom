@@ -23,6 +23,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
   const processHeartRefill = useUserStore((s) => s.processHeartRefill);
   const checkStreak = useUserStore((s) => s.checkStreak);
+  const setTimeZone = useUserStore((s) => s.setTimeZone);
   const pathname = usePathname();
   const focusMode = useUIStore((s) => s.focusMode);
   const setFocusMode = useUIStore((s) => s.setFocusMode);
@@ -47,6 +48,12 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     setMounted(true);
     checkStreak(false);
     processHeartRefill();
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (tz && tz !== useUserStore.getState().timeZone) setTimeZone(tz);
+    } catch {
+      // timezone detection unavailable
+    }
     import("@/services/sound-service").then(({ initSounds }) => initSounds());
     const interval = setInterval(() => {
       const state = useUserStore.getState();
@@ -74,7 +81,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       }
     }, 30_000);
     return () => clearInterval(interval);
-  }, [processHeartRefill, checkStreak]);
+  }, [processHeartRefill, checkStreak, setTimeZone]);
 
   // Re-evaluate streak when the user returns to the tab (e.g. left open past midnight)
   useEffect(() => {

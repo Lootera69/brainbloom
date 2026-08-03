@@ -86,6 +86,7 @@ interface UserState {
   hapticsEnabled: boolean;
   pushPromptedDate: string | null;
   theme: "light" | "dark" | "system";
+  timeZone: string | null;
   weeklyXp: number;
   weeklyStartDate: number;
   frozenDays: string[];
@@ -138,6 +139,7 @@ interface UserState {
   setHapticsEnabled: (v: boolean) => void;
   markPushPrompted: () => void;
   setTheme: (t: "light" | "dark" | "system") => void;
+  setTimeZone: (tz: string | null) => void;
   clearCelebration: () => void;
   checkAchievements: () => void;
   claimDailyBonus: () => { type: "xp" | "gems" | "streak-freeze"; amount: number; label: string } | null;
@@ -270,6 +272,7 @@ export const useUserStore = create<UserState>()(
       hapticsEnabled: true,
       pushPromptedDate: null,
       theme: "system",
+      timeZone: null,
       weeklyXp: 0,
       weeklyStartDate: Date.now(),
       frozenDays: [],
@@ -344,6 +347,7 @@ export const useUserStore = create<UserState>()(
             soundEnabled: (cd.soundEnabled as boolean) ?? true,
             hapticsEnabled: (cd.hapticsEnabled as boolean) ?? true,
             theme: (cd.theme as "light" | "dark" | "system") ?? "system",
+            timeZone: (cd.timeZone as string | null) ?? null,
             weeklyXp: (cd.weeklyXp as number) ?? 0,
             weeklyStartDate: (cd.weeklyStartDate as number) ?? Date.now(),
             frozenDays: (cd.frozenDays as string[]) ?? [],
@@ -482,6 +486,7 @@ export const useUserStore = create<UserState>()(
             soundEnabled: s.soundEnabled,
             hapticsEnabled: s.hapticsEnabled,
             theme: s.theme,
+            timeZone: s.timeZone,
             weeklyXp: s.weeklyXp,
             weeklyStartDate: s.weeklyStartDate,
             frozenDays: s.frozenDays,
@@ -549,6 +554,7 @@ export const useUserStore = create<UserState>()(
                 soundEnabled: data.soundEnabled ?? s.soundEnabled,
                 hapticsEnabled: data.hapticsEnabled ?? s.hapticsEnabled,
                 theme: data.theme ?? s.theme,
+                timeZone: data.timeZone ?? s.timeZone,
                 weeklyXp: data.weeklyXp ?? s.weeklyXp,
                 weeklyStartDate: data.weeklyStartDate ?? s.weeklyStartDate,
                 frozenDays: data.frozenDays ?? s.frozenDays,
@@ -1033,6 +1039,12 @@ export const useUserStore = create<UserState>()(
         get().syncToFirestore();
       },
 
+      setTimeZone: (tz) => {
+        if (get().timeZone === tz) return;
+        set({ timeZone: tz });
+        get().syncToFirestore();
+      },
+
       clearCelebration: () => set({ pendingCelebration: null }),
 
       checkAchievements: () => {
@@ -1266,6 +1278,7 @@ export const useUserStore = create<UserState>()(
         hapticsEnabled: state.hapticsEnabled,
         pushPromptedDate: state.pushPromptedDate,
         theme: state.theme,
+        timeZone: state.timeZone,
         weeklyXp: state.weeklyXp,
         weeklyStartDate: state.weeklyStartDate,
         frozenDays: state.frozenDays,

@@ -185,6 +185,7 @@ Stored in Zustand with persist middleware. Key fields:
 - `tier: "free" | "premium"`, `subscriptionExpiry?: number` (ms timestamp)
 - `avatarId: string | null` — selected avatar ID
 - `theme: "light" | "dark" | "system"` — persisted to Firestore via syncToFirestore
+- `timeZone: string | null` — IANA timezone (e.g. `Asia/Kolkata`), auto-captured once via `Intl.DateTimeFormat().resolvedOptions().timeZone` in AppLayout, persisted + synced; used by `/api/cron/hourly` for regional 7 AM reminder delivery (users without it default to `Asia/Kolkata` server-side)
 - `experiencedWonderIds: string[]` — IDs of completed wonders
 - `currentCipherWeek: string | null`, `currentCipherSolved: boolean`, `cipherSolveCount: number`, `cipherRevealed: boolean`
 
@@ -251,7 +252,8 @@ Stored in Zustand with persist middleware. Key fields:
 | `/terms` | Legal | Terms of Service (philosophical, sophisticated) |
 | `/privacy` | Legal | Privacy Policy (rights-focused, high-intellectual) |
 | `/api/notify` | API | Push broadcast — POST `{code, password, title, message, url}`, admin-verified server-side against `settings/studio` codes, sends via web-push to all `users/{uid}/pushTokens` |
-| `/api/cron/daily` | API | Daily puzzle reminder — GET with `Authorization: Bearer <CRON_SECRET>` (fails closed without it), triggered by `vercel.json` cron `0 12 * * *` (once/day = allowed on Hobby plan) |
+| `/api/cron/hourly` | API | Regional daily puzzle reminder — GET with `Authorization: Bearer <CRON_SECRET>` (fails closed without it). Self-determines the current UTC hour from the server clock, then pushes only to users whose **local time is 7 AM** (IANA `timeZone`, DST-safe via `Intl`). The `(date, hour)` bucket is claimed atomically in Firestore `settings/reminder-hourly`, so a backup trigger never double-sends. Triggers: **cron-job.org** hourly job (`30 * * * *`, primary, all timezones) + **Vercel cron** `30 1 * * *` (01:30 UTC = 7:00 AM IST bucket, backup for the India-majority hour) |
+| `/api/cron/daily` | API | Legacy all-users broadcast — no longer scheduled; still usable manually (`curl` with `Authorization: Bearer <CRON_SECRET>` sends to every subscribed device) |
 
 **Shop page** is the only route with dedicated `loading.tsx` + `error.tsx`. Other routes use group-level boundaries; studio sub-routes (create, edit, analytics, settings, seed) have page-specific loading skeletons.
 
@@ -485,18 +487,18 @@ Stored in Zustand with persist middleware. Key fields:
 
 ### 20. Push Notifications (web-push)
 - **Stack**: client subscribes via raw Web Push API (`pushManager.subscribe`) → saves full subscription (`endpoint` + `keys.p256dh` + `keys.auth`) to `users/{uid}/pushTokens` (Firestore doc id = SHA-256 of endpoint → stable upsert, no duplicates)
-- **Server** (`lib/push-send.ts` + `app/api/notify/route.ts` + `app/api/cron/daily/route.ts`): `firebase-admin` + `web-push` library — signs with the VAPID pair and POSTs to each subscription's own endpoint (NOT FCM multicast — FCM rejects raw browser endpoints)
+- **Server** (`lib/push-send.ts` + `app/api/notify/route.ts` + `app/api/cron/hourly/route.ts` + `app/api/cron/daily/route.ts`): `firebase-admin` + `web-push` library — signs with the VAPID pair and POSTs to each subscription's own endpoint (NOT FCM multicast — FCM rejects raw browser endpoints)
   - 25 concurrent sends via shared cursor; dedupes by endpoint; 404/410 → pruned via Firestore batch delete (reported as `removed`)
   - Requires both `p256dh` + `auth` keys — legacy endpoint-only docs are skipped
   - Admin gate: `POST /api/notify` verifies `{code, password}` against `settings/studio` with role `admin` (server-side)
-  - `GET /api/cron/daily` fails closed: 401 without `Authorization: Bearer <CRON_SECRET>`
+  - `GET /api/cron/hourly` fails closed: 401 without `Authorization: Bearer <CRON_SECRET>`; skips (returns `skipped: true`) when the `(date, hour)` bucket in `settings/reminder-hourly` was already claimed — this is what makes the Vercel backup at 01:30 UTC double-push-proof against cron-job.org's hour-1 run
 - **Client** (`services/notification-service.ts`): reads `NEXT_PUBLIC_VAPID_PUBLIC_KEY` (not the Firebase key — its private half is never exposed); `matchesCurrentVapidKey()` unsubscribes + resubscribes when the stored `applicationServerKey` differs (migrates old Firebase-key subscriptions)
 - **SW** (`public/sw.js`): renders `push` payload `{title, body, data: {url}, tag}`, `notificationclick` focuses/closes window for `data.url`
 - **Broadcast UI**: Studio dashboard header → **Broadcast** button (Megaphone icon, NOT "Notify") → "Push broadcast" modal (admin-only) → title/message/link/password → toast reports `delivered/tokenCount` + pruned count
   - Admin-only enforced at 3 levels: button hidden for contributors (`{admin && ...}` from session role), `sendBroadcast()` client guard, server verifies admin code+password against `settings/studio`
 - **VAPID keys**: generated via `npx web-push generate-vapid-keys` (public+private must MATCH — verified by deriving public from private via ECDH P-256); `NEXT_PUBLIC_FIREBASE_VAPID_KEY` is legacy/unused
   - **Gotcha**: the deployed `NEXT_PUBLIC_VAPID_PUBLIC_KEY` is inlined into the client bundle — a truncated paste (e.g. missing trailing `-Q`) passes the configured check but makes `pushManager.subscribe` throw → "Push subscription failed. Please try again." Verify exact length (87 chars) on Vercel after pasting
-- **Deploy notes**: SW only registers in production (`NODE_ENV === "production"`) → testing requires a deployed build; Vercel Hobby cron allowed once/day (`0 12 * * *` OK, fires within the hour)
+- **Deploy notes**: SW only registers in production (`NODE_ENV === "production"`) → testing requires a deployed build; Vercel Hobby cron allowed once/day — used only as the 01:30 UTC (7:00 AM IST) backup bucket; the primary all-timezone trigger is a cron-job.org job (`30 * * * *`, free, custom `Authorization` header) hitting `/api/cron/hourly`
 - **Broadcast limits** (free tier):
   - Vercel Hobby serverless **default 10s timeout** (no `maxDuration` set) → ~300–1,000 devices per broadcast at 25 concurrent sends. Add `export const maxDuration = 60` to both API routes when scale demands (~3–7K devices)
   - Automated reminders capped at **1/day** on Hobby cron (24h min interval) — more needs Pro
@@ -567,7 +569,7 @@ NEXT_PUBLIC_GOOGLE_ONE_TAP_CLIENT_ID=   # Google Identity Services OAuth client 
 NEXT_PUBLIC_VAPID_PUBLIC_KEY=           # generate: npx web-push generate-vapid-keys
 VAPID_PRIVATE_KEY=                      # private half — must MATCH the public key above
 VAPID_SUBJECT=                          # e.g. https://brainblooms.vercel.app
-CRON_SECRET=                            # any long random string; Bearer token for /api/cron/daily
+CRON_SECRET=                            # any long random string; Bearer token for /api/cron/hourly + /api/cron/daily
 FIREBASE_SERVICE_ACCOUNT=               # base64 of Firebase service-account JSON (firebase-admin, server-only)
 ```
 
