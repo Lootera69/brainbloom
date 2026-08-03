@@ -350,7 +350,7 @@ export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
 
   const handleComplete = (correct: boolean, xpEarned: number) => {
     if (correct) {
-      haptic([15]);
+      haptic([40]);
       import("@/services/sound-service").then(({ playComplete }) => {
         setTimeout(playComplete, 400);
       });

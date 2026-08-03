@@ -127,7 +127,7 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
 
   const handleReveal = () => {
     setState("revealing");
-    haptic([35]);
+    haptic([50]);
     import("@/services/sound-service").then(({ playRiddleReveal }) => playRiddleReveal());
   };
 

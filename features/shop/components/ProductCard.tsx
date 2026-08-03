@@ -89,7 +89,7 @@ export function ProductCard({ product, priceLabel, purchasing, purchased, onPurc
   const Icon = iconMap[product.icon] || ShoppingBag;
 
   useEffect(() => {
-    if (purchased) haptic([15]);
+    if (purchased) haptic([40]);
   }, [purchased]);
 
   const particles = useMemo(() => {

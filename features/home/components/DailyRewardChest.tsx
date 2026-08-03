@@ -437,7 +437,7 @@ export function DailyRewardChest() {
     const t2 = setTimeout(() => {
       setPhase("opening");
       setShowBeams(true);
-      haptic([10, 20, 30]);
+      haptic([40, 60, 40]);
       const result = claim();
       if (result) setReward(result);
     }, 900);

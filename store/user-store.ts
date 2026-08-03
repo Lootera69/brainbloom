@@ -83,6 +83,7 @@ interface UserState {
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
   soundEnabled: boolean;
+  hapticsEnabled: boolean;
   pushPromptedDate: string | null;
   theme: "light" | "dark" | "system";
   weeklyXp: number;
@@ -134,6 +135,7 @@ interface UserState {
   completeDailyPuzzle: () => void;
   hasCompletedDailyPuzzle: () => boolean;
   setSoundEnabled: (v: boolean) => void;
+  setHapticsEnabled: (v: boolean) => void;
   markPushPrompted: () => void;
   setTheme: (t: "light" | "dark" | "system") => void;
   clearCelebration: () => void;
@@ -265,6 +267,7 @@ export const useUserStore = create<UserState>()(
       dailyPuzzleStreak: 0,
       dailyPuzzleLastDate: null,
       soundEnabled: true,
+      hapticsEnabled: true,
       pushPromptedDate: null,
       theme: "system",
       weeklyXp: 0,
@@ -339,6 +342,7 @@ export const useUserStore = create<UserState>()(
             dailyPuzzleStreak: (cd.dailyPuzzleStreak as number) ?? 0,
             dailyPuzzleLastDate: (cd.dailyPuzzleLastDate as string | null) ?? null,
             soundEnabled: (cd.soundEnabled as boolean) ?? true,
+            hapticsEnabled: (cd.hapticsEnabled as boolean) ?? true,
             theme: (cd.theme as "light" | "dark" | "system") ?? "system",
             weeklyXp: (cd.weeklyXp as number) ?? 0,
             weeklyStartDate: (cd.weeklyStartDate as number) ?? Date.now(),
@@ -476,6 +480,7 @@ export const useUserStore = create<UserState>()(
             dailyPuzzleStreak: s.dailyPuzzleStreak,
             dailyPuzzleLastDate: s.dailyPuzzleLastDate,
             soundEnabled: s.soundEnabled,
+            hapticsEnabled: s.hapticsEnabled,
             theme: s.theme,
             weeklyXp: s.weeklyXp,
             weeklyStartDate: s.weeklyStartDate,
@@ -542,6 +547,7 @@ export const useUserStore = create<UserState>()(
                 dailyPuzzleStreak: data.dailyPuzzleStreak ?? s.dailyPuzzleStreak,
                 dailyPuzzleLastDate: data.dailyPuzzleLastDate ?? s.dailyPuzzleLastDate,
                 soundEnabled: data.soundEnabled ?? s.soundEnabled,
+                hapticsEnabled: data.hapticsEnabled ?? s.hapticsEnabled,
                 theme: data.theme ?? s.theme,
                 weeklyXp: data.weeklyXp ?? s.weeklyXp,
                 weeklyStartDate: data.weeklyStartDate ?? s.weeklyStartDate,
@@ -613,6 +619,7 @@ export const useUserStore = create<UserState>()(
           dailyPuzzleStreak: 0,
           dailyPuzzleLastDate: null,
           soundEnabled: true,
+          hapticsEnabled: true,
           weeklyXp: 0,
           weeklyStartDate: Date.now(),
           frozenDays: [],
@@ -1017,6 +1024,8 @@ export const useUserStore = create<UserState>()(
         import("@/services/sound-service").then(({ setSoundEnabled }) => setSoundEnabled(v));
       },
 
+      setHapticsEnabled: (v: boolean) => set({ hapticsEnabled: v }),
+
       markPushPrompted: () => set({ pushPromptedDate: new Date().toDateString() }),
 
       setTheme: (t) => {
@@ -1254,6 +1263,7 @@ export const useUserStore = create<UserState>()(
         dailyPuzzleStreak: state.dailyPuzzleStreak,
         dailyPuzzleLastDate: state.dailyPuzzleLastDate,
         soundEnabled: state.soundEnabled,
+        hapticsEnabled: state.hapticsEnabled,
         pushPromptedDate: state.pushPromptedDate,
         theme: state.theme,
         weeklyXp: state.weeklyXp,

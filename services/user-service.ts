@@ -46,6 +46,7 @@ export interface UserDocument {
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
   soundEnabled: boolean;
+  hapticsEnabled: boolean;
   theme: "light" | "dark" | "system";
   weeklyXp: number;
   weeklyStartDate: number;

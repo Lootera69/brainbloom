@@ -18,6 +18,7 @@ import {
   Clock,
   Volume2,
   VolumeX,
+  Vibrate,
   TrendingUp,
   Mail,
   KeyRound,
@@ -96,6 +97,8 @@ export default function ProfilePage() {
   } = useUserStore();
   const soundEnabled = useUserStore((s) => s.soundEnabled);
   const setSoundEnabled = useUserStore((s) => s.setSoundEnabled);
+  const hapticsEnabled = useUserStore((s) => s.hapticsEnabled);
+  const setHapticsEnabled = useUserStore((s) => s.setHapticsEnabled);
   const theme = useUserStore((s) => s.theme);
   const setThemeStore = useUserStore((s) => s.setTheme);
   const { setTheme } = useTheme();
@@ -130,6 +133,12 @@ export default function ProfilePage() {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const [notificationsLoading, setNotificationsLoading] = useState(false);
+  const [isIOS] = useState(
+    () =>
+      typeof navigator !== "undefined" &&
+      /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+      !(window as unknown as { MSStream?: unknown }).MSStream,
+  );
 
   useEffect(() => {
     const tick = () => {
@@ -797,6 +806,43 @@ export default function ProfilePage() {
               className="inline-block size-5 rounded-full bg-white shadow-sm"
               style={{
                 marginLeft: soundEnabled ? "26px" : "2px",
+              }}
+            />
+          </button>
+        </GlassCard>
+
+        <GlassCard intensity="light" className="flex items-center justify-between gap-3 p-3 sm:p-4">
+          <div className="flex min-w-0 items-center gap-3">
+            <span className={cn(
+              "flex size-10 shrink-0 items-center justify-center rounded-xl",
+              hapticsEnabled ? "bg-primary/10" : "bg-muted",
+            )}>
+              <Vibrate className={cn("size-5", hapticsEnabled ? "text-primary" : "text-muted-foreground")} />
+            </span>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold">Vibration</p>
+              <p className="text-[11px] text-muted-foreground">
+                {isIOS ? "Not available on iPhone" : hapticsEnabled ? "On" : "Off"}
+              </p>
+            </div>
+          </div>
+          <button
+            aria-label="Toggle vibration"
+            onClick={() => {
+              if (hapticsEnabled) playToggleOff(); else playToggleOn();
+              setHapticsEnabled(!hapticsEnabled);
+            }}
+            className={cn(
+              "relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors",
+              hapticsEnabled ? "bg-primary" : "bg-muted-foreground/30",
+            )}
+          >
+            <motion.span
+              layout
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              className="inline-block size-5 rounded-full bg-white shadow-sm"
+              style={{
+                marginLeft: hapticsEnabled ? "26px" : "2px",
               }}
             />
           </button>
