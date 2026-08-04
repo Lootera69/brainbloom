@@ -304,8 +304,10 @@ export interface EveningPushResult extends HourlyPushResult {
  *  - Completed today  → congratulatory
  *  - Missed + streak>0 → streak warning
  *  - Missed + streak=0 → fresh start nudge
+ * `forceLocalHour` is a CRON_SECRET-gated test override — when set, it filters
+ * users by that local hour instead of 19 so delivery can be verified on demand.
  */
-export async function sendEveningPushForLocalHour(utcHour: number): Promise<EveningPushResult> {
+export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHour?: number): Promise<EveningPushResult> {
   const empty: EveningPushResult = { tokenCount: 0, delivered: 0, failed: 0, removed: 0, hour: utcHour, skipped: false, eligibleUsers: 0, completedCount: 0, missedCount: 0, freshCount: 0 };
   const app = getAdminApp();
   if (!app) return empty;
@@ -313,7 +315,7 @@ export async function sendEveningPushForLocalHour(utcHour: number): Promise<Even
   const db = getFirestore(app);
 
   const today = new Date().toISOString().split("T")[0];
-  const markerRef = db.doc("settings/reminder-hourly");
+  const markerRef = db.doc("settings/reminder-hourly-evening");
 
   let claimed: boolean;
   try {
@@ -325,7 +327,7 @@ export async function sendEveningPushForLocalHour(utcHour: number): Promise<Even
       return true;
     });
   } catch (e) {
-    console.error("reminder-hourly marker claim failed:", e);
+    console.error("reminder-hourly-evening marker claim failed:", e);
     return { ...empty, skipped: true };
   }
   if (!claimed) return { ...empty, skipped: true };
@@ -351,7 +353,7 @@ export async function sendEveningPushForLocalHour(utcHour: number): Promise<Even
         } catch {
           // fall back to defaults
         }
-        if (localHourAt(now, timeZone ?? "Asia/Kolkata") !== 19) return;
+        if (localHourAt(now, timeZone ?? "Asia/Kolkata") !== (forceLocalHour ?? 19)) return;
 
         const subs = await readUserSubscriptions(userRef, seen, userRef.id);
         if (subs.length === 0) return;

@@ -30,8 +30,12 @@ export async function GET(req: NextRequest) {
     "/",
   );
 
-  // Evening: streak-aware reminder for users whose local time is 7 PM
-  const evening = await sendEveningPushForLocalHour(utcHour);
+  // Evening: streak-aware reminder for users whose local time is 7 PM.
+  // ?testHour=<0-23> is a CRON_SECRET-gated override to verify delivery
+  // on demand (already authenticated above) — filters by that local hour.
+  const testParam = req.nextUrl.searchParams.get("testHour");
+  const testHour = testParam !== null && /^\d{1,2}$/.test(testParam) ? Math.min(23, Math.max(0, Number(testParam))) : undefined;
+  const evening = await sendEveningPushForLocalHour(utcHour, testHour);
 
   return NextResponse.json({ ok: true, morning, evening });
 }
