@@ -318,8 +318,8 @@ interface EveningUser {
 
 const EVENING_TEMPLATES: Record<EveningTemplate, { title: string; body: string }> = {
   completedStreak: {
-    title: "Consistency compounds",
-    body: "{streak} days of steady thinking behind you. Protect the rhythm tomorrow will inherit.",
+    title: "Rhythm, {streak} days deep",
+    body: "Consistency is its own discipline. Return tomorrow and let the chain hold.",
   },
   completedFresh: {
     title: "The first stone is laid",
@@ -327,11 +327,11 @@ const EVENING_TEMPLATES: Record<EveningTemplate, { title: string; body: string }
   },
   streakWarning: {
     title: "Your chain is still breathing",
-    body: "An {streak}-day streak waits to endure. Finish today's challenge before midnight.",
+    body: "A {streak}-day streak waits to endure. Finish today's challenge before midnight.",
   },
   freezeSafe: {
-    title: "A reprieve, worth returning to",
-    body: "Your freeze absorbed today's lapse. Rejoin tomorrow and the chain remains unbroken.",
+    title: "A shield stands ready",
+    body: "Your {streak}-day chain is insured for tonight, but freezes are meant to stay unspent. Play and keep it clean.",
   },
   restart: {
     title: "Conclusions are not the end",
@@ -348,16 +348,64 @@ function renderTemplate(template: EveningTemplate, streak: number): { title: str
   return { title: t.title.replace("{streak}", String(streak)), body: t.body.replace("{streak}", String(streak)) };
 }
 
+interface StreakState {
+  playedToday: boolean;
+  alive: boolean;
+  streak: number;
+}
+
+const DAY_MS = 86400000;
+
+/**
+ * Mirrors the client's streak evaluation:
+ *  - alive → the last active day is today/yesterday, or every missed day
+ *    since then is covered by a streak freeze (same rule as the store's
+ *    `freezesToConsume === missedDays` check)
+ *  - streak → the stored count while alive, 0 once broken. The stored field
+ *    is stale after a break (the app only rewrites it on its next open), so
+ *    it can never be trusted without the liveness check above.
+ */
+function computeStreakState(
+  now: Date,
+  timeZone: string,
+  lastActiveDate: string | null,
+  storedStreak: number,
+  activeDates: string[],
+  frozenDays: string[],
+): StreakState {
+  const tz = timeZone || "Asia/Kolkata";
+  const todayLocal = localDateStringAt(now, tz);
+  const playedToday = lastActiveDate === todayLocal || activeDates.includes(todayLocal);
+
+  let alive = false;
+  if (lastActiveDate && /^[A-Z][a-z]{2} [A-Z][a-z]{2} \d{2} \d{4}$/.test(lastActiveDate)) {
+    const lastMs = new Date(lastActiveDate).getTime();
+    const todayMs = new Date(todayLocal).getTime();
+    if (!Number.isNaN(lastMs) && !Number.isNaN(todayMs) && lastMs <= todayMs && todayMs - lastMs <= 370 * DAY_MS) {
+      alive = true;
+      for (let ms = lastMs + DAY_MS; ms < todayMs; ms += DAY_MS) {
+        const gapDay = localDateStringAt(new Date(ms), tz);
+        if (!frozenDays.includes(gapDay)) {
+          alive = false;
+          break;
+        }
+      }
+    }
+  }
+
+  return { playedToday, alive, streak: alive ? Math.max(1, storedStreak) : 0 };
+}
+
 /**
  * Sends a streak-aware evening reminder to users whose local time is 7 PM.
- * Each user's message is picked from the current state, in the user's own
- * local date:
- *  - Played today + streak>0   → completedStreak (celebrate)
- *  - Played today, no streak   → completedFresh (first step)
- *  - Freeze covering today     → freezeSafe (no warning needed)
- *  - Didn't play + streak live → streakWarning (endangered)
- *  - Didn't play + broken      → restart (rebuild)
- *  - Didn't play + brand new   → newUser (welcome nudge)
+ * Each user's message is picked from their own state, in their own local
+ * date, and rendered with their own streak count:
+ *  - Played today, chain ≥2 days  → completedStreak (rhythm deep)
+ *  - Played today, chain ≤1 day   → completedFresh (first stone)
+ *  - Chain alive, freezes in hand → freezeSafe (shield, don't spend it)
+ *  - Chain alive, no freezes      → streakWarning (endangered tonight)
+ *  - Chain broken, has history    → restart (rebuild)
+ *  - Chain broken, brand new      → newUser (welcome nudge)
  * `forceLocalHour` is a CRON_SECRET-gated test override — it filters by that
  * local hour instead of 19 and bypasses the dedup marker.
  */
@@ -399,8 +447,8 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
       users.map(async (userRef) => {
         let timeZone: string | null = null;
         let streak = 0;
+        let streakFreezes = 0;
         let lastActiveDate: string | null = null;
-        let dailyPuzzleCompletedDate: string | null = null;
         let frozenDays: string[] = [];
         let activeDates: string[] = [];
         try {
@@ -408,8 +456,8 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
           const d = userSnap.data() ?? {};
           timeZone = (d.timeZone as string | null) ?? null;
           streak = (d.streak as number) ?? 0;
+          streakFreezes = (d.streakFreezes as number) ?? 0;
           lastActiveDate = (d.lastActiveDate as string | null) ?? null;
-          dailyPuzzleCompletedDate = (d.dailyPuzzleCompletedDate as string | null) ?? null;
           frozenDays = (d.frozenDays as string[]) ?? [];
           activeDates = (d.activeDates as string[]) ?? [];
         } catch {
@@ -420,23 +468,17 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
         const subs = await readUserSubscriptions(userRef, seen, userRef.id);
         if (subs.length === 0) return;
 
-        const tz = timeZone ?? "Asia/Kolkata";
-        const todayLocal = localDateStringAt(now, tz);
-        const yesterdayLocal = localDateStringAt(new Date(now.getTime() - 86400000), tz);
-
-        const playedToday = activeDates.includes(todayLocal) || dailyPuzzleCompletedDate === todayLocal;
-        const freezeCoversToday = frozenDays.includes(todayLocal);
-        const streakAlive = lastActiveDate === todayLocal || lastActiveDate === yesterdayLocal;
+        const st = computeStreakState(now, timeZone ?? "Asia/Kolkata", lastActiveDate, streak, activeDates, frozenDays);
         const hasHistory = activeDates.length > 0 || streak > 0;
 
         let template: EveningTemplate;
-        if (playedToday && streak > 0) {
+        if (st.playedToday && st.streak >= 2) {
           template = "completedStreak";
-        } else if (playedToday) {
+        } else if (st.playedToday) {
           template = "completedFresh";
-        } else if (freezeCoversToday) {
+        } else if (st.alive && st.streak >= 1 && streakFreezes > 0) {
           template = "freezeSafe";
-        } else if (streakAlive && streak > 0) {
+        } else if (st.alive && st.streak >= 1) {
           template = "streakWarning";
         } else if (hasHistory) {
           template = "restart";
@@ -444,27 +486,24 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
           template = "newUser";
         }
 
-        eveningUsers.push({ uid: userRef.id, template, streak, subs });
+        eveningUsers.push({ uid: userRef.id, template, streak: st.streak, subs });
       }),
     );
   } catch (e) {
     console.error("Failed to list users for evening push:", e);
   }
 
-  // Group subscriptions by message template, then send one batch per group.
+  // Group subscriptions by (template, streak) — every user's count must be
+  // rendered on their own payload, never stamped from the first member.
   const byTemplate: EveningTemplateCounts = { ...EMPTY_TEMPLATE_COUNTS };
-  const groups: Record<EveningTemplate, PushSubscriptionDoc[]> = {
-    completedStreak: [],
-    completedFresh: [],
-    streakWarning: [],
-    freezeSafe: [],
-    restart: [],
-    newUser: [],
-  };
+  const groups = new Map<string, { template: EveningTemplate; streak: number; subs: PushSubscriptionDoc[] }>();
 
   for (const u of eveningUsers) {
-    groups[u.template].push(...u.subs);
     byTemplate[u.template] += u.subs.length;
+    const key = `${u.template}|${u.streak}`;
+    const g = groups.get(key) ?? { template: u.template, streak: u.streak, subs: [] };
+    g.subs.push(...u.subs);
+    groups.set(key, g);
   }
 
   const url = "/learn";
@@ -474,16 +513,13 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
   let totalRemoved = 0;
   let totalFailed = 0;
 
-  for (const template of Object.keys(groups) as EveningTemplate[]) {
-    const subs = groups[template];
-    if (subs.length === 0) continue;
-    const streak = eveningUsers.find((u) => u.template === template)?.streak ?? 0;
-    const { title, body } = renderTemplate(template, streak);
+  for (const g of groups.values()) {
+    const { title, body } = renderTemplate(g.template, g.streak);
     const payload = JSON.stringify({ title, body, data: { url }, tag });
-    const r = await deliverSubscriptions(subs, payload);
+    const r = await deliverSubscriptions(g.subs, payload);
     totalDelivered += r.delivered;
     totalRemoved += r.removed;
-    totalFailed += subs.length - r.delivered;
+    totalFailed += g.subs.length - r.delivered;
   }
 
   const tokenCount = eveningUsers.reduce((sum, u) => sum + u.subs.length, 0);
