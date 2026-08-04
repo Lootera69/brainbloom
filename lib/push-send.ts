@@ -318,28 +318,28 @@ interface EveningUser {
 
 const EVENING_TEMPLATES: Record<EveningTemplate, { title: string; body: string }> = {
   completedStreak: {
-    title: "Nice work today!",
-    body: "You're on a {streak}-day streak. Keep it going tomorrow!",
+    title: "Consistency compounds",
+    body: "{streak} days of steady thinking behind you. Protect the rhythm tomorrow will inherit.",
   },
   completedFresh: {
-    title: "Great job today!",
-    body: "You started a fresh streak. Come back tomorrow to keep it alive!",
+    title: "The first stone is laid",
+    body: "Your first completion is recorded. Step back tomorrow and a streak begins its hold.",
   },
   streakWarning: {
-    title: "Don't lose your {streak}-day streak!",
-    body: "Complete today's puzzle before midnight to keep it alive.",
+    title: "Your chain is still breathing",
+    body: "An {streak}-day streak waits to endure. Finish today's challenge before midnight.",
   },
   freezeSafe: {
-    title: "Your streak is safe for today",
-    body: "A streak freeze covered today. Come back tomorrow!",
+    title: "A reprieve, worth returning to",
+    body: "Your freeze absorbed today's lapse. Rejoin tomorrow and the chain remains unbroken.",
   },
   restart: {
-    title: "Start fresh",
-    body: "Your streak ended — but a new one starts today. Rebuild it!",
+    title: "Conclusions are not the end",
+    body: "Your streak paused, but your training endures. One session today opens the next chapter.",
   },
   newUser: {
-    title: "Your daily puzzle is waiting",
-    body: "A fresh brain workout is ready. Start your first streak today!",
+    title: "Your mind, exercised",
+    body: "A single session begins the regimen. Start your first streak tonight.",
   },
 };
 
