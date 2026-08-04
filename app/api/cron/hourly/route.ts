@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendPushForLocalHour } from "@/lib/push-send";
+import { sendPushForLocalHour, sendEveningPushForLocalHour } from "@/lib/push-send";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -20,11 +20,18 @@ export async function GET(req: NextRequest) {
   // The bucket is derived from the server clock, so a single scheduled job
   // (hourly, e.g. cron-job.org) covers every timezone without parameters.
   const utcHour = new Date().getUTCHours();
-  const result = await sendPushForLocalHour(
+
+  // Morning: puzzle reminder for users whose local time is 7 AM
+  const morning = await sendPushForLocalHour(
     utcHour,
+    7,
     "Your daily puzzle is ready",
     "A fresh brain workout is waiting in BrainBloom. Keep your streak alive!",
     "/",
   );
-  return NextResponse.json({ ok: true, ...result });
+
+  // Evening: streak-aware reminder for users whose local time is 7 PM
+  const evening = await sendEveningPushForLocalHour(utcHour);
+
+  return NextResponse.json({ ok: true, morning, evening });
 }

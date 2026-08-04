@@ -23,6 +23,18 @@ export default function manifest(): MetadataRoute.Manifest {
         type: "image/svg+xml",
         purpose: "maskable",
       },
+      {
+        src: "/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/icon-96.png",
+        sizes: "96x96",
+        type: "image/png",
+        purpose: "any",
+      },
     ],
     categories: ["education", "games", "puzzles"],
     lang: "en",

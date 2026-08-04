@@ -1,4 +1,4 @@
-const CACHE = "brainbloom-v4";
+const CACHE = "brainbloom-v5";
 const PRECACHE_URLS = ["/"];
 
 self.addEventListener("install", (event) => {
@@ -55,8 +55,8 @@ self.addEventListener("push", (event) => {
   const title = data.title ?? "BrainBloom";
   const options = {
     body: data.body ?? "",
-    icon: "/icon.svg",
-    badge: "/icon.svg",
+    icon: "/icon-192.png",
+    badge: "/icon-96.png",
     data: data.data ?? {},
     tag: data.tag ?? "brainbloom-notification",
     renotify: true,

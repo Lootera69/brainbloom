@@ -200,7 +200,18 @@ export interface HourlyPushResult extends PushSendResult {
  * The (date, hour) bucket is claimed atomically in Firestore so a backup trigger
  * (Vercel cron at 01:30 UTC) never double-sends what the hourly cron already delivered.
  */
-export async function sendPushForLocalHour(utcHour: number, title: string, body: string, url: string): Promise<HourlyPushResult> {
+/**
+ * Sends the reminder to users whose local time matches `targetLocalHour`
+ * during the given UTC hour. The (date, hour) bucket is claimed atomically
+ * in Firestore so a backup trigger never double-sends.
+ */
+export async function sendPushForLocalHour(
+  utcHour: number,
+  targetLocalHour: number,
+  title: string,
+  body: string,
+  url: string,
+): Promise<HourlyPushResult> {
   const empty: HourlyPushResult = { tokenCount: 0, delivered: 0, failed: 0, removed: 0, hour: utcHour, skipped: false, eligibleUsers: 0 };
   const app = getAdminApp();
   if (!app) return empty;
@@ -242,7 +253,7 @@ export async function sendPushForLocalHour(utcHour: number, title: string, body:
         }
         // Users without a stored timezone keep the India-morning default so
         // pre-regional builds never silently lose their reminder.
-        if (localHourAt(now, timeZone ?? "Asia/Kolkata") !== 7) return;
+        if (localHourAt(now, timeZone ?? "Asia/Kolkata") !== targetLocalHour) return;
         eligibleUsers++;
         subs.push(...(await readUserSubscriptions(userRef, seen, userRef.id)));
       }),
@@ -254,4 +265,181 @@ export async function sendPushForLocalHour(utcHour: number, title: string, body:
   const payload = JSON.stringify({ title, body, data: { url }, tag: "brainbloom-notification" });
   const { delivered, removed } = await deliverSubscriptions(subs, payload);
   return { tokenCount: subs.length, delivered, failed: subs.length - delivered, removed, hour: utcHour, skipped: false, eligibleUsers };
+}
+
+/** Fetch today's daily puzzle ID from Firestore (admin SDK). Returns null when unavailable. */
+async function getDailyPuzzleIdForServer(): Promise<string | null> {
+  const app = getAdminApp();
+  if (!app) return null;
+  const db = getFirestore(app);
+  const today = new Date().toISOString().split("T")[0];
+  try {
+    const snap = await db.doc("settings/daily-puzzle").get();
+    if (snap.exists) {
+      const data = snap.data() ?? {};
+      if (data.date === today && typeof data.puzzleId === "string") return data.puzzleId;
+    }
+  } catch {
+    // ignore
+  }
+  return null;
+}
+
+interface EveningUser {
+  uid: string;
+  streak: number;
+  completedToday: boolean;
+  subs: PushSubscriptionDoc[];
+}
+
+export interface EveningPushResult extends HourlyPushResult {
+  completedCount: number;
+  missedCount: number;
+  freshCount: number;
+}
+
+/**
+ * Sends a streak-aware evening reminder to users whose local time is 7 PM.
+ * Reads each user's streak + completedPuzzleIds to personalise the message:
+ *  - Completed today  → congratulatory
+ *  - Missed + streak>0 → streak warning
+ *  - Missed + streak=0 → fresh start nudge
+ */
+export async function sendEveningPushForLocalHour(utcHour: number): Promise<EveningPushResult> {
+  const empty: EveningPushResult = { tokenCount: 0, delivered: 0, failed: 0, removed: 0, hour: utcHour, skipped: false, eligibleUsers: 0, completedCount: 0, missedCount: 0, freshCount: 0 };
+  const app = getAdminApp();
+  if (!app) return empty;
+  if (!configureVapid()) return empty;
+  const db = getFirestore(app);
+
+  const today = new Date().toISOString().split("T")[0];
+  const markerRef = db.doc("settings/reminder-hourly");
+
+  let claimed: boolean;
+  try {
+    claimed = await db.runTransaction(async (t) => {
+      const snap = await t.get(markerRef);
+      const cur = snap.exists ? (snap.data() ?? {}) : {};
+      if (cur.date === today && cur.hour === utcHour) return false;
+      t.set(markerRef, { date: today, hour: utcHour, updatedAt: Date.now() });
+      return true;
+    });
+  } catch (e) {
+    console.error("reminder-hourly marker claim failed:", e);
+    return { ...empty, skipped: true };
+  }
+  if (!claimed) return { ...empty, skipped: true };
+
+  const dailyPuzzleId = await getDailyPuzzleIdForServer();
+  const now = new Date();
+  const eveningUsers: EveningUser[] = [];
+  const seen = new Set<string>();
+
+  try {
+    const users = await db.collection("users").listDocuments();
+    await Promise.all(
+      users.map(async (userRef) => {
+        let timeZone: string | null = null;
+        let streak = 0;
+        let completedPuzzleIds: string[] = [];
+        try {
+          const userSnap = await userRef.get();
+          const d = userSnap.data() ?? {};
+          timeZone = (d.timeZone as string | null) ?? null;
+          streak = (d.streak as number) ?? 0;
+          completedPuzzleIds = (d.completedPuzzleIds as string[]) ?? [];
+        } catch {
+          // fall back to defaults
+        }
+        if (localHourAt(now, timeZone ?? "Asia/Kolkata") !== 19) return;
+
+        const subs = await readUserSubscriptions(userRef, seen, userRef.id);
+        if (subs.length === 0) return;
+
+        eveningUsers.push({
+          uid: userRef.id,
+          streak,
+          completedToday: dailyPuzzleId ? completedPuzzleIds.includes(dailyPuzzleId) : false,
+          subs,
+        });
+      }),
+    );
+  } catch (e) {
+    console.error("Failed to list users for evening push:", e);
+  }
+
+  // Group subscriptions by message type, then send one batch per group.
+  const completedSubs: PushSubscriptionDoc[] = [];
+  const missedSubs: PushSubscriptionDoc[] = [];
+  const freshSubs: PushSubscriptionDoc[] = [];
+
+  for (const u of eveningUsers) {
+    if (u.completedToday) {
+      completedSubs.push(...u.subs);
+    } else if (u.streak > 0) {
+      missedSubs.push(...u.subs);
+    } else {
+      freshSubs.push(...u.subs);
+    }
+  }
+
+  const url = "/learn";
+  const tag = "brainbloom-notification";
+
+  let totalDelivered = 0;
+  let totalRemoved = 0;
+  let totalFailed = 0;
+
+  if (completedSubs.length) {
+    const payload = JSON.stringify({
+      title: "Nice work today!",
+      body: `Your streak is ${eveningUsers.find((u) => u.completedToday)?.streak ?? 0} days. Keep it going tomorrow!`,
+      data: { url },
+      tag,
+    });
+    const r = await deliverSubscriptions(completedSubs, payload);
+    totalDelivered += r.delivered;
+    totalRemoved += r.removed;
+    totalFailed += completedSubs.length - r.delivered;
+  }
+
+  if (missedSubs.length) {
+    const payload = JSON.stringify({
+      title: "Don't lose your streak!",
+      body: "Complete today's puzzle before midnight to keep it alive.",
+      data: { url },
+      tag,
+    });
+    const r = await deliverSubscriptions(missedSubs, payload);
+    totalDelivered += r.delivered;
+    totalRemoved += r.removed;
+    totalFailed += missedSubs.length - r.delivered;
+  }
+
+  if (freshSubs.length) {
+    const payload = JSON.stringify({
+      title: "Your daily puzzle is waiting",
+      body: "Start a new streak today!",
+      data: { url },
+      tag,
+    });
+    const r = await deliverSubscriptions(freshSubs, payload);
+    totalDelivered += r.delivered;
+    totalRemoved += r.removed;
+    totalFailed += freshSubs.length - r.delivered;
+  }
+
+  const tokenCount = completedSubs.length + missedSubs.length + freshSubs.length;
+  return {
+    tokenCount,
+    delivered: totalDelivered,
+    failed: totalFailed,
+    removed: totalRemoved,
+    hour: utcHour,
+    skipped: false,
+    eligibleUsers: eveningUsers.length,
+    completedCount: completedSubs.length,
+    missedCount: missedSubs.length,
+    freshCount: freshSubs.length,
+  };
 }
