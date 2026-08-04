@@ -267,72 +267,128 @@ export async function sendPushForLocalHour(
   return { tokenCount: subs.length, delivered, failed: subs.length - delivered, removed, hour: utcHour, skipped: false, eligibleUsers };
 }
 
-/** Fetch today's daily puzzle ID from Firestore (admin SDK). Returns null when unavailable. */
-async function getDailyPuzzleIdForServer(): Promise<string | null> {
-  const app = getAdminApp();
-  if (!app) return null;
-  const db = getFirestore(app);
-  const today = new Date().toISOString().split("T")[0];
+/** Local `toDateString()` (e.g. "Tue Aug 04 2026") in the given timezone. Matches the client's stored date formats. */
+function localDateStringAt(now: Date, timeZone: string): string {
   try {
-    const snap = await db.doc("settings/daily-puzzle").get();
-    if (snap.exists) {
-      const data = snap.data() ?? {};
-      if (data.date === today && typeof data.puzzleId === "string") return data.puzzleId;
-    }
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone,
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    }).formatToParts(now);
+    const get = (t: string) => parts.find((p) => p.type === t)?.value ?? "";
+    return `${get("weekday")} ${get("month")} ${get("day")} ${get("year")}`;
   } catch {
-    // ignore
+    return now.toDateString();
   }
-  return null;
 }
+
+export interface EveningTemplateCounts {
+  completedStreak: number;
+  completedFresh: number;
+  streakWarning: number;
+  freezeSafe: number;
+  restart: number;
+  newUser: number;
+}
+
+const EMPTY_TEMPLATE_COUNTS: EveningTemplateCounts = {
+  completedStreak: 0,
+  completedFresh: 0,
+  streakWarning: 0,
+  freezeSafe: 0,
+  restart: 0,
+  newUser: 0,
+};
+
+export interface EveningPushResult extends HourlyPushResult {
+  /** Subscription counts per message template. */
+  byTemplate: EveningTemplateCounts;
+}
+
+type EveningTemplate = keyof EveningTemplateCounts;
 
 interface EveningUser {
   uid: string;
+  template: EveningTemplate;
   streak: number;
-  completedToday: boolean;
   subs: PushSubscriptionDoc[];
 }
 
-export interface EveningPushResult extends HourlyPushResult {
-  completedCount: number;
-  missedCount: number;
-  freshCount: number;
+const EVENING_TEMPLATES: Record<EveningTemplate, { title: string; body: string }> = {
+  completedStreak: {
+    title: "Nice work today!",
+    body: "You're on a {streak}-day streak. Keep it going tomorrow!",
+  },
+  completedFresh: {
+    title: "Great job today!",
+    body: "You started a fresh streak. Come back tomorrow to keep it alive!",
+  },
+  streakWarning: {
+    title: "Don't lose your {streak}-day streak!",
+    body: "Complete today's puzzle before midnight to keep it alive.",
+  },
+  freezeSafe: {
+    title: "Your streak is safe for today",
+    body: "A streak freeze covered today. Come back tomorrow!",
+  },
+  restart: {
+    title: "Start fresh",
+    body: "Your streak ended — but a new one starts today. Rebuild it!",
+  },
+  newUser: {
+    title: "Your daily puzzle is waiting",
+    body: "A fresh brain workout is ready. Start your first streak today!",
+  },
+};
+
+function renderTemplate(template: EveningTemplate, streak: number): { title: string; body: string } {
+  const t = EVENING_TEMPLATES[template];
+  return { title: t.title.replace("{streak}", String(streak)), body: t.body.replace("{streak}", String(streak)) };
 }
 
 /**
  * Sends a streak-aware evening reminder to users whose local time is 7 PM.
- * Reads each user's streak + completedPuzzleIds to personalise the message:
- *  - Completed today  → congratulatory
- *  - Missed + streak>0 → streak warning
- *  - Missed + streak=0 → fresh start nudge
- * `forceLocalHour` is a CRON_SECRET-gated test override — when set, it filters
- * users by that local hour instead of 19 so delivery can be verified on demand.
+ * Each user's message is picked from the current state, in the user's own
+ * local date:
+ *  - Played today + streak>0   → completedStreak (celebrate)
+ *  - Played today, no streak   → completedFresh (first step)
+ *  - Freeze covering today     → freezeSafe (no warning needed)
+ *  - Didn't play + streak live → streakWarning (endangered)
+ *  - Didn't play + broken      → restart (rebuild)
+ *  - Didn't play + brand new   → newUser (welcome nudge)
+ * `forceLocalHour` is a CRON_SECRET-gated test override — it filters by that
+ * local hour instead of 19 and bypasses the dedup marker.
  */
 export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHour?: number): Promise<EveningPushResult> {
-  const empty: EveningPushResult = { tokenCount: 0, delivered: 0, failed: 0, removed: 0, hour: utcHour, skipped: false, eligibleUsers: 0, completedCount: 0, missedCount: 0, freshCount: 0 };
+  const empty: EveningPushResult = { tokenCount: 0, delivered: 0, failed: 0, removed: 0, hour: utcHour, skipped: false, eligibleUsers: 0, byTemplate: EMPTY_TEMPLATE_COUNTS };
   const app = getAdminApp();
   if (!app) return empty;
   if (!configureVapid()) return empty;
   const db = getFirestore(app);
 
   const today = new Date().toISOString().split("T")[0];
-  const markerRef = db.doc("settings/reminder-hourly-evening");
+  const isTest = forceLocalHour !== undefined;
 
-  let claimed: boolean;
-  try {
-    claimed = await db.runTransaction(async (t) => {
-      const snap = await t.get(markerRef);
-      const cur = snap.exists ? (snap.data() ?? {}) : {};
-      if (cur.date === today && cur.hour === utcHour) return false;
-      t.set(markerRef, { date: today, hour: utcHour, updatedAt: Date.now() });
-      return true;
-    });
-  } catch (e) {
-    console.error("reminder-hourly-evening marker claim failed:", e);
-    return { ...empty, skipped: true };
+  if (!isTest) {
+    const markerRef = db.doc("settings/reminder-hourly-evening");
+    let claimed: boolean;
+    try {
+      claimed = await db.runTransaction(async (t) => {
+        const snap = await t.get(markerRef);
+        const cur = snap.exists ? (snap.data() ?? {}) : {};
+        if (cur.date === today && cur.hour === utcHour) return false;
+        t.set(markerRef, { date: today, hour: utcHour, updatedAt: Date.now() });
+        return true;
+      });
+    } catch (e) {
+      console.error("reminder-hourly-evening marker claim failed:", e);
+      return { ...empty, skipped: true };
+    }
+    if (!claimed) return { ...empty, skipped: true };
   }
-  if (!claimed) return { ...empty, skipped: true };
 
-  const dailyPuzzleId = await getDailyPuzzleIdForServer();
   const now = new Date();
   const eveningUsers: EveningUser[] = [];
   const seen = new Set<string>();
@@ -343,13 +399,19 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
       users.map(async (userRef) => {
         let timeZone: string | null = null;
         let streak = 0;
-        let completedPuzzleIds: string[] = [];
+        let lastActiveDate: string | null = null;
+        let dailyPuzzleCompletedDate: string | null = null;
+        let frozenDays: string[] = [];
+        let activeDates: string[] = [];
         try {
           const userSnap = await userRef.get();
           const d = userSnap.data() ?? {};
           timeZone = (d.timeZone as string | null) ?? null;
           streak = (d.streak as number) ?? 0;
-          completedPuzzleIds = (d.completedPuzzleIds as string[]) ?? [];
+          lastActiveDate = (d.lastActiveDate as string | null) ?? null;
+          dailyPuzzleCompletedDate = (d.dailyPuzzleCompletedDate as string | null) ?? null;
+          frozenDays = (d.frozenDays as string[]) ?? [];
+          activeDates = (d.activeDates as string[]) ?? [];
         } catch {
           // fall back to defaults
         }
@@ -358,31 +420,51 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
         const subs = await readUserSubscriptions(userRef, seen, userRef.id);
         if (subs.length === 0) return;
 
-        eveningUsers.push({
-          uid: userRef.id,
-          streak,
-          completedToday: dailyPuzzleId ? completedPuzzleIds.includes(dailyPuzzleId) : false,
-          subs,
-        });
+        const tz = timeZone ?? "Asia/Kolkata";
+        const todayLocal = localDateStringAt(now, tz);
+        const yesterdayLocal = localDateStringAt(new Date(now.getTime() - 86400000), tz);
+
+        const playedToday = activeDates.includes(todayLocal) || dailyPuzzleCompletedDate === todayLocal;
+        const freezeCoversToday = frozenDays.includes(todayLocal);
+        const streakAlive = lastActiveDate === todayLocal || lastActiveDate === yesterdayLocal;
+        const hasHistory = activeDates.length > 0 || streak > 0;
+
+        let template: EveningTemplate;
+        if (playedToday && streak > 0) {
+          template = "completedStreak";
+        } else if (playedToday) {
+          template = "completedFresh";
+        } else if (freezeCoversToday) {
+          template = "freezeSafe";
+        } else if (streakAlive && streak > 0) {
+          template = "streakWarning";
+        } else if (hasHistory) {
+          template = "restart";
+        } else {
+          template = "newUser";
+        }
+
+        eveningUsers.push({ uid: userRef.id, template, streak, subs });
       }),
     );
   } catch (e) {
     console.error("Failed to list users for evening push:", e);
   }
 
-  // Group subscriptions by message type, then send one batch per group.
-  const completedSubs: PushSubscriptionDoc[] = [];
-  const missedSubs: PushSubscriptionDoc[] = [];
-  const freshSubs: PushSubscriptionDoc[] = [];
+  // Group subscriptions by message template, then send one batch per group.
+  const byTemplate: EveningTemplateCounts = { ...EMPTY_TEMPLATE_COUNTS };
+  const groups: Record<EveningTemplate, PushSubscriptionDoc[]> = {
+    completedStreak: [],
+    completedFresh: [],
+    streakWarning: [],
+    freezeSafe: [],
+    restart: [],
+    newUser: [],
+  };
 
   for (const u of eveningUsers) {
-    if (u.completedToday) {
-      completedSubs.push(...u.subs);
-    } else if (u.streak > 0) {
-      missedSubs.push(...u.subs);
-    } else {
-      freshSubs.push(...u.subs);
-    }
+    groups[u.template].push(...u.subs);
+    byTemplate[u.template] += u.subs.length;
   }
 
   const url = "/learn";
@@ -392,46 +474,19 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
   let totalRemoved = 0;
   let totalFailed = 0;
 
-  if (completedSubs.length) {
-    const payload = JSON.stringify({
-      title: "Nice work today!",
-      body: `Your streak is ${eveningUsers.find((u) => u.completedToday)?.streak ?? 0} days. Keep it going tomorrow!`,
-      data: { url },
-      tag,
-    });
-    const r = await deliverSubscriptions(completedSubs, payload);
+  for (const template of Object.keys(groups) as EveningTemplate[]) {
+    const subs = groups[template];
+    if (subs.length === 0) continue;
+    const streak = eveningUsers.find((u) => u.template === template)?.streak ?? 0;
+    const { title, body } = renderTemplate(template, streak);
+    const payload = JSON.stringify({ title, body, data: { url }, tag });
+    const r = await deliverSubscriptions(subs, payload);
     totalDelivered += r.delivered;
     totalRemoved += r.removed;
-    totalFailed += completedSubs.length - r.delivered;
+    totalFailed += subs.length - r.delivered;
   }
 
-  if (missedSubs.length) {
-    const payload = JSON.stringify({
-      title: "Don't lose your streak!",
-      body: "Complete today's puzzle before midnight to keep it alive.",
-      data: { url },
-      tag,
-    });
-    const r = await deliverSubscriptions(missedSubs, payload);
-    totalDelivered += r.delivered;
-    totalRemoved += r.removed;
-    totalFailed += missedSubs.length - r.delivered;
-  }
-
-  if (freshSubs.length) {
-    const payload = JSON.stringify({
-      title: "Your daily puzzle is waiting",
-      body: "Start a new streak today!",
-      data: { url },
-      tag,
-    });
-    const r = await deliverSubscriptions(freshSubs, payload);
-    totalDelivered += r.delivered;
-    totalRemoved += r.removed;
-    totalFailed += freshSubs.length - r.delivered;
-  }
-
-  const tokenCount = completedSubs.length + missedSubs.length + freshSubs.length;
+  const tokenCount = eveningUsers.reduce((sum, u) => sum + u.subs.length, 0);
   return {
     tokenCount,
     delivered: totalDelivered,
@@ -440,8 +495,6 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
     hour: utcHour,
     skipped: false,
     eligibleUsers: eveningUsers.length,
-    completedCount: completedSubs.length,
-    missedCount: missedSubs.length,
-    freshCount: freshSubs.length,
+    byTemplate,
   };
 }
