@@ -202,6 +202,25 @@ async function deleteToken(uid: string, subscription: PushSubscription): Promise
   }
 }
 
+/**
+ * Cleans up push subscription for a given uid: deletes the Firestore token
+ * doc and unsubscribes the browser.  Call on account switch (old uid) and
+ * sign-out so stale tokens stop receiving reminders keyed to the old account.
+ */
+export async function cleanupPushTokens(uid: string): Promise<void> {
+  if (!uid || !isPushSupported()) return;
+  try {
+    const registration = await navigator.serviceWorker.ready;
+    const subscription = await registration.pushManager.getSubscription();
+    if (subscription) {
+      await deleteToken(uid, subscription);
+      await subscription.unsubscribe();
+    }
+  } catch (e) {
+    console.error("Failed to cleanup push tokens:", e);
+  }
+}
+
 export async function getPushTokens(uid: string): Promise<PushTokenDoc[]> {
   const { db } = getFirebase();
   if (!db) return [];

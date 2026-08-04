@@ -3,6 +3,7 @@ import { sendPushForLocalHour, sendEveningPushForLocalHour } from "@/lib/push-se
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 export async function GET(req: NextRequest) {
   // Fail closed: without a configured secret this route would let anyone

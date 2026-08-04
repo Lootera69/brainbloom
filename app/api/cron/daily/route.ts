@@ -3,6 +3,7 @@ import { sendPushToAll } from "@/lib/push-send";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 export async function GET(req: NextRequest) {
   // Fail closed: without a configured secret this route would let anyone

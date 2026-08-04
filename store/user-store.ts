@@ -310,6 +310,7 @@ export const useUserStore = create<UserState>()(
       },
 
       setUser: (user, opts) => {
+        const prevUserId = get().userId;
         if (opts?.cloudData) {
           const cd = opts.cloudData as Record<string, unknown>;
           set({
@@ -370,13 +371,20 @@ export const useUserStore = create<UserState>()(
             cipherSolvedWeeks: (cd.cipherSolvedWeeks as string[]) ?? [],
             updatedAt: (cd.updatedAt as number) ?? Date.now(),
           });
-          setTimeout(() => {
+          setTimeout(async () => {
             if (opts?.guestData) {
               const s = get();
               set({ ...mergeGuestProgress(opts.guestData, s), updatedAt: Date.now() });
             }
             get().checkWeeklyReset();
             get().checkStreak(false);
+            // Account switch: clean up old uid's push tokens and re-register
+            // under the new uid so reminders target the correct identity.
+            if (prevUserId && prevUserId !== user.uid) {
+              const { cleanupPushTokens, subscribeToPush } = await import("@/services/notification-service");
+              cleanupPushTokens(prevUserId);
+              subscribeToPush({ uid: user.uid });
+            }
           }, 50);
         } else {
           set({
@@ -440,6 +448,13 @@ export const useUserStore = create<UserState>()(
               set({ ...mergeGuestProgress(opts.guestData, s), updatedAt: Date.now() });
               get().checkWeeklyReset();
               get().checkStreak(false);
+            }
+            // Account switch: clean up old uid's push tokens and re-register
+            // under the new uid so reminders target the correct identity.
+            if (prevUserId && prevUserId !== user.uid) {
+              const { cleanupPushTokens, subscribeToPush } = await import("@/services/notification-service");
+              cleanupPushTokens(prevUserId);
+              subscribeToPush({ uid: user.uid });
             }
           }, 100);
         }

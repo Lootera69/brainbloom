@@ -52,7 +52,7 @@ import { toast } from "sonner";
 import { signOutUser, sendPasswordReset } from "@/services/firebase";
 import { ShareStatsModal } from "@/components/share/ShareStatsModal";
 import { DeleteAccountDialog } from "@/components/delete-account-dialog";
-import { subscribeToPush, unsubscribeFromPush, requestNotificationPermission, checkExistingSubscription, getPushStatus } from "@/services/notification-service";
+import { subscribeToPush, unsubscribeFromPush, requestNotificationPermission, checkExistingSubscription, getPushStatus, cleanupPushTokens } from "@/services/notification-service";
 import { useTheme } from "next-themes";
 import { playClick, playToggleOn, playToggleOff } from "@/services/sound-service";
 import { haptic } from "@/lib/haptics";
@@ -208,6 +208,8 @@ export default function ProfilePage() {
   const { level, progress, xpToNext } = useMemo(() => getLevel(xp), [xp]);
 
   const handleLogout = async () => {
+    const uid = userId;
+    await cleanupPushTokens(uid);
     await signOutUser();
     logout();
     router.push("/login");
