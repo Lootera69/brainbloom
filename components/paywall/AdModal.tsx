@@ -196,8 +196,8 @@ export function AdModal({ onComplete, onClose }: AdModalProps) {
             <X className="size-4" />
           </button>
 
-          {/* Countdown */}
-          <div className="absolute right-12 top-3 z-20">
+          {/* Countdown — top left */}
+          <div className="absolute left-3 top-3 z-20">
             <span className={cn(
               "rounded px-2 py-1 text-xs font-bold tabular-nums backdrop-blur-sm",
               isComplete ? "bg-emerald-500/30 text-emerald-300" : "bg-black/30 text-white/70"
@@ -289,16 +289,16 @@ export function AdModal({ onComplete, onClose }: AdModalProps) {
                     {ad.cta}
                   </div>
                 </div>
+              </div>
 
-                {/* Progress bar */}
-                <div className="mt-4">
-                  <div className="h-1.5 overflow-hidden rounded-full bg-muted/30">
-                    <motion.div
-                      className={cn("h-full rounded-full bg-gradient-to-r", ad.gradient)}
-                      style={{ width: `${progress}%` }}
-                      transition={{ duration: 0.1 }}
-                    />
-                  </div>
+              {/* Progress bar — visible at bottom of ad */}
+              <div className="px-5 pb-4">
+                <div className="h-2 overflow-hidden rounded-full bg-muted/30">
+                  <motion.div
+                    className={cn("h-full rounded-full bg-gradient-to-r", ad.gradient)}
+                    style={{ width: `${progress}%` }}
+                    transition={{ duration: 0.1 }}
+                  />
                 </div>
               </div>
             </motion.div>
