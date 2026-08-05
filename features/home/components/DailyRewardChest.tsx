@@ -34,73 +34,57 @@ const rewardSolidColors: Record<string, string> = {
 
 type Reward = { type: "xp" | "gems" | "streak-freeze"; amount: number; label: string };
 
+const CONFETTI_COLORS = ["#f43f5e", "#3b82f6", "#22c55e", "#eab308", "#a855f7", "#06b6d4", "#f97316", "#ec4899", "#fbbf24", "#34d399"];
+
 function ConfettiExplosion() {
-  const colors = ["#f43f5e", "#3b82f6", "#22c55e", "#eab308", "#a855f7", "#06b6d4", "#f97316", "#ec4899", "#fbbf24", "#34d399"];
-  const particles = useMemo(() => Array.from({ length: 60 }).map((_, i) => {
-    const angle = (i / 60) * Math.PI * 2 + ((i * 137.508) * Math.PI) / 180;
-    const spread = 60 + (i * 7) % 80;
-    return {
-      x: Math.cos(angle) * spread,
-      y: Math.sin(angle) * spread,
-      finalY: Math.sin(angle) * spread + 120 + (i * 3) % 60,
-      rotateX: (i * 47) % 720 - 360,
-      rotateY: (i * 31) % 720 - 360,
-      rotate: (i * 37) % 540,
-      scale: 0.5 + (i % 5) * 0.15,
-      color: colors[i % colors.length],
-      delay: (i * 0.015) % 0.25,
-      type: i % 4 === 0 ? "circle" : i % 4 === 1 ? "square" : i % 4 === 2 ? "line" : "star",
-      trailDelay: 0.08 + (i * 0.01) % 0.1,
-    };
-  }), []);
+  const particles = useMemo(() => {
+    return Array.from({ length: 25 }).map((_, i) => {
+      const angle = (i / 25) * Math.PI * 2;
+      const spread = 50 + (i * 7) % 80;
+      return {
+        x: Math.cos(angle) * spread * 3.5,
+        y: Math.sin(angle) * spread * 2.5 + 100,
+        rotate: (i * 37) % 540,
+        scale: 0.5 + (i % 5) * 0.15,
+        color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+        delay: (i * 0.04) % 0.3,
+        shape: i % 3 === 0 ? "circle" : i % 3 === 1 ? "square" : "line",
+      };
+    });
+  }, []);
+
+  const [alive, setAlive] = useState<number[]>([]);
+
+  useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    particles.forEach((_, i) => {
+      timers.push(setTimeout(() => setAlive((p) => [...p, i]), particles[i].delay * 1000));
+    });
+    return () => timers.forEach(clearTimeout);
+  }, [particles]);
 
   return (
     <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
-      {particles.map((p, i) => (
-        <div key={i} className="absolute">
-          <motion.div
-            initial={{ x: 0, y: 0, opacity: 1, rotate: 0, scale: 0 }}
-            animate={{
-              x: p.x * 3.5,
-              y: [0, p.y * 2, p.finalY * 2.5],
-              opacity: [1, 1, 1, 0],
-              rotate: p.rotate,
-              rotateX: p.rotateX,
-              rotateY: p.rotateY,
-              scale: [0, p.scale, p.scale * 0.8, 0],
-            }}
-            transition={{ duration: 1.6, delay: p.delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="absolute"
+      {alive.map((i) => {
+        const p = particles[i];
+        return (
+          <div
+            key={i}
+            className="confetti-particle"
             style={{
-              width: p.type === "line" ? 8 : p.type === "star" ? 4 : 6,
-              height: p.type === "line" ? 3 : p.type === "star" ? 4 : 6,
-              borderRadius: p.type === "circle" ? "50%" : p.type === "square" ? 2 : 0,
+              "--cx": `${p.x}px`,
+              "--cy": `${p.y}px`,
+              "--cr": `${p.rotate}deg`,
+              "--cs": p.scale,
+              "--cd": `${p.delay}s`,
+              width: p.shape === "line" ? 8 : 6,
+              height: p.shape === "line" ? 3 : 6,
+              borderRadius: p.shape === "circle" ? "50%" : p.shape === "square" ? "2px" : 0,
               backgroundColor: p.color,
-              boxShadow: `0 0 4px ${p.color}40`,
-            }}
+            } as React.CSSProperties}
           />
-          {/* Sparkle trail */}
-          {[0, 1].map((t) => (
-            <motion.div
-              key={t}
-              initial={{ x: 0, y: 0, opacity: 0.6, scale: 0 }}
-              animate={{
-                x: p.x * (1.5 + t * 0.8),
-                y: [0, p.y * (1 + t * 0.5), p.finalY * (1.2 + t * 0.3)],
-                opacity: [0, 0.5, 0],
-                scale: [0, 0.4 - t * 0.15, 0],
-              }}
-              transition={{ duration: 1.2, delay: p.delay + p.trailDelay * (t + 1), ease: "easeOut" }}
-              className="absolute rounded-full"
-              style={{
-                width: 3,
-                height: 3,
-                backgroundColor: p.color,
-              }}
-            />
-          ))}
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -141,45 +125,6 @@ function SonarRipple({ color }: { color: string }) {
         />
       ))}
     </div>
-  );
-}
-
-function RotatingRing() {
-  return (
-    <motion.div
-      animate={{ rotate: 360 }}
-      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-      className="absolute -inset-2 rounded-full"
-      style={{
-        border: "2px dashed rgba(255,255,255,0.15)",
-      }}
-    />
-  );
-}
-
-function GlowHalo({ color }: { color: string }) {
-  return (
-    <motion.div
-      initial={{ scale: 1, opacity: 0.25 }}
-      animate={{ scale: [1, 1.2, 1], opacity: [0.25, 0.5, 0.25] }}
-      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute -inset-6 rounded-full blur-xl"
-      style={{ backgroundColor: `${color}30` }}
-    />
-  );
-}
-
-function RadialBurst({ color }: { color: string }) {
-  return (
-    <motion.div
-      initial={{ scale: 0, opacity: 0.7 }}
-      animate={{ scale: [0, 3], opacity: [0.7, 0] }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
-      className="pointer-events-none absolute left-1/2 top-1/2 size-40 -translate-x-1/2 -translate-y-1/2 rounded-full"
-      style={{
-        background: `radial-gradient(circle, ${color}50 0%, transparent 70%)`,
-      }}
-    />
   );
 }
 
@@ -299,8 +244,8 @@ function GiftBox({ phase, fadingOut }: { phase: "idle" | "shaking" | "opening"; 
         <motion.div
           animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -inset-4 rounded-full blur-2xl"
-          style={{ background: "radial-gradient(circle, rgba(245,158,11,0.2) 0%, transparent 70%)" }}
+          className="absolute -inset-4 rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%)" }}
         />
       )}
     </div>
@@ -314,43 +259,15 @@ function RewardReveal({ reward }: { reward: Reward }) {
 
   return (
     <div className="relative flex flex-col items-center py-2">
-      {/* Radial burst */}
-      <RadialBurst color={color} />
-
-      {/* Sonar ripples */}
       <SonarRipple color={color} />
 
-      {/* Sparkle ring - enhanced with 20 dots */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        {Array.from({ length: 20 }).map((_, i) => {
-          const angle = (i / 20) * 360;
-          const distance = 45 + (i * 3) % 25;
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{
-                opacity: [0, 1, 0],
-                scale: [0, 1.2, 0],
-                x: Math.cos((angle * Math.PI) / 180) * distance,
-                y: Math.sin((angle * Math.PI) / 180) * distance,
-              }}
-              transition={{ duration: 1.8, delay: i * 0.03, ease: "easeOut", repeat: Infinity, repeatDelay: 1.5 }}
-              className="absolute size-1.5 rounded-full bg-white"
-            />
-          );
-        })}
-      </div>
-
-      {/* Icon with glow halo + rotating ring */}
       <motion.div
         initial={{ scale: 0, rotate: -180, y: 30 }}
         animate={{ scale: 1, rotate: 0, y: 0 }}
         transition={{ type: "spring", stiffness: 120, damping: 12, delay: 0.15 }}
         className="relative mb-4"
       >
-        <GlowHalo color={color} />
-        <RotatingRing />
+        <div className="absolute -inset-6 rounded-full" style={{ backgroundColor: `${color}15` }} />
 
         <div className={cn("relative flex size-20 items-center justify-center rounded-full p-0.5 sm:size-24", `bg-gradient-to-br ${gradient}`)}>
           <div className="flex size-full items-center justify-center rounded-full bg-card">
@@ -358,17 +275,14 @@ function RewardReveal({ reward }: { reward: Reward }) {
           </div>
         </div>
 
-        {/* Pulse ring on icon */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: [0, 0.5, 0], scale: [0.8, 1.3, 1.8] }}
+          animate={{ opacity: [0, 0.4, 0], scale: [0.8, 1.3, 1.8] }}
           transition={{ duration: 1.8, delay: 0.3, repeat: Infinity, repeatDelay: 1 }}
           className={cn("absolute inset-0 rounded-full opacity-0", `bg-gradient-to-br ${gradient}`)}
-          style={{ filter: "blur(6px)" }}
         />
       </motion.div>
 
-      {/* Count-up amount */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -387,7 +301,6 @@ function RewardReveal({ reward }: { reward: Reward }) {
         </motion.p>
       </motion.div>
 
-      {/* Decorative line */}
       <motion.div
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: 120, opacity: 1 }}
@@ -460,8 +373,6 @@ export function DailyRewardChest() {
     timeoutsRef.current = [t1, t2, t3, t4, t5, t6];
   }, [claim]);
 
-  // Keep mounted while the modal is open — claim() flips canClaim() to false
-  // mid-animation, and returning null here would unmount the reward reveal.
   if (!canClaim() && !open) return null;
 
   return (
@@ -475,8 +386,18 @@ export function DailyRewardChest() {
         .animate-pulse-scale {
           animation: pulse-scale 0.4s ease-out;
         }
+        @keyframes confetti-fly {
+          0% { transform: translate(0, 0) rotate(0deg) scale(0); opacity: 1; }
+          15% { transform: translate(calc(var(--cx) * 0.4), calc(var(--cy) * -0.6)) rotate(calc(var(--cr) * 0.3)) scale(var(--cs)); opacity: 1; }
+          50% { transform: translate(calc(var(--cx) * 0.8), calc(var(--cy) * -1.2)) rotate(calc(var(--cr) * 0.7)) scale(calc(var(--cs) * 0.9)); opacity: 0.85; }
+          100% { transform: translate(var(--cx), calc(var(--cy) * -1.8)) rotate(var(--cr)) scale(calc(var(--cs) * 0.5)); opacity: 0; }
+        }
+        .confetti-particle {
+          position: absolute;
+          animation: confetti-fly 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
       `}</style>
-      {/* Trigger card */}
+
       <GlassCard intensity="light" className="mb-6 overflow-hidden sm:mb-8">
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -503,7 +424,6 @@ export function DailyRewardChest() {
         </motion.div>
       </GlassCard>
 
-      {/* Modal */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -512,7 +432,7 @@ export function DailyRewardChest() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
             style={{ pointerEvents: "auto" }}
           >
             <motion.div
@@ -525,7 +445,6 @@ export function DailyRewardChest() {
               className="relative w-full max-w-sm overflow-hidden rounded-3xl border bg-card shadow-2xl"
               style={{ pointerEvents: "none" }}
             >
-              {/* Gift box — fades out when reward emerges */}
               <div className="flex flex-col items-center px-8 pt-14 pb-12">
                 <GiftBox phase={phase} fadingOut={boxFading} />
                 <motion.p
@@ -539,10 +458,8 @@ export function DailyRewardChest() {
                 </motion.p>
               </div>
 
-              {/* Light beams during opening */}
               {showBeams && <LightBeams />}
 
-              {/* Reward reveal — overlaps gift box area as it fades */}
               <AnimatePresence mode="wait">
                 {reward && (
                   <motion.div
