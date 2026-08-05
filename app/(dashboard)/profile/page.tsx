@@ -971,6 +971,17 @@ export default function ProfilePage() {
         />
       )}
 
+      {/* Footer links */}
+      <div className="mt-8 flex items-center justify-center gap-4 text-xs text-muted-foreground/50">
+        <a href="/blog" className="transition-colors hover:text-foreground">Blog</a>
+        <span className="text-muted-foreground/30">|</span>
+        <a href="/about" className="transition-colors hover:text-foreground">About</a>
+        <span className="text-muted-foreground/30">|</span>
+        <a href="/terms" className="transition-colors hover:text-foreground">Terms</a>
+        <span className="text-muted-foreground/30">|</span>
+        <a href="/privacy" className="transition-colors hover:text-foreground">Privacy</a>
+      </div>
+
       <AdBanner className="mt-4" />
 
       <DeleteAccountDialog

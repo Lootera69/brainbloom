@@ -784,6 +784,10 @@ export default function LoginPage() {
               <Link href="/terms" className="underline underline-offset-2 hover:text-muted-foreground transition-colors">Terms</Link>{" "}
               and{" "}
               <Link href="/privacy" className="underline underline-offset-2 hover:text-muted-foreground transition-colors">Privacy Policy</Link>.
+              <br />
+              <Link href="/blog" className="underline underline-offset-2 hover:text-muted-foreground transition-colors">Blog</Link>{" "}
+              ·{" "}
+              <Link href="/about" className="underline underline-offset-2 hover:text-muted-foreground transition-colors">About</Link>
             </motion.p>
           </>
         )}
