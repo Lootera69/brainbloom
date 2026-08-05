@@ -54,76 +54,32 @@ export default function HomePage() {
       {/* Animated aurora mesh — light mode only */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden dark:hidden">
         <motion.div
-          animate={{
-            y: [0, -40, 0],
-            x: [0, 30, 0],
-            scale: [1, 1.15, 1],
-          }}
+          animate={{ y: [0, -40, 0], x: [0, 30, 0], scale: [1, 1.15, 1] }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-48 -left-48 size-[600px] rounded-full opacity-70 blur-[100px]"
+          className="absolute -top-48 -left-48 size-[600px] rounded-full opacity-70 blur-[50px]"
           style={{ background: "radial-gradient(circle, rgba(167,139,250,0.35), rgba(139,92,246,0.15), transparent 70%)" }}
         />
         <motion.div
-          animate={{
-            y: [0, 35, 0],
-            x: [0, -25, 0],
-            scale: [1, 1.1, 1],
-          }}
+          animate={{ y: [0, 35, 0], x: [0, -25, 0], scale: [1, 1.1, 1] }}
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute -bottom-40 -right-40 size-[500px] rounded-full opacity-60 blur-[90px]"
+          className="absolute -bottom-40 -right-40 size-[500px] rounded-full opacity-60 blur-[45px]"
           style={{ background: "radial-gradient(circle, rgba(244,114,182,0.3), rgba(236,72,153,0.12), transparent 70%)" }}
-        />
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-            x: [0, -15, 0],
-            scale: [1, 1.05, 1],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-          className="absolute top-[40%] left-[30%] size-[350px] rounded-full opacity-50 blur-[80px]"
-          style={{ background: "radial-gradient(circle, rgba(34,211,238,0.2), rgba(6,182,212,0.08), transparent 70%)" }}
-        />
-        <motion.div
-          animate={{
-            y: [0, 25, 0],
-            x: [0, 20, 0],
-            scale: [1, 1.08, 1],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 8 }}
-          className="absolute top-[60%] right-[20%] size-[280px] rounded-full opacity-40 blur-[70px]"
-          style={{ background: "radial-gradient(circle, rgba(251,191,36,0.2), rgba(245,158,11,0.08), transparent 70%)" }}
         />
       </div>
 
       {/* Animated aurora mesh — dark mode: jewel-toned ambient light on near-black */}
       <div className="pointer-events-none fixed inset-0 -z-10 hidden overflow-hidden dark:block">
-        {/* Deep indigo orb, top-left */}
         <motion.div
           animate={{ y: [0, -45, 0], x: [0, 35, 0], scale: [1, 1.18, 1] }}
           transition={{ duration: 19, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-52 -left-52 size-[640px] rounded-full opacity-70 blur-[110px]"
+          className="absolute -top-52 -left-52 size-[640px] rounded-full opacity-70 blur-[55px]"
           style={{ background: "radial-gradient(circle, rgba(99,102,241,0.5), rgba(79,70,229,0.22), transparent 70%)" }}
         />
-        {/* Royal magenta orb, bottom-right */}
         <motion.div
           animate={{ y: [0, 40, 0], x: [0, -30, 0], scale: [1, 1.12, 1] }}
           transition={{ duration: 23, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute -bottom-44 -right-44 size-[540px] rounded-full opacity-60 blur-[100px]"
+          className="absolute -bottom-44 -right-44 size-[540px] rounded-full opacity-60 blur-[50px]"
           style={{ background: "radial-gradient(circle, rgba(217,70,239,0.42), rgba(168,85,247,0.18), transparent 70%)" }}
-        />
-        {/* Cyan accent orb, center-left */}
-        <motion.div
-          animate={{ y: [0, -24, 0], x: [0, -18, 0], scale: [1, 1.08, 1] }}
-          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-          className="absolute top-[38%] left-[28%] size-[380px] rounded-full opacity-45 blur-[90px]"
-          style={{ background: "radial-gradient(circle, rgba(34,211,238,0.32), rgba(6,182,212,0.12), transparent 70%)" }}
-        />
-        {/* Gold shimmer orb, lower-right — the royal touch */}
-        <motion.div
-          animate={{ y: [0, 28, 0], x: [0, 22, 0], scale: [1, 1.1, 1] }}
-          transition={{ duration: 21, repeat: Infinity, ease: "easeInOut", delay: 8 }}
-          className="absolute top-[58%] right-[18%] size-[300px] rounded-full opacity-40 blur-[80px]"
-          style={{ background: "radial-gradient(circle, rgba(251,191,36,0.28), rgba(245,158,11,0.1), transparent 70%)" }}
         />
         {/* Top vignette for OLED depth */}
         <div

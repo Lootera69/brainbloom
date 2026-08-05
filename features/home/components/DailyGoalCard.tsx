@@ -51,19 +51,12 @@ export function DailyGoalCard() {
       {/* Subtle radial glow */}
       <motion.div
         className="pointer-events-none absolute inset-0 rounded-3xl"
-        animate={{
-          boxShadow: complete
-            ? [
-                "inset 0 0 60px rgba(34,197,94,0.0)",
-                "inset 0 0 60px rgba(34,197,94,0.12)",
-                "inset 0 0 60px rgba(34,197,94,0.0)",
-              ]
-            : [
-                "inset 0 0 60px rgba(99,102,241,0.0)",
-                "inset 0 0 60px rgba(99,102,241,0.08)",
-                "inset 0 0 60px rgba(99,102,241,0.0)",
-              ],
+        style={{
+          background: complete
+            ? "radial-gradient(circle, rgba(34,197,94,0.12), transparent 70%)"
+            : "radial-gradient(circle, rgba(99,102,241,0.08), transparent 70%)",
         }}
+        animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       />
 

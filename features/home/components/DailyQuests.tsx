@@ -68,21 +68,14 @@ export function DailyQuests() {
               {/* Pulsing glow */}
               <motion.div
                 className="pointer-events-none absolute inset-0 rounded-3xl"
-                animate={{
-                  boxShadow: done
-                    ? [
-                        "inset 0 0 40px rgba(34,197,94,0.0)",
-                        "inset 0 0 40px rgba(34,197,94,0.10)",
-                        "inset 0 0 40px rgba(34,197,94,0.0)",
-                      ]
+                style={{
+                  background: done
+                    ? "radial-gradient(circle, rgba(34,197,94,0.10), transparent 70%)"
                     : pct > 0
-                      ? [
-                          "inset 0 0 40px rgba(99,102,241,0.0)",
-                          `inset 0 0 40px rgba(99,102,241,${0.04 * pct})`,
-                          "inset 0 0 40px rgba(99,102,241,0.0)",
-                        ]
-                      : "inset 0 0 40px rgba(99,102,241,0.0)",
+                      ? `radial-gradient(circle, rgba(99,102,241,${0.04 * pct}), transparent 70%)`
+                      : "none",
                 }}
+                animate={pct > 0 || done ? { opacity: [0, 1, 0] } : { opacity: 0 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
 
