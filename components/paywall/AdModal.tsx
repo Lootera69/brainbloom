@@ -196,13 +196,6 @@ export function AdModal({ onComplete, onClose }: AdModalProps) {
             <X className="size-4" />
           </button>
 
-          {/* Ad label */}
-          <div className="absolute left-3 top-3 z-20">
-            <span className="rounded bg-black/30 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/70 backdrop-blur-sm">
-              Ad
-            </span>
-          </div>
-
           {/* Countdown */}
           <div className="absolute right-12 top-3 z-20">
             <span className={cn(
@@ -306,13 +299,6 @@ export function AdModal({ onComplete, onClose }: AdModalProps) {
                       transition={{ duration: 0.1 }}
                     />
                   </div>
-                  <p className="mt-2 text-center text-[11px] text-muted-foreground">
-                    {isComplete ? (
-                      <span className="text-emerald-500 font-medium">Reward earned!</span>
-                    ) : (
-                      <span>Watching... {MOCK_AD_DURATION - watchTime}s remaining</span>
-                    )}
-                  </p>
                 </div>
               </div>
             </motion.div>
