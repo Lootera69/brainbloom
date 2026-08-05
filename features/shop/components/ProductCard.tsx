@@ -24,6 +24,7 @@ interface ProductCardProps {
   particleType?: ParticleType;
   particleCount?: number;
   particleIntensity?: ParticleIntensity;
+  disabled?: boolean;
 }
 
 const particleIcons: Record<ParticleType, typeof Heart> = {
@@ -85,7 +86,7 @@ function getAnimation(type: ParticleType, intensity: ParticleIntensity) {
   }
 }
 
-export function ProductCard({ product, priceLabel, purchasing, purchased, onPurchase, index = 0, particleType, particleCount, particleIntensity = "medium" }: ProductCardProps) {
+export function ProductCard({ product, priceLabel, purchasing, purchased, onPurchase, index = 0, particleType, particleCount, particleIntensity = "medium", disabled }: ProductCardProps) {
   const Icon = iconMap[product.icon] || ShoppingBag;
 
   useEffect(() => {
@@ -110,7 +111,7 @@ export function ProductCard({ product, priceLabel, purchasing, purchased, onPurc
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay: 0.04 * index, ease: "easeOut" }}
       whileTap={{ scale: 0.97 }}
-      disabled={!!purchasing || purchased}
+      disabled={disabled || !!purchasing || purchased}
       onClick={onPurchase}
       className={cn(
         "group relative flex w-full items-center gap-4 overflow-hidden rounded-2xl border p-4 text-left transition-all active:scale-[0.97]",

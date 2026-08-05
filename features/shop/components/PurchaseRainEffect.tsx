@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
 type RainType = "gems" | "hearts" | "snowflakes";
 
@@ -352,10 +353,13 @@ export function PurchaseRainEffect({ active, type, amount = 0, duration = 2800 }
 
   if (!active) return null;
 
-  return (
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <canvas
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-[200]"
-    />
+    />,
+    document.body,
   );
 }

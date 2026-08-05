@@ -10,6 +10,7 @@ import { useUserStore } from "@/store/user-store";
 import { PremiumTab } from "./components/PremiumTab";
 import { GemsTab } from "./components/GemsTab";
 import { HeartsTab } from "./components/HeartsTab";
+import { PurchaseRainEffect } from "./components/PurchaseRainEffect";
 import { cn } from "@/lib/utils";
 
 type Tab = "premium" | "gems" | "hearts";
@@ -25,8 +26,20 @@ export function StorePage() {
   const router = useRouter();
   const tabParam = searchParams.get("tab") as Tab | null;
   const [activeTab, setActiveTab] = useState<Tab>(tabParam ?? "premium");
+  const [rainParams, setRainParams] = useState<{ type: "gems" | "hearts" | "snowflakes"; amount: number } | null>(null);
+  const rainTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const gems = useUserStore((s) => s.gems);
   const directionRef = useRef(1);
+
+  useEffect(() => {
+    return () => { if (rainTimer.current) clearTimeout(rainTimer.current); };
+  }, []);
+
+  const handlePurchaseSuccess = useCallback((rainType: "gems" | "hearts" | "snowflakes", amount: number) => {
+    setRainParams({ type: rainType, amount });
+    if (rainTimer.current) clearTimeout(rainTimer.current);
+    rainTimer.current = setTimeout(() => setRainParams(null), 3000);
+  }, []);
 
   useEffect(() => {
     if (tabParam && TABS.some((t) => t.id === tabParam)) {
@@ -50,7 +63,11 @@ export function StorePage() {
   };
 
   return (
-    <div className="mx-auto max-w-lg px-4 py-8 sm:py-10">
+    <>
+      {rainParams && (
+        <PurchaseRainEffect active type={rainParams.type} amount={rainParams.amount} />
+      )}
+      <div className="mx-auto max-w-lg px-4 py-8 sm:py-10">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -126,8 +143,8 @@ export function StorePage() {
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
             {activeTab === "premium" && <PremiumTab onClose={() => router.push("/")} />}
-            {activeTab === "gems" && <GemsTab />}
-            {activeTab === "hearts" && <HeartsTab />}
+            {activeTab === "gems" && <GemsTab onPurchaseSuccess={handlePurchaseSuccess} />}
+            {activeTab === "hearts" && <HeartsTab onPurchaseSuccess={handlePurchaseSuccess} />}
           </motion.div>
         </AnimatePresence>
       </div>
@@ -147,5 +164,6 @@ export function StorePage() {
         </div>
       </motion.div>
     </div>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Gem, Sparkles } from "lucide-react";
 import { SHOP_PRODUCTS, getProductPriceLabel, type PricingConfig } from "@/lib/subscription";
 import { purchaseProduct } from "@/services/purchase-service";
@@ -8,20 +8,20 @@ import { useUserStore } from "@/store/user-store";
 import { getPricingConfig } from "@/services/pricing-service";
 import { toast } from "sonner";
 import { ProductCard } from "./ProductCard";
-import { PurchaseRainEffect } from "./PurchaseRainEffect";
 
-export function GemsTab() {
+interface GemsTabProps {
+  onPurchaseSuccess?: (type: "gems", amount: number) => void;
+}
+
+export function GemsTab({ onPurchaseSuccess }: GemsTabProps) {
   const [purchasing, setPurchasing] = useState<string | null>(null);
   const [purchased, setPurchased] = useState<string | null>(null);
   const [pricing, setPricing] = useState<PricingConfig | null>(null);
-  const [rainAmount, setRainAmount] = useState<number | null>(null);
-  const rainTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const addGems = useUserStore((s) => s.addGems);
   const gems = useUserStore((s) => s.gems);
 
   useEffect(() => {
     getPricingConfig().then(setPricing);
-    return () => { if (rainTimer.current) clearTimeout(rainTimer.current); };
   }, []);
 
   const handlePurchase = useCallback(async (productId: string, gemAmount: number) => {
@@ -35,9 +35,7 @@ export function GemsTab() {
     }
     addGems(gemAmount);
     setPurchased(productId);
-    setRainAmount(gemAmount);
-    if (rainTimer.current) clearTimeout(rainTimer.current);
-    rainTimer.current = setTimeout(() => setRainAmount(null), 3000);
+    onPurchaseSuccess?.("gems", gemAmount);
     toast.custom(
       () => (
         <div className="flex items-center gap-3 rounded-xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 to-blue-500/5 px-4 py-3 shadow-lg">
@@ -53,14 +51,12 @@ export function GemsTab() {
       { duration: 2000, position: "top-center" },
     );
     setTimeout(() => { setPurchased(null); setPurchasing(null); }, 2000);
-  }, [purchasing, addGems]);
+  }, [purchasing, addGems, onPurchaseSuccess]);
 
   const gems_products = SHOP_PRODUCTS.filter((p) => p.category === "gems");
 
   return (
-    <>
-      <PurchaseRainEffect active={rainAmount !== null} type="gems" amount={rainAmount ?? 0} />
-      <div className="space-y-4 py-2">
+    <div className="space-y-4 py-2">
       <div className="flex items-center justify-between rounded-xl bg-gradient-to-br from-cyan-500/5 to-blue-500/5 border border-cyan-500/10 px-4 py-3">
         <div>
           <p className="text-xs font-medium text-muted-foreground">Your Gems</p>
@@ -101,6 +97,5 @@ export function GemsTab() {
         Gems can be used for heart refills and streak freezes
       </p>
     </div>
-    </>
   );
 }

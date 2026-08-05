@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Heart, Snowflake, Gem, Repeat, Shield } from "lucide-react";
 import { SHOP_PRODUCTS, GEM_HEART_REFILL_COST, GEM_STREAK_FREEZE_COST } from "@/lib/subscription";
@@ -10,13 +10,14 @@ import { hasPremiumAccess } from "@/services/entitlement-service";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { ProductCard } from "./ProductCard";
-import { PurchaseRainEffect } from "./PurchaseRainEffect";
 
-export function HeartsTab() {
+interface HeartsTabProps {
+  onPurchaseSuccess?: (type: "hearts" | "snowflakes", amount: number) => void;
+}
+
+export function HeartsTab({ onPurchaseSuccess }: HeartsTabProps) {
   const [purchasing, setPurchasing] = useState<string | null>(null);
   const [purchased, setPurchased] = useState<string | null>(null);
-  const [rainType, setRainType] = useState<"hearts" | "snowflakes" | null>(null);
-  const rainTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const restoreHearts = useUserStore((s) => s.restoreHearts);
   const addStreakFreezes = useUserStore((s) => s.addStreakFreezes);
   const hearts = useUserStore((s) => s.hearts);
@@ -24,10 +25,6 @@ export function HeartsTab() {
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
   const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
-
-  useEffect(() => {
-    return () => { if (rainTimer.current) clearTimeout(rainTimer.current); };
-  }, []);
 
   const handlePurchase = useCallback(async (product: typeof SHOP_PRODUCTS[number]) => {
     if (purchasing) return;
@@ -40,15 +37,11 @@ export function HeartsTab() {
     }
     if (product.effect.hearts) {
       restoreHearts();
-      setRainType("hearts");
-      if (rainTimer.current) clearTimeout(rainTimer.current);
-      rainTimer.current = setTimeout(() => setRainType(null), 3000);
+      onPurchaseSuccess?.("hearts", 0);
     }
     if (product.effect.streakFreezes) {
       addStreakFreezes(product.effect.streakFreezes);
-      setRainType("snowflakes");
-      if (rainTimer.current) clearTimeout(rainTimer.current);
-      rainTimer.current = setTimeout(() => setRainType(null), 3000);
+      onPurchaseSuccess?.("snowflakes", 0);
     }
     setPurchased(product.id);
     toast.custom(
@@ -70,23 +63,22 @@ export function HeartsTab() {
       { duration: 2000, position: "top-center" },
     );
     setTimeout(() => { setPurchased(null); setPurchasing(null); }, 2000);
-  }, [purchasing, restoreHearts, addStreakFreezes]);
+  }, [purchasing, restoreHearts, addStreakFreezes, onPurchaseSuccess]);
 
   const products = useMemo(
     () => SHOP_PRODUCTS.filter((p) => {
       if (p.category === "streak_freeze") return true;
       if (p.category === "hearts" && isPremium) return false;
+      if (p.category === "hearts" && hearts >= 5) return false;
       return p.category === "hearts";
     }),
-    [isPremium],
+    [isPremium, hearts],
   );
 
   const heartBars = Array.from({ length: 5 }, (_, i) => i < hearts);
 
   return (
-    <>
-      <PurchaseRainEffect active={rainType !== null} type={rainType ?? "hearts"} />
-      <div className="space-y-5 py-2">
+    <div className="space-y-5 py-2">
       {/* Balance cards */}
       <div className="grid grid-cols-2 gap-3">
         <motion.div
@@ -208,6 +200,7 @@ export function HeartsTab() {
               onPurchase={() => handlePurchase(product)}
               index={i}
               particleType={product.category === "streak_freeze" ? "snowflakes" : "hearts"}
+              disabled={product.id === "heart_refill" && hearts >= 5}
             />
           ))}
         </div>
@@ -231,7 +224,12 @@ export function HeartsTab() {
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
-                className="flex items-center justify-between rounded-xl bg-white/[0.04] px-4 py-3 hover:bg-white/[0.06] transition-colors"
+                className={cn(
+                  "flex items-center justify-between rounded-xl px-4 py-3 transition-colors",
+                  hearts >= 5
+                    ? "bg-white/[0.02] opacity-50"
+                    : "bg-white/[0.04] hover:bg-white/[0.06] cursor-pointer"
+                )}
               >
                 <div className="flex items-center gap-3">
                   <span className="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-rose-500/15 to-pink-500/15">
@@ -239,7 +237,9 @@ export function HeartsTab() {
                   </span>
                   <div>
                     <p className="text-sm font-medium">Heart Refill</p>
-                    <p className="text-[10px] text-muted-foreground/50">Restore all 5 hearts instantly</p>
+                    <p className="text-[10px] text-muted-foreground/50">
+                      {hearts >= 5 ? "Already at max hearts" : "Restore all 5 hearts instantly"}
+                    </p>
                   </div>
                 </div>
                 <span className="flex items-center gap-1.5 rounded-lg bg-cyan-500/10 px-2.5 py-1.5 text-xs font-bold text-cyan-400">
@@ -272,7 +272,6 @@ export function HeartsTab() {
         </div>
       </div>
     </div>
-    </>
   );
 }
 
