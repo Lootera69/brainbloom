@@ -18,13 +18,10 @@ export interface LeaderboardResult {
 
 const EMPTY: LeaderboardResult = { leaders: [], rank: null, unavailable: false };
 
-export async function getWeeklyLeaderboard(uid: string | null, weeklyXp: number): Promise<LeaderboardResult> {
+export async function getWeeklyLeaderboard(uid: string | null): Promise<LeaderboardResult> {
   try {
     const params = new URLSearchParams();
-    if (uid) {
-      params.set("uid", uid);
-      params.set("xp", String(weeklyXp));
-    }
+    if (uid) params.set("uid", uid);
 
     const res = await fetch(`/api/leaderboard${params.toString() ? `?${params}` : ""}`, {
       cache: "no-store",

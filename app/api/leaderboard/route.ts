@@ -36,7 +36,6 @@ export async function GET(request: NextRequest) {
 
   const params = request.nextUrl.searchParams;
   const uid = params.get("uid");
-  const myXp = Number(params.get("xp") ?? 0) || 0;
   const weekStart = currentWeekStartUtc();
 
   const db = getFirestore(app);
@@ -46,7 +45,9 @@ export async function GET(request: NextRequest) {
     // Single-field query (automatic index) — no composite index required.
     const snap = await usersRef.orderBy("weeklyXp", "desc").limit(FETCH_LIMIT).get();
 
-    const leaders: LeaderboardEntry[] = [];
+    // Rank every fetched user against the same week-filtered set that produces
+    // the leaderboard, so a user's rank always matches their listed position.
+    const ranked: { uid: string; entry: LeaderboardEntry }[] = [];
     for (const doc of snap.docs) {
       const d = doc.data();
       const wxp = typeof d.weeklyXp === "number" ? d.weeklyXp : 0;
@@ -54,23 +55,26 @@ export async function GET(request: NextRequest) {
       // Skip inactive weeks and empty scores.
       if (wxp <= 0 || ws < weekStart) continue;
 
-      leaders.push({
+      ranked.push({
         uid: doc.id,
-        displayName: typeof d.displayName === "string" && d.displayName.trim() ? d.displayName : "Anonymous",
-        avatarId: typeof d.avatarId === "string" ? d.avatarId : null,
-        photoURL: typeof d.photoURL === "string" ? d.photoURL : null,
-        weeklyXp: wxp,
-        level: typeof d.level === "number" ? d.level : 1,
-        tier: d.tier === "premium" ? "premium" : "free",
+        entry: {
+          uid: doc.id,
+          displayName: typeof d.displayName === "string" && d.displayName.trim() ? d.displayName : "Anonymous",
+          avatarId: typeof d.avatarId === "string" ? d.avatarId : null,
+          photoURL: typeof d.photoURL === "string" ? d.photoURL : null,
+          weeklyXp: wxp,
+          level: typeof d.level === "number" ? d.level : 1,
+          tier: d.tier === "premium" ? "premium" : "free",
+        },
       });
-      if (leaders.length >= TOP_N) break;
     }
+
+    const leaders = ranked.slice(0, TOP_N).map((r) => r.entry);
 
     let rank: number | null = null;
     if (uid) {
-      // Count of users with strictly more XP this week (single-field count query).
-      const higher = await usersRef.where("weeklyXp", ">", myXp).count().get();
-      rank = higher.data().count + 1;
+      const index = ranked.findIndex((r) => r.uid === uid);
+      if (index !== -1) rank = index + 1;
     }
 
     return NextResponse.json({ leaders, rank });

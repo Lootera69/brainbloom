@@ -51,19 +51,19 @@ export function LeaderboardCard() {
 
   const load = useCallback(async () => {
     setLoading(true);
-    const result = await getWeeklyLeaderboard(isGuest || !userId ? null : userId, weeklyXp);
+    const result = await getWeeklyLeaderboard(isGuest || !userId ? null : userId);
     setLeaders(result.leaders);
     setMyRank(result.rank);
     setUnavailable(result.unavailable);
     setLoading(false);
-  }, [userId, isGuest, weeklyXp]);
+  }, [userId, isGuest]);
 
   useEffect(() => {
     setLoading(true);
     void load();
   }, [load]);
 
-  const rows = useMemo<Row[]>(() => {
+  const rows = useMemo<{ rows: Row[]; userPinned: boolean }>(() => {
     const entries: Row[] = leaders.map((l) => ({
       id: l.uid,
       name: l.displayName,
@@ -93,12 +93,12 @@ export function LeaderboardCard() {
       merged.forEach((r, i) => { r.rank = i + 1; });
 
       const userIndex = merged.findIndex((r) => r.isUser);
-      if (userIndex < MAX_ROWS) return merged.slice(0, MAX_ROWS);
-      return [...merged.slice(0, MAX_ROWS - 1), merged[userIndex]];
+      if (userIndex < MAX_ROWS) return { rows: merged.slice(0, MAX_ROWS), userPinned: false };
+      return { rows: [...merged.slice(0, MAX_ROWS - 1), merged[userIndex]], userPinned: true };
     }
 
     entries.forEach((r, i) => { r.rank = i + 1; });
-    return entries.slice(0, MAX_ROWS);
+    return { rows: entries.slice(0, MAX_ROWS), userPinned: false };
   }, [leaders, userId, isGuest, displayName, weeklyXp, level, avatarId, photoURL, isPremium]);
 
   return (
@@ -122,7 +122,7 @@ export function LeaderboardCard() {
             <Trophy className="size-6 text-muted-foreground/40" />
             <p className="text-sm text-muted-foreground">The board is taking a breather — try again soon.</p>
           </div>
-        ) : rows.length === 0 ? (
+        ) : rows.rows.length === 0 ? (
           <div className="flex flex-col items-center gap-2 rounded-xl bg-muted/30 px-4 py-8 text-center">
             <Trophy className="size-6 text-muted-foreground/40" />
             <p className="text-sm text-muted-foreground">No scores yet this week. Play a puzzle to take the top spot!</p>
@@ -134,7 +134,7 @@ export function LeaderboardCard() {
           </div>
         ) : (
           <div className="space-y-2">
-            {rows.map((row, i) => (
+            {rows.rows.map((row, i) => (
               <motion.div
                 key={row.id ?? `row-${i}`}
                 initial={{ opacity: 0, y: 8 }}
@@ -157,7 +157,7 @@ export function LeaderboardCard() {
 
                 <span className={cn("flex-1 truncate text-sm font-medium", row.isUser && "font-semibold")}>
                   {row.name}
-                  {row.isUser && !isGuest && myRank !== null && (
+                  {row.isUser && !isGuest && rows.userPinned && myRank !== null && (
                     <span className="ml-1.5 align-middle text-[10px] font-semibold uppercase tracking-wider text-primary/70">
                       #{myRank}
                     </span>
