@@ -1,47 +1,105 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Trophy, Crown, Medal } from "lucide-react";
+import { Trophy, Crown, Medal, LogIn } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
+import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
+import { SkeletonLeaderboard } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
+import { getWeeklyLeaderboard, type LeaderboardEntry } from "@/services/leaderboard-service";
 
-const mockLeaders = [
-  { name: "Sara K.", xp: 2840, avatar: "S", color: "from-amber-400 to-orange-500" },
-  { name: "Alex M.", xp: 2510, avatar: "A", color: "from-gray-300 to-gray-400" },
-  { name: "Jordan P.", xp: 2190, avatar: "J", color: "from-amber-700 to-amber-800" },
-  { name: "You", xp: 0, avatar: "", color: "from-primary to-[#8b5cf6]" },
-  { name: "Riley C.", xp: 1780, avatar: "R", color: "from-blue-400 to-blue-500" },
-];
+const MAX_ROWS = 5;
+
+interface Row {
+  id: string | null;
+  name: string;
+  weeklyXp: number;
+  level: number;
+  avatarId: string | null;
+  photoURL: string | null;
+  premium: boolean;
+  isUser: boolean;
+  rank: number;
+}
 
 function RankIcon({ rank }: { rank: number }) {
-  if (rank === 0) return <Crown className="size-4 text-amber-400" />;
-  if (rank === 1) return <Medal className="size-4 text-gray-400" />;
-  if (rank === 2) return <Medal className="size-4 text-amber-700" />;
-  return <span className="w-4 text-center text-xs text-muted-foreground">{rank + 1}</span>;
+  if (rank === 1) return <Crown className="size-4 text-amber-400" />;
+  if (rank === 2) return <Medal className="size-4 text-gray-400" />;
+  if (rank === 3) return <Medal className="size-4 text-amber-700" />;
+  return <span className="w-4 text-center text-xs text-muted-foreground">{rank}</span>;
 }
 
 export function LeaderboardCard() {
-  const userXp = useUserStore((s) => s.xp);
-  const userDisplay = useUserStore((s) => s.displayName);
+  const userId = useUserStore((s) => s.userId);
+  const isGuest = useUserStore((s) => s.isGuest);
+  const displayName = useUserStore((s) => s.displayName);
+  const weeklyXp = useUserStore((s) => s.weeklyXp);
+  const level = useUserStore((s) => s.level);
+  const avatarId = useUserStore((s) => s.avatarId);
+  const photoURL = useUserStore((s) => s.photoURL);
+  const tier = useUserStore((s) => s.tier);
+  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
 
-  const display = useMemo(() => {
-    const userEntry = { name: "You", xp: userXp, avatar: userDisplay[0]?.toUpperCase() ?? "G", color: "from-primary to-[#8b5cf6]" };
-    const merged = [...mockLeaders.filter((l) => l.name !== "You"), userEntry];
-    const sorted = merged.sort((a, b) => b.xp - a.xp);
+  const [leaders, setLeaders] = useState<LeaderboardEntry[]>([]);
+  const [myRank, setMyRank] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [unavailable, setUnavailable] = useState(false);
 
-    const userIndex = sorted.findIndex((l) => l.name === "You");
+  const isPremium = tier === "premium" && (subscriptionExpiry === null || subscriptionExpiry > Date.now());
 
-    if (userIndex <= 4) {
-      return { leaders: sorted.slice(0, 5), userVisible: true };
+  const load = useCallback(async () => {
+    setLoading(true);
+    const result = await getWeeklyLeaderboard(isGuest || !userId ? null : userId, weeklyXp);
+    setLeaders(result.leaders);
+    setMyRank(result.rank);
+    setUnavailable(result.unavailable);
+    setLoading(false);
+  }, [userId, isGuest, weeklyXp]);
+
+  useEffect(() => {
+    setLoading(true);
+    void load();
+  }, [load]);
+
+  const rows = useMemo<Row[]>(() => {
+    const entries: Row[] = leaders.map((l) => ({
+      id: l.uid,
+      name: l.displayName,
+      weeklyXp: l.weeklyXp,
+      level: l.level,
+      avatarId: l.avatarId,
+      photoURL: l.photoURL,
+      premium: l.tier === "premium",
+      isUser: false,
+      rank: 0,
+    }));
+
+    if (userId && !isGuest) {
+      const self: Row = {
+        id: userId,
+        name: displayName.trim() || "You",
+        weeklyXp,
+        level,
+        avatarId,
+        photoURL,
+        premium: isPremium,
+        isUser: true,
+        rank: 0,
+      };
+      const withoutSelf = entries.filter((e) => e.id !== userId);
+      const merged = [...withoutSelf, self].sort((a, b) => b.weeklyXp - a.weeklyXp);
+      merged.forEach((r, i) => { r.rank = i + 1; });
+
+      const userIndex = merged.findIndex((r) => r.isUser);
+      if (userIndex < MAX_ROWS) return merged.slice(0, MAX_ROWS);
+      return [...merged.slice(0, MAX_ROWS - 1), merged[userIndex]];
     }
 
-    return {
-      leaders: sorted.slice(0, 4).concat(userEntry),
-      userVisible: true,
-      userActualRank: userIndex,
-    };
-  }, [userXp, userDisplay]);
+    entries.forEach((r, i) => { r.rank = i + 1; });
+    return entries.slice(0, MAX_ROWS);
+  }, [leaders, userId, isGuest, displayName, weeklyXp, level, avatarId, photoURL, isPremium]);
 
   return (
     <motion.section
@@ -49,44 +107,78 @@ export function LeaderboardCard() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
     >
+      {loading ? (
+        <SkeletonLeaderboard />
+      ) : (
       <GlassCard intensity="light" className="p-5 sm:p-6">
-        <div className="mb-4 flex items-center gap-2">
+        <div className="mb-1 flex items-center gap-2">
           <Trophy className="size-5 text-warning" />
           <h3 className="font-heading text-lg font-bold">Leaderboard</h3>
         </div>
+        <p className="mb-4 text-xs text-muted-foreground">Top minds this week</p>
 
-        <div className="space-y-2">
-          {display.leaders.map((leader, i) => {
-            const isUser = leader.name === "You";
-            const actualRank = isUser && "userActualRank" in display
-              ? (display as { userActualRank: number }).userActualRank
-              : i;
-
-            return (
-              <div
-                key={leader.name}
-                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 ${
-                  isUser ? "bg-primary/10" : ""
-                }`}
+        {unavailable ? (
+          <div className="flex flex-col items-center gap-2 rounded-xl bg-muted/30 px-4 py-8 text-center">
+            <Trophy className="size-6 text-muted-foreground/40" />
+            <p className="text-sm text-muted-foreground">The board is taking a breather — try again soon.</p>
+          </div>
+        ) : rows.length === 0 ? (
+          <div className="flex flex-col items-center gap-2 rounded-xl bg-muted/30 px-4 py-8 text-center">
+            <Trophy className="size-6 text-muted-foreground/40" />
+            <p className="text-sm text-muted-foreground">No scores yet this week. Play a puzzle to take the top spot!</p>
+            {isGuest && (
+              <p className="flex items-center gap-1.5 text-xs text-muted-foreground/60">
+                <LogIn className="size-3" /> Sign in to join the board
+              </p>
+            )}
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {rows.map((row, i) => (
+              <motion.div
+                key={row.id ?? `row-${i}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 * i }}
+                className={cn(
+                  "flex items-center gap-3 rounded-xl px-3 py-2.5",
+                  row.isUser && "bg-primary/10",
+                )}
               >
-                <RankIcon rank={actualRank} />
+                <RankIcon rank={row.rank} />
 
-                <span
-                  className={`flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-xs font-bold text-white ${leader.color}`}
-                >
-                  {leader.avatar}
+                <AvatarDisplay
+                  avatarId={row.avatarId}
+                  photoURL={row.photoURL}
+                  name={row.name}
+                  size={32}
+                  premium={row.premium}
+                />
+
+                <span className={cn("flex-1 truncate text-sm font-medium", row.isUser && "font-semibold")}>
+                  {row.name}
+                  {row.isUser && !isGuest && myRank !== null && (
+                    <span className="ml-1.5 align-middle text-[10px] font-semibold uppercase tracking-wider text-primary/70">
+                      #{myRank}
+                    </span>
+                  )}
+                  {row.isUser && isGuest && (
+                    <span className="ml-1.5 align-middle text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">
+                      Guest
+                    </span>
+                  )}
                 </span>
 
-                <span className="flex-1 text-sm font-medium">{leader.name}</span>
-
-                <span className="text-sm font-semibold tabular-nums text-muted-foreground">
-                  {leader.xp.toLocaleString()} XP
+                <span className="flex items-center gap-1.5 text-sm font-semibold tabular-nums text-muted-foreground">
+                  <span className="text-[10px] font-medium text-muted-foreground/50">Lv {row.level}</span>
+                  {row.weeklyXp.toLocaleString()} XP
                 </span>
-              </div>
-            );
-          })}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </GlassCard>
+      )}
     </motion.section>
   );
 }

@@ -254,6 +254,7 @@ Stored in Zustand with persist middleware. Key fields:
 | `/api/notify` | API | Push broadcast — POST `{code, password, title, message, url}`, admin-verified server-side against `settings/studio` codes, sends via web-push to all `users/{uid}/pushTokens` |
 | `/api/cron/hourly` | API | Regional daily puzzle reminder — GET with `Authorization: Bearer <CRON_SECRET>` (fails closed without it). Self-determines the current UTC hour from the server clock, then pushes only to users whose **local time is 7 AM** (IANA `timeZone`, DST-safe via `Intl`). The `(date, hour)` bucket is claimed atomically in Firestore `settings/reminder-hourly`, so a backup trigger never double-sends. Triggers: **cron-job.org** hourly job (`30 * * * *`, primary, all timezones) + **Vercel cron** `30 1 * * *` (01:30 UTC = 7:00 AM IST bucket, backup for the India-majority hour) |
 | `/api/cron/daily` | API | Legacy all-users broadcast — no longer scheduled; still usable manually (`curl` with `Authorization: Bearer <CRON_SECRET>` sends to every subscribed device) |
+| `/api/leaderboard` | API | Weekly leaderboard — GET `?uid=&xp=`, admin-reads top 10 by `weeklyXp` (current-week only, Monday UTC boundary matching the client's `getWeekStart`), rank via `count()` single-field query. Both queries use automatic indexes (no composite index setup). Returns safe fields only: `uid`, `displayName`, `avatarId`, `photoURL`, `weeklyXp`, `level`, `tier` |
 
 **Shop page** is the only route with dedicated `loading.tsx` + `error.tsx`. Other routes use group-level boundaries; studio sub-routes (create, edit, analytics, settings, seed) have page-specific loading skeletons.
 
@@ -432,7 +433,7 @@ Stored in Zustand with persist middleware. Key fields:
   - `PricingCard` component: plan toggle (monthly/yearly), offer badges, savings %, save button (mock purchase)
   - Admin-editable via Studio → Settings → Pricing tab (pricing comparison cards, dirty-state save, cancel)
 - **Entitlement**: `hasPremiumAccess(tier, expiry)` checks tier + expiry timestamp. `daysRemaining()`, `formatExpiry()` helpers.
-- **Gating**: `useHeart()` skips deduction for premium. `processHeartRefill()` interval skips for premium. `PracticeToHeal` hidden.
+- **Gating**: `useHeart()` skips deduction for premium. `processHeartRefill()` interval skips for premium.
 - **Golden profile**: `PremiumAvatarBorder` (animated rotating golden ring), gradient name/level badges, amber glow on avatar border, crown badge
 - **Sidebar**: Golden gradient avatar ring, amber name text, golden `from-amber-500/10 via-yellow-500/10 to-orange-500/10` hover glow on user card
 

@@ -17,7 +17,6 @@ import { WeeklyInsights } from "@/features/home/components/WeeklyInsights";
 import { LeaderboardCard } from "@/features/home/components/LeaderboardCard";
 import { SectionHeader } from "@/features/home/components/SectionHeader";
 import { DailyQuests } from "@/features/home/components/DailyQuests";
-import { PracticeToHeal } from "@/features/home/components/PracticeToHeal";
 import { PushReminderBanner } from "@/features/home/components/PushReminderBanner";
 import { WeeklyCipherCard } from "@/features/home/components/WeeklyCipherCard";
 import { getDailyPuzzle } from "@/services/daily-puzzle";
@@ -108,8 +107,6 @@ export default function HomePage() {
       </div>
 
       <DailyQuests />
-
-      <PracticeToHeal />
 
       {!isPremium && hearts < 5 && canWatchAd() && (
         <motion.div
