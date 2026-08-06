@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local font assets (next/font/google loads from CDN)
 /assets
+
+# design reference files
+/design-md

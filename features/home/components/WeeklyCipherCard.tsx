@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Lock, CheckCircle2, Eye, Gem, ArrowRight, Crown, Shield, Fingerprint, BadgeCheck, Timer, Lightbulb, Archive } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/glass-card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useUserStore } from "@/store/user-store";
 import { getWeeklyCipher, getCipherPhase } from "@/services/weekly-cipher";
 import { useRouter } from "next/navigation";
@@ -131,8 +132,52 @@ export function WeeklyCipherCard({ onOpenCipher }: Props) {
 
   if (loading) {
     return (
-      <div className="relative h-56 overflow-hidden rounded-3xl bg-gradient-to-br from-amber-100/80 via-amber-50 to-orange-100/80 dark:from-amber-900/10 dark:via-black/40 dark:to-amber-950/10">
-        <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-transparent via-amber-200/30 dark:via-amber-500/5 to-transparent" />
+      <div className="relative overflow-hidden rounded-3xl border-2 border-amber-200/50 bg-gradient-to-br from-amber-100/80 via-amber-50 to-orange-100/80 p-[1px] dark:border-amber-500/15 dark:from-amber-900/10 dark:via-black/40 dark:to-amber-950/10">
+        <div className="relative overflow-hidden rounded-[calc(1.5rem-2px)] p-6 sm:p-8">
+          <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-transparent via-amber-200/20 dark:via-amber-500/5 to-transparent" />
+
+          <div className="relative space-y-5">
+            {/* Badge row */}
+            <div className="flex items-center gap-3">
+              <Skeleton className="h-7 w-24 rounded-lg bg-amber-200/50 dark:bg-amber-500/10" />
+              <div className="h-px flex-1 bg-gradient-to-r from-amber-200/50 to-transparent dark:from-amber-500/15 dark:to-transparent" />
+            </div>
+
+            {/* Header: icon + title + subtitle */}
+            <div className="flex items-start gap-3">
+              <Skeleton className="size-10 shrink-0 rounded-xl bg-amber-200/50 dark:bg-amber-500/10" />
+              <div className="space-y-1.5">
+                <Skeleton className="h-4 w-36 bg-amber-200/50 dark:bg-amber-500/10" />
+                <Skeleton className="h-3 w-48 bg-amber-200/35 dark:bg-amber-500/[0.07]" />
+              </div>
+            </div>
+
+            {/* Meta line + title */}
+            <div className="space-y-2">
+              <Skeleton className="h-3 w-44 bg-amber-200/35 dark:bg-amber-500/[0.07]" />
+              <Skeleton className="h-5 w-3/4 bg-amber-200/50 dark:bg-amber-500/10" />
+              <Skeleton className="h-5 w-1/2 bg-amber-200/40 dark:bg-amber-500/[0.08]" />
+            </div>
+
+            {/* Encoded message block */}
+            <div className="rounded-xl border border-amber-200/40 bg-white/40 p-5 dark:border-amber-500/10 dark:bg-black/40">
+              <Skeleton className="h-3 w-5/6 bg-amber-200/35 dark:bg-amber-500/[0.07]" />
+              <Skeleton className="mt-2 h-3 w-3/4 bg-amber-200/30 dark:bg-amber-500/[0.06]" />
+              <Skeleton className="mt-2 h-3 w-2/3 bg-amber-200/25 dark:bg-amber-500/[0.05]" />
+            </div>
+
+            {/* Footer: button + timer */}
+            <div className="flex items-center justify-between border-t border-amber-200/40 pt-4 dark:border-amber-500/10">
+              <Skeleton className="h-9 w-full rounded-xl bg-amber-200/40 dark:bg-amber-500/[0.08] sm:w-28" />
+              <Skeleton className="h-3 w-36 bg-amber-200/30 dark:bg-amber-500/[0.06]" />
+            </div>
+
+            {/* Archive link */}
+            <div className="flex justify-end">
+              <Skeleton className="h-3 w-24 bg-amber-200/25 dark:bg-amber-500/[0.05]" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
