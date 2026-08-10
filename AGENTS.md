@@ -585,6 +585,121 @@ npm run lint         # Broken — needs "eslint ." fix
 
 ---
 
+## Native Mobile App (React Native / Expo) — Working Plan (Saved Aug 10, 2026)
+
+### Decision (locked 2026-08-10)
+- **Web PWA stays** (this repo, Vercel) — untouched, remains the source of truth.
+- A **REAL native app** ships alongside it in a **SEPARATE repo** (`Lootera69/brainbloom-mobile`). User explicitly chose: separate repo (no workspace tooling), real native UI (NOT a WebView wrapper).
+- React Native via **Expo** (not Capacitor): Capacitor = WebView = Apple Guideline 4.2 rejection risk; RN renders real platform views.
+
+### Why Expo (2026 toolchain)
+- **EAS cloud builds** solve "no Mac": builds, code signing, and TestFlight upload happen in Expo's cloud.
+- SDK 55/56 era (RN 0.85, React 19.2, New Architecture default, CNG).
+- **Expo Router** (file-based, App-Router mental model), **NativeWind** (same Tailwind utility classes).
+- **EAS Update**: OTA JS fixes without store review.
+- Dev on Windows works (Android emulator + Expo Go; iOS via Expo Go, signing only at release via EAS).
+
+### Mobile repo layout
+```
+brainbloom-mobile/
+├── app/                            # Expo Router screens ((auth), (dashboard), (studio))
+├── src/
+│   ├── core/                       # COPIED pure-TS logic from web (source of truth = web repo)
+│   ├── components/                 # RN UI (NativeWind, ported primitives, react-native-svg avatars)
+│   └── services/                   # Native layer (auth, push, RevenueCat, AdMob)
+├── scripts/sync-core.ps1           # copies core files from web repo + prints diff summary
+└── eas.json                        # EAS build profiles + Update channel
+```
+
+### Core sync (divergence guard)
+- `scripts/sync-core.ps1` copies from THIS repo → `src/core/`. Run whenever web logic changes.
+- Copy list (~12 files): `lib/utils.tsx` (checkAnswer/formatters), `lib/subscription.ts`, `constants/{achievements,quests,home}.ts`, `services/{sudoku-generator,weekly-cipher,daily-puzzle,entitlement-service,pricing-service,imgbb,puzzle-service}.ts`, `features/puzzle/data/puzzle-schemas.ts`, store logic.
+- **Only port needed**: `store/user-store.ts` zustand persist storage adapter (`safeStorage` in web uses localStorage) → `@react-native-async-storage/async-storage`. Streak/XP/hearts/achievements/cipher/quest logic copies verbatim.
+- Web remains source of truth; the app consumes. Divergence is managed by the sync script.
+
+### Port map
+**Ports 1:1 (pure TS, no DOM/React):**
+| Web file | Notes |
+|---|---|
+| `lib/utils.tsx` (`checkAnswer`, `cn`, formatters) | verbatim |
+| `lib/subscription.ts` (pricing config, SHOP_PRODUCTS, PREMIUM_BENEFITS, `ADS_MAX_PER_DAY=3`) | verbatim |
+| `constants/{achievements,quests,home}.ts` | verbatim |
+| `services/sudoku-generator.ts` | verbatim (pure backtracking) |
+| `services/weekly-cipher.ts` | verbatim (swap localStorage get/set) |
+| `services/daily-puzzle.ts`, `entitlement-service.ts`, `pricing-service.ts`, `imgbb.ts` | verbatim (fetch-based) |
+| `services/puzzle-service.ts` | Firestore parts verbatim |
+| `features/puzzle/data/puzzle-schemas.ts` | verbatim |
+
+**Rewritten in RN (UI layer):**
+| Web | RN replacement |
+|---|---|
+| Tailwind classes | NativeWind (same class strings) |
+| framer-motion (`motion.div`, AnimatePresence) | react-native-reanimated |
+| shadcn/ui + GlassCard + Skeleton + EmptyState | Ported primitives (token names kept identical) |
+| 13 SVG avatars (`components/avatars/*`) | `react-native-svg` mechanical port |
+| Canvas: `PurchaseRainEffect`, celebration/confetti, `share-card.tsx`, `AvatarWithEyes` | react-native-skia (or simplified) |
+| Web Audio procedural sounds (`sound-service.ts`) | Bundled sound files via `expo-audio` (no procedural Web Audio in RN) |
+| `next/image` + imgbb URLs | `expo-image` |
+| `InstallPrompt`, `beforeunload`, popup/`window`/`document` code | Dead code on mobile — drop |
+| All screens (home, learn, profiles, studio, shop, onboarding) | RN rebuild using `src/core` |
+
+**Dead/removed on app**: InstallPrompt/PWA manifest, One Tap Google (native Google Sign-In instead), AdSense (AdMob instead), web-push (FCM/APNs).
+
+### Backend (single cross-repo touchpoint — the only web-repo PR)
+- **Vercel stays the backend for BOTH apps.** Mobile calls the existing public `/api/*` routes (leaderboard, notify admin gate) — they're plain HTTPS.
+- **Phase 7 web PR**: `app/api/notify/route.ts` + `app/api/cron/hourly/route.ts` gain an **FCM send path** via `firebase-admin` messaging (v14 already in deps). App tokens stored in the same `users/{uid}/pushTokens` collection with `{ type: "fcm", token }`; web-push tokens (`endpoint`+keys) untouched — route branches by token type. APNs private key added to Firebase console (one-time, in console not code).
+- No Cloud Functions migration. No Firestore/Auth schema changes.
+
+### Native feature stack
+| Feature | Module |
+|---|---|
+| Auth: Google + Email/Password | `@react-native-firebase/auth` (native) |
+| Auth: **Sign in with Apple** (mandatory — 4.8 since Google login offered) | `expo-apple-authentication` |
+| Push (FCM + APNs) | `expo-notifications` |
+| Payments — **real IAP** (mock purchases banned by both stores) | RevenueCat `react-native-purchases` |
+| Ads (interstitial/rewarded) | `react-native-google-mobile-ads` (official AdMob) |
+| Share / haptics / deep links / storage | `expo-sharing`, `expo-haptics`, `expo-linking`, AsyncStorage |
+| OTA updates | EAS Update |
+
+### Design fidelity rules
+- Keep Tailwind **token names identical** (primary, secondary, destructive, muted, card, background, foreground, muted-foreground) → mechanical mapping in NativeWind.
+- Golden premium aesthetic: same `amber-500` patterns; `PremiumAvatarBorder` golden ring via reanimated.
+- 3-mode theme (light/system/dark) must survive; RN uses `useColorScheme` + NativeWind `dark:` variant (no next-themes; `ColorScheme` hook instead).
+
+### Phases & timeline (~14.5 weeks solo)
+| Phase | Work | Est |
+|---|---|---|
+| 0 | Apple $99/yr + Play $25 + **AdMob & RevenueCat accounts (start immediately — weeks of approval latency)** | async |
+| 1 | New repo + `create-expo-app` (SDK 55/56) + NativeWind + `scripts/sync-core.ps1` + copy core | 1.5 wk |
+| 2 | Port store (AsyncStorage adapter) + services; verify `tsc` + build | 1 wk |
+| 3 | Login (incl. Apple Sign-In) / onboarding / home / profile | 2.5 wk |
+| 4 | 8 puzzle players (crossword keyboard auto-advance + sudoku notes = hardest) | 4 wk |
+| 5 | Shop → RevenueCat + AdMob + premium gating + rain/confetti via Skia | 2 wk |
+| 6 | Studio (create/edit/settings/analytics/seed) | 1.5 wk |
+| 7 | FCM push + `/api/notify` web PR + polish | 1 wk |
+| 8 | TestFlight/Play tracks, privacy manifest, Data Safety, EAS signing | 1.5 wk |
+
+### Store compliance checklist (Phase 8 gates)
+- 4.2 N/A (native UI, not wrapper)
+- 3.1.1 / Play Billing: ALL 7 shop products + premium subscription become real IAP via RevenueCat; **Restore Purchases button** required; product/price parity with store consoles
+- Sign in with Apple (4.8) — required because Google login is offered
+- iOS privacy manifest; Android Data Safety form; account deletion already in web (replicate)
+- In-app purchases must use StoreKit/Play Billing — no gem "top-ups" via external links
+
+### Risks & gotchas
+1. **Timeline/effort** — this is a ~50-screen UI rewrite; `src/core` extraction must complete before screens so no double work
+2. **Puzzle input UX in RN** — crossword auto-advance key handling, sudoku notes mode, type-answer keyboard timing (reanimated/Skia, fiddly)
+3. **IAP review** — missing Restore Purchases or price mismatch = rejection; link RevenueCat products exactly to store consoles
+4. **AdMob/RevenueCat approval latency** — cannot be compressed; Phase 0 accounts first
+5. **Design fidelity** — golden premium aesthetic must be re-created exactly; keep token names identical
+6. **Sync drift** — run `sync-core.ps1` after every web-repo logic change
+7. **Branding** — if "BrainBloom" ever gets its real name, decide BEFORE store submission (listings are semi-permanent). The new mobile repo can use the final brand name today at zero cost (repo is brand-new); doing it on web later still needs the Appendix migration plan.
+
+### Status
+🚧 **Not started** — plan approved 2026-08-10 (decision: separate repo + real native + keep web). Awaiting: (1) green light on Phase 1, (2) final repo/brand name. Run order when greenlit: Phase 0 accounts first, then Phase 1 scaffold + core copy.
+
+---
+
 ## 40 Aspects of Thinking — Vision (Saved Jul 16, 2026)
 
 ### Core Concept
@@ -624,6 +739,7 @@ Moving from horizontal progression (puzzle → XP → level up) to **vertical co
 - Commits on `main` branch
 - Push to `origin/main` (GitHub: Lootera69/brainbloom)
 - Always `git status` + `git diff --stat` before committing
+- Mobile app lives in a **separate repo** (`Lootera69/brainbloom-mobile`) — see the Native Mobile App section above. This repo's only cross-repo change is the Phase 7 `/api/notify` FCM PR.
 
 ---
 
