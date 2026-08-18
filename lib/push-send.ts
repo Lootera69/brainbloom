@@ -1,14 +1,20 @@
 import { cert, getApps, initializeApp, type App } from "firebase-admin/app";
 import { getFirestore, type DocumentReference } from "firebase-admin/firestore";
+import { getMessaging } from "firebase-admin/messaging";
 import webpush from "web-push";
 
 // Web Push is one HTTP request per subscription, so cap how many are in
 // flight at once rather than batching them into a single multicast call.
 const MAX_CONCURRENT_SENDS = 25;
+// FCM multicast is a single API call, but capped at 500 tokens per batch.
+const FCM_BATCH_SIZE = 500;
 
 export interface PushSubscriptionDoc {
-  endpoint: string;
-  keys: { p256dh: string; auth: string };
+  /** Browser web-push endpoint (when the entry is a web subscription). */
+  endpoint?: string;
+  keys?: { p256dh: string; auth: string };
+  /** Native FCM registration token (`{ type: "fcm" }` entries). */
+  fcmToken?: string;
   ref: DocumentReference;
   uid?: string;
 }
@@ -77,8 +83,9 @@ async function readUserSubscriptions(userRef: DocumentReference, seen: Set<strin
       const data = d.data() ?? {};
       const endpoint = data.endpoint ?? data.token;
       const keys = data.keys ?? {};
-      // Both encryption keys are required — a subscription without them
-      // predates the web-push migration and can never be delivered.
+      // Browser web-push subscription — both encryption keys are required;
+      // anything without them predates the web-push migration and can never
+      // be delivered.
       if (
         typeof endpoint === "string" &&
         endpoint.startsWith("http") &&
@@ -88,6 +95,13 @@ async function readUserSubscriptions(userRef: DocumentReference, seen: Set<strin
       ) {
         seen.add(endpoint);
         subs.push({ endpoint, keys: { p256dh: keys.p256dh, auth: keys.auth }, ref: d.ref, uid });
+        return;
+      }
+      // Native FCM token (Flutter app, Phase-7 shape `{ type: "fcm", token }`).
+      const fcmToken = typeof data.token === "string" && data.type === "fcm" ? data.token : "";
+      if (fcmToken && !seen.has(fcmToken)) {
+        seen.add(fcmToken);
+        subs.push({ fcmToken, ref: d.ref, uid });
       }
     });
   } catch {
@@ -115,21 +129,39 @@ async function getAllSubscriptions(): Promise<PushSubscriptionDoc[]> {
   return subs;
 }
 
-async function deliverSubscriptions(subs: PushSubscriptionDoc[], payload: string): Promise<{ delivered: number; removed: number }> {
-  if (subs.length === 0) return { delivered: 0, removed: 0 };
-  const app = getAdminApp();
-  if (!app) return { delivered: 0, removed: 0 };
-  const db = getFirestore(app);
+/** Payload fields shared by both delivery channels. */
+interface PushPayload {
+  title: string;
+  body: string;
+  url: string;
+}
 
+function parsePayload(payload: string): PushPayload | null {
+  try {
+    const parsed = JSON.parse(payload) as { title?: unknown; body?: unknown; data?: { url?: unknown } };
+    return {
+      title: String(parsed.title ?? "BrainBloom"),
+      body: String(parsed.body ?? ""),
+      url: String(parsed.data?.url ?? "/"),
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function deliverWebPush(
+  webSubs: PushSubscriptionDoc[],
+  payload: string,
+  db: ReturnType<typeof getFirestore>,
+  stale: DocumentReference[],
+): Promise<number> {
   let delivered = 0;
-  const stale: DocumentReference[] = [];
   let cursor = 0;
-
   const worker = async () => {
-    while (cursor < subs.length) {
-      const sub = subs[cursor++];
+    while (cursor < webSubs.length) {
+      const sub = webSubs[cursor++];
       try {
-        await webpush.sendNotification({ endpoint: sub.endpoint, keys: sub.keys }, payload, { TTL: 86400 });
+        await webpush.sendNotification({ endpoint: sub.endpoint!, keys: sub.keys! }, payload, { TTL: 86400 });
         delivered++;
       } catch (e) {
         const status = (e as { statusCode?: number })?.statusCode;
@@ -142,8 +174,76 @@ async function deliverSubscriptions(subs: PushSubscriptionDoc[], payload: string
       }
     }
   };
+  await Promise.all(Array.from({ length: Math.min(MAX_CONCURRENT_SENDS, webSubs.length) }, worker));
+  return delivered;
+}
 
-  await Promise.all(Array.from({ length: Math.min(MAX_CONCURRENT_SENDS, subs.length) }, worker));
+async function deliverFcm(
+  fcmSubs: PushSubscriptionDoc[],
+  payload: string,
+  app: App,
+  stale: DocumentReference[],
+): Promise<number> {
+  const parsed = parsePayload(payload);
+  if (!parsed || fcmSubs.length === 0) return 0;
+  const messaging = getMessaging(app);
+  let delivered = 0;
+
+  for (let i = 0; i < fcmSubs.length; i += FCM_BATCH_SIZE) {
+    const chunk = fcmSubs.slice(i, i + FCM_BATCH_SIZE);
+    const tokens = chunk.map((s) => s.fcmToken!);
+    try {
+      const res = await messaging.sendEachForMulticast({
+        tokens,
+        notification: { title: parsed.title, body: parsed.body },
+        data: { url: parsed.url, tag: "brainbloom-notification" },
+        android: { priority: "high" },
+        apns: {
+          payload: { aps: { "content-available": 1, sound: "default" } },
+        },
+      });
+      res.responses.forEach((r, idx) => {
+        if (r.success) {
+          delivered++;
+        } else {
+          const code = r.error?.code;
+          // A dead or revoked registration token can never be delivered again.
+          if (code === "messaging/registration-token-not-registered" || code === "messaging/invalid-registration-token" || code === "messaging/registration-token-not-found") {
+            stale.push(chunk[idx].ref);
+          } else {
+            console.error(`FCM send failed (${code}):`, r.error?.message);
+          }
+        }
+      });
+    } catch (e) {
+      console.error("FCM multicast failed:", (e as Error)?.message);
+    }
+  }
+  return delivered;
+}
+
+async function deliverSubscriptions(subs: PushSubscriptionDoc[], payload: string): Promise<{ delivered: number; removed: number }> {
+  if (subs.length === 0) return { delivered: 0, removed: 0 };
+  const app = getAdminApp();
+  if (!app) return { delivered: 0, removed: 0 };
+  const db = getFirestore(app);
+
+  // FCM does not need VAPID — only browser web-push does. Without the VAPID
+  // keys configured, FCM tokens are still delivered, web subscriptions are
+  // skipped with a clear log line.
+  const vapidOk = configureVapid();
+  const webSubs = subs.filter((s) => s.endpoint && s.keys);
+  const fcmSubs = subs.filter((s) => s.fcmToken);
+  if (webSubs.length > 0 && !vapidOk) {
+    console.error(`Skipping ${webSubs.length} web-push subscription(s) — VAPID keys are not configured.`);
+  }
+
+  const stale: DocumentReference[] = [];
+  const [webDelivered, fcmDelivered] = await Promise.all([
+    vapidOk ? deliverWebPush(webSubs, payload, db, stale) : Promise.resolve(0),
+    deliverFcm(fcmSubs, payload, app, stale),
+  ]);
+  const delivered = webDelivered + fcmDelivered;
 
   let removed = 0;
   if (stale.length) {
@@ -167,7 +267,6 @@ export async function sendPushToAll(title: string, body: string, url: string): P
   const empty: PushSendResult = { tokenCount: 0, delivered: 0, failed: 0, removed: 0 };
   const app = getAdminApp();
   if (!app) return empty;
-  if (!configureVapid()) return empty;
 
   const subs = await getAllSubscriptions();
   // Matches the shape public/sw.js reads in its `push` handler.
@@ -215,7 +314,6 @@ export async function sendPushForLocalHour(
   const empty: HourlyPushResult = { tokenCount: 0, delivered: 0, failed: 0, removed: 0, hour: utcHour, skipped: false, eligibleUsers: 0 };
   const app = getAdminApp();
   if (!app) return empty;
-  if (!configureVapid()) return empty;
   const db = getFirestore(app);
 
   const today = new Date().toISOString().split("T")[0];
@@ -413,7 +511,6 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
   const empty: EveningPushResult = { tokenCount: 0, delivered: 0, failed: 0, removed: 0, hour: utcHour, skipped: false, eligibleUsers: 0, byTemplate: EMPTY_TEMPLATE_COUNTS };
   const app = getAdminApp();
   if (!app) return empty;
-  if (!configureVapid()) return empty;
   const db = getFirestore(app);
 
   const today = new Date().toISOString().split("T")[0];

@@ -647,7 +647,7 @@ brainbloom-mobile/
 
 ### Backend (single cross-repo touchpoint — the only web-repo PR)
 - **Vercel stays the backend for BOTH apps.** Mobile calls the existing public `/api/*` routes (leaderboard, notify admin gate) — they're plain HTTPS.
-- **Phase 7 web PR**: `app/api/notify/route.ts` + `app/api/cron/hourly/route.ts` gain an **FCM send path** via `firebase-admin` messaging (v14 already in deps). App tokens stored in the same `users/{uid}/pushTokens` collection with `{ type: "fcm", token }`; web-push tokens (`endpoint`+keys) untouched — route branches by token type. APNs private key added to Firebase console (one-time, in console not code).
+- **Phase 7 web PR**: ✅ **DONE (Aug 17, 2026)** — `lib/push-send.ts` gained the **FCM send path** via `firebase-admin` messaging (v14): `readUserSubscriptions` accepts `{ type: "fcm", token }` entries (deduped by token) alongside browser web-push docs, and `deliverSubscriptions` branches by token type — web-push via `webpush.sendNotification` (unchanged), FCM via `messaging.sendEachForMulticast` (≤500/batch, `notification` + `data.url`, Android high priority, dead-token pruning on `messaging/registration-token-not-registered`). VAPID is only required for web-push; FCM-only sends work without it (early `configureVapid()` bails removed). APNs private key added to Firebase console (one-time, in console not code).
 - No Cloud Functions migration. No Firestore/Auth schema changes.
 
 ### Native feature stack
