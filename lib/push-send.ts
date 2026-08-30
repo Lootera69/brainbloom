@@ -193,12 +193,24 @@ async function deliverFcm(
     const chunk = fcmSubs.slice(i, i + FCM_BATCH_SIZE);
     const tokens = chunk.map((s) => s.fcmToken!);
     try {
+      // Data-only on Android so the OS does NOT auto-display a plain
+      // notification. The background handler (main.dart) renders the single
+      // beautified local notification with largeIcon @mipmap/ic_launcher
+      // (now the BrainBloom logo) and BigText/BigPicture styling. Previously
+      // the top-level `notification` field caused the OS to show a second,
+      // unstyled plain notification alongside the beautified local one — the
+      // duplicate seen at 7:30 AM in the screenshot.
       const res = await messaging.sendEachForMulticast({
         tokens,
-        notification: { title: parsed.title, body: parsed.body },
-        data: { url: parsed.url, tag: "brainbloom-notification" },
+        data: {
+          title: parsed.title,
+          body: parsed.body,
+          url: parsed.url,
+          tag: "brainbloom-notification",
+        },
         android: { priority: "high" },
         apns: {
+          headers: { "apns-push-type": "background", "apns-priority": "5" },
           payload: { aps: { "content-available": 1, sound: "default" } },
         },
       });
