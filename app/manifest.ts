@@ -39,5 +39,35 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ["education", "games", "puzzles"],
     lang: "en",
     scope: "/",
+    shortcuts: [
+      {
+        name: "Daily Challenge",
+        short_name: "Daily",
+        description: "Solve today's puzzle",
+        url: "/",
+        icons: [{ src: "/icon-96.png", sizes: "96x96", type: "image/png" }],
+      },
+      {
+        name: "Weekly Cipher",
+        short_name: "Cipher",
+        description: "Crack this week's code",
+        url: "/",
+        icons: [{ src: "/icon-96.png", sizes: "96x96", type: "image/png" }],
+      },
+      {
+        name: "Learn",
+        short_name: "Learn",
+        description: "Train your mind",
+        url: "/learn",
+        icons: [{ src: "/icon-96.png", sizes: "96x96", type: "image/png" }],
+      },
+      {
+        name: "Shop",
+        short_name: "Shop",
+        description: "Gems, hearts & premium",
+        url: "/shop",
+        icons: [{ src: "/icon-96.png", sizes: "96x96", type: "image/png" }],
+      },
+    ],
   };
 }
