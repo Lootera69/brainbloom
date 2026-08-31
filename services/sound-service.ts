@@ -307,6 +307,7 @@ export function playTurtleSound() { playAvatar("turtle", 0.3); }
 export function playDragonSound() { playAvatar("dragon", 0.4); }
 export function playPhoenixSound() { playAvatar("phoenix", 0.35); }
 export function playGriffinSound() { playAvatar("griffin", 0.35); }
+export function playFrogSound() { playAvatar("frog", 0.35); }
 
 export const avatarSounds: Record<string, () => void> = {
   owl: playOwlSound,
@@ -320,6 +321,7 @@ export const avatarSounds: Record<string, () => void> = {
   dragon: playDragonSound,
   phoenix: playPhoenixSound,
   griffin: playGriffinSound,
+  frog: playFrogSound,
 };
 
 // --- Sound Toggle Effects (bypass _enabled — always play) ---

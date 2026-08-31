@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Lock, Sparkles } from "lucide-react";
-import { avatars, getAvatarById } from "@/components/avatars/avatar-svgs";
+import { avatars, avatarsForSelection, getAvatarById } from "@/components/avatars/avatar-svgs";
 import { avatarSounds } from "@/services/sound-service";
 import AvatarWithEyes from "@/components/onboarding/AvatarWithEyes";
 
@@ -93,7 +93,7 @@ export default function AvatarStep({ selectedAvatar, onSelect, onNext }: AvatarS
 
       {/* Guide grid */}
       <div className="mt-6 grid w-full max-w-sm grid-cols-4 gap-2.5">
-        {avatars.map((avatar, i) => {
+        {avatarsForSelection.map((avatar, i) => {
           const isSelected = selectedAvatar === avatar.id;
           const AvatarComp = avatar.component;
           const isPremium = avatar.premium;

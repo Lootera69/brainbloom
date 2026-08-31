@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, Check, Lock, ArrowRight } from "lucide-react";
-import { avatars } from "./avatar-svgs";
+import { avatars, avatarsForSelection } from "./avatar-svgs";
 import { AvatarDisplay } from "./AvatarDisplay";
 import { avatarSounds } from "@/services/sound-service";
 import { useUserStore } from "@/store/user-store";
@@ -115,7 +115,7 @@ export function AvatarSelector({
                 Pick your character
               </p>
               <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                {avatars.map((avatar) => {
+                {avatarsForSelection.map((avatar) => {
                   const isSelected = selected === avatar.id;
                   const SvgComponent = avatar.component;
                   const locked = avatar.premium && !isPremium;

@@ -43,6 +43,7 @@ import { useUIStore } from "@/store/ui-store";
 import { achievementsList } from "@/constants/achievements";
 import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
 import { PremiumBadge } from "@/components/paywall/PremiumBadge";
+import { Habitat } from "@/components/crayon/Habitat";
 import { hasPremiumAccess, formatExpiry } from "@/services/entitlement-service";
 import { AvatarSelector } from "@/components/avatars/AvatarSelector";
 import { ProfileShopModal } from "@/components/shop/ProfileShopModal";
@@ -69,6 +70,30 @@ function formatHeartTimer(ms: number): string {
   if (totalHours > 0) return `${totalHours}h ${totalMinutes}m`;
   if (totalMinutes > 0) return `${totalMinutes}m ${seconds}s`;
   return `${seconds}s`;
+}
+
+function habitatSceneForLabel(id: string | null | undefined): string {
+  const map: Record<string, string> = {
+    owl: "Night oak",
+    fox: "Autumn meadow",
+    cat: "Cosy corner",
+    dog: "Sunny yard",
+    ufo: "Badlands",
+    panda: "Bamboo grove",
+    rooster: "Farmyard",
+    turtle: "Lily pond",
+    dragon: "Volcano",
+    phoenix: "Blaze",
+    griffin: "Aerie",
+    frog: "Swamp",
+  };
+  return map[id ?? "owl"] ?? "Habitat";
+}
+function growthLabel(streak: number): string {
+  if (streak >= 21) return "lush growth";
+  if (streak >= 7) return "growing";
+  if (streak >= 3) return "sprouting";
+  return "seedling";
 }
 
 
@@ -928,6 +953,16 @@ export default function ProfilePage() {
           </GlassCard>
         </motion.div>
       )}
+
+      {/* Habitat diorama — crayon scene the avatar lives in (last card) */}
+      <motion.section
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.34 }}
+        className="mt-6 overflow-hidden rounded-3xl border border-border/40 bg-card/60 shadow-lg backdrop-blur-xl"
+      >
+        <Habitat avatarId={avatarId} streak={streak} height={210} className="cursor-pointer" />
+      </motion.section>
 
       {/* Logout */}
       <motion.div
