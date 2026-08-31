@@ -54,12 +54,12 @@ export interface AvatarDefinition {
 
 export const avatars: AvatarDefinition[] = [
   { id: "owl", name: "Owl", component: AvatarOwl },
-  { id: "fox", name: "Fox", component: AvatarFox },
+  { id: "fox", name: "Fox", component: AvatarFox, premium: true },
   { id: "cat", name: "Cat", component: AvatarCat },
   { id: "dog", name: "Dog", component: AvatarDog },
   { id: "ufo", name: "UFO", component: AvatarUfo, premium: true },
   { id: "panda", name: "Panda", component: AvatarPanda, premium: true },
-  { id: "rooster", name: "Rooster", component: AvatarRooster },
+  { id: "rooster", name: "Rooster", component: AvatarRooster, premium: true },
   { id: "turtle", name: "Turtle", component: AvatarTurtle },
   { id: "dragon", name: "Dragon", component: AvatarDragon, premium: true },
   { id: "phoenix", name: "Phoenix", component: AvatarPhoenix, premium: true },
