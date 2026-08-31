@@ -48,3 +48,6 @@ next-env.d.ts
 
 # repomix export
 repomix-output.xml
+
+# salesforce cli cache (unrelated tooling)
+/.sf
