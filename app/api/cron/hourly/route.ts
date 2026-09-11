@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendPushForLocalHour, sendEveningPushForLocalHour } from "@/lib/push-send";
+import { sendPushForLocalHour, sendEveningPushForLocalHour, sendWidgetTickForLocalHour } from "@/lib/push-send";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -38,5 +38,9 @@ export async function GET(req: NextRequest) {
   const testHour = testParam !== null && /^\d{1,2}$/.test(testParam) ? Math.min(23, Math.max(0, Number(testParam))) : undefined;
   const evening = await sendEveningPushForLocalHour(utcHour, testHour);
 
-  return NextResponse.json({ ok: true, morning, evening });
+  // Midnight: silent widget tick for users whose local time is ~midnight.
+  // Same test override applies (filters by that local hour instead of 0).
+  const tick = await sendWidgetTickForLocalHour(utcHour, testHour);
+
+  return NextResponse.json({ ok: true, morning, evening, tick });
 }

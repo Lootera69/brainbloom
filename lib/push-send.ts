@@ -643,3 +643,212 @@ export async function sendEveningPushForLocalHour(utcHour: number, forceLocalHou
     byTemplate,
   };
 }
+
+export interface WidgetTickResult extends HourlyPushResult {
+  /** Per-user streak state is embedded in each tick's data payload. */
+  withState: number;
+}
+
+interface WidgetTickUser {
+  uid: string;
+  streak: number;
+  playedToday: boolean;
+  alive: boolean;
+  subs: PushSubscriptionDoc[];
+}
+
+/**
+ * Sends a silent local-midnight widget tick to users whose local time is
+ * ~midnight (target hour 0). Unlike the morning/evening reminders this carries
+ * no `title`/`body` — it is a wake-up call, not a notification. The Flutter
+ * background handler (`firebaseMessagingBackgroundHandler`) intercepts
+ * `data.type === "widget-tick"` and runs a headless widget refresh instead of
+ * rendering an OS notification.
+ *
+ * Delivery is FCM-only: browser web-push subscriptions are skipped because the
+ * web service worker expects a titled payload. Each tick embeds the server's
+ * own `computeStreakState` verdict (authoritative even when the app has been
+ * closed for days) for future use; today's client recomputes locally and only
+ * needs the wake-up.
+ *
+ * Own dedup marker (`settings/reminder-midnight`) so the Vercel backup run
+ * never double-ticks. `forceLocalHour` is the same CRON_SECRET-gated test
+ * override the evening sender takes.
+ */
+export async function sendWidgetTickForLocalHour(
+  utcHour: number,
+  forceLocalHour?: number,
+): Promise<WidgetTickResult> {
+  const empty: WidgetTickResult = {
+    tokenCount: 0,
+    delivered: 0,
+    failed: 0,
+    removed: 0,
+    hour: utcHour,
+    skipped: false,
+    eligibleUsers: 0,
+    withState: 0,
+  };
+  const app = getAdminApp();
+  if (!app) return empty;
+  const db = getFirestore(app);
+
+  const today = new Date().toISOString().split("T")[0];
+  const isTest = forceLocalHour !== undefined;
+
+  if (!isTest) {
+    const markerRef = db.doc("settings/reminder-midnight");
+    let claimed: boolean;
+    try {
+      claimed = await db.runTransaction(async (t) => {
+        const snap = await t.get(markerRef);
+        const cur = snap.exists ? (snap.data() ?? {}) : {};
+        if (cur.date === today && cur.hour === utcHour) return false;
+        t.set(markerRef, { date: today, hour: utcHour, updatedAt: Date.now() });
+        return true;
+      });
+    } catch (e) {
+      console.error("reminder-midnight marker claim failed:", e);
+      return { ...empty, skipped: true };
+    }
+    if (!claimed) return { ...empty, skipped: true };
+  }
+
+  const now = new Date();
+  const tickUsers: WidgetTickUser[] = [];
+  const seen = new Set<string>();
+
+  try {
+    const users = await db.collection("users").listDocuments();
+    await Promise.all(
+      users.map(async (userRef) => {
+        let timeZone: string | null = null;
+        let streak = 0;
+        let lastActiveDate: string | null = null;
+        let frozenDays: string[] = [];
+        let activeDates: string[] = [];
+        try {
+          const userSnap = await userRef.get();
+          const d = userSnap.data() ?? {};
+          timeZone = (d.timeZone as string | null) ?? null;
+          streak = (d.streak as number) ?? 0;
+          lastActiveDate = (d.lastActiveDate as string | null) ?? null;
+          frozenDays = (d.frozenDays as string[]) ?? [];
+          activeDates = (d.activeDates as string[]) ?? [];
+        } catch {
+          // fall back to defaults
+        }
+        if (localHourAt(now, timeZone ?? "Asia/Kolkata") !== (forceLocalHour ?? 0)) return;
+
+        const subs = await readUserSubscriptions(userRef, seen, userRef.id);
+        // FCM only — the web service worker expects a titled payload.
+        const fcmSubs = subs.filter((s) => s.fcmToken);
+        if (fcmSubs.length === 0) return;
+
+        const st = computeStreakState(
+          now,
+          timeZone ?? "Asia/Kolkata",
+          lastActiveDate,
+          streak,
+          activeDates,
+          frozenDays,
+        );
+        tickUsers.push({
+          uid: userRef.id,
+          streak: st.streak,
+          playedToday: st.playedToday,
+          alive: st.alive,
+          subs: fcmSubs,
+        });
+      }),
+    );
+  } catch (e) {
+    console.error("Failed to list users for widget tick:", e);
+  }
+
+  // One multicast per distinct streak state — every user's numbers must be
+  // rendered on their own payload, never stamped from the first member.
+  const groups = new Map<string, { streak: number; playedToday: boolean; alive: boolean; subs: PushSubscriptionDoc[] }>();
+  for (const u of tickUsers) {
+    const key = `${u.streak}|${u.playedToday}|${u.alive}`;
+    const g = groups.get(key) ?? { streak: u.streak, playedToday: u.playedToday, alive: u.alive, subs: [] };
+    g.subs.push(...u.subs);
+    groups.set(key, g);
+  }
+
+  const messaging = getMessaging(app);
+  const stale: DocumentReference[] = [];
+  let totalDelivered = 0;
+  let totalFailed = 0;
+
+  for (const g of groups.values()) {
+    for (let i = 0; i < g.subs.length; i += FCM_BATCH_SIZE) {
+      const chunk = g.subs.slice(i, i + FCM_BATCH_SIZE);
+      const tokens = chunk.map((s) => s.fcmToken!);
+      try {
+        // Data-only with no title/body: the OS draws nothing. Must stay in
+        // sync with `kWidgetTickType` / `WidgetTickDataKeys` in
+        // brainbloom_flutter/lib/core/home_widget/widget_tick.dart.
+        const res = await messaging.sendEachForMulticast({
+          tokens,
+          data: {
+            type: "widget-tick",
+            tag: "brainbloom-widget-tick",
+            url: "/",
+            streak: String(g.streak),
+            playedToday: String(g.playedToday),
+            alive: String(g.alive),
+          },
+          android: { priority: "high" },
+          apns: {
+            headers: { "apns-push-type": "background", "apns-priority": "5" },
+            payload: { aps: { "content-available": 1 } },
+          },
+        });
+        res.responses.forEach((r, idx) => {
+          if (r.success) {
+            totalDelivered++;
+          } else {
+            const code = r.error?.code;
+            if (code === "messaging/registration-token-not-registered" || code === "messaging/invalid-registration-token" || code === "messaging/registration-token-not-found") {
+              stale.push(chunk[idx].ref);
+            } else {
+              console.error(`Widget tick send failed (${code}):`, r.error?.message);
+              totalFailed++;
+            }
+          }
+        });
+      } catch (e) {
+        console.error("Widget tick multicast failed:", (e as Error)?.message);
+        totalFailed += chunk.length;
+      }
+    }
+  }
+
+  let removed = 0;
+  if (stale.length) {
+    for (let i = 0; i < stale.length; i += 400) {
+      const batch = db.batch();
+      const chunk = stale.slice(i, i + 400);
+      chunk.forEach((ref) => batch.delete(ref));
+      try {
+        await batch.commit();
+        removed += chunk.length;
+      } catch (e) {
+        console.error("Failed to prune expired widget-tick subscriptions:", e);
+      }
+    }
+  }
+
+  const tokenCount = tickUsers.reduce((sum, u) => sum + u.subs.length, 0);
+  return {
+    tokenCount,
+    delivered: totalDelivered,
+    failed: totalFailed,
+    removed,
+    hour: utcHour,
+    skipped: false,
+    eligibleUsers: tickUsers.length,
+    withState: tickUsers.length,
+  };
+}
