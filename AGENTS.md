@@ -428,7 +428,7 @@ Stored in Zustand with persist middleware. Key fields:
 
 ### 15. Premium Subscription System
 - **Free tier**: 3 puzzles/day, standard hearts (max 5 + refill), basic avatars
-- **Premium tier**: unlimited puzzles, unlimited hearts (∞), premium avatars (Dragon, Phoenix, Griffin), golden VIP profile, 2x XP, ad-free
+- **Premium tier**: unlimited puzzles, unlimited hearts (∞), premium avatars (Dragon, Phoenix, Griffin), golden VIP profile, ad-free
 - **Pricing**: `PricingConfig` in Firestore `settings/pricing` with monthly/yearly base + offer prices, 5 shop product prices
   - `PricingCard` component: plan toggle (monthly/yearly), offer badges, savings %, save button (mock purchase)
   - Admin-editable via Studio → Settings → Pricing tab (pricing comparison cards, dirty-state save, cancel)

@@ -20,11 +20,11 @@ const adVariations = [
     badge: "PREMIUM",
     title: "BrainBloom Premium",
     subtitle: "Unlock Your Full Potential",
-    description: "Unlimited puzzles, ad-free experience, premium avatars, and 2x XP boost.",
+    description: "Unlimited puzzles, ad-free experience, and premium avatars.",
     cta: "Start Free Trial",
     gradient: "from-violet-600 via-purple-600 to-fuchsia-600",
     iconBg: "bg-gradient-to-br from-violet-500 to-purple-600",
-    features: ["Unlimited Puzzles", "Ad-Free", "2x XP"],
+    features: ["Unlimited Puzzles", "Ad-Free", "Premium Avatars"],
   },
   {
     id: "premium-yearly",
