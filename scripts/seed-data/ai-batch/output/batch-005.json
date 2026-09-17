@@ -1,0 +1,477 @@
+[
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "The Daylight Sky",
+    "question": "Why does the daytime sky look blue?",
+    "choices": [
+      "Ocean water reflects its colour upwards",
+      "The ozone layer is dyed a pale blue",
+      "We see Earth's magnetic field glowing",
+      "Tiny air molecules scatter blue light far more than red"
+    ],
+    "correctAnswer": "Tiny air molecules scatter blue light far more than red",
+    "xpReward": 10,
+    "lessonGroup": "Earth & Space",
+    "correctExplanation": "Exactly — Rayleigh scattering: short blue wavelengths ricochet off air molecules in every direction.",
+    "incorrectExplanation": "The answer is: tiny air molecules scatter blue light far more than red. Blue's short wavelength bounces off molecules across the whole dome, while red sails straight through. The ocean contributes almost nothing, and ozone has no colour of its own.",
+    "lessonContent": "Rayleigh scattering: shorter wavelengths scatter far more in air — blue ricochets everywhere while red travels straight.\nThe effect grows at sunset, when light crosses more atmosphere and blue is scattered away entirely.\nOther planets follow their own air: Martian sunsets glow blue.\nEinstein himself worked on the mathematics of why the sky is blue.\nShare this: at the next sunset, explain its colour to someone in one sentence."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Cloud Whiteness",
+    "question": "Why are clouds white while the clear sky is blue?",
+    "choices": [
+      "Clouds sit above the blue layer of air",
+      "Pollution whitens the droplets",
+      "Their larger droplets scatter all colours about equally",
+      "They reflect the Moon even by day"
+    ],
+    "correctAnswer": "Their larger droplets scatter all colours about equally",
+    "xpReward": 10,
+    "lessonGroup": "Earth & Space",
+    "correctExplanation": "Right — cloud droplets are big enough to scatter every wavelength the same way, and equal mixing reads as white.",
+    "incorrectExplanation": "The answer is: their larger droplets scatter all colours about equally. Tiny molecules favour blue, but droplets thousands of times larger treat all wavelengths alike — and a balanced mix of every colour is white. No reflection or pollution required.",
+    "lessonContent": "Size decides colour play: tiny molecules scatter blue strongly, fat droplets scatter everything equally.\nEqual scattering of all wavelengths reads to the eye as white.\nThe same logic makes milk white and fog grey at thickness.\nStorm clouds look dark because their depth absorbs light before it exits.\nShare this: hold a glass of milk to a lamp and see the cloud physics inside it."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Twinkling Lights",
+    "question": "Why do stars twinkle at night?",
+    "choices": [
+      "Stars pulse their brightness",
+      "Our eyes twitch in darkness",
+      "Thin clouds flash past them",
+      "Turbulent air bends their light on the way down"
+    ],
+    "correctAnswer": "Turbulent air bends their light on the way down",
+    "xpReward": 10,
+    "lessonGroup": "Earth & Space",
+    "correctExplanation": "Exactly — shifting pockets of air refract the pinpoint of starlight, so it flickers.",
+    "incorrectExplanation": "The answer is: turbulent air bends their light on the way down. Stars are so distant they are near-perfect points, and every wobble of air between us bends that point slightly. The star itself burns steadily the whole time.",
+    "lessonContent": "Stars are point sources, and points are exquisitely sensitive to air bending.\nPlanets barely twinkle — their discs average the turbulence out.\nAstronomers put telescopes on mountains to escape the thickest, most turbulent air.\nSpace telescopes twinkle not at all, which is why Hubble images are razor-sharp.\nShare this: compare a star and a planet tonight and spot which one dances."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "The Borrowed Glow",
+    "question": "Why does the Moon shine at night?",
+    "choices": [
+      "It reflects sunlight off its surface",
+      "It burns like a small star",
+      "It glows from natural radioactivity",
+      "Streetlights on Earth light it up"
+    ],
+    "correctAnswer": "It reflects sunlight off its surface",
+    "xpReward": 10,
+    "lessonGroup": "Earth & Space",
+    "correctExplanation": "Right — the Moon is a mirror of rock and dust, bouncing sunlight back to us.",
+    "incorrectExplanation": "The answer is: it reflects sunlight off its surface. The Moon makes no light of its own — its day side simply catches the Sun and scatters it our way. The phases are just us seeing different amounts of that lit half.",
+    "lessonContent": "The Moon is a reflector, not a lamp — its surface bounces about a tenth of the sunlight that hits it.\nMoonlight is literally second-hand daylight.\nThe phases track geometry: how much of the lit half faces us as both worlds circle.\nDuring a new moon the lit side faces away from us entirely.\nShare this: point at tonight's phase and tell someone where the Sun must be standing."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Floating Ice",
+    "question": "Why does ice float on water?",
+    "choices": [
+      "Colder objects always rise above warmer ones",
+      "Warm water sinks beneath anything cold",
+      "Countless tiny air pockets inside lift it",
+      "Water expands as it freezes, making the solid less dense"
+    ],
+    "correctAnswer": "Water expands as it freezes, making the solid less dense",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Exactly — ice is about 9% lighter than the liquid it came from, so it rides on top.",
+    "incorrectExplanation": "The answer is: water expands as it freezes, making the solid less dense. Hydrogen bonds lock the molecules into an open lattice that takes more room than the liquid. Almost every other substance shrinks when it solidifies — water is the famous exception.",
+    "lessonContent": "Water is a rare substance whose solid is lighter than its liquid — hydrogen bonds build an open lattice in ice.\nThat quirk lets lakes freeze from the top down, insulating the life below.\nIf ice sank, ponds would freeze solid each winter and kill everything in them.\nThe same expansion is why pipes burst in cold snaps.\nShare this: drop an ice cube in cooking oil and watch it sink — density is relative."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "The Bent Straw",
+    "question": "Why does a straw in a glass of water look bent at the surface?",
+    "choices": [
+      "The curved glass wall distorts the view",
+      "Light slows and changes direction as it crosses into water",
+      "Water magnifies everything placed in it",
+      "Your brain assumes a kink at the surface"
+    ],
+    "correctAnswer": "Light slows and changes direction as it crosses into water",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Right — refraction: light changes speed between air and water, and the kink follows.",
+    "incorrectExplanation": "The answer is: light slows and changes direction as it crosses into water. Light travels slower in water than in air, and the change of speed bends its path at the boundary. Your eye traces the rays back in straight lines, so the straw appears broken.",
+    "lessonContent": "Refraction is the bending that follows a change in light's speed between materials.\nEvery transparent material bends light by its own measurable amount — the refractive index.\nLenses, rainbows and optical fibres are all engineered refraction.\nA fish in a pond is never quite where it appears — spear fishermen aim below the image.\nShare this: slide a coin under a glass of water and watch it vanish at an angle."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Mirror Logic",
+    "question": "Mirrors seem to swap left and right. What do they actually reverse?",
+    "choices": [
+      "Top and bottom, secretly",
+      "Nothing whatsoever",
+      "Front and back",
+      "Every colour's position"
+    ],
+    "correctAnswer": "Front and back",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Exactly — a mirror flips depth. Point at the glass: your image points back at you.",
+    "incorrectExplanation": "The answer is: front and back. The mirror reverses the direction perpendicular to its surface — toward and away. The left-right swap is your own interpretation as you mentally rotate to face your image; the physics never touches sideways.",
+    "lessonContent": "A mirror inverts the axis perpendicular to its surface — depth, not sideways.\nThe left-right swap is a story your brain tells while turning around to compare.\nText reversed in a mirror reads wrongly for the same reason: you flipped the page toward it.\nLie down in front of a long mirror and the 'swap' argument collapses.\nShare this: write a word on glass and read it from the far side to see who really flipped it."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Toast Colours",
+    "question": "Why does bread turn brown and aromatic in a toaster?",
+    "choices": [
+      "Moving air inside cooks the bread through",
+      "Heat from the coil browns the bread's surface",
+      "The glowing coil paints colour onto one side",
+      "Oil sealed in the dough ignites gently"
+    ],
+    "correctAnswer": "Heat from the coil browns the bread's surface",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Right — radiant heat triggers the Maillard reactions between starches and proteins.",
+    "incorrectExplanation": "The answer is: heat from the coil browns the bread's surface. Sugars and proteins combine into hundreds of new flavour and colour compounds above about 140 degrees. It is chemistry, not scorching — and it is why toast smells like toast.",
+    "lessonContent": "The Maillard reaction weaves sugars and proteins into hundreds of aroma and colour compounds.\nIt fires above roughly 140 degrees — below boiling oil's fiercer range.\nSteaks, coffee, and toast all brown by the same chemistry.\nThe crust of bread tastes richer than the crumb because the crust is where the heat happened.\nShare this: smell your coffee tomorrow and name the chemistry doing the work."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Shocking Doorways",
+    "question": "Why do you sometimes get a tiny zap touching a doorknob in winter?",
+    "choices": [
+      "Cold metal stings bare skin",
+      "Static fabric warms your palm",
+      "Charge that built up on you jumps to the metal",
+      "Tiny sparks fall from the ceiling"
+    ],
+    "correctAnswer": "Charge that built up on you jumps to the metal",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Exactly — walking on carpets strips electrons off you, and the knob offers them a sudden exit.",
+    "incorrectExplanation": "The answer is: charge that built up on you jumps to the metal. Dry winter air lets your body accumulate surplus electrons from carpets and clothing; the metal knob is a sudden escape route, and the discharge is the zap. Humid summer air leaks charge away before it can pile up.",
+    "lessonContent": "Triboelectric charging: rubbing two materials transfers electrons from one to the other.\nThe shock is the equalisation — a miniature lightning bolt a few thousand volts strong.\nHumid air conducts faintly and drains charge before it accumulates, which is why summer is gentler.\nPetrol stations ground their nozzles because the same spark can ignite fumes.\nShare this: shuffle across a carpet in socks and touch a radiator — on purpose, for science."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Echo Valley",
+    "question": "What is an echo, physically?",
+    "choices": [
+      "Sound bouncing back from a distant surface",
+      "Wind copying noises it hears",
+      "Air remembering a vibration",
+      "Two sounds colliding in mid-flight"
+    ],
+    "correctAnswer": "Sound bouncing back from a distant surface",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Right — a reflection: sound waves rebound from a wall or cliff and return to your ear.",
+    "incorrectExplanation": "The answer is: sound bouncing back from a distant surface. Sound is a pressure wave, and like light it reflects off large obstacles. Your ear needs the return to arrive about a tenth of a second late to hear it separately, which is why you need distance for a proper echo.",
+    "lessonContent": "Sound reflects like light — any wall large compared to the wavelength bounces it back.\nThe ear separates events about a tenth of a second apart, setting the minimum echo distance.\nSonar and ultrasound imaging are engineered echoes timed with precision.\nBats navigate by screaming and listening to the returns — echolocation in the wild.\nShare this: clap once in a stairwell and count the returning copies before they blur."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Sunscreen Duty",
+    "question": "What does sunscreen mainly protect your skin from?",
+    "choices": [
+      "Infrared heat rays from the sun",
+      "Visible glare off bright surfaces",
+      "Drying winds and summer heat",
+      "Ultraviolet light that damages skin cells"
+    ],
+    "correctAnswer": "Ultraviolet light that damages skin cells",
+    "xpReward": 10,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly — UV photons carry the energy that harms DNA; sunscreen filters that band out.",
+    "incorrectExplanation": "The answer is: ultraviolet light that damages skin cells. UV photons carry enough energy to scramble DNA in skin cells, and sunscreen absorbs or reflects that band. Heat and brightness are harmless by comparison — you can burn on a cool, cloudy day precisely because UV slips through clouds.",
+    "lessonContent": "UV photons sit just beyond violet on the spectrum, each carrying DNA-damaging energy.\nClouds block visible light far better than they block ultraviolet — cool days still burn.\nSPF numbers describe how much of the UV band the lotion deflects or absorbs.\nMelanin is the body's own sunscreen; a tan is damage control, not immunity.\nShare this: check tomorrow's UV index before choosing your morning walk."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Warm Jacket",
+    "question": "How does a winter jacket keep you warm?",
+    "choices": [
+      "It traps air, and still air is a poor heat conductor",
+      "It manufactures heat from friction",
+      "It reflects your shadow back at you",
+      "It blocks cold particles from landing"
+    ],
+    "correctAnswer": "It traps air, and still air is a poor heat conductor",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Right — the filling's only job is to imprison air; the trapped air does the insulating.",
+    "incorrectExplanation": "The answer is: it traps air, and still air is a poor heat conductor. Your body heats the air held in the padding, and that pocket is reluctant to pass the warmth onward. No garment creates heat — the best it can do is slow yours from escaping.",
+    "lessonContent": "Insulation is trapped air: still air conducts heat poorly, so pockets of it block your warmth from leaving.\nWool, down and foam all succeed by imprisoning air in different cages.\nWet insulation fails because water conducts heat about twenty times better than air.\nDouble-glazed windows are just jackets for houses.\nShare this: press a hand on a woollen sweater and a metal rail and rank them by honesty about temperature."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Plane Wings",
+    "question": "In simple terms, what holds an aeroplane up?",
+    "choices": [
+      "Engines blast a jet of air at the ground",
+      "The cabin somehow weighs less than air",
+      "Faster airflow over the curved wing lowers pressure above it",
+      "Wings vibrate downward like tiny hummingbirds"
+    ],
+    "correctAnswer": "Faster airflow over the curved wing lowers pressure above it",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Exactly — the wing's shape makes air rush faster over the top, and the pressure difference pushes the plane up.",
+    "incorrectExplanation": "The answer is: faster airflow over the curved wing lowers pressure above it. Air travelling over the longer, curved top must move faster, and faster air exerts less pressure — the wing is pushed toward the lower pressure. Engines push the plane forward; the wings do the lifting.",
+    "lessonContent": "A wing trades speed for pressure: faster air above, slower below, lift from the difference.\nThe explanation traces back to Bernoulli, though real wings also deflect air downward.\nPlanes fly upside down by tilting the wing — angle of attack does half the work.\nPaper planes glide without engines, proving lift needs only forward motion through air.\nShare this: blow across the top of a strip of paper and watch it rise into the fast air."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Speedy Sound",
+    "question": "Sound travels fastest through which of these?",
+    "choices": [
+      "Solid steel rails",
+      "Still night air",
+      "Deep ocean water",
+      "The vacuum of space"
+    ],
+    "correctAnswer": "Solid steel rails",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Right — sound races through solids; steel carries it about fifteen times faster than air.",
+    "incorrectExplanation": "The answer is: solid steel rails. Sound is molecules knocking their neighbours, and steel's atoms are packed tight and push back fast — about 5,000 metres per second. Night air manages barely 340, and the vacuum of space carries no sound at all.",
+    "lessonContent": "Sound is a relay of molecular collisions — the stiffer the medium, the faster the handoff.\nSolids win, liquids come next, gases trail, and vacuum carries nothing.\nPut your ear on a railway rail and you hear the train long before the air tells you.\nSpace is silent because silence is just molecules too far apart to gossip.\nShare this: tap a fence post and rest your ear on it — the wood will beat the air to you."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Solar Fuel",
+    "question": "What do solar panels turn sunlight into directly?",
+    "choices": [
+      "Chemical fuel held in batteries",
+      "Electricity, by knocking electrons loose",
+      "Heat conducted along the wires",
+      "Light of a purer, whiter kind"
+    ],
+    "correctAnswer": "Electricity, by knocking electrons loose",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Exactly — photons bump electrons across a junction in the silicon, and that flow is current.",
+    "incorrectExplanation": "The answer is: electricity, by knocking electrons loose. Each photon with enough energy frees an electron inside the specially layered silicon, and the layers shepherd the freed electrons one way — a current. Heat is a by-product the engineers actively fight.",
+    "lessonContent": "The photovoltaic effect: photons with enough punch kick electrons free in doped silicon.\nTwo differently doped layers create a one-way street, so freed electrons flow as current.\nBell Labs built the first practical cell in 1954 — solar power is older than most smartphones' parents.\nPanels convert roughly a fifth of sunlight today, improving by stubborn increments.\nShare this: shade half a solar calculator's panel with your hand and watch the digits fade."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Balanced Bikes",
+    "question": "What mostly keeps a bicycle upright while you ride?",
+    "choices": [
+      "The spinning wheels' gyroscopic pull",
+      "The frame's careful weight",
+      "Forward wind pressing down",
+      "Your constant small steering corrections"
+    ],
+    "correctAnswer": "Your constant small steering corrections",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Right — you steer into every fall a fraction of a second before it happens; the bike follows the wheels.",
+    "incorrectExplanation": "The answer is: your constant small steering corrections. A rider steers subtly toward each incipient fall, bringing the wheels back under the centre of mass. Gyroscopic wheel effects help only slightly — bikes with tiny counter-rotating wheels still stay up under a rider.",
+    "lessonContent": "Bike balance is active control: you steer the ground contact back under your centre of mass.\nThe gyroscopic myth survives because spinning wheels do help — just far less than people think.\nResearchers built bikes with canceling flywheels; they still rolled upright.\nThe trail of the front fork also self-corrects, which is why riderless bikes coast a while.\nShare this: try riding very slowly and feel the corrections grow as speed stops hiding them."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Boiling Point Boost",
+    "question": "Why does a pressure cooker cook food faster?",
+    "choices": [
+      "The flame burns hotter under a lid",
+      "The sealed lid lets water boil hotter than 100 degrees",
+      "Spinning water tenderizes the food",
+      "Sealed vitamins cook themselves faster"
+    ],
+    "correctAnswer": "The sealed lid lets water boil hotter than 100 degrees",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Exactly — under pressure water boils hotter than 100 degrees, and hotter water cooks faster.",
+    "incorrectExplanation": "The answer is: the sealed lid lets water boil hotter than 100 degrees. Steam builds pressure inside, pushing boiling up to about 120 degrees. Every extra ten degrees roughly doubles the speed of cooking chemistry — that is the entire magic.",
+    "lessonContent": "Boiling point depends on pressure: squeeze the air and water needs more heat to erupt.\nPressure cookers reach about 120 degrees; open pots stall at 100.\nThe reverse explains mountain cooking — at altitude, water boils cooler and pasta sulks.\nEvery 10-degree rise roughly doubles reaction speed, a rule chemists live by.\nShare this: tell a trekker why their tea brews weakly at 3,000 metres."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Fog Explained",
+    "question": "What is fog, basically?",
+    "choices": [
+      "Smoke rising from warm ground",
+      "A cloud sitting at ground level",
+      "Frozen air in suspension",
+      "Moonlight scattered thinly"
+    ],
+    "correctAnswer": "A cloud sitting at ground level",
+    "xpReward": 10,
+    "lessonGroup": "Earth & Space",
+    "correctExplanation": "Right — fog is a stratus cloud whose base happens to be the ground.",
+    "incorrectExplanation": "The answer is: a cloud sitting at ground level. Fog and clouds are the same thing — tiny droplets condensed out of moist air — with only altitude to tell them apart. When the air at your ankles cools to its dew point, the cloud forms around your shoes.",
+    "lessonContent": "Fog and cloud are one phenomenon: droplets condensing when air cools to its dew point.\nRadiation fog forms on clear, calm nights as the ground chills the air above it.\nValley fog pours downhill like slow milk, pooling where cold air collects.\nAirports fight it because it hides runways from pilots while cars still see the road.\nShare this: on a clear calm night, predict the morning fog before the forecast does."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Slippery Streets",
+    "question": "Why is ice so slippery underfoot?",
+    "choices": [
+      "Ice is naturally polished by wind",
+      "It repels shoe rubber chemically",
+      "Pressure and friction melt a thin water layer on top",
+      "Cold numbs your feet's grip"
+    ],
+    "correctAnswer": "Pressure and friction melt a thin water layer on top",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Exactly — you glide on a film of water you helped create; ice lubricates itself.",
+    "incorrectExplanation": "The answer is: pressure and friction melt a thin water layer on top. Your weight and the rubbing of the sole warm and press the surface into a microscopic slick of water. Near the deep-freeze that film thins, which is why very cold ice grips far better.",
+    "lessonContent": "Ice uniquely sits near its own melting point at everyday pressures — pressure and friction squeeze out a water film.\nSkaters glide on lubrication they manufacture; skates also slightly melt the track beneath them.\nBelow about minus thirty, the film fails and ice turns surprisingly grippy.\nThe same physics makes curling stones swirl: the pebbled ice melts unevenly under them.\nShare this: notice which winter days feel most slippery and check how close they sit to zero."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Shattering Notes",
+    "question": "A singer cracks a wineglass with a sustained note. What actually broke it?",
+    "choices": [
+      "The note's sheer loudness alone",
+      "The glass was already cracked before",
+      "The sound matched the glass's natural vibration frequency",
+      "Air pressure waves from the speakers"
+    ],
+    "correctAnswer": "The sound matched the glass's natural vibration frequency",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Right — resonance: each wave pushed the swing of the glass at exactly its own tempo until the amplitude tore it.",
+    "incorrectExplanation": "The answer is: the sound matched the glass's natural vibration frequency. Every object has a favourite ringing tempo; push at exactly that rhythm and each cycle adds to the last, like pumping a swing in time. Loudness alone does nothing — loudness at the wrong tempo merely rattles.",
+    "lessonContent": "Resonance: drive anything at its natural frequency and each push stacks on the last.\nPushing a swing in rhythm is resonance you have performed since childhood.\nEngineers dread it — marching soldiers break step on bridges for exactly this reason.\nThe Tacoma Narrows bridge film shown in physics classes is resonance's famous catastrophe.\nShare this: find a wineglass's ring by flicking it, then hum the same pitch loudly and feel it buzz."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Phone Buzz",
+    "question": "What makes a mobile phone vibrate?",
+    "choices": [
+      "Speakers playing below hearing range",
+      "A small motor spinning an off-centre weight",
+      "Electric pulses through the case",
+      "The battery shifting inside its bay"
+    ],
+    "correctAnswer": "A small motor spinning an off-centre weight",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Exactly — a lopsided weight whirls, and every revolution throws the whole phone off-balance in tiny shakes.",
+    "incorrectExplanation": "The answer is: a small motor spinning an off-centre weight. The uneven mass wobbles the axis as it spins, and those wobbles become the buzz in your palm. It is deliberately unbalanced engineering — a perfectly balanced motor would glide silently instead.",
+    "lessonContent": "An off-centre rotating mass turns smooth spin into shake — imbalance by design.\nThe buzz amplitude is just the wobble, scaled down to pocket size.\nGames controllers use twin motors offset from each other to create directional rumble.\nOld pinball machines shook the same way: a weighted motor under the table.\nShare this: next silent buzz, picture the tiny lopsided wheel doing the talking."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Rain's Perfume",
+    "question": "What causes the fresh smell after rain?",
+    "choices": [
+      "Ozone leaking down from the clouds",
+      "Cleaned dust floating in the breeze",
+      "Cold air's natural winter scent",
+      "Oils and compounds released when drops hit soil"
+    ],
+    "correctAnswer": "Oils and compounds released when drops hit soil",
+    "xpReward": 10,
+    "lessonGroup": "Earth & Space",
+    "correctExplanation": "Right — raindrops burst tiny air pockets onto soil, flinging its trapped oils and bacterial compounds into the air.",
+    "incorrectExplanation": "The answer is: oils and compounds released when drops hit soil. Falling drops trap air bubbles that rise and pop at the surface, aerosolizing soil oils and geosmin — the compound that gives beets their earthiness. Your nose detects geosmin at absurdly tiny concentrations, which is why the smell is so vivid.",
+    "lessonContent": "Petrichor is a cocktail: plant oils, geosmin from soil bacteria, and a dash of ozone in thunderstorms.\nRaindrops launch it by trapping air bubbles that burst upward off the ground.\nHuman noses detect geosmin at a few parts per trillion — among the sharpest sensitivities we own.\nCamels and humans alike may have evolved to smell water from afar.\nShare this: after the next first rain, take one slow breath and name its ingredients."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Magnet Attraction",
+    "question": "Why do magnets stick to iron?",
+    "choices": [
+      "Magnets are coated with a natural adhesive",
+      "Iron is always magnetic on its own",
+      "Air pressure presses them together",
+      "Iron's internal magnetic regions line up with the field"
+    ],
+    "correctAnswer": "Iron's internal magnetic regions line up with the field",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Exactly — iron contains tiny magnetic domains that swing into formation when a magnet approaches, becoming a magnet themselves.",
+    "incorrectExplanation": "The answer is: iron's internal magnetic regions line up with the field. Iron is ferromagnetic: its atoms cluster into domains that a nearby magnet swings into alignment. The iron briefly becomes an extension of the magnet. Most metals — copper, aluminium — have no such swing and slide right off.",
+    "lessonContent": "Ferromagnetism: iron's atoms form domains that a field can align, making the metal a partner magnet.\nHeat the iron past its Curie point and the domains scatter — magnetism melts away.\nCopper and aluminium have no alignable domains, which is why magnets ignore them.\nEarth itself is a magnet, and compass needles are just iron obeying it.\nShare this: test a magnet on copper, aluminium and iron and rank their obedience."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Bowl versus Plate",
+    "question": "Why does soup in a deep bowl stay hot longer than the same soup spread on a wide plate?",
+    "choices": [
+      "The bowl holds more total heat energy",
+      "Circular dishes conduct heat poorly",
+      "Steam cannot exit a round rim",
+      "Less surface is exposed to the cooling air"
+    ],
+    "correctAnswer": "Less surface is exposed to the cooling air",
+    "xpReward": 10,
+    "lessonGroup": "Physics Fun",
+    "correctExplanation": "Right — cooling happens at the exposed surface, and the bowl simply offers less of it per portion.",
+    "incorrectExplanation": "The answer is: less surface is exposed to the cooling air. Heat escapes from the surface it shows the air, and the plate displays far more of it per spoonful. Same soup, same temperature — different exposure, different cooling rate.",
+    "lessonContent": "Cooling is a surface phenomenon: what the food shows the air is what it loses.\nDeep dishes minimise exposed area per portion — geometry doing kitchen work.\nThe same law sizes radiators and cooling fins: more surface, more transfer.\nElephant ears are cooling fins; mouse ears are barely trying.\nShare this: time two cups of tea, one poured into a saucer, and let the stopwatch explain."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Unfelt Motion",
+    "question": "Why don't we feel Earth spinning at over 1,600 km/h?",
+    "choices": [
+      "The spin is too gentle to detect",
+      "Everything around us moves along with us",
+      "Gravity cancels the spinning feeling",
+      "The atmosphere shields us from it"
+    ],
+    "correctAnswer": "Everything around us moves along with us",
+    "xpReward": 10,
+    "lessonGroup": "Earth & Space",
+    "correctExplanation": "Exactly — you, the air, and the ground all ride together smoothly; only a change in motion is felt.",
+    "incorrectExplanation": "The answer is: everything around us moves along with us. Your body senses changes in motion, not steady motion — and the whole planet, air included, shares one constant ride. You feel an aeroplane's takeoff, then nothing at cruise, for the same reason.",
+    "lessonContent": "Motion at constant velocity is undetectable from inside — you feel acceleration, not speed.\nEinstein built relativity on this: no experiment inside a smooth ride reveals its speed.\nYou have never felt stillness prove anything — you might be moving a million km/h through space right now.\nPilots trust instruments because inner ears cannot tell steady flight from level hovering.\nShare this: on a smooth train, close the window blind and try to prove you're moving."
+  }
+]

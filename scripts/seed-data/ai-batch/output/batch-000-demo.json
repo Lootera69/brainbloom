@@ -1,0 +1,162 @@
+[
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Barber's Dilemma",
+    "question": "In a village, the barber shaves exactly those men who do not shave themselves. Who shaves the barber?",
+    "choices": [
+      "The barber shaves himself",
+      "Another villager shaves him",
+      "Nobody — the rule is self-contradictory",
+      "He is bald, so the question is void"
+    ],
+    "correctAnswer": "Nobody — the rule is self-contradictory",
+    "xpReward": 50,
+    "correctExplanation": "Exactly. Either way the rule breaks: if he shaves himself he violates it, and if he doesn't he must shave himself. Russell built this in 1901 to break set theory.",
+    "incorrectExplanation": "Not quite — every 'practical' answer quietly breaks the rule. If he shaves himself, he's shaving someone who shaves himself. If someone else shaves him, then he doesn't shave himself — so by the rule he must shave himself. The premise is self-contradictory; that's the point.",
+    "lessonContent": "Russell's paradox arrives from harmless-looking self-reference: a set that contains all sets that don't contain themselves.\nThe village version dresses the same trap in everyday clothing — a rule that applies to itself.\nLogicians built type theory to fence off exactly this kind of loop.\nSpotting self-reference early is a core reasoning skill.\nShare this: try writing a sentence that describes itself and see where it bites.",
+    "lessonGroup": "Paradox Alley"
+  },
+  {
+    "type": "true-false",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Quantum Spookiness",
+    "question": "Quantum entanglement means measuring one particle instantly influences its entangled partner, no matter the distance — and this cannot be used to send faster-than-light messages.",
+    "choices": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": "True",
+    "xpReward": 10,
+    "correctExplanation": "True — proven by the 2022 Nobel experiments. The correlation is instant but each individual result is random, so no information travels.",
+    "incorrectExplanation": "It's true. Einstein called it 'spooky action at a distance' and doubted it, but experiments settled it. The catch people miss: the results are random, so entanglement can't carry a message faster than light.",
+    "lessonContent": "Einstein's 'spooky action' nickname came from discomfort with what the mathematics predicted.\nEntanglement correlations have passed every Bell test since the 1970s.\nRandomness at each end is what blocks faster-than-light messaging.\nThe observer effect is a different phenomenon from entanglement — a common mix-up.\nShare this: ask someone why entanglement can't send messages and enjoy the pause.",
+    "lessonGroup": "Quantum Café"
+  },
+  {
+    "type": "riddle",
+    "category": "riddles",
+    "difficulty": "easy",
+    "title": "The More You Take",
+    "question": "The more you take, the more you leave behind. What am I?",
+    "choices": [],
+    "correctAnswer": "Footsteps",
+    "acceptedAnswers": [
+      "Footsteps",
+      "Steps",
+      "A footstep",
+      "footsteps"
+    ],
+    "hintText": "Think about movement, not objects.\nIt's something you 'take' with your body.\nYou leave them behind you as you walk.",
+    "xpReward": 10,
+    "correctExplanation": "Yes! Every step you 'take' leaves a footprint behind — the double meaning of 'take' is the whole trick.",
+    "incorrectExplanation": "The answer is footsteps. The riddle plays on two meanings of 'take': taking a step versus taking an object. The more steps you take, the more you leave behind you.",
+    "lessonContent": "Wordplay riddles hide their trick in the double meanings of ordinary verbs.\nThe fair ones keep every needed clue inside the riddle itself.\nRiddles older than a thousand years survive in the Exeter Book — the habit of riddling runs deep in human culture.\nReading a riddle twice, slowly, is the standard technique.\nShare this: ask someone the oldest riddle you know and watch them reason it aloud.",
+    "lessonGroup": "Classic Riddles"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "easy",
+    "title": "Giant of the System",
+    "question": "Which is the largest planet in our solar system?",
+    "choices": [
+      "Jupiter",
+      "Saturn",
+      "Neptune",
+      "Earth"
+    ],
+    "correctAnswer": "jupiter",
+    "xpReward": 10,
+    "correctExplanation": "Jupiter is the largest planet — its mass exceeds all other planets combined.",
+    "incorrectExplanation": "The answer is Jupiter. It's the largest planet in our solar system, more massive than all the others combined."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "easy",
+    "title": "Pick the Shape",
+    "question": "Which is the odd one out?",
+    "choices": [
+      "Triangle",
+      "Square",
+      "Circle",
+      "Rectangle"
+    ],
+    "correctAnswer": "Circle",
+    "xpReward": 10,
+    "correctExplanation": "The circle is the only shape without straight sides.",
+    "incorrectExplanation": "The answer is Circle. All the others have straight sides and corners."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Village Shaver",
+    "question": "In a village, the barber shaves exactly those men who do not shave themselves. Who shaves the barber?",
+    "choices": [
+      "Himself",
+      "Another villager",
+      "The rule contradicts itself",
+      "Nobody needs shaving"
+    ],
+    "correctAnswer": "The rule contradicts itself",
+    "xpReward": 50,
+    "correctExplanation": "The rule is self-contradictory, exactly like Russell's set paradox.",
+    "incorrectExplanation": "The rule contradicts itself. Either way the barber breaks it, which is Russell's point."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "riddles",
+    "difficulty": "easy",
+    "title": "The Echo Riddle",
+    "question": "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?",
+    "choices": [
+      "An echo",
+      "A ghost",
+      "The wind",
+      "A whistle"
+    ],
+    "correctAnswer": "An echo",
+    "xpReward": 10,
+    "correctExplanation": "Yes — an echo repeats sound without any body of its own.",
+    "incorrectExplanation": "It's an echo. Sound bounces back from a distant surface and seems to 'speak' your own words.",
+    "hintText": "Think about sound bouncing back."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Mixing Gases",
+    "question": "Which of the following about entropy is true?",
+    "choices": [
+      "Entropy always decreases in a closed system",
+      "Entropy measures energy spreading out",
+      "All of the above",
+      "Entropy is another word for temperature"
+    ],
+    "correctAnswer": "Entropy measures energy spreading out",
+    "xpReward": 10,
+    "correctExplanation": "Entropy tracks how energy spreads — not 'disorder'.",
+    "incorrectExplanation": "Entropy is best understood as energy spreading out. The 'disorder' picture is a simplification that misleads."
+  },
+  {
+    "type": "type-answer",
+    "category": "puzzles",
+    "difficulty": "medium",
+    "title": "Simple Multiplication",
+    "question": "What is 12 × 12?",
+    "choices": [],
+    "correctAnswer": "144",
+    "acceptedAnswers": [
+      "144",
+      "one hundred forty-four",
+      "one hundred and forty four"
+    ],
+    "xpReward": 25,
+    "correctExplanation": "144.",
+    "incorrectExplanation": "It's 144. Twelve times twelve."
+  }
+]

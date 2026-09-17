@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-008",
+  "generatedAt": "2026-09-17T13:27:41.418Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Doubling Dice",
+      "question": "Continue the series:\n1, 2, 4, 8, 16, ?",
+      "choices": [
+        "24",
+        "32",
+        "20",
+        "30"
+      ],
+      "correctAnswer": "32",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — each term doubles the last: 16 doubled is 32.",
+      "incorrectExplanation": "The answer is 32. The rule is doubling — 1 to 2, 2 to 4, 4 to 8, 8 to 16 — so the next term is 16 × 2. The even-looking 24 or 20 would fit a 'add 8' story that the early terms already broke.",
+      "lessonContent": "Geometric sequences multiply by a fixed ratio — doubling is the friendliest case.\nSpotting multiplicative rules early beats checking differences that keep changing.\nReal growth often compounds: populations, chains of rumours, interest.\nAsk 'does each term come from multiplying?' before hunting complicated patterns.\nShare this: fold a paper in half seven times and tell someone why the eighth fold is famously hard.",
+      "forgeId": "batch-008#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Climbing Numbers",
+      "question": "Which number belongs here?\n2, 3, 5, 8, 12, 17, ?",
+      "choices": [
+        "22",
+        "23",
+        "24",
+        "21"
+      ],
+      "correctAnswer": "23",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — the gaps grow by one each time: +1, +2, +3, +4, +5, so the next gap is +6.",
+      "incorrectExplanation": "The answer is 23. The differences between terms climb: 1, 2, 3, 4, 5 — each gap one bigger than the last — so the next step adds 6 to 17. This 'second look at the gaps' technique cracks whole families of sequences.",
+      "lessonContent": "When gaps between terms change, examine the gaps themselves as a new sequence.\nGrowing-by-one differences signal a simple additive acceleration.\nThis 'differences of differences' move is a standard sequence-solving tool.\nThe same idea powers physics: acceleration is the change of a change.\nShare this: give someone 2, 4, 7, 11 and watch them discover the gap trick.",
+      "forgeId": "batch-008#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Squaring Up",
+      "question": "Complete the pattern:\n1, 4, 9, 16, 25, ?",
+      "choices": [
+        "30",
+        "36",
+        "49",
+        "35"
+      ],
+      "correctAnswer": "36",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — these are perfect squares: 5² is 25, so 6² is 36.",
+      "incorrectExplanation": "The answer is 36. The terms are 1×1, 2×2, 3×3, 4×4, 5×5 — perfect squares — and the next is 6×6. The odd gaps (3, 5, 7, 9…) are the squares' signature, always growing by 2.",
+      "lessonContent": "Perfect squares announce themselves by gaps that grow by exactly 2 each step.\nRecognizing a family (squares, cubes, primes) replaces arithmetic with recall.\nSquare numbers build visual staircases — that is how Babylonians thought of them.\nThe gap-grows-by-two signature distinguishes squares from cubes at a glance.\nShare this: count the tiles on a square floor and check if you walked a perfect square.",
+      "forgeId": "batch-008#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "The Alternator",
+      "question": "Find the next term:\n1, 10, 2, 20, 3, 30, ?",
+      "choices": [
+        "one",
+        "four",
+        "forty",
+        "seven"
+      ],
+      "correctAnswer": "four",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — two interleaved sequences: 1, 2, 3… and 10, 20, 30…; the odd positions continue with 4.",
+      "incorrectExplanation": "The answer is four. Two threads take turns: 1, 2, 3 climbing in the odd slots and 10, 20, 30 climbing in the even ones. The shown list ends on 30, so the next term belongs to the counting thread — three’s successor is four.",
+      "lessonContent": "Interleaved sequences hide two simple patterns inside one confusing list.\nSplitting by position — odds here, evens there — separates the threads instantly.\nMany 'impossible' sequences are just two easy ones taking turns.\nBraided storytelling uses the same structure: two timelines, one list.\nShare this: invent a two-thread sequence tonight and let someone unweave it.",
+      "forgeId": "batch-008#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Letter Ladder",
+      "question": "Which letter follows?\nA, C, E, G, ?",
+      "choices": [
+        "H",
+        "I",
+        "J",
+        "K"
+      ],
+      "correctAnswer": "I",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — skip one letter each step: A, C, E, G, then I.",
+      "incorrectExplanation": "The answer is I. The pattern takes every second letter of the alphabet, skipping B, D, F and H. Position counting (1, 3, 5, 7, 9) reveals the same arithmetic underneath the letters.",
+      "lessonContent": "Letter sequences are number sequences wearing costumes — convert to positions and the rule appears.\nSkipping patterns convert to arithmetic: 1, 3, 5, 7, 9.\nThe alphabet is just a 26-term sequence you already memorized.\nCryptographers live on this letter-number equivalence.\nShare this: encode a friend's name in skip-one letters and let them decode it.",
+      "forgeId": "batch-008#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Fibonacci's Guest",
+      "question": "Fill the blank:\n1, 1, 2, 3, 5, 8, 13, ?",
+      "choices": [
+        "18",
+        "20",
+        "21",
+        "26"
+      ],
+      "correctAnswer": "21",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — each term is the sum of the two before it: 8 + 13 = 21.",
+      "incorrectExplanation": "The answer is 21. The rule is addition of the two previous terms — 5 + 8 gave 13, and 8 + 13 gives 21. Leonardo of Pisa described it in 1202 to model rabbit populations, and it now appears in sunflowers and spiral shells.",
+      "lessonContent": "The Fibonacci rule: each term is the sum of the previous two — self-building arithmetic.\nRabbits modelled it in 1202; sunflower seed spirals follow it still.\nThe ratio of consecutive terms approaches the golden ratio, famous in art and architecture.\nRecursive rules generate complexity from trivial beginnings — a deep idea in computing.\nShare this: count the spiral arms on a pinecone tonight and check both directions.",
+      "forgeId": "batch-008#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "The Shriner",
+      "question": "Continue the halving:\n64, 32, 16, 8, ?",
+      "choices": [
+        "6",
+        "2",
+        "4",
+        "0"
+      ],
+      "correctAnswer": "4",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — halving each time: half of 8 is 4.",
+      "incorrectExplanation": "The answer is 4. Each term is half its predecessor — 64 to 32 to 16 to 8 — so the next is 4. Halving is doubling run backwards, which is why the numbers stay so tidy.",
+      "lessonContent": "Halving is doubling in reverse — the same ratio, now one-half.\nPowers of two halved stay powers of two: 64, 32, 16…\nBinary computing is this list doing actual work — each step is one bit.\nChessboard legends of doubling rice live at the other end of this rule.\nShare this: halve a pizza slice mentally four times and count what's left.",
+      "forgeId": "batch-008#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Odds and Evens",
+      "question": "Which number comes next in line?\n2, 4, 6, 8, 10, ?",
+      "choices": [
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "correctAnswer": "12",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — even numbers in order: after 10 comes 12.",
+      "incorrectExplanation": "The answer is 12. The list simply counts through the even numbers, two at a time — 12 is the next even after 10. The simplest rules are sometimes the last ones people check.",
+      "lessonContent": "The simplest possible rule — steady counting by twos — is often the answer.\nSequenced solving: test 'add same number?' first before exotic theories.\nEven numbers are the alphabet of divisibility tests and binary arithmetic.\nOvercomplication is the puzzle-solver's chief enemy.\nShare this: give someone 3, 6, 9, 12 and watch them hunt for a rule that was never hidden.",
+      "forgeId": "batch-008#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Prime Climb",
+      "question": "Continue the climb:\n2, 3, 5, 7, 11, ?",
+      "choices": [
+        "13",
+        "12",
+        "14",
+        "15"
+      ],
+      "correctAnswer": "13",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — these are the primes in order, and 13 is the next prime.",
+      "incorrectExplanation": "The answer is 13. The list walks the prime numbers: 2, 3, 5, 7, 11 — each divisible only by 1 and itself. Twelve and fourteen break immediately (divisible by 2), fifteen by 3 and 5.",
+      "lessonContent": "Primes are the atoms of multiplication — every number factors into them.\nRecognizing the prime list converts a puzzle into recall.\nEuclid proved there are infinitely many, twenty-three centuries ago.\nModern encryption banks on the difficulty of un-prime-ing huge numbers.\nShare this: ask someone why 1 is not considered prime, and enjoy the debate.",
+      "forgeId": "batch-008#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Backwards Countdown",
+      "question": "Which number lands next?\n100, 90, 80, 70, ?",
+      "choices": [
+        "50",
+        "65",
+        "60",
+        "55"
+      ],
+      "correctAnswer": "60",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — counting down by tens: 70 minus 10 is 60.",
+      "incorrectExplanation": "The answer is 60. Each step subtracts ten — the list is a countdown by decades. Descending sequences are solved exactly like ascending ones; only the sign of the step flips.",
+      "lessonContent": "Descending sequences hide in plain sight — the rule is subtraction where you expected growth.\nCountdowns by tens train quick mental subtraction.\nDirection never changes the method: find the constant step.\nRocket launches made this exact sequence a cultural sound.\nShare this: count down from 100 by sevens aloud and feel your arithmetic wake up.",
+      "forgeId": "batch-008#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "The Look-and-Say",
+      "question": "One famous sequence describes itself. Find its next term:\n1, 11, 21, 1211, 111221, ?",
+      "choices": [
+        "312211",
+        "122111",
+        "111222",
+        "221121"
+      ],
+      "correctAnswer": "312211",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — read the previous term aloud: 'three 1s, two 2s, one 1' → 312211.",
+      "incorrectExplanation": "The answer is 312211. Each term describes the one before it, spoken aloud: 111221 is 'three 1s, two 2s, one 1', which you write as 31 22 11. Conway analysed this family's growth and found a constant ratio near 1.3.",
+      "lessonContent": "Look-and-say sequences generate each term by reading the previous one aloud.\nDescribing replaces computing — a verbal rule hiding in a number list.\nConway proved the family grows at a fixed irrational rate, like a rabbit population for digits.\nIt is a famous interview puzzle precisely because calculation misleads and reading wins.\nShare this: read 1122 aloud as 'two 1s, two 2s' and hand someone the next term.",
+      "forgeId": "batch-008#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Triangle Numbers",
+      "question": "Which number completes the triangle?\n1, 3, 6, 10, 15, ?",
+      "choices": [
+        "18",
+        "20",
+        "21",
+        "24"
+      ],
+      "correctAnswer": "21",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — gaps grow by one: +2, +3, +4, +5, then +6 gives 21.",
+      "incorrectExplanation": "The answer is 21. These are triangle numbers — dots stacking into ever-bigger triangles — and each new row adds one more dot than the last: the next row is six, giving 15 + 6. Handshake-counting uses exactly this list.",
+      "lessonContent": "Triangle numbers stack rows of growing length: 1, 1+2, 1+2+3…\nThey count handshakes in a room — the classic surprise application.\nGauss famously shortcut their sum as a schoolboy, adding pairs from both ends.\nThe gap-grows-by-one signature identifies them instantly.\nShare this: ask how many handshakes a party of 8 needs and let the triangle emerge.",
+      "forgeId": "batch-008#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Powers of Three",
+      "question": "Continue the growth:\n3, 9, 27, 81, ?",
+      "choices": [
+        "108",
+        "162",
+        "243",
+        "216"
+      ],
+      "correctAnswer": "243",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — tripling each time: 81 × 3 = 243.",
+      "incorrectExplanation": "The answer is 243. Each term multiplies the previous by three — 3¹, 3², 3³, 3⁴, and next 3⁵. Exponential growth by three is why rumors, epidemics and chain letters explode on exactly this curve.",
+      "lessonContent": "Powers of three triple each step — steeper than doubling, gentler than quadrupling.\nExponential rules are confirmed by ratios, not differences: divide neighbours to test.\nThree-branching trees count outcomes fast: three choices, thrice, gives 243 paths.\nExponential growth is why small causes have enormous descendants.\nShare this: show someone 3, 9, 27, 81 and bet them coffee on the next term.",
+      "forgeId": "batch-008#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Mixed Operations",
+      "question": "Which number continues the climb?\n2, 4, 12, 48, 240, ?",
+      "choices": [
+        "480",
+        "1200",
+        "960",
+        "720"
+      ],
+      "correctAnswer": "1200",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — the multiplier itself grows: ×2, ×3, ×4, ×5, so the next step is ×6.",
+      "incorrectExplanation": "The answer is 1200. The ratios between terms climb: 2, 3, 4, 5 — each term multiplied by a growing factor — so 240 × 6 = 1200. Factorial growth works exactly this way, which is why it explodes.",
+      "lessonContent": "When ratios themselves form a sequence, the pattern is factorial-like — growth of growth.\nDividing consecutive terms exposes the multiplier ladder: 2, 3, 4, 5, 6.\nFactorials (ways to arrange cards, guests, letters) climb this ladder.\nEach extra guest multiplies the arrangements by one more — party planning as rocket science.\nShare this: ask how many ways 5 books fit on a shelf and reveal 120.",
+      "forgeId": "batch-008#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "The Clock Sequence",
+      "question": "Which time follows?\n12:15, 12:30, 12:45, ?",
+      "choices": [
+        "12:50",
+        "1:00",
+        "12:60",
+        "1:15"
+      ],
+      "correctAnswer": "1:00",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — quarter-hour steps: fifteen more minutes reaches 1:00.",
+      "incorrectExplanation": "The answer is 1:00. The step is fifteen minutes, and 12:45 plus a quarter-hour rolls over to 1:00. Clock arithmetic wraps at 60 and 12 — the puzzle hides in knowing the wrap-around, not the addition.",
+      "lessonContent": "Clock arithmetic is addition on a circle — numbers wrap instead of growing.\nModular arithmetic is its mathematical name, and it secures your messages daily.\nWrapping rules: minutes mod 60, hours mod 12 or 24.\nThe 'carry' that confuses beginners is the whole point of the system.\nShare this: ask someone what 90 minutes after 12:50 is, and watch the wrap work.",
+      "forgeId": "batch-008#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Month Pattern",
+      "question": "Which month follows?\nJanuary, March, May, July, ?",
+      "choices": [
+        "August",
+        "September",
+        "October",
+        "November"
+      ],
+      "correctAnswer": "September",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — every second month: the list walks odd-numbered months, so September follows July.",
+      "incorrectExplanation": "The answer is September. The sequence takes alternate calendar months — January (1), March (3), May (5), July (7) — and the next odd-numbered month is September. Verbal sequences obey arithmetic too.",
+      "lessonContent": "Word sequences often reduce to number sequences once you assign positions.\nAlternating-month lists are simply odd numbers dressed as names.\nConversion is the master move: label, then compute.\nCalendars themselves are modular arithmetic on a year-cycle.\nShare this: recite every third month from January and let someone guess the rule.",
+      "forgeId": "batch-008#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Square Alternator",
+      "question": "Which number follows the skip?\n1, 2, 4, 5, 7, 8, ?",
+      "choices": [
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "correctAnswer": "10",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — the list skips every third number: +1, +1, then +2, repeating; 8 + 2 = 10.",
+      "incorrectExplanation": "The answer is 10. The steps alternate +1, +1, +2 — skipping exactly one number after every pair — so after 7, 8 comes the jump over 9 to 10. Elevator floors that skip level 13 follow the same shape.",
+      "lessonContent": "Skip-patterns alternate step sizes in a repeating cycle — find the cycle, extend it.\nElevator panels, street numbers and hotel floors all hide skips with reasons.\nRemoving items from an arithmetic list creates a new, explainable list.\nFind the repeating step-pattern before assuming a formula.\nShare this: find one skip in your own building's floor numbers and explain it.",
+      "forgeId": "batch-008#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Repeating Block",
+      "question": "Which number continues the cycle?\n5, 6, 7, 5, 6, 7, 5, ?",
+      "choices": [
+        "7",
+        "6",
+        "5",
+        "8"
+      ],
+      "correctAnswer": "6",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — the block 5, 6, 7 repeats; after restarting at 5 comes 6.",
+      "incorrectExplanation": "The answer is 6. The sequence cycles through the same three-number block, and the last shown term restarted the cycle at 5 — so its successor is 6. Repetition is a rule too, and a legitimate one.",
+      "lessonContent": "Cyclic sequences repeat a fixed block — the pattern is the block, not any growth.\nMusic, seasons and calendar weeks are all cyclic sequences.\nTesting for repetition belongs in every solver's first three checks.\nCycles are the sequence version of modular arithmetic.\nShare this: tap out a four-beat rhythm and ask for beat eleven.",
+      "forgeId": "batch-008#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Difference Dive",
+      "question": "Which number comes next in the descent?\n100, 92, 85, 79, 74, ?",
+      "choices": [
+        "69",
+        "70",
+        "71",
+        "68"
+      ],
+      "correctAnswer": "70",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — the subtractions shrink by one: −8, −7, −6, −5, then −4 gives 70.",
+      "incorrectExplanation": "The answer is 70. The gaps between terms shrink steadily — 8, 7, 6, 5 — so the next gap is 4, and 74 − 4 = 70. Descending with easing steps is the mirror of growing triangle numbers.",
+      "lessonContent": "Easing-off sequences subtract less each time — the gaps themselves shrink by one.\nIt is the triangle-number pattern reflected into subtraction.\nPlot the terms and the curve visibly flattens — a deceleration signature.\nReal physics decelerates this way when drag grows with speed.\nShare this: drop from 50 by 5, then 4, then 3 aloud and let someone call the floor.",
+      "forgeId": "batch-008#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Cube Line",
+      "question": "Complete the cubic climb:\n1, 8, 27, 64, ?",
+      "choices": [
+        "81",
+        "100",
+        "125",
+        "144"
+      ],
+      "correctAnswer": "125",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — these are perfect cubes: 4³ is 64, so 5³ = 125.",
+      "incorrectExplanation": "The answer is 125. The terms are 1×1×1, 2×2×2, 3×3×3, 4×4×4 — cubes — and the next is 5×5×5. Cubes grow faster than squares; their gaps jump by growing odd-number strides.",
+      "lessonContent": "Cubes multiply a number by itself twice — growth steeper than squares.\nCube gaps grow in strides that themselves grow — the fingerprint to memorize.\nVolume is cubic: doubling a box's side makes eight times the volume.\nThat volume law is why shipping costs surprise people.\nShare this: double a recipe's pan size and predict the new volume before checking.",
+      "forgeId": "batch-008#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Vowel Skipper",
+      "question": "Which letter follows the rule?\nB, D, F, H, ?",
+      "choices": [
+        "I",
+        "J",
+        "K",
+        "L"
+      ],
+      "correctAnswer": "J",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — consonants in order: after H, skipping vowel I, comes J.",
+      "incorrectExplanation": "The answer is J. The list walks the alphabet while skipping every vowel — B, D, F, H — and the next consonant after H is J, since I is a vowel. Two rules stack: advance one letter, but never land on a vowel.",
+      "lessonContent": "Stacked rules — advance plus a constraint — create hybrid sequences.\nThe vowel filter turns simple counting into a filtered walk.\nFiltering a simple pattern is a common way puzzles manufacture novelty.\nProgramming loops work identically: count, then filter.\nShare this: recite the alphabet skipping vowels faster than a friend can type it.",
+      "forgeId": "batch-008#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Sum of Digits",
+      "question": "Which number continues the hidden rule?\n13, 20, 22, 31, ?",
+      "choices": [
+        "33",
+        "40",
+        "35",
+        "24"
+      ],
+      "correctAnswer": "40",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — every term's digits sum to 4 (1+3, 2+0, 2+2, 3+1); next with digit-sum 4 is 40.",
+      "incorrectExplanation": "The answer is 40. Each number’s digits add to exactly 4: 13 (1+3), 20 (2+0), 22 (2+2), 31 (3+1) — and 40 (4+0) continues the rule, while 33 sums to 6.",
+      "lessonContent": "Digit-sum rules hide in plain sight — the property lives inside each term, not between them.\nChecking within-term properties (digit sums, parity, primeness) is the second toolkit.\nThis rule is the basis of the famous 'divisible by 3' test.\nCasting out nines — an old accountant's checksum — runs on digit sums.\nShare this: ask someone to continue 13, 22, 31, 40 without revealing the rule.",
+      "forgeId": "batch-008#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Reverse Count",
+      "question": "Which number follows the double descent?\n98, 87, 76, 65, ?",
+      "choices": [
+        "54",
+        "45",
+        "56",
+        "43"
+      ],
+      "correctAnswer": "54",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — each term's digits drop by one: 9-8, 8-7, 7-6, 6-5, then 5-4.",
+      "incorrectExplanation": "The answer is 54. Tens digit and units digit each fall by one every step — 98, 87, 76, 65 — so the next is 54. The sequence is really two parallel descents wearing one number.",
+      "lessonContent": "Multi-digit sequences can run one rule per digit column — parallel tracks in one numeral.\nSplitting a number into tracks reveals patterns arithmetic alone hides.\nDigital clocks, odometers and counters all run parallel digit tracks.\nWhen whole-number rules fail, dissect the columns.\nShare this: continue 91, 82, 73 aloud and let someone name the rule.",
+      "forgeId": "batch-008#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Alternating Steps",
+      "question": "Which number continues the zigzag?\n1, 4, 2, 5, 3, 6, ?",
+      "choices": [
+        "4",
+        "7",
+        "5",
+        "8"
+      ],
+      "correctAnswer": "4",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right — two threads alternate: 1, 2, 3… counting up, and 4, 5, 6… counting up; the odd thread resumes with 4.",
+      "incorrectExplanation": "The answer is 4. The odd positions count 1, 2, 3 and the even positions count 4, 5, 6 — two climbing threads taking turns, so position seven continues the first thread at 4.",
+      "lessonContent": "Two climbing threads alternating produce zigzag sequences — unweave before judging.\nZigzags look chaotic until split by position parity.\nThe technique generalizes: any suspicious list, split, then re-examine.\nMusic counterpoint runs multiple melodies exactly this way.\nShare this: build your own two-thread zigzag and let a friend unweave it.",
+      "forgeId": "batch-008#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "easy",
+      "title": "Growing Gaps",
+      "question": "Which number completes the spread?\n5, 6, 9, 14, 21, ?",
+      "choices": [
+        "28",
+        "30",
+        "31",
+        "32"
+      ],
+      "correctAnswer": "30",
+      "xpReward": 10,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly — the gaps grow by two: +1, +3, +5, +7, then +9 gives 30.",
+      "incorrectExplanation": "The answer is 30. The differences climb through the odd numbers — 1, 3, 5, 7 — so the next gap is 9, and 21 + 9 = 30. Odd-number gaps are the signature of squares hiding underneath.",
+      "lessonContent": "Odd-numbered gaps are the shadow of square numbers — add them and squares emerge.\n5 + 1 + 3 + 5 + 7… builds a parabola of terms.\nGap analysis converts mystery into bookkeeping.\nRecognizing signatures (odd gaps, gap-of-gap of 2) is the speed skill.\nShare this: give someone 3, 4, 7, 12 and watch them find the odd ladder.",
+      "forgeId": "batch-008#24",
+      "forgeScore": 100
+    }
+  ]
+}

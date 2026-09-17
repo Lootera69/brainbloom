@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-132",
+  "generatedAt": "2026-09-17T13:27:43.971Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Inedible Menu",
+      "question": "Korzybski's dictum: the map is not the territory — a menu describes but never nourishes. Diners confusing glowing reviews with good meals commit what error?",
+      "choices": [
+        "Healthy skepticism",
+        "Careful budgeting",
+        "Mistaking representation for reality",
+        "Reading too quickly"
+      ],
+      "correctAnswer": "Mistaking representation for reality",
+      "xpReward": 50,
+      "correctExplanation": "Mistaking representation for reality — reviews map meals; maps never nourish. Every confusion of sign for thing repeats the diner's error.",
+      "incorrectExplanation": "Not quite — the answer is mistaking representation for reality. Skepticism, budgets, and speed miss it: glowing text is a map, dinner the territory. Menus describe; only kitchens deliver.",
+      "lessonContent": "Menus describe; kitchens alone deliver.\nSigns never nourish, however glowing.\nRepresentation differs from reality structurally.\nConfusing them is the primal error.\nShare this: eat one meal unreviewed.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#0",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Solid Abstraction",
+      "question": "'The economy demands sacrifice' — as if Economy were a beast with appetites. Treating abstract nouns as concrete agents has a name. What is it?",
+      "choices": [
+        "Reification",
+        "Verification",
+        "Falsification",
+        "Quantification"
+      ],
+      "correctAnswer": "Reification",
+      "xpReward": 50,
+      "correctExplanation": "Reification — thingifying abstractions: economies demand, markets punish, societies decide. Agents invented by grammar rule sentences.",
+      "incorrectExplanation": "Actually, the answer is reification. Verification tests, falsification refutes, quantification counts — none make nouns into beasts. Abstractions govern sentences only when mistaken for agents.",
+      "lessonContent": "Nouns need not name agents to rule sentences.\nAbstractions govern only when mistaken.\nBeasts invented by grammar demand sacrifices.\nDe-agentify nouns before obeying them.\nShare this: unmake one noun-beast today.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Growing Number",
+      "question": "GDP climbs while life satisfaction flatlines, rivers sicken, and leisure shrinks. As a map of national wellbeing, what does GDP omit?",
+      "choices": [
+        "Everything that matters beyond market transactions",
+        "The exact inflation rate",
+        "Foreign exchange reserves",
+        "Military spending totals"
+      ],
+      "correctAnswer": "Everything that matters beyond market transactions",
+      "xpReward": 50,
+      "correctExplanation": "Everything beyond market transactions — unpaid care, nature, leisure, distribution: GDP maps spending, never living. Growth numbers can rise as lives thin.",
+      "incorrectExplanation": "Not quite — the answer is everything that matters beyond market transactions. Inflation, reserves, and arms miss it: the map excludes whole territories by design. Spending is counted; living is not.",
+      "lessonContent": "Spending counted differs from living measured.\nMaps exclude territories by design choices.\nGrowth numbers can rise as lives thin.\nWellbeing needs wider cartography.\nShare this: price one uncounted good.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#2",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Single Number",
+      "question": "An IQ score predicts school outcomes yet collapses memory, creativity, wisdom, and character into one integer. What does the number hide?",
+      "choices": [
+        "The multidimensionality of minds",
+        "Test-takers' shoe sizes",
+        "The price of test booklets",
+        "Examiners' handwriting"
+      ],
+      "correctAnswer": "The multidimensionality of minds",
+      "xpReward": 50,
+      "correctExplanation": "Multidimensionality — one integer compresses many faculties: collapse loses the shape. Scores rank; they never describe.",
+      "incorrectExplanation": "Actually, the answer is the multidimensionality of minds. Shoes, prices, and handwriting miss it: compression discards structure. Rankings predict crudely while misdescribing finely.",
+      "lessonContent": "Compression discards structure always.\nIntegers rank; they never describe.\nFaculties pluralize beyond single scores.\nPredictive crudity differs from faithful portrait.\nShare this: describe one mind multidimensionally.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Trust Score",
+      "question": "Lenders reduce a life to three digits; landlords and employers follow. What does a credit score actually measure?",
+      "choices": [
+        "Personal worth as a human",
+        "Moral character deeply",
+        "Future destiny reliably",
+        "Repayment history, narrowly"
+      ],
+      "correctAnswer": "Repayment history, narrowly",
+      "xpReward": 50,
+      "correctExplanation": "Repayment history, narrowly — past debts serviced, nothing about worth, character, or fate. Three digits map one trail, not the traveler.",
+      "incorrectExplanation": "Not quite — the answer is repayment history, narrowly. Worth, character, and destiny miss it: the file records transactions, never souls. Trails mapped; travelers mistaken.",
+      "lessonContent": "Files record transactions, never souls.\nTrails mapped differ from travelers judged.\nThree digits narrow a life to debts.\nWorth exceeds every scoring system.\nShare this: separate one score from one soul.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Graded Ghost",
+      "question": "Straight-A transcripts can accompany hollow understanding when schooling optimizes marks over mastery. What have grades become?",
+      "choices": [
+        "Perfect measures of learning",
+        "A map mistaken for the territory",
+        "Random lottery outcomes",
+        "Bribes paid to teachers"
+      ],
+      "correctAnswer": "A map mistaken for the territory",
+      "xpReward": 50,
+      "correctExplanation": "A map mistaken for territory — marks signal learning the way smoke signals fire, until schooling manufactures smokeless marks. Optimized signals decouple.",
+      "incorrectExplanation": "Actually, the answer is a map mistaken for the territory. Perfection, randomness, and bribery miss it: grades map mastery until systems optimize the map itself. Hollow transcripts are Goodhart graduates.",
+      "lessonContent": "Optimized signals decouple from sources.\nSmoke manufactured without fire fools all.\nMastery differs from its markers.\nSystems teach to maps, not territories.\nShare this: learn one thing ungraded.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Useful Lie",
+      "question": "Statistician Box wrote that all models are wrong but some are useful. What distinguishes a useful model from a worshipped one?",
+      "choices": [
+        "Perfect accuracy always",
+        "Held lightly as a tool, not a truth",
+        "Peer-reviewed publication",
+        "Complex mathematics inside"
+      ],
+      "correctAnswer": "Held lightly as a tool, not a truth",
+      "xpReward": 50,
+      "correctExplanation": "Held lightly as tool — usefulness lives in provisional grip: predictions checked, limits known. Worshipped models graduate from instruments to idols.",
+      "incorrectExplanation": "Not quite — the answer is held lightly as a tool, not a truth. Accuracy, journals, and math miss it: grip style decides. Tools questioned serve; truths worshipped rule.",
+      "lessonContent": "Grip style decides model fate entirely.\nProvisional holds serve; worship rules.\nLimits known keep tools honest.\nIdols graduate from unquestioned tools.\nShare this: hold one model lightly.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Selected World",
+      "question": "News shows fires, not uneventful days; murders, not peaceful millions. Heavy viewers overestimate danger systematically. What does the news map omit?",
+      "choices": [
+        "Advertisements between segments",
+        "Weather forecasts",
+        "The uneventful normal majority",
+        "Sports scores"
+      ],
+      "correctAnswer": "The uneventful normal majority",
+      "xpReward": 50,
+      "correctExplanation": "The uneventful normal majority — newsworthiness filters for rarity, so maps invert frequencies. Viewers inhabit a world of exceptions.",
+      "incorrectExplanation": "Actually, the answer is the uneventful normal majority. Ads, weather, and scores miss it: selection for novelty makes maps lie by omission. Peaceful millions never trend.",
+      "lessonContent": "Novelty filters invert frequencies reliably.\nException-maps pose as world-maps daily.\nPeaceful majorities never trend anywhere.\nOmission lies louder than commission.\nShare this: notice one uneventful day.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#7",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Polled Ghost",
+      "question": "Pre-election models showed comfortable leads that evaporated on voting day — twice in recent memory. What did the polls map instead of the electorate?",
+      "choices": [
+        "Likely voters perfectly",
+        "The true future exactly",
+        "Vote counts in advance",
+        "Stated intentions of the reachable"
+      ],
+      "correctAnswer": "Stated intentions of the reachable",
+      "xpReward": 50,
+      "correctExplanation": "Stated intentions of the reachable — respondents who answer differ from electorates who vote. Maps of the willing misread the silent.",
+      "incorrectExplanation": "Not quite — the answer is stated intentions of the reachable. Perfection, futures, and counts miss it: nonresponse and shy voters redraw maps after publication. Reachable differs from representative.",
+      "lessonContent": "Reachable differs from representative sharply.\nSilent voters redraw published maps.\nIntentions stated wobble before voting.\nWilling respondents mislead modelers.\nShare this: distrust one comfortable lead.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Gaussian Idol",
+      "question": "Before 2008, banks priced mortgage risk with a Gaussian copula assuming stable correlations. When correlations spiked together, what failed?",
+      "choices": [
+        "Mathematics itself broke",
+        "The map worshipped as territory",
+        "Computers ran too slowly",
+        "Regulators read too carefully"
+      ],
+      "correctAnswer": "The map worshipped as territory",
+      "xpReward": 50,
+      "correctExplanation": "The worshipped map — copula outputs guided trillions while assuming away the crisis state. Models held lightly hedge; models worshipped detonate.",
+      "incorrectExplanation": "Actually, the answer is the map worshipped as territory. Math, machines, and readers miss it: the formula worked until the unmodeled regime arrived. Idols detonate precisely because altars forbid doubt.",
+      "lessonContent": "Unmodeled regimes detonate worshipped maps.\nAltars forbid the doubt models need.\nTrillions followed one formula's idolatry.\nHedge models; never kneel to them.\nShare this: doubt one formula's reign.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Target Curse",
+      "question": "Goodhart's law: when a measure becomes a target, it ceases to be a good measure. Why do targeted metrics rot?",
+      "choices": [
+        "People misunderstand arithmetic",
+        "Numbers expire after one year",
+        "Behavior optimizes the metric, not the goal",
+        "Statisticians retire early"
+      ],
+      "correctAnswer": "Behavior optimizes the metric, not the goal",
+      "xpReward": 50,
+      "correctExplanation": "Behavior optimizes metrics, not goals — effort flows to measured surfaces while purposes drain beneath. Targets redirect work from ends to indicators.",
+      "incorrectExplanation": "Not quite — the answer is behavior optimizes the metric, not the goal. Arithmetic, expiry, and retirement miss it: incentives reshape action around what's counted. Measured surfaces shine; purposes rot.",
+      "lessonContent": "Incentives reshape action around counts.\nSurfaces shine while purposes rot beneath.\nTargets redirect work from ends.\nMetrics rot the moment they're crowned.\nShare this: spot one rotted metric.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Tested Corruption",
+      "question": "Campbell's law: high-stakes testing corrupts both teaching and the test's own validity. What mechanism rots both?",
+      "choices": [
+        "Students studying too diligently",
+        "Teaching to the test plus gaming its edges",
+        "Textbooks growing too heavy",
+        "Classrooms painted wrong colors"
+      ],
+      "correctAnswer": "Teaching to the test plus gaming its edges",
+      "xpReward": 50,
+      "correctExplanation": "Teaching-to-test plus gaming — stakes redirect instruction to tested slivers while scores inflate past learning. Both education and measurement decay together.",
+      "incorrectExplanation": "Actually, the answer is teaching to the test plus gaming its edges. Diligence, weight, and paint miss it: stakes make scores the curriculum and tricks the pedagogy. Validity dies of its own importance.",
+      "lessonContent": "Stakes make scores the curriculum.\nTricks become pedagogy under pressure.\nValidity dies of its own importance.\nSlivers taught; wholes abandoned.\nShare this: teach one untested thing.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#11",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Bred Cobra",
+      "question": "Colonial Delhi paid per dead cobra; enterprising Indians began breeding cobras for the bounty. When the program ended, breeders freed their stock. What lesson slithers here?",
+      "choices": [
+        "Incentives reshape the measured behavior",
+        "Bounties always work perfectly",
+        "Snakes understand economics",
+        "Officials count flawlessly"
+      ],
+      "correctAnswer": "Incentives reshape the measured behavior",
+      "xpReward": 50,
+      "correctExplanation": "Incentives reshape measured behavior — pay per cobra, get cobra farms. Metrics manufacture the phenomena they price.",
+      "incorrectExplanation": "Not quite — the answer is incentives reshape the measured behavior. Perfect bounties, economic snakes, and flawless counts miss it: payment created supply. Measured worlds respond to measurement.",
+      "lessonContent": "Payment creates supply it meant to destroy.\nMeasured worlds respond to measurement.\nBounties breed what they price.\nEffects invert intentions reliably.\nShare this: spot one cobra effect.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Nail Weights",
+      "question": "A Soviet nail factory rewarded by tonnage produced giant useless nails; rewarded by count, millions of tiny ones. Twice measured, twice absurd. What failed both times?",
+      "choices": [
+        "Heavier hammers",
+        "Better steel alloys",
+        "Stricter managers",
+        "The metric, twice gamed"
+      ],
+      "correctAnswer": "The metric, twice gamed",
+      "xpReward": 50,
+      "correctExplanation": "The metric, twice gamed — weight begat monsters, count begat pins. Every measure grows its own absurdity under pressure.",
+      "incorrectExplanation": "Actually, the answer is the metric, twice gamed. Hammers, alloys, and managers miss it: tonnage and tally each optimized brilliantly past usefulness. Measures fail symmetrically when crowned.",
+      "lessonContent": "Every measure grows its absurdity.\nWeight begat monsters; count begat pins.\nOptimization overshoots usefulness reliably.\nCrowned metrics fail symmetrically.\nShare this: game one metric mentally.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#13",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Sixteen Boxes",
+      "question": "Millions sort into sixteen types by questionnaire, then treat four letters as essences in hiring and dating. Tests with shaky reliability become destinies. What error is this?",
+      "choices": [
+        "Useful self-reflection",
+        "Reifying shaky types into essences",
+        "The cost of the test",
+        "The test's pretty colors"
+      ],
+      "correctAnswer": "Reifying shaky types into essences",
+      "xpReward": 50,
+      "correctExplanation": "Reifying shaky types — unreliable sorts hardened into identities that hire and fire. Letters describe moods; boxes decide fates.",
+      "incorrectExplanation": "Not quite — the answer is reifying shaky types into essences. Reflection, cost, and colors miss it: modest test-retest reliability cannot bear destiny-weight. Sort lightly; never sentence by letters.",
+      "lessonContent": "Unreliable sorts cannot bear destinies.\nLetters describe moods, never essences.\nHiring by horoscope wears lab coats here.\nSort lightly; sentence never.\nShare this: unbox one typed friend.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#14",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Nobody Average",
+      "question": "Quetelet's 'average man' — average height, weight, chest, habits — describes literally nobody: no individual is average on every trait. What fallacy crowns the mean?",
+      "choices": [
+        "Averaging is always wrong",
+        "Ignoring sample sizes",
+        "Reifying the average person",
+        "Hating statistics"
+      ],
+      "correctAnswer": "Reifying the average person",
+      "xpReward": 50,
+      "correctExplanation": "Reifying the average person — means describe populations, never persons. Designing for nobody fits everybody poorly.",
+      "incorrectExplanation": "Actually, the answer is reifying the average person. Wrongness, samples, and hatred miss it: averages are real statistics about unreal people. Cockpits built for means fit no pilot.",
+      "lessonContent": "Means describe populations, never persons.\nNobody lives at every average.\nUnreal people wear real statistics.\nDesign for ranges, never means.\nShare this: un-average one design.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#15",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Ruled Lines",
+      "question": "Straight colonial borders sliced peoples and ecosystems on distant desks; then the lines hardened into destinies, wars, and identities. What did the map impose?",
+      "choices": [
+        "Lines lived as fate",
+        "Improved cartography",
+        "Accurate rainfall maps",
+        "Faster mail delivery"
+      ],
+      "correctAnswer": "Lines lived as fate",
+      "xpReward": 50,
+      "correctExplanation": "Lines lived as fate — desk-drawn borders became blood-drawn destinies. Maps precede territories they claim to follow.",
+      "incorrectExplanation": "Not quite — the answer is lines lived as fate. Cartography, rain, and mail miss it: rulers' pens authored nations' fortunes. Drawn lines harden into lived worlds.",
+      "lessonContent": "Pens author fortunes from desks afar.\nDrawn lines harden into lived worlds.\nMaps precede territories they claim.\nBorders birth identities they ignore.\nShare this: trace one line's victims.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#16",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Clocked Eternity",
+      "question": "Clock time ticks evenly; lived duration stretches in boredom and vanishes in joy — an hour of queuing outlasts an evening of love. What does the clock miss?",
+      "choices": [
+        "Battery chemistry",
+        "Gear ratios",
+        "Pendulum physics",
+        "Lived temporal texture"
+      ],
+      "correctAnswer": "Lived temporal texture",
+      "xpReward": 50,
+      "correctExplanation": "Lived temporal texture — clocks map succession, never savoring. Even ticks measure uneven lives poorly.",
+      "incorrectExplanation": "Actually, the answer is lived temporal texture. Chemistry, ratios, and physics miss it: measurement tracks succession while experience textures duration. Queues eternize; loves evaporate — clocks note neither.",
+      "lessonContent": "Succession tracked differs from duration lived.\nEven ticks measure uneven lives poorly.\nSavoring escapes all escapements.\nTexture exceeds every timepiece.\nShare this: feel one unclocked hour.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Unsaid Thing",
+      "question": "Korzybski insisted: whatever you say a thing is, it isn't — words abstract, select, freeze, and leave oceans out. What escapes every label?",
+      "choices": [
+        "The ink used",
+        "The unsaid remainder of the thing",
+        "Dictionary page numbers",
+        "Other languages"
+      ],
+      "correctAnswer": "The unsaid remainder of the thing",
+      "xpReward": 50,
+      "correctExplanation": "The unsaid remainder — labels select slivers; things exceed selections infinitely. Saying captures slices, never wholes.",
+      "incorrectExplanation": "Not quite — the answer is the unsaid remainder of the thing. Ink, pages, and tongues miss it: abstraction discards by definition. Wholes overflow every word poured over them.",
+      "lessonContent": "Wholes overflow words poured over them.\nAbstraction discards by definition always.\nSlices captured differ from wholes kept.\nLabels leave oceans outside.\nShare this: unsay one thing fully.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#18",
+      "forgeScore": 76
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Priced Lake",
+      "question": "Prices signal scarcity and demand; worth lives elsewhere — a priceless lake sells for picnic fees while addiction trades dearly. What does price map poorly?",
+      "choices": [
+        "Weight in kilograms",
+        "Color wavelengths",
+        "True human value",
+        "Barcode formats"
+      ],
+      "correctAnswer": "True human value",
+      "xpReward": 50,
+      "correctExplanation": "True human value — prices track tradability, never worth. Lakes priceless, poisons pricey: signals diverge from goods.",
+      "incorrectExplanation": "Actually, the answer is true human value. Kilograms, wavelengths, and barcodes miss it: markets price exchange, not importance. Dear poisons and cheap lakes prove the divergence.",
+      "lessonContent": "Tradability differs from importance structurally.\nSignals diverge from goods they price.\nLakes priceless, poisons dear: markets map exchange.\nWorth exceeds every ticker.\nShare this: price one priceless thing.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Verbose Code",
+      "question": "Managers rewarding lines of code get sprawling programs; the finest engineers delete code daily. Output metrics miss quality entirely. What rots under counting?",
+      "choices": [
+        "The metric, gamed into verbosity",
+        "Keyboards wearing out",
+        "Monitors dimming",
+        "Coffee consumption"
+      ],
+      "correctAnswer": "The metric, gamed into verbosity",
+      "xpReward": 50,
+      "correctExplanation": "The metric gamed into verbosity — counted lines multiply, elegance dies. Deletion, the highest art, scores zero.",
+      "incorrectExplanation": "Not quite — the answer is the metric, gamed into verbosity. Hardware and beverages miss it: rewarding volume punishes concision. Best code is written by erasing.",
+      "lessonContent": "Volume rewards punish concision directly.\nDeletion scores zero yet matters most.\nCounted lines multiply; elegance dies.\nErasure is engineering's highest art.\nShare this: delete ten lines proudly.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Cited Circle",
+      "question": "Hiring by h-index rewards citation cartels, review mills, and salami slicing over discovery. What degrades when citations become currency?",
+      "choices": [
+        "Paper quality of journals",
+        "Library shelving",
+        "Peer review speed",
+        "The indicator, gamed past meaning"
+      ],
+      "correctAnswer": "The indicator, gamed past meaning",
+      "xpReward": 50,
+      "correctExplanation": "The indicator gamed past meaning — cartels trade citations like currency, mills mint reviews. Discovery uncounted loses funding.",
+      "incorrectExplanation": "Actually, the answer is the indicator, gamed past meaning. Paper, shelves, and speed miss it: currency corrupts what it measures. Science optimized for scores stops optimizing for truth.",
+      "lessonContent": "Currency corrupts whatever it measures.\nCartels trade citations like coin.\nScores optimized displace truth sought.\nDiscovery uncounted loses funding.\nShare this: read one uncited gem.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#21",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Lattice Mind",
+      "question": "Munger prescribes a latticework of models — psychology, mathematics, biology — because single models blind their devotees. What cures model monogamy?",
+      "choices": [
+        "Bigger computers",
+        "Longer equations",
+        "Louder experts",
+        "Multiple overlapping models"
+      ],
+      "correctAnswer": "Multiple overlapping models",
+      "xpReward": 50,
+      "correctExplanation": "Multiple overlapping models — lattices catch what single lenses miss. Monogamy with one model is intellectual celibacy from reality.",
+      "incorrectExplanation": "Not quite — the answer is multiple overlapping models. Computers, equations, and experts miss it: breadth of lenses, not power of one. Devotees of single models marry maps.",
+      "lessonContent": "Lattices catch what lenses miss.\nBreadth beats power in modeling.\nMonogamy with maps blinds devotees.\nOverlap models to triangulate truth.\nShare this: wed two models today.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#22",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Committee Clusters",
+      "question": "DSM categories describe symptom clusters by committee vote, revised with each edition. Unlike broken bones, they name no found essences. What are these labels?",
+      "choices": [
+        "Discovered natural essences",
+        "Brain photographs",
+        "Working maps, not territories",
+        "Divine revelations"
+      ],
+      "correctAnswer": "Working maps, not territories",
+      "xpReward": 50,
+      "correctExplanation": "Working maps — descriptive clusters voted into manuals, useful yet revisable. Territories of suffering exceed every edition's cartography.",
+      "incorrectExplanation": "Actually, the answer is working maps, not territories. Essences, photos, and revelations miss it: committees describe, they don't discover. Manuals guide treatment while mistaking nothing for essence.",
+      "lessonContent": "Committees describe; they never discover.\nClusters guide treatment usefully.\nEditions revise what essences wouldn't.\nMaps help while territories exceed.\nShare this: hold one label lightly.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Clinal Truth",
+      "question": "Human genetic variation runs clinal — gradual across geography, with more diversity within Africa than in all the rest combined. What does this imply about discrete races?",
+      "choices": [
+        "They map poorly onto biology",
+        "They predict disease perfectly",
+        "They determine culture fully",
+        "They trace pure bloodlines"
+      ],
+      "correctAnswer": "They map poorly onto biology",
+      "xpReward": 50,
+      "correctExplanation": "They map poorly onto biology — clines know no borders: variation flows gradually, diversity peaks at the origin. Social reality, biological fiction.",
+      "incorrectExplanation": "Not quite — the answer is they map poorly onto biology. Prediction, culture, and bloodlines miss it: gradients defy boxes. Races are lived socially, unmapped genetically.",
+      "lessonContent": "Gradients defy boxes completely.\nClines know no borders ever.\nSocial reality, biological fiction: both true.\nDiversity peaks at human origins.\nShare this: unbox one spectrum today.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-132#24",
+      "forgeScore": 100
+    }
+  ]
+}

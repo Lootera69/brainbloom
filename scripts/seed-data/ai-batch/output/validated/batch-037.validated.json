@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-037",
+  "generatedAt": "2026-09-17T13:27:41.836Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Stormed Concert",
+      "question": "A cellist's outdoor concert is cancelled by a sudden storm. She could not prevent the weather, but still wants to respond without pretending the loss is trivial. Which response best applies the dichotomy of control?",
+      "choices": [
+        "Acknowledge the disappointment, then choose whether to reschedule or stream",
+        "Suppress the disappointment because weather should never affect inner life",
+        "Blame the organizers until they can guarantee clear weather next time",
+        "Abandon outdoor performances because uncertain outcomes are irrational"
+      ],
+      "correctAnswer": "Acknowledge the disappointment, then choose whether to reschedule or stream",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. The storm and the first emotional impact arrived unchosen; her considered response and next action remain hers to direct.",
+      "incorrectExplanation": "Not quite - the best response is to acknowledge the disappointment, then choose whether to reschedule or stream. The discipline separates agency from outcome without requiring numbness, blame, or retreat from every uncertain project.",
+      "lessonContent": "The dichotomy of control separates what answers to your agency from what does not.\nInitial feelings can arise uninvited; reflection determines what you endorse and do next.\nAcceptance means seeing constraints accurately, not approving of every event.\nUseful attention returns from the uncontrollable condition to the available response.\nShare this: name one disappointment today, then write one action still available within it.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-037#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Before the Boardroom",
+      "question": "Before a crucial presentation, Omar wants to control whether the executives approve his proposal. Which target would preserve ambition while putting effort where it can actually operate?",
+      "choices": [
+        "Making every executive interpret the evidence exactly as he does",
+        "Preparing a clear case, answering honestly, and accepting their verdict",
+        "Lowering the proposal's quality so rejection will hurt less afterward",
+        "Predicting the vote perfectly before deciding whether to present"
+      ],
+      "correctAnswer": "Preparing a clear case, answering honestly, and accepting their verdict",
+      "xpReward": 50,
+      "correctExplanation": "Right. He can govern the quality and integrity of his contribution, not other minds or the final vote.",
+      "incorrectExplanation": "Actually, the sound target is preparing a clear case, answering honestly, and accepting their verdict. Ambition survives, but success is defined first by excellent action rather than possession of someone else's judgement.",
+      "lessonContent": "Outcome goals point direction, while process commitments specify present action.\nOther people's conclusions depend on histories and incentives outside one speaker's command.\nExcellence remains demanding even when approval is not guaranteed.\nAttaching self-command to conduct reduces both manipulation and helplessness.\nShare this: convert one approval goal into three behaviours you can perform before asking for a decision.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-037#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Unwanted Result",
+      "question": "Leena receives a serious diagnosis. A friend says, 'It is outside your control, so doing anything is pointless.' Which reply best exposes the mistake?",
+      "choices": [
+        "The diagnosis becomes controllable once she thinks positively enough",
+        "Medical outcomes are fixed, so treatment only creates false hope",
+        "The condition is given, but seeking care and following treatment remain choices",
+        "Acceptance requires treating the diagnosis as emotionally insignificant"
+      ],
+      "correctAnswer": "The condition is given, but seeking care and following treatment remain choices",
+      "xpReward": 50,
+      "correctExplanation": "Correct. An uncontrollable fact can radically change the field of action without erasing action inside that field.",
+      "incorrectExplanation": "Close! The condition is given, but seeking care and following treatment remain choices. The dichotomy rejects magical control over illness and fatalistic surrender in equal measure.",
+      "lessonContent": "A constraint can be outside agency while decisions within it remain consequential.\nControl is not the same as influence: treatment may improve odds without guaranteeing results.\nFatalism wrongly moves available actions into the unavailable category.\nRealistic agency asks what can be attempted under present conditions.\nShare this: take one fixed constraint and list two meaningful choices that still exist inside it.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-037#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "After the Layoff",
+      "question": "A firm eliminates Diego's role despite strong performance. He cannot reverse the decision, but he can choose how to interpret it. Which interpretation is most disciplined without becoming unrealistically cheerful?",
+      "choices": [
+        "A good person would have predicted and prevented the restructuring",
+        "Losing the role proves that all his earlier effort was wasted",
+        "Because the decision was external, no practical response matters now",
+        "The loss is real, while his judgement and next steps are not dictated by it"
+      ],
+      "correctAnswer": "The loss is real, while his judgement and next steps are not dictated by it",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. The event deserves an honest description, but it does not logically settle his worth or command his future conduct.",
+      "incorrectExplanation": "The answer is: the loss is real, while his judgement and next steps are not dictated by it. External events alter circumstances; the extra verdict that they define the whole person is an interpretation, not another fact.",
+      "lessonContent": "Events and judgements about events are related but not identical.\nAn accurate account names damage without turning it into a global verdict on the self.\nAgency often survives as interpretation, planning, and conduct after options narrow.\nResilience begins by refusing to let one outcome write claims it cannot support.\nShare this: rewrite one global self-judgement as a precise description of what actually happened.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-037#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Viral Critique",
+      "question": "A writer publishes careful work, then a misleading criticism spreads widely. Which plan best respects both responsibility and limited control?",
+      "choices": [
+        "Correct the record clearly, improve any genuine flaw, and release the demand to control reception",
+        "Answer every hostile account until no reader anywhere can misunderstand the work",
+        "Ignore all criticism because public reactions never contain useful information",
+        "Delete the work because reputation is wholly determined by the loudest response"
+      ],
+      "correctAnswer": "Correct the record clearly, improve any genuine flaw, and release the demand to control reception",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. She owns the accuracy and quality of her response, while the criticism's reach and each reader's reaction exceed her command.",
+      "incorrectExplanation": "Not quite - she should correct the record clearly, improve any genuine flaw, and release the demand to control reception. Limited control does not make feedback useless; it limits how far responsibility extends after a good response is made.",
+      "lessonContent": "Reputation is partly shaped by conduct but completed in other people's minds.\nEvidence from critics can be examined without surrendering judgement to them.\nResponsible correction has a stopping point; universal persuasion does not.\nBoundaries prevent accountability from expanding into impossible image management.\nShare this: draft one factual correction in three sentences, then decide where your responsibility ends.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-037#4",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Gridlocked Minutes",
+      "question": "Nora is trapped in unexpected traffic before an interview. She already left a reasonable margin. What is the strongest control-focused response now?",
+      "choices": [
+        "Insist that careful planning should have made delay impossible",
+        "Rehearse anger so the lost time receives the seriousness it deserves",
+        "Notify the interviewer, use the wait to prepare, and accept the remaining uncertainty",
+        "Conclude that punctuality never matters because roads are unpredictable"
+      ],
+      "correctAnswer": "Notify the interviewer, use the wait to prepare, and accept the remaining uncertainty",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Prior planning was hers, the jam is not, and communication plus preparation are the live choices left in the moment.",
+      "incorrectExplanation": "It's simpler than it looks: notify the interviewer, use the wait to prepare, and accept the remaining uncertainty. Good planning reduces risk but never purchases command over the road, while indifference mistakes uncertainty for irrelevance.",
+      "lessonContent": "Preparation belongs to agency even though it cannot guarantee the event prepared for.\nWhen circumstances close one path, attention should inventory the actions still live.\nAnger may signal importance, but rehearsing it rarely changes an external blockage.\nContingency planning is disciplined precisely because outcomes remain uncertain.\nShare this: choose one upcoming appointment and prepare both a margin and a backup message.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-037#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "One Ballot Cast",
+      "question": "Ishan cares deeply about an election but knows his single vote will not determine the total. Which conclusion follows from the dichotomy without collapsing into apathy?",
+      "choices": [
+        "He should vote only when polling guarantees his preferred result",
+        "He can vote and organize well while treating the collective outcome as external",
+        "He controls the result morally because sincere effort deserves victory",
+        "He should withdraw because actions matter only when outcomes are guaranteed"
+      ],
+      "correctAnswer": "He can vote and organize well while treating the collective outcome as external",
+      "xpReward": 50,
+      "correctExplanation": "Right. Civic action can express considered duty and influence a result without placing the whole result under one citizen's command.",
+      "incorrectExplanation": "The answer is that he can vote and organize well while treating the collective outcome as external. The distinction concerns ownership of action, not whether small contributions can matter inside large systems.",
+      "lessonContent": "Collective outcomes combine many independent actions and therefore belong to no single participant.\nPersonal agency can still include voting, speaking, organizing, and accepting lawful results.\nInfluence is meaningful even when it is neither exclusive nor decisive.\nDuty based on conduct avoids making ethics conditional on victory.\nShare this: take one civic concern and identify a contribution you can make without demanding control of the total.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-037#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Unaccepted Apology",
+      "question": "Mae gives a specific apology, repairs what she can, and changes the behaviour. The injured friend still refuses reconciliation. What remains Mae's responsibility?",
+      "choices": [
+        "Producing forgiveness by finding a sufficiently persuasive apology",
+        "Declaring the friend irrational so the refusal cannot cause pain",
+        "Repeating the apology until the friend becomes responsible for ending it",
+        "Maintaining the change while accepting that forgiveness belongs to the friend"
+      ],
+      "correctAnswer": "Maintaining the change while accepting that forgiveness belongs to the friend",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Maintaining the change while accepting that forgiveness belongs to the friend keeps remorse, repair, and future conduct with Mae while respecting the friend's free judgement.",
+      "incorrectExplanation": "Not quite - Mae should maintain the change while accepting that forgiveness belongs to the friend. An apology becomes coercive when it treats another person's response as a result the apologizer is owed.",
+      "lessonContent": "Repair concerns one's own truthfulness, restitution, and changed conduct.\nForgiveness is a second person's act and cannot be manufactured without undermining it.\nGood action does not create a claim to a preferred emotional response.\nAgency includes continuing reform after external validation is withheld.\nShare this: identify one repair you can make without attaching a demand for immediate absolution.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-037#7",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Changed Season",
+      "question": "An injured runner cannot compete this season. She can follow rehabilitation carefully, but recovery speed varies. Which success measure best avoids both passivity and false control?",
+      "choices": [
+        "Returning by the original date regardless of medical evidence",
+        "Feeling no frustration during rehabilitation or setbacks",
+        "Following the plan wisely and adapting effort to reliable feedback",
+        "Training harder whenever the body fails to meet the schedule"
+      ],
+      "correctAnswer": "Following the plan wisely and adapting effort to reliable feedback",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Disciplined adherence and responsive judgement are hers, while tissue healing and the calendar outcome are not fully hers.",
+      "incorrectExplanation": "Close! Success is following the plan wisely and adapting effort to reliable feedback. Forcing a date treats biology as obedient to will, while passivity would ignore the real leverage of rehabilitation.",
+      "lessonContent": "Process measures evaluate the quality of action under uncertainty.\nBodies and complex systems respond probabilistically rather than obeying intention directly.\nFeedback can change the wise action without changing the underlying commitment.\nFlexible persistence differs from both rigid force and resignation.\nShare this: replace one deadline for an uncertain recovery with a behaviour and review schedule.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-037#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Across the Table",
+      "question": "During a negotiation, Ana prepares evidence and a fair offer. The other side may still reject it for reasons she cannot inspect. Which strategy is most coherent?",
+      "choices": [
+        "Set a principled offer and walk-away point, then let the reply be theirs",
+        "Keep conceding until rejection is no longer psychologically possible",
+        "Avoid making an offer because uncertainty would make preparation wasted",
+        "Treat any refusal as proof that her reasoning was defective"
+      ],
+      "correctAnswer": "Set a principled offer and walk-away point, then let the reply be theirs",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. She can define her reasoning, terms, and boundaries without claiming command over the counterparty's interests or decision.",
+      "incorrectExplanation": "The answer is to set a principled offer and walk-away point, then let the reply be theirs. Endless concession tries to buy control of another will; refusal alone does not show the original offer lacked merit.",
+      "lessonContent": "Negotiation joins two centres of agency; neither owns the other's consent.\nClear boundaries translate values into actions before pressure escalates.\nA rejected proposal can remain reasonable because acceptance depends on another interest set.\nPreparation is valuable when it improves judgement, not only when it secures agreement.\nShare this: write your preferred terms and walk-away point before your next negotiation.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-037#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Grief Without Command",
+      "question": "After a bereavement, Pavel says Stoic control means he should be able to stop grieving immediately. Which correction is most accurate?",
+      "choices": [
+        "He controls grief completely but needs stronger concentration",
+        "He should avoid every reminder until the feeling disappears",
+        "He should reinterpret the loss as beneficial to prevent sadness",
+        "He need not choose the first feeling, but he can choose how to carry and express it"
+      ],
+      "correctAnswer": "He need not choose the first feeling, but he can choose how to carry and express it",
+      "xpReward": 50,
+      "correctExplanation": "Right. Emotional impressions arrive; agency concerns the judgements, habits, and actions built around them, not instant emotional anesthesia.",
+      "incorrectExplanation": "Actually, he need not choose the first feeling, but he can choose how to carry and express it. Treating grief as a voluntary switch adds self-accusation to loss and mistakes discipline for suppression.",
+      "lessonContent": "A first emotional movement can occur before deliberate assent.\nSelf-command concerns what is cultivated, endorsed, and enacted over time.\nSuppression hides a feeling; wise regulation makes room for it without surrendering every action.\nHuman attachment makes loss painful without making reason impossible.\nShare this: allow one feeling to be present today while choosing one kind action beside it.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-037#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Rain on Saturday",
+      "question": "A couple plans an outdoor wedding where rain is possible. What would using the dichotomy before the day actually recommend?",
+      "choices": [
+        "Refusing to check forecasts because weather is outside personal agency",
+        "Building a rain plan, then not treating sunshine as something they are owed",
+        "Choosing the date with greatest confidence and calling uncertainty solved",
+        "Moving indoors solely to eliminate every uncomfortable possibility"
+      ],
+      "correctAnswer": "Building a rain plan, then not treating sunshine as something they are owed",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Forecasts and contingencies inform action; acceptance begins where competent preparation reaches its limit.",
+      "incorrectExplanation": "The best answer is building a rain plan, then not treating sunshine as something they are owed. Ignoring evidence is negligence, while demanding certainty from a forecast merely disguises the same wish for control.",
+      "lessonContent": "Acceptance works with planning rather than replacing it.\nForecasts guide preparation by estimating uncertainty, not abolishing it.\nA contingency converts a possible obstacle into a rehearsed branch of action.\nPeace after preparation comes from releasing the claim that reality must follow the preferred branch.\nShare this: add one practical fallback to a plan whose key condition you cannot command.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-037#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Delegated Launch",
+      "question": "A project lead delegates critical work to skilled teammates. She remains accountable for choosing, briefing, and monitoring them, but cannot perform every action herself. Where should she draw the control boundary?",
+      "choices": [
+        "Around her delegation, communication, and response to what teammates report",
+        "Around every teammate's private attention and moment-to-moment judgement",
+        "Around the launch outcome because accountability makes all causes controllable",
+        "Around nothing, because delegation transfers all responsibility away"
+      ],
+      "correctAnswer": "Around her delegation, communication, and response to what teammates report",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Leadership expands duties to design and respond well, but it does not turn other people into extensions of one will.",
+      "incorrectExplanation": "Not quite - the boundary belongs around her delegation, communication, and response to what teammates report. Accountability can be broader than direct control, yet it still concerns how she handles her part of a shared system.",
+      "lessonContent": "Shared projects contain overlapping responsibilities without a single controlling mind.\nLeaders govern selection, clarity, resources, monitoring, and correction more directly than execution by others.\nAccountability asks whether one's role was fulfilled, not whether every variable obeyed.\nClear role boundaries prevent both micromanagement and convenient abdication.\nShare this: map one team outcome into your actions, others' actions, and shared feedback loops.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-037#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Disputed Grade",
+      "question": "After receiving a lower grade than expected, Jun finds a possible marking error. Which response best combines control with a commitment to fairness?",
+      "choices": [
+        "Decide the grade is irrelevant because all external evaluations lack value",
+        "Demand the exact desired score because effort makes it deserved",
+        "Submit a clear evidence-based appeal, then accept the independent review",
+        "Avoid appealing so acceptance cannot be confused with resistance"
+      ],
+      "correctAnswer": "Submit a clear evidence-based appeal, then accept the independent review",
+      "xpReward": 50,
+      "correctExplanation": "Correct. He can present the case through the proper process; he cannot honestly pre-own the reviewer or the result.",
+      "incorrectExplanation": "The answer is to submit a clear evidence-based appeal, then accept the independent review. Acceptance concerns the final boundary of agency, not silence in the face of a correctable mistake.",
+      "lessonContent": "External decisions can deserve challenge even though their revision is not guaranteed.\nProcedural action is often the controllable route through an unfair or mistaken outcome.\nEvidence strengthens a claim without granting ownership of the judge.\nAcceptance should follow responsible action, not excuse avoidable passivity.\nShare this: identify the proper appeal channel for one decision you may need to contest.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-037#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Office Rumor",
+      "question": "A false rumor about Talia circulates at work. She can document facts and speak to management, but cannot erase every private belief. What is the most rational aim?",
+      "choices": [
+        "Make disbelief impossible before returning attention to her work",
+        "Protect her conduct and present evidence through channels she can use",
+        "Treat every colleague's opinion as part of her own moral character",
+        "Remain silent because responses never influence reputational outcomes"
+      ],
+      "correctAnswer": "Protect her conduct and present evidence through channels she can use",
+      "xpReward": 50,
+      "correctExplanation": "Right. She should use real influence and formal remedies while refusing an impossible assignment: governing every private conclusion.",
+      "incorrectExplanation": "Not quite - the rational aim is to protect her conduct and present evidence through channels she can use. The distinction neither guarantees reputation nor forbids defence; it prevents defence from becoming endless mind control.",
+      "lessonContent": "A good name depends partly on action and partly on observers beyond direct command.\nFormal processes can change incentives and records even when private opinions persist.\nPractical influence should be used without being inflated into total ownership.\nCharacter is expressed in conduct, not transferred wholesale by gossip.\nShare this: separate one reputational concern into a factual response and an opinion you must leave alone.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-037#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Markets After Midnight",
+      "question": "Sera has researched a diversified investment and set risk limits. Overnight, the market drops sharply on unforeseen news. Which evaluation best fits the control distinction?",
+      "choices": [
+        "The loss proves her decision was irrational because good choices control returns",
+        "The news excuses her from reviewing whether her original process was sound",
+        "She should sell immediately because action is always better than acceptance",
+        "She should review her process and limits without treating the price move as her act"
+      ],
+      "correctAnswer": "She should review her process and limits without treating the price move as her act",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Outcomes can supply evidence about a decision process, but a market movement is not retroactively an action she chose.",
+      "incorrectExplanation": "Actually, she should review her process and limits without treating the price move as her act. A bad outcome can follow a sound probabilistic decision, just as a lucky gain can conceal a reckless one.",
+      "lessonContent": "Decision quality and outcome quality diverge whenever chance or other agents intervene.\nA process review asks whether available evidence and risk were handled well at the time.\nOutcome bias wrongly grades past judgement using information revealed only later.\nLimits chosen in advance protect current action from panic after uncertainty resolves badly.\nShare this: review one past decision using only the information available when you made it.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-037#15",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Adult Child",
+      "question": "A parent sees an adult child making a risky but legal career choice. The parent can advise, but cannot decide without violating the child's autonomy. What is the best boundary?",
+      "choices": [
+        "Offer honest counsel and available support, then leave the decision with the child",
+        "Withhold affection until the child adopts the safer plan",
+        "Say nothing because influence and control are exactly the same thing",
+        "Assume parental concern creates authority over another adult's choice"
+      ],
+      "correctAnswer": "Offer honest counsel and available support, then leave the decision with the child",
+      "xpReward": 50,
+      "correctExplanation": "Correct. The parent governs honesty and support, while respecting that another adult's deliberation is not parental property.",
+      "incorrectExplanation": "The answer is to offer honest counsel and available support, then leave the decision with the child. Concern can justify speaking, but not coercive ownership of an autonomous person's future.",
+      "lessonContent": "Care gives reasons to communicate, not automatic command over another person.\nAdvice respects agency when the listener remains free to decline it.\nCoercion often disguises a demand for certainty as protection.\nHealthy boundaries preserve both connection and separate responsibility.\nShare this: offer one piece of advice today with explicit permission for the listener to reject it.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-037#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Closed Door",
+      "question": "A filmmaker submits a carefully revised project to festivals and receives only rejections. Which next move best distinguishes controllable craft from uncontrollable selection?",
+      "choices": [
+        "Assume repeated rejection proves the work has no remaining value",
+        "Study useful feedback, improve the film, and submit without demanding acceptance",
+        "Refuse all revision because selectors' opinions are completely irrelevant",
+        "Choose only festivals where acceptance can be guaranteed in advance"
+      ],
+      "correctAnswer": "Study useful feedback, improve the film, and submit without demanding acceptance",
+      "xpReward": 50,
+      "correctExplanation": "Right. She can refine craft and strategy while recognizing that juries, competition, and taste complete the outcome.",
+      "incorrectExplanation": "Not quite - she should study useful feedback, improve the film, and submit without demanding acceptance. Rejection may contain evidence, but it neither commands a global verdict nor becomes fully controllable through perfect craft.",
+      "lessonContent": "Creative work joins controllable practice with audiences whose tastes remain independent.\nFeedback is data to evaluate, not a sovereign order or meaningless noise.\nProcess commitment permits repeated attempts without making identity depend on selection.\nExternal gates can measure fit at one moment without measuring total worth.\nShare this: revise one rejected effort using a specific lesson, then choose a new place to offer it.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-037#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Pain and Response",
+      "question": "Kai lives with chronic pain that treatment can reduce but not reliably remove. Which framing gives him the strongest agency without blaming him for symptoms?",
+      "choices": [
+        "Pain is external, so daily habits and medical choices cannot matter",
+        "A disciplined person should be able to decide not to feel pain",
+        "Symptoms are not a moral failure, while care choices and responses remain meaningful",
+        "Acceptance requires refusing further treatment or accommodation"
+      ],
+      "correctAnswer": "Symptoms are not a moral failure, while care choices and responses remain meaningful",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. The condition is not a chosen defect, yet choices about care, pacing, meaning, and communication can still shape life within it.",
+      "incorrectExplanation": "The answer is that symptoms are not a moral failure, while care choices and responses remain meaningful. Blaming the sufferer overstates control; fatalism understates the practical agency that remains.",
+      "lessonContent": "Limited control should reduce blame without erasing available forms of self-direction.\nInfluence over symptoms may be partial, variable, and still worth exercising.\nAccommodation changes the environment rather than pretending willpower can erase a condition.\nAgency is compatible with dependence on medicine, tools, and other people.\nShare this: replace one self-blaming health statement with a neutral fact and one available care action.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-037#18",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Witness at Noon",
+      "question": "Rafi witnesses harassment. He cannot guarantee the victim's safety or the institution's response. Does the control distinction support intervening?",
+      "choices": [
+        "No, because uncertain success makes moral action merely symbolic",
+        "No, because another person's conduct lies outside his control entirely",
+        "Only if he can make every witness agree with his interpretation",
+        "Yes, because seeking help and acting safely can be his even when success is not"
+      ],
+      "correctAnswer": "Yes, because seeking help and acting safely can be his even when success is not",
+      "xpReward": 50,
+      "correctExplanation": "Correct. The uncertainty of effect limits what he can promise, not whether courage and practical assistance belong to his agency.",
+      "incorrectExplanation": "The answer is yes, because seeking help and acting safely can be his even when success is not. The dichotomy evaluates the chosen response under conditions; it does not reserve duty for situations with guaranteed victory.",
+      "lessonContent": "Ethical action concerns the quality of choice, not guaranteed command of consequences.\nRisk assessment can shape intervention without becoming an excuse for indifference.\nCalling help, documenting, distracting, or checking in are different available responses.\nUncertainty narrows promises about results but does not automatically cancel duty.\nShare this: learn one safe bystander action you could use in a situation you commonly encounter.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-037#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Yesterday's Error",
+      "question": "Mei made a harmful decision years ago and now understands what she missed. She cannot alter the past. Which use of the control distinction is most defensible?",
+      "choices": [
+        "Accept the fixed event, make possible repairs, and let present conduct embody the lesson",
+        "Treat remorse as useless because the original act is no longer controllable",
+        "Keep replaying alternatives until memory produces a different emotional outcome",
+        "Deny responsibility because present control cannot reach backward"
+      ],
+      "correctAnswer": "Accept the fixed event, make possible repairs, and let present conduct embody the lesson",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Past action is fixed, but acknowledgement, restitution, and the character expressed now remain open.",
+      "incorrectExplanation": "Not quite - she should accept the fixed event, make possible repairs, and let present conduct embody the lesson. The past boundary blocks alteration, not responsibility or present-day response.",
+      "lessonContent": "Past events are fixed while their present consequences may still admit repair.\nRemorse becomes useful when it informs restitution and changed practice.\nRumination imitates action by repeating what cannot now be selected.\nResponsibility can persist even after direct control over the original event has ended.\nShare this: turn one recurring regret into a repair, apology, or rule for future conduct.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-037#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Checking Loop",
+      "question": "Before sending an important email, Eli checks it twenty times because he wants certainty that nobody will react badly. Which change most directly addresses the control error?",
+      "choices": [
+        "Stop caring whether the email is accurate or considerate",
+        "Set a reasonable review standard, send it, and leave reactions to recipients",
+        "Continue checking until anxiety disappears completely on its own",
+        "Ask every possible recipient to approve the email before it exists"
+      ],
+      "correctAnswer": "Set a reasonable review standard, send it, and leave reactions to recipients",
+      "xpReward": 50,
+      "correctExplanation": "Right. A finite quality standard governs his work; repeated checking is trying to purchase certainty about other minds.",
+      "incorrectExplanation": "The answer is to set a reasonable review standard, send it, and leave reactions to recipients. Carelessness is not required, but no amount of checking can convert reception into the sender's possession.",
+      "lessonContent": "Anxiety often expands preparation beyond quality control into a ritual for impossible certainty.\nFinite standards define when responsible action is complete.\nReassurance can briefly lower discomfort while strengthening the demand for future guarantees.\nReleasing an outcome is a practice performed after competent review, not instead of it.\nShare this: choose a two-check limit for one low-risk message and send when the standard is met.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-037#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Numbers on the Wall",
+      "question": "A sales manager controls neither customer budgets nor final purchases but pressures staff to 'own the number.' Which performance system best reflects the real boundary?",
+      "choices": [
+        "Judge only revenue, because quantified outcomes are fully controllable",
+        "Remove every target, because uncertain outcomes cannot guide action",
+        "Track ethical outreach and follow-up quality alongside revenue trends",
+        "Reward staff for confidently predicting customers' private decisions"
+      ],
+      "correctAnswer": "Track ethical outreach and follow-up quality alongside revenue trends",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Revenue remains useful feedback, while process measures capture conduct employees can more directly choose and improve.",
+      "incorrectExplanation": "Close! The system should track ethical outreach and follow-up quality alongside revenue trends. Outcomes inform strategy but become unjust as the sole moral score when customers and markets also produce them.",
+      "lessonContent": "Metrics differ in how directly they reflect an individual's chosen conduct.\nOutcome measures provide feedback but often mix skill, environment, timing, and luck.\nProcess measures can support improvement when they capture meaningful rather than cosmetic activity.\nBalanced evaluation preserves ambition without pretending the world is a vending machine.\nShare this: pair one outcome target with a behaviour measure that remains available on a difficult day.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-037#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Against the Current",
+      "question": "A community organizer cannot guarantee that an unjust policy will change. A critic says Stoic acceptance requires adapting privately rather than protesting. What is the strongest reply?",
+      "choices": [
+        "Acceptance means believing every existing policy is ultimately good",
+        "Protest is rational only when success can be predicted with certainty",
+        "External injustice is irrelevant because virtue concerns only private thoughts",
+        "Accepting uncertain results can coexist with choosing courageous, strategic opposition"
+      ],
+      "correctAnswer": "Accepting uncertain results can coexist with choosing courageous, strategic opposition",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Acceptance describes the organizer's relationship to outcomes, not a command to endorse conditions or abandon public duty.",
+      "incorrectExplanation": "The answer is that accepting uncertain results can coexist with choosing courageous, strategic opposition. Stoic agency can ground resistance precisely because right action need not wait for guaranteed success.",
+      "lessonContent": "Acceptance of reality is not moral approval of reality.\nPublic action can be chosen for justice even when institutions determine the final result.\nDetachment from victory can support endurance when reform is slow.\nThe control distinction removes entitlement to success, not the obligation to act well.\nShare this: choose one public problem and define a principled action whose value does not vanish if change is slow.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-037#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Leaking Roof",
+      "question": "A homeowner notices a roof leak during a regional storm. The storm is uncontrollable, repair timing is only partly influenceable, and bucket placement is immediate. What is the most accurate priority?",
+      "choices": [
+        "Act on the bucket and repair request, while distinguishing both from command of the storm",
+        "Focus only on attitude because material responses concern external things",
+        "Treat all three factors as equally controllable because each affects the house",
+        "Wait passively because partial influence does not count as genuine agency"
+      ],
+      "correctAnswer": "Act on the bucket and repair request, while distinguishing both from command of the storm",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Immediate action, probabilistic influence, and external conditions differ, but the practical task is to use each available lever without inventing control over the sky.",
+      "incorrectExplanation": "The answer is to act on the bucket and repair request, while distinguishing both from command of the storm. The dichotomy is a guide to focused action, not a reason to discard partial leverage merely because it cannot guarantee the full outcome.",
+      "lessonContent": "Real situations often contain direct action, partial influence, and external conditions at once.\nThe practical value of a binary distinction is sharper attention, not denial of causal degrees.\nProbabilistic actions remain choices even when their effects depend on other people or systems.\nWisdom ranks available levers by urgency and reach without confusing any lever with total command.\nShare this: divide one current problem into immediate action, attempted influence, and conditions to monitor.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-037#24",
+      "forgeScore": 92
+    }
+  ]
+}

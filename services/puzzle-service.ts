@@ -32,7 +32,12 @@ function getLocalPuzzles(): Puzzle[] {
 
 function saveLocalPuzzles(puzzles: Puzzle[]) {
   if (typeof window === "undefined") return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(puzzles));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(puzzles));
+  } catch {
+    // Large banks exceed the ~5MB quota — Firestore stays source of truth.
+    console.warn("Local puzzle cache skipped (storage quota).");
+  }
 }
 
 function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle {

@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-047",
+  "generatedAt": "2026-09-17T13:27:42.006Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Fading Bloom",
+      "question": "Mara loves her garden at peak bloom and feels anguish as petals fall. Which response best applies the idea of impermanence?",
+      "choices": [
+        "Tend each bloom fully while accepting its passing",
+        "Stop planting anything that will eventually fade",
+        "Insist the petals remain through constant spraying",
+        "Pretend the fading garden looks unchanged"
+      ],
+      "correctAnswer": "Tend each bloom fully while accepting its passing",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Impermanence asks for full care without demanding permanence from what is cared for.",
+      "incorrectExplanation": "The answer is: tend each bloom fully while accepting its passing. Clinging demands the bloom stay, while avoidance refuses to plant; neither tends what is actually there.",
+      "lessonContent": "Impermanence means all conditions arise and pass, including pleasant ones.\nAcceptance is distinct from indifference or resignation.\nCare can be wholehearted without demanding guarantees.\nSuffering grows where demands meet what cannot stay.\nShare this: tend one temporary thing today without asking it to last.",
+      "forgeId": "batch-047#0",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The River Grip",
+      "question": "A traveler tries to hold river water in cupped hands and grows frustrated as it escapes. What does the episode best illustrate about clinging?",
+      "choices": [
+        "Cupped hands were the wrong technique entirely",
+        "Rivers punish everyone who touches them",
+        "Only polluted water slips through fingers",
+        "Grasping at flow guarantees frustration"
+      ],
+      "correctAnswer": "Grasping at flow guarantees frustration",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. The pain comes from the grasping strategy applied to something whose nature is to move on.",
+      "incorrectExplanation": "Actually, grasping at flow guarantees frustration. The water is not hostile and the technique is not the issue; demanding stillness from a current is what fails.",
+      "lessonContent": "Clinging means demanding stability from unstable things.\nFrustration signals a mismatch between grip and nature.\nLoosening the grip differs from abandoning the river.\nAttention to flow replaces struggle with navigation.\nShare this: notice one thing you grip today and deliberately loosen hold.",
+      "forgeId": "batch-047#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Old Photograph",
+      "question": "Jon keeps comparing his aging body to a photograph from twenty years ago and feels daily defeat. Which shift best reflects non-attachment?",
+      "choices": [
+        "Burn every photograph from his youth",
+        "Train obsessively to recreate the photo",
+        "Deny that any physical change occurred",
+        "Honor the past image without obeying it"
+      ],
+      "correctAnswer": "Honor the past image without obeying it",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. The memory can be treasured without being installed as a ruler for the present.",
+      "incorrectExplanation": "Close! The answer is honor the past image without obeying it. Destroying records, reversing time, or denying change all keep the old photo in charge.",
+      "lessonContent": "Memories can be honored without becoming commandments.\nComparison turns keepsakes into punishments.\nThe present body deserves its own standards.\nGratitude for then and care for now can coexist.\nShare this: thank one old photo today, then put it back in the drawer.",
+      "forgeId": "batch-047#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Promotion Credential",
+      "question": "After years of chasing a title, Priya earns it and feels empty within weeks. Which lesson about attachment to outcomes fits best?",
+      "choices": [
+        "Titles secretly harm everyone who earns them",
+        "Ambition itself is always a moral failure",
+        "She celebrated the promotion incorrectly",
+        "Identity built on prizes needs constant refueling"
+      ],
+      "correctAnswer": "Identity built on prizes needs constant refueling",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. When worth is outsourced to the next prize, each arrival merely resets the hunger.",
+      "incorrectExplanation": "It's simpler than it looks: identity built on prizes needs constant refueling. The emptiness is structural, not a celebration error or proof that striving is wicked.",
+      "lessonContent": "Outcome-attachment ties worth to moving targets.\nArrival brings relief that expires quickly.\nIdentity needs sturdier anchors than rankings.\nProcess values outlast prize feelings.\nShare this: name one standard of yours no promotion could grant or remove.",
+      "forgeId": "batch-047#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Departing Friend",
+      "question": "When a close friend moves abroad, Sam oscillates between pretending not to care and begging her to stay. What middle path does non-attachment suggest?",
+      "choices": [
+        "Grieve the distance while blessing the journey",
+        "Erase the friend from every contact list",
+        "Demand daily proof the bond is unchanged",
+        "Decide the friendship never mattered"
+      ],
+      "correctAnswer": "Grieve the distance while blessing the journey",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Feeling the loss honestly while releasing control of the other's path holds both truths.",
+      "incorrectExplanation": "Not quite — grieve the distance while blessing the journey. Numbness and demands both dodge the real work of loving across change.",
+      "lessonContent": "Love and release can operate at the same time.\nGrief acknowledges value without vetoing change.\nControl disguised as closeness corrodes bonds.\nBlessing a departure keeps the connection honest.\nShare this: send one warm message that asks for nothing back.",
+      "forgeId": "batch-047#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Cracked Cup",
+      "question": "A tea master drinks daily from a cracked cup, calling it already broken. What does this practice most directly train?",
+      "choices": [
+        "Indifference toward beautiful objects",
+        "Seeing fragility in advance so loss cannot ambush",
+        "A preference for damaged goods generally",
+        "The skill of repairing ceramics invisibly"
+      ],
+      "correctAnswer": "Seeing fragility in advance so loss cannot ambush",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. Pre-acknowledging breakage removes the shock that turns ordinary loss into crisis.",
+      "incorrectExplanation": "Actually, seeing fragility in advance so loss cannot ambush. The master still cherishes the cup; the practice targets surprise, not the object.",
+      "lessonContent": "Anticipating endings reduces their power to ambush.\nCherishing and preparing can share one gesture.\nDenial converts small losses into large shocks.\nRehearsed perspective steadies real moments.\nShare this: name one fragile favorite and appreciate it as already lent.",
+      "forgeId": "batch-047#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Apology Ledger",
+      "question": "Ruth replays one harsh sentence she said years ago, punishing herself nightly. Which understanding of impermanence helps most?",
+      "choices": [
+        "Words vanish instantly so nothing matters",
+        "She must earn punishment matching the sentence",
+        "The past is fixed so repair is impossible",
+        "The speaker who erred is not frozen in time"
+      ],
+      "correctAnswer": "The speaker who erred is not frozen in time",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. If selves are processes rather than statues, the person who spoke can genuinely become someone who repairs.",
+      "incorrectExplanation": "Close! The answer is the speaker who erred is not frozen in time. Endless self-punishment treats a past self as the whole story, blocking the repair that change makes possible.",
+      "lessonContent": "Selves are processes, not finished statues.\nRemorse can fund repair instead of endless rent.\nIdentity includes direction, not only history.\nChange is the ground amends stand on.\nShare this: convert one old regret into one concrete repair this week.",
+      "forgeId": "batch-047#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Festival Lights",
+      "question": "A town's beloved festival ends each year, and residents argue whether to mourn it or numb themselves with distraction. What does impermanence recommend?",
+      "choices": [
+        "Cancel future festivals to avoid the ending",
+        "Stretch each festival until exhaustion sets in",
+        "Pretend the closing night never happens",
+        "Savor the season precisely because it ends"
+      ],
+      "correctAnswer": "Savor the season precisely because it ends",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. Scarcity of time is what concentrates attention and sweetens ordinary evenings.",
+      "incorrectExplanation": "It's simpler than it looks: savor the season precisely because it ends. Cancellation, excess, and denial all refuse the boundary that gives the festival its glow.",
+      "lessonContent": "Endings concentrate attention like nothing else.\nSavoring uses scarcity instead of fighting it.\nRituals borrow meaning from their limits.\nAttention is the real scarce festival good.\nShare this: attend one seasonal event this year as if it were the last.",
+      "forgeId": "batch-047#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Inheritance House",
+      "question": "Two siblings fight over their late parents' house, each treating it as the family's love made solid. What confusion about attachment is at work?",
+      "choices": [
+        "Mistaking the container of memories for the bond itself",
+        "Failing to hire a competent property lawyer",
+        "Underestimating current real estate prices",
+        "Loving their parents insufficiently deeply"
+      ],
+      "correctAnswer": "Mistaking the container of memories for the bond itself",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. The bricks held the love but were never the love, so possessing them cannot secure it.",
+      "incorrectExplanation": "Not quite — mistaking the container of memories for the bond itself. Prices and lawyers miss the point: no deed can transfer what the house merely witnessed.",
+      "lessonContent": "Objects hold memories without being the memories.\nPossession cannot secure what only relationship gives.\nGrief often wears the costume of property disputes.\nNaming the real loss dissolves the false one.\nShare this: tell one family story the disputed object merely witnessed.",
+      "forgeId": "batch-047#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Quiet Morning",
+      "question": "A meditator notices pleasant calm during sitting and immediately strains to freeze it in place. What happens next, according to the logic of clinging?",
+      "choices": [
+        "Calm deepens permanently from the effort",
+        "Straining scatters the very calm pursued",
+        "Nothing changes regardless of attitude",
+        "Calm converts directly into lasting insight"
+      ],
+      "correctAnswer": "Straining scatters the very calm pursued",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. The grasping effort introduces the agitation that dissolves the state it wants to keep.",
+      "incorrectExplanation": "Actually, straining scatters the very calm pursued. Calm arrives as a byproduct of allowing, so clutching at it replaces the cause with its opposite.",
+      "lessonContent": "Pleasant states are byproducts, not possessions.\nEffort to freeze calm manufactures agitation.\nAllowing sustains what grasping destroys.\nMeditation trains relationship to states, not collection of them.\nShare this: notice one pleasant moment today without trying to extend it.",
+      "forgeId": "batch-047#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Team Victory",
+      "question": "A coach credits last season's championship for this season's confidence, then watches players coast on old glory. Which point about impermanence applies?",
+      "choices": [
+        "Past triumphs guarantee future results",
+        "Trophies should be hidden from players",
+        "Coasting proves the players are lazy people",
+        "Form must be rebuilt; yesterday's peak has expired"
+      ],
+      "correctAnswer": "Form must be rebuilt; yesterday's peak has expired",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Fitness, timing, and hunger are perishable goods no trophy case preserves.",
+      "incorrectExplanation": "Close! The answer is form must be rebuilt; yesterday's peak has expired. The error is treating a past state as stored capital rather than expired weather.",
+      "lessonContent": "Capabilities are perishable, not bankable.\nEach season starts its own rebuilding.\nResting on laurels confuses record with readiness.\nBeginner's effort must be renewed by veterans.\nShare this: rebuild one rusted skill this month as if starting fresh.",
+      "forgeId": "batch-047#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Worry Rehearsal",
+      "question": "Lena rehearses every disaster before flights, believing worry prevents misfortune. What does attachment to control overlook here?",
+      "choices": [
+        "Airlines secretly reward anxious passengers",
+        "Worry reliably steers aircraft to safety",
+        "Turbulence respects well-prepared minds",
+        "Rehearsal controls feelings, not outcomes"
+      ],
+      "correctAnswer": "Rehearsal controls feelings, not outcomes",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. Mental rehearsal manages the rehearsal, not the flight; the plane never consults her script.",
+      "incorrectExplanation": "It's simpler than it looks: rehearsal controls feelings, not outcomes. Worry purchases an illusion of steering while the actual levers sit elsewhere.",
+      "lessonContent": "Control-attachment confuses preparation with command.\nMental rehearsal soothes the rehearser, not the world.\nDistinguish levers you hold from skies you watch.\nPreparation ends where rumination begins.\nShare this: prepare once thoroughly today, then close the rehearsal loop.",
+      "forgeId": "batch-047#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Seedling Patience",
+      "question": "An impatient gardener tugs at seedlings to hurry them, then blames the seeds for slow growth. Which attitude honors natural timing?",
+      "choices": [
+        "Provide steady conditions and stop yanking",
+        "Abandon watering as interference with fate",
+        "Measure stem height every single hour",
+        "Replace seeds weekly until one sprints"
+      ],
+      "correctAnswer": "Provide steady conditions and stop yanking",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Effort belongs to conditions; the schedule belongs to the seed.",
+      "incorrectExplanation": "Not quite — provide steady conditions and stop yanking. Tugging confuses care with command, while neglect abandons the half of the process that is actually yours.",
+      "lessonContent": "Effort governs conditions, not timetables.\nGrowth has its own pace beneath all tending.\nImpatience often damages what it hurries.\nSteady inputs beat frantic interventions.\nShare this: tend one slow project this week without checking daily.",
+      "forgeId": "batch-047#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Praise Diet",
+      "question": "A writer checks reviews hourly, soaring and crashing with each star. What dependency on externals does this reveal?",
+      "choices": [
+        "Reviews contain the true measure of worth",
+        "Hourly checking improves literary quality",
+        "Readers owe authors constant reassurance",
+        "Mood outsourced to strangers stays volatile"
+      ],
+      "correctAnswer": "Mood outsourced to strangers stays volatile",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. A self rented to every passerby changes tenants by the hour.",
+      "incorrectExplanation": "Actually, mood outsourced to strangers stays volatile. The stars describe transactions, not the writer; renting mood to them guarantees weather, not climate.",
+      "lessonContent": "External validation is weather, not climate.\nFrequency of checking multiplies volatility.\nWork standards can be internal while feedback stays advisory.\nAttention diet shapes emotional stability.\nShare this: check one metric weekly instead of hourly and note the calm.",
+      "forgeId": "batch-047#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Heirloom Watch",
+      "question": "A man refuses to wear his grandfather's watch for fear of scratching it, keeping it locked away for decades. What has attachment cost him?",
+      "choices": [
+        "The resale value of the timepiece",
+        "His grandfather's genuine approval",
+        "Any chance of repairing scratches",
+        "The companionship the gift was for"
+      ],
+      "correctAnswer": "The companionship the gift was for",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Preserving the object perfectly destroyed its purpose of accompanying a wrist.",
+      "incorrectExplanation": "Close! The answer is the companionship the gift was for. Protection became imprisonment; the watch survived unused while its meaning starved.",
+      "lessonContent": "Preservation can defeat purpose when overdone.\nGifts are invitations to use, not museum loans.\nWear marks can be memory, not damage.\nRisk objected to reasonably is part of honoring.\nShare this: use one saved treasure normally today.",
+      "forgeId": "batch-047#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Argument Replay",
+      "question": "After apologizing and being forgiven, Tom replays his mistake for months. What does holding on add at this point?",
+      "choices": [
+        "Extra sincerity to the original apology",
+        "Protection against all future errors",
+        "A debt ledger no one else is keeping",
+        "Proof of superior moral character"
+      ],
+      "correctAnswer": "A debt ledger no one else is keeping",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. Forgiveness closed the account; only Tom still posts entries to it.",
+      "incorrectExplanation": "It's simpler than it looks: a debt ledger no one else is keeping. Continued self-billing after settlement serves rumination, not repair.",
+      "lessonContent": "Completed repair needs no further payments.\nSelf-punishment after forgiveness helps nobody.\nLedgers should close when debts are settled.\nEnergy spent on settled past is stolen from open present.\nShare this: declare one forgiven debt paid and act accordingly.",
+      "forgeId": "batch-047#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Snow Sculpture",
+      "question": "Children build an elaborate snow fort knowing it will melt by weekend. Why is their joy wiser than an adult's refusal to build impermanent things?",
+      "choices": [
+        "Children misunderstand how melting works",
+        "Adults correctly avoid all pointless effort",
+        "Snow forts secretly survive the spring",
+        "Delight needs no permanence to justify itself"
+      ],
+      "correctAnswer": "Delight needs no permanence to justify itself",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. The fort's value was the building and playing, both complete before any melt.",
+      "incorrectExplanation": "Not quite — delight needs no permanence to justify itself. The adult demands eternity as admission price; the children pay attention and receive joy immediately.",
+      "lessonContent": "Joy can be complete without being stored.\nProcess value needs no product excuse.\nPermanence is a strange admission price for play.\nMelting threatens storage, never the having-built.\nShare this: build one gloriously temporary thing this week.",
+      "forgeId": "batch-047#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Job Title Skin",
+      "question": "After layoffs, a manager who introduced himself by rank for years feels erased. What was the rank actually doing for him?",
+      "choices": [
+        "Proving his colleagues secretly envied him",
+        "Guaranteeing lifetime employment rights",
+        "Measuring his true human worth exactly",
+        "Lending an identity that expired with the role"
+      ],
+      "correctAnswer": "Lending an identity that expired with the role",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. Borrowed identities return to the lender when the position ends.",
+      "incorrectExplanation": "Actually, lending an identity that expired with the role. The erasure feeling reveals the loan: what was rented as selfhood repossesses itself on schedule.",
+      "lessonContent": "Roles lend identities with return dates.\nConfusing uniform with self guarantees shock.\n portable worth survives any single position.\nIntroductions reveal what we believe we are.\nShare this: introduce yourself once today without any title.",
+      "forgeId": "batch-047#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Unread Letters",
+      "question": "A daughter keeps her late mother's letters sealed, fearing that reading the last one ends the connection. What misunderstanding of endings is this?",
+      "choices": [
+        "Reading letters destroys their paper",
+        "Mothers live inside unopened envelopes",
+        "Grief forbids any further tears",
+        "Treating a final page as a final bond"
+      ],
+      "correctAnswer": "Treating a final page as a final bond",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. The bond lives in the reader, not in remaining unread inventory.",
+      "incorrectExplanation": "Close! The answer is treating a final page as a final bond. Sealed letters ration a connection that reading would actually release into memory.",
+      "lessonContent": "Bonds live in the living, not in inventory.\nRationing keepsakes rations the comfort they hold.\nEndings of supply are not endings of love.\nUsing the keepsake fulfills its purpose.\nShare this: open one saved message and let it do its work.",
+      "forgeId": "batch-047#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Perfect Plan",
+      "question": "An organizer rewrites a community event plan for the tenth time, chasing a flawless version. What does impermanence say about perfect plans?",
+      "choices": [
+        "Flawless plans exist for patient organizers",
+        "Reality will revise any plan on contact",
+        "Planning itself is always wasted effort",
+        "Communities prefer chaotic events"
+      ],
+      "correctAnswer": "Reality will revise any plan on contact",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. Changing conditions edit every script, so adaptability beats tenth drafts.",
+      "incorrectExplanation": "It's simpler than it looks: reality will revise any plan on contact. The tenth rewrite polishes a map the territory will redraw by morning.",
+      "lessonContent": "Plans meet conditions that never stop moving.\nRevision by reality is certain, not failure.\nGood enough plus responsive beats perfect plus brittle.\nPlanning prepares the planner more than the path.\nShare this: freeze one plan at good enough and adapt live.",
+      "forgeId": "batch-047#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Echo Chamber",
+      "question": "A man curates his feed until every voice agrees with him, then feels serene certainty. What fragility has he built?",
+      "choices": [
+        "Certainty that shatters at first contact",
+        "A feed too entertaining to be useful",
+        "Friendships that are genuinely deeper",
+        "Beliefs proven true by repetition"
+      ],
+      "correctAnswer": "Certainty that shatters at first contact",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Untested agreement is brittle; one dissenting encounter can collapse the whole calm.",
+      "incorrectExplanation": "Not quite — certainty that shatters at first contact. Curated unanimity feels like strength while removing the very friction that tempers beliefs.",
+      "lessonContent": "Comfortable unanimity is brittle, not strong.\nUntested views collapse at first contact.\nFriction tempers beliefs the way wind firms trees.\nSeeking one dissenting view is maintenance.\nShare this: read one thoughtful disagreement weekly without replying.",
+      "forgeId": "batch-047#20",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Borrowed Boat",
+      "question": "A village shares one boat for crossings and argues whether anyone truly owns it. What does non-attachment suggest about ownership here?",
+      "choices": [
+        "Ownership ends all disputes automatically",
+        "The strongest villager should seize it",
+        "Use and care matter more than title",
+        "Boats must never be shared property"
+      ],
+      "correctAnswer": "Use and care matter more than title",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. The crossing happens through maintenance and sharing, whatever the deed declares.",
+      "incorrectExplanation": "Actually, use and care matter more than title. Title disputes treat the paper as the boat; the river only responds to hulls, oars, and hands.",
+      "lessonContent": "Stewardship often outperforms ownership in shared goods.\nUse plus care is the real title rivers recognize.\nPossession language can obscure maintenance truth.\nCommons thrive on responsibility, not deeds.\nShare this: maintain one shared thing this week as if it were yours.",
+      "forgeId": "batch-047#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Youth Serum",
+      "question": "A cream promises to stop aging for its devoted users. Why does attachment make this promise irresistible despite the evidence?",
+      "choices": [
+        "Creams have secretly cured aging before",
+        "Aging is purely a personal choice",
+        "Dermatologists endorse every such cream",
+        "It sells control over the uncontrollable"
+      ],
+      "correctAnswer": "It sells control over the uncontrollable",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. The product is hope of command; the jar is incidental packaging.",
+      "incorrectExplanation": "Close! The answer is it sells control over the uncontrollable. Evidence cannot compete while the offer targets the ache for command over time itself.",
+      "lessonContent": "Markets monetize the ache for command.\nImpossible promises target uncontrollable domains.\nHope can be priced when evidence is ignored.\nNaming the ache weakens the sales spell.\nShare this: spot one ad selling control over time or chance today.",
+      "forgeId": "batch-047#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Grudge Stone",
+      "question": "A woman carries a grudge for decades, rehearsing the insult yearly to keep it fresh. What is she actually preserving?",
+      "choices": [
+        "Justice itself in pristine condition",
+        "Her own wound at her own expense",
+        "The offender's guilty conscience",
+        "A deterrent protecting her future"
+      ],
+      "correctAnswer": "Her own wound at her own expense",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. Rehearsal refreshes her pain, not the offender's lesson; the curator pays the museum's costs.",
+      "incorrectExplanation": "It's simpler than it looks: her own wound at her own expense. The offender moved on long ago while the yearly rehearsal reopens the same cut.",
+      "lessonContent": "Grudges tax the holder, not the offender.\nRehearsal preserves pain, not justice.\nRelease is unilateral and needs no permission.\nDropping the stone lightens the carrier first.\nShare this: set down one small grudge by wishing its bearer well.",
+      "forgeId": "batch-047#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Mountain View",
+      "question": "Two hikers reach a summit: one photographs frantically fearing the moment will vanish, the other gazes steadily. Who understands impermanence better?",
+      "choices": [
+        "The photographer, who preserves everything",
+        "Both understand it in equal measure",
+        "Neither can understand such ideas",
+        "The gazer, who meets passing fully"
+      ],
+      "correctAnswer": "The gazer, who meets passing fully",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Meeting the moment directly honors its passing; fleeing into capture misses it.",
+      "incorrectExplanation": "Not quite — the gazer, who meets passing fully. Frantic capture abandons the summit for its future memory, while steady gaze inhabits it.",
+      "lessonContent": "Presence honors passing better than capture.\nDocumentation can become avoidance of experience.\nA few photos plus full gaze beats frantic archiving.\nMoments are met, not stockpiled.\nShare this: behold one view fully before photographing it.",
+      "forgeId": "batch-047#24",
+      "forgeScore": 100
+    }
+  ]
+}

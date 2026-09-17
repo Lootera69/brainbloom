@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-043",
+  "generatedAt": "2026-09-17T13:27:41.945Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Reserved for Walk-Ins",
+      "question": "A restaurant sign says, 'This table is reserved for customers without reservations.' Which reading removes the apparent contradiction?",
+      "choices": [
+        "The table is kept aside for walk-ins",
+        "The table has already been booked by walk-ins",
+        "The table may be used only by staff",
+        "The table cannot be used by anyone"
+      ],
+      "correctAnswer": "The table is kept aside for walk-ins",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. 'Reserved' means set aside, while 'reservations' means advance bookings, so the policy is coherent.",
+      "incorrectExplanation": "Not quite. The table is kept aside for walk-ins. The repeated word invites one meaning, but its noun and verb forms refer to different kinds of allocation.",
+      "lessonContent": "Repeated words do not have to keep one sense throughout a sentence.\nContext can select a broad meaning in one clause and a specialized meaning in another.\nWhen a statement seems self-defeating, paraphrase each occurrence separately.\nShare this: find a sign today whose repeated word changes meaning mid-sentence.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Outstanding Yet Overdue",
+      "question": "An accountant says, 'Your outstanding work is impressive, but your outstanding balance is not.' What distinction makes both remarks sensible?",
+      "choices": [
+        "The work is unfinished and the balance is impressive",
+        "The work is excellent and the balance is unpaid",
+        "The work is unpaid and the balance is excellent",
+        "Both work and balance are merely visible"
+      ],
+      "correctAnswer": "The work is excellent and the balance is unpaid",
+      "xpReward": 25,
+      "correctExplanation": "Right. 'Outstanding' praises exceptional work but labels a balance that remains unpaid.",
+      "incorrectExplanation": "Actually, the work is excellent and the balance is unpaid. The adjective shifts from an evaluative sense to an accounting sense when its noun changes.",
+      "lessonContent": "A modifier can change sense according to the noun it accompanies.\nProfessional fields often narrow ordinary words into technical meanings.\nTest ambiguous adjectives by replacing each with a plain synonym.\nShare this: collect one workplace word that means something different outside that workplace.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Twice Charged",
+      "question": "A technician charged the speaker before a prosecutor charged the speaker. What most natural interpretation gives 'speaker' and 'charged' different jobs in each clause?",
+      "choices": [
+        "Both people filled a device with electricity",
+        "Both people accused a public lecturer",
+        "A lecturer powered a lawyer",
+        "A device was powered, then a person was accused"
+      ],
+      "correctAnswer": "A device was powered, then a person was accused",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The first speaker is an audio device receiving power; the second is a person receiving an accusation.",
+      "incorrectExplanation": "Close! A device was powered, then a person was accused. Both the verb and its object switch senses together, which makes the repeated wording deceptive.",
+      "lessonContent": "Ambiguity can involve several linked words changing sense at once.\nA surrounding role such as technician or prosecutor strongly selects the intended frame.\nInterpret the whole clause before locking in a meaning for one word.\nShare this: write one sentence where a profession changes how two repeated words are read.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "A Sentence Served",
+      "question": "A copy editor served a sentence before a judge ordered a sentence to be served. What happened?",
+      "choices": [
+        "A judge edited grammar before dinner",
+        "An editor delivered words, then imposed punishment",
+        "An editor revised words, then a convict completed punishment",
+        "A convict wrote a line, then edited a verdict"
+      ],
+      "correctAnswer": "An editor revised words, then a convict completed punishment",
+      "xpReward": 25,
+      "correctExplanation": "Correct. One sentence is a unit of writing; the other is a court-imposed term that a convicted person serves.",
+      "incorrectExplanation": "It's simpler than it looks: an editor revised words, then a convict completed punishment. The legal phrase 'serve a sentence' repackages two ordinary words into a fixed expression.",
+      "lessonContent": "Fixed expressions can carry meanings that are not assembled word by word.\nThe same noun may name a linguistic unit and a legal penalty.\nWhen roles shift sharply, reconsider the entire phrase rather than one token.\nShare this: notice one everyday phrase whose literal reading would be absurd.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Current Issue",
+      "question": "A magazine editor says, 'Our current issue has no current issues.' Which paraphrase best preserves the joke?",
+      "choices": [
+        "The latest edition has no electrical problems",
+        "The electrical edition has no recent topics",
+        "The controversial edition has no magazines",
+        "The river edition has no subscriptions"
+      ],
+      "correctAnswer": "The latest edition has no electrical problems",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The first 'current' means latest, while the second can mean electrical flow; 'issue' shifts from edition to problem.",
+      "incorrectExplanation": "Not quite. The latest edition has no electrical problems. Two neighboring words both change sense, turning a publishing statement into a maintenance joke.",
+      "lessonContent": "Wordplay can pivot an entire phrase rather than a single word.\nAdjacent ambiguous words multiply the number of possible readings.\nUse the subject matter of each clause to select a coherent pair of meanings.\nShare this: invent a two-word phrase in which both words have a second sense.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Draft Under Review",
+      "question": "An editor closed the window because the draft was disturbing the draft. What was most likely happening?",
+      "choices": [
+        "A military selection cancelled a document",
+        "A rough document blew around in moving air",
+        "A beer serving stained another beer",
+        "A final document blocked a doorway"
+      ],
+      "correctAnswer": "A rough document blew around in moving air",
+      "xpReward": 25,
+      "correctExplanation": "Right. One draft is an unfinished document; the other is a current of air entering through the window.",
+      "incorrectExplanation": "Actually, a rough document blew around in moving air. The window clue selects airflow, while the editor clue selects an early version of writing.",
+      "lessonContent": "Different context clues can assign different senses to identical words.\nConcrete actions such as closing a window often disambiguate an abstract sentence.\nMap each noun to the nearby verb or profession that best fits it.\nShare this: take one ambiguous noun and place its two senses in a single causal sentence.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Interest Without Curiosity",
+      "question": "Leah says, 'The account gained interest, although I lost interest in the account.' What changed in each half?",
+      "choices": [
+        "The balance earned money; Leah lost curiosity",
+        "The bank became curious; Leah lost money",
+        "The account gained attention; Leah lost ownership",
+        "The balance earned ownership; Leah lost attention"
+      ],
+      "correctAnswer": "The balance earned money; Leah lost curiosity",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Financial interest increased the balance, while personal interest means attention or curiosity.",
+      "incorrectExplanation": "Close! The balance earned money; Leah lost curiosity. The same abstract noun names both a financial return and a mental state.",
+      "lessonContent": "Abstract nouns often develop specialized meanings in finance, law, and science.\nA verb such as gain or lose may work with several senses and preserve ambiguity.\nIdentify what entity can literally possess each kind of property.\nShare this: explain one financial term using both its everyday and technical meanings.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "A Very Fine Notice",
+      "question": "A designer calls a parking notice 'a fine piece of printing, but a terrible fine.' What is being contrasted?",
+      "choices": [
+        "A thin font and a thick envelope",
+        "A polished print job and a monetary penalty",
+        "A legal appeal and a design award",
+        "A small notice and a large vehicle"
+      ],
+      "correctAnswer": "A polished print job and a monetary penalty",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. As an adjective, 'fine' praises the printing; as a noun, it names the penalty.",
+      "incorrectExplanation": "Not quite. A polished print job and a monetary penalty are contrasted. A shift in part of speech helps the same form carry unrelated meanings.",
+      "lessonContent": "A word's grammatical role can signal which meaning is active.\nAdjectives describe qualities, while nouns can name objects or consequences.\nWhen wordplay repeats one form, check whether its part of speech also changed.\nShare this: find one word today that works naturally as both a judgment and a thing.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Present and Accounted",
+      "question": "At roll call, every person present received a present except the presenter. Which statement follows without contradiction?",
+      "choices": [
+        "Everyone attending received a gift except the speaker",
+        "Every gift received an attendee except the speaker",
+        "Only absent people received gifts",
+        "The speaker was not at the event"
+      ],
+      "correctAnswer": "Everyone attending received a gift except the speaker",
+      "xpReward": 25,
+      "correctExplanation": "Right. The adjective means attending, the noun means gift, and 'presenter' independently names the speaker.",
+      "incorrectExplanation": "Actually, everyone attending received a gift except the speaker. Similar-looking forms tempt one unified reading even though their grammatical roles point elsewhere.",
+      "lessonContent": "Related-looking forms need not share one active meaning in a sentence.\nPart of speech separates an adjective, a noun, and an agent noun here.\nParaphrasing each form prevents sound patterns from overruling syntax.\nShare this: build a sentence using one word family in three different grammatical roles.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Change at Checkout",
+      "question": "A cashier says, 'I cannot change the price, but I can give you change.' What can the cashier do?",
+      "choices": [
+        "Alter the price but withhold coins",
+        "Replace the product but alter the policy",
+        "Rewrite the policy and cancel payment",
+        "Return the difference from the payment"
+      ],
+      "correctAnswer": "Return the difference from the payment",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The first use is the verb 'alter'; the second is the noun for money returned after payment.",
+      "incorrectExplanation": "Not quite. The cashier can return the difference from the payment. The denial applies to altering a value, not to supplying the customer's monetary remainder.",
+      "lessonContent": "Verb and noun senses can coexist even when their spelling is unchanged.\nObjects following a verb often reveal whether it means alter, exchange, or replace.\nRetail vocabulary turns an everyday process into a specialized noun.\nShare this: listen for one checkout word that changes meaning outside a shop.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Mean but Accurate",
+      "question": "A statistician says, 'Calling the result mean is not mean; it is exact.' Which distinction is intended?",
+      "choices": [
+        "The result is cruel rather than approximate",
+        "The result is average rather than unkind",
+        "The result is deliberate rather than central",
+        "The result is minimal rather than rude"
+      ],
+      "correctAnswer": "The result is average rather than unkind",
+      "xpReward": 25,
+      "correctExplanation": "Correct. In statistics, a mean is an average; in ordinary description, 'mean' can mean unkind.",
+      "incorrectExplanation": "Close! The result is average rather than unkind. A technical noun is being defended against the emotional reading of the same word as an adjective.",
+      "lessonContent": "Technical language often borrows familiar words and narrows their meaning.\nAn emotional reading can be grammatically possible yet contextually wrong.\nAsk whether a profession has assigned the word a formal definition.\nShare this: explain one mathematical word that also describes a personality or mood.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Nothing Odd Here",
+      "question": "A mathematician points to 17 and says, 'It is odd, but there is nothing odd about it.' What does the second 'odd' deny?",
+      "choices": [
+        "That 17 is indivisible by two",
+        "That 17 is a whole number",
+        "That 17 is unusual or strange",
+        "That 17 has exactly two factors"
+      ],
+      "correctAnswer": "That 17 is unusual or strange",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The first 'odd' classifies parity; the second rejects the everyday sense of strange.",
+      "incorrectExplanation": "Actually, the second use denies that 17 is unusual or strange. Mathematical oddness and everyday oddness are independent properties.",
+      "lessonContent": "Formal categories can share labels with informal judgments.\nNegating a repeated word may target only one of its available senses.\nReplace each occurrence with a fuller definition to expose the contrast.\nShare this: make a true sentence that uses one classification word both formally and casually.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Prime Position",
+      "question": "Seats 2, 3, 5, and 7 are prime-numbered, but only seat 3 is in a prime position for the screen. What is special about seat 3?",
+      "choices": [
+        "Its label and its location satisfy different meanings of prime",
+        "Its label is composite but its location is numbered",
+        "Its label and location are both divisible by three",
+        "Its location changes the arithmetic value of its label"
+      ],
+      "correctAnswer": "Its label and its location satisfy different meanings of prime",
+      "xpReward": 25,
+      "correctExplanation": "Right. Its number is mathematically prime, while its physical position is especially favorable.",
+      "incorrectExplanation": "Not quite. Its label and its location satisfy different meanings of prime. One is an exact number property; the other is an evaluative description of placement.",
+      "lessonContent": "One adjective can express a formal property and a quality judgment.\nA sentence may apply those senses to different features of the same object.\nSeparate labels from locations before deciding whether a repetition is redundant.\nShare this: point out one object whose number and placement can be described in different vocabularies.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Rooted in Two Worlds",
+      "question": "A gardener says the square root under the tree has no soil around its root. What must 'square root' refer to?",
+      "choices": [
+        "A square planting bed",
+        "A buried tree branch",
+        "A mathematical value written on a card",
+        "A root cut into four equal pieces"
+      ],
+      "correctAnswer": "A mathematical value written on a card",
+      "xpReward": 25,
+      "correctExplanation": "Correct. A mathematical root needs no soil, while the tree's botanical root naturally does.",
+      "incorrectExplanation": "Close! The square root is a mathematical value written on a card. The location phrase encourages a physical reading before the soil clue forces the abstract one.",
+      "lessonContent": "Metaphorical technical terms often retain imagery from physical objects.\nLocation words can misdirect readers into choosing a concrete sense too early.\nWhen a physical requirement fails, test whether the noun has an abstract use.\nShare this: place an abstract technical term beside the physical object that inspired its name.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#13",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Degrees of Difference",
+      "question": "Nora earned a degree about angles, then turned her diploma ninety degrees. Which two meanings are used?",
+      "choices": [
+        "Temperature and social rank",
+        "Academic qualification and angular measure",
+        "Intensity and moral blame",
+        "Polynomial order and compass direction"
+      ],
+      "correctAnswer": "Academic qualification and angular measure",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. Nora first earns an academic qualification, then rotates it by an angular amount.",
+      "incorrectExplanation": "Not quite. The sentence uses an academic qualification and an angular measure. The verb 'earned' selects one meaning, while the number and rotation select the other.",
+      "lessonContent": "Collocations such as earn a degree strongly select one sense of a word.\nNumbers and units can activate a second, measurement-based sense.\nVerbs are often stronger clues than the repeated noun itself.\nShare this: list two verbs that force different meanings of the same noun.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#14",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Plot Before Plotting",
+      "question": "A novelist bought a plot before discovering the plot for her next book. What did she acquire first?",
+      "choices": [
+        "A literary conflict",
+        "A secret conspiracy",
+        "A piece of land",
+        "A graph of coordinates"
+      ],
+      "correctAnswer": "A piece of land",
+      "xpReward": 25,
+      "correctExplanation": "Right. The first plot is a parcel of land; the second is the narrative structure of a book.",
+      "incorrectExplanation": "Actually, she first acquired a piece of land. Buying selects the property sense, while discovering a book's plot selects the story sense.",
+      "lessonContent": "A direct object inherits meaning from both its verb and the larger scenario.\nOwnership language often selects a physical or legal sense.\nCreative language may reuse the same noun for an organizing structure.\nShare this: pair one property word with its storytelling meaning in a sentence.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Board Before Boarding",
+      "question": "The board voted to board the delayed train. Who acted first?",
+      "choices": [
+        "A wooden plank entered the train",
+        "A group of directors cast votes",
+        "The train crew installed wall panels",
+        "Passengers purchased a game board"
+      ],
+      "correctAnswer": "A group of directors cast votes",
+      "xpReward": 25,
+      "correctExplanation": "Correct. The noun 'board' is a governing group; the verb 'board' means enter a vehicle.",
+      "incorrectExplanation": "Close! A group of directors cast votes first. The voting clue identifies the collective noun, while the infinitive names their later action.",
+      "lessonContent": "Nouns naming groups can share forms with verbs naming actions.\nAgreement and nearby verbs reveal whether a word denotes people or behavior.\nRead the sentence structure before choosing the most concrete image.\nShare this: find a noun for a group that also works as an everyday verb.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Leaves Before Leaves",
+      "question": "When autumn leaves, the employee leaves the leaves untouched. Which event is a departure by a person?",
+      "choices": [
+        "Autumn leaves",
+        "The employee leaves",
+        "The leaves remain",
+        "All three phrases"
+      ],
+      "correctAnswer": "The employee leaves",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The employee departs; autumn ends, while the final 'leaves' names foliage that remains untouched.",
+      "incorrectExplanation": "Not quite. 'The employee leaves' is the person's departure. The same form functions as two verbs with different subjects and then as a plural noun.",
+      "lessonContent": "Syntax can disambiguate identical forms before context does.\nSubjects determine what kind of action a verb can plausibly express.\nA final noun can echo earlier verbs and create a misleading rhythm.\nShare this: compose a sentence where one form appears twice as a verb and once as a noun.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Scale on the Scale",
+      "question": "A biologist removed a scale from a fish and placed it on a scale. What changed between the two uses?",
+      "choices": [
+        "A size ratio became a musical pattern",
+        "A skin plate became a weighing instrument",
+        "A staircase became a temperature range",
+        "A weighing instrument became a map ratio"
+      ],
+      "correctAnswer": "A skin plate became a weighing instrument",
+      "xpReward": 25,
+      "correctExplanation": "Right. The removed object is one of the fish's thin plates; the supporting object measures weight.",
+      "incorrectExplanation": "Actually, a skin plate became a weighing instrument. The prepositions 'from' and 'on' assign the two nouns different physical roles.",
+      "lessonContent": "Prepositions reveal whether an object is a part, a surface, a tool, or a destination.\nIdentical concrete nouns can still name objects from unrelated categories.\nTrack what can be removed and what can support before visualizing the scene.\nShare this: use prepositions to distinguish two meanings of one concrete noun.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Three Kinds of Date",
+      "question": "Mina set a date for a date at a cafe that serves dates. Which sequence of meanings is intended?",
+      "choices": [
+        "Calendar time, social meeting, fruit",
+        "Fruit, calendar time, social meeting",
+        "Social meeting, fruit, calendar time",
+        "Calendar time, fruit, social meeting"
+      ],
+      "correctAnswer": "Calendar time, social meeting, fruit",
+      "xpReward": 25,
+      "correctExplanation": "Correct. She schedules a time for a social meeting at a cafe serving the fruit.",
+      "incorrectExplanation": "Close! The sequence is calendar time, social meeting, fruit. Each surrounding construction selects a different sense in order.",
+      "lessonContent": "One word can support more than two senses in a single coherent sentence.\nFixed constructions such as set a date constrain interpretation strongly.\nMove left to right and use each local phrase rather than forcing global consistency.\nShare this: challenge someone to use one word in three distinct senses without changing its form.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Pitch on Pitch",
+      "question": "During halftime, a singer delivered a sales pitch on the pitch without changing pitch. Which meaning is NOT used?",
+      "choices": [
+        "A persuasive presentation",
+        "A sports field",
+        "A musical frequency",
+        "A sticky black substance"
+      ],
+      "correctAnswer": "A sticky black substance",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The sentence uses presentation, field, and musical-frequency senses, but not the tar-like material.",
+      "incorrectExplanation": "Not quite. A sticky black substance is the unused meaning. The surrounding phrases independently activate persuasion, sport, and sound.",
+      "lessonContent": "Some puzzles require tracking several active senses and excluding a spare one.\nPrepositional phrases can turn one repeated form into different semantic roles.\nAn available dictionary meaning is irrelevant unless the sentence supplies supporting context.\nShare this: take a word with four meanings and write a sentence that activates exactly three.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Point Well Made",
+      "question": "A debater earned a point by making a point with the point of a pencil. What happened in order?",
+      "choices": [
+        "She sharpened an argument, scored a tip, then drew a score",
+        "She scored, expressed an argument, then used a sharp tip",
+        "She indicated a direction, paused, then counted",
+        "She made a location, won an argument, then erased it"
+      ],
+      "correctAnswer": "She scored, expressed an argument, then used a sharp tip",
+      "xpReward": 25,
+      "correctExplanation": "Right. The three senses are a score, an argument or idea, and the sharpened end of the pencil.",
+      "incorrectExplanation": "Actually, she scored, expressed an argument, then used a sharp tip. The governing verbs and the final object establish the order of senses.",
+      "lessonContent": "Highly flexible nouns can name outcomes, ideas, locations, and physical parts.\nVerbs such as earn, make, and use narrow those possibilities differently.\nResolve each phrase locally, then reconstruct the whole event sequence.\nShare this: list three verbs that activate three meanings of the same noun.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Record Break Break",
+      "question": "During a break, Jo tried to break a record without breaking the record player. Which action was the goal?",
+      "choices": [
+        "Pause the player",
+        "Damage the disc",
+        "Surpass a previous achievement",
+        "Split the scheduled rest period"
+      ],
+      "correctAnswer": "Surpass a previous achievement",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Jo aims to exceed an achievement record while avoiding physical damage to the playback device.",
+      "incorrectExplanation": "Close! The goal was to surpass a previous achievement. The surrounding rest period and record player activate two additional senses without changing that objective.",
+      "lessonContent": "Verb-object pairs often form conventional meanings beyond their literal parts.\nA nearby compound noun may reuse the object in an unrelated physical sense.\nSeparate goals, timing, and precautions when one word appears in all three.\nShare this: find a sports phrase whose verb means something gentler than its literal physical sense.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#22",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Banking on Banks",
+      "question": "A pilot banked left over the river bank while banking her pay by phone. Which use involves storing money?",
+      "choices": [
+        "The pilot banked left",
+        "The river bank",
+        "Banking her pay",
+        "Both the turn and the river edge"
+      ],
+      "correctAnswer": "Banking her pay",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The three senses are tilting in a turn, the land beside a river, and depositing money.",
+      "incorrectExplanation": "Not quite. 'Banking her pay' involves storing money. The aircraft motion and river edge supply separate physical senses of the same form.",
+      "lessonContent": "Verbs of motion, landscape nouns, and financial verbs can share one form.\nObjects such as left, river, and pay act as compact disambiguating signals.\nDo not assume repeated imagery implies a historical or logical connection.\nShare this: identify three context words that force three meanings of one familiar term.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#23",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Strike in Three Acts",
+      "question": "During a workers' strike, Lena struck a match after throwing a strike. What did she do immediately before lighting the match?",
+      "choices": [
+        "She joined a labor stoppage",
+        "She knocked down bowling pins",
+        "She negotiated a contract",
+        "She scratched the matchbox"
+      ],
+      "correctAnswer": "She knocked down bowling pins",
+      "xpReward": 25,
+      "correctExplanation": "Right. 'Throwing a strike' describes the bowling result; striking the match then lights it, all during a labor stoppage.",
+      "incorrectExplanation": "Actually, she knocked down bowling pins immediately before lighting the match. The timeline separates labor, sport, and ignition senses.",
+      "lessonContent": "Time-order questions can hide semantic switches inside repeated forms.\nActivity-specific phrases often override the broad everyday meaning of a verb.\nBuild the event timeline only after translating each expression into plain language.\nShare this: tell a three-step story that moves one word through work, sport, and home life.",
+      "lessonGroup": "Word Play",
+      "forgeId": "batch-043#24",
+      "forgeScore": 100
+    }
+  ]
+}

@@ -14,8 +14,15 @@ import {
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { isAdmin } from "@/services/puzzle-service";
-import { resetAndSeed } from "@/scripts/seed-data/importer";
+import { resetAndSeed, type SeedData } from "@/scripts/seed-data/importer";
 import seedData from "@/scripts/seed-data/data";
+
+interface BundleManifest {
+  version: number;
+  generatedAt: string;
+  counts: { puzzles: number; lessonGroups: number };
+  categories: string[];
+}
 
 const STEPS = [
   { key: "idle", label: "Ready" },
@@ -34,13 +41,34 @@ export default function SeedPage() {
   const [importing, setImporting] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [admin, setAdmin] = useState(false);
+  const [source, setSource] = useState<"legacy" | "forge">("forge");
+  const [manifest, setManifest] = useState<BundleManifest | null>(null);
+  const [manifestError, setManifestError] = useState(false);
+  const [failed, setFailed] = useState<string | null>(null);
+  const [elapsed, setElapsed] = useState(0);
 
   // Role lives in sessionStorage, so it can only be read after mount.
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     setAdmin(isAdmin());
+    // Manifest is tiny (counts only); the multi-MB bundle loads on Start.
+    fetch("/seed/forge-manifest.json")
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((m: BundleManifest) => setManifest(m))
+      .catch(() => setManifestError(true));
   }, []);
+
+  // Elapsed clock while importing.
+  useEffect(() => {
+    if (!importing) return;
+    const t0 = Date.now();
+    const t = setInterval(() => setElapsed(Math.floor((Date.now() - t0) / 1000)), 500);
+    return () => clearInterval(t);
+  }, [importing]);
 
   const addLog = useCallback((msg: string) => {
     setProgress((prev) => [...prev, msg]);
@@ -54,10 +82,30 @@ export default function SeedPage() {
     }
 
     setImporting(true);
+    setFailed(null);
+    setElapsed(0);
     setStep("clearing");
     addLog("Starting seed process...");
 
     try {
+      let data: SeedData = seedData;
+      if (source === "forge") {
+        setStep("clearing");
+        addLog("Downloading forge bundle (~5MB)...");
+        const res = await fetch("/seed/forge-bundle.json");
+        if (!res.ok) throw new Error(`Bundle download failed (HTTP ${res.status}).`);
+        const bundle = (await res.json()) as SeedData & {
+          counts?: { puzzles: number; lessonGroups: number };
+        };
+        if (!Array.isArray(bundle.puzzles) || bundle.puzzles.length === 0) {
+          throw new Error("Bundle is empty or invalid — aborting before any wipe.");
+        }
+        addLog(
+          `Bundle ready: ${bundle.puzzles.length} puzzles, ${bundle.lessonGroups.length} groups.`,
+        );
+        data = bundle;
+      }
+
       let groupsImported = 0;
       let puzzlesImported = 0;
 
@@ -67,7 +115,7 @@ export default function SeedPage() {
         if (msg.includes("puzzles")) puzzlesImported = parseInt(msg.match(/\d+/)?.[0] ?? "0");
       };
 
-      await resetAndSeed(seedData, (msg) => {
+      await resetAndSeed(data, (msg) => {
         log(msg);
         if (msg.startsWith("Creating")) setStep("groups");
         if (msg.startsWith("Importing")) setStep("puzzles");
@@ -78,7 +126,12 @@ export default function SeedPage() {
       });
       setImporting(false);
     } catch (e) {
-      addLog(`ERROR: ${e instanceof Error ? e.message : "Unknown error"}`);
+      const message = e instanceof Error ? e.message : "Unknown error";
+      // Wipe-then-load is idempotent: a failed run leaves a partial bank, and
+      // re-running Seed wipes it clean before retrying. Nothing is half-merged.
+      addLog(`ERROR: ${message}`);
+      addLog("Safe to retry: pressing Start Import again wipes partial data first.");
+      setFailed(message);
       setStep("idle");
       setImporting(false);
     }
@@ -125,10 +178,45 @@ export default function SeedPage() {
       <div>
         <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Seed Database</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Import all lesson groups and puzzles from the seed data file. This will
+          Import lesson groups and puzzles from a seed source. This will
           replace ALL existing data.
         </p>
       </div>
+
+      {step === "idle" && !importing && (
+        <GlassCard intensity="strong" className="p-4">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Seed source</p>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              onClick={() => setSource("forge")}
+              disabled={manifestError}
+              className={`rounded-xl border px-4 py-3 text-left text-sm transition-colors disabled:opacity-50 ${
+                source === "forge" ? "border-primary bg-primary/10" : "hover:border-primary/50"
+              }`}
+            >
+              <p className="font-semibold">Forge bank {manifest ? `(${manifest.counts.puzzles.toLocaleString()})` : ""}</p>
+              <p className="text-xs text-muted-foreground">
+                {manifest
+                  ? `${manifest.counts.puzzles.toLocaleString()} AI questions + 2 keepers across ${manifest.counts.lessonGroups} groups`
+                  : manifestError
+                    ? "Bundle manifest missing — rebuild it (build-bundle.mjs)"
+                    : "Loading bundle info..."}
+              </p>
+            </button>
+            <button
+              onClick={() => setSource("legacy")}
+              className={`rounded-xl border px-4 py-3 text-left text-sm transition-colors ${
+                source === "legacy" ? "border-primary bg-primary/10" : "hover:border-primary/50"
+              }`}
+            >
+              <p className="font-semibold">Legacy seed ({seedData.puzzles.length})</p>
+              <p className="text-xs text-muted-foreground">
+                {seedData.puzzles.length} hand-written puzzles across {seedData.lessonGroups.length} groups
+              </p>
+            </button>
+          </div>
+        </GlassCard>
+      )}
 
       {!confirmed && step === "idle" && (
         <GlassCard intensity="strong" className="border-destructive/20 p-6">
@@ -142,9 +230,13 @@ export default function SeedPage() {
                 cannot be undone.
               </p>
               <p className="mt-2 text-xs text-muted-foreground">
-                Seed data includes {seedData.puzzles.length} puzzles across{" "}
-                {seedData.lessonGroups.length} lesson groups in{" "}
-                {new Set(seedData.lessonGroups.map((g) => g.category)).size} categories.
+                {source === "forge" && manifest
+                  ? `Forge bundle holds ${manifest.counts.puzzles.toLocaleString()} puzzles across ${manifest.counts.lessonGroups} lesson groups in ${manifest.categories.length} categories (built ${new Date(manifest.generatedAt).toLocaleDateString()}).`
+                  : `Seed data includes ${seedData.puzzles.length} puzzles across ${seedData.lessonGroups.length} lesson groups in ${new Set(seedData.lessonGroups.map((g) => g.category)).size} categories.`}
+              </p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Seeding wipes first, then loads — if it fails halfway, just run
+                it again; partial data is wiped before every retry.
               </p>
               <button
                 onClick={() => setConfirmed(true)}
@@ -217,6 +309,20 @@ export default function SeedPage() {
                 <div key={i}>{msg}</div>
               ))}
             </div>
+            {importing && (
+              <p className="text-xs text-muted-foreground">
+                Elapsed: {Math.floor(elapsed / 60)}:{String(elapsed % 60).padStart(2, "0")} — large banks take several minutes; keep this tab open.
+              </p>
+            )}
+            {failed && (
+              <GlassCard intensity="strong" className="border-destructive/20 p-4">
+                <p className="text-sm font-semibold text-destructive">Seed failed: {failed}</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Nothing is half-merged — pressing Start Import again wipes the
+                  partial bank first, so retrying is safe.
+                </p>
+              </GlassCard>
+            )}
 
             {/* Done state */}
             {step === "done" && counts && (

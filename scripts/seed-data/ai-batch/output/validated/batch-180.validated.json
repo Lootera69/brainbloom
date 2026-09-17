@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-180",
+  "generatedAt": "2026-09-17T13:27:45.439Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — accelerating mass to light speed demands infinite energy. The limit holds for all matter and signals.",
+      "incorrectExplanation": "It's true. Mass, ships, and messages all respect the cosmic speed limit.",
+      "lessonContent": "Light speed limits matter and messages.\nInfinity guards the final acceleration.\nLimits structure all cosmic traffic.\nShare this: race one light beam mentally.",
+      "lessonGroup": "Relativity Road",
+      "question": "Nothing carrying mass can reach the speed of light.",
+      "title": "The Final Limit",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — simultaneity tilts with motion; moving observers slice spacetime differently. 'Now' is frame-bound.",
+      "incorrectExplanation": "It's false. Two events simultaneous in one frame separate in time in another.",
+      "lessonContent": "Simultaneity tilts with velocity always.\n'Now' spans frames differently.\nTrains and platforms disagree legitimately.\nShare this: slice one spacetime two ways.",
+      "lessonGroup": "Relativity Road",
+      "question": "Two events simultaneous in one frame are simultaneous in all frames.",
+      "title": "The Universal Now",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#1",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — rest-frame observers measure moving clocks ticking slower. Time dilates with velocity symmetrically.",
+      "incorrectExplanation": "It's true. Muons and astronauts both demonstrate velocity slowing time.",
+      "lessonContent": "Velocity stretches ticking measurably.\nSymmetry surprises every beginner.\nFrames disagree about rates routinely.\nShare this: slow one clock by speeding.",
+      "lessonGroup": "Relativity Road",
+      "question": "Clocks moving fast tick slower as seen from rest.",
+      "title": "The Slow Tick",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — the traveling twin accelerates, breaking symmetry, and returns younger. Paths through spacetime age differently.",
+      "incorrectExplanation": "It's true. Asymmetric journeys accumulate asymmetric ages; the traveler stays young.",
+      "lessonContent": "Spacetime paths age travelers differently.\nAcceleration breaks twin symmetry.\nYouth rewards round trips relativistically.\nShare this: age one twin by traveling.",
+      "lessonGroup": "Relativity Road",
+      "question": "The traveling twin returns younger than the stay-at-home twin.",
+      "title": "The Younger Traveler",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — expanding space stretches distances superluminally; no signal overtakes light locally. Expansion isn't motion through space.",
+      "incorrectExplanation": "It's false. Distant galaxies recede past light speed while local physics stays lawful.",
+      "lessonContent": "Expansion stretches space itself superluminally.\nRecession differs from travel fundamentally.\nLocal limits survive cosmic stretching.\nShare this: stretch one rubber cosmos.",
+      "lessonGroup": "Relativity Road",
+      "question": "Nothing anywhere, including expanding space, exceeds light speed.",
+      "title": "The Stretching Exception",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — orbital velocity slows satellite clocks while weaker gravity speeds them; both corrections steer navigation. Engineers apply Einstein daily.",
+      "incorrectExplanation": "It's true. GPS fails within minutes uncorrected; relativity navigates your commute.",
+      "lessonContent": "Navigation runs on Einstein daily.\nVelocity slows; altitude quickens clocks.\nMicroseconds steer tons of steel.\nShare this: thank relativity for arrival.",
+      "lessonGroup": "Relativity Road",
+      "question": "GPS satellites require both special and general relativistic corrections.",
+      "title": "The Navigating Einstein",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — deeper clocks tick slower measurably; height literally ages you faster. Gravity gradients time.",
+      "incorrectExplanation": "It's true. Mountain clocks outrun valley clocks; GPS must account for altitude.",
+      "lessonContent": "Gravity gradients time itself measurably.\nHeight purchases extra aging.\nValleys linger; peaks hurry.\nShare this: age faster upstairs tonight.",
+      "lessonGroup": "Relativity Road",
+      "question": "Time runs slower deeper in a gravitational field.",
+      "title": "The Valley Clock",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — mass converts to energy in reactors and stars. Tiny masses unleash vast energies.",
+      "incorrectExplanation": "It's true. Sunshine spends solar mass; bombs spend grams for cities.",
+      "lessonContent": "Mass stores energy astronomically densely.\nStars spend mass for light.\nGrams command kilotons equivalently.\nShare this: weigh one sunbeam's cost.",
+      "lessonGroup": "Relativity Road",
+      "question": "Mass can convert into energy, as stars demonstrate.",
+      "title": "The Spendable Mass",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — light speed is invariant for all observers, chasers included. velocities add; light declines.",
+      "incorrectExplanation": "It's false. Chase a beam at half light speed and it still outruns you at full c.",
+      "lessonContent": "Light speed ignores pursuers completely.\nInvariance anchors modern physics.\nChasers gain nothing on photons.\nShare this: chase one beam fruitlessly.",
+      "lessonGroup": "Relativity Road",
+      "question": "Light slows down for observers chasing it.",
+      "title": "The Uncatchable Beam",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#8",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — short-lived muons survive to ground only because velocity stretches their seconds. Lifetimes testify.",
+      "incorrectExplanation": "It's true. Atmospheric muons outlive their rest-frame clocks through dilation.",
+      "lessonContent": "Muons testify to dilated time daily.\nSeconds stretch at near-light speeds.\nCosmic rays run the experiment.\nShare this: greet one surviving muon.",
+      "lessonGroup": "Relativity Road",
+      "question": "Atmospheric muons reach the ground thanks to time dilation.",
+      "title": "The Surviving Muon",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — mass-energy curves spacetime; objects follow the curves. Gravity geometrizes completely.",
+      "incorrectExplanation": "It's true. Planets orbit straight lines through curved geometry.",
+      "lessonContent": "Curvature replaces gravitational force.\nGeometry guides falling bodies.\nStraight lines bend with space.\nShare this: roll one marble on sheets.",
+      "lessonGroup": "Relativity Road",
+      "question": "General relativity describes gravity as spacetime curvature.",
+      "title": "The Curved Fall",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — acceleration demands general relativity; special handles uniform motion only. Frames must be inertial.",
+      "incorrectExplanation": "It's false. Special relativity rules inertial frames; accelerators graduate to GR.",
+      "lessonContent": "Inertial frames bound special relativity.\nAcceleration graduates physics to GR.\nDomains limit every theory rightly.\nShare this: name one theory's boundary.",
+      "lessonGroup": "Relativity Road",
+      "question": "Special relativity fully handles accelerating reference frames.",
+      "title": "The Accelerated Frame",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#11",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — invariant mass replaced velocity-dependent mass in modern pedagogy. Energy-momentum relations need no growing mass.",
+      "incorrectExplanation": "It's true. Textbooks retired 'relativistic mass' for cleaner invariant language.",
+      "lessonContent": "Invariant mass simplifies modern physics.\n'Heavier when fast' misleads subtly.\nLanguage shapes intuition powerfully.\nShare this: retire one outdated phrase.",
+      "lessonGroup": "Relativity Road",
+      "question": "Modern physicists prefer invariant mass over 'relativistic mass'.",
+      "title": "The Trimmed Vocabulary",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#12",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — horizons are one-way causal boundaries; no thrust crosses back. Escape needs past-directed time.",
+      "incorrectExplanation": "It's false. Inside the horizon, all paths lead inward; rockets join the singularity.",
+      "lessonContent": "Horizons bound causality one-way.\nThrust cannot outrun geometry inside.\nOne-way doors dot spacetime.\nShare this: respect one horizon's finality.",
+      "lessonGroup": "Relativity Road",
+      "question": "Powerful enough rockets can escape black hole event horizons.",
+      "title": "The No-Exit Horizon",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — no proper time elapses along lightlike paths. Emission and absorption coincide photon-side.",
+      "incorrectExplanation": "It's true. Null paths accumulate zero proper time between endpoints.",
+      "lessonContent": "Photons accrue no proper time.\nEndpoints coincide light-side.\nTimelessness travels at light speed.\nShare this: ride one photon timelessly.",
+      "lessonGroup": "Relativity Road",
+      "question": "No time elapses for a photon between emission and absorption.",
+      "title": "The Timeless Photon",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#14",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — expansion has no center; every point recedes from every other. Raisin bread rises centerlessly.",
+      "incorrectExplanation": "It's false. Cosmic expansion happens everywhere at once, centering nowhere.",
+      "lessonContent": "Expansion centers nowhere at all.\nRaisins separate mutually centerlessly.\nEvery galaxy sees others fleeing.\nShare this: bake one centerless cosmos.",
+      "lessonGroup": "Relativity Road",
+      "question": "The universe expands outward from a central point.",
+      "title": "The Centerless Rise",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#15",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — recession is space stretching, not motion through space. Local speed limits stay intact.",
+      "incorrectExplanation": "It's false. Superluminal recession respects relativity because nothing travels.",
+      "lessonContent": "Recession stretches; travel moves.\nDistinctions preserve lawful superluminality.\nSpace grows; ships still crawl.\nShare this: separate stretching from speeding.",
+      "lessonGroup": "Relativity Road",
+      "question": "Superluminal galactic recession violates relativity.",
+      "title": "The Lawful Speeding",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — detectors timed ripples arriving at light speed from colliding holes. Gravity signals at c.",
+      "incorrectExplanation": "It's true. LIGO's delays match light-speed propagation across continents.",
+      "lessonContent": "Gravity waves surf at light speed.\nCollisions ring spacetime audibly.\nDetectors time cosmic ripples.\nShare this: hear one chirp recording.",
+      "lessonGroup": "Relativity Road",
+      "question": "Gravitational waves propagate at the speed of light.",
+      "title": "The Rippling Signal",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#17",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — Mercury's perihelion precesses exactly as curved spacetime predicts. Anomalies crowned Einstein.",
+      "incorrectExplanation": "It's true. Newton's books couldn't balance Mercury; GR balanced them.",
+      "lessonContent": "Mercury's wobble crowned Einstein.\nAnomalies anoint new theories.\nPrecession testified precisely.\nShare this: credit one tiny anomaly.",
+      "lessonGroup": "Relativity Road",
+      "question": "Mercury's orbital anomaly helped confirm general relativity.",
+      "title": "The Wobbling Proof",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — airborne atomic clocks aged as relativity predicts. Jets tested Einstein with tickets.",
+      "incorrectExplanation": "It's true. Hafele-Keating flew clocks around Earth and counted nanoseconds.",
+      "lessonContent": "Airliners test relativity routinely.\nAtomic clocks fly and disagree lawfully.\nNanoseconds confirm centuries' theory.\nShare this: fly one thought experiment.",
+      "lessonGroup": "Relativity Road",
+      "question": "Atomic clocks flown on planes confirmed time dilation.",
+      "title": "The Flying Clocks",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — speculative geometries allow time loops mathematically, but none are established physics. Possibility isn't license.",
+      "incorrectExplanation": "It's false. Wormhole time machines need unproven exotic matter and survive only on paper.",
+      "lessonContent": "Mathematics permits what physics withholds.\nExotic matter stays hypothetical.\nPaper time machines fly nowhere.\nShare this: shelve one wormhole weekend.",
+      "lessonGroup": "Relativity Road",
+      "question": "Relativity guarantees practical backward time travel via wormholes.",
+      "title": "The Paper Machine",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — field energy contributes most; quarks' rest masses are minor. Protons weigh motion and binding.",
+      "incorrectExplanation": "It's false. Gluon fields and quark zipping supply nearly all proton heft.",
+      "lessonContent": "Binding energy outweighs constituents.\nProtons weigh motion mostly.\nMass emerges from confinement.\nShare this: weigh one proton's motion.",
+      "lessonGroup": "Relativity Road",
+      "question": "A proton's mass comes mostly from its quarks' rest masses.",
+      "title": "The Weightless Parts",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — sunlight needs about eight minutes to cross to Earth. Daylight is history.",
+      "incorrectExplanation": "It's true. Look sunward and you see eight minutes past.",
+      "lessonContent": "Sunlight arrives eight minutes old.\nDaylight is recent history always.\nSkies report pasts, never presents.\nShare this: greet eight-minute-old light.",
+      "lessonGroup": "Relativity Road",
+      "question": "Sunlight takes about eight minutes to reach Earth.",
+      "title": "The Eight-Minute Dawn",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — Alcubierre geometries satisfy Einstein's equations formally but demand unobserved exotic matter. Math allows; physics withholds.",
+      "incorrectExplanation": "It's false. Warp metrics are consistent solutions awaiting impossible fuel.",
+      "lessonContent": "Solutions outrun substances in GR.\nExotic matter stays missing.\nConsistency never guarantees construction.\nShare this: park one warp dream responsibly.",
+      "lessonGroup": "Relativity Road",
+      "question": "Physics has proven warp drives impossible.",
+      "title": "The Unbuilt Warp",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#23",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — Wheeler's slogan compresses GR's mutual instruction. Geometry and matter co-author motion.",
+      "incorrectExplanation": "It's true. Curvature directs bodies; bodies curve spacetime back.",
+      "lessonContent": "Geometry and matter instruct mutually.\nWheeler compressed GR to aphorism.\nCo-authorship rules cosmic motion.\nShare this: quote Wheeler's loop once.",
+      "lessonGroup": "Relativity Road",
+      "question": "Matter curves spacetime, and curved spacetime guides matter.",
+      "title": "The Mutual Instruction",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-180#24",
+      "forgeScore": 100
+    }
+  ]
+}

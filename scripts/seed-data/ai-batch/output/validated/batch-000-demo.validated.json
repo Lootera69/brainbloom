@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "batchId": "batch-000-demo",
+  "generatedAt": "2026-09-17T13:27:41.314Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Barber's Dilemma",
+      "question": "In a village, the barber shaves exactly those men who do not shave themselves. Who shaves the barber?",
+      "choices": [
+        "The barber shaves himself",
+        "Another villager shaves him",
+        "Nobody — the rule is self-contradictory",
+        "He is bald, so the question is void"
+      ],
+      "correctAnswer": "Nobody — the rule is self-contradictory",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Either way the rule breaks: if he shaves himself he violates it, and if he doesn't he must shave himself. Russell built this in 1901 to break set theory.",
+      "incorrectExplanation": "Not quite — every 'practical' answer quietly breaks the rule. If he shaves himself, he's shaving someone who shaves himself. If someone else shaves him, then he doesn't shave himself — so by the rule he must shave himself. The premise is self-contradictory; that's the point.",
+      "lessonContent": "Russell's paradox arrives from harmless-looking self-reference: a set that contains all sets that don't contain themselves.\nThe village version dresses the same trap in everyday clothing — a rule that applies to itself.\nLogicians built type theory to fence off exactly this kind of loop.\nSpotting self-reference early is a core reasoning skill.\nShare this: try writing a sentence that describes itself and see where it bites.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-000-demo#0",
+      "forgeScore": 92
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Quantum Spookiness",
+      "question": "Quantum entanglement means measuring one particle instantly influences its entangled partner, no matter the distance — and this cannot be used to send faster-than-light messages.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True — proven by the 2022 Nobel experiments. The correlation is instant but each individual result is random, so no information travels.",
+      "incorrectExplanation": "It's true. Einstein called it 'spooky action at a distance' and doubted it, but experiments settled it. The catch people miss: the results are random, so entanglement can't carry a message faster than light.",
+      "lessonContent": "Einstein's 'spooky action' nickname came from discomfort with what the mathematics predicted.\nEntanglement correlations have passed every Bell test since the 1970s.\nRandomness at each end is what blocks faster-than-light messaging.\nThe observer effect is a different phenomenon from entanglement — a common mix-up.\nShare this: ask someone why entanglement can't send messages and enjoy the pause.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-000-demo#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "riddle",
+      "category": "riddles",
+      "difficulty": "easy",
+      "title": "The More You Take",
+      "question": "The more you take, the more you leave behind. What am I?",
+      "choices": [],
+      "correctAnswer": "Footsteps",
+      "acceptedAnswers": [
+        "Footsteps",
+        "Steps",
+        "A footstep",
+        "footsteps"
+      ],
+      "hintText": "Think about movement, not objects.\nIt's something you 'take' with your body.\nYou leave them behind you as you walk.",
+      "xpReward": 10,
+      "correctExplanation": "Yes! Every step you 'take' leaves a footprint behind — the double meaning of 'take' is the whole trick.",
+      "incorrectExplanation": "The answer is footsteps. The riddle plays on two meanings of 'take': taking a step versus taking an object. The more steps you take, the more you leave behind you.",
+      "lessonContent": "Wordplay riddles hide their trick in the double meanings of ordinary verbs.\nThe fair ones keep every needed clue inside the riddle itself.\nRiddles older than a thousand years survive in the Exeter Book — the habit of riddling runs deep in human culture.\nReading a riddle twice, slowly, is the standard technique.\nShare this: ask someone the oldest riddle you know and watch them reason it aloud.",
+      "lessonGroup": "Classic Riddles",
+      "forgeId": "batch-000-demo#2",
+      "forgeScore": 100
+    }
+  ]
+}

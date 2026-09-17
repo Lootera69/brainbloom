@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-051",
+  "generatedAt": "2026-09-17T13:27:42.076Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "After Five Heads",
+      "question": "A fair coin lands heads five times in a row. What is the chance the sixth flip is heads?",
+      "choices": [
+        "Exactly fifty-fifty, as always",
+        "Below half, since tails is overdue",
+        "Above half, the coin is on a run",
+        "Depends on how the coin was flipped"
+      ],
+      "correctAnswer": "Exactly fifty-fifty, as always",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. The coin has no memory; each flip is independent, so the chance stays one half regardless of history.",
+      "incorrectExplanation": "The answer is: exactly fifty-fifty, as always. Believing tails must balance the run is the gambler's fallacy: chance has no sense of debt. Five heads already happened; the sixth flip is a fresh universe.",
+      "lessonContent": "Independent events carry no memory of past results.\nThe urge to see debt in randomness is the oldest betting trap.\nRuns happen naturally in fair sequences — expect them.\nJudge a process by its rules, not by its recent streak.\nShare this: ask someone tonight whether a coin owes anything after five heads.",
+      "forgeId": "batch-051#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "At Least One Boy",
+      "question": "A family has two children, and you learn that at least one is a boy. What is the chance both children are boys?",
+      "choices": [
+        "One in three",
+        "One in two",
+        "One in four",
+        "Three in four"
+      ],
+      "correctAnswer": "One in three",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. The equally likely families with at least one boy are BB, BG, GB — and only one of those has two boys.",
+      "incorrectExplanation": "The answer is one in three. List the sample space: boy-boy, boy-girl, girl-boy all satisfy the condition, and only one option in three is the two-boy family. The trap is silently replacing the condition with a specific child being a boy.",
+      "lessonContent": "Conditions reshape sample spaces before any counting begins.\nList every equally likely case that survives the condition.\nAt least one statements sweep in more cases than a specific one.\nSample-space discipline beats intuition every time.\nShare this: walk a friend through the two-children puzzle tonight.",
+      "forgeId": "batch-051#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Twenty-Three Strangers",
+      "question": "How likely is it that two people in a room of twenty-three strangers share a birthday?",
+      "choices": [
+        "About even odds",
+        "Roughly one in ten",
+        "Barely one in a hundred",
+        "Almost certain"
+      ],
+      "correctAnswer": "About even odds",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. With twenty-three people there are 253 pairings, and the chance of no match works out to just under half.",
+      "incorrectExplanation": "The answer is: about even odds. Intuition checks twenty-three against 365 days, but the real engine is the 253 pairs each potentially matching. The question is never about people matching you — it is about pairs matching each other.",
+      "lessonContent": "Group-coincidence questions explode combinatorially, not linearly.\nCount pairs, not people, when hunting a match.\nTwenty-three suffices because pairs grow as the square of the group.\nFamous results deserve a sanity check by brute logic.\nShare this: poll a classroom or office today and test the claim live.",
+      "forgeId": "batch-051#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Gambler's Question",
+      "question": "Which bet offers the better chance: at least one double-six in 24 throws of two dice, or at least one six in 4 throws of one die?",
+      "choices": [
+        "The single-six bet",
+        "The double-six bet",
+        "Both are exactly equal",
+        "Neither clears one in three"
+      ],
+      "correctAnswer": "The single-six bet",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. The single-six bet clears 51.7 percent, while the double-six bet stalls near 49.1 — a slim but real edge.",
+      "incorrectExplanation": "The answer is: the single-six bet. The historic puzzle fooled a seventeenth-century gambler who felt they should be equal. Complement arithmetic gives 1 minus (5/6)^4 versus 1 minus (35/36)^24, and the first inches ahead.",
+      "lessonContent": "Compare chances through their complements — the chance of never happening.\nFeelings of proportion fail at compound repetition.\nSmall edges repeated thousands of times built the casino industry.\nDe Méré's puzzle helped launch probability theory itself.\nShare this: compute both chances tonight and feel the surprise of the gap.",
+      "forgeId": "batch-051#3",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Boy Days",
+      "question": "A small clinic delivers about ten babies a day; a large hospital about fifty. Which records more days on which over sixty percent of newborns are boys?",
+      "choices": [
+        "The smaller clinic",
+        "The larger hospital",
+        "Both record the same",
+        "Neither ever hits sixty"
+      ],
+      "correctAnswer": "The smaller clinic",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Tiny samples swing wildly, so the clinic's daily ratio strays far from half far more often.",
+      "incorrectExplanation": "The answer is: the smaller clinic. Variance shrinks as samples grow, so the hospital's ratio hugs the true half. Extremes are a small-sample phenomenon, which is why they cluster in tiny data sets.",
+      "lessonContent": "Small samples are volatile; large samples are steady.\nExtremes concentrate wherever few cases are measured.\nAsk how many observations stand behind any striking rate.\nThe law of large numbers is a stabilizer, not a magnet.\nShare this: question one small-sample statistic you hear this week.",
+      "forgeId": "batch-051#4",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Lucky Numbers",
+      "question": "One lottery player always plays the same cherished digits; another buys a fresh quick-pick each week. Who holds the better ticket odds?",
+      "choices": [
+        "Identical odds either way",
+        "The cherished digits win",
+        "The quick-picks pull ahead",
+        "It depends on draw history"
+      ],
+      "correctAnswer": "Identical odds either way",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Every combination faces the same draw, so devotion and randomness buy exactly the same chance.",
+      "incorrectExplanation": "The answer is: identical odds either way. The machine owes nothing to loyalty or to novelty. One honest difference exists — popular manual picks are shared more often, so prizes split, but the winning chance itself is flat.",
+      "lessonContent": "All combinations of a fair draw are created equal.\nRituals feel powerful precisely because outcomes are random.\nOdds of winning and expected prize money are separate questions.\nShared popular numbers split jackpots more ways.\nShare this: ask tonight which numbers feel lucky and why that feeling costs nothing.",
+      "forgeId": "batch-051#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Crowded Total",
+      "question": "Two fair dice are rolled together. Which total is the most likely result?",
+      "choices": [
+        "Seven",
+        "Eight",
+        "Six and eight tie",
+        "Any total can lead"
+      ],
+      "correctAnswer": "Seven",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Six of the thirty-six pairings make a seven — more than any other total — because every face pairs with its complement.",
+      "incorrectExplanation": "The answer is a total of seven. Count the paths: one-six, two-five, three-four, four-three, five-two, six-one — six ways, the maximum. Symmetry about the middle of the distribution is the whole mechanism.",
+      "lessonContent": "Dice totals form a triangle: middle sums gather the most paths.\nCounting pairings beats memorizing the table.\nSymmetry of complements explains why the center peaks.\nThe same triangle shape governs sums everywhere.\nShare this: challenge someone tonight to say why the middle total dominates.",
+      "forgeId": "batch-051#6",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Midnight Socks",
+      "question": "A dark drawer holds four black socks and four white socks. You grab two without looking. What is the chance they match?",
+      "choices": [
+        "Three in seven",
+        "Exactly one half",
+        "Four in seven",
+        "One in four"
+      ],
+      "correctAnswer": "Three in seven",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Whichever color comes first, three of the remaining seven socks match it, giving three sevenths.",
+      "incorrectExplanation": "The answer is three in seven. The first sock is free; the question is only the second. After any first sock, seven remain and just three match its color — a conditional framing that halves the messy counting.",
+      "lessonContent": "Anchor on the second draw after fixing the first.\nThe first sock sets the target; probability lives in what remains.\nWithout-replacement questions change the population each step.\nFraming one condition often dissolves a whole tree.\nShare this: solve the sock puzzle aloud tonight with any even numbers.",
+      "forgeId": "batch-051#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Five Fair Flips",
+      "question": "In five fair coin flips, which outcome is more probable: the pattern heads-tails-tails-heads-tails, or heads-heads-heads-heads-heads?",
+      "choices": [
+        "Equally likely sequences",
+        "The mixed pattern dominates",
+        "The all-heads run dominates",
+        "Neither can occur in practice"
+      ],
+      "correctAnswer": "Equally likely sequences",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Every specific five-flip pattern has probability one thirty-second; no particular string is special.",
+      "incorrectExplanation": "The answer is: equally likely sequences. The mixed pattern feels typical, and typical-looking strings are indeed more common as a class — but any one named pattern matches the all-heads run exactly. Confusing a class with a member is the trap.",
+      "lessonContent": "Any single named pattern carries the same exact probability.\nTypical-looking results are common as a group, rare as individuals.\nDistinguish the category from the specific member.\nRandomness produces streaks that look meaningful.\nShare this: write one random-looking string and one streak, then compare chances tonight.",
+      "forgeId": "batch-051#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Snake Eyes Odds",
+      "question": "Rolling two dice once: which event has the greater chance, snake eyes or seeing at least one six?",
+      "choices": [
+        "Getting at least one six",
+        "Rolling the double one",
+        "Both happen equally often",
+        "Neither is worth a penny"
+      ],
+      "correctAnswer": "Getting at least one six",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Eleven of the thirty-six pairings show a six, against a single pairing for snake eyes — an eleven-to-one gap.",
+      "incorrectExplanation": "The answer is: getting at least one six. Snake eyes is exactly one outcome, while any-six sweeps in eleven, including the double six. Ask how many ways an event can happen before pricing it.",
+      "lessonContent": "Count the ways an event can occur, not just how it sounds.\nAt least one conditions sweep up many combinations.\nComplement counting often makes the sweep explicit.\nAn eleven-fold edge should change any wager's terms.\nShare this: count tonight how many pairings contain a six before trusting a guess.",
+      "forgeId": "batch-051#9",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Doubling Trap",
+      "question": "A roulette player doubles the stake after every loss, reasoning that a win must eventually repay all losses. What breaks the plan in practice?",
+      "choices": [
+        "Finite money meets table limits",
+        "The wheel's memory evens out",
+        "Red becomes rarer after runs",
+        "Dealers subtly counter the scheme"
+      ],
+      "correctAnswer": "Finite money meets table limits",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Stakes grow exponentially while bankrolls and house limits stay fixed, so the inevitable long losing streak ends the game first.",
+      "incorrectExplanation": "The answer is: finite money meets table limits. Doubling converts many small wins into eventual ruin because a run of losses multiplies the required stake past any real budget. The casino caps bets precisely because it can outlast any wallet.",
+      "lessonContent": "Exponential growth in stakes beats any linear bankroll.\nRare bad runs are certain across enough repetitions.\nBetting systems rearrange luck; they never repeal the edge.\nWhoever can outlast whom is the real game.\nShare this: explain tonight why doubling schemes fail with a napkin diagram.",
+      "forgeId": "batch-051#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Second Ace",
+      "question": "Drawing two cards from a standard deck, does putting the first card back before the second draw make two aces more or less likely?",
+      "choices": [
+        "It raises the chance",
+        "It lowers the chance",
+        "The chance stays identical",
+        "Replacement only matters for colors"
+      ],
+      "correctAnswer": "It raises the chance",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Returning the first ace restores four aces among fifty-two cards, so the second draw keeps the fuller deck of chances.",
+      "incorrectExplanation": "The answer is: it raises the chance. Without replacement the second draw offers only three aces in fifty-one; with replacement the rich four-in-fifty-two deck returns. Removing success factors shrinks the follow-up chance — that is depletion.",
+      "lessonContent": "Drawing without replacement depletes the lucky pool.\nEach success removed makes the next success scarcer.\nRestore the population and the odds reset.\nSmall-deck arithmetic compounds quickly.\nShare this: compare two-draw chances tonight with and without putting back.",
+      "forgeId": "batch-051#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Due a Win",
+      "question": "A slot player has lost forty spins in a row and tells a friend the machine must be due to pay. What does probability actually say?",
+      "choices": [
+        "Past pulls change nothing",
+        "Forty losses raise the next chance",
+        "The machine owes a payout soon",
+        "Near misses predict a coming win"
+      ],
+      "correctAnswer": "Past pulls change nothing",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Each spin is independent with a fixed payout distribution; the machine keeps no ledger of debts.",
+      "incorrectExplanation": "The answer is: past pulls change nothing. The feeling of being owed is the gambler's fallacy wearing a friendly face. Long losing runs are exactly what random sequences produce, and the fortieth spin faces the same odds as the first.",
+      "lessonContent": "Machines with fixed odds keep no account of your past.\nLong dry runs are normal products of randomness.\nDue-ness is an emotional prediction, not a probability.\nAsk what mechanism could even carry the debt forward.\nShare this: gently challenge one due-for-a-win claim tonight.",
+      "forgeId": "batch-051#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Two More Heads",
+      "question": "Three fair coins are flipped, and you see that the first landed heads. What is the chance the other two also landed heads?",
+      "choices": [
+        "One in four",
+        "One in two",
+        "One in eight",
+        "One in three"
+      ],
+      "correctAnswer": "One in four",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. The two unseen coins are independent, and each shows heads with probability one half: one quarter together.",
+      "incorrectExplanation": "The answer is one in four. The known head resolves the first coin, leaving two fresh flips. The trap inflates the number of unknowns by folding the observed coin back into the count.",
+      "lessonContent": "Observed outcomes are fixed facts, not open questions.\nCondition on what is seen and count only the remainder.\nIndependence lets you multiply the leftover chances.\nUpdate the picture before computing anything.\nShare this: reset one solved problem tonight and recompute with only its unknowns.",
+      "forgeId": "batch-051#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Positive Result",
+      "question": "A disease affects one percent of people. A test catches it ninety percent of the time and falsely alarms ten percent of the healthy. You test positive. How likely are you actually ill?",
+      "choices": [
+        "Under one half",
+        "About nine in ten",
+        "Exactly one in ten",
+        "Near ninety-nine percent"
+      ],
+      "correctAnswer": "Under one half",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. In a thousand people, roughly nine true cases are detected, but about a hundred healthy people also test positive — illness is the minority of positives.",
+      "incorrectExplanation": "The answer is: under one half. Picture a thousand people: about ten are ill and nine of them alarm, while nearly a hundred healthy people also alarm. The rare-condition base rate drowns the test's accuracy, so most positives are false.",
+      "lessonContent": "Base rates decide how much a positive result should move you.\nRare conditions generate most positives from the huge healthy pool.\nAlways picture counts per thousand, not percentages alone.\nTest accuracy and illness-given-positive are different numbers.\nShare this: convert one alarming test headline into counts tonight.",
+      "forgeId": "batch-051#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Naming the Die",
+      "question": "A friend rolls a hidden fair die, peeks at it, and asks you to name the result. Does your friend's peek change your chance of naming it right?",
+      "choices": [
+        "The peeking changes nothing",
+        "It doubles your chance",
+        "It halves your chance",
+        "It locks the outcome for you"
+      ],
+      "correctAnswer": "The peeking changes nothing",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Information the guesser never receives cannot alter the guesser's one-in-six chance.",
+      "incorrectExplanation": "The answer is: the peeking changes nothing. Only information you act on shifts your probabilities. The roll's outcome is fixed, but from your seat it stays an even six-way mystery.",
+      "lessonContent": "Probability reflects the information you actually hold.\nHidden knowledge the guesser lacks changes nothing on their side.\nSame event, different observers, different chances.\nAsk who knows what before pricing any uncertainty.\nShare this: stage the hidden-die game tonight and track the hits.",
+      "forgeId": "batch-051#15",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Three Dice, Two Sums",
+      "question": "Three fair dice are rolled together. Which total is more likely to appear: ten or thirteen?",
+      "choices": [
+        "Rolling ten",
+        "Rolling thirteen",
+        "Both totals tie evenly",
+        "Neither, both are rare"
+      ],
+      "correctAnswer": "Rolling ten",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Ten can be built from twenty-seven ordered combinations, thirteen from only twenty-one — the distribution's peak sits below the middle.",
+      "incorrectExplanation": "The answer is: rolling ten. The three-dice hill is not symmetric around ten and a half; it leans low, so ten outdraws thirteen. Counting compositions, not vibes, settles every such comparison.",
+      "lessonContent": "Multi-dice totals peak below the obvious midpoint when the range starts at one.\nCount ordered combinations to compare totals honestly.\nSymmetry intuitions need checking against actual enumeration.\nSmall shifts compound across three dice.\nShare this: list tonight three ways to make ten versus thirteen with dice.",
+      "forgeId": "batch-051#16",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Last Digit Match",
+      "question": "Four friends compare the final digits of their phone numbers. What are the chances two of them share the same final digit?",
+      "choices": [
+        "About one in two",
+        "Barely one in ten",
+        "Nearly nine in ten",
+        "Exactly one in four"
+      ],
+      "correctAnswer": "About one in two",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. With ten possible digits, four people produce a collision chance of almost exactly fifty percent.",
+      "incorrectExplanation": "The answer is: about one in two. Four digits give six pairings, each with a one-in-ten match; the no-collision path runs 10/10 times 9/10 times 8/10 times 7/10, landing near forty-nine-point-six percent clean. The birthday effect in miniature.",
+      "lessonContent": "Collision chances grow with pairs, not with people.\nSmall option pools collide surprisingly fast.\nThe no-match complement is easier to compute than direct matches.\nThis is the birthday paradox scaled down to ten days.\nShare this: compare last digits with three friends tonight and score the outcome.",
+      "forgeId": "batch-051#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Ten of a Hundred",
+      "question": "A raffle sells one hundred tickets; you own ten. Three winning tickets are drawn. What is the chance you hold at least one winner?",
+      "choices": [
+        "Around one in four",
+        "Exactly three in ten",
+        "Nearly one in two",
+        "Just one in ten"
+      ],
+      "correctAnswer": "Around one in four",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. The chance all three winners miss your tickets is about ninety-of-one-hundred times eighty-nine and eighty-eight over ninety-nine and ninety-eight — leaving roughly twenty-seven percent.",
+      "incorrectExplanation": "The answer is: around one in four. Compute the complement: ninety over one hundred, then eighty-nine over ninety-nine, then eighty-eight over ninety-eight, multiplying to about seventy-three percent for zero hits. At least one is the remaining twenty-seven.",
+      "lessonContent": "At-least-one questions are easiest through the complement.\nMultiply the miss-chances step by step as the pool drains.\nTen percent of tickets does not mean ten percent of prizes.\nSequential draws update the fractions every step.\nShare this: recompute your odds next time you enter any raffle.",
+      "forgeId": "batch-051#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Longest Run",
+      "question": "You flip a fair coin twenty times. What is the longest streak of identical results you should expect somewhere in the record?",
+      "choices": [
+        "About five in a row",
+        "About two in a row",
+        "About ten in a row",
+        "Streaks never survive past three"
+      ],
+      "correctAnswer": "About five in a row",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Twenty flips contain nineteen possible streak starts, so a run of five or more appears more often than not.",
+      "incorrectExplanation": "The answer is: about five in a row. Human-made random sequences are suspiciously streak-free because people expect alternation. Real randomness clusters, and modest runs are its signature, not its exception.",
+      "lessonContent": "True randomness looks streaky to human eyes.\nNineteen possible starting points make moderate runs likely.\nPeople writing fake randomness over-alternate results.\nExpect clusters and you will stop seeing patterns as messages.\nShare this: write twenty fake flips tonight and compare them to real ones.",
+      "forgeId": "batch-051#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "First Roll Fortunes",
+      "question": "At craps, the shooter wins immediately with a natural (seven or eleven) and loses immediately with craps (two, three, or twelve). How do the immediate outcomes compare?",
+      "choices": [
+        "Winning, two to one",
+        "Losing, two to one",
+        "Perfectly balanced odds",
+        "Winning, but barely"
+      ],
+      "correctAnswer": "Winning, two to one",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Naturals cover eight of thirty-six pairings, immediate losses only four — the shooter's first-roll edge is real.",
+      "incorrectExplanation": "The answer is: winning, two to one. Seven owns six pairings and eleven owns two, totaling eight; craps owns just four. The first roll favors the shooter, and the house recovers its edge later in the rules.",
+      "lessonContent": "Tally pairings before believing any game is fair.\nEight paths versus four is a clean two-to-one advantage.\nGames hide their edges across later phases of play.\nKnow where a wager's danger actually lives.\nShare this: count tonight how the first roll of dice favors the shooter.",
+      "forgeId": "batch-051#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Where's the Ace",
+      "question": "You bet that the top card of a well-shuffled deck is an ace. Does it matter where the aces sit inside the shuffled deck?",
+      "choices": [
+        "Any position is equal",
+        "Aces cluster near the top",
+        "Early positions favor aces",
+        "Only the bottom card matters"
+      ],
+      "correctAnswer": "Any position is equal",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. A random shuffle is position-blind: each of the fifty-two slots holds an ace with the same four-in-fifty-two chance.",
+      "incorrectExplanation": "The answer is: any position is equal. A random permutation spreads the aces uniformly, so the top card is no more special than the seventeenth. Symmetry under shuffling is the quiet theorem doing the work.",
+      "lessonContent": "Random shuffles are position-blind by definition.\nSymmetry arguments replace tedious counting.\nNo slot of a shuffled deck is privileged.\nUniformity is a powerful conclusion from a simple premise.\nShare this: explain tonight why any named position hides the same chance.",
+      "forgeId": "batch-051#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Blue Marbles Twice",
+      "question": "A bag holds five blue and three red marbles. You draw two without looking and without replacement. What is the chance both are blue?",
+      "choices": [
+        "Five in fourteen",
+        "One in four",
+        "Five in eight",
+        "Twenty-five in sixty-four"
+      ],
+      "correctAnswer": "Five in fourteen",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Five eighths times four sevenths simplifies to twenty fifty-sixths — five fourteenths.",
+      "incorrectExplanation": "The answer is five in fourteen. The first draw takes five of eight; the blue pool then drops to four of seven. Multiplying and simplifying gives the answer — and the last option is the with-replacement trap.",
+      "lessonContent": "Multiply stage chances when draws chain together.\nThe second fraction always reflects the depleted bag.\nSimplify before comparing with distractor values.\nWith- and without-replacement answers differ by design.\nShare this: rerun tonight's puzzle with four and two marbles for practice.",
+      "forgeId": "batch-051#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Five Friends' Months",
+      "question": "What are the chances that among five randomly chosen friends, at least two were born in the same month?",
+      "choices": [
+        "More likely than not",
+        "About one in three",
+        "Barely one in ten",
+        "Nearly certain"
+      ],
+      "correctAnswer": "More likely than not",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. The no-match path runs twelve twelfths times eleven, ten, nine, then eight over twelfths — about thirty-eight percent — so a match tops sixty percent.",
+      "incorrectExplanation": "The answer is: more likely than not. Five people create ten pairings across only twelve months, and the no-collision product lands near zero-point-three-eight. The birthday paradox arrives even faster with small calendars.",
+      "lessonContent": "Coarse calendars collide fast — months need just five people.\nSmall option pools make matches the default, not the surprise.\nCompute the no-match product when matches feel unlikely.\nTen pairings do the work of a hundred birthdays.\nShare this: test tonight whether five friends share a birth month.",
+      "forgeId": "batch-051#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Ninety Percent Room",
+      "question": "Roughly how many people must gather before the chance of at least one shared birthday reaches about ninety percent?",
+      "choices": [
+        "About forty",
+        "About ninety",
+        "About one hundred eighty",
+        "About twenty"
+      ],
+      "correctAnswer": "About forty",
+      "xpReward": 50,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. By forty-one people, the no-match product has collapsed under ten percent, and the collision chance crosses ninety.",
+      "incorrectExplanation": "The answer is: about forty. The no-match chance decays steeply: twenty-three people already reach fifty percent, and doubling the room crushes the survivor product below ten. Growth in pairs, again, is the engine.",
+      "lessonContent": "Match probability rises steeply, then saturates.\nHalfway to certain arrives surprisingly early — then costs double.\nThe no-match product is the clean way to watch it fall.\nPairs compound; people merely host them.\nShare this: estimate tonight the match chance of a full bus.",
+      "forgeId": "batch-051#24",
+      "forgeScore": 100
+    }
+  ]
+}

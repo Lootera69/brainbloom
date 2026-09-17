@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-101",
+  "generatedAt": "2026-09-17T13:27:43.156Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Thirty-Six Percent",
+      "question": "In 2015 a consortium re-ran 100 prominent psychology studies with larger samples and preregistered analysis plans. About 36% replicated clearly. What is the most reasonable takeaway?",
+      "choices": [
+        "Roughly two-thirds of the original researchers committed outright fraud",
+        "Many published findings were weaker or more fragile than they looked",
+        "Psychology therefore contains no trustworthy findings at all",
+        "The replications failed mainly because their samples were too large"
+      ],
+      "correctAnswer": "Many published findings were weaker or more fragile than they looked",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. A failed replication usually means the original effect was smaller, noisier, or context-dependent — not that anyone cheated. Most non-replications trace to flexible analysis and small samples.",
+      "incorrectExplanation": "Not quite — the answer is that many published findings were weaker or more fragile than they looked. Fraud is rare; the bigger culprits are small samples, flexible analyses, and journals preferring splashy positives. One failed replication rarely kills a claim — a pattern of them demotes it.",
+      "lessonContent": "A single replication is a data point; a pattern across labs is the verdict.\nFailed replications usually signal inflated effects, not fraud.\nPreregistration and larger samples are the standard fixes.\nTreat any single splashy finding as provisional until it survives repetition.\nShare this: ask a friend to name a famous study, then look up whether it replicated.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Expansive Pose",
+      "question": "A famous study claimed two minutes of expansive posture raised testosterone and risk-taking. Large preregistered replications found no hormonal change and little behavioral effect. What should a careful reader conclude?",
+      "choices": [
+        "Posture research is pseudoscience and all of it should be discarded",
+        "Standing tall cures anxiety and every clinic should prescribe it",
+        "The hormone mechanism failed, though confident posture can still feel subjectively better",
+        "The replications must have coached participants to slouch on purpose"
+      ],
+      "correctAnswer": "The hormone mechanism failed, though confident posture can still feel subjectively better",
+      "xpReward": 25,
+      "correctExplanation": "Right. The specific hormonal pathway did not survive retesting, which kills the original claim — but a weaker claim (people report feeling bolder) is a different hypothesis needing its own test.",
+      "incorrectExplanation": "Actually, the answer is that the hormone mechanism failed, though confident posture can still feel subjectively better. Killing one mechanism does not prove the opposite extreme, and it does not license a vaguer wellness claim without fresh evidence. Separate the falsified claim from any replacement claim.",
+      "lessonContent": "Falsifying a mechanism is not the same as proving nothing is happening.\nReplacement claims need their own preregistered tests.\nBeware the motte-and-bailey slide from bold claim to vague claim.\nSubjective reports are real data but weak evidence for biology.\nShare this: next time a posture hack trends, ask what exactly was measured.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Willpower Battery",
+      "question": "Early studies said self-control runs down like a battery (ego depletion). Later, a 23-lab preregistered replication found essentially zero effect. Which response best fits the evidence?",
+      "choices": [
+        "The depletion model is settled law and the 23 labs conspired",
+        "Treat depletion as unproven and look for better-supported models of self-control",
+        "Willpower is infinite so effort never impairs later performance",
+        "Discard all of psychology because one model stumbled"
+      ],
+      "correctAnswer": "Treat depletion as unproven and look for better-supported models of self-control",
+      "xpReward": 25,
+      "correctExplanation": "Correct. A multilab null with high power demotes the model from fact to unproven. Motivation, beliefs, and attention now explain the old results better — science updates instead of mourning.",
+      "incorrectExplanation": "Close, but the answer is to treat depletion as unproven and look for better-supported models of self-control. A big clean null does not prove willpower is limitless either — fatigue is real, but the specific glucose-battery story lost its evidence. Update the model, don't flip to the opposite extreme.",
+      "lessonContent": "Multilab preregistered nulls are how weak models get retired.\n'Unproven' is a verdict too — absence of evidence after strong tests matters.\nOld results often get re-explained by motivation and attention effects.\nHold models loosely and mechanisms tightly.\nShare this: test your own focus across the day and notice what actually drains it.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#2",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Slow Prime",
+      "question": "A classic paper said flashing words like 'wrinkled' made students walk slower. Multiple direct replications, some larger than the original, found no such effect. What is the sharpest lesson?",
+      "choices": [
+        "Subliminal influence is impossible under every condition",
+        "Priming researchers fabricated all of their data",
+        "Even elegant effects need direct replication before they become textbook facts",
+        "Walking speed can never be measured reliably in a hallway"
+      ],
+      "correctAnswer": "Even elegant effects need direct replication before they become textbook facts",
+      "xpReward": 25,
+      "correctExplanation": "Yes. Elegance is not evidence. Direct replications — same recipe, bigger sample — are the admission ticket from 'intriguing result' to 'reliable phenomenon'.",
+      "incorrectExplanation": "Not quite — the answer is that even elegant effects need direct replication before they become textbook facts. The failure does not prove subliminal influence is impossible everywhere, nor does it prove fraud; it proves one famous demonstration was fragile. Charm at first telling is the weakest form of evidence.",
+      "lessonContent": "Direct replication means rerunning the same recipe, not a loose remix.\nTextbook status should require surviving at least one independent rerun.\nFragility is about the effect size and noise, not the researchers' honesty.\nAsk 'was this directly replicated?' before quoting any classic.\nShare this: pick a beloved classic study and check its replication record tonight.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#3",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Pen Smile",
+      "question": "Holding a pen in your teeth (forcing a smile) was said to make cartoons funnier. A 17-lab replication found no effect, though a later meta-analysis found a tiny one. What is the fair summary?",
+      "choices": [
+        "Facial feedback is a proven large effect after all",
+        "Any effect is at best tiny, so the original claim was greatly overstated",
+        "The 17 labs all used the wrong brand of pen",
+        "Smiling never influences mood under any circumstances"
+      ],
+      "correctAnswer": "Any effect is at best tiny, so the original claim was greatly overstated",
+      "xpReward": 25,
+      "correctExplanation": "Right. A huge original effect plus a near-zero replication pattern equals inflation. A later tiny meta-analytic signal, if real, is a different and far humbler claim.",
+      "incorrectExplanation": "Actually, the answer is that any effect is at best tiny, so the original claim was greatly overstated. Neither 'proven large' nor 'smile science is dead' fits: the honest update is shrinkage. Science communication failed here by reporting the first splash and ignoring the seventeen reruns.",
+      "lessonContent": "Compare effect sizes across studies, not just significant-or-not.\nMeta-analytic crumbs are not vindication of the original feast.\nMedia covers the splash; the correction never trends.\nShrinkage across replications is the signature of an inflated claim.\nShare this: when a headline cites one study, search for its meta-analysis instead.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Marshmallow Revision",
+      "question": "The famous marshmallow test linked childhood delay to later success. A 2018 replication with a larger, more diverse sample found the link shrank sharply after accounting for family background. What follows?",
+      "choices": [
+        "Self-control in children is meaningless and unteachable",
+        "Family background fully determines every life outcome",
+        "The celebrated direct link was mostly a proxy for socioeconomic context",
+        "The 2018 team must have used stale marshmallows"
+      ],
+      "correctAnswer": "The celebrated direct link was mostly a proxy for socioeconomic context",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The replication did not deny that waiting correlates with outcomes — it showed the correlation rides mostly on background factors. Confounders, not willpower magic, carried the effect.",
+      "incorrectExplanation": "Not quite — the answer is that the celebrated direct link was mostly a proxy for socioeconomic context. This is the classic third-variable story: trust in adults, home stability, and resources predict both waiting and later scores. Control for the confounder before praising the marshmallow.",
+      "lessonContent": "Correlation needs a confounder hunt before it becomes advice.\nDiverse, larger samples often shrink famous effects — that is progress.\n'Mostly a proxy' still leaves room for a small real effect.\nAsk what hidden third variable could drive both sides of any link.\nShare this: name a famous correlation and brainstorm its third variables aloud.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Garden of Forking Paths",
+      "question": "A researcher tries five analysis choices and reports only the one giving p < 0.05, without mentioning the others. Even with honest intent, what does this practice do?",
+      "choices": [
+        "It guarantees the published result is exactly true",
+        "It inflates false positives, because hidden tries multiply the chance of a fluke",
+        "It is harmless as long as the sample was randomly assigned",
+        "It only matters in physics, never in psychology"
+      ],
+      "correctAnswer": "It inflates false positives, because hidden tries multiply the chance of a fluke",
+      "xpReward": 25,
+      "correctExplanation": "Yes — this is p-hacking. Five undisclosed tries at 5% error each give roughly a 23% chance of at least one fluke 'hit'. Preregistration closes the garden of forking paths.",
+      "incorrectExplanation": "Actually, the answer is that it inflates false positives, because hidden tries multiply the chance of a fluke. Intent is irrelevant: unreported flexibility turns the 5% error rate into fiction. This is why preregistered analysis plans now anchor credible work.",
+      "lessonContent": "Unreported choices quietly multiply your false-positive rate.\nPreregistration separates confirmatory tests from exploration.\nExploration is fine — secret exploration sold as confirmation is not.\nCount the tries, not just the reported hit.\nShare this: explain p-hacking to someone using a coin-flip analogy.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#6",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Hypothesis Aftermath",
+      "question": "After seeing the data, a team writes its hypothesis as if it had predicted the exact pattern all along. What is wrong with presenting exploration as confirmation?",
+      "choices": [
+        "Nothing — a correct prediction is correct whenever it is written",
+        "It hides how many patterns were tried, so the result looks far more surprising than it is",
+        "It is only a problem if the data were fabricated",
+        "Journals actually require hypotheses to be written last"
+      ],
+      "correctAnswer": "It hides how many patterns were tried, so the result looks far more surprising than it is",
+      "xpReward": 25,
+      "correctExplanation": "Correct — HARKing (hypothesizing after results are known) launders exploration into confirmation. A pattern that 'would have been predicted' after ten peeks is far less impressive than one predicted before a single peek.",
+      "incorrectExplanation": "Close, but the answer is that it hides how many patterns were tried, so the result looks far more surprising than it is. The sin is statistical, not moral: post-hoc stories fit noise beautifully. Label exploration as exploration and the problem vanishes.",
+      "lessonContent": "Predictions count only when they precede the peek.\nPost-hoc stories fit noise as easily as signal.\nHARKing turns ten tries into one apparent bullseye.\nReward papers that label exploration honestly.\nShare this: ask whether a surprising claim was predicted or narrated afterward.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Drawer of Nulls",
+      "question": "Journals publish striking positives far more often than boring nulls. If twenty labs test a useless pill and only the one fluke positive gets published, what does the literature show?",
+      "choices": [
+        "An accurate picture, since peer review filters all flukes",
+        "A distorted shelf where a dead pill looks promising",
+        "Proof that the pill works in exactly 5% of patients",
+        "Nothing at all, because unpublished work cannot bias anyone"
+      ],
+      "correctAnswer": "A distorted shelf where a dead pill looks promising",
+      "xpReward": 25,
+      "correctExplanation": "Exactly — the file-drawer effect. Publication bias means the visible literature is a highlight reel. Meta-analyses must hunt unpublished nulls or they inherit the distortion.",
+      "incorrectExplanation": "Not quite — the answer is a distorted shelf where a dead pill looks promising. Peer review cannot fix what it never sees, and nineteen silent nulls do not cancel one loud fluke in readers' minds. Registered reports, which accept papers before results exist, were built for this.",
+      "lessonContent": "The published record is a filtered sample, not a census.\nNull results are data — file drawers full of them warp every field.\nRegistered reports judge the question and method, not the outcome.\nDistrust literatures where every arrow points the same way.\nShare this: point out one field where only positive results ever seem to appear.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Locked Plan",
+      "question": "Two teams test the same claim. Team A posts its hypotheses, sample size, and analysis code before collecting data; Team B decides everything afterward. Team A's positive result is:",
+      "choices": [
+        "Guaranteed true because posting plans magically improves data",
+        "More credible, because it closed off undisclosed flexibility",
+        "Less creative and therefore scientifically worthless",
+        "Identical in evidential weight to Team B's"
+      ],
+      "correctAnswer": "More credible, because it closed off undisclosed flexibility",
+      "xpReward": 25,
+      "correctExplanation": "Right. Preregistration does not bless results — it constrains the researchers' own wiggle room, so a hit cannot be one of many hidden tries. Same data, higher credibility, purely from process.",
+      "incorrectExplanation": "Actually, the answer is that it is more credible, because it closed off undisclosed flexibility. Preregistration is a commitment device, not a truth spell: it keeps the false-positive rate honest. Exploration remains welcome — it just gets labeled as exploration.",
+      "lessonContent": "Process quality is evidence quality.\nCommitment devices beat good intentions against self-deception.\nPreregistration distinguishes testing a claim from discovering one.\nWeight preregistered hits above flexible ones.\nShare this: challenge someone to preregister their next prediction, even casually.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#9",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Tiny Net",
+      "question": "A lab tests a subtle effect with 15 people per group, finds p < 0.05, and celebrates. Why should a methodologist stay cautious even about this 'significant' result?",
+      "choices": [
+        "Small samples make statistics illegal to compute",
+        "Tiny studies can only detect huge effects, so any hit is likely inflated or lucky",
+        "Fifteen per group guarantees the null hypothesis is true",
+        "Significance from small samples is always stronger than from large ones"
+      ],
+      "correctAnswer": "Tiny studies can only detect huge effects, so any hit is likely inflated or lucky",
+      "xpReward": 25,
+      "correctExplanation": "Correct — low power plus significance equals the winner's curse: only lucky overestimates clear the bar. Small significant studies systematically exaggerate, which is why replication teams demand bigger nets.",
+      "incorrectExplanation": "Close, but the answer is that tiny studies can only detect huge effects, so any hit is likely inflated or lucky. This is the winner's curse: underpowered designs filter for flukes. Significance tells you a threshold was crossed, not that the net was wide enough.",
+      "lessonContent": "Power is the chance your design could catch a real effect.\nUnderpowered hits exaggerate — the winner's curse is mathematical.\nAsk every sample size: enough power for what effect?\nBig claims need nets, not thimbles.\nShare this: check the sample size the next time a tiny study makes news.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Campus Species",
+      "question": "Most classic social-psychology findings came from Western undergraduates — a narrow slice of humanity. What is the principled worry about generalizing them?",
+      "choices": [
+        "Undergraduates are incapable of honest questionnaire answers",
+        "The effects may depend on culture, age, and context rather than being universal",
+        "Only neuroscience may generalize; behavior never can",
+        "WEIRD is a compliment, so sampling is ideal"
+      ],
+      "correctAnswer": "The effects may depend on culture, age, and context rather than being universal",
+      "xpReward": 25,
+      "correctExplanation": "Yes. WEIRD samples (Western, educated, industrialized, rich, democratic) are outliers on many traits. A finding can be real in the lab and still fail to travel — replication across populations is part of the claim.",
+      "incorrectExplanation": "Not quite — the answer is that the effects may depend on culture, age, and context rather than being universal. The worry is not dishonesty but narrowness: humanity varies, and campus sophomores are a peculiar tribe. Generalize only as far as your samples have actually roamed.",
+      "lessonContent": "'Humans do X' requires humans, plural and varied.\nCampus samples are convenient, not representative.\nCross-cultural replication is part of finishing the job.\nScope every claim to the populations actually tested.\nShare this: notice how many cited studies sampled only students.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Psychic Files",
+      "question": "In 2011 a top journal published evidence for precognition. Larger preregistered attempts then failed to replicate it, and critics found analytical flexibility. What is the correct update?",
+      "choices": [
+        "Precognition is disproven with absolute logical certainty",
+        "The original claim lost its evidential support and reverts to unproven",
+        "Journals should never publish surprising results again",
+        "Failed replications prove the replicators lack psychic ability"
+      ],
+      "correctAnswer": "The original claim lost its evidential support and reverts to unproven",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Extraordinary claims need extraordinary evidence; when the support collapses under preregistered scrutiny, the claim reverts to unproven — not 'refuted forever', but no longer something to believe.",
+      "incorrectExplanation": "Actually, the answer is that the original claim lost its evidential support and reverts to unproven. Science rarely delivers logical disproof; it withdraws belief when evidence evaporates. The Bem episode is now taught as a stress test that improved methods across psychology.",
+      "lessonContent": "Extraordinary claims carry extraordinary burdens of proof.\nOne flexible positive cannot outweigh preregistered nulls.\n'Unproven' is the honest shelf for collapsed claims.\nStrong methods matter most exactly when results amaze.\nShare this: explain why scientists demand more evidence for weirder claims.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Basement Revisited",
+      "question": "Archival digging later showed guards in the famous 1971 prison study were coached and participants played roles they thought were expected. What does this change?",
+      "choices": [
+        "Nothing — coaching makes experiments more realistic",
+        "It downgrades the study from spontaneous cruelty to partly staged performance",
+        "It proves prisons have no psychological effects on anyone",
+        "It shows archives should stay sealed forever"
+      ],
+      "correctAnswer": "It downgrades the study from spontaneous cruelty to partly staged performance",
+      "xpReward": 25,
+      "correctExplanation": "Right. Demand characteristics — participants performing the expected role — offer a rival explanation the original narrative ignored. The study becomes a cautionary tale about experimenter influence, not a law of human nature.",
+      "incorrectExplanation": "Not quite — the answer is that it downgrades the study from spontaneous cruelty to partly staged performance. Situations do shape behavior, but this particular demonstration was contaminated by coaching. Iconic does not mean evidentially clean.",
+      "lessonContent": "Demand characteristics can manufacture the very behavior studied.\nFamous demonstrations deserve the same audits as obscure ones.\nRival explanations must be ruled out, not merely unmentioned.\nTeach the controversy, not just the legend.\nShare this: retell a famous experiment including what later audits found.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#13",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Thirty-Eight Witnesses",
+      "question": "Textbooks long said 38 witnesses watched a 1964 murder and did nothing. Later reporting showed the witness count was inflated and several people did call or intervene. What is the methodological moral?",
+      "choices": [
+        "Bystander research is entirely worthless",
+        "Secondhand retellings calcify; check primary sources before building theories on anecdotes",
+        "Newspapers never make errors about numbers",
+        "Intervention always happens, so the bystander effect cannot exist"
+      ],
+      "correctAnswer": "Secondhand retellings calcify; check primary sources before building theories on anecdotes",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The bystander effect itself survived controlled experiments — but the founding anecdote was journalistic embroidery. Theories should rest on data, and origin stories need source-checking.",
+      "incorrectExplanation": "Not quite — the answer is that secondhand retellings calcify, so check primary sources before building theories on anecdotes. Note the subtlety: the lab phenomenon replicated while the legend decayed. Separate the anecdote from the evidence at all times.",
+      "lessonContent": "Founding anecdotes are marketing, not data.\nTrace famous stories to primary sources before citing them.\nA phenomenon can be real while its legend is false.\nLegends calcify fast; corrections travel slowly.\nShare this: verify one famous origin story and report what you find.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#14",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Watching Factory",
+      "question": "The Hawthorne illumination experiments supposedly proved workers speed up when observed. Reanalyses found the data were messy, shifts coincided with other changes, and the effect was largely myth. What follows?",
+      "choices": [
+        "Observation never affects behavior in any setting",
+        "Workplace studies are impossible in principle",
+        "Named effects need data audits too — labels can outlive their evidence",
+        "The factories should have used brighter bulbs throughout"
+      ],
+      "correctAnswer": "Named effects need data audits too — labels can outlive their evidence",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Eponymous effects gain immunity by familiarity; the Hawthorne audit shows labels can survive their data by decades. Audit the evidence behind every named effect you invoke.",
+      "incorrectExplanation": "Actually, the answer is that named effects need data audits too, since labels can outlive their evidence. Reactivity is real in some settings, but this particular label rested on confounded, cherry-picked records. Fame is not a replication.",
+      "lessonContent": "Familiar labels borrow credibility they may not have earned.\nConfounded originals (rest breaks, pay changes) masquerade as pure effects.\nReanalysis of old data is replication too.\nRetire labels whose evidence retired first.\nShare this: name an effect everyone cites and ask what its data actually show.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#15",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Hot Hand Returns",
+      "question": "For decades textbooks said the basketball 'hot hand' was a pure fallacy. A 2017 analysis showed the classic test itself was biased, and corrected studies found small real streakiness. What does this teach?",
+      "choices": [
+        "Textbooks are always wrong about everything",
+        "Failed replications only ever destroy; they never refine",
+        "Debunkings need the same scrutiny as the claims they debunk",
+        "Streaks prove players should always force contested shots"
+      ],
+      "correctAnswer": "Debunkings need the same scrutiny as the claims they debunk",
+      "xpReward": 25,
+      "correctExplanation": "Yes. The original debunking contained its own statistical bias (selection on makes). Skepticism is not exempt from methods — audit the audit, and let corrected tests have the last word.",
+      "incorrectExplanation": "Not quite — the answer is that debunkings need the same scrutiny as the claims they debunk. The 2017 correction did not prove giant hot hands; it proved the famous refutation was flawed and a modest effect survives. Nobody's methods get a free pass, including the skeptics'.",
+      "lessonContent": "Apply equal rigor to claims and to their takedowns.\nFamous refutations can harbor their own biases.\nReplication can resurrect as well as bury.\nFollow the corrected analysis, not the louder headline.\nShare this: find a famous debunking and check whether it survived audit.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Silent Sonata",
+      "question": "The 1993 'Mozart effect' paper reported a brief spatial-task boost after listening to Mozart. Follow-ups found the boost tiny, transient, and reproducible by any enjoyable stimulus. What is the honest headline?",
+      "choices": [
+        "Mozart permanently raises children's IQ by large margins",
+        "Any pleasant arousal briefly helps; there is nothing Mozart-specific",
+        "Classical music damages spatial reasoning",
+        "Only silence improves test scores from now on"
+      ],
+      "correctAnswer": "Any pleasant arousal briefly helps; there is nothing Mozart-specific",
+      "xpReward": 25,
+      "correctExplanation": "Right — arousal-and-mood, not Mozart magic. The policy craze (state-funded Mozart CDs for babies) outran an effect that was small, short-lived, and generic. Mechanism-checking beats composer worship.",
+      "incorrectExplanation": "Actually, the answer is that any pleasant arousal briefly helps and there is nothing Mozart-specific. The original result was real but misattributed; controls with other enjoyable stimuli erased the specialness. Billions in baby-Mozart products were sold on a misread mechanism.",
+      "lessonContent": "Real effect, wrong mechanism is the commonest misread.\nControl conditions decide what a finding is actually about.\nPolicy should wait for mechanism checks, not first splashes.\nEnjoyment confounds more studies than anyone admits.\nShare this: explain the Mozart story before anyone buys genius-building CDs.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Matching Myth",
+      "question": "Schools spend heavily matching lessons to 'visual' or 'auditory' learners. Controlled reviews find no benefit of such matching over good instruction for everyone. What should schools do?",
+      "choices": [
+        "Keep spending, because students enjoy the labels",
+        "Drop the matching and invest in methods with replicated support",
+        "Test learning styles more often until benefits appear",
+        "Teach only through the teacher's own preferred style"
+      ],
+      "correctAnswer": "Drop the matching and invest in methods with replicated support",
+      "xpReward": 25,
+      "correctExplanation": "Correct. The learning-styles hypothesis made a testable prediction — matched instruction beats mismatched — and it failed. Preferences are real; their instructional payoff is not. Fund retrieval practice and spacing instead.",
+      "incorrectExplanation": "Not quite — the answer is to drop the matching and invest in methods with replicated support. Liking a label is not evidence it helps learning. This is opportunity cost in action: every pound spent on debunked matching is a pound not spent on spacing or testing effects.",
+      "lessonContent": "Preferences are not aptitudes — test the payoff, not the label.\nFailed predictions should retire programs, not just papers.\nOpportunity cost makes debunked fads actively harmful.\nFund the unglamorous methods that replicate.\nShare this: tell a teacher which study methods actually survived testing.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#18",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Ten-Thousand Shortcut",
+      "question": "Popular books reduced expertise research to '10,000 hours of practice makes a master.' The underlying work stressed a specific kind of practice and found it explains only part of performance variance. What is the accurate version?",
+      "choices": [
+        "Hours never matter and talent explains everything",
+        "Deliberate, feedback-rich practice matters, but genes, coaching, and opportunity matter too",
+        "Anyone reaching 10,000 hours is guaranteed world-class status",
+        "The researchers retracted every word they ever wrote"
+      ],
+      "correctAnswer": "Deliberate, feedback-rich practice matters, but genes, coaching, and opportunity matter too",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. Ericsson studied deliberate practice — designed, feedback-heavy, coached — and even that leaves much variance unexplained. The pop number kept the hours and dropped the adjectives that did the work.",
+      "incorrectExplanation": "Actually, the answer is that deliberate, feedback-rich practice matters, but genes, coaching, and opportunity matter too. Popularization amputated the qualifiers: not all hours count, and practice is necessary without being sufficient. Read the paper, not the poster.",
+      "lessonContent": "Popularization preserves numbers and deletes qualifiers.\n'Necessary but not sufficient' describes most success factors.\nVariance explained is the honest measure of any factor.\nCheck what the original researchers actually claimed.\nShare this: correct someone quoting the 10,000-hour rule this week.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#19",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Split Brain Story",
+      "question": "Pop psychology sorts people into 'left-brained' (logical) and 'right-brained' (creative). Brain imaging shows both hemispheres collaborate on virtually every complex task. What is the verdict?",
+      "choices": [
+        "The sorting is a valid diagnostic used in neurology wards",
+        "Hemispheres differ in style of processing, but the personality sorting is myth",
+        "The right hemisphere is entirely silent during logic tasks",
+        "Creativity lives only in the right frontal lobe"
+      ],
+      "correctAnswer": "Hemispheres differ in style of processing, but the personality sorting is myth",
+      "xpReward": 25,
+      "correctExplanation": "Right. Lateralization is real (language leans left, spatial attention leans right) — but leaping from processing biases to personality types is fiction. Networks, not halves, do the thinking.",
+      "incorrectExplanation": "Not quite — the answer is that hemispheres differ in style of processing, but the personality sorting is myth. A grain of neuroscience got inflated into horoscopes with lab coats. Keep the genuine finding (lateralized processing) and discard the personality merch.",
+      "lessonContent": "Grains of truth grow the hardiest myths.\nNetworks collaborate; halves do not freelance personalities.\nAsk which exact claim the imaging actually supports.\nNeuro-babble borrows lab coats for marketing.\nShare this: deflate one left-brain/right-brain quiz with the facts.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#20",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Retracted Link",
+      "question": "A 1998 paper linking a common childhood vaccine to autism was retracted for falsified data and ethical violations, yet the scare persists. Later studies of millions of children found no link. What is the rational position?",
+      "choices": [
+        "One retracted paper outweighs millions of studied children",
+        "The vaccine-autism link is unsupported; the scare rests on fraud",
+        "Retraction proves all vaccine research is corrupt",
+        "Anecdotes of timing prove causation regardless of data"
+      ],
+      "correctAnswer": "The vaccine-autism link is unsupported; the scare rests on fraud",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Wakefield's paper was fraud, not error — and massive subsequent studies found nothing. Timing anecdotes (symptoms noticed near vaccination age) are base-rate illusions, not evidence.",
+      "incorrectExplanation": "Actually, the answer is that the vaccine-autism link is unsupported and the scare rests on fraud. Retraction here meant fabrication, and epidemiology at million-child scale then confirmed the null. Fear outlived its only source by decades — a lesson in asymmetric outrage.",
+      "lessonContent": "Fraud and error need different responses — retract, then re-test at scale.\nCoincidence of timing is the engine of most health scares.\nLarge nulls deserve more weight than vivid anecdotes.\nMisinformation outlives its source; corrections need repeating.\nShare this: explain base-rate timing to someone sharing a scare story.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#21",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Copied Digits",
+      "question": "Investigators noticed impossible statistical patterns — identical variances across unrelated conditions, duplicated number strings — in a social psychologist's papers, exposing fabrication. What is the general lesson?",
+      "choices": [
+        "Statistics can never detect fraud, only replication can",
+        "Fabricated data often fails basic sanity checks that real noisy data would pass",
+        "All surprising results are fabricated",
+        "Peer reviewers should repeat every experiment personally"
+      ],
+      "correctAnswer": "Fabricated data often fails basic sanity checks that real noisy data would pass",
+      "xpReward": 25,
+      "correctExplanation": "Yes — the Stapel case. Real data are messy in lawful ways; invented data are suspiciously tidy (identical means, impossible rotations). Forensic statistics now screens for too-perfect patterns.",
+      "incorrectExplanation": "Not quite — the answer is that fabricated data often fails basic sanity checks that real noisy data would pass. Fraudsters imagine data cleaner than reality produces. Replication catches false claims; forensics catches false data — science needs both nets.",
+      "lessonContent": "Real noise has fingerprints; invented data often lacks them.\nToo-perfect patterns are a red flag, not a triumph.\nForensic statistics complements replication.\nTrust systems that assume verification, not virtue.\nShare this: explain how duplicate digits once toppled a famous career.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Loose Cable",
+      "question": "In 2011 a detector reported neutrinos arriving faster than light. Months later the team found a loose fiber-optic cable had skewed the timing. What did the episode demonstrate at its best?",
+      "choices": [
+        "That relativity was finally overthrown by one reading",
+        "That announcing early and inviting scrutiny is how error gets caught fast",
+        "That physicists should never publish anomalous results",
+        "That cables are immune to scientific interest"
+      ],
+      "correctAnswer": "That announcing early and inviting scrutiny is how error gets caught fast",
+      "xpReward": 25,
+      "correctExplanation": "Right. OPERA published precisely so others could find the flaw — and they did. Open anomaly-handling turned a potential embarrassment into a demonstration of self-correction working at full speed.",
+      "incorrectExplanation": "Actually, the answer is that announcing early and inviting scrutiny is how error gets caught fast. The team asked for help checking an impossible result instead of hiding it. Contrast this with cold fusion's press-conference-first route: process decides whether anomalies enlighten or mislead.",
+      "lessonContent": "Publish the anomaly with the methods, then let the pack attack it.\nExtraordinary readings demand equipment checks before theory funerals.\nSelf-correction is a designed process, not a lucky accident.\nReward teams that report their own undermining evidence.\nShare this: contrast OPERA's openness with a hype-first announcement.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Press-Conference Fusion",
+      "question": "In 1989 two chemists announced tabletop fusion at a press conference before peer review. Labs worldwide tried, failed to replicate, and the claim collapsed. What was the core procedural failure?",
+      "choices": [
+        "They used water that was insufficiently heavy",
+        "Going public before independent replication could check the work",
+        "They published in journals with too high an impact factor",
+        "Other labs were simply jealous of chemistry's triumph"
+      ],
+      "correctAnswer": "Going public before independent replication could check the work",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Cold fusion's sin was sequence: publicity first, verification later. Peer review is slow, but press conferences are not peer review — replication before announcement is the norm that prevents fiascos.",
+      "incorrectExplanation": "Not quite — the answer is going public before independent replication could check the work. Some labs saw marginal excess heat, but nothing nuclear-scale or reproducible. Announcement order matters: verify, then trumpet — never the reverse.",
+      "lessonContent": "Announcement order is a method choice: verify first, trumpet later.\nPress conferences are not peer review.\nFailed worldwide replication is decisive, not a conspiracy.\nSkepticism of hype-first science is earned.\nShare this: explain why scientists distrust breakthroughs announced on stage.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-101#24",
+      "forgeScore": 92
+    }
+  ]
+}

@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-179",
+  "generatedAt": "2026-09-17T13:27:45.406Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — branching replaces collapse entirely. One equation, no selection postulate.",
+      "incorrectExplanation": "It's true. Many-Worlds keeps unitary evolution only; worlds proliferate instead of collapsing.",
+      "lessonContent": "Many-Worlds economizes postulates, not worlds.\nNo collapse mechanism is ever invoked.\nBranching does selection's job structurally.\nShare this: count postulates, not worlds.",
+      "lessonGroup": "Quantum Café",
+      "question": "Many-Worlds contains no collapse postulate at all.",
+      "title": "The Collapseless Theory",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — Copenhagen declines trajectories as meaningless. Unmeasured paths get no story.",
+      "incorrectExplanation": "It's false. Bohr ruled 'which path' questions illegitimate, not merely difficult.",
+      "lessonContent": "Copenhagen silences trajectory questions.\nMeaningless differs from unknown here.\nComplementarity guards the silence.\nShare this: drop one illegitimate 'which way'.",
+      "lessonGroup": "Quantum Café",
+      "question": "Copenhagen describes electron trajectories between measurements.",
+      "title": "The Narrated Electron",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#1",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — QBism reads states as agents' betting guides. Waves advise wagers; they aren't furniture.",
+      "incorrectExplanation": "It's false. Personal probabilities replace physical ripples in the QBist creed.",
+      "lessonContent": "QBism subjectivizes quantum states fully.\nBetting coherence replaces ontology.\nAgents stand at theory's center.\nShare this: state one belief as a bet.",
+      "lessonGroup": "Quantum Café",
+      "question": "QBism treats the wavefunction as a physical wave.",
+      "title": "The Physical Bet",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — Bohmian particles follow definite guided paths, choreographed nonlocally. Determinism costs locality.",
+      "incorrectExplanation": "It's true. Pilot waves steer particles exactly; Bell permits this precise trade.",
+      "lessonContent": "Bohm buys determinism with nonlocality.\nHidden variables survive nonlocally only.\nTrades define interpretations more than claims.\nShare this: name one theory's price tag.",
+      "lessonGroup": "Quantum Café",
+      "question": "Bohmian mechanics is deterministic and nonlocal together.",
+      "title": "The Guided Price",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — spontaneous collapses predict tiny deviations in principle. Testability crowns GRW among rivals.",
+      "incorrectExplanation": "It's true. Rare localization hits should eventually show in precision experiments.",
+      "lessonContent": "GRW risks falsification courageously.\nTestability distinguishes physics from philosophy.\nPrecision experiments hunt the hits.\nShare this: praise one falsifiable rival.",
+      "lessonGroup": "Quantum Café",
+      "question": "GRW collapse theories predict deviations from textbook quantum mechanics.",
+      "title": "The Testable Rival",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — decoherence dissolves interference but never picks winners. Outcomes need further stories.",
+      "incorrectExplanation": "It's false. Eavesdropping environments explain missing fringes, not chosen results.",
+      "lessonContent": "Decoherence explains absences, never selections.\nFringes die; winners stay unexplained.\nHalf-solutions still advance understanding.\nShare this: separate two quantum mysteries.",
+      "lessonGroup": "Quantum Café",
+      "question": "Decoherence alone selects single measurement outcomes.",
+      "title": "The Half Solution",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — violations close the local-hidden-variable door. Nature keeps no local ledgers.",
+      "incorrectExplanation": "It's false. Bell ceilings bind all local predeterminations; experiments exceed them.",
+      "lessonContent": "Bell closes local realism's door experimentally.\nCorrelations convict distant coordination.\nLoopholes shrink but inspire rigor.\nShare this: toast one loophole-free test.",
+      "lessonGroup": "Quantum Café",
+      "question": "Bell-test results still allow local hidden variables.",
+      "title": "The Sealed Verdict",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — erasers trade on information, never time travel. Records toggle patterns lawfully.",
+      "incorrectExplanation": "It's false. Availability of path knowledge, not signals backward, governs fringes.",
+      "lessonContent": "Erasers manipulate records, never histories.\nRetrocausation is an optional extravagance.\nInformation toggles suffice fully.\nShare this: retire one time-travel reading.",
+      "lessonGroup": "Quantum Café",
+      "question": "Quantum erasers require signals traveling to the past.",
+      "title": "The Backward Signal",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — sealed friends and super-observers hold incompatible true accounts. Facts index to observers.",
+      "incorrectExplanation": "It's true. Quantum descriptions nest observers inside others' superpositions legitimately.",
+      "lessonContent": "Observers nest like stories within stories.\nFacts index to their holders.\nAbsoluteness yields to relations.\nShare this: nest one witness inside another.",
+      "lessonGroup": "Quantum Café",
+      "question": "Wigner's friend allows facts to depend on the observer.",
+      "title": "The Indexed Fact",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#8",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — it corners single-reality stories into contradiction. Consistency costs absoluteness.",
+      "incorrectExplanation": "It's false. Extended friends force a choice among cherished assumptions.",
+      "lessonContent": "No-go theorems invoice comfortable assumptions.\nConsistency has cover charges.\nChoose surrendered assumptions explicitly.\nShare this: drop one cherished assumption.",
+      "lessonGroup": "Quantum Café",
+      "question": "Frauchiger-Renner guarantees one consistent objective reality.",
+      "title": "The Guaranteed Real",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — given preparation independence, distinct states need distinct realities. Epistemic readings pay conspiracy prices.",
+      "incorrectExplanation": "It's true. Overlapping substrates for different states violate PBR bounds.",
+      "lessonContent": "PBR ontologizes wavefunctions conditionally.\nIndependence assumptions carry the proof.\nConspiracies are the alternative fare.\nShare this: state one theorem's conditions.",
+      "lessonGroup": "Quantum Café",
+      "question": "PBR supports real wavefunctions given its assumptions.",
+      "title": "The Ontic Verdict",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — counterfactual paths probe live bombs that stay unexploded. Possibility does physical work.",
+      "incorrectExplanation": "It's true. Interference certifies presence without detonation in a fraction of runs.",
+      "lessonContent": "Counterfactuals work without occurring.\nPossibilities steer actual outcomes.\nInteraction-free measurements exploit this.\nShare this: sense one unclicked possibility.",
+      "lessonGroup": "Quantum Café",
+      "question": "Interaction-free measurement can detect some bombs without detonating them.",
+      "title": "The Gentle Detection",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#11",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — rapid projections pin evolution repeatedly. Observation throttles decay itself.",
+      "incorrectExplanation": "It's true. Frequent checks restart quantum clocks before they tick.",
+      "lessonContent": "Checking throttles quantum change directly.\nClocks restart under surveillance.\nAnti-Zeno accelerates oppositely.\nShare this: watch one pot deliberately.",
+      "lessonGroup": "Quantum Café",
+      "question": "Sufficiently frequent measurement slows quantum decay.",
+      "title": "The Slowed Clock",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#12",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — existing records kill fringes whether eyes read them or not. Existence, not awareness, decides.",
+      "incorrectExplanation": "It's false. Recorded path information destroys patterns unread; erasure restores them.",
+      "lessonContent": "Records decide; readers merely learn.\nExistence outranks awareness in labs.\nIgnorance restores nothing alone.\nShare this: guard one unlooked record.",
+      "lessonGroup": "Quantum Café",
+      "question": "Unread which-path records preserve interference.",
+      "title": "The Ignored Record",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — the cat mocked naive macroscopic scaling. Absurdity indicted the theory's gap.",
+      "incorrectExplanation": "It's false. Schrödinger ridiculed Copenhagen's silence with feline hyperbole.",
+      "lessonContent": "Thought experiments weaponize absurdity.\nCats indicted missing measurement theory.\nMockery advances foundations seriously.\nShare this: wield one absurdity precisely.",
+      "lessonGroup": "Quantum Café",
+      "question": "Schrödinger proposed his cat as a serious experimental design.",
+      "title": "The Serious Feline",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#14",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — von Neumann showed the cut slides freely along the chain. Placement is convention.",
+      "incorrectExplanation": "It's false. Apparatus, retina, or mind — mathematics works at every station.",
+      "lessonContent": "Cuts float conventionally along chains.\nNo station is metaphysically special.\nPragmatics parks the cut usefully.\nShare this: slide one cut freely.",
+      "lessonGroup": "Quantum Café",
+      "question": "Quantum theory mandates where the Heisenberg cut falls.",
+      "title": "The Mandated Cut",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#15",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — scattered environmental copies let observers agree. Redundancy manufactures objectivity.",
+      "incorrectExplanation": "It's true. Many photon records broadcast pointer states; consensus follows.",
+      "lessonContent": "Redundancy builds shared realities.\nCopies let crowds agree classically.\nFittest states replicate widely.\nShare this: notice one environmental broadcast.",
+      "lessonGroup": "Quantum Café",
+      "question": "Quantum Darwinism explains objectivity via redundant records.",
+      "title": "The Many Copies",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — sixty-atom carbon cages diffract observably. Quantumness scales past atoms routinely.",
+      "incorrectExplanation": "It's true. Buckyball fringes push wave behavior toward the macroscopic.",
+      "lessonContent": "Molecules diffract like electrons.\nSize records keep falling upward.\nMacroscopic quantumness is routine.\nShare this: picture diffracting soccer balls.",
+      "lessonGroup": "Quantum Café",
+      "question": "C60 buckyballs have demonstrated double-slit interference.",
+      "title": "The Diffracting Cage",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#17",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — environmental monitoring retired minds from collapse duty. Decoherence suffices.",
+      "incorrectExplanation": "It's false. Air and photons collapse appearances mindlessly and constantly.",
+      "lessonContent": "Minds observe; environments select.\nConsensus abandoned mental collapse.\nMysticism exited the laboratory.\nShare this: retire one quantum-mind myth.",
+      "lessonGroup": "Quantum Café",
+      "question": "Consciousness-causes-collapse remains the scientific consensus.",
+      "title": "The Mind Consensus",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — it scripts settings and states jointly from the start. Freedom is the price of locality.",
+      "incorrectExplanation": "It's false. Cosmic conspiracy correlates choices with hidden variables ab initio.",
+      "lessonContent": "Superdeterminism spends freedom for locality.\nScripts run from the Big Bang.\nPrices clarify extravagant theories.\nShare this: price one cosmic script.",
+      "lessonGroup": "Quantum Café",
+      "question": "Superdeterminism preserves experimenter independence.",
+      "title": "The Free Choice",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — it forbids value assignments independent of measurement context. Context co-creates outcomes.",
+      "incorrectExplanation": "It's false. Prelisted context-free values contradict quantum predictions.",
+      "lessonContent": "Contextuality denies prelisted values.\nApparatuses co-author results.\nHidden tables stay impossible.\nShare this: contextualize one 'fact'.",
+      "lessonGroup": "Quantum Café",
+      "question": "Kochen-Specker allows context-independent hidden values.",
+      "title": "The Prelisted Values",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — late settings select manifestations; causation flows forward. Complementarity needs no time machines.",
+      "incorrectExplanation": "It's false. Contexts choose phenomena; pasts stay written.",
+      "lessonContent": "Contexts select; pasts persist.\nDelayed settings manifest complementarity.\nForward causation survives intact.\nShare this: select one manifestation wisely.",
+      "lessonGroup": "Quantum Café",
+      "question": "Delayed-choice experiments force retrocausation.",
+      "title": "The Forced Past",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — grounding Born weights from branches stays open after decades. Probabilities are the wound.",
+      "incorrectExplanation": "It's false. Decision-theoretic rescues strain; consensus never arrived.",
+      "lessonContent": "Born weights wound branch theories.\nDerivations attempt; gaps persist.\nOpen problems deserve honest labels.\nShare this: admit one unsolved wound.",
+      "lessonGroup": "Quantum Café",
+      "question": "Deriving the Born rule in Many-Worlds is a solved problem.",
+      "title": "The Solved Weights",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — environment-proof states become classical readings. Robustness elects pointers.",
+      "incorrectExplanation": "It's true. Monitoring survivors inherit classicality through endurance.",
+      "lessonContent": "Robustness crowns classical survivors.\nMonitoring elects enduring states.\nClassicality emerges, never descends.\nShare this: endure one noisy monitoring.",
+      "lessonGroup": "Quantum Café",
+      "question": "Einselection favors states robust against environmental monitoring.",
+      "title": "The Robust Survivor",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#23",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — all major interpretations share tested predictions so far. Debates live in untested ontology, GRW excepted.",
+      "incorrectExplanation": "It's true. Experiments confirm shared math; rival stories outrun data together.",
+      "lessonContent": "Rival stories share confirmed predictions.\nOntology outruns evidence routinely.\nPatience befits foundation debates.\nShare this: separate math from story once.",
+      "lessonGroup": "Quantum Café",
+      "question": "No tested experiment currently distinguishes the major interpretations.",
+      "title": "The Shared Verdict",
+      "type": "true-false",
+      "category": "science",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "hard",
+      "xpReward": 50,
+      "forgeId": "batch-179#24",
+      "forgeScore": 100
+    }
+  ]
+}

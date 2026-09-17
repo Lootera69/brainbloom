@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-074",
+  "generatedAt": "2026-09-17T13:27:42.582Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Vibrating Air",
+      "question": "What must a surface do in order to produce a sound?",
+      "choices": [
+        "Vibrations",
+        "Reflections",
+        "Absorption",
+        "Rotation"
+      ],
+      "correctAnswer": "Vibrations",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. A moving surface repeatedly disturbs the air, and those pulses travel to the ear.",
+      "incorrectExplanation": "The answer is vibrations. Energy from a moving object disturbs the surrounding air and travels as a wave.",
+      "lessonContent": "Moving parts push the air around them.\nRapid back-and-forth motion reaches the ear.\nStillness makes no sound at all.\nMotion is the source of every tone.\nShare this: feel one speaker tonight and describe what it is doing.",
+      "forgeId": "batch-074#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Silent Void",
+      "question": "Through which of these can sound not travel at all?",
+      "choices": [
+        "A vacuum",
+        "Water",
+        "Steel",
+        "Air"
+      ],
+      "correctAnswer": "A vacuum",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. With no particles to pass the motion along, a wave has nothing to carry it.",
+      "incorrectExplanation": "The answer is a vacuum. With no particles to collide, the wave has no medium to travel through.",
+      "lessonContent": "Sound needs matter to carry it.\nEmpty space offers nothing to pass motion along.\nAstronauts cannot hear each other outside.\nEvery wave needs a medium.\nShare this: explain tonight why space is silent.",
+      "forgeId": "batch-074#1",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Repeating Rate",
+      "question": "The number of times a sound wave repeats each second is called what?",
+      "choices": [
+        "Its frequency",
+        "Its loudness",
+        "Its speed",
+        "Its colour"
+      ],
+      "correctAnswer": "Its frequency",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. The repeat rate, counted in cycles per second, is the key property of a tone.",
+      "incorrectExplanation": "The answer is its frequency. The repeat rate, measured in hertz, determines how high the note sounds.",
+      "lessonContent": "The repeat rate sets how high a note sounds.\nMeasure it in cycles per second.\nDoubling the rate raises the note.\nRate and spacing trade off.\nShare this: compare two tones tonight and guess which repeats faster.",
+      "forgeId": "batch-074#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "High or Low",
+      "question": "How high or low a note seems to a listener is called what?",
+      "choices": [
+        "Pitch",
+        "Volume",
+        "Timbre",
+        "Rhythm"
+      ],
+      "correctAnswer": "Pitch",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. The ear reads the repeat rate as height, and musicians name notes accordingly.",
+      "incorrectExplanation": "The answer is pitch. It rises with the rate of repetition and falls as the rate drops.",
+      "lessonContent": "The ear reads repeat rate as height.\nFaster repetition sounds higher.\nSlower repetition sounds lower.\nMusicians name this property with letters.\nShare this: hum a low note and a high note and notice the difference.",
+      "forgeId": "batch-074#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Size of the Swing",
+      "question": "How loud a sound is depends mainly on the size of its what?",
+      "choices": [
+        "Amplitude",
+        "Frequency",
+        "Speed",
+        "Wavelength"
+      ],
+      "correctAnswer": "Amplitude",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Larger swings carry more energy, which the ear reads as volume.",
+      "incorrectExplanation": "The answer is amplitude. The size of each swing determines how loud the sound feels.",
+      "lessonContent": "Bigger swings carry more energy.\nThe size of each swing sets the volume.\nGentle motion makes a faint sound.\nStrong motion makes a loud one.\nShare this: tap a table softly then firmly and compare.",
+      "forgeId": "batch-074#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Loudness Scale",
+      "question": "Which unit is used to measure how loud a sound is?",
+      "choices": [
+        "The decibel",
+        "The hertz",
+        "The metre",
+        "The watt"
+      ],
+      "correctAnswer": "The decibel",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Loudness uses a compressed, logarithmic scale rather than a simple count.",
+      "incorrectExplanation": "The answer is the decibel. Loudness uses a logarithmic scale where each step multiplies the energy.",
+      "lessonContent": "Loudness is measured on a compressed scale.\nThe scale is logarithmic, not linear.\nQuiet rooms sit near the bottom.\nConcerts push toward the top.\nShare this: check the volume reading on one device tonight.",
+      "forgeId": "batch-074#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Sound Reflections",
+      "question": "What do you call a sound that returns to you after bouncing off a distant wall?",
+      "choices": [
+        "An echo",
+        "A chord",
+        "A beat",
+        "A note"
+      ],
+      "correctAnswer": "An echo",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. A hard, distant surface can throw sound back with a noticeable delay.",
+      "incorrectExplanation": "The answer is an echo. The reflected sound arrives late enough to be heard separately.",
+      "lessonContent": "Hard surfaces send sound back.\nThe return arrives after a short delay.\nLarge empty halls make the effect obvious.\nSoft furnishings absorb the return.\nShare this: clap in a large empty room tonight and listen.",
+      "forgeId": "batch-074#6",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Speed of Sound",
+      "question": "About how fast does sound travel through ordinary air?",
+      "choices": [
+        "About 340 metres per second",
+        "About 300000 kilometres per second",
+        "About 3 metres per second",
+        "About 3400 metres per second"
+      ],
+      "correctAnswer": "About 340 metres per second",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. That works out to roughly a third of a kilometre each second.",
+      "incorrectExplanation": "The answer is about 340 metres per second. It is far slower than light, which is why you see lightning before thunder.",
+      "lessonContent": "Sound moves far slower than light.\nThat delay explains distant flashes and late thunder.\nRoughly a third of a kilometre each second.\nCount the gap to estimate distance.\nShare this: time the gap between lightning and thunder tonight.",
+      "forgeId": "batch-074#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Above Hearing",
+      "question": "What is sound with a repeat rate too high for the human ear to detect called?",
+      "choices": [
+        "Ultrasound",
+        "Infrasound",
+        "White noise",
+        "Resonance"
+      ],
+      "correctAnswer": "Ultrasound",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Some animals and medical devices use tones beyond our upper limit.",
+      "incorrectExplanation": "The answer is ultrasound. Its rate is too high for the human ear but useful in medicine and animal navigation.",
+      "lessonContent": "The ear has upper limits.\nSome animals hear beyond ours.\nMedical devices use these high tones.\nBats navigate with them.\nShare this: look up one animal that hears what humans cannot.",
+      "forgeId": "batch-074#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Natural Rhythm",
+      "question": "A swing pushed at its natural rhythm rises higher each time. What is this effect called?",
+      "choices": [
+        "Resonance",
+        "Reflection",
+        "Echo",
+        "Doppler shift"
+      ],
+      "correctAnswer": "Resonance",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Matching the object's favoured rhythm adds energy with every cycle.",
+      "incorrectExplanation": "The answer is resonance. Pushing at the natural rhythm adds energy with every cycle.",
+      "lessonContent": "Every object has a favoured rhythm.\nMatching that rhythm adds energy each cycle.\nSmall pushes accumulate into large swings.\nBridges and glasses can be affected too.\nShare this: notice one object that reacts strongly to a particular rhythm.",
+      "forgeId": "batch-074#9",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Passing Siren",
+      "question": "A siren seems higher as it approaches and lower as it recedes. What is this called?",
+      "choices": [
+        "The Doppler effect",
+        "An echo",
+        "Resonance",
+        "A beat"
+      ],
+      "correctAnswer": "The Doppler effect",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Motion bunches the waves ahead of the source and stretches those behind.",
+      "incorrectExplanation": "The answer is the Doppler effect. Motion compresses waves ahead of a source and stretches them behind.",
+      "lessonContent": "Motion changes the spacing of waves.\nApproaching sources bunch their waves.\nReceding sources stretch them.\nThe same happens with light from distant stars.\nShare this: listen to a passing vehicle tonight and track the change.",
+      "forgeId": "batch-074#10",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Doubling Rate",
+      "question": "A note with double the repeat rate of another is one what higher?",
+      "choices": [
+        "An octave",
+        "A semitone",
+        "A decibel",
+        "A beat"
+      ],
+      "correctAnswer": "An octave",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Doubling the rate sounds like the same lettered note one interval higher.",
+      "incorrectExplanation": "The answer is an octave. Doubling the rate produces the same lettered note one interval higher.",
+      "lessonContent": "Musical notes relate by simple ratios.\nDoubling the rate sounds like the same note higher.\nThat interval gets its own name.\nThe scale repeats every doubling.\nShare this: sing a note then its doubled version.",
+      "forgeId": "batch-074#11",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Violin or Flute",
+      "question": "A violin and a flute play the same note, yet they sound different. What quality differs?",
+      "choices": [
+        "Timbre",
+        "Pitch",
+        "Volume",
+        "Tempo"
+      ],
+      "correctAnswer": "Timbre",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Each instrument mixes overtones differently, giving a note its distinctive voice.",
+      "incorrectExplanation": "The answer is timbre. The mix of overtones gives each instrument its distinctive voice.",
+      "lessonContent": "Instruments mix many tones at once.\nThe blend of overtones differs by instrument.\nThat is why a note can have a voice.\nTwo sources at the same height still differ.\nShare this: identify one instrument by sound alone tonight.",
+      "forgeId": "batch-074#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Pulsing Tones",
+      "question": "Two nearly equal tones played together produce a slow pulsing. What is it called?",
+      "choices": [
+        "Beats",
+        "Echoes",
+        "Chords",
+        "Harmonics"
+      ],
+      "correctAnswer": "Beats",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Slightly different rates drift in and out of step, creating a slow throb.",
+      "incorrectExplanation": "The answer is beats. Slightly different rates drift in and out of phase, creating a slow pulse.",
+      "lessonContent": "Slightly mismatched rates drift in and out.\nThe waves reinforce then cancel.\nYou hear a slow throb.\nTuning instruments relies on this.\nShare this: compare two nearly matched tones and listen for the throb.",
+      "forgeId": "batch-074#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Hearing Range",
+      "question": "What is the approximate range of normal human hearing?",
+      "choices": [
+        "20 hertz to 20000 hertz",
+        "5 hertz to 500 hertz",
+        "200 hertz to 2000 hertz",
+        "2000 hertz to 200000 hertz"
+      ],
+      "correctAnswer": "20 hertz to 20000 hertz",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Young ears catch a wide band, though the upper end fades with age.",
+      "incorrectExplanation": "The answer is 20 hertz to 20000 hertz. The upper limit drops with age and noise damage.",
+      "lessonContent": "Young ears catch a wide band of rates.\nThe lower end extends far down.\nThe upper end fades with age.\nNoise exposure narrows it faster.\nShare this: test the highest tone you can still hear.",
+      "forgeId": "batch-074#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "First to Shake",
+      "question": "Which part of the ear is the first to move when sound arrives?",
+      "choices": [
+        "The eardrum",
+        "The pupil",
+        "The tongue",
+        "The nostril"
+      ],
+      "correctAnswer": "The eardrum",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. A thin membrane seals the canal and passes incoming motion to the bones behind.",
+      "incorrectExplanation": "The answer is the eardrum. It seals the canal and passes incoming motion to the small bones behind it.",
+      "lessonContent": "A thin membrane stretches across the canal.\nAir pulses make it move.\nSmall bones then pass the motion inward.\nIt seals the inner chamber.\nShare this: learn the name of one part of the ear tonight.",
+      "forgeId": "batch-074#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Steady Reference",
+      "question": "Which small metal tool rings at a fixed note when struck?",
+      "choices": [
+        "A tuning fork",
+        "A hammer",
+        "A spoon",
+        "A whistle"
+      ],
+      "correctAnswer": "A tuning fork",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Its shape fixes a single steady note that barely drifts.",
+      "incorrectExplanation": "The answer is a tuning fork. Its fixed shape gives a steady reference note for tuning.",
+      "lessonContent": "A metal bar with two prongs rings cleanly.\nIts shape fixes a single steady note.\nMusicians use it to set their pitch.\nThe note barely changes over time.\nShare this: compare two voices to a steady reference note.",
+      "forgeId": "batch-074#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Faster Than Sound",
+      "question": "What is the loud crack called when an aircraft outruns the speed of sound?",
+      "choices": [
+        "A sonic boom",
+        "An echo",
+        "A beat",
+        "A whistle"
+      ],
+      "correctAnswer": "A sonic boom",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Waves pile up and release together when an object passes its own sound.",
+      "incorrectExplanation": "The answer is a sonic boom. Waves bunch up ahead of an object that outruns its own sound and release in one crack.",
+      "lessonContent": "Waves pile up when a source outruns them.\nThey release together in a sudden crack.\nThe object has passed its own sound.\nPeople on the ground hear one loud report.\nShare this: look up the speed of sound in your units tonight.",
+      "forgeId": "batch-074#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Dense Medium",
+      "question": "Through which state of matter does sound travel fastest?",
+      "choices": [
+        "A solid",
+        "A liquid",
+        "A gas",
+        "A vacuum"
+      ],
+      "correctAnswer": "A solid",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Tightly packed, elastic particles pass the motion along most quickly.",
+      "incorrectExplanation": "The answer is a solid. Closely packed, elastic particles transmit the wave faster than liquids or gases.",
+      "lessonContent": "Tightly packed particles pass motion quickly.\nLoose gases slow the wave down.\nDense elastic materials carry it best.\nRailway tracks transmit it far.\nShare this: tap a table and listen for sound through the material.",
+      "forgeId": "batch-074#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Rate and Spacing",
+      "question": "How are a sound wave's repeat rate and its spacing related?",
+      "choices": [
+        "They are inversely related",
+        "They are unrelated",
+        "They always match exactly",
+        "They rise and fall together"
+      ],
+      "correctAnswer": "They are inversely related",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Higher rates compress the spacing, and lower rates stretch it out.",
+      "incorrectExplanation": "The answer is they are inversely related. As the rate rises, the spacing between cycles shrinks, keeping their product constant.",
+      "lessonContent": "Higher rates compress the spacing.\nLower rates stretch it out.\nThe product of the two stays constant.\nThat constant is the speed of sound.\nShare this: reason about spacing for one tone tonight.",
+      "forgeId": "batch-074#19",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Rising Rate",
+      "question": "If a tone's repeat rate increases, what happens to how high it sounds?",
+      "choices": [
+        "It rises",
+        "It falls",
+        "It stays the same",
+        "It disappears"
+      ],
+      "correctAnswer": "It rises",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Height tracks repetition, so more cycles each second means a higher note.",
+      "incorrectExplanation": "The answer is it rises. A faster repeat rate always sounds higher to the ear.",
+      "lessonContent": "Height tracks the rate of repetition.\nMore cycles each second means a higher note.\nFewer cycles means a lower note.\nChanging the rate changes the note.\nShare this: slide a tuning control and describe the change in height.",
+      "forgeId": "batch-074#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Hall Design",
+      "question": "A concert hall's shape and panels mainly control what?",
+      "choices": [
+        "Reflections of sound",
+        "The colour of the seats",
+        "The temperature of the air",
+        "The speed of the musicians"
+      ],
+      "correctAnswer": "Reflections of sound",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Designers steer the bounces so every seat hears the performance clearly.",
+      "incorrectExplanation": "The answer is reflections of sound. Designers shape how sound bounces so every seat hears clearly.",
+      "lessonContent": "Sound bounces off every hard surface.\nDesigners steer those bounces.\nPanels and curves shape what the audience hears.\nToo much bounce muddles the music.\nShare this: listen for the room in a recording tonight.",
+      "forgeId": "batch-074#21",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Cancelling Waves",
+      "question": "How do noise-cancelling headphones reduce outside sound?",
+      "choices": [
+        "They add a mirror wave",
+        "They block all air",
+        "They warm the ear",
+        "They absorb light"
+      ],
+      "correctAnswer": "They add a mirror wave",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. An opposite wave meets the incoming one and cancels it where they overlap.",
+      "incorrectExplanation": "The answer is they add a mirror wave. An opposite wave cancels the incoming one where they overlap.",
+      "lessonContent": "A microphone samples the incoming noise.\nElectronics create an opposite wave.\nThe two waves cancel where they meet.\nThe result is near silence.\nShare this: notice one technology that works by cancellation.",
+      "forgeId": "batch-074#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Travelling Squeeze",
+      "question": "Sound is a travelling wave of changing what?",
+      "choices": [
+        "Pressure",
+        "Colour",
+        "Charge",
+        "Temperature"
+      ],
+      "correctAnswer": "Pressure",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. Air bunches and spreads, and that push travels outward from the source.",
+      "incorrectExplanation": "The answer is pressure. Sound is a travelling change in the push of the air.",
+      "lessonContent": "Air molecules bunch and spread.\nThat push travels outward from a source.\nYour ear reads the passing squeeze.\nEvery sound is a travelling disturbance.\nShare this: feel the air from a speaker tonight.",
+      "forgeId": "batch-074#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Lowest Mode",
+      "question": "What is the lowest repeat rate of a vibrating string called?",
+      "choices": [
+        "The fundamental",
+        "The echo",
+        "The beat",
+        "The overtone"
+      ],
+      "correctAnswer": "The fundamental",
+      "xpReward": 10,
+      "lessonGroup": "Physics Fun",
+      "correctExplanation": "Right. It is the simplest pattern of motion, with higher ones layered above it.",
+      "incorrectExplanation": "The answer is the fundamental. It is the lowest pattern of motion, with higher ones layered above it.",
+      "lessonContent": "A string can move in many patterns.\nThe simplest pattern has the lowest rate.\nHigher patterns layer on top of it.\nTogether they shape the instrument's voice.\nShare this: pluck a string and listen for the lowest steady tone.",
+      "forgeId": "batch-074#24",
+      "forgeScore": 92
+    }
+  ]
+}

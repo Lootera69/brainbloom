@@ -1,0 +1,477 @@
+[
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Switches, Not Letters",
+    "question": "A liver cell and a skin cell in the same person carry the same genes. What most directly makes them different?",
+    "choices": [
+      "Chemical marks tune which genes each cell uses",
+      "Different genes were deleted inside each",
+      "Their DNA sequences were rewritten after birth",
+      "One cell simply stopped carrying a genome"
+    ],
+    "correctAnswer": "Chemical marks tune which genes each cell uses",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. Cell identity comes from regulation: marks and packaging decide which of the identical genes are read.",
+    "incorrectExplanation": "The answer is: chemical marks tune which genes each cell uses. Nearly every cell keeps the full genome; a liver cell is a liver because its gene-use pattern was locked in. Deletion and rewriting are the misconceptions to drop.",
+    "lessonContent": "Nearly every cell keeps the complete genome it started with.\nWhat makes a cell type is the pattern of which genes are switched on.\nRegulatory chemistry, not different genes, builds liver versus skin.\nOne instrument, many arrangements of the hands on the keys.\nShare this: explain tonight why a skin cell and a liver cell differ despite identical DNA."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Hunger Winter",
+    "question": "Families starved during the 1944 Dutch famine. Decades later, descendants of women famine-exposed before birth showed raised disease risks. What best explains the transmission?",
+    "choices": [
+      "Prenatal conditions left heritable chemical marks",
+      "Mutations were carved into survivor DNA",
+      "The famine selected for stronger genes",
+      "Family diets simply stayed poor afterward"
+    ],
+    "correctAnswer": "Prenatal conditions left heritable chemical marks",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. The Dutch Hunger Winter became a natural experiment showing that famine before birth can echo into later generations through regulation, not sequence.",
+    "incorrectExplanation": "The answer is: prenatal conditions left heritable chemical marks. Starvation is far too brief to rewrite genes, and selection across one winter is negligible. The recorded legacy rides on marks laid down during development.",
+    "lessonContent": "Famine studies trace health echoes across generations without touching gene letters.\nConditions before birth can tune metabolic systems for decades.\nHistorical disasters sometimes become accidental laboratories.\nTiming matters: the same shortage at different developmental stages leaves different traces.\nShare this: ask an elder how a historical hardship shaped your family's habits."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Agouti Sisters",
+    "question": "Genetically identical agouti mice can be born yellow and heavy or brown and lean. What flips one litter toward one outcome?",
+    "choices": [
+      "A methyl mark settles on the coat gene",
+      "The yellow animals lose that gene at birth",
+      "Brown pups receive extra chromosomes",
+      "The mother edits their DNA letters directly"
+    ],
+    "correctAnswer": "A methyl mark settles on the coat gene",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. A mobile genetic element near the coat gene gets silenced or not, and the mother's diet around pregnancy shifts the odds.",
+    "incorrectExplanation": "The answer is: a methyl mark settles on the coat gene. The famous agouti-mouse studies showed nutrition moving a regulatory mark, changing color and metabolism without changing the code. Same letters, different reading.",
+    "lessonContent": "Animal models let researchers test diet effects impossible to stage in people.\nA single regulatory element can change coat color and metabolism together.\nMaternal nutrition around pregnancy shifts developmental odds, not destiny.\nIdentical genes plus different marks equals visibly different animals.\nShare this: describe tonight how two genetically identical mice can look like different breeds."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Queen's Menu",
+    "question": "A honeybee larva fed royal jelly becomes the queen while her identical-genome sisters become workers. What does the feeding change?",
+    "choices": [
+      "Gene activity through dietary regulation",
+      "Her DNA sequence from scratch",
+      "The number of chromosomes she keeps",
+      "Nothing, since every larva is born a queen"
+    ],
+    "correctAnswer": "Gene activity through dietary regulation",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. The special food reshapes developmental gene activity, and studies blocking the marking enzymes turn larvae queenward.",
+    "incorrectExplanation": "The answer is: gene activity through dietary regulation. Queen and worker carry the same code; the diet reroutes which genes run during development. Feed differently, build a different body from one genome.",
+    "lessonContent": "Castes in social insects are built by feeding, not by breeding.\nRoyal food reroutes development rather than granting new genes.\nBlocking marking enzymes can push larvae toward queen development.\nEnvironment-first biology is vivid in the hive.\nShare this: explain tonight how a queen bee shares her workers' exact genome."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Lamarck's Soft Limit",
+    "question": "A bodybuilder's children are not born with larger muscles. What best explains this?",
+    "choices": [
+      "Acquired muscle gains leave no heritable change in sperm or eggs",
+      "Children reject parental traits at puberty",
+      "Muscle traits pass only to daughters",
+      "Exercise destroys genes inside body cells"
+    ],
+    "correctAnswer": "Acquired muscle gains leave no heritable change in sperm or eggs",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. Training changes muscle cells, but the germ line stays untouched, so nothing about the training is inherited.",
+    "incorrectExplanation": "The answer is: acquired muscle gains leave no heritable change in sperm or eggs. Epigenetics is real but does not resurrect the old idea that any acquired trait passes down. The germ cells simply never received the message.",
+    "lessonContent": "Acquired traits live in body tissues, not in sperm and eggs.\nChanges must reach the germ line to stand any chance of inheritance.\nGyms change muscles, not the genes handed to children.\nExcitement about real mark inheritance should not revive the old giraffe story.\nShare this: name one family habit that passes down without any gene changing."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Silencing Tag",
+    "question": "A methyl group attaches near the start of a gene. What is the typical effect?",
+    "choices": [
+      "The gene's activity usually falls",
+      "The gene is usually read more strongly",
+      "The DNA letter order shuffles",
+      "The gene instantly duplicates itself"
+    ],
+    "correctAnswer": "The gene's activity usually falls",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. Methylation at regulatory regions generally dials a gene down by making it harder for the reading machinery to attach.",
+    "incorrectExplanation": "The answer is: the gene's activity usually falls. The tag is a volume control, not an edit. Think dimmer switch on a lamp rather than a new lamp.",
+    "lessonContent": "Chemical tags near a gene's control region usually lower its activity.\nRegulation works by obstructing or helping the reading machinery.\nThe underlying letters stay untouched while output changes.\nVolume controls are reversible in ways sequence edits are not.\nShare this: compare tonight how a thermostat and a furnace repair differ as controls."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Spool Tension",
+    "question": "DNA wraps around spool-like proteins that can hold it tightly or loosely. How does loosening affect nearby genes?",
+    "choices": [
+      "Looser wrapping makes genes easier to read",
+      "Loose wrapping deletes those genes",
+      "Loose wrapping silences them permanently",
+      "Wrapping has no effect on gene activity"
+    ],
+    "correctAnswer": "Looser wrapping makes genes easier to read",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. A relaxed spool exposes the code to the cell's reading machinery; a tight one hides it.",
+    "incorrectExplanation": "The answer is: looser wrapping makes genes easier to read. The spools are packaging that doubles as access control. Chemical tweaks to them open or shut regions without touching the letters inside.",
+    "lessonContent": "DNA winds around protein spools that double as access gates.\nRelaxed packaging exposes code to the reading machinery.\nTight packaging hides genes without deleting them.\nArchitectural state is information, not just storage.\nShare this: compare tonight how a locked book differs from a burned book."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Great Reset",
+    "question": "Most chemical marks on sperm and egg are erased at fertilization. What survives to the next generation?",
+    "choices": [
+      "A small set, including imprinted genes, escapes erasure",
+      "Everything resets, so nothing survives",
+      "All marks double in strength instead",
+      "Only the father's marks persist fully"
+    ],
+    "correctAnswer": "A small set, including imprinted genes, escapes erasure",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. Reprogramming wipes most marks twice in early development, yet imprinted regions are deliberately protected.",
+    "incorrectExplanation": "The answer is: a small set, including imprinted genes, escapes erasure. The reset explains why most acquired marks do not travel far. The protected exceptions are the legitimate frontier of inheritance research.",
+    "lessonContent": "Early development wipes most chemical notes twice over.\nErasure gives each new life a flexible, blank-slate start.\nA few protected regions deliberately escape the wipe.\nGenuine inheritance across generations must survive this gauntlet.\nShare this: explain tonight why most acquired marks stop at the next generation."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "One Parent's Copy",
+    "question": "For certain imprinted genes, only the mother's copy is ever used; for others, only the father's. What happens to the unused copy?",
+    "choices": [
+      "It sits chemically silenced",
+      "It is physically deleted",
+      "It turns into a spare chromosome",
+      "Both copies are always used equally"
+    ],
+    "correctAnswer": "It sits chemically silenced",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. The silenced copy is present but switched off by a mark, making the single active copy essential.",
+    "incorrectExplanation": "The answer is: it sits chemically silenced. Imprinting means one parental copy is muted on purpose, which is why damaging the single active copy can cause disease even though the other looks intact.",
+    "lessonContent": "Imprinting mutes one parent's copy of certain genes on purpose.\nThe silenced copy is present but parked.\nWith only one working copy, a single fault can cause disease.\nParent of origin, not just content, can decide gene behavior.\nShare this: explain tonight why one healthy-looking copy of a gene may not be enough."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Twin Divergence",
+    "question": "Identical twins share nearly all their DNA, yet one can develop schizophrenia while the other never does. What does this discordance reveal?",
+    "choices": [
+      "Non-genetic factors shape whether risk becomes illness",
+      "Genes alone decide every outcome",
+      "Identical genomes guarantee identical fates",
+      "One twin's DNA mutates away immediately after birth"
+    ],
+    "correctAnswer": "Non-genetic factors shape whether risk becomes illness",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. Identical-twin concordance for schizophrenia is far below one hundred percent, so identical genes do not force identical outcomes.",
+    "incorrectExplanation": "The answer is: non-genetic factors shape whether risk becomes illness. Twin pairs are the natural experiment: shared code with divergent fates points to regulation, development, and environment filling the gap.",
+    "lessonContent": "Concordance below one hundred percent proves genes load but do not fire the gun.\nIdentical twins are living controls for everything besides sequence.\nDivergent outcomes point to regulation and lived experience.\nRisk language, not destiny language, fits the data.\nShare this: name one trait where identical twins you know clearly differ."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Aging Clock",
+    "question": "Researchers estimate biological age from methylation patterns across the genome. What do these patterns actually track?",
+    "choices": [
+      "Accumulated shifts that broadly track with aging",
+      "The exact day a person was conceived",
+      "A lifelong record of shoe sizes",
+      "Only the father's age at the child's birth"
+    ],
+    "correctAnswer": "Accumulated shifts that broadly track with aging",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. Certain sites drift with age in a coordinated way, letting algorithms estimate a body's biological mileage.",
+    "incorrectExplanation": "The answer is: accumulated shifts that broadly track with aging. The clocks are statistical, not diaries: they summarize wear across many sites. Some organs and habits run ahead of or behind the calendar age.",
+    "lessonContent": "Some regulatory sites drift in coordinated ways as bodies age.\nAlgorithms summarize that drift into a biological-age estimate.\nOrgans and habits can run ahead of or behind the birth certificate.\nStatistical clocks are estimates, not diaries.\nShare this: guess tonight which of your habits runs your body's clock fastest."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Locked Gate",
+    "question": "Tumor cells often carry abnormal methylation that shuts down protective genes. What is the direct result?",
+    "choices": [
+      "Damaged cells lose a brake on uncontrolled growth",
+      "Tumors become harmless on the spot",
+      "The protective genes start duplicating faster",
+      "The methylation cures the tumor outright"
+    ],
+    "correctAnswer": "Damaged cells lose a brake on uncontrolled growth",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. Silencing genes that restrain growth removes the brakes while the accelerator stays stuck.",
+    "incorrectExplanation": "The answer is: damaged cells lose a brake on uncontrolled growth. Cancer is as much a disease of regulation as of mutation: switching off the watchdogs can be as dangerous as corrupting the code.",
+    "lessonContent": "Cancer is as much a disease of regulation as of sequence.\nSilencing a watchdog gene can be as dangerous as corrupting it.\nGrowth brakes, when switched off, matter as much as accelerators stuck on.\nTreatment can target the switching itself in some cancers.\nShare this: explain tonight why a fully intact gene can still fail a cell."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Training the Muscle",
+    "question": "Weeks of endurance training change which muscle genes are active. Where is that change first recorded?",
+    "choices": [
+      "In signals and marks reshaping gene use",
+      "In a rewrite of the gene sequence itself",
+      "In the deletion of slow-twitch genes",
+      "In brand-new chromosomes built by running"
+    ],
+    "correctAnswer": "In signals and marks reshaping gene use",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. Exercise drives signaling molecules and regulatory changes that steer which existing genes the muscle reads.",
+    "incorrectExplanation": "The answer is: in signals and marks reshaping gene use. Training adapts you by retuning expression, not by editing letters. Your genome is the instrument; exercise is the sheet music.",
+    "lessonContent": "Training adapts the body by retuning gene activity, not editing letters.\nSignaling molecules carry the first message into the nucleus.\nThe genome is the instrument; lifestyle chooses the arrangement.\nAdaptation without mutation is the everyday magic of biology.\nShare this: describe tonight how a month of training changes muscles without changing DNA."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Stress Signature",
+    "question": "Children raised under severe early stress show lasting changes in stress-response gene activity. How is that change carried?",
+    "choices": [
+      "By regulatory marks left on those genes",
+      "By mutations created under pressure",
+      "By physical removal of the genes",
+      "By a rewrite of their DNA alphabet"
+    ],
+    "correctAnswer": "By regulatory marks left on those genes",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. Harsh early environments recalibrate the regulation of stress systems, and the tuning persists.",
+    "incorrectExplanation": "The answer is: by regulatory marks left on those genes. Adversity does not rewrite code; it re-sets dials. That is precisely why early support can matter so much: the dials respond to care too.",
+    "lessonContent": "Harsh early environments recalibrate stress-system regulation.\nThe tuning can persist long after the environment changes.\nAdversity sets dials rather than rewriting code.\nCare and support act on the same adjustable layer.\nShare this: name one supportive influence that visibly steadied someone's temperament."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Methyl Supplier",
+    "question": "Why does a pregnancy diet low in folate matter for gene regulation in the developing child?",
+    "choices": [
+      "Folate supplies raw material for methyl marks",
+      "Folate deletes harmful genes directly",
+      "Folate replaces damaged DNA letters",
+      "Folate has no link to gene regulation"
+    ],
+    "correctAnswer": "Folate supplies raw material for methyl marks",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. The vitamin feeds the chemical pathway that installs methyl groups, so shortage limits the marking system's supplies.",
+    "incorrectExplanation": "The answer is: folate supplies raw material for methyl marks. This is nutrition meeting regulation: a vitamin becomes a part of the cell's note-taking chemistry. Deficiency during rapid development is therefore doubly costly.",
+    "lessonContent": "Nutrition feeds the chemistry that installs regulatory marks.\nVitamins can be raw materials for note-taking machinery, not just fuel.\nRapid development raises the stakes of shortages.\nDiet during growth is information as much as energy.\nShare this: check tonight which foods carry the vitamin behind the marking pathway."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Smoke Signals",
+    "question": "Smokers carry distinctive methylation patterns at certain genes. Years after quitting, what usually happens?",
+    "choices": [
+      "Many marks fade, though some persist",
+      "All marks vanish overnight",
+      "The marks harden into permanent mutations",
+      "Quitting silently completes the damage"
+    ],
+    "correctAnswer": "Many marks fade, though some persist",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. Large-cohort studies show substantial reversal over years, alongside a residue that lingers longer.",
+    "incorrectExplanation": "The answer is: many marks fade, though some persist. The fading is genuinely good news: regulation is more reversible than sequence. The persistent residue is one more reason quitting pays, the earlier the better.",
+    "lessonContent": "Regulatory changes are often more reversible than sequence changes.\nLarge studies watch many smoke-related marks fade after quitting.\nSome residue lingers, so timing still matters.\nRecoverability is a reason for hope and for urgency.\nShare this: encourage one smoker tonight with the chemistry of reversal."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Not Quite Lamarck",
+    "question": "Transmission of chemical marks across generations is real but limited. What is the accepted limit?",
+    "choices": [
+      "Most marks reset each generation, so effects fade",
+      "Every acquired trait passes down forever",
+      "Only learned skills are inherited",
+      "Mark inheritance refutes DNA genetics"
+    ],
+    "correctAnswer": "Most marks reset each generation, so effects fade",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. The two reprogramming waves in early development scrub most marks, keeping genuine transgenerational effects rare and modest.",
+    "incorrectExplanation": "The answer is: most marks reset each generation, so effects fade. The honest summary is a weak, partial channel alongside the strong sequence channel. Headlines about inherited memory outrun the data.",
+    "lessonContent": "Real channels of non-DNA inheritance are narrow and modest.\nMost chemical notes are erased between generations.\nExtraordinary claims about inherited memory need layered evidence.\nCalibrated surprise beats both dismissal and hype.\nShare this: deflate one exaggerated headline tonight with the honest version."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Range and Tuning",
+    "question": "In the epigenetic era, what is the sanest one-line summary of heredity versus environment?",
+    "choices": [
+      "Genes set potential ranges while conditions tune their use",
+      "Genes fix outcomes and environments do nothing",
+      "Environments alone decide every trait",
+      "Neither genes nor environments matter much"
+    ],
+    "correctAnswer": "Genes set potential ranges while conditions tune their use",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. The genome supplies possibilities; regulation and environment select which are realized, and when.",
+    "incorrectExplanation": "The answer is: genes set potential ranges while conditions tune their use. Both old extremes fail: pure determinism and pure blank-slate thinking both ignore the layer between code and outcome.",
+    "lessonContent": "Determinism and blank-slate thinking both fail the same evidence.\nGenomes supply ranges; environments and regulation set the values.\nAsking how much is nature splits a question that is really how.\nModern heredity is a dialogue, not a verdict.\nShare this: rephrase one nature-versus-nurture debate tonight as a how question."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Locust Switch",
+    "question": "Crowded locusts transform from solitary green to swarming black within hours. Same genome — what changed?",
+    "choices": [
+      "Sensory cues shifted gene activity and body form",
+      "Their genome doubled under the stress",
+      "They grew a second genome for crowds",
+      "Nothing but their mood and paint"
+    ],
+    "correctAnswer": "Sensory cues shifted gene activity and body form",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. Touch and sight of crowds triggers a rapid regulatory cascade producing a differently built, differently behaved animal.",
+    "incorrectExplanation": "The answer is: sensory cues shifted gene activity and body form. Polyphenism is one genome wearing two outfits, switched by environment. It is the biology of contingency made visible.",
+    "lessonContent": "Some animals build two bodies from one genome, switched by conditions.\nCrowding, temperature, or diet can flip the developmental track.\nPolyphenism shows environment writing directly onto development.\nSame code, radically different outcomes, on schedule.\nShare this: find tonight one animal whose look changes with its living conditions."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Discordant Pair",
+    "question": "One identical twin develops an autoimmune disease; the other stays healthy for life. What do studies of such pairs mainly find?",
+    "choices": [
+      "Their gene-activity patterns drifted apart over time",
+      "Their DNA differed at key genes from birth",
+      "Autoimmunity is purely genetic after all",
+      "The healthy twin simply suppressed the genes"
+    ],
+    "correctAnswer": "Their gene-activity patterns drifted apart over time",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. Discordant-twin research shows twin pairs accumulating different activity and marking patterns with age and experience.",
+    "incorrectExplanation": "The answer is: their gene-activity patterns drifted apart over time. Identical starts do not lock identical trajectories. Diverging regulation is the measurable signature of separate lives.",
+    "lessonContent": "Identical genomes drift apart in activity as lives diverge.\nTwin studies measure the widening gap directly.\nExperience keeps editing the regulatory layer for decades.\nDivergence over time is the rule, not the exception.\nShare this: note tonight how two similar-aged siblings grew differently under one roof."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "The Cross-Fostered Pups",
+    "question": "Pups born to low-grooming rat mothers but raised by high-grooming mothers grow up calmer. What does the cross-fostering show?",
+    "choices": [
+      "Early care retunes stress-gene regulation",
+      "Genetics alone fixed their temperament",
+      "Calm passes down through genes only",
+      "Adoption erases all behavior differences"
+    ],
+    "correctAnswer": "Early care retunes stress-gene regulation",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. The care received after birth, not the genes inherited, steered the stress system's setting.",
+    "incorrectExplanation": "The answer is: early care retunes stress-gene regulation. The experiment cleanly separates inherited code from delivered care. Nurture here is not vague comfort; it is measurable chemistry acting on regulation.",
+    "lessonContent": "Cross-fostering experiments separate inherited code from delivered care.\nEarly nurturing measurably steers stress-gene settings.\nCare is chemistry in action, not vague comfort.\nBiology responds to the environment an animal actually receives.\nShare this: recall one caregiver whose attention visibly changed a child's calm."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Beyond the Blueprint",
+    "question": "If the genome is a printed script, what is the epigenome best compared to?",
+    "choices": [
+      "A director's notes on which lines get spoken",
+      "A second, competing full script",
+      "A discarded early draft",
+      "The paper the script is printed on"
+    ],
+    "correctAnswer": "A director's notes on which lines get spoken",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. The same script supports many productions depending on which parts are staged, muted, or emphasized.",
+    "incorrectExplanation": "The answer is: a director's notes on which lines get spoken. The analogy earns its keep: one script, many performances, and the notes decide the show. Cells are productions; organs are genres.",
+    "lessonContent": "Good analogies make layered biology intuitive.\nA script supports many productions; notes decide the staging.\nThe metaphor honors both stability and variation.\nChoose comparisons that keep the mechanism honest.\nShare this: invent tonight your own one-line metaphor for the regulatory layer."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Resetting the Adult",
+    "question": "Cloning by transferring an adult cell nucleus into an egg often fails or yields abnormal animals. What insight explains much of the trouble?",
+    "choices": [
+      "Adult marks must be undone, and undoing is imperfect",
+      "The donor nucleus refuses to divide",
+      "Clones receive too many nuclei",
+      "The egg erases all DNA before fusion"
+    ],
+    "correctAnswer": "Adult marks must be undone, and undoing is imperfect",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. A nucleus carrying a grown cell's settings must be returned to a blank, flexible start — a demanding chemical reset.",
+    "incorrectExplanation": "The answer is: adult marks must be undone, and undoing is imperfect. Development needs a clean slate of potential; leftover adult notes misdirect it. The low success rate of early cloning is the cost of sloppy erasure.",
+    "lessonContent": "Development requires erasing the adult cell's specialized settings.\nResetting a mature nucleus into a blank state is chemically demanding.\nLeftover notes from the donor cell misdirect the new program.\nCloning struggles are evidence of how thorough the natural reset is.\nShare this: explain tonight why copying a cell is harder than copying its DNA."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Marks into Medicine",
+    "question": "Some leukemia therapies alter chemical marks rather than killing cells outright. What do they aim to restore?",
+    "choices": [
+      "Normal patterns of gene readout in blood cells",
+      "A larger genome for the patient",
+      "Instant immunity to every cancer",
+      "A rewrite of DNA in every organ"
+    ],
+    "correctAnswer": "Normal patterns of gene readout in blood cells",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Exactly. Mark-targeting drugs nudge diseased cells back toward a healthier program of gene activity.",
+    "incorrectExplanation": "The answer is: normal patterns of gene readout in blood cells. If disease can come from mis-set dials, medicine can sometimes work by resetting dials. It is regulation treated as a drug target.",
+    "lessonContent": "Some medicines aim at the switching system rather than the code.\nResetting dials can nudge diseased cells toward healthier programs.\nReversible regulation is a therapeutic opening.\nMechanism-level treatment follows mechanism-level understanding.\nShare this: describe tonight how a treatment could work without killing any cell."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "science",
+    "difficulty": "medium",
+    "title": "Same Letters, Different Lives",
+    "question": "Two people with essentially identical genomes could still age very differently. What continuously updates the difference?",
+    "choices": [
+      "Environments and habits reshape marks over decades",
+      "Their DNA letters drift apart every year",
+      "Aging is sealed at conception only",
+      "Identical genomes force identical aging"
+    ],
+    "correctAnswer": "Environments and habits reshape marks over decades",
+    "xpReward": 25,
+    "lessonGroup": "Body & Biology",
+    "correctExplanation": "Right. Smoking, diet, stress, and activity keep editing the regulatory layer long after the letters are fixed.",
+    "incorrectExplanation": "The answer is: environments and habits reshape marks over decades. Twin studies even measure the drift: identical pairs start alike and diverge in marking with age. The code is for life; the annotations are living documents.",
+    "lessonContent": "The genome is fixed for life; its annotations keep changing.\nHabits and environments edit the regulatory layer for decades.\nIdentical twins start matched and drift apart in markings.\nAging differences record different lives, not different codes.\nShare this: name one lifestyle choice you treat as an annotation, not a footnote."
+  }
+]

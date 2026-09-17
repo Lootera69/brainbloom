@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-197",
+  "generatedAt": "2026-09-17T13:27:46.096Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "Letter writing — thanks delivered",
+      "correctExplanation": "Right — written thanks, delivered, lift both writer and reader for weeks. Letters outperform chats.",
+      "incorrectExplanation": "Not quite — letter writing: thanks delivered. Pen, paper, and delivery beat texts.",
+      "lessonContent": "Delivered thanks lift both parties.\nLetters outlast chats measurably.\nWriters gain as much as readers.\nShare this: mail one thank-you note.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Which practice boosts happiness longest: texting thanks or mailing a gratitude letter?",
+      "title": "The Mailed Thanks",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Texting quickly — speed suffices",
+        "Letter writing — thanks delivered",
+        "Thinking silently — thoughts count",
+        "Waiting yearly — holidays serve"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#0",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Three nightly — blessings listed",
+      "correctExplanation": "Correct — three good things nightly rewires attention toward gifts. Lists train eyes.",
+      "incorrectExplanation": "Close! Three nightly: blessings listed. Journals of gifts compound nightly.",
+      "lessonContent": "Nightly triples retrain attention.\nLists of gifts compound quietly.\nEyes learn to harvest good.\nShare this: list three gifts tonight.",
+      "lessonGroup": "Life Puzzles",
+      "question": "What nightly habit raises well-being most reliably?",
+      "title": "The Nightly Three",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Three nightly — blessings listed",
+        "News scrolling — stay informed",
+        "Worry listing — plan troubles",
+        "Counting sheep — sleep faster"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#1",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Savor slowly — taste fully",
+      "correctExplanation": "Yes — slow savoring multiplies a meal's joy; gulping wastes flavor and fullness signals. Pace creates pleasure.",
+      "incorrectExplanation": "Not quite — savor slowly, taste fully. Unhurried bites double delight.",
+      "lessonContent": "Slow bites double delight.\nPace creates flavor fullness.\nAttention seasons every meal.\nShare this: savor one bite fully.",
+      "lessonGroup": "Life Puzzles",
+      "question": "How can the same meal bring double the joy?",
+      "title": "The Slow Bite",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Eat faster — beat hunger",
+        "Savor slowly — taste fully",
+        "Salt more — boost flavor",
+        "Multitask meals — save time"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Thank aloud — credit spoken",
+      "correctExplanation": "Right — spoken thanks credit helpers and warm rooms. Voices carry gratitude best.",
+      "incorrectExplanation": "Actually, thank aloud: credit spoken. Named thanks multiply helpers.",
+      "lessonContent": "Spoken thanks warm whole rooms.\nNamed helpers repeat kindness.\nVoices carry weight texts lack.\nShare this: thank one helper aloud.",
+      "lessonGroup": "Life Puzzles",
+      "question": "A colleague's quiet help saved your week. Best response?",
+      "title": "The Spoken Credit",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Thank aloud — credit spoken",
+        "Nod briefly — hints suffice",
+        "Pay later — debts linger",
+        "Post online — broadcast help"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Notice ordinary — bless routine",
+      "correctExplanation": "Correct — blessing hot showers and warm beds harvests daily dozens of gifts. Routine hides riches.",
+      "incorrectExplanation": "Close! Notice ordinary, bless routine. Daily dozens await noticing eyes.",
+      "lessonContent": "Routine hides daily dozens.\nShowers and beds bless notice.\nOrdinary gilds grateful eyes.\nShare this: bless one routine gift.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Where do dozens of daily gifts hide?",
+      "title": "The Hidden Dozens",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Grand events — milestones matter",
+        "Notice ordinary — bless routine",
+        "Future wins — hope provides",
+        "Others' lives — envy teaches"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Enough naming — want less",
+      "correctExplanation": "Yes — naming 'enough' ends hedonic treadmills. Sufficiency is declared, never delivered.",
+      "incorrectExplanation": "Not quite — enough naming, want less. Declared sufficiency stops endless chase.",
+      "lessonContent": "Enough is declared, never delivered.\nTreadmills stop at named sufficiency.\nWants shrink when counted.\nShare this: declare one enough today.",
+      "lessonGroup": "Life Puzzles",
+      "question": "What ends the endless chase for more?",
+      "title": "The Declared Enough",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Earn double — outrun want",
+        "Enough naming — want less",
+        "Compare up — fuel ambition",
+        "Wait decades — age contents"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Morning pages — gifts previewed",
+      "correctExplanation": "Right — previewing day's gifts primes noticing. Mornings set grateful lenses.",
+      "incorrectExplanation": "Actually, morning pages: gifts previewed. Anticipated good focuses the day.",
+      "lessonContent": "Mornings preview coming gifts.\nPrimed eyes harvest more.\nLenses set at sunrise last.\nShare this: preview three gifts dawn.",
+      "lessonGroup": "Life Puzzles",
+      "question": "How can mornings raise the day's gratitude?",
+      "title": "The Primed Morning",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Morning pages — gifts previewed",
+        "Alarm snoozing — rest more",
+        "News dreading — brace early",
+        "Rushing out — beat traffic"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Barista thanks — strangers warmed",
+      "correctExplanation": "Correct — thanking servers warms both sides of counters. Small thanks compound citywide.",
+      "incorrectExplanation": "Close! Barista thanks: strangers warmed. Counter kindness circulates.",
+      "lessonContent": "Counter thanks warm both sides.\nStrangers remember named kindness.\nCities compound small thanks.\nShare this: thank one server warmly.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Who benefits when you thank the barista by name?",
+      "title": "The Named Cup",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Nobody much — routines rule",
+        "Barista thanks — strangers warmed",
+        "Only you — self-congrats",
+        "Managers only — metrics move"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#7",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Grief plus thanks — both held",
+      "correctExplanation": "Yes — gratitude coexists with grief; honoring both heals. Thanks don't cancel tears.",
+      "incorrectExplanation": "Not quite — grief plus thanks: both held. Loss and gratitude share hearts.",
+      "lessonContent": "Grief and thanks share hearts.\nHonoring both heals fastest.\nTears needn't evict gratitude.\nShare this: thank amid one sorrow.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Can gratitude survive grief?",
+      "title": "The Twin Hold",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Grief plus thanks — both held",
+        "Grief only — thanks wait",
+        "Thanks only — grief hides",
+        "Neither helps — time rules"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#8",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Give away — joy multiplies",
+      "correctExplanation": "Right — givers report more happiness than receivers of equal value. Generosity pays its makers.",
+      "incorrectExplanation": "Actually, give away: joy multiplies. Spending on others outgladdens spending on self.",
+      "lessonContent": "Givers out-glad receivers.\nGenerosity pays its makers.\nOthers' joy compounds personally.\nShare this: spend small on someone.",
+      "lessonGroup": "Life Puzzles",
+      "question": "What raises the giver's happiness most?",
+      "title": "The Giver's Gain",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Hoard carefully — save joy",
+        "Give away — joy multiplies",
+        "Win lotteries — luck lifts",
+        "Wait inheritances — patience pays"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Walk noticing — nature doses",
+      "correctExplanation": "Correct — noticing trees and skies doses awe freely. Walks prescribe wonder.",
+      "incorrectExplanation": "Close! Walk noticing: nature doses. Green minutes measurably restore.",
+      "lessonContent": "Green minutes restore measurably.\nNoticing trees doses awe.\nWalks prescribe wonder freely.\nShare this: walk noticing five things.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Cheapest reliable mood medicine?",
+      "title": "The Green Dose",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Walk noticing — nature doses",
+        "Shop therapy — buy mood",
+        "Scroll funny — laugh online",
+        "Nap longer — sleep blues"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Visit delivered — tears shared",
+      "correctExplanation": "Yes — reading gratitude letters aloud moves both to tears. Visits seal thanks.",
+      "incorrectExplanation": "Not quite — visit delivered: tears shared. Presence completes prose.",
+      "lessonContent": "Visits seal written thanks.\nReading aloud moves both.\nPresence completes prose.\nShare this: deliver one thanks in person.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Strongest form of a gratitude letter?",
+      "title": "The Delivered Visit",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Visit delivered — tears shared",
+        "Filed away — kept private",
+        "Posted online — liked widely",
+        "Drafted only — thoughts count"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#11",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Sleep improves — thanks rest",
+      "correctExplanation": "Right — grateful minds ruminate less and sleep deeper. Thanks tuck brains in.",
+      "incorrectExplanation": "Actually, sleep improves: thanks rest. Evening gratitude quiets midnight ledgers.",
+      "lessonContent": "Gratitude quiets midnight ledgers.\nThanks tuck brains in early.\nRumination yields to blessing.\nShare this: bless before sleep tonight.",
+      "lessonGroup": "Life Puzzles",
+      "question": "How does evening gratitude affect sleep?",
+      "title": "The Restful Thanks",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Sleep improves — thanks rest",
+        "Dreams intensify — visions visit",
+        "Insomnia grows — thoughts race",
+        "Nothing changes — myths rule"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#12",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Count current — compare less",
+      "correctExplanation": "Correct — counting present blessings beats comparing upward. Ledgers beat ladders.",
+      "incorrectExplanation": "Close! Count current, compare less. Present riches outshine neighbors'.",
+      "lessonContent": "Ledgers beat ladders always.\nPresent riches outshine comparisons.\nCounting cures envying.\nShare this: inventory present riches.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Envy of neighbors' lives — gratitude antidote?",
+      "title": "The Present Ledger",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Count current — compare less",
+        "Earn more — outpace neighbors",
+        "Move away — escape comparisons",
+        "Scroll less — hide triggers"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Sip slowly — coffee ceremony",
+      "correctExplanation": "Yes — morning coffee as ceremony beats caffeine as fuel. Rituals gild routines.",
+      "incorrectExplanation": "Not quite — sip slowly: coffee ceremony. Attention brews stronger joy.",
+      "lessonContent": "Ceremonies gild morning cups.\nRituals beat refuels daily.\nAttention brews deeper flavor.\nShare this: ritualize one morning cup.",
+      "lessonGroup": "Life Puzzles",
+      "question": "How can daily coffee become a joy practice?",
+      "title": "The Morning Ritual",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Sip slowly — coffee ceremony",
+        "Drink faster — fuel up",
+        "Add sugar — sweeten mood",
+        "Skip days — crave more"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#14",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Thank specifically — name details",
+      "correctExplanation": "Right — specific thanks ('your 6am airport run') out-warm generic praise. Details prove attention.",
+      "incorrectExplanation": "Actually, specific thanks beat vague praise. Details prove the thanks was noticed.",
+      "lessonContent": "Specifics prove attention paid.\nDetails out-warm generalities.\nNamed moments matter most.\nShare this: thank one detail today.",
+      "lessonGroup": "Life Puzzles",
+      "question": "'Thanks' versus 'thanks for the 6am airport run' — which lands?",
+      "title": "The Detailed Thanks",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Generic suffices — brevity rules",
+        "Thank specifically — name details",
+        "Louder wins — volume moves",
+        "Later works — timing frees"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#15",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Volunteer hours — purpose served",
+      "correctExplanation": "Correct — serving others reliably lifts the server's meaning. Purpose pays volunteers in well-being.",
+      "incorrectExplanation": "Close! Volunteer hours: purpose served. Helpers harvest meaning weekly.",
+      "lessonContent": "Helping hours harvest meaning.\nServers gain most reliably.\nPurpose pays in well-being.\nShare this: serve two hours monthly.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Reliable route to lasting meaning?",
+      "title": "The Helping Hours",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Volunteer hours — purpose served",
+        "Win awards — shine briefly",
+        "Hoard wealth — secure comfort",
+        "Wait purpose — hope delivers"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Forgive debts — free holders",
+      "correctExplanation": "Yes — releasing IOUs frees creditors' minds first. Forgiveness unchains holders.",
+      "incorrectExplanation": "Not quite — forgive debts: free holders. Cancelled ledgers liberate lenders.",
+      "lessonContent": "Cancelled debts free lenders.\nForgiveness unchains holders first.\nLedgers burn; minds lighten.\nShare this: forgive one small debt.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Who gains most when debts are forgiven?",
+      "title": "The Cancelled Ledger",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Forgive debts — free holders",
+        "Debtors only — freed riders",
+        "Banks profit — fees flow",
+        "Nobody gains — money lost"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#17",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Photo ritual — moments kept",
+      "correctExplanation": "Right — one daily photo journals joy visibly. Albums of attention compound.",
+      "incorrectExplanation": "Actually, photo ritual: moments kept. Daily frames archive gladness.",
+      "lessonContent": "Daily frames archive gladness.\nAlbums compound attention.\nPhotos prompt thankfulness.\nShare this: snap one daily joy.",
+      "lessonGroup": "Life Puzzles",
+      "question": "How can phones build gratitude instead of envy?",
+      "title": "The Daily Frame",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Photo ritual — moments kept",
+        "Scroll less — hide envy",
+        "Filter life — curate feed",
+        "Delete apps — flee phones"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Commute blessing — travel thanks",
+      "correctExplanation": "Correct — blessing the commute converts dead time to gift time. Wheels carry thanks.",
+      "incorrectExplanation": "Close! Commute blessing: travel thanks. Seats become pews of appreciation.",
+      "lessonContent": "Commutes convert to gift time.\nSeats serve as pews daily.\nTravel thanks multiply miles.\nShare this: bless one red light.",
+      "lessonGroup": "Life Puzzles",
+      "question": "How can commuting become grateful time?",
+      "title": "The Thankful Commute",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Commute blessing — travel thanks",
+        "Drive faster — shrink time",
+        "Sleep aboard — skip travel",
+        "Complain loudly — vent steam"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Enough plate — portion peace",
+      "correctExplanation": "Yes — 'enough' portions end food chase peacefully. Plates declare sufficiency.",
+      "incorrectExplanation": "Not quite — enough plate: portion peace. Sufficiency serves seconds of calm.",
+      "lessonContent": "Plates declare sufficiency nightly.\nEnough ends food chases.\nPortions preach peace.\nShare this: serve one enough plate.",
+      "lessonGroup": "Life Puzzles",
+      "question": "What ends overeating most kindly?",
+      "title": "The Enough Plate",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Enough plate — portion peace",
+        "Strict diets — forbid joy",
+        "Skip meals — starve want",
+        "Eat fast — beat fullness"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Shared meal — thanks multiplied",
+      "correctExplanation": "Right — eaten together, food tastes better and thanks multiply. Tables compound gratitude.",
+      "incorrectExplanation": "Actually, shared meal: thanks multiplied. Communion flavors every course.",
+      "lessonContent": "Tables compound thankfulness.\nShared courses taste better.\nCommunion flavors food.\nShare this: share one meal weekly.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Why does food taste better shared?",
+      "title": "The Shared Table",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Shared meal — thanks multiplied",
+        "Hunger grows — groups starve",
+        "Recipes improve — cooks compete",
+        "Plates shrink — scarcity flavors"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#21",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Old photo — past thanks",
+      "correctExplanation": "Correct — revisiting old photos thanks past selves and lost moments. Albums time-travel gratefully.",
+      "incorrectExplanation": "Close! Old photo: past thanks. Yesterday's ordinary glows golden.",
+      "lessonContent": "Albums gild yesterdays golden.\nPast ordinary glows now.\nRevisits thank former selves.\nShare this: revisit one old album.",
+      "lessonGroup": "Life Puzzles",
+      "question": "How can old photos build present gratitude?",
+      "title": "The Golden Album",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Old photo — past thanks",
+        "Delete past — live now",
+        "Edit history — curate glow",
+        "Avoid nostalgia — forward only"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Rain thanks — gutters gifted",
+      "correctExplanation": "Yes — thanking rain reframes grey days as watered gifts. Gutters preach provision.",
+      "incorrectExplanation": "Not quite — rain thanks: gutters gifted. Clouds water grateful gardens.",
+      "lessonContent": "Rain waters grateful gardens.\nGrey days gift green tomorrows.\nGutters preach provision.\nShare this: thank one rainy day.",
+      "lessonGroup": "Life Puzzles",
+      "question": "How can rainy days feel like gifts?",
+      "title": "The Grateful Grey",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Rain thanks — gutters gifted",
+        "Stay inside — hide grey",
+        "Curse clouds — blame skies",
+        "Shop light — buy sun"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#23",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Body thanks — health honored",
+      "correctExplanation": "Right — thanking working knees and lungs honors daily miracles. Bodies serve silently.",
+      "incorrectExplanation": "Actually, body thanks: health honored. Unthanked organs labor lovingly.",
+      "lessonContent": "Bodies labor unloved daily.\nKnees deserve morning thanks.\nHealth hides in plain function.\nShare this: thank one body part.",
+      "lessonGroup": "Life Puzzles",
+      "question": "Simplest daily health gratitude?",
+      "title": "The Working Knees",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Body thanks — health honored",
+        "Gym guilt — punish softness",
+        "Mirror praise — admire shape",
+        "Doctor visits — outsource care"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-197#24",
+      "forgeScore": 92
+    }
+  ]
+}

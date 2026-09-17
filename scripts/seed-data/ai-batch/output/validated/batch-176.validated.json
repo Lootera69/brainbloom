@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-176",
+  "generatedAt": "2026-09-17T13:27:45.302Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "Rehearsals, not shields",
+      "correctExplanation": "Right — vaccines stage harmless rehearsals so memory cells answer encores fast. Training, never shielding, protects.",
+      "incorrectExplanation": "Not quite — rehearsals, not shields. Shots teach immune memory; the body performs on opening night.",
+      "lessonContent": "Vaccines rehearse immune orchestras safely.\nMemory cells recall encores rapidly.\nRehearsals beat opening-night surprises.\nShare this: call boosters encore practice.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do vaccines protect against future infection?",
+      "title": "The Immune Rehearsal",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Killing germs directly",
+        "Rehearsals, not shields",
+        "Thickening the skin",
+        "Heating the blood"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Memory cells fade",
+      "correctExplanation": "Correct — immune memory wanes over years; boosters refresh the lesson. Recall needs rehearsal.",
+      "incorrectExplanation": "Actually, memory cells fade. Boosters re-teach guards whose textbooks yellowed.",
+      "lessonContent": "Immune memory fades like all memories.\nBoosters refresh fading textbooks.\nSchedules match waning curves.\nShare this: check one booster due date.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why do some vaccines need boosters?",
+      "title": "The Fading Lesson",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Germs strengthen yearly",
+        "Memory cells fade",
+        "Shots expire in arms",
+        "Doctors profit"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#1",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Starving transmission chains",
+      "correctExplanation": "Yes — immune majorities break every chain the virus tries. Stalled spread shelters the vulnerable few.",
+      "incorrectExplanation": "Close! Starving transmission chains. High coverage denies pathogens their next hosts.",
+      "lessonContent": "Herd immunity starves pathogens of hosts.\nThresholds vary with contagiousness.\nMajorities shield minorities medically.\nShare this: explain thresholds with wildfire gaps.",
+      "lessonGroup": "Body & Biology",
+      "question": "How does herd immunity protect the unvaccinated?",
+      "title": "The Broken Chain",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Stronger air",
+        "Starving transmission chains",
+        "Weaker germs",
+        "Lucky avoidance"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#2",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Instruction slips, not alterations",
+      "correctExplanation": "Right — mRNA delivers temporary protein recipes; cells recycle them within days. Messages, never edits, immunize.",
+      "incorrectExplanation": "Not quite — instruction slips, not alterations. The slips degrade; DNA archives stay untouched.",
+      "lessonContent": "mRNA vaccines message, never modify.\nCells recycle instructions within days.\nRecipes cook proteins, then vanish.\nShare this: retire the DNA-alteration myth.",
+      "lessonGroup": "Body & Biology",
+      "question": "Do mRNA vaccines alter human DNA?",
+      "title": "The Temporary Note",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Yes, permanently",
+        "Instruction slips, not alterations",
+        "Only in elders",
+        "Nobody knows"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#3",
+      "forgeScore": 84
+    },
+    {
+      "correctAnswer": "Tags plus assassins",
+      "correctExplanation": "Correct — antibodies tag invaders while killer T-cells execute infected cells. Tag-teams clear infections.",
+      "incorrectExplanation": "Actually, tags plus assassins. B-cells label; T-cells destroy the labeled.",
+      "lessonContent": "Antibodies tag; T-cells terminate.\nHumoral and cellular arms cooperate.\nTests measure tags, not always troops.\nShare this: name both arms of defense.",
+      "lessonGroup": "Body & Biology",
+      "question": "What are the respective jobs of antibodies and killer T-cells?",
+      "title": "The Tag Team",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Both kill directly",
+        "Tags plus assassins",
+        "Both tag only",
+        "T-cells tag antibodies"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Fast generalists, slow specialists",
+      "correctExplanation": "Yes — innate guards attack everything instantly; adaptive forces study then remember. Speed first, precision second.",
+      "incorrectExplanation": "Close! Fast generalists, slow specialists. Skin and inflammation hold the line while lymphocytes learn.",
+      "lessonContent": "Innate immunity reacts instantly and generally.\nAdaptive immunity learns slowly, remembers forever.\nLayers cooperate across timescales.\nShare this: feel innate heat in one paper cut.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do innate and adaptive immunity differ?",
+      "title": "The Two Armies",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Old versus new",
+        "Fast generalists, slow specialists",
+        "Strong versus weak",
+        "Blood versus skin"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#5",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Cooking germs slowly",
+      "correctExplanation": "Right — raised heat hobbles many pathogens while mobilizing defenses. Fever is thermostat warfare.",
+      "incorrectExplanation": "Not quite — cooking germs slowly. Immune command raises set-points deliberately.",
+      "lessonContent": "Fevers weaponize temperature against germs.\nSet-points rise by immune orders.\nMild fevers merit respect and rest.\nShare this: rest one mild fever out.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why does the immune system cause fever?",
+      "title": "The Inner Furnace",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Germs overheat bodies",
+        "Cooking germs slowly",
+        "Broken thermostats",
+        "Dehydration signals"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Battlefield swelling",
+      "correctExplanation": "Correct — vessels dilate to flood the site with troops and supplies. Swelling is logistics, not damage.",
+      "incorrectExplanation": "Actually, battlefield swelling. Redness and heat mark supply lines, not defeat.",
+      "lessonContent": "Inflammation delivers troops through widened roads.\nSwelling is logistics made visible.\nChronic alarms, not acute ones, harm.\nShare this: ice one sprain understandingly.",
+      "lessonGroup": "Body & Biology",
+      "question": "What purpose does inflammation serve?",
+      "title": "The Red Flood",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Killing tissue",
+        "Battlefield swelling",
+        "Signaling pain only",
+        "Cooling wounds"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Misfired alarms",
+      "correctExplanation": "Yes — harmless pollen trips defenses built for parasites. Allergies are security overreactions.",
+      "incorrectExplanation": "Close! Misfired alarms. IgE antibodies panic at dust that never threatened.",
+      "lessonContent": "Allergies misfire parasite alarms at pollen.\nHygiene shifts may tune sensitivity.\nDesensitization retrains the guards.\nShare this: forgive one sneezy overreaction.",
+      "lessonGroup": "Body & Biology",
+      "question": "What causes allergies to harmless pollen?",
+      "title": "The False Alarm",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Pollen toxicity",
+        "Misfired alarms",
+        "Weak lungs",
+        "Dirty air only"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#8",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Self-recognition failure",
+      "correctExplanation": "Right — tolerance training fails and guards attack the host. Autoimmunity is civil war.",
+      "incorrectExplanation": "Not quite — self-recognition failure. Thymus schooling misfires; own tissues read as foreign.",
+      "lessonContent": "Tolerance training usually prevents civil war.\nThymus schools guards on self-portraits.\nFailures ignite autoimmune battles.\nShare this: respect the thymus's quiet schooling.",
+      "lessonGroup": "Body & Biology",
+      "question": "What goes wrong in autoimmune disease?",
+      "title": "The Friendly Fire",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Germs strengthen",
+        "Self-recognition failure",
+        "Too few antibodies",
+        "Aging organs"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Memory-wiping infection",
+      "correctExplanation": "Correct — measles deletes immune memories, leaving amnesia toward past foes. Vaccination guards the guards.",
+      "incorrectExplanation": "Actually, memory-wiping infection. Survivors must relearn defeated diseases.",
+      "lessonContent": "Measles wipes immune hard drives alarmingly.\nAmnesia invites old foes back freely.\nShots protect memories themselves.\nShare this: vaccinate to keep immune memories.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why do measles survivors catch old illnesses again?",
+      "title": "The Forgotten Foes",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Weakened bodies",
+        "Memory-wiping infection",
+        "New germ strains",
+        "Bad nutrition"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Shape-shifting surface",
+      "correctExplanation": "Yes — flu mutates its coat yearly, outrunning last year's memory. Drift demands annual rehearsals.",
+      "incorrectExplanation": "Close! Shape-shifting surface. Antigenic drift redesigns the viral uniform each season.",
+      "lessonContent": "Flu redesigns its coat annually.\nDrift outruns static immune memories.\nShots update the wanted posters.\nShare this: get this season's poster update.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why is last year's flu shot outdated?",
+      "title": "The New Disguise",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Shots weaken",
+        "Shape-shifting surface",
+        "Stronger flu",
+        "Public panic"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#11",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Hundred-plus disguises",
+      "correctExplanation": "Right — 'colds' are hundreds of viruses wearing similar sniffles. No single shot covers the crowd.",
+      "incorrectExplanation": "Not quite — hundred-plus disguises. Rhinovirus legions plus cousins defy one cure.",
+      "lessonContent": "Colds are crowds, never single culprits.\nSerotype legions outnumber shots feasible.\nHygiene beats silver bullets here.\nShare this: wash hands against the legion.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why is there no cure for the common cold?",
+      "title": "The Crowded Sniffle",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Doctors hide cures",
+        "Hundred-plus disguises",
+        "Colds heal fast",
+        "Viruses hide in nerves"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#12",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Borrowed starter immunity",
+      "correctExplanation": "Correct — maternal antibodies patrol newborns for months. Mothers lend patrols before babies build their own.",
+      "incorrectExplanation": "Actually, borrowed starter immunity. Placenta and milk transfer ready-made guards.",
+      "lessonContent": "Mothers lend immune patrols to newborns.\nBorrowed antibodies bridge vulnerable months.\nVaccines later build owned armies.\nShare this: honor milk's quiet armory.",
+      "lessonGroup": "Body & Biology",
+      "question": "How are newborns protected before their own immunity builds?",
+      "title": "The Lent Shield",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Sterile wombs linger",
+        "Borrowed starter immunity",
+        "Thick baby skin",
+        "No germs target babies"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#13",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Dormant virus reawakens",
+      "correctExplanation": "Yes — chickenpox virus sleeps in nerves for decades, then erupts as shingles. Old foes nap, never leave.",
+      "incorrectExplanation": "Close! Dormant virus reawakens. Childhood pox wires adult shingles' fuse.",
+      "lessonContent": "Chickenpox viruses hibernate in nerve roots.\nAging immunity loosens the leash.\nShingles shots reinforce old guards.\nShare this: ask elders about shingles shots.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why can chickenpox return as shingles decades later?",
+      "title": "The Sleeping Foe",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "New infections",
+        "Dormant virus reawakens",
+        "Weak adult skin",
+        "Stress alone"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#14",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Fallen soldier pile",
+      "correctExplanation": "Right — pus is mostly dead neutrophils plus debris. Battlefields bury their own.",
+      "incorrectExplanation": "Not quite — fallen soldier pile. White cells die killing; pus archives the war.",
+      "lessonContent": "Pus archives immune battlefields faithfully.\nNeutrophils die killing in droves.\nDrainage clears the graveyard helpfully.\nShare this: respect one healing scab's work.",
+      "lessonGroup": "Body & Biology",
+      "question": "What is pus mostly made of?",
+      "title": "The White Graveyard",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Dead germs only",
+        "Fallen soldier pile",
+        "Melted skin",
+        "Trapped dirt"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#15",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Command-post swelling",
+      "correctExplanation": "Correct — nodes are headquarters where scouts brief lymphocytes. Swelling means war councils in session.",
+      "incorrectExplanation": "Actually, command-post swelling. Glands enlarge as defenders multiply inside.",
+      "lessonContent": "Lymph nodes host immune war councils.\nScouts brief lymphocytes within swollen walls.\nTender glands signal active defense.\nShare this: feel one gland mid-cold knowingly.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why do glands swell during infections?",
+      "title": "The Busy Headquarters",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Germ nests",
+        "Command-post swelling",
+        "Blocked pipes",
+        "Fluid backup"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Envelope-dissolving soap",
+      "correctExplanation": "Yes — soap molecules pry apart viral lipid envelopes. Twenty seconds dissolves armor.",
+      "incorrectExplanation": "Close! Envelope-dissolving soap. Suds split fatty coats; water rinses the wreckage.",
+      "lessonContent": "Soap dissolves viral envelopes chemically.\nTwenty seconds completes the demolition.\nFriction plus chemistry beats rinsing.\nShare this: sing through one full wash.",
+      "lessonGroup": "Body & Biology",
+      "question": "How does soap destroy viruses?",
+      "title": "The Sudsy Demolition",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Poisoning germs",
+        "Envelope-dissolving soap",
+        "Drowning microbes",
+        "Heating hands"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#17",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Bacteria-only weapons",
+      "correctExplanation": "Right — antibiotics sabotage bacterial machinery viruses lack. Prescribing them for flu wastes arsenals and breeds resistance.",
+      "incorrectExplanation": "Not quite — bacteria-only weapons. Wall-builders and protein-forges exist solely in bacteria.",
+      "lessonContent": "Antibiotics target bacterial machinery exclusively.\nViruses offer no walls to wreck.\nMisuse breeds resistant survivors.\nShare this: refuse antibiotics for colds.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why can't antibiotics cure viral infections?",
+      "title": "The Wrong Arsenal",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Viruses hide well",
+        "Bacteria-only weapons",
+        "Weak prescriptions",
+        "Fast mutations"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Inner ecosystem balance",
+      "correctExplanation": "Correct — trillions of microbes train immunity and crowd out invaders. Gardens, not deserts, defend guts.",
+      "incorrectExplanation": "Actually, inner ecosystem balance. Diverse flora outcompetes pathogens for niches.",
+      "lessonContent": "Microbiomes train immune tolerance daily.\nDiversity crowds out invading pathogens.\nAntibiotics clear-cut the garden.\nShare this: feed your flora fiber today.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do gut microbes protect health?",
+      "title": "The Inner Garden",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Digesting everything",
+        "Inner ecosystem balance",
+        "Heating intestines",
+        "Filtering blood"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Identity-tag mismatch",
+      "correctExplanation": "Yes — transplants carrying foreign MHC tags trigger rejection. Guards read molecular passports ruthlessly.",
+      "incorrectExplanation": "Close! Identity-tag mismatch. Mismatched self-markers convict donor organs.",
+      "lessonContent": "MHC tags passport every cell's identity.\nTransplants must match molecular papers.\nSuppression drugs bribe the border guards.\nShare this: register as an organ donor.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why do transplanted organs get rejected?",
+      "title": "The Foreign Passport",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Surgical damage",
+        "Identity-tag mismatch",
+        "Wrong blood volume",
+        "Old donor tissue"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Pre-made plasma weapons",
+      "correctExplanation": "Right — blood plasma carries antibodies against foreign ABO antigens. Mismatched transfusions trigger instant battle.",
+      "incorrectExplanation": "Not quite — pre-made plasma weapons. Type O lacks antigens; AB lacks antibodies — the compatibility grid follows.",
+      "lessonContent": "ABO antibodies patrol plasma pre-made.\nAntigens invite attack when mismatched.\nTyping prevents transfusion wars.\nShare this: learn your own blood type.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why must blood types match for transfusion?",
+      "title": "The Typed River",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Different thickness",
+        "Pre-made plasma weapons",
+        "Color variations",
+        "Pressure differences"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Horse-trained serum",
+      "correctExplanation": "Correct — horses dosed with venom brew antibodies harvested as antivenom. Equine factories bottle cures.",
+      "incorrectExplanation": "Actually, horse-trained serum. Immunized horses donate antibody-rich plasma for victims.",
+      "lessonContent": "Horses manufacture antivenom at scale.\nGraduated venom doses train equine blood.\nSerum harvests save snakebite victims.\nShare this: thank one serum horse silently.",
+      "lessonGroup": "Body & Biology",
+      "question": "How is snake antivenom produced?",
+      "title": "The Equine Factory",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Milking snakes",
+        "Horse-trained serum",
+        "Chemical synthesis",
+        "Plant extracts"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Locked cellular door",
+      "correctExplanation": "Yes — CCR5 mutations remove HIV's favorite doorway. Missing handles bar entry genetically.",
+      "incorrectExplanation": "Close! Locked cellular door. Delta-32 carriers lack the co-receptor HIV grasps.",
+      "lessonContent": "CCR5 mutations bar HIV's entry door.\nGenetic resistance inspires drug designs.\nBerlin patients proved the principle.\nShare this: marvel at one protective mutation.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why are some people naturally resistant to HIV?",
+      "title": "The Missing Handle",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Stronger blood",
+        "Locked cellular door",
+        "Past exposure",
+        "Clean living"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#23",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Cowpox cross-training",
+      "correctExplanation": "Right — milkmaids' cowpox exposure blocked smallpox. Related germs cross-train guards effectively.",
+      "incorrectExplanation": "Not quite — cowpox cross-training. Jenner weaponized the dairymaid observation into vaccination.",
+      "lessonContent": "Cowpox cross-trained guards against smallpox.\nJenner tested folklore scientifically.\nObservation plus experiment births vaccines.\nShare this: retell Jenner's milkmaid insight.",
+      "lessonGroup": "Body & Biology",
+      "question": "How did Jenner's first vaccine work?",
+      "title": "The Milkmaid Clue",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Weakened smallpox",
+        "Cowpox cross-training",
+        "Herbal mixtures",
+        "Bloodletting balance"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-176#24",
+      "forgeScore": 100
+    }
+  ]
+}

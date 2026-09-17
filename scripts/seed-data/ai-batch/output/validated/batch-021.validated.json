@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-021",
+  "generatedAt": "2026-09-17T13:27:41.582Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Distant Dial",
+      "question": "Alice and Bob share many entangled pairs. To encode 0, Alice measures every particle along Z; to encode 1, she measures every particle along X. Before receiving anything from Alice, what observable signature can Bob use to decode her choice?",
+      "choices": [
+        "A Z bias for 0 and an X bias for 1",
+        "No local pattern; both choices give Bob random halves",
+        "Timing shifts caused by Alice's basis change",
+        "A weaker bias that emerges only over many pairs"
+      ],
+      "correctAnswer": "No local pattern; both choices give Bob random halves",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Alice changes which joint correlations can later be revealed, but Bob's reduced state is the same random mixture for either basis.",
+      "incorrectExplanation": "Not quite. The answer is no local pattern; both choices give Bob random halves. A basis choice changes conditional correlations, not Bob's unconditioned statistics, so decoding requires Alice's classical record.",
+      "lessonContent": "No-signalling separates shared correlations from locally controllable effects.\nA reduced state summarizes every outcome probability available in one laboratory.\nChanging a distant measurement can alter conditional comparisons made later.\nThose comparisons require an ordinary record from the other observer.\nShare this: explain why correlation alone is not a communication channel.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Bell's Boundary",
+      "question": "A loophole-free Bell test violates a Bell inequality while Alice and Bob remain spacelike separated. Which conclusion fits both the data and relativity?",
+      "choices": [
+        "Alice's detector sends a hidden faster-than-light pulse",
+        "Each pair carried complete local answers for every setting",
+        "Local prewritten outcomes cannot explain the correlations, yet neither side can signal",
+        "Relativity fails whenever the inequality is violated"
+      ],
+      "correctAnswer": "Local prewritten outcomes cannot explain the correlations, yet neither side can signal",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Bell violations rule out local hidden-answer models under the test's assumptions, while the observed local marginals still obey no-signalling.",
+      "incorrectExplanation": "Actually, local prewritten outcomes cannot explain the correlations, yet neither side can signal. Bell nonlocality concerns the structure of joint probabilities; it does not supply a controllable faster-than-light channel.",
+      "lessonContent": "Bell inequalities set limits on correlations built from local hidden instructions.\nExperiments test those limits by varying settings independently at separated detectors.\nA violation challenges the joint assumptions behind a local predetermined model.\nIt does not turn random detector outcomes into controllable messages.\nShare this: describe the difference between nonlocal correlation and signalling.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Tracing Out Alice",
+      "question": "For the Bell state (|00> + |11>)/sqrt(2), Alice either measures her qubit or leaves it untouched. Bob is not told her choice or result. What density matrix describes Bob in both cases?",
+      "choices": [
+        "The maximally mixed state I/2",
+        "The pure state |0><0|",
+        "The original two-qubit Bell state",
+        "A mixture whose weights reveal Alice's choice"
+      ],
+      "correctAnswer": "The maximally mixed state I/2",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Tracing out Alice gives I/2, and averaging over her unreported measurement outcomes leaves that reduced state unchanged.",
+      "incorrectExplanation": "The answer is the maximally mixed state I/2. Conditional on Alice's result Bob can be assigned a pure state, but without that result the alternatives average to the same local mixture as before.",
+      "lessonContent": "A density matrix predicts the statistics of every measurement on a quantum system.\nFor part of a larger system, a partial trace removes the inaccessible degrees of freedom.\nConditioning on a partner's result can produce a different description from ignoring it.\nAveraging all unreported alternatives restores the observer's local description.\nShare this: compare conditional information with information available before a phone call.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Sorted Miracle",
+      "question": "Bob's combined detector record shows no fringes. After Alice sends her outcome labels, Bob sorts the same detections into two groups and sees complementary fringes. Why was no message visible earlier?",
+      "choices": [
+        "The fringes travelled slowly and arrived with Alice's labels",
+        "Alice created new detections in Bob's stored record",
+        "Bob's detector erased the signal before recording it",
+        "The two opposite fringe patterns cancelled in the unsorted total"
+      ],
+      "correctAnswer": "The two opposite fringe patterns cancelled in the unsorted total",
+      "xpReward": 50,
+      "correctExplanation": "Right. Alice's labels reveal complementary conditional subsets, but their sum is the same featureless local pattern Bob already had.",
+      "incorrectExplanation": "Close! The two opposite fringe patterns cancelled in the unsorted total. Postselection uncovers correlations in existing data; the classical labels are indispensable and cannot arrive faster than light.",
+      "lessonContent": "Postselection groups an existing dataset using information learned after measurement.\nDifferent conditional groups can display strong structures hidden in their combined distribution.\nSorting does not create new detections or alter the original record.\nA usable pattern may therefore depend on labels delivered through a separate channel.\nShare this: mix two opposite striped transparencies and notice what their sum conceals.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Teleportation Delay",
+      "question": "Alice teleports an unknown quantum state to Bob using a shared entangled pair, but her two classical bits have not arrived. What can Bob recover from his particle now?",
+      "choices": [
+        "The original state with half the fidelity",
+        "No information about the state; his qubit averages to I/2",
+        "One classical bit encoded in the state's phase",
+        "The full state if he guesses Alice's measurement basis"
+      ],
+      "correctAnswer": "No information about the state; his qubit averages to I/2",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Bob's qubit is one of four equally likely corrected-or-uncorrected versions, whose average is maximally mixed until Alice's two bits identify the needed operation.",
+      "incorrectExplanation": "Not quite. Bob has no information about the state; his qubit averages to I/2. Entanglement supplies the quantum correlation, but the two ordinary bits make the protocol causal and usable.",
+      "lessonContent": "Quantum teleportation transfers a state using entanglement and ordinary communication together.\nThe sender's measurement produces a random classical label.\nThat label tells the receiver which correction makes the protocol complete.\nEntanglement supplies correlations, but it does not replace the causal message.\nShare this: list the quantum and classical resources required by teleportation.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Dense but Causal",
+      "question": "Superdense coding lets Alice communicate two classical bits using one transmitted qubit plus shared entanglement. Which step prevents this from becoming communication with no physical signal?",
+      "choices": [
+        "Alice must physically send her encoded qubit to Bob",
+        "Bob must measure his qubit before Alice encodes",
+        "The shared pair secretly stores both message bits in advance",
+        "Alice must destroy Bob's half before choosing a message"
+      ],
+      "correctAnswer": "Alice must physically send her encoded qubit to Bob",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Entanglement increases the information capacity of the transmitted quantum system, but it does not eliminate transmission.",
+      "incorrectExplanation": "The answer is that Alice must physically send her encoded qubit to Bob. The resource enhances a channel already carrying something; Bob's untouched half alone contains no readable choice of Alice's.",
+      "lessonContent": "Entanglement-assisted protocols can improve what a transmitted quantum carrier accomplishes.\nA shared resource established earlier is not itself a newly chosen message.\nEncoding changes the joint state so a later joint measurement can distinguish alternatives.\nSome physical system must still connect sender and receiver after the choice is made.\nShare this: identify the travelling resource whenever a protocol claims extra capacity.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Eraser in Reverse",
+      "question": "In a delayed-choice quantum eraser, Alice chooses a measurement after Bob's particle has already reached his detector. Which observation rules out changing Bob's recorded past?",
+      "choices": [
+        "Bob's arrival time shifts after Alice makes her choice",
+        "Bob's old pixels rearrange only in the laboratory frame",
+        "Bob's complete screen remains featureless until coincidence sorting",
+        "Bob sees a fringe immediately but cannot photograph it"
+      ],
+      "correctAnswer": "Bob's complete screen remains featureless until coincidence sorting",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Alice's later labels define correlated subsets of a fixed record; they neither alter Bob's pixels nor produce a locally visible retrocausal pattern.",
+      "incorrectExplanation": "Actually, Bob's complete screen remains featureless until coincidence sorting. The delayed choice affects how joint data are partitioned, not what Bob had already observed by himself.",
+      "lessonContent": "Delayed-choice experiments compare correlations between records made at different stages.\nA later setting can determine how paired records are classified into conditional subsets.\nClassification changes the interpretation of joint data, not an earlier stored event.\nThe complete local distribution remains the key check against retrocausal signalling.\nShare this: separate what was recorded from how records are grouped afterward.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Swapped Strangers",
+      "question": "Particles A-B and C-D form independent entangled pairs. A joint Bell measurement on B-C can entangle A-D, which never met. Before the middle station announces its result, what can observers holding A and D verify?",
+      "choices": [
+        "The B-C operator selects a unique Bell state",
+        "A controllable bit in A-D's same-axis outcomes",
+        "A force pulling A and D into matching states",
+        "No specific A-D Bell correlation without the outcome label"
+      ],
+      "correctAnswer": "No specific A-D Bell correlation without the outcome label",
+      "xpReward": 50,
+      "correctExplanation": "Right. The Bell-measurement result tells A and D which conditional Bell state their data belong to; averaging over unknown results hides that correlation.",
+      "incorrectExplanation": "The answer is no specific A-D Bell correlation without the outcome label. Entanglement swapping creates conditional joint structure, but identifying or correcting it requires the ordinary announcement from the middle station.",
+      "lessonContent": "Entanglement swapping links two initially independent pairs through a joint measurement.\nThe middle measurement has several possible outcomes with different conditional correlations.\nRemote observers need the outcome label to select or correct the relevant subset.\nWithout that label, averaging over the alternatives hides the useful joint structure.\nShare this: draw the four particles and mark which information must cross classically.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Which Happened First",
+      "question": "Alice and Bob make spacelike-separated measurements on an entangled pair. One inertial frame says Alice measured earlier; another says Bob did. What preserves consistent predictions?",
+      "choices": [
+        "A preferred frame secretly fixes the real collapse order",
+        "Observable joint probabilities do not require a measurable first event",
+        "The detectors negotiate an order using faster-than-light pulses",
+        "Each frame predicts a different local outcome frequency"
+      ],
+      "correctAnswer": "Observable joint probabilities do not require a measurable first event",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Quantum theory assigns frame-independent correlations without exposing an operational collapse sequence that could select a preferred frame.",
+      "incorrectExplanation": "Not quite. Observable joint probabilities do not require a measurable first event. For spacelike events, time order is frame-dependent, and no-signalling prevents that bookkeeping difference from becoming an experimental contradiction.",
+      "lessonContent": "Special relativity allows different frames to reverse the order of spacelike-separated events.\nOnly events connected by light-speed-or-slower influence have an invariant causal order.\nQuantum predictions assign correlations without requiring a detectable collapse sequence.\nLocal outcome frequencies must agree for every inertial observer.\nShare this: sketch two spacelike events and compare their order in moving frames.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Steering Without Sending",
+      "question": "By choosing different measurements, Alice can 'steer' Bob's qubit into different pure-state preparations. Why can Bob not identify which preparation she chose from his data alone?",
+      "choices": [
+        "Every ensemble decomposition gives him the same reduced density matrix",
+        "His detector is too noisy to resolve pure quantum states",
+        "Steering works only when Alice and Bob are nearby",
+        "Her choice reaches him but is erased by uncertainty"
+      ],
+      "correctAnswer": "Every ensemble decomposition gives him the same reduced density matrix",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Alice can choose different conditional decompositions, but without her outcome labels all of them represent the same local mixed state for Bob.",
+      "incorrectExplanation": "The answer is that every ensemble decomposition gives him the same reduced density matrix. Steering is real in joint statistics, but no local measurement can distinguish two preparation stories with the same density operator.",
+      "lessonContent": "A mixed quantum state can have several mathematically valid pure-state decompositions.\nThese decompositions describe different conditional preparation stories for the same local data.\nMeasurements performed at one site depend only on its density operator.\nDistinguishing the stories requires labels correlated with the distant outcomes.\nShare this: explain how different mixtures can produce identical local statistics.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Collapse Interpretations",
+      "question": "One interpretation describes Alice's measurement as instant collapse; another describes branching without collapse. They agree on all standard experiments. What must both predict for distant Bob before Alice contacts him?",
+      "choices": [
+        "Different detector counts because their stories differ",
+        "A visible collapse for Alice only under the first interpretation",
+        "A temporary violation canceled by later communication",
+        "Identical local statistics independent of Alice's action"
+      ],
+      "correctAnswer": "Identical local statistics independent of Alice's action",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Interpretations may narrate the mathematics differently, but empirically equivalent versions preserve the same no-signalling predictions.",
+      "incorrectExplanation": "Actually, both predict identical local statistics independent of Alice's action. A picture of instantaneous collapse is not itself an observable pulse or a licence to transmit information.",
+      "lessonContent": "Interpretations explain quantum mathematics using different accounts of states and measurement.\nEmpirically equivalent interpretations must agree on every observable probability.\nA narrative about collapse or branching adds no detector signal by itself.\nOperational predictions, rather than metaphors, decide what communication is possible.\nShare this: compare two interpretations by listing only their measurable predictions.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The GHZ Code",
+      "question": "Alice, Bob, and Chen share a GHZ state with perfect parity rules across selected measurement settings. Alice wants her output to encode a chosen bit for Bob instantly. What blocks the scheme?",
+      "choices": [
+        "GHZ correlations disappear beyond three metres",
+        "Alice and Bob must use the same basis on every trial",
+        "Alice cannot choose her random outcome, and Bob's marginal stays random",
+        "Parity rules apply only after all particles are destroyed"
+      ],
+      "correctAnswer": "Alice cannot choose her random outcome, and Bob's marginal stays random",
+      "xpReward": 50,
+      "correctExplanation": "Correct. GHZ correlations impose striking multi-party parity constraints, but no participant controls an individual result or changes another participant's local distribution.",
+      "incorrectExplanation": "Close! Alice cannot choose her random outcome, and Bob's marginal stays random. Perfect relational rules do not become a message unless one party can control a locally visible variable, which quantum mechanics denies here.",
+      "lessonContent": "Multipartite entanglement can enforce exact relations among several random outcomes.\nA parity rule constrains combinations of results rather than fixing each result separately.\nNo participant can generally select the value produced by a quantum measurement.\nLocal distributions remain the test for whether a chosen message was transmitted.\nShare this: invent three random bits with a fixed parity and inspect each bit alone.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "No Quantum Tug",
+      "question": "Two entangled photons fly to opposite laboratories. Alice inserts a polarizer and absorbs her photon. Which claim best distinguishes entanglement from a physical force between the photons?",
+      "choices": [
+        "Bob receives no extra energy or momentum correlated with Alice's choice locally",
+        "Bob's photon is pulled toward Alice's polarizer",
+        "Alice's absorption accelerates Bob's photon above light speed",
+        "The pair exchanges force carriers that detectors cannot observe"
+      ],
+      "correctAnswer": "Bob receives no extra energy or momentum correlated with Alice's choice locally",
+      "xpReward": 50,
+      "correctExplanation": "Right. Entanglement constrains joint measurement statistics; it is not a tether that transmits energy, momentum, or a controllable disturbance.",
+      "incorrectExplanation": "The answer is that Bob receives no extra energy or momentum correlated with Alice's choice locally. Treating correlation as a force predicts local kicks or energy transfer that entanglement experiments do not show.",
+      "lessonContent": "Forces transfer energy or momentum through dynamical interactions and fields.\nEntanglement instead describes how outcomes from a composite state are correlated.\nA local intervention may change joint correlations without delivering a mechanical kick elsewhere.\nChecking local energy and momentum helps distinguish an interaction from a statistical relation.\nShare this: contrast a physical tether with two correlated lists of measurements.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Silent Cut",
+      "question": "Alice measures her half of each entangled pair at a prearranged time. Bob watches a continuous local record and searches for the exact moment her measurements begin. What should he find?",
+      "choices": [
+        "Randomness suddenly disappears at the agreed time",
+        "No locally detectable boundary in his stream",
+        "A delayed boundary after distance divided by light speed",
+        "A brief energy spike followed by classical statistics"
+      ],
+      "correctAnswer": "No locally detectable boundary in his stream",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Whether Alice measures, waits, or discards her particles, Bob's unconditioned local distribution is unchanged.",
+      "incorrectExplanation": "Not quite. Bob finds no locally detectable boundary in his stream. Alice's action changes how her eventual labels correlate with his entries, not the statistics he can inspect without those labels.",
+      "lessonContent": "Local records contain only statistics accessible at the site where they are collected.\nA distant operation can change later conditional comparisons between two records.\nIt cannot place a timestamp in an unconditioned distribution at the other site.\nDetecting a boundary would itself provide a communication channel.\nShare this: ask what local statistic would have to change to reveal a remote action.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Channel From Nothing",
+      "question": "Alice and Bob possess unlimited entanglement, but no particles, light, or classical signals may pass between them after Alice chooses a message. What is the classical capacity from Alice to Bob?",
+      "choices": [
+        "One bit per entangled pair",
+        "Two bits per entangled pair",
+        "A small capacity set by Bell-inequality violation",
+        "Zero bits under those restrictions"
+      ],
+      "correctAnswer": "Zero bits under those restrictions",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Local operations on pre-shared entanglement cannot make Bob's state depend on Alice's newly selected message, so the standalone resource has zero signalling capacity.",
+      "incorrectExplanation": "It's simpler than it looks: the capacity is zero bits under those restrictions. Dense coding and teleportation may suggest otherwise, but each explicitly adds a transmitted system or classical bits.",
+      "lessonContent": "Communication capacity measures how reliably receiver observations depend on sender inputs.\nA useful channel needs distinguishable output distributions for different chosen messages.\nPre-shared correlations can coordinate random data without carrying a later choice.\nExtra resources help only when the protocol includes an actual transmitted system or signal.\nShare this: test a claimed channel by asking what observable changes at the receiver.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Gloves or Qubits",
+      "question": "A source sends either two classical boxes containing opposite glove colors or an entangled singlet pair. Same-axis tests look anticorrelated in both cases. What additional evidence distinguishes the quantum source?",
+      "choices": [
+        "Each local sequence contains nearly equal outcomes",
+        "The particles arrive at the same time",
+        "Correlations across several basis choices violate a Bell inequality",
+        "One observer learns the other's result after a phone call"
+      ],
+      "correctAnswer": "Correlations across several basis choices violate a Bell inequality",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Perfect anticorrelation in one basis has a simple prewritten explanation; the incompatible cross-basis correlation pattern is what can exceed every local hidden-variable bound.",
+      "incorrectExplanation": "The answer is correlations across several basis choices violate a Bell inequality. Random local lists and matching outcomes alone can be copied with ordinary boxes, so varied settings are essential to rule out the glove model.",
+      "lessonContent": "A single perfect correlation can be reproduced by classical objects carrying matching instructions.\nQuantum tests therefore compare outcomes across several incompatible measurement settings.\nBell inequalities combine those correlations into a bound for local instruction models.\nReliable conclusions require enough trials and carefully chosen settings.\nShare this: explain why testing only one detector orientation leaves a classical loophole.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Choice at the Source",
+      "question": "In a Bell test, suppose the source knows both detector settings in advance and tailors each emitted pair accordingly. Why does that weaken the inference from a violation?",
+      "choices": [
+        "Setting independence is needed to exclude coordinated local instruction sets",
+        "Advance knowledge makes quantum detectors stop producing random outcomes",
+        "The source can transmit outcomes backward through time",
+        "Known settings force every Bell inequality to equal zero"
+      ],
+      "correctAnswer": "Setting independence is needed to exclude coordinated local instruction sets",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Bell reasoning assumes the hidden variables are not conspiratorially correlated with later setting choices; otherwise a local source could prepare setting-specific answers.",
+      "incorrectExplanation": "Not quite. Setting independence is needed to exclude coordinated local instruction sets. This is why modern tests choose settings rapidly and independently, though no experiment can disprove every possible superdeterministic conspiracy.",
+      "lessonContent": "Bell conclusions rely on assumptions as well as measured correlations.\nMeasurement independence keeps detector settings uncorrelated with hidden source variables.\nIf a source knows every setting beforehand, it can coordinate tailored local responses.\nRapid independent choices make that ordinary coordination explanation harder to sustain.\nShare this: list the assumptions needed before interpreting a Bell violation.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Missing Clicks",
+      "question": "An early Bell experiment detects only a small fraction of emitted pairs, and detected pairs violate an inequality. Which concern must be addressed before rejecting all local models?",
+      "choices": [
+        "Undetected photons may be colder than detected photons",
+        "Alice may consciously influence her detector",
+        "Entanglement may expire while results are stored",
+        "The detected subset may be biased by hidden variables"
+      ],
+      "correctAnswer": "The detected subset may be biased by hidden variables",
+      "xpReward": 50,
+      "correctExplanation": "Right. The detection loophole allows a local model to make only favorable pairs click, so high-efficiency experiments are needed to prevent selective sampling.",
+      "incorrectExplanation": "The answer is that the detected subset may be biased by hidden variables. A striking correlation among selected events need not describe all emitted pairs, which is a sampling problem rather than evidence for hidden messaging.",
+      "lessonContent": "The detection loophole appears when recorded events are not a fair sample of all trials.\nSelective losses can make an ordinary underlying population look unusually correlated.\nHigh detector efficiency limits how much hidden selection can shape the retained data.\nSampling assumptions matter whenever conclusions are drawn from a small observed subset.\nShare this: make up a survey where selective nonresponse reverses the apparent result.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Third Listener",
+      "question": "Alice and Bob expect a nearly pure maximally entangled pair, but Eve is strongly entangled with Bob's qubit too. Which principle makes this suspicious?",
+      "choices": [
+        "Entanglement can be copied freely but only once",
+        "Maximal pairwise entanglement is monogamous",
+        "Every qubit must be entangled with the whole universe equally",
+        "A third observer makes no-signalling fail"
+      ],
+      "correctAnswer": "Maximal pairwise entanglement is monogamous",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. If Alice and Bob share a pure maximally entangled state, Bob cannot also share that same maximal correlation with Eve.",
+      "incorrectExplanation": "Actually, maximal pairwise entanglement is monogamous. Strong correlation with an eavesdropper reduces the correlations Alice and Bob can verify, which supports quantum key-distribution security without allowing either party to signal.",
+      "lessonContent": "Quantum entanglement cannot generally be shared among parties like an ordinary copied file.\nVery strong correlation between one pair limits compatible correlations with a third system.\nThis tradeoff is called monogamy and has no direct classical-copy analogue.\nSecurity protocols can detect intrusion because outside correlation disturbs the expected pair.\nShare this: compare monogamous quantum correlations with freely copied classical bits.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Witness on Trial",
+      "question": "A technician measures one pair from a claimed entangled source and gets matching outcomes. Why is that single event not an entanglement witness?",
+      "choices": [
+        "Entanglement exists only after a thousand trials",
+        "A matching event proves only that both detectors work",
+        "A product or classically correlated state can produce the same event",
+        "Witnesses require faster-than-light comparison of results"
+      ],
+      "correctAnswer": "A product or classically correlated state can produce the same event",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Entanglement is inferred from an ensemble of incompatible-basis statistics that crosses a separable-state bound, not from one coincident outcome.",
+      "incorrectExplanation": "The answer is that a product or classically correlated state can produce the same event. One coincidence has many ordinary explanations; a witness needs enough measurements to exclude the entire relevant class of separable states.",
+      "lessonContent": "An entanglement witness is an observable with a bound obeyed by every separable state.\nIts expectation value must be estimated from an ensemble rather than one coincidence.\nMeasurements in incompatible bases help exclude classical and product-state explanations.\nCrossing the separable bound supplies evidence about the preparation as a whole.\nShare this: explain why repeated statistics support claims that one outcome cannot.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Entanglement Delivery",
+      "question": "Alice and Bob begin with an uncorrelated product state and may perform any local quantum operations, coordinated by ordinary phone calls. Can they create an entangled state across their laboratories?",
+      "choices": [
+        "No; LOCC cannot create entanglement from a separable state",
+        "Yes; synchronized measurements create an entangled state instantly",
+        "Yes; enough shared random bits become quantum correlations",
+        "No; entanglement can arise only when particles collide directly"
+      ],
+      "correctAnswer": "No; LOCC cannot create entanglement from a separable state",
+      "xpReward": 50,
+      "correctExplanation": "Right. Local operations and classical communication cannot manufacture entanglement; a quantum interaction, transmitted quantum system, or previously shared entangled resource is required.",
+      "incorrectExplanation": "The answer is no; LOCC cannot create entanglement from a separable state. Classical coordination can create ordinary correlations, but not the coherence across laboratories that makes a state nonseparable.",
+      "lessonContent": "LOCC combines operations performed separately with ordinary messages between laboratories.\nSuch procedures can coordinate choices and produce classical correlations.\nQuantum entanglement is treated as a resource that these procedures cannot increase from nothing.\nDistribution therefore needs a quantum interaction, carrier, or resource established earlier.\nShare this: label each step of a protocol as local, classical, or quantum.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Copy Before Sending",
+      "question": "Alice proposes cloning her unknown qubit, keeping one copy, and using entanglement to make Bob's remote half become the other copy instantly. Which obstacle defeats the proposal first?",
+      "choices": [
+        "Unknown qubits can be copied only when entangled",
+        "Cloning works, but the copies travel slower than light",
+        "Measurement creates two imperfect copies automatically",
+        "No universal operation can perfectly clone an unknown state"
+      ],
+      "correctAnswer": "No universal operation can perfectly clone an unknown state",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. The no-cloning theorem forbids deterministic perfect copying of arbitrary unknown states, and entanglement does not bypass that linearity constraint.",
+      "incorrectExplanation": "Not quite. No universal operation can perfectly clone an unknown state. Teleportation transfers a state only by consuming the original's accessible form and waiting for classical correction bits; it never leaves two perfect copies.",
+      "lessonContent": "Quantum evolution is linear, which strongly constrains transformations of unknown states.\nA device that copies basis states cannot preserve every superposition in the required way.\nThis no-cloning principle protects quantum information from universal perfect duplication.\nEntanglement-assisted protocols remain subject to the same linear dynamics.\nShare this: test a proposed copier on two basis states and their superposition.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Key Without Whispers",
+      "question": "Alice and Bob measure entangled pairs for a cryptographic key. Their outcomes are correlated, so why must they still use an authenticated classical channel?",
+      "choices": [
+        "To force their quantum outcomes to become random",
+        "To compare bases, estimate errors, and reconcile key bits",
+        "To transmit the secret key faster than the photons",
+        "To restore entanglement after every detector click"
+      ],
+      "correctAnswer": "To compare bases, estimate errors, and reconcile key bits",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Entanglement supplies correlated raw randomness, but basis sifting, eavesdropper checks, and reconciliation all require authenticated ordinary messages.",
+      "incorrectExplanation": "Actually, they need the channel to compare bases, estimate errors, and reconcile key bits. The classical discussion can be public but must be authenticated; entanglement alone neither identifies matching trials nor sends a chosen key.",
+      "lessonContent": "Entanglement-based key distribution begins with correlated random measurement records.\nParticipants publicly identify compatible settings and estimate the observed error rate.\nError correction and privacy amplification then turn suitable raw data into a shorter key.\nAuthentication prevents an attacker from impersonating either participant during that discussion.\nShare this: name the public steps that can be revealed without revealing the final key.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Noise at a Distance",
+      "question": "Alice deliberately decoheres her half of many shared Bell pairs by coupling it to a local environment. Bob knows when she plans to do this but receives no signal. What can his local tomography reveal at that time?",
+      "choices": [
+        "Bob's state changes from mixed to pure",
+        "His entropy jumps above the maximum for a qubit",
+        "Nothing changes locally; only joint coherence is lost",
+        "His detector begins reproducing Alice's environmental noise"
+      ],
+      "correctAnswer": "Nothing changes locally; only joint coherence is lost",
+      "xpReward": 50,
+      "correctExplanation": "Right. A local decohering channel on Alice's side can destroy shared entanglement while leaving Bob's reduced state maximally mixed throughout.",
+      "incorrectExplanation": "The answer is nothing changes locally; only joint coherence is lost. Entanglement is a property of the composite state, so its destruction need not appear in either isolated subsystem's tomography.",
+      "lessonContent": "Decoherence couples a quantum system to uncontrolled environmental degrees of freedom.\nThat coupling suppresses coherence in the larger joint description.\nChanges to shared correlations need not appear in an isolated partner's local tomography.\nReduced states distinguish locally measurable effects from changes visible only jointly.\nShare this: separate local noise from lost correlation when describing decoherence.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Correction Unknown",
+      "question": "After an entanglement-swapping Bell measurement, the outer pair is one of four Bell states. The middle station withholds its two-bit outcome. Why can the outer observers not simply test which Bell state they have on that single pair?",
+      "choices": [
+        "Bell states become identical whenever particles are separated",
+        "Testing requires the particles to return to the source",
+        "The middle result exists only after someone reads it",
+        "Only joint access or a classical label can identify it"
+      ],
+      "correctAnswer": "Only joint access or a classical label can identify it",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Each Bell state has identical single-particle marginals, and separated local measurements on one pair cannot identify which global alternative occurred without coordinated information.",
+      "incorrectExplanation": "The answer is that only joint access or a classical label can identify it. All four alternatives look maximally mixed at each end, so the withheld classical bits carry the usable distinction.",
+      "lessonContent": "Distinct global quantum states can share identical reduced states at every individual site.\nTheir distinguishing information resides in correlations among the subsystems.\nAccessing that information may require a joint measurement or coordinated classical records.\nSeparate local observations on one specimen cannot always identify a global alternative.\nShare this: contrast information stored locally with information stored only in correlations.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-021#24",
+      "forgeScore": 100
+    }
+  ]
+}

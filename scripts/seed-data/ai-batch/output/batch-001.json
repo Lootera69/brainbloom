@@ -1,0 +1,477 @@
+[
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Rain Rule",
+    "question": "If it rains, the match is cancelled. It rained this morning. What necessarily follows?",
+    "choices": [
+      "The match is off",
+      "The match went ahead",
+      "The match will resume later",
+      "Nothing follows about the match"
+    ],
+    "correctAnswer": "The match is off",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. This is modus ponens: the rule guarantees cancellation whenever rain happens, and rain happened.",
+    "incorrectExplanation": "The answer is: the match is off. The conditional 'if rain then cancelled' plus the fact of rain forces the conclusion by modus ponens. Any other option quietly denies a premise.",
+    "lessonContent": "Modus ponens is the simplest guaranteed-valid argument form: if P then Q; P; therefore Q.\nLogicians call it affirming the antecedent — the rule's trigger fires, so the consequence must follow.\nIts power is unconditional: once both premises hold, the conclusion cannot fail.\nRefund policies, warranties and cancellation rules are all written as conditionals, and applying them is pure modus ponens.\nShare this: next time a policy says 'if X then Y' and X happens, ask a friend whether Y is now guaranteed.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Alarm Test",
+    "question": "If the alarm works, it beeps when tested. It did not beep when tested. What can you conclude?",
+    "choices": [
+      "The alarm is not working",
+      "The battery is dead",
+      "The test was done wrong",
+      "The alarm never beeps at all"
+    ],
+    "correctAnswer": "The alarm is not working",
+    "xpReward": 25,
+    "correctExplanation": "Correct — modus tollens. A working alarm would have beeped; the silence rules out the working alarm.",
+    "incorrectExplanation": "The answer is: the alarm is not working. Since a functional alarm must beep on test, the missing beep eliminates that possibility — modus tollens in action. A dead battery is a possible cause, but it is an extra guess the premises never mention.",
+    "lessonContent": "Modus tollens runs a conditional backwards by negation: if P then Q; not Q; therefore not P.\nIt is the logical engine of debugging — a missing expected effect eliminates the assumed cause.\nScientists use it constantly: a failed prediction kills the hypothesis that predicted it.\nThe only trap is confirming that Q truly failed — silence only counts when silence is impossible.\nShare this: when something expected doesn't happen, trace which if-then rule just got falsified.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Wet Ground Logic",
+    "question": "If it rained, the ground is wet. The ground is wet. Is the conclusion 'it rained' logically valid?",
+    "choices": [
+      "Yes — wet ground proves rain fell",
+      "Yes — rain is the only source of moisture",
+      "No — something else could have wet it",
+      "No — the ground must be dry"
+    ],
+    "correctAnswer": "No — something else could have wet it",
+    "xpReward": 25,
+    "correctExplanation": "Right — this is the fallacy of affirming the consequent. The rule runs from rain to wet, not backwards.",
+    "incorrectExplanation": "The answer is no: something else could have wet it. A sprinkler, a hose, or a spilled bucket all produce wet ground without rain. Affirming the consequent treats 'if P then Q' as if it were 'if Q then P', which is exactly the trap here.",
+    "lessonContent": "Affirming the consequent is the classic broken inference: if P then Q; Q; therefore P.\nThe rule points one way, but the effect usually has many possible makers.\nDoctors and detectives live inside this gap daily: a symptom fits a cause without proving it.\nThe repair is asking what else produces the same effect before committing to one explanation.\nShare this: catch one headline today that assumes a single cause and ask aloud what else fits.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Missed the Train",
+    "question": "If you catch the 8:00 train, you arrive by noon. You missed the 8:00 train. Does it follow that you cannot arrive by noon?",
+    "choices": [
+      "Yes — she cannot arrive by noon",
+      "Yes — noon arrival requires that exact train",
+      "No — another route could still arrive by noon",
+      "No — arrival times are random"
+    ],
+    "correctAnswer": "No — another route could still arrive by noon",
+    "xpReward": 25,
+    "correctExplanation": "Correct — denying the antecedent. The rule only promises the noon arrival for that train; it says nothing about other ways to arrive.",
+    "incorrectExplanation": "The answer is no: another route could still arrive by noon. The premise guarantees that the 8:00 train suffices, never that it is necessary — denying the antecedent treats sufficiency as if it were exclusivity.",
+    "lessonContent": "Denying the antecedent mistakes a sufficient condition for a necessary one: if P then Q; not P; therefore not Q.\nThe rule never said P was the only route to Q — other doors may stand open.\n'Guaranteed by' and 'only achievable through' are different claims entirely.\nSchedule logic, guarantees and eligibility rules all run on this distinction.\nShare this: reread one guarantee today and ask whether it promises sufficiency or exclusivity.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Chain Rule",
+    "question": "Every emerald is harder than every opal. Every opal is harder than every pearl. If E is an emerald and P is a pearl, what follows?",
+    "choices": [
+      "P is harder than E",
+      "E is harder than P",
+      "E and P are equally hard",
+      "Their hardness cannot be ranked"
+    ],
+    "correctAnswer": "E is harder than P",
+    "xpReward": 25,
+    "correctExplanation": "Yes — hardness chains by transitivity: emerald over opal, opal over pearl, so emerald over pearl.",
+    "incorrectExplanation": "The answer is: E is harder than P. 'Harder than' is transitive — if E outranks the opal and the opal outranks the pearl, E outranks the pearl. Any other ranking reverses or ignores the chain.",
+    "lessonContent": "Transitivity lets relations chain: if A outranks B and B outranks C, then A outranks C.\nNot every relation obeys it — 'beats' in rock-paper-scissors famously loops instead of chaining.\nOrderings like taller than, earlier than and heavier than chain safely; preferences and pairwise votes can cycle.\nSpotting which relations transfer is a quiet superpower in rankings and comparisons.\nShare this: next time you see a ranking, ask whether the relation actually chains or just loops.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Shared Label",
+    "question": "All chess players are strategists. All generals are strategists. Does it follow that all chess players are generals?",
+    "choices": [
+      "Yes — both groups use strategy daily",
+      "Yes — one strategist group contains the other",
+      "No — the middle term is undistributed",
+      "No — chess players are not strategists"
+    ],
+    "correctAnswer": "No — the middle term is undistributed",
+    "xpReward": 25,
+    "correctExplanation": "Correct. Both groups merely sit inside 'strategists' — nothing says they overlap each other.",
+    "incorrectExplanation": "The answer is no: the middle term is undistributed. Sharing a category with something does not put you inside it — that is the fallacy of the undistributed middle. The premises place chess players and generals inside 'strategists' but never connect the two groups directly.",
+    "lessonContent": "The undistributed middle is the shared-category trap: all A are C; all B are C; therefore all A are B.\nBoth groups live inside the same tent, but the tent's floor plan never connects them.\nVenn-diagram thinking defuses it instantly — draw the big circle and watch the two groups drift apart inside it.\nThe same trap powers stereotypes: sharing one label with a group says nothing about overlapping further.\nShare this: catch one 'they're all the same' claim today and name the shared tent doing the work.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Mutual Exclusion",
+    "question": "'No ghosts are physicists.' Which statement follows with certainty?",
+    "choices": [
+      "Some physicists moonlight as ghosts",
+      "Only dead physicists are ghosts",
+      "All ghosts study physics casually",
+      "No physicists are ghosts"
+    ],
+    "correctAnswer": "No physicists are ghosts",
+    "xpReward": 25,
+    "correctExplanation": "Exactly — E-propositions convert cleanly: mutual exclusion runs both directions.",
+    "incorrectExplanation": "The answer is: no physicists are ghosts. 'No A are B' converts to 'No B are A' because exclusion is symmetric. The other options sneak in existence or overlap that the premise never grants.",
+    "lessonContent": "'No A are B' converts cleanly to 'No B are A' — exclusion is symmetric, so the flip costs nothing.\nConversion is safe for exclusions and for 'some' statements, the two shapes logic can flip without loss.\nUniversals of the 'all' type do not convert — flipping those is the illicit move.\nKnowing which statements flip is half of traditional syllogistic craft.\nShare this: take one 'no X are Y' claim you hear and enjoy that it reverses for free.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Overlap Proof",
+    "question": "'Some poets are engineers.' What follows necessarily?",
+    "choices": [
+      "Some engineers are poets",
+      "All engineers are poets",
+      "No engineers write verse",
+      "Most poets dislike engineering"
+    ],
+    "correctAnswer": "Some engineers are poets",
+    "xpReward": 25,
+    "correctExplanation": "Right — partial overlap is symmetric: the same people counted from either side.",
+    "incorrectExplanation": "The answer is: some engineers are poets. If at least one person is both, then reading the overlap from the engineering side gives the same result — I-propositions convert. Widening 'some' to 'all' or denying the overlap both overstate the premise.",
+    "lessonContent": "'Some A are B' converts as well: the overlap is the very same people counted from either side.\nThis is why partial-overlap statements feel reversible — one direction hands you the other.\nThe conversion preserves quantity: 'some' never inflates to 'all' or collapses to 'none' by flipping.\nCareful reading of surveys and statistics is mostly careful tracking of which direction was claimed.\nShare this: find one 'some' claim today and state its converse — notice it costs you nothing.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Reverse Trap",
+    "question": "'All drones are machines.' Which statement is NOT guaranteed by this alone?",
+    "choices": [
+      "Some machines could be drones",
+      "Every drone counts as a machine",
+      "Drones belong to the machine family",
+      "All machines are drones"
+    ],
+    "correctAnswer": "All machines are drones",
+    "xpReward": 25,
+    "correctExplanation": "Correct — reversing a universal is illicit. The premise puts drones inside machines, not the other way around.",
+    "incorrectExplanation": "The answer is: 'all machines are drones' is not guaranteed. 'All A are B' never implies 'All B are A' — that is illicit conversion. The other options merely restate or weaken the original claim, which is always safe.",
+    "lessonContent": "'All A are B' cannot be flipped: B is usually the larger set, and A merely sits inside it.\nLogicians call the flip illicit conversion — swapping subject and predicate of a universal breaks it.\nThe classic instance: all roses are flowers, yet not all flowers are roses.\nSubset-to-superset is a one-way street; remember it and half of category errors vanish.\nShare this: catch one category flip in conversation today and gently reverse it back.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Age Chain",
+    "question": "All kids are learners. All learners are curious. All curious minds ask questions. If Mia is a kid, what follows?",
+    "choices": [
+      "Mia may never ask anything",
+      "Mia is curious but silent",
+      "Only some kids ask questions",
+      "Mia asks questions"
+    ],
+    "correctAnswer": "Mia asks questions",
+    "xpReward": 25,
+    "correctExplanation": "Yes — the chain links kid to learner to curious to questioner, so membership travels all the way down.",
+    "incorrectExplanation": "The answer is: Mia asks questions. This is a sorites — three universal links chained together — and each one carries Mia's membership forward. The other options break a link the premises never break.",
+    "lessonContent": "A sorites chains several universals into one conveyor: A to B to C to D carries membership the whole way.\nThe name is Greek for heap — the original puzzle asked when grains become a heap.\nEach link must be universal; a single 'some' or 'most' anywhere breaks the chain's guarantee.\nLong eligibility rules and cascading requirements are sorites in the wild.\nShare this: pick one multi-step requirement you know and check whether every link truly says 'all'.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Two Doors",
+    "question": "Either the butler or the gardener opened the door last night. The gardener was locked outside all evening. Who did it?",
+    "choices": [
+      "The butler opened it",
+      "The gardener, not the butler",
+      "Both opened it together",
+      "It cannot be determined"
+    ],
+    "correctAnswer": "The butler opened it",
+    "xpReward": 25,
+    "correctExplanation": "Exactly — a disjunctive syllogism. With one option eliminated, the other must hold.",
+    "incorrectExplanation": "The answer is: the butler opened it. The premise offers exactly two candidates; eliminating the gardener leaves the butler by pure elimination. 'Cannot be determined' ignores that the disjunction named the only possible openers.",
+    "lessonContent": "A disjunctive syllogism eliminates: either P or Q; not P; therefore Q.\nIt is the logic of process-of-elimination — the surviving option wins by default, not by direct evidence.\nThe move only works if the either-or genuinely exhausts the possibilities.\nSherlock Holmes called the exhaustive version his method: remove the impossible and whatever remains must be the truth.\nShare this: next time you eliminate options, ask whether the list was ever complete to begin with.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Negative Pair",
+    "question": "No cats are dogs. No dogs are felines. Does 'no cats are felines' follow?",
+    "choices": [
+      "Yes — the chain of negatives transfers downward",
+      "No — this pattern is structurally invalid",
+      "Yes — exclusion spreads to overlapping groups",
+      "No — one premise must mention felines twice"
+    ],
+    "correctAnswer": "No — this pattern is structurally invalid",
+    "xpReward": 25,
+    "correctExplanation": "Correct — two negative premises connect nothing. Cats and felines stay unlinked by these premises.",
+    "incorrectExplanation": "The answer is no — this pattern is structurally invalid. Two negative premises cannot yield any conclusion about how cats and felines relate; in fact cats are felines, which shows how wrong the chain of negatives is. Classical logicians flagged this as the exclusive-premises rule.",
+    "lessonContent": "Two negative premises prove nothing about connection — they only state what excludes what.\nClassical logicians banned pairs of 'no' statements from yielding any conclusion: the exclusive-premises rule.\nThe reason is structural: nothing bridges the two terms that need relating.\nThe cat-and-feline counterexample shows why — nature had already settled what the logic forbids concluding.\nShare this: when you meet two 'no' statements in a row, pause before trusting whatever follows.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Ticket to Enter",
+    "question": "Having a ticket is necessary to board. Riya has a ticket. Can she definitely board?",
+    "choices": [
+      "Yes — the ticket guarantees boarding",
+      "Yes — necessary conditions always suffice",
+      "No — some tickets can be fake at the gate",
+      "No — the ticket permits boarding but doesn't guarantee it"
+    ],
+    "correctAnswer": "No — the ticket permits boarding but doesn't guarantee it",
+    "xpReward": 25,
+    "correctExplanation": "Right — necessary is not sufficient. A ticket removes one barrier; other conditions can still block boarding.",
+    "incorrectExplanation": "The answer is no: the ticket permits boarding but doesn't guarantee it. 'Necessary' means 'without it, no boarding' — not 'with it, boarding'. Gate closures, lost seats, or a second requirement can all still stop her. Confusing necessary with sufficient is one of the most common reasoning errors.",
+    "lessonContent": "Necessary means without it, impossible; sufficient means with it, guaranteed.\nThe two are mirror images, and most real requirements are necessary but not sufficient.\nDegrees for jobs, keys for engines and tickets for entry all follow the same asymmetry.\nAsking 'is this a must-have or a game-ender?' sorts requirements instantly.\nShare this: list one thing you treat as sufficient today and check whether it is merely necessary.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Contrapositive",
+    "question": "'All metals conduct electricity.' Which statement is logically equivalent?",
+    "choices": [
+      "Nothing that fails to conduct electricity is a metal",
+      "All conductors of electricity are metals",
+      "Some metals do not conduct electricity",
+      "No metals appear in batteries"
+    ],
+    "correctAnswer": "Nothing that fails to conduct electricity is a metal",
+    "xpReward": 25,
+    "correctExplanation": "Correct — contraposition. 'All A are B' and 'All non-B are non-A' say the same thing from opposite ends.",
+    "incorrectExplanation": "The answer is: nothing that fails to conduct electricity is a metal. Flipping and negating both sides preserves the meaning exactly — contraposition. Reversing without negating (option two) is illicit conversion, and option three contradicts the premise outright.",
+    "lessonContent": "Contraposition is the one transformation that preserves a universal exactly: all A are B equals all non-B are non-A.\nIt flips and negates both sides — doing only one of those breaks the equivalence.\nContrapositives power indirect proof: to show something belongs, show it cannot belong to the complement.\nInsurance clauses and eligibility rules often hide their contrapositive form in plain sight.\nShare this: take one 'only members may enter' sign and state its contrapositive aloud.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Only Members",
+    "question": "Only members can enter the vault. Ravi just entered the vault. What follows?",
+    "choices": [
+      "Ravi is a manager",
+      "Ravi is a member",
+      "Ravi is not a member",
+      "Ravi's status stays unknown"
+    ],
+    "correctAnswer": "Ravi is a member",
+    "xpReward": 25,
+    "correctExplanation": "Exactly — 'only members enter' reverses the direction: entering forces membership.",
+    "incorrectExplanation": "The answer is: Ravi is a member. 'Only A can B' means 'whoever B's is an A' — so entering the vault certifies Ravi as a member. The 'only' flips the conditional's direction, and missing that flip is the classic trap.",
+    "lessonContent": "'Only A are B' translates to 'all B are A' — the 'only' reverses the direction of containment.\n'Only members may enter' means every enterer is a member; it never means every member enters.\nMistranslating 'only' is among the most common logic slips in exams and contracts alike.\nThe fix is mechanical: rewrite the sentence as 'all ... are ...' before reasoning about it.\nShare this: find one 'only' sentence today and rewrite it the all-way before deciding what it promises.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Bell Condition",
+    "question": "You may leave only if the bell rings. The bell did not ring. What follows?",
+    "choices": [
+      "You must leave now",
+      "You may leave anyway",
+      "Nothing about leaving follows",
+      "You may not leave"
+    ],
+    "correctAnswer": "You may not leave",
+    "xpReward": 25,
+    "correctExplanation": "Correct — 'only if' makes the bell a requirement, and a failed requirement blocks the permission.",
+    "incorrectExplanation": "The answer is: you may not leave. 'Leave only if bell' means leaving requires the bell — with no bell, leaving is off the table. This is modus tollens applied to the 'only if' translation, which many readers misread as 'if bell then may leave'.",
+    "lessonContent": "'P only if Q' means Q is a requirement for P: without Q, no P.\nIt translates as 'if P then Q' — pointing forward from the action to its requirement.\nContrast 'if Q then P', which makes the requirement itself sufficient — the exact reversal.\nContracts and permissions are full of only-if clauses doing quiet work.\nShare this: find one 'only if' in a rule you follow and translate it the if-then way.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Unicorn Count",
+    "question": "'All dragons are fire-breathers.' Which inference commits the existential fallacy?",
+    "choices": [
+      "Non-dragons never breathe fire",
+      "All fire-breathers are dragons",
+      "Some fire-breathers are dragons",
+      "Dragons that exist would breathe fire"
+    ],
+    "correctAnswer": "Some fire-breathers are dragons",
+    "xpReward": 25,
+    "correctExplanation": "Right — 'all dragons are X' is vacuously true if no dragons exist, so it cannot promise that any fire-breathing dragon actually exists.",
+    "incorrectExplanation": "The answer is: 'some fire-breathers are dragons'. A universal claim about dragons says nothing about dragons existing — 'some' assertions demand existence. Assuming existence from a universal is the existential fallacy, the exact gap between traditional and modern logic.",
+    "lessonContent": "Universals carry no existence promise: 'all dragons breathe fire' is vacuously true if dragons don't exist.\nThe existential fallacy squeezes a 'some' out of an 'all' — inventing members the premise never delivered.\nModern logic keeps universals existence-free, which is why 'some' claims need their own evidence.\nThe gap matters in law and data alike: a rule about all cases says nothing about any case existing.\nShare this: catch one 'so there must be some' inference today and ask who proved the 'some'.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Perfect Form, False Fact",
+    "question": "All planets are stars. Mars is a planet. Therefore Mars is a star. How is this argument best described?",
+    "choices": [
+      "Valid and sound — Mars is a star",
+      "Sound — the conclusion follows",
+      "Valid but unsound — form holds, premise false",
+      "Invalid — the conclusion contradicts the premises"
+    ],
+    "correctAnswer": "Valid but unsound — form holds, premise false",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. Validity is about form; soundness adds true premises. The form is perfect — the astronomy is not.",
+    "incorrectExplanation": "The answer is: valid but unsound — form holds, premise false. The conclusion follows the premises flawlessly, which makes it valid; but 'all planets are stars' is false, which breaks soundness. Validity and truth are separate judgements — an argument can be impeccably built on rubbish.",
+    "lessonContent": "Validity is about shape: if the premises were true, the conclusion could not fail.\nSoundness stacks truth on top: a sound argument is valid and actually has true premises.\nA valid argument can therefore conclude nonsense — built perfectly on a false floor.\nThe two axes are independent, and judging them separately is the first discipline of logic.\nShare this: take one argument you admire and grade it twice — once for form, once for facts.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Broken Link",
+    "question": "If A then B. If B then C. If C then D. We know A. An intern claims: 'So D.' Is the intern right?",
+    "choices": [
+      "Yes — each link carries A to D",
+      "No — chains stop at B",
+      "No — knowing A gives nothing",
+      "Yes — but only if D causes A"
+    ],
+    "correctAnswer": "Yes — each link carries A to D",
+    "xpReward": 25,
+    "correctExplanation": "Correct — hypothetical syllogism. Conditionals chain forward: A reaches B, B reaches C, C reaches D.",
+    "incorrectExplanation": "The answer is yes: each link carries A to D. Chained conditionals transmit truth forward — that is the hypothetical syllogism, the conditional cousin of the sorites. The intern deserves the credit; the skepticism misreads how forward-chaining works.",
+    "lessonContent": "Chained conditionals transmit forward: if A then B, if B then C, if C then D lets A reach D.\nThis is the hypothetical syllogism — the conditional conveyor belt.\nThe chain is only as strong as its weakest link: one false conditional severs the whole path.\nCascading consequences in code, law and dominoes all follow this exact structure.\nShare this: trace one if-then chain in your own plans and find its weakest link.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Majority Rule",
+    "question": "Most runners are early risers. Most early risers drink tea. Does it follow that most runners drink tea?",
+    "choices": [
+      "Yes — runners love their routines",
+      "Yes — majorities stack into majorities",
+      "No — the overlaps may barely intersect",
+      "No — runners avoid caffeine entirely"
+    ],
+    "correctAnswer": "No — the overlaps may barely intersect",
+    "xpReward": 25,
+    "correctExplanation": "Right — 'most' does not chain. Two 60% overlaps can share as little as 20% of the group.",
+    "incorrectExplanation": "The answer is no: the overlaps may barely intersect. Two majorities can cross in a small zone — if 60% of runners rise early and 60% of those risers drink tea, as few as 36% of runners might be tea drinkers. Only universals ('all') chain safely; 'most' leaks.",
+    "lessonContent": "'All' chains safely; 'most' leaks. Two majorities can cross in a minority of the group.\nIf most of a club cycles and most of the cyclists also swim, the overlap can still be a small corner of the club.\nThis quantifier slippage powers many a misleading statistic.\nThe safe rule: only universals compose; qualified claims need explicit overlap math.\nShare this: next time two 'most' claims stack in an argument, do the overlap arithmetic aloud.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Border Check",
+    "question": "Every swan in this park is white. A black swan arrives and it is a swan. What must be true?",
+    "choices": [
+      "Black swans do not exist",
+      "This swan is white despite appearances",
+      "This swan came from somewhere else",
+      "The sighting must be mistaken"
+    ],
+    "correctAnswer": "This swan came from somewhere else",
+    "xpReward": 25,
+    "correctExplanation": "Correct — the premise scopes whiteness to this park only, so a black swan simply originates beyond it.",
+    "incorrectExplanation": "The answer is: this swan came from somewhere else. The premise is a scoped universal — 'in this park' — and the black swan's existence contradicts nothing outside that scope. Denying the bird's existence or colour fights the very premise the question grants.",
+    "lessonContent": "Universals often arrive scoped — 'every X in this park', 'all X before Friday' — and the scope is doing real work.\nA scoped rule says nothing about the world outside its fence; exceptions outside survive unharmed.\nBlack swans famously lived outside Europe's 'all swans are white' scope until Australia was explored.\nReading the fence carefully is most of the game in rules and generalizations.\nShare this: find one generalization today and ask where its fence actually ends.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Broad Brush",
+    "question": "All dogs are animals. Some animals are wild. Does 'some dogs are wild' follow?",
+    "choices": [
+      "Yes — wildness spreads through all animals",
+      "No — no dog has ever gone wild",
+      "No — the wild animals need not include dogs",
+      "Yes — dogs descend from wolves anyway"
+    ],
+    "correctAnswer": "No — the wild animals need not include dogs",
+    "xpReward": 25,
+    "correctExplanation": "Correct — the 'some animals' may be entirely non-dogs. The conclusion's subject overreaches its premise.",
+    "incorrectExplanation": "The answer is no: the wild animals need not include dogs. The premises never say which animals are wild — the wild ones could all be bears. Concluding about dogs from an unspecified 'some animals' is the illicit major fallacy in action.",
+    "lessonContent": "When a conclusion's subject reaches beyond what its premise ever pinned down, the argument overreaches.\nLogicians call the worst case illicit process: a term gets used in the conclusion beyond how the premise used it.\nThe repair is scope-matching: conclusions may only talk about what premises actually fixed.\nHeadlines generalize from narrow studies through exactly this gap.\nShare this: catch one story that generalizes beyond its study and name what the scope excluded.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Step Down",
+    "question": "'All tasks here are urgent.' Assuming tasks here exist, which weaker claim must also hold?",
+    "choices": [
+      "Some urgent things are elsewhere",
+      "All urgent things are tasks here",
+      "Some tasks here are urgent",
+      "No tasks here are urgent"
+    ],
+    "correctAnswer": "Some tasks here are urgent",
+    "xpReward": 25,
+    "correctExplanation": "Right — subalternation: a universal about existing things drops down to its 'some' version.",
+    "incorrectExplanation": "The answer is: some tasks here are urgent. If every task is urgent and at least one task exists, then at least one urgent task exists — the universal implies its particular. The reversal option commits illicit conversion again, and the negative options contradict the premise.",
+    "lessonContent": "Subalternation is the safe weakening: 'all' implies 'some', provided members actually exist.\n'Every card in this deck is red' hands you 'some cards in this deck are red' for free.\nIt never reverses — 'some' climbs to nothing, and existence is the quiet assumption doing the work.\nDowngrade-from-all is always available; upgrade-from-some never is.\nShare this: take one 'all' claim you trust and freely weaken it to 'some' — then notice how rarely the reverse is allowed.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "One Truth Only",
+    "question": "Exactly one of the two switches is on. Switch A is off. What do we know?",
+    "choices": [
+      "Switch B is on",
+      "Switch B is off",
+      "Both switches are on",
+      "Nothing about switch B"
+    ],
+    "correctAnswer": "Switch B is on",
+    "xpReward": 25,
+    "correctExplanation": "Exactly — an exclusive disjunction with one side settled forces the other side.",
+    "incorrectExplanation": "The answer is: switch B is on. 'Exactly one is on' means one and only one; with A off, B must carry the 'on'. Treating the disjunction as inclusive (option three) or as undecided (option four) misreads 'exactly'.",
+    "lessonContent": "'Either P or Q' comes in two flavours: inclusive (maybe both) and exclusive (exactly one).\nThe word 'exactly' upgrades to exclusive — and an exclusive pair with one side settled forces the other.\nLogic puzzles lean on this constantly: one truth among candidates, eliminate the rest.\nContracts use it too: 'sole discretion', 'one winner' — exclusivity doing logical work.\nShare this: find one 'either-or' today and ask whether it secretly allows both.",
+    "lessonGroup": "Think Straight"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Silent Shipment",
+    "question": "If the shipment made it onto the truck, it left on time. The shipment did not leave on time. What follows?",
+    "choices": [
+      "The shipment left anyway",
+      "The truck arrived early",
+      "Nothing follows at all",
+      "The shipment missed the truck"
+    ],
+    "correctAnswer": "The shipment missed the truck",
+    "xpReward": 25,
+    "correctExplanation": "Correct — modus tollens. No on-time departure means the truck condition never happened.",
+    "incorrectExplanation": "The answer is: the shipment missed the truck. A loaded truck forces an on-time departure; the departure failed, so by modus tollens the loading never occurred. 'Nothing follows' ignores that conditionals run backwards when negated correctly.",
+    "lessonContent": "Failed expectations are information: the effect that never arrived falsifies the cause that promised it.\nThis backwards elimination is how checklists catch silent failures and how tests kill bugs.\nOne caveat: the conditional must be airtight — other paths to the same effect break the elimination.\nEngineering culture is built on cherishing exactly these silent negatives.\nShare this: when something quietly fails to appear, write down which promise just got falsified.",
+    "lessonGroup": "Think Straight"
+  }
+]

@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-033",
+  "generatedAt": "2026-09-17T13:27:41.755Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Briefing Chain",
+      "question": "Amina, Bruno, Chen, and Daria brief on Monday through Thursday, one per day, on retail, climate, fraud, and transit. Daria speaks Thursday. Amina speaks immediately before Bruno, who speaks immediately before Chen. Climate is Tuesday, and Chen covers fraud. Which assignment is forced?",
+      "choices": [
+        "Bruno presents climate on Tuesday",
+        "Amina presents transit on Monday",
+        "Chen presents retail on Wednesday",
+        "Daria presents climate on Thursday"
+      ],
+      "correctAnswer": "Bruno presents climate on Tuesday",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Exactly. Daria's Thursday slot leaves the three-person chain on Monday through Wednesday, putting Bruno on Tuesday; the Tuesday topic is climate.",
+      "incorrectExplanation": "Not quite. Place the consecutive Amina-Bruno-Chen block before Daria's fixed Thursday briefing. The forced assignment is Bruno presents climate on Tuesday.",
+      "lessonContent": "Translate an immediate-before chain into one rigid block before placing its members.\nCompare the block's length with the open slots to find where it can fit.\nApply fixed positions first because they often eliminate every alternative placement.\nOnly after the people are placed should you transfer any linked topic clues.\nShare this: draw four boxes and show a friend how one endpoint can anchor a three-part block.",
+      "forgeId": "batch-033#0",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Laboratory Windows",
+      "question": "Jae, Kira, Luis, and Mona use labs at 9, 10, 11, and 12, one each, in the Cedar, Flint, Harbor, and Ivory rooms. Luis is latest and uses Cedar. Kira starts two hours before Jae. Mona starts immediately after Kira and uses Flint. Harbor is earlier than Flint. What is forced?",
+      "choices": [
+        "Jae uses Harbor at 11",
+        "Mona uses Flint at 10",
+        "Kira uses Ivory at 9",
+        "Luis uses Cedar at 11"
+      ],
+      "correctAnswer": "Mona uses Flint at 10",
+      "xpReward": 50,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Right. Luis occupies 12, so the two-hour Kira-to-Jae gap can only be 9 to 11; Mona's immediate follow-up is therefore at 10 in Flint.",
+      "incorrectExplanation": "Actually, Luis blocks noon, eliminating the possible 10-to-12 pairing for Kira and Jae. Their times must be 9 and 11, so Mona takes the next hour. The forced assignment is Mona uses Flint at 10.",
+      "lessonContent": "List every pair of slots that satisfies an exact time gap before assigning names.\nCross out a pair whenever either endpoint is already occupied by another person.\nAn immediate-after clue can then place a third person relative to the surviving pair.\nKeep room assignments in a separate grid until the schedule itself is stable.\nShare this: invent a four-hour schedule with a two-hour gap and ask someone to eliminate the blocked pair.",
+      "forgeId": "batch-033#1",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Kitchen Pass",
+      "question": "Nia, Omar, Priya, and Quinn cook at stations 1 through 4, one each, making curry, galette, noodles, and stew. Omar is at 1; Quinn is at 4. Priya makes galette and works before Nia. Curry is made immediately after galette, while stew is made after curry. Which assignment follows?",
+      "choices": [
+        "Omar makes curry at station 1",
+        "Priya makes noodles at station 2",
+        "Nia makes curry at station 3",
+        "Quinn makes galette at station 4"
+      ],
+      "correctAnswer": "Nia makes curry at station 3",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Exactly. Priya and Nia must occupy the two middle stations in that order. Priya's galette is immediately followed by Nia's curry, leaving the later stew for station 4.",
+      "incorrectExplanation": "Close, but the fixed outer stations leave Priya and Nia at 2 and 3. The recipe adjacency then fixes what follows the galette. The forced assignment is Nia makes curry at station 3.",
+      "lessonContent": "Mark fixed endpoints first so the unassigned people are confined to the middle cells.\nTreat an immediately-after relation as an ordered two-cell block.\nUse later-than clues to test which block placements leave enough space to the right.\nPropagate a placement across categories only after both its person and position are known.\nShare this: sketch four stations and challenge a friend to fit an ordered pair between fixed endpoints.",
+      "forgeId": "batch-033#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Courier Ledger",
+      "question": "Evan, Farah, Gio, and Hana make deliveries in slots 1 through 4, one each, to Amber, Birch, Coral, and Dune. Gio is first; Farah is last. Hana is after Evan. Coral is immediately before Birch, Amber is later than Birch, and Dune is earlier than Coral. Which entry is forced?",
+      "choices": [
+        "Gio visits Coral in slot 1",
+        "Evan visits Dune in slot 2",
+        "Hana visits Amber in slot 3",
+        "Farah visits Amber in slot 4"
+      ],
+      "correctAnswer": "Farah visits Amber in slot 4",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Correct. The destination order must be Dune, Coral, Birch, Amber. With Gio and Farah fixed at the ends and Hana after Evan, Farah necessarily takes the last Amber delivery.",
+      "incorrectExplanation": "It's simpler after ordering the destinations. Dune must precede the Coral-Birch block, and Amber must follow it, producing a single four-stop order. The forced entry is Farah visits Amber in slot 4.",
+      "lessonContent": "Solve each category's ordering constraints independently when the clues permit it.\nCombine a consecutive pair with before-and-after clues to build a longer chain.\nA chain containing every value maps directly onto all available positions.\nAttach names to that completed order only after applying their fixed slots.\nShare this: give someone four symbols and three ordering clues, then compare the chains you draw.",
+      "forgeId": "batch-033#3",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Candidate Circuit",
+      "question": "Rowan, Sana, Tobias, and Uma interview at 9, 10, 11, and 12, one each, for design, finance, legal, and operations. Sana is before Uma, Uma before Rowan, and Rowan before Tobias. Finance is at noon. Legal is immediately after operations, and Sana is neither operations nor legal. Which assignment is forced?",
+      "choices": [
+        "Sana interviews for design at 9",
+        "Uma interviews for finance at 10",
+        "Rowan interviews for operations at 11",
+        "Tobias interviews for legal at 12"
+      ],
+      "correctAnswer": "Sana interviews for design at 9",
+      "xpReward": 50,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Exactly. The four-person order fills the four times directly. Tobias takes noon finance; operations and legal then occupy 10 and 11, leaving the 9 o'clock design interview for Sana.",
+      "incorrectExplanation": "Not quite. The strict person chain fixes every time, and noon finance belongs to Tobias. Sana's exclusions push the operations-legal pair into the middle times. The forced assignment is Sana interviews for design at 9.",
+      "lessonContent": "A strict ordering chain with as many members as slots fixes the entire schedule.\nPlace any fixed-time attribute after expanding that chain into exact positions.\nFor an adjacent attribute pair, test each opening against stated exclusions.\nThe sole unused attribute belongs to the person outside the surviving pair.\nShare this: write a four-name order chain and ask a friend which extra exclusion pins an adjacent topic pair.",
+      "forgeId": "batch-033#4",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Workshop Benches",
+      "question": "Elio, Faye, Gita, and Hugo work at benches 1 through 4, one each, using glass, leather, paper, and wood. Elio is at 3. Leather is immediately right of glass. Faye is left of Elio, is not at 1, and uses paper. Gita uses leather. Which assignment is forced?",
+      "choices": [
+        "Faye uses wood at bench 2",
+        "Hugo uses wood at bench 1",
+        "Elio uses leather at bench 3",
+        "Gita uses glass at bench 4"
+      ],
+      "correctAnswer": "Hugo uses wood at bench 1",
+      "xpReward": 50,
+      "lessonGroup": "Scale Stories",
+      "correctExplanation": "Right. Faye must be at 2, so Hugo takes 1. Gita's leather must sit immediately right of Elio's glass at benches 4 and 3, leaving wood for Hugo.",
+      "incorrectExplanation": "Actually, Faye's two position clues pin her to bench 2 and leave Hugo at 1. Gita's material can only sit to the right of its paired material, leaving one unused material. The forced assignment is Hugo uses wood at bench 1.",
+      "lessonContent": "Intersect a before-or-left relation with exclusions to narrow a person to one cell.\nRepresent paired materials as an ordered adjacent block rather than separate marks.\nTest each possible block location against already occupied people and materials.\nFinish by assigning the only unused value to the only unfilled cell.\nShare this: demonstrate with four boxes how one exclusion can turn a broad left-of clue into an exact position.",
+      "forgeId": "batch-033#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Archive Seals",
+      "question": "Lale, Marek, Noor, and Owen process files A, B, C, and D in slots 1 through 4, one each, using copper, gold, silver, and white seals. Noor is first; Lale last; Marek works before Owen. File D immediately follows file A. Lale has file B. Copper seals A, silver immediately follows copper, and gold immediately follows white. What is forced?",
+      "choices": [
+        "Noor handles B with copper",
+        "Owen handles D with gold",
+        "Marek handles D with silver",
+        "Lale handles C with white"
+      ],
+      "correctAnswer": "Marek handles D with silver",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Exactly. Lale's final file B prevents the A-D block from using slots 3-4, so it occupies 1-2. Noor has A with copper, and Marek follows with D and silver.",
+      "incorrectExplanation": "Close! Treat A-D as a block and test its possible locations alongside both seal adjacencies. The remaining person-order clue identifies who takes the second slot. The forced assignment is Marek handles D with silver.",
+      "lessonContent": "Encode every immediately-follows clue as an ordered block in its own category.\nA fixed item can prevent a block from occupying an endpoint pair.\nWhen two category blocks overlap, transfer their linked values cell by cell.\nUse a final person-order clue only after the viable block location is known.\nShare this: draw two rows of four cells and show how overlapping blocks synchronize their second cells.",
+      "forgeId": "batch-033#6",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Theatre Rotation",
+      "question": "Ivy, Jon, Kamal, and Luz work Tuesday through Friday, one each, on lights, props, sound, and tickets. Jon works Friday. Luz works the day after Ivy. Kamal works before Ivy. Sound is immediately before props, Ivy handles sound, and tickets are earliest. Which assignment is forced?",
+      "choices": [
+        "Jon handles props on Friday",
+        "Kamal handles sound on Tuesday",
+        "Ivy handles lights on Thursday",
+        "Luz handles props on Thursday"
+      ],
+      "correctAnswer": "Luz handles props on Thursday",
+      "xpReward": 50,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Correct. Ivy cannot be Thursday because Luz would collide with Jon on Friday, so Kamal, Ivy, Luz, Jon fill Tuesday through Friday. Ivy's sound task puts Luz's props task immediately after it on Thursday.",
+      "incorrectExplanation": "Not quite. Test the Ivy-Luz pair against Jon's Friday slot while preserving an earlier day for Kamal. The task adjacency aligns with the surviving person pair. The forced assignment is Luz handles props on Thursday.",
+      "lessonContent": "Test an adjacent person pair against fixed endpoints before considering attributes.\nA separate earlier-than clue may require an unused cell before that pair.\nOnce positions are fixed, align any second adjacent pair through a shared person.\nCheck all clues after propagation because endpoint collisions are easy to miss.\nShare this: ask a friend why an adjacent pair may need both an open endpoint and spare space before it.",
+      "forgeId": "batch-033#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Tower Companions",
+      "question": "Aria, Basil, Cleo, and Dev live on floors 1 through 4, one each, with a cat, dog, finch, and rabbit. Aria lives exactly two floors above Dev. Basil lives above Aria. Dev does not have the cat. The dog is on the top floor, and the cat lives immediately below the finch. Which assignment is forced?",
+      "choices": [
+        "Dev has the rabbit on floor 1",
+        "Cleo has the finch on floor 2",
+        "Aria has the dog on floor 3",
+        "Basil has the cat on floor 4"
+      ],
+      "correctAnswer": "Dev has the rabbit on floor 1",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Exactly. Basil needs a floor above Aria, so the two-floor Dev-to-Aria gap can only be 1 to 3; Basil is then at 4 and Cleo at 2. The top dog and the 2-to-3 cat-finch pair leave the floor-1 rabbit for Dev.",
+      "incorrectExplanation": "Actually, the required person above Aria rules out one exact-gap pairing and fixes the residents' order. Dev's pet exclusion then fixes the adjacent pet pair away from the bottom. The forced assignment is Dev has the rabbit on floor 1.",
+      "lessonContent": "List all position pairs that satisfy an exact offset before choosing either one.\nA requirement for someone still higher can eliminate a pair near the top.\nFor an adjacent attribute pair, test every remaining location against exclusions.\nAssign the leftover attribute only after all fixed and paired values are marked.\nShare this: create a four-floor offset puzzle and ask someone which extra clue eliminates one of its two placements.",
+      "forgeId": "batch-033#8",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Demo Queue",
+      "question": "Vega, Wren, Xeno, and Yara demo in slots 1 through 4, one each, showing alerts, charts, search, and sync. Xeno is last and shows sync. Vega is immediately before Xeno. Wren is before Yara. Alerts are earlier than charts but not first, and search is earlier than alerts. What is forced?",
+      "choices": [
+        "Wren shows charts in slot 1",
+        "Yara shows alerts in slot 2",
+        "Vega shows search in slot 3",
+        "Xeno shows charts in slot 4"
+      ],
+      "correctAnswer": "Yara shows alerts in slot 2",
+      "xpReward": 50,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right. Vega and Xeno occupy slots 3 and 4, leaving Wren before Yara in slots 1 and 2. Search must precede the non-first alerts topic, so Wren has search and Yara has alerts.",
+      "incorrectExplanation": "Not quite. Fix the Vega-Xeno pair at the end, then place Wren and Yara in order at the start. The topic chain must rise through the remaining open cells. The forced assignment is Yara shows alerts in slot 2.",
+      "lessonContent": "Place a block anchored to an endpoint before evaluating looser ordering clues.\nConvert multiple topic comparisons into one transitive chain whenever possible.\nA value forbidden from the first cell narrows where the middle of that chain can sit.\nMap the completed topic order onto the already settled people and slots.\nShare this: give a friend three ordered topics and one endpoint block, then race to fill four cells.",
+      "forgeId": "batch-033#9",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Alloy Sequence",
+      "question": "Ora, Pavel, Rina, and Sol test alloys at 8, 9, 10, and 11, one each, using cobalt, iron, nickel, and tin. Pavel is earliest; Ora latest. Rina is before Sol. Sol tests cobalt, iron is immediately before cobalt, and nickel is after cobalt. Which assignment is forced?",
+      "choices": [
+        "Pavel tests iron at 8",
+        "Rina tests nickel at 9",
+        "Sol tests cobalt at 10",
+        "Ora tests tin at 11"
+      ],
+      "correctAnswer": "Sol tests cobalt at 10",
+      "xpReward": 50,
+      "lessonGroup": "Scale Stories",
+      "correctExplanation": "Exactly. Nickel must come after Sol's cobalt, so Sol cannot be latest; with Pavel first, Ora last, and Rina before Sol, Rina and Sol occupy 9 and 10. Iron then sits immediately before Sol's cobalt.",
+      "incorrectExplanation": "Close, but cobalt needs both a preceding iron slot and a later nickel slot. That sandwiches Sol away from either endpoint, and the person-order clues settle the time. The forced assignment is Sol tests cobalt at 10.",
+      "lessonContent": "Mark attributes that require both a predecessor and a successor as non-endpoints.\nUse fixed earliest and latest people to shrink the remaining person order.\nAn immediate-before clue becomes decisive once its second value has one possible cell.\nConfirm that every unused attribute still has a legal remaining position.\nShare this: ask someone to identify which cells can hold a value needing neighbors on both sides.",
+      "forgeId": "batch-033#10",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Inspection Badges",
+      "question": "Uri, Vera, Wes, and Xena inspect sites Tuesday through Friday, one each: Forge, Quay, Ridge, and Vault. Uri is first and visits Ridge; Xena is last; Vera is immediately before Wes. Vault is immediately before Forge, and Quay is after Forge. Vault uses a green badge, Forge red, Quay gold, and Ridge blue. What is forced?",
+      "choices": [
+        "Uri visits Vault with green",
+        "Vera visits Ridge with blue",
+        "Wes visits Quay with gold",
+        "Xena visits Quay with gold"
+      ],
+      "correctAnswer": "Xena visits Quay with gold",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Correct. Vera and Wes must occupy Wednesday and Thursday between the fixed endpoints. The Vault-Forge pair cannot start Thursday and must leave a later site for Quay, so it fills the middle days and Xena takes Friday's Quay inspection with gold.",
+      "incorrectExplanation": "Actually, first place the only available consecutive person pair in the middle. The fixed first site and later-site clue put the adjacent site pair in those same cells. The forced assignment is Xena visits Quay with gold.",
+      "lessonContent": "Fixed endpoints often force an adjacent person pair into the middle cells.\nPlace fixed site identities before testing a separate adjacent site pair.\nA later-than clue requires at least one open cell after the second site.\nWhen two blocks share cells, transfer each site's linked badge automatically.\nShare this: draw parallel person and site rows to show how two middle blocks line up.",
+      "forgeId": "batch-033#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Server Stack",
+      "question": "Ali, Bea, Cruz, and Dina service floors 1 through 4, one each, handling a router, server, tablet, and watch. Dina is lowest; Bea highest. Ali is below Cruz. The router is immediately below the watch, the server is above the watch, and the tablet is below the router. Which assignment is forced?",
+      "choices": [
+        "Dina handles the tablet on floor 1",
+        "Ali handles the watch on floor 2",
+        "Cruz handles the server on floor 3",
+        "Bea handles the router on floor 4"
+      ],
+      "correctAnswer": "Dina handles the tablet on floor 1",
+      "xpReward": 50,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Exactly. Ali and Cruz fill floors 2 and 3 in that order. The attribute relations form the complete chain tablet, router, watch, server from bottom to top, so Dina's lowest-floor device is the tablet.",
+      "incorrectExplanation": "Not quite. The people form one complete bottom-to-top order, while the device clues form another complete order. Aligning those chains gives the forced assignment: Dina handles the tablet on floor 1.",
+      "lessonContent": "Build separate ordered chains for people and attributes before combining them.\nA chain containing every value has no slack and fills all positions exactly.\nTranslate words such as above and below into one consistent directional notation.\nAlign complete chains by position to read the resulting cross-category matches.\nShare this: make two four-item chains and ask a friend to pair their values by rank.",
+      "forgeId": "batch-033#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Floral Dispatch",
+      "question": "Edda, Finn, Gail, and Hans dispatch orders in slots 1 through 4, one each, carrying lilies, orchids, roses, and tulips. Finn is first; Gail last. Edda is immediately before Gail. Orchids are immediately before roses. Hans carries tulips, and lilies go earlier than tulips. Which assignment is forced?",
+      "choices": [
+        "Finn carries tulips in slot 1",
+        "Edda carries orchids in slot 3",
+        "Hans carries roses in slot 2",
+        "Gail carries lilies in slot 4"
+      ],
+      "correctAnswer": "Edda carries orchids in slot 3",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Right. Edda must occupy slot 3 immediately before Gail. Hans therefore occupies slot 2, and the lilies-before-tulips clue puts lilies at 1 and Hans's tulips at 2, leaving orchids and roses for Edda and Gail in order.",
+      "incorrectExplanation": "Actually, the fixed endpoints and Edda-Gail adjacency settle the person order first. The named flower needs an earlier different flower, leaving the adjacent flower pair for the last cells. The forced assignment is Edda carries orchids in slot 3.",
+      "lessonContent": "Resolve a person order first when fixed endpoints and adjacency determine every slot.\nA named attribute with a required predecessor cannot occupy the earliest open cell.\nMark consumed values before placing a second ordered adjacent pair.\nThe remaining pair must align with the remaining people in its stated order.\nShare this: ask someone to solve two linked four-slot rows without guessing across categories too early.",
+      "forgeId": "batch-033#13",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Podcast Run",
+      "question": "Ivo, Jada, Kian, and Lena appear in episodes 1 through 4, one each, discussing cities, food, music, and space. Jada is before Lena, Lena before Ivo, and Ivo immediately before Kian. Jada discusses music. Food is immediately before cities, and space is later than cities. Which assignment is forced?",
+      "choices": [
+        "Jada discusses food in episode 1",
+        "Lena discusses space in episode 2",
+        "Ivo discusses cities in episode 3",
+        "Kian discusses music in episode 4"
+      ],
+      "correctAnswer": "Ivo discusses cities in episode 3",
+      "xpReward": 50,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly. The person chain fills episodes 1 through 4 as Jada, Lena, Ivo, Kian. Space must be after cities, so the food-cities pair cannot use episodes 1-2 and must be Lena-Ivo in episodes 2-3.",
+      "incorrectExplanation": "Close! First expand the person chain across all four episodes and mark the fixed topic. The adjacent topic pair must still leave a later slot for another topic. The forced assignment is Ivo discusses cities in episode 3.",
+      "lessonContent": "Expand a full person chain into exact positions before placing any topics.\nMark fixed topics because they can block one candidate location for an adjacent pair.\nA topic requiring something later prevents the pair's second member from being last.\nTest the surviving pair placement against every already occupied topic cell.\nShare this: build a four-episode grid and ask a friend how one fixed topic plus one later clue selects a pair.",
+      "forgeId": "batch-033#14",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Museum Shelves",
+      "question": "Mira, Niko, Oren, and Pia catalogue shelves 1 through 4, one each, holding a coin, glass, letter, and statue. Pia is on shelf 1; Oren on shelf 4. Niko is immediately below Mira. A letter is immediately below a coin, glass is below the letter, and the coin is not on shelf 4. Which assignment is forced?",
+      "choices": [
+        "Pia catalogues the coin on shelf 1",
+        "Niko catalogues the glass on shelf 2",
+        "Mira catalogues the letter on shelf 3",
+        "Oren catalogues the statue on shelf 4"
+      ],
+      "correctAnswer": "Oren catalogues the statue on shelf 4",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Correct. Niko and Mira must occupy shelves 2 and 3. The glass-letter-coin order then fills shelves 1 through 3, leaving the only remaining object, the statue, on Oren's shelf 4.",
+      "incorrectExplanation": "Not quite. The middle identity pair fixes the two interior shelves. The object clues form a three-value chain that fills the lower side, leaving one object at the top. The forced assignment is Oren catalogues the statue on shelf 4.",
+      "lessonContent": "Use fixed endpoint people to confine an adjacent identity pair to the middle.\nMerge an adjacent attribute pair with another below-or-above relation into a chain.\nA three-value chain in four cells may have only one legal starting position.\nAssign the unused object to the sole cell outside that chain.\nShare this: challenge a friend to fit a three-object chain into four shelves with both endpoints occupied.",
+      "forgeId": "batch-033#15",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Clinical Rotation",
+      "question": "Rhea, Samir, Tess, and Ulric rotate in weeks 1 through 4, one each, through cardiology, neurology, oncology, and trauma. Ulric is before Tess, Tess before Rhea, and Rhea immediately before Samir. Ulric does not take neurology. Neurology is immediately before trauma, and cardiology is after trauma. Which assignment is forced?",
+      "choices": [
+        "Ulric takes oncology in week 1",
+        "Tess takes cardiology in week 2",
+        "Rhea takes neurology in week 3",
+        "Samir takes trauma in week 4"
+      ],
+      "correctAnswer": "Ulric takes oncology in week 1",
+      "xpReward": 50,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Exactly. The residents fill the weeks in the stated order. The later cardiology slot forces the neurology-trauma pair into weeks 2-3, leaving oncology as Ulric's week-1 rotation.",
+      "incorrectExplanation": "Actually, the resident order spans all four weeks. Ulric's exclusion blocks the early placement of the adjacent specialty pair, while cardiology needs a later week. The forced assignment is Ulric takes oncology in week 1.",
+      "lessonContent": "A full identity order converts relative statements into exact numbered positions.\nList every placement of an adjacent attribute pair before using exclusions.\nA required later attribute can eliminate any pair ending in the final cell.\nAfter crossing out blocked pairs, assign the one unused attribute to the open position.\nShare this: ask someone to place an adjacent pair when its first value is banned from one endpoint.",
+      "forgeId": "batch-033#16",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Lobby Profiles",
+      "question": "Mara, Niko, Opal, and Pete each have one job (architect, editor, nurse, pilot) and one drink (cocoa, coffee, tea, water), with each job and drink used once. Niko is the architect. The editor drinks tea; Pete drinks tea. The nurse drinks coffee; Mara drinks coffee. The pilot drinks water. Opal is neither nurse nor editor. What is forced?",
+      "choices": [
+        "Mara is the architect with cocoa",
+        "Opal is the pilot with water",
+        "Pete is the nurse with tea",
+        "Niko is the editor with coffee"
+      ],
+      "correctAnswer": "Opal is the pilot with water",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Right. Unique drinks make Pete the tea-drinking editor and Mara the coffee-drinking nurse, while Niko is already the architect. Opal must therefore be the remaining pilot and take the pilot's water.",
+      "incorrectExplanation": "Not quite. In a one-to-one grid, a unique drink-to-job link can be read in either direction. After the linked jobs and the fixed job are occupied, Opal's exclusions leave one combination. The forced assignment is Opal is the pilot with water.",
+      "lessonContent": "Confirm that each category is one-to-one before treating links as reversible.\nWhen one job always has one drink, a named drink can identify that job.\nMark occupied jobs after each reverse deduction so exclusions become stronger.\nThe final unoccupied job inherits its linked drink automatically.\nShare this: explain to a friend why uniqueness lets an if-and-only-one link work backward in a logic grid.",
+      "forgeId": "batch-033#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Panel Order",
+      "question": "Quin, Rosa, Seth, and Tara speak in slots 1 through 4, one each, on AI, budget, culture, and design. AI is last. Seth speaks after Tara. Quin speaks immediately before the budget talk, and Rosa speaks before Quin. Culture is earlier than design. Which assignment is forced?",
+      "choices": [
+        "Rosa presents design in slot 1",
+        "Quin presents culture in slot 2",
+        "Tara presents budget in slot 3",
+        "Seth presents design in slot 4"
+      ],
+      "correctAnswer": "Tara presents budget in slot 3",
+      "xpReward": 50,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly. AI occupies slot 4, so Quin cannot be in slot 3 immediately before a budget talk. Rosa-before-Quin forces Quin to slot 2, making budget slot 3; Seth must then be slot 4 after Tara, so Tara gives the budget talk.",
+      "incorrectExplanation": "Close, but the fixed final topic blocks one placement of the person-topic adjacency. The earlier-person and later-person relations then settle the remaining speakers. The forced assignment is Tara presents budget in slot 3.",
+      "lessonContent": "Treat a person immediately before a topic as a cross-category two-cell block.\nA fixed endpoint topic can invalidate a block even when its person is unknown.\nUse an earlier-person clue to reject placements with no open predecessor.\nFinish by applying the remaining person-order relation to the open cells.\nShare this: invent a speaker-topic adjacency and show how a fixed last topic rules out one position.",
+      "forgeId": "batch-033#18",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Bakery Ovens",
+      "question": "Usha, Vik, Willa, and Yosef use ovens 1 through 4, one each, baking olive, rye, sourdough, and wheat loaves. Vik is at 4. Usha is next to Vik. Rye is exactly two ovens before sourdough. Willa is before Yosef, and Willa bakes olive. Which assignment is forced?",
+      "choices": [
+        "Willa bakes rye in oven 1",
+        "Yosef bakes wheat in oven 2",
+        "Usha bakes sourdough in oven 3",
+        "Vik bakes sourdough in oven 4"
+      ],
+      "correctAnswer": "Vik bakes sourdough in oven 4",
+      "xpReward": 50,
+      "lessonGroup": "Scale Stories",
+      "correctExplanation": "Correct. Usha must be at 3, leaving Willa and Yosef at 1 and 2 in that order. Since Willa's oven 1 already has olive, the rye-sourdough gap cannot be 1-to-3 and must be 2-to-4, putting sourdough with Vik.",
+      "incorrectExplanation": "Not quite. The identity clues fix the baker order, and the fixed loaf blocks the first possible exact-gap pair. The forced assignment is Vik bakes sourdough in oven 4.",
+      "lessonContent": "List every pair of cells satisfying an exact gap before assigning either value.\nResolve adjacency and before-after clues to settle the people independently.\nCross out a gap pair if one endpoint already holds a different fixed attribute.\nMap the surviving attribute pair onto the people occupying those cells.\nShare this: draw four ovens and ask a friend to enumerate all pairs exactly two positions apart.",
+      "forgeId": "batch-033#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Carriage Map",
+      "question": "Ayla, Borin, Celi, and Zane sit in seats 1 through 4, one each, bound for Kyoto, Lima, Oslo, and Rome. Borin sits at 4; Zane sits next to Borin. Ayla sits immediately between Celi and Zane. Borin is bound for Rome. Oslo is before Lima, which is before Kyoto. Which assignment is forced?",
+      "choices": [
+        "Celi is bound for Oslo in seat 1",
+        "Ayla is bound for Kyoto in seat 2",
+        "Zane is bound for Lima in seat 3",
+        "Borin is bound for Oslo in seat 4"
+      ],
+      "correctAnswer": "Celi is bound for Oslo in seat 1",
+      "xpReward": 50,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Exactly. Zane must sit at 3 beside Borin, and the Celi-Ayla-Zane block then fills seats 1-3. With Rome fixed at 4, the ordered Oslo-Lima-Kyoto trio must align with those first three seats, putting Celi with Oslo.",
+      "incorrectExplanation": "Actually, adjacency to the fixed last seat anchors one end of the three-person block. The ordered destination chain fills the only three seats not occupied by the fixed destination. The forced assignment is Celi is bound for Oslo in seat 1.",
+      "lessonContent": "Translate immediately-between into a consecutive three-person block.\nA known endpoint adjacent to one member can anchor that block's orientation.\nBuild an ordered destination chain separately from the person arrangement.\nA fixed destination outside a three-cell run forces the chain into the remaining seats.\nShare this: draw two three-part chains and ask a friend to align them across four numbered seats.",
+      "forgeId": "batch-033#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Consulting Kits",
+      "question": "Dax, Eira, Finn, and Gwen each serve one client (hotel, museum, school, theater) using one tool (drone, laser, map, survey). The school uses the drone; the hotel uses the map. Gwen uses the map; Finn uses the drone. Dax serves neither school nor hotel. Eira does not serve the museum, and the laser is not used at the theater. What is forced?",
+      "choices": [
+        "Dax serves the theater with a laser",
+        "Eira serves the theater with a survey",
+        "Finn serves the hotel with a drone",
+        "Gwen serves the museum with a map"
+      ],
+      "correctAnswer": "Eira serves the theater with a survey",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Right. Gwen's map puts her at the hotel, and Finn's drone puts him at the school. Dax and Eira take museum and theater; Eira's exclusion makes her the theater consultant, where the laser ban leaves her the survey.",
+      "incorrectExplanation": "Not quite. Convert the permanent client-tool links first, then use client exclusions on the remaining people. The final tool restriction leaves one valid combination. The forced assignment is Eira serves the theater with a survey.",
+      "lessonContent": "In a one-to-one grid, permanent category links act like combined labels.\nAssign named tools through those links before solving the unlinked clients.\nUse exclusions after the linked pairs are removed from both category lists.\nA final forbidden tool can determine the last cross-category combination.\nShare this: show a friend how merging two permanent pairs shrinks a three-category grid.",
+      "forgeId": "batch-033#21",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Finish Line",
+      "question": "Hale, Ines, Jiro, and Kora finish 1st through 4th, one each, wearing black, blue, green, and white. Jiro finishes before Hale, while Kora finishes after Hale and before Ines. Hale is immediately after the green runner. Blue is last, black immediately before blue, and Kora is not in green. Which assignment is forced?",
+      "choices": [
+        "Jiro finishes second in white",
+        "Hale finishes third in black",
+        "Kora finishes third in black",
+        "Ines finishes first in green"
+      ],
+      "correctAnswer": "Kora finishes third in black",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Exactly. Blue and black occupy fourth and third. If Hale were third, Kora would have to be second and green immediately before Hale, violating Kora's color clue. Thus Hale is second after green Jiro, leaving Kora third in black and Ines fourth in blue.",
+      "incorrectExplanation": "Close! Test the later placement for Hale and follow which earlier runner would have to wear green. The color exclusions contradict that branch, leaving the other placement. The forced assignment is Kora finishes third in black.",
+      "lessonContent": "When a clue allows two placements, analyze each branch instead of guessing.\nPropagate every branch through person order, adjacency, and fixed attributes.\nReject a branch as soon as it assigns a forbidden person-attribute pairing.\nReturn to the surviving branch and fill values fixed by endpoint color blocks.\nShare this: give a friend a two-case placement and ask them to find the first contradiction in one branch.",
+      "forgeId": "batch-033#22",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Auction Sequence",
+      "question": "A vase, watch, xylophone, and yacht sell in lots 1 through 4, one each, to Inez, Joel, Kira, and Liam. Joel buys the last lot. Kira buys before Inez. The vase sells immediately before Joel's lot. The yacht sells immediately after Kira's lot. Inez does not buy the vase. Which assignment is forced?",
+      "choices": [
+        "Kira buys the vase in lot 1",
+        "Liam buys the yacht in lot 2",
+        "Joel buys the watch in lot 4",
+        "Inez buys the yacht in lot 2"
+      ],
+      "correctAnswer": "Inez buys the yacht in lot 2",
+      "xpReward": 50,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Correct. Joel's last position puts the vase in lot 3. Kira cannot buy lot 2 because the following yacht would collide with that vase, so Kira is lot 1 and the yacht is lot 2; Inez's order and vase exclusion give her that yacht.",
+      "incorrectExplanation": "Actually, the final buyer fixes the preceding item, creating an occupied cell. One candidate buyer position would force a different item into that same cell, so the other branch survives. The forced assignment is Inez buys the yacht in lot 2.",
+      "lessonContent": "Convert a fixed buyer plus a preceding item into a cross-category placement.\nTest each possible start for another buyer-item adjacent pair.\nReject any start that assigns two different items to the same lot.\nUse buyer order and exclusions to identify who receives the surviving item.\nShare this: sketch two crossing adjacency clues and ask a friend to spot the cell collision.",
+      "forgeId": "batch-033#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "Research Corridor",
+      "question": "Mira, Nolan, Orla, and Piers work in labs A through D, one each, handling algae, bone, crystal, and dust. Lab A handles bone, B crystal, and D algae. Mira is neither A nor D. Mira's lab letter is before Piers's, and Piers's is before Nolan's. Orla handles neither algae nor dust. Which assignment is forced?",
+      "choices": [
+        "Mira handles crystal in lab B",
+        "Nolan handles bone in lab A",
+        "Orla handles dust in lab C",
+        "Piers handles algae in lab D"
+      ],
+      "correctAnswer": "Mira handles crystal in lab B",
+      "xpReward": 50,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Exactly. Mira must have two later labs available for Piers and Nolan, so she cannot be C; her exclusions then force B. The lab-to-sample mapping makes her sample crystal.",
+      "incorrectExplanation": "Not quite. The three-person chain needs enough increasingly lettered labs after its first member. Combining that capacity requirement with Mira's exclusions leaves one lab and its linked sample. The forced assignment is Mira handles crystal in lab B.",
+      "lessonContent": "Count how many later cells an ordered chain needs before placing its first member.\nEliminate starts that leave too few positions even if they satisfy local exclusions.\nIntersect the remaining feasible starts with the person's explicit forbidden cells.\nRead any fixed attribute directly from the surviving position's mapping.\nShare this: ask a friend how late a three-member increasing chain can begin in four labeled cells.",
+      "forgeId": "batch-033#24",
+      "forgeScore": 92
+    }
+  ]
+}

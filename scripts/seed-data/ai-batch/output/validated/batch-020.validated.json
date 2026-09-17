@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-020",
+  "generatedAt": "2026-09-17T13:27:41.566Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Finishing Halves",
+      "question": "A task uses 30 minutes, then 15, then 7.5, with every later stage taking half as long. Although there are infinitely many stages in the model, their total duration approaches one hour.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Correct. The geometric durations add to 30 + 15 + 7.5 + ..., whose limit is 60 minutes.",
+      "incorrectExplanation": "It is True. Infinitely many positive terms can have a finite sum when they shrink quickly enough; here each remaining tail is half the previous one.",
+      "lessonContent": "An infinite series describes the limit of its finite partial sums.\nGeometric series converge when each term is multiplied by a fixed ratio below one in magnitude.\nThe number of terms and the size of their total are separate questions.\nZeno-style puzzles exploit the intuition that infinity must always produce endless duration.\nShare this: add 1/2 + 1/4 + 1/8 on paper and watch how the gap changes.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#0",
+      "forgeScore": 92
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Equal Time Markers",
+      "question": "A machine must clear infinitely many checkpoints, and each checkpoint takes exactly one second. Unlike shrinking-time versions of Zeno's setup, this process cannot finish in a finite number of seconds.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Right. Adding one second infinitely often diverges, so the elapsed time has no finite bound.",
+      "incorrectExplanation": "It is True. Infinity alone does not decide completion; the decisive feature is whether the required durations shrink fast enough for their sum to converge.",
+      "lessonContent": "Some infinite series converge while others diverge.\nA fixed positive cost repeated without end creates an unbounded total.\nTo evaluate an infinite process, inspect the sizes of its stages rather than merely counting them.\nThis distinction separates mathematical resolutions from verbal appeals to infinity.\nShare this: compare repeated one-second steps with repeatedly halved seconds.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Closing Gap",
+      "question": "A runner moves at 10 m/s while a tortoise 9 metres ahead moves at 1 m/s. Their relative speed is 9 m/s, so the runner catches the tortoise after one second despite any infinite subdivision of the chase.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The 9-metre lead closes at 9 metres per second, giving a finite catch time of one second.",
+      "incorrectExplanation": "It is True. Relative motion computes the meeting directly: initial gap divided by closing speed, independent of how many intermediate positions we name.",
+      "lessonContent": "Relative speed measures how quickly the distance between moving objects changes.\nMeeting time equals initial separation divided by closing speed when speeds are constant.\nSubdividing a trajectory does not change the trajectory's physical duration.\nDirect models can reveal what an infinite verbal decomposition obscures.\nShare this: estimate when two walkers will meet using only their gap and closing speed.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Endless Catch-Ups",
+      "question": "Because a faster runner can be described as reaching infinitely many points previously occupied by a slower runner, the overtake must occur only after an infinite amount of time.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Those successive travel times can shrink geometrically and sum to a finite meeting time.",
+      "incorrectExplanation": "It is False. An infinite list of ever-shorter intervals does not imply infinite elapsed time; convergence is precisely the missing reasoning step.",
+      "lessonContent": "An infinite decomposition can fit inside a finite interval.\nEach stage's duration matters more than the bare fact that stages are countable.\nConvergent sums explain how a limit can be reached without a final largest subinterval.\nThe paradox arises by sliding from 'infinitely many descriptions' to 'endless time.'\nShare this: ask a friend whether infinitely many shrinking intervals must last forever, then test a geometric example.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Midpoint Deadline",
+      "question": "A runner travels 8 metres at a constant 8 m/s. Describing the route as 4 metres, then 2, then 1, and so on makes the journey take two seconds rather than one.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Right. The segment times are 1/2, 1/4, 1/8, ... seconds, which total one second.",
+      "incorrectExplanation": "It is False. Partitioning the same eight-metre route into infinitely many pieces does not add distance or time; the pieces sum back to the original journey.",
+      "lessonContent": "A partition divides an existing quantity rather than duplicating it.\nAt constant speed, halving distance also halves the time for that segment.\nThe partial sums approach the original whole from below.\nChanging a description cannot by itself change the motion being described.\nShare this: divide a one-minute interval into halves and verify that no extra minute appears.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Frozen Instants",
+      "question": "An arrow occupies one exact position at every instant. Therefore its position is the same at all instants, so motion is logically impossible.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Having one position at each instant does not mean having one unchanged position across different instants.",
+      "incorrectExplanation": "It is False. The argument confuses 'a definite position at each time' with 'the same position at every time'; a position function can vary continuously.",
+      "lessonContent": "Zeno's arrow shifts attention from intervals to durationless instants.\nA function may assign one value to each input while assigning different values to different inputs.\nMotion is represented by how position varies with time, not by an object being spread across positions at once.\nQuantifier shifts often create the appearance of contradiction.\nShare this: compare 'one seat per passenger' with 'the same seat for every passenger.'",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Speed at Noon",
+      "question": "A car can have a nonzero instantaneous speed at exactly noon even though the single instant noon has zero duration, because speed is defined by the limiting change around that instant.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. Instantaneous velocity is a limit of nearby position changes divided by nearby time changes.",
+      "incorrectExplanation": "It is True. The car need not travel a positive distance 'during' a durationless instant; calculus defines its velocity from behavior over shrinking surrounding intervals.",
+      "lessonContent": "Instantaneous velocity is a derivative, built from a limit of average velocities.\nThe interval shrinks toward zero without requiring division by zero.\nLocal rates can be well-defined even when an isolated instant has no duration.\nCalculus answers the arrow paradox by formalizing change at a point.\nShare this: inspect a speedometer and explain why its reading is not distance traveled in one instant.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Invented Rest Stops",
+      "question": "If a route contains infinitely many mathematical points, a traveller must physically stop at every point before reaching the destination.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Right. Passing through a point does not entail pausing there, so the argument inserts extra tasks into continuous motion.",
+      "incorrectExplanation": "It is False. A journey can include every point on a continuous path without treating those points as separate stops requiring time.",
+      "lessonContent": "Mathematical points mark locations; they do not automatically represent actions.\nCrossing, arriving, and stopping are different predicates.\nA decomposition becomes misleading when it adds work absent from the original process.\nContinuous motion visits positions without scheduling a pause at each one.\nShare this: walk across a room and notice that named floor points do not become rest stops.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Missing Metre",
+      "question": "A robot moves 1/2 metre, then 1/4, then 1/8, continuing the pattern. The limiting total is one metre, so the model leaves no positive final gap.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Correct. After n moves the remaining gap is 1/2^n metre, and that remainder tends to zero.",
+      "incorrectExplanation": "It is True. Every finite stage leaves a gap, but there is no fixed positive gap left in the limit; the remainders become smaller than any chosen distance.",
+      "lessonContent": "A limit can equal a boundary never reached by any earlier partial sum.\nRemainders provide a direct way to test whether a positive gap survives.\n'There is always some gap at a finite stage' does not imply 'one gap remains after all stages.'\nLimits distinguish every finite approximation from the value approached.\nShare this: choose a tiny tolerance and find how many halvings make the remainder smaller.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Harmonic Road",
+      "question": "A journey assigns 1/2 second to its first stage, 1/3 to the next, then 1/4, and so on. Because each stage shrinks toward zero, the total travel time must be finite.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Correct. The harmonic tail shrinks too slowly, and 1/2 + 1/3 + 1/4 + ... diverges.",
+      "incorrectExplanation": "It is False. Terms approaching zero are necessary for convergence but not sufficient; their rate of decrease decides whether the total stays bounded.",
+      "lessonContent": "For a series to converge, its terms must approach zero, but that condition alone is not enough.\nSlowly shrinking terms can accumulate without bound.\nComparing a new series with known benchmarks helps classify its behavior.\nInfinity reasoning requires rates, not just direction of change.\nShare this: contrast the first ten terms of a harmonic sum with a halving sum.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Counting Versus Timing",
+      "question": "Two processes may each contain infinitely many modeled stages while one finishes in finite time and the other does not, because their stage durations can form different series.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Right. A geometric schedule can converge while a fixed-duration or harmonic schedule diverges.",
+      "incorrectExplanation": "It is True. Equal stage counts do not imply equal total duration; the sequence of costs determines the sum.",
+      "lessonContent": "Cardinality counts stages but does not measure their combined duration.\nInfinite sets can support totals with very different magnitudes.\nConvergence is a property of the values being added, not merely how many there are.\nThis separation dissolves many verbal arguments that use 'infinite' as a single-size label.\nShare this: invent one convergent and one divergent schedule with infinitely many stages.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Final Half",
+      "question": "To reach the endpoint of a halving sequence, a traveller must complete a final smallest segment immediately before arrival.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Correct. The sequence has no smallest positive segment and no last term, yet its partial sums have a finite limit.",
+      "incorrectExplanation": "It is False. Infinite ordered sequences need not have a final member; arrival is represented by the limit of all finite partial journeys, not by one last half.",
+      "lessonContent": "An infinite sequence can have a limit without having a final term.\nEvery candidate for the smallest positive half has an even smaller successor.\nExpecting a last member imports finite-list structure into an infinite order.\nLimit points can bound a sequence without appearing among its earlier terms.\nShare this: ask what the last decimal of 0.333... would be and examine the hidden assumption.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Switching Limit",
+      "question": "A lamp switches on at 1/2 minute, off at 3/4, on at 7/8, and continues alternating before one minute. The instructions alone do not specify its state exactly at one minute.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Correct. There is no final switch whose parity settles the state, so the finite-stage rule underdetermines the limit state.",
+      "incorrectExplanation": "It is True. Every time before the deadline has a later switch, and no last operation determines what must hold at the boundary.",
+      "lessonContent": "A supertask compresses infinitely many operations into a finite interval.\nRules that determine every finite stage may still fail to determine a boundary value.\nAlternation need not converge just because the operation times converge.\nDistinguish the limit of event times from the limit of system states.\nShare this: compare an alternating sequence with a steadily shrinking numerical sequence.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Infinite Parity",
+      "question": "In an endlessly alternating lamp supertask, the lamp must finish off because every on-switch is eventually followed by an off-switch.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Right. Every off-switch is also followed by an on-switch, so that symmetric argument cannot select either final state.",
+      "incorrectExplanation": "It is False. The reasoning favors one half of a perfectly symmetric alternation; without a last switch or an added boundary rule, neither state follows.",
+      "lessonContent": "Pairing arguments over infinite sequences require careful treatment of boundaries.\nA claim that applies symmetrically to opposite states cannot decide between them.\nFinite parity depends on a last term, which an endless alternation lacks.\nSupertasks expose where familiar finite reasoning silently uses an endpoint event.\nShare this: test a parity argument by swapping every odd stage with an even one.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "One Walk, Many Cuts",
+      "question": "Dividing a continuous walk into infinitely many intervals does not by itself prove the walker performed infinitely many separate stop-start actions.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. A mathematical partition is a way of describing one continuous action, not evidence of repeated stopping.",
+      "incorrectExplanation": "It is True. The decomposition supplies conceptual boundaries, but extra physical actions require extra premises.",
+      "lessonContent": "One event can admit many descriptions and arbitrarily fine partitions.\nDescription count should not be confused with action count.\nContinuous processes need not restart at the boundaries chosen by an observer.\nThis distinction separates mathematical analysis from claims about physical mechanisms.\nShare this: describe one uninterrupted gesture using several different sets of intervals.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Across the Instants",
+      "question": "If an object is motionless within each durationless instant, it follows that its position cannot differ between any two instants.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Correct. A claim about what happens within each single instant does not establish equality across distinct instants.",
+      "incorrectExplanation": "It is False. The conclusion shifts from each instant considered alone to a comparison between instants, which the premise never supplies.",
+      "lessonContent": "Quantifiers can change an argument when 'each' quietly becomes 'the same across all.'\nPointwise facts do not automatically establish relationships between different points.\nMotion concerns variation across time, so cross-time comparison is essential.\nMany paradoxes hide their leap in a small grammatical shift.\nShare this: rewrite one 'each' statement today and check whether it secretly became 'the same.'",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Opposing Rows",
+      "question": "Two carts move in opposite directions at 1 m/s each. In one second, either cart moves 1 metre relative to the ground but 2 metres relative to the other cart.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Opposite velocities differ by 2 m/s, so their relative separation changes twice as fast as either ground-relative displacement.",
+      "incorrectExplanation": "It is True. The measurements use different reference frames: one compares cart with ground, the other compares cart with an oppositely moving cart.",
+      "lessonContent": "Velocity is measured relative to a chosen reference frame.\nOpposite motions add when calculating closing or separating speed.\nDifferent relative displacements can describe the same event without contradiction.\nZeno's stadium puzzle pressures intuition about moving rows and time intervals.\nShare this: from a moving walkway, compare your speed relative to the floor and another walker.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Frame Confusion",
+      "question": "If a moving block passes one ground marker but two oppositely moving blocks in the same interval, the unequal counts prove that the interval had two different lengths of time.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Right. The same elapsed time can produce different encounter counts because relative speeds differ.",
+      "incorrectExplanation": "It is False. Counting passed objects mixes reference frames; faster relative motion explains the larger count without splitting time itself.",
+      "lessonContent": "Encounter rates depend on both spacing and relative velocity.\nCounts gathered against different moving frames are not directly interchangeable.\nA shared time interval can contain different numbers of crossings.\nReference-frame bookkeeping prevents apparent contradictions in motion puzzles.\nShare this: count objects passed while walking with and against a crowd.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Smallest Step Rescue",
+      "question": "Assuming space has a smallest possible length would automatically solve every Zeno paradox, including the arrow's question about velocity at an instant.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Correct. A spatial cutoff may block endless distance division, but it does not by itself define time, velocity, or change at an instant.",
+      "incorrectExplanation": "It is False. Solving one infinite-divisibility concern does not automatically answer the distinct conceptual problem posed by instantaneous motion.",
+      "lessonContent": "A proposed solution should be matched to the exact premise creating the puzzle.\nZeno's arguments form a family rather than one repeated argument.\nChanging the structure of space leaves separate questions about time and rates.\nA fix that addresses one mechanism should not be generalized without proof.\nShare this: when one fix is called universal, list which assumptions it actually changes.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Infinity Has Types",
+      "question": "From the fact that one infinite series has a finite sum, it does not follow that every infinite series has a finite sum.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Right. Convergence depends on how terms behave; geometric and harmonic examples already lead to different outcomes.",
+      "incorrectExplanation": "It is True. One successful convergent construction is a counterexample to 'all infinite sums diverge,' not a proof that all infinite sums converge.",
+      "lessonContent": "Existence claims and universal claims carry different logical burdens.\nOne convergent series proves that finite infinite sums are possible.\nClassifying another series requires examining its own terms or applying a convergence test.\nInfinity is not a single arithmetic behavior shared by every sequence.\nShare this: whenever you learn one infinite example, ask whether it proves possibility or universality.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Decimal Footsteps",
+      "question": "A traveller covers 0.9 metre, then 0.09, then 0.009, continuing the pattern. The infinite total equals one metre rather than stopping a tiny positive distance short.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The partial totals are 0.9, 0.99, 0.999, ..., and their limit is exactly 1.",
+      "incorrectExplanation": "It is True. There is no fixed positive remainder: after n stages the gap is 10^-n metre, which can be made smaller than any positive tolerance.",
+      "lessonContent": "Repeating decimals are limits of sequences of terminating decimals.\nEquality at the limit does not require a final repeated digit.\nA supposed positive gap must have a definite size, which shrinking remainders eventually beat.\nDecimal notation offers a familiar version of Zeno's endpoint issue.\nShare this: challenge someone to name a positive gap between 0.999... and 1.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#20",
+      "forgeScore": 92
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Boundary Without Predecessor",
+      "question": "The times 1/2, 3/4, 7/8, and so on are all before one second, yet they approach one second and have no latest member before it.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Each listed time has a later one in the sequence, while one second is their least upper bound.",
+      "incorrectExplanation": "It is True. A sequence can approach a boundary without containing a greatest term; every candidate is followed by one closer to the limit.",
+      "lessonContent": "A bounded increasing sequence need not have a largest member.\nIts supremum can exist outside the sequence itself.\nFinite intuition expects a penultimate event, but dense time need not provide one.\nLimit reasoning replaces 'last before' with 'arbitrarily close to.'\nShare this: try to name the greatest decimal strictly below 1 and test your candidate.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "No Last Checkpoint",
+      "question": "If a sequence of checkpoints has no final checkpoint before the finish line, then reaching the finish line is mathematically impossible.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "Right. A finite limit can follow an endless sequence without any final pre-limit member.",
+      "incorrectExplanation": "It is False. The conclusion assumes arrival needs an immediate predecessor, but continuous orders and convergent sequences need not contain one.",
+      "lessonContent": "A boundary does not always have a nearest point on its lower side.\nContinuous quantities differ from discrete ladders with final rungs.\nConvergence explains arrival through a limit rather than a penultimate checkpoint.\nImporting predecessor logic into a dense continuum creates a false obstacle.\nShare this: compare the last whole number before 10 with the last real number before 10.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Slowing Halves",
+      "question": "A robot's stage distances halve each time, but its speed also halves so every stage still takes one second. The robot never completes all stages in finite time.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Distance alone shrinks, but time equals distance divided by speed, leaving one second per stage and an unbounded total.",
+      "incorrectExplanation": "It is True. Halving both distance and speed cancels in the time calculation, so the durations do not form a convergent series.",
+      "lessonContent": "Travel time depends on both distance and speed.\nShrinking spatial stages do not guarantee shrinking temporal stages.\nRatios can remain constant when numerator and denominator scale together.\nA motion model must specify enough variables before its infinity can be classified.\nShare this: halve both a route and its speed, then calculate whether travel time changes.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Six Second Chase",
+      "question": "A runner at 6 m/s chases another at 4 m/s with a 12-metre lead. The catch occurs after six seconds, even though the chase can be decomposed into infinitely many shrinking gap-closing stages.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The gap closes at 2 m/s, and 12 divided by 2 gives six seconds.",
+      "incorrectExplanation": "It is True. Relative speed fixes the meeting time directly; infinitely many named sub-stages fit within that finite interval.",
+      "lessonContent": "Closing speed subtracts velocities when objects move in the same direction.\nA finite initial gap closes in finite time whenever relative speed is positive and constant.\nInfinite subdivision and direct kinematics can describe the same chase.\nA good model checks paradoxical language against measurable quantities.\nShare this: calculate a catch-up time from two walking speeds and a starting gap.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-020#24",
+      "forgeScore": 100
+    }
+  ]
+}

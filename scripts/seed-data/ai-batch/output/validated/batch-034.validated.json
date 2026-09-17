@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-034",
+  "generatedAt": "2026-09-17T13:27:41.771Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Narrow Opening",
+      "question": "A 45-minute review must use Room A and finish by 4:00 PM. Room A is occupied 1:00-1:30, 2:15-3:00, and 3:30-4:00. The reviewer is free only 1:20-2:50. What start time works?",
+      "choices": [],
+      "correctAnswer": "1:30 PM",
+      "acceptedAnswers": [
+        "1:30 PM",
+        "13:30",
+        "half past one in the afternoon"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Exactly. Starting at 1:30 uses the sole 45-minute overlap between the reviewer's availability and the room's free time, ending at 2:15.",
+      "incorrectExplanation": "The answer is 1:30 PM. Intersect the reviewer's window with each room gap; only 1:30-2:15 is long enough, and either neighboring booking blocks any later or earlier start.",
+      "lessonContent": "Scheduling with multiple resources begins by intersecting every availability window.\nA proposed start works only if the full task fits inside the shared interval.\nBusy periods split a day into separate gaps, so test each gap rather than the day as a whole.\nBoundary times matter: this review must end exactly when the next room booking begins.\nShare this: draw two availability timelines and shade the interval they share.",
+      "forgeId": "batch-034#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Prep Before Pitch",
+      "question": "A pitch lasts 30 minutes and must end by noon. Its 40-minute rehearsal must finish before the pitch. The team is unavailable 9:50-10:20 and 11:00-11:20, but otherwise free from 9:00. What is the latest possible pitch start?",
+      "choices": [],
+      "correctAnswer": "11:30 AM",
+      "acceptedAnswers": [
+        "11:30 AM",
+        "11:30 before noon",
+        "half past eleven in the morning"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Right. Rehearsing from 10:20 to 11:00 satisfies the prerequisite, and the pitch can then wait until 11:30 and still finish at noon.",
+      "incorrectExplanation": "The latest start is 11:30 AM. Work backward from the noon deadline for the pitch, then place the rehearsal in the earlier 10:20-11:00 opening; prerequisite tasks need not be immediately adjacent unless stated.",
+      "lessonContent": "Deadline puzzles are often easiest when solved backward from the required finish.\nSubtract the final task's duration first to find its latest possible start.\nEarlier prerequisite work only needs to finish before that start unless adjacency is required.\nTesting each free interval prevents a short opening from being mistaken for a usable one.\nShare this: work backward through a two-step deadline in your own schedule.",
+      "forgeId": "batch-034#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Three City Window",
+      "question": "A call needs colleagues in London, Nairobi, and New York. On this date Nairobi is 3 hours ahead of London, and New York is 5 hours behind London. Everyone can meet only between 9:00 AM and 5:00 PM locally. What is the earliest London start?",
+      "choices": [],
+      "correctAnswer": "2:00 PM London time",
+      "acceptedAnswers": [
+        "2:00 PM London time",
+        "14:00 in London",
+        "two in the afternoon London time"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Correct. At 2:00 PM in London it is 5:00 PM in Nairobi and 9:00 AM in New York, the first instant all three local windows overlap.",
+      "incorrectExplanation": "The answer is 2:00 PM London time. Convert each local workday into London time: Nairobi closes at 2:00 PM London time just as New York opens at 2:00 PM London time.",
+      "lessonContent": "Time-zone scheduling becomes an interval-intersection problem after conversion to one reference zone.\nChoose one city's clock and translate every participant's opening and closing times onto it.\nThe earliest feasible start is the latest of the converted opening times.\nA meeting is possible only while that start does not exceed the earliest converted closing time.\nShare this: convert three friends' workdays to one clock before proposing a call.",
+      "forgeId": "batch-034#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Cooling Gap",
+      "question": "A kiln fires a batch for 50 minutes, then requires 20 minutes of cooling before another batch. It is already booked 9:00-10:10 and 12:00-1:10. A new batch must finish by noon. What is its latest possible start?",
+      "choices": [],
+      "correctAnswer": "10:50 AM",
+      "acceptedAnswers": [
+        "10:50 AM",
+        "10:50 in the morning",
+        "ten to eleven in the morning"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Scale Stories",
+      "correctExplanation": "Exactly. The earlier booking's cooling ends at 10:30, and starting at 10:50 lets firing end at 11:40 and cooling finish exactly when the noon booking begins.",
+      "incorrectExplanation": "The answer is 10:50 AM. Treat cooling as blocked kiln time after firing, then work backward 70 minutes from the noon booking; the resulting start also falls after the prior cooling ends.",
+      "lessonContent": "Setup, cleanup, and cooling times consume capacity even when the main task has ended.\nRepresent firing and cooling as one continuous blocked interval for the kiln.\nTo find the latest start, subtract every occupied stage from the next fixed booking.\nThen check the result against the previous booking's full blocked interval as well.\nShare this: add hidden reset time to one machine or room schedule you know.",
+      "forgeId": "batch-034#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Lunch Line",
+      "question": "A help desk needs at least two of Ana, Bo, and Cy on duty. Ana can lunch at 12:00 or 12:30, Bo at 12:30 or 1:00, and Cy at 12:00 or 1:00. Each lunch lasts 30 minutes, and lunches cannot overlap. When must Bo lunch?",
+      "choices": [],
+      "correctAnswer": "12:30 PM",
+      "acceptedAnswers": [
+        "12:30 PM",
+        "12:30 at lunchtime",
+        "half past noon"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Correct. Ana and Cy must occupy 12:00 and 1:00 in some order, leaving Bo's only non-overlapping choice at 12:30.",
+      "incorrectExplanation": "Bo must lunch at 12:30 PM. Because only one person may leave at once, the three lunches need distinct slots; Ana and Cy together must use the two edge slots, forcing Bo into the middle.",
+      "lessonContent": "Exclusive slots turn availability lists into an assignment problem.\nEach person needs one allowed slot, and each slot can be assigned only once.\nPeople with only edge choices constrain the flexible person before any guessing is needed.\nEliminating occupied choices reveals forced assignments even when several full schedules remain.\nShare this: make a three-person slot grid and cross out every unavailable choice.",
+      "forgeId": "batch-034#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Missing Monday",
+      "question": "Four reports, J, K, L, and M, are presented Monday through Thursday, one per day. J is before K. L is immediately after J. M is not Monday. K is Thursday. Which report is on Monday?",
+      "choices": [],
+      "correctAnswer": "Report J",
+      "acceptedAnswers": [
+        "Report J",
+        "J report",
+        "the J presentation"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Right. K occupies Thursday, and M is barred from Monday, so the consecutive J-L block must begin on Monday, placing J there.",
+      "incorrectExplanation": "The answer is Report J. With K fixed on Thursday, J-L can occupy Monday-Tuesday or Tuesday-Wednesday; the latter would force M onto forbidden Monday, leaving only the first placement.",
+      "lessonContent": "Logic-grid schedules combine fixed placements, relative order, and adjacency.\nPlace fixed events first because they remove the most possibilities immediately.\nTreat an adjacent pair such as J-L as a single block while testing its possible positions.\nA restriction on the leftover item can eliminate an otherwise plausible block placement.\nShare this: solve a four-slot schedule by placing its strongest clue first.",
+      "forgeId": "batch-034#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Speaker In Transit",
+      "question": "Mira speaks for 30 minutes in Hall East and later for 30 minutes in Hall West. Walking between halls takes 20 minutes. East offers 1:00 or 2:00 starts; West offers 1:40 or 2:20. If East must come first, which West start can she accept?",
+      "choices": [],
+      "correctAnswer": "2:20 PM",
+      "acceptedAnswers": [
+        "2:20 PM",
+        "14:20",
+        "twenty past two in the afternoon"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Exactly. The 1:40 West slot is unreachable even after the 1:00 East talk, which ends at 1:30 and needs travel through 1:50; the 2:20 slot works.",
+      "incorrectExplanation": "The answer is 2:20 PM. Add the full East duration and the inter-hall travel before comparing arrival with each West start; merely avoiding talk overlap is insufficient.",
+      "lessonContent": "Location changes add travel tasks between otherwise compatible appointments.\nAn appointment's effective finish includes the travel needed to reach the next location.\nCompare arrival time, not merely the first event's ending time, with each offered start.\nA pair of non-overlapping talks can still be impossible when their venues differ.\nShare this: add realistic travel buffers between two events on your calendar.",
+      "forgeId": "batch-034#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Panel Bottleneck",
+      "question": "Three 30-minute interviews start at 9:00, 9:30, and 10:00. Each needs two interviewers. Dana attends the first and third; Eli attends the first and second; Fran attends the second and third. Which interview has Dana and Fran together?",
+      "choices": [],
+      "correctAnswer": "The 10:00 interview",
+      "acceptedAnswers": [
+        "The 10:00 interview",
+        "the third interview",
+        "the final interview at ten"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Correct. Dana and Fran share only the third assignment, which is the interview beginning at 10:00.",
+      "incorrectExplanation": "The answer is the 10:00 interview. Compare the pair memberships rather than the individuals separately: first is Dana-Eli, second is Eli-Fran, and third is Dana-Fran.",
+      "lessonContent": "Multi-person appointments can be modeled as required resource combinations.\nWrite the assigned pair for each interview instead of tracking each person separately.\nComparing those pairs makes a shared assignment visible without schedule arithmetic.\nThis resource-set view scales to rooms, equipment, and credentials as well as people.\nShare this: label each meeting today with every person or resource it requires.",
+      "forgeId": "batch-034#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Sterile Sequence",
+      "question": "A procedure needs 30 minutes of preparation, 60 minutes in the operating room, then 20 minutes of recovery. Preparation may start only at or after 8:40 AM. The room is free 9:00-10:30, and recovery closes at 11:00. What is the earliest procedure start in the operating room?",
+      "choices": [],
+      "correctAnswer": "9:10 AM",
+      "acceptedAnswers": [
+        "9:10 AM",
+        "09:10",
+        "ten past nine in the morning"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Scale Stories",
+      "correctExplanation": "Right. Preparation runs from 8:40 to 9:10, so the room phase cannot start at 9:00; starting at 9:10 leaves ample time for the procedure and recovery before 11:00.",
+      "incorrectExplanation": "The earliest operating-room start is 9:10 AM. Although the room opens at 9:00, the 30-minute preparation cannot begin before 8:40, so readiness rather than room availability controls the start.",
+      "lessonContent": "A process starts when every prerequisite resource and task is ready, not when just one opens.\nThe room's opening time is only one lower bound on the procedure start.\nPreparation creates another lower bound by adding its duration to its earliest start.\nUse the later bound, then verify that all downstream stages still meet their deadlines.\nShare this: identify every prerequisite that controls the start of one planned task.",
+      "forgeId": "batch-034#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Route Before Closing",
+      "question": "A courier leaves at 1:00 PM. Either stop takes 15 minutes to reach directly, travel between A and B takes 10 minutes, and service takes 5 minutes at each stop. Stop A closes at 1:25 and Stop B at 2:00. Must the courier visit A or B first?",
+      "choices": [],
+      "correctAnswer": "Stop A first",
+      "acceptedAnswers": [
+        "Stop A first",
+        "visit A before B",
+        "A then B"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Exactly. Going directly to A arrives at 1:15 and completes service by 1:20; delaying A until after B would miss A's 1:25 closing.",
+      "incorrectExplanation": "The courier must visit Stop A first. Its tight closing window leaves only ten minutes of slack after direct arrival, while B's later deadline can absorb being second.",
+      "lessonContent": "Route scheduling combines travel durations with time windows at destinations.\nFor each possible order, accumulate travel and service before checking the next arrival.\nThe destination with the earliest closing time often has the least usable slack.\nTesting both orders shows whether that tight deadline truly forces the route.\nShare this: compare two errand orders using travel, service, and closing times.",
+      "forgeId": "batch-034#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Shared Students",
+      "question": "History, Music, Physics, and Art exams need time slots. History shares students with Music and Physics. Art shares students with Music and Physics. History and Art share none; Music and Physics share none. What is the minimum number of simultaneous-exam slots?",
+      "choices": [],
+      "correctAnswer": "2 time slots",
+      "acceptedAnswers": [
+        "2 time slots",
+        "two exam periods",
+        "a pair of slots"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Correct. Put History with Art in one slot and Music with Physics in the other; every conflicting pair is separated, and at least two slots are necessary because conflicts exist.",
+      "incorrectExplanation": "The minimum is 2 time slots. The conflict pattern splits into two compatible pairs, History-Art and Music-Physics, so each pair can run together while all cross-pair conflicts stay apart.",
+      "lessonContent": "Conflict scheduling can be drawn as a graph whose edges join tasks that cannot coincide.\nTasks without an edge between them are compatible and may share a time slot.\nHere the graph separates naturally into two compatible pairs across two slots.\nA single conflict proves one slot is impossible, while the pairing proves two are sufficient.\nShare this: draw a conflict graph for four events and group compatible ones.",
+      "forgeId": "batch-034#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Uneven Round Robin",
+      "question": "Four teams play one another once, making six matches. A team cannot play twice in the same time slot, but any number of fields are available. What is the minimum number of time slots needed?",
+      "choices": [],
+      "correctAnswer": "3 time slots",
+      "acceptedAnswers": [
+        "3 time slots",
+        "three rounds",
+        "a trio of match slots"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Right. Each team has three matches, so at least three slots are required, and pairing the teams differently in each round fits all six matches into exactly three.",
+      "incorrectExplanation": "The answer is 3 time slots. No team can complete its three matches faster, and two disjoint matches can run per slot, allowing all six matches across three rounds.",
+      "lessonContent": "Round-robin scheduling is limited by how many commitments each participant must fulfill.\nEach of four teams plays three matches, so no team can finish in fewer than three slots.\nTwo disjoint matches can run simultaneously because four different teams are available.\nRotating the pairings over three rounds reaches the lower bound without a collision.\nShare this: list the pairings for a four-team round robin in three rounds.",
+      "forgeId": "batch-034#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "One Safe Shutdown",
+      "question": "Servers A, B, and C each need one hour of maintenance between midnight and 3:00 AM. Only one can be offline at once. A must finish before B starts, B occupies the final hour, and C cannot start at midnight. Which server occupies 1:00-2:00?",
+      "choices": [],
+      "correctAnswer": "Server C",
+      "acceptedAnswers": [
+        "Server C",
+        "the C server",
+        "C maintenance"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Exactly. B is fixed in the final hour, C is barred from the first, and A must precede B, so C is forced into the middle hour.",
+      "incorrectExplanation": "The answer is Server C. Fix B at 2:00-3:00 first; because C cannot begin at midnight, A takes the first hour and C takes the only remaining slot.",
+      "lessonContent": "Maintenance windows are permutation puzzles when tasks have equal duration.\nEqual one-hour tasks map directly onto the three available hourly positions.\nPlace the fixed final task first, then apply exclusions to the remaining positions.\nPrecedence confirms which task can safely occupy the earliest opening.\nShare this: turn a three-hour maintenance window into three labeled slots.",
+      "forgeId": "batch-034#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Dose And Dinner",
+      "question": "A medicine is taken every 6 hours, at least 2 hours after food and at least 1 hour before food. One dose is fixed at noon. Dinner is sometime from 6:30 to 8:00 PM. What is the earliest dinner time that avoids conflict with the next dose?",
+      "choices": [],
+      "correctAnswer": "7:00 PM",
+      "acceptedAnswers": [
+        "7:00 PM",
+        "19:00",
+        "seven in the evening"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Correct. The next dose is at 6:00 PM, and because it precedes dinner by at least one hour, the earliest safe dinner is 7:00 PM.",
+      "incorrectExplanation": "The answer is 7:00 PM. Advancing six hours from noon fixes the dose at 6:00 PM; because dinner comes afterward, apply the one-hour before-food rule rather than the two-hour after-food rule.",
+      "lessonContent": "Recurring schedules generate fixed future points by adding the stated interval repeatedly.\nAdding six hours to noon fixes the next dose at 6:00 PM.\nWhen food follows a dose, apply the required before-food gap in the correct direction.\nThe earliest allowed meal is the later of its own opening and the dose-plus-gap time.\nShare this: plot one recurring event and its buffer rules on a timeline.",
+      "forgeId": "batch-034#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Platform Collision",
+      "question": "A station has one platform. Train R occupies it from 10:05 through 10:14, Train S from 10:20 through 10:27, and Train T needs 6 complete minutes. What is the earliest minute T can begin without sharing the platform?",
+      "choices": [],
+      "correctAnswer": "10:28 AM",
+      "acceptedAnswers": [
+        "10:28 AM",
+        "10:28 in the morning",
+        "twenty-eight past ten"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. The gap from 10:15 through 10:19 contains only five complete minutes, so T must wait until the minute after S leaves and begin at 10:28.",
+      "incorrectExplanation": "The earliest start is 10:28 AM. Inclusive minute labels make the apparent 10:15-10:20 gap only five usable minutes; after S occupies 10:20-10:27, the next free minute is 10:28.",
+      "lessonContent": "Discrete schedules require clarity about whether labeled endpoints are occupied.\nInclusive labels mean 10:05 through 10:14 consumes ten complete minute positions.\nCount the free positions in a gap instead of subtracting the printed endpoints casually.\nA five-minute gap cannot hold a task needing six complete discrete minutes.\nShare this: mark occupied minutes on a number line and count the open positions.",
+      "forgeId": "batch-034#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Editor Exchange",
+      "question": "A draft needs 40 minutes with Lee, then 30 minutes with Noor. Lee is free 2:00-3:00. Noor is free 2:20-2:50 and 3:10-4:00. The draft cannot be reviewed by both at once. What is the earliest completion time?",
+      "choices": [],
+      "correctAnswer": "3:40 PM",
+      "acceptedAnswers": [
+        "3:40 PM",
+        "15:40",
+        "twenty to four in the afternoon"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Exactly. Lee can finish at 2:40, but Noor's first window then has only ten minutes left, so Noor must use 3:10-3:40.",
+      "incorrectExplanation": "The earliest completion is 3:40 PM. Complete Lee's stage at 2:40, reject Noor's too-short remaining early window, and place the full second stage in Noor's next opening.",
+      "lessonContent": "Sequential handoffs require the second resource to receive the task only after the first finishes.\nFinish Lee's stage first, then measure what remains in Noor's current window.\nA window that overlaps the handoff time is useless if its remaining portion is too short.\nThe earliest valid completion comes from the first later window that fits the whole second stage.\nShare this: check both handoff time and remaining window length in a two-person task.",
+      "forgeId": "batch-034#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Handoff Coverage",
+      "question": "A control room needs one operator continuously. Inez works 8:00-12:00, Jules works 11:50-4:00, and a required handoff takes 15 minutes with both present. By how many minutes must Jules start earlier for a valid handoff?",
+      "choices": [],
+      "correctAnswer": "5 minutes",
+      "acceptedAnswers": [
+        "5 minutes",
+        "five min earlier",
+        "an extra five minutes"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Correct. Their scheduled overlap is only ten minutes, from 11:50 to noon, so Jules must add five minutes to reach the required fifteen-minute handoff.",
+      "incorrectExplanation": "The answer is 5 minutes. Calculate the existing overlap first: noon minus 11:50 is ten minutes, leaving a five-minute shortfall against the required handoff.",
+      "lessonContent": "Shift changes may require overlap rather than merely gap-free coverage.\nSubtract the later start from the earlier finish to measure the existing overlap.\nCompare that overlap with the required handoff duration to find the shortfall.\nMoving the incoming shift earlier by exactly the shortfall preserves continuous coverage.\nShare this: calculate the overlap between two shifts before scheduling a handoff.",
+      "forgeId": "batch-034#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Paint Before Polish",
+      "question": "A product needs 35 minutes of painting, 25 minutes of drying, and 20 minutes of polishing, in that order. Painting can start at 1:10 PM. The polisher is unavailable after 2:45 PM. What is the latest painting start that still finishes polishing?",
+      "choices": [],
+      "correctAnswer": "1:25 PM",
+      "acceptedAnswers": [
+        "1:25 PM",
+        "13:25",
+        "twenty-five past one in the afternoon"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Scale Stories",
+      "correctExplanation": "Right. The full chain lasts 80 minutes, so working backward from 2:45 places painting at 1:25; polishing then runs from 2:25 to 2:45.",
+      "incorrectExplanation": "The latest start is 1:25 PM. Add every stage, including the passive drying interval, to get 80 minutes, then subtract that chain from the polisher's 2:45 deadline.",
+      "lessonContent": "A process chain includes passive waits when later work cannot begin during them.\nPainting, drying, and polishing form one 80-minute dependency chain.\nPassive drying still advances the clock even though no worker is actively handling the product.\nSubtract the entire chain from the final deadline to find the latest safe start.\nShare this: include waiting time when estimating the finish of a multistage job.",
+      "forgeId": "batch-034#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Delayed Release",
+      "question": "Three software updates each take 20 minutes and share one deployment engineer. Blue must precede Red, and Red must precede Gold. Red cannot start before 10:20. Gold must finish by 11:00. Work begins at 10:00 with no gaps. Which update runs second?",
+      "choices": [],
+      "correctAnswer": "Red",
+      "acceptedAnswers": [
+        "Red",
+        "the Red update",
+        "Red deployment"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Exactly. The required Blue-Red-Gold order places Red in the middle, and its 10:20 start respects the release time while Gold finishes exactly at 11:00.",
+      "incorrectExplanation": "The answer is Red. Translate the precedence chain directly into Blue first, Red second, and Gold third; the release time and deadline confirm that this sequence fits from 10:00 to 11:00.",
+      "lessonContent": "Equal-duration tasks turn a continuous window into a sequence of discrete positions.\nPrecedence constraints can then be read as ordering rules for those positions.\nRelease times rule out positions before a task becomes available.\nDeadlines provide a final check that the ordered sequence fits the shared resource window.\nShare this: divide one hour into equal slots and order three dependent tasks.",
+      "forgeId": "batch-034#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Quiet Recording",
+      "question": "A 50-minute voice recording needs Studio 1 while the adjacent studio is silent. Studio 1 is free 3:00-5:00. Adjacent sessions run 3:20-3:50 and 4:40-5:00. What is the only possible recording start on a 10-minute grid?",
+      "choices": [],
+      "correctAnswer": "3:50 PM",
+      "acceptedAnswers": [
+        "3:50 PM",
+        "15:50",
+        "ten to four in the afternoon"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Correct. The silent interval from 3:50 to 4:40 is exactly 50 minutes; the earlier and later silent portions are each only 20 minutes.",
+      "incorrectExplanation": "The only start is 3:50 PM. Subtract the adjacent studio's noisy intervals from Studio 1's opening; only the middle silent gap can contain all fifty minutes.",
+      "lessonContent": "Some bookings depend on the state of neighboring resources, not just the one being reserved.\nSubtract the adjacent studio's noisy sessions from Studio 1's free interval.\nThe resulting silent gaps, not the room's overall opening, are the true candidate windows.\nOnly a gap at least 50 minutes long can contain the recording without interruption.\nShare this: list indirect constraints that could disrupt a room you plan to use.",
+      "forgeId": "batch-034#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Alternating Fridays",
+      "question": "A committee meets every other Friday. It met on Friday, March 1. A quarterly review must be on a committee meeting date after March 20 but before April 1. Assuming March has 31 days, on what date must it occur?",
+      "choices": [],
+      "correctAnswer": "March 29",
+      "acceptedAnswers": [
+        "March 29",
+        "29 March",
+        "the twenty-ninth of March"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Right. Advancing in 14-day steps gives March 15 and March 29, and only March 29 falls strictly after March 20 and before April 1.",
+      "incorrectExplanation": "The answer is March 29. An every-other-Friday recurrence advances by fourteen days, not by choosing any alternate-looking Friday; the generated dates must then be filtered by the review window.",
+      "lessonContent": "Recurring appointments form arithmetic sequences measured in calendar days.\nEvery other Friday means a constant step of fourteen days between meetings.\nGenerate the recurrence from the known date before filtering it against the target window.\nStrict words such as after and before exclude the dates named as boundaries.\nShare this: advance a calendar event by fourteen-day steps and test a date range.",
+      "forgeId": "batch-034#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Parallel Preparation",
+      "question": "A launch needs a 40-minute code check and a 25-minute legal check; they may run simultaneously. A 15-minute final approval starts only after both finish. If all work begins at 2:00 PM, when is the earliest launch approval complete?",
+      "choices": [],
+      "correctAnswer": "2:55 PM",
+      "acceptedAnswers": [
+        "2:55 PM",
+        "14:55",
+        "five to three in the afternoon"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Scale Stories",
+      "correctExplanation": "Exactly. Parallel checks finish when the longer one ends at 2:40, then final approval adds fifteen minutes and completes at 2:55.",
+      "incorrectExplanation": "The earliest completion is 2:55 PM. Do not add parallel durations; take the later of their finish times, then append the approval that depends on both.",
+      "lessonContent": "Parallel tasks contribute their maximum duration rather than their sum to elapsed time.\nThe final approval waits for both checks, so the longer check controls its earliest start.\nThis meeting point is the maximum of the parallel tasks' finish times.\nOnly dependent work after that point is added to the elapsed duration.\nShare this: sketch two parallel tasks joining into one final approval.",
+      "forgeId": "batch-034#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Capacity At Noon",
+      "question": "A test lab can run at most two jobs at once. A runs 9:00-10:00, B runs 9:00-11:00, C runs 10:00-noon, and D needs one uninterrupted hour ending by noon. What is the latest D can start?",
+      "choices": [],
+      "correctAnswer": "11:00 AM",
+      "acceptedAnswers": [
+        "11:00 AM",
+        "11 before noon",
+        "eleven in the morning"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Correct. B and C fill both places from 10:00 to 11:00, but B then finishes, leaving room for D alongside C until noon.",
+      "incorrectExplanation": "The latest start is 11:00 AM. Count concurrent jobs across each boundary: B and C fill capacity from 10:00 to 11:00, while only C remains during the final hour.",
+      "lessonContent": "Capacity scheduling tracks how many tasks occupy a resource pool at each moment.\nSplit the timeline wherever any job starts or ends, then count active jobs in each segment.\nA new job can run only where the count stays below the lab's capacity for its full duration.\nThe final hour has one open place, making 11:00 the latest feasible start.\nShare this: count concurrent tasks across each boundary in a shared resource schedule.",
+      "forgeId": "batch-034#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "One Day Apart",
+      "question": "A workshop must be Tuesday, Wednesday, or Thursday. A follow-up must occur exactly two days later. The host is unavailable Wednesday and Saturday, and both events need the host. On which day must the workshop occur?",
+      "choices": [],
+      "correctAnswer": "Tuesday",
+      "acceptedAnswers": [
+        "Tuesday",
+        "on Tuesday",
+        "the Tuesday slot"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Bonus Round",
+      "correctExplanation": "Right. Tuesday leads to a Thursday follow-up, when the host is free; Wednesday is itself blocked, and Thursday would place the follow-up on blocked Saturday.",
+      "incorrectExplanation": "The workshop must be Tuesday. Test each candidate together with its linked date: Wednesday fails immediately, Thursday creates a Saturday conflict, and Tuesday pairs safely with Thursday.",
+      "lessonContent": "Linked-date constraints must be evaluated as pairs rather than as isolated events.\nFor each workshop candidate, calculate the follow-up date exactly two days later.\nReject a candidate if either member of its linked pair violates availability.\nTesting complete pairs prevents a valid first event from hiding an impossible follow-up.\nShare this: pair each candidate date with its required follow-up before choosing.",
+      "forgeId": "batch-034#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "type-answer",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Rotating Night Duty",
+      "question": "Ari, Bea, and Chen cover Monday, Tuesday, and Wednesday nights, one each. Nobody works consecutive nights. Ari cannot work Monday. Bea cannot work Wednesday. Chen worked Sunday night and cannot work Tuesday. Who covers Tuesday?",
+      "choices": [],
+      "correctAnswer": "Ari",
+      "acceptedAnswers": [
+        "Ari",
+        "Ari covers Tuesday",
+        "Tuesday's operator is Ari"
+      ],
+      "xpReward": 25,
+      "lessonGroup": "Think Different",
+      "correctExplanation": "Exactly. Chen is unavailable Monday after working Sunday and is also unavailable Tuesday, while Bea takes Monday and cannot work consecutively; Ari is therefore forced into Tuesday.",
+      "incorrectExplanation": "The answer is Ari. Sunday duty blocks Chen on Monday, so Bea must take Monday; Bea cannot then work Tuesday, and Chen is explicitly unavailable, leaving Ari for the middle night.",
+      "lessonContent": "Rolling schedules can inherit constraints from the period immediately before the visible window.\nChen's Sunday duty affects Monday even though Sunday is outside the displayed schedule.\nPlace boundary constraints first, then propagate rest rules into later nights.\nExplicit unavailability can resolve a choice that the no-consecutive rule leaves open.\nShare this: include the prior shift when checking a rotating duty schedule.",
+      "forgeId": "batch-034#24",
+      "forgeScore": 100
+    }
+  ]
+}

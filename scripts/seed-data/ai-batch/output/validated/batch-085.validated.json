@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-085",
+  "generatedAt": "2026-09-17T13:27:42.791Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Doubling Rule",
+      "question": "A sequence doubles each time: 2, 4, 8, 16. Which number continues it?",
+      "choices": [
+        "32",
+        "24",
+        "20",
+        "18"
+      ],
+      "correctAnswer": "32",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 32. Each term is twice the one before, so sixteen doubles to thirty-two.",
+      "incorrectExplanation": "The answer is 32. Adding rather than doubling would give a smaller number and break the pattern.",
+      "lessonContent": "Find the rule before extending.\nTest the rule on several terms.\nDistinguish adding from multiplying.\nExtend only after the rule fits.\nShare this: identify the operation in one series you meet.",
+      "forgeId": "batch-085#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Sum of Pair",
+      "question": "Each term is the sum of the two before it: 1, 1, 2, 3, 5, 8. Which number follows?",
+      "choices": [
+        "13",
+        "11",
+        "16",
+        "10"
+      ],
+      "correctAnswer": "13",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 13. Five plus eight gives the next term in this classic recursive series.",
+      "incorrectExplanation": "The answer is 13. Adding the last two terms is the rule; extrapolating a different pattern fails on earlier terms.",
+      "lessonContent": "Recursive rules use earlier terms.\nCheck the rule against every step.\nSmall seeds can grow quickly.\nVerify before extending.\nShare this: find the rule that builds each term from the last ones.",
+      "forgeId": "batch-085#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Perfect Squares",
+      "question": "A pattern of perfect squares runs 1, 4, 9, 16. Which number continues it?",
+      "choices": [
+        "25",
+        "24",
+        "20",
+        "36"
+      ],
+      "correctAnswer": "25",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 25. These are the squares of one, two, three, four, and next five.",
+      "incorrectExplanation": "The answer is 25. Recognising squares of counting numbers is faster than measuring the gaps one by one.",
+      "lessonContent": "Familiar shapes hide in number lists.\nRecognise patterns instead of computing gaps.\nCheck the rule against early terms.\nName the pattern to confirm it.\nShare this: spot one familiar number pattern in daily data.",
+      "forgeId": "batch-085#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Doubling from Three",
+      "question": "Starting at three, each term doubles: 3, 6, 12, 24. What comes next?",
+      "choices": [
+        "48",
+        "36",
+        "42",
+        "30"
+      ],
+      "correctAnswer": "48",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 48. Doubling twenty-four gives forty-eight.",
+      "incorrectExplanation": "The answer is 48. The starting value does not change the rule, only the numbers it produces.",
+      "lessonContent": "The rule matters more than the seed.\nApply the same operation each step.\nDo not let the starting value distract you.\nCheck one step to confirm.\nShare this: apply one simple rule from a different starting point.",
+      "forgeId": "batch-085#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Widening Steps",
+      "question": "The gaps grow by one each time: 1, 2, 4, 7, 11. What is the next term?",
+      "choices": [
+        "16",
+        "15",
+        "17",
+        "14"
+      ],
+      "correctAnswer": "16",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 16. The gaps are one, two, three, four, and next five, so eleven plus five is sixteen.",
+      "incorrectExplanation": "The answer is 16. Counting the gaps rather than the terms reveals the pattern.",
+      "lessonContent": "Differences between terms can hide the rule.\nList the gaps explicitly.\nSometimes the gaps form the simple sequence.\nLook one level deeper.\nShare this: write out the gaps in one series you encounter.",
+      "forgeId": "batch-085#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Halving Value",
+      "question": "A value is halved each step: 100, 50, 25. What is the next term?",
+      "choices": [
+        "12.5",
+        "10",
+        "15",
+        "5"
+      ],
+      "correctAnswer": "12.5",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 12.5. Half of twenty-five is twelve and a half.",
+      "incorrectExplanation": "The answer is 12.5. Repeated halving can leave fractions, which is the point of the pattern.",
+      "lessonContent": "Patterns can leave whole numbers behind.\nDo not force integers when the rule does not.\nHalving repeats predictably.\nAccept fractional results.\nShare this: halve a value three times and note the result.",
+      "forgeId": "batch-085#5",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Cubes Climb",
+      "question": "Cubes of the counting numbers: 1, 8, 27, 64. Which term follows?",
+      "choices": [
+        "125",
+        "100",
+        "81",
+        "216"
+      ],
+      "correctAnswer": "125",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 125. These are one cubed, two cubed, three cubed, four cubed, and next five cubed.",
+      "incorrectExplanation": "The answer is 125. The gaps grow rapidly because cubes rise faster than squares.",
+      "lessonContent": "Higher powers grow faster.\nRecognise familiar families of numbers.\nCheck the base against its exponent.\nName the pattern to confirm.\nShare this: compare squares and cubes for the number five.",
+      "forgeId": "batch-085#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Consecutive Products",
+      "question": "Products of consecutive integers: 2, 6, 12, 20, 30. What comes next?",
+      "choices": [
+        "42",
+        "40",
+        "36",
+        "45"
+      ],
+      "correctAnswer": "42",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 42. Six times seven gives forty-two, continuing the pattern of adjacent pairs.",
+      "incorrectExplanation": "The answer is 42. The terms are products of neighbouring numbers, not simple sums.",
+      "lessonContent": "Some sequences multiply neighbours.\nTest whether terms factor neatly.\nFactoring reveals hidden structure.\nConfirm the rule across all terms.\nShare this: factor one number to find a hidden pattern.",
+      "forgeId": "batch-085#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Triangular Growth",
+      "question": "Triangular numbers: 1, 3, 6, 10, 15. What is the next one?",
+      "choices": [
+        "21",
+        "20",
+        "18",
+        "24"
+      ],
+      "correctAnswer": "21",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 21. Adding the next number, six, to fifteen gives twenty-one.",
+      "incorrectExplanation": "The answer is 21. Each term adds one more than the previous addition, forming the triangular family.",
+      "lessonContent": "Some patterns come from stacking.\nThe added amount grows by one.\nRecognise well-known families.\nConnect number patterns to shapes.\nShare this: imagine dots arranged in a triangle and count a row.",
+      "forgeId": "batch-085#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Times Two",
+      "question": "Each step multiplies by two starting at five: 5, 10, 20, 40. What follows?",
+      "choices": [
+        "80",
+        "60",
+        "50",
+        "70"
+      ],
+      "correctAnswer": "80",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 80. Doubling forty gives eighty.",
+      "incorrectExplanation": "The answer is 80. Adding the same difference each time would not match the earlier steps.",
+      "lessonContent": "Check whether growth is additive or multiplicative.\nConstant differences and constant ratios differ.\nTest the rule on every step.\nChoose the operation that fits all terms.\nShare this: classify one growth pattern as adding or multiplying.",
+      "forgeId": "batch-085#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Divided by Three",
+      "question": "Dividing by three repeatedly gives 81, 27, 9, 3. What is the next number?",
+      "choices": [
+        "1",
+        "0",
+        "3",
+        "9"
+      ],
+      "correctAnswer": "1",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 1. Three divided by three is one, the next step down the scale.",
+      "incorrectExplanation": "The answer is 1. Dividing keeps the terms positive, unlike subtracting the same amount.",
+      "lessonContent": "Division patterns descend toward one.\nDistinguish dividing from subtracting.\nSmall terms still follow the rule.\nCheck the final step carefully.\nShare this: divide a number by the same value until you reach one.",
+      "forgeId": "batch-085#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Factorial Jump",
+      "question": "Factorials run 1, 2, 6, 24, 120. What term comes next?",
+      "choices": [
+        "720",
+        "600",
+        "144",
+        "240"
+      ],
+      "correctAnswer": "720",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 720. Multiplying one hundred and twenty by six gives seven hundred and twenty.",
+      "incorrectExplanation": "The answer is 720. Each term multiplies the last by the next counting number.",
+      "lessonContent": "Some growth multiplies by increasing factors.\nRecognise factorial-like patterns.\nRatios between terms reveal the rule.\nCompute carefully as numbers grow fast.\nShare this: compute one factorial-like product by hand.",
+      "forgeId": "batch-085#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Square List",
+      "question": "Squares from four onward: 4, 9, 16, 25. Which number continues the list?",
+      "choices": [
+        "36",
+        "30",
+        "35",
+        "49"
+      ],
+      "correctAnswer": "36",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 36. Six squared continues the pattern of consecutive squares.",
+      "incorrectExplanation": "The answer is 36. The gaps grow by two each time, which is the signature of squares.",
+      "lessonContent": "Growing gaps often signal squares.\nCheck the root of each term.\nFamiliar families recur across contexts.\nConfirm with the base numbers.\nShare this: identify the roots behind one number list.",
+      "forgeId": "batch-085#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Fibonacci Style",
+      "question": "A recursive list starts 0, 1, 1, 2, 3, 5, 8. What follows?",
+      "choices": [
+        "13",
+        "11",
+        "10",
+        "16"
+      ],
+      "correctAnswer": "13",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 13. Adding the last two terms, five and eight, gives thirteen.",
+      "incorrectExplanation": "The answer is 13. The recurrence uses the previous two terms, so simple differences mislead.",
+      "lessonContent": "Recurrence can start from zero.\nEach term may depend on the last two.\nOrder matters in recursive rules.\nVerify against several steps.\nShare this: build a short recursive list and predict the next term.",
+      "forgeId": "batch-085#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Even Climb",
+      "question": "Even numbers climb 2, 4, 6, 8. Which number is next?",
+      "choices": [
+        "10",
+        "9",
+        "12",
+        "11"
+      ],
+      "correctAnswer": "10",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 10. Adding two to eight gives the next even number.",
+      "incorrectExplanation": "The answer is 10. The constant gap of two identifies this as the even-number family.",
+      "lessonContent": "Constant gaps signal arithmetic patterns.\nThe gap size names the family.\nExtend by repeating the gap.\nCheck parity when numbers alternate.\nShare this: extend one simple counting pattern by its constant gap.",
+      "forgeId": "batch-085#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Adding Three",
+      "question": "Adding three each time: 1, 4, 7, 10. What comes next?",
+      "choices": [
+        "13",
+        "14",
+        "12",
+        "15"
+      ],
+      "correctAnswer": "13",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 13. Ten plus three gives thirteen, keeping the constant gap.",
+      "incorrectExplanation": "The answer is 13. Doubling would overshoot, so the constant addition is the correct rule.",
+      "lessonContent": "Constant gaps are the simplest pattern.\nIdentify the gap from two terms.\nApply it consistently.\nDo not mistake multiplication for addition.\nShare this: find the gap in one series and extend it once.",
+      "forgeId": "batch-085#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Bigger Subtractions",
+      "question": "The subtractions grow: 10, 9, 7, 4. What number follows?",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "correctAnswer": "0",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 0. Subtracting four from four leaves zero as the final term.",
+      "incorrectExplanation": "The answer is 0. The amounts removed are one, two, three, and next four, so the sequence reaches zero exactly.",
+      "lessonContent": "Differences can grow and reach zero.\nTrack the size of each subtraction.\nThe endpoint may be a boundary value.\nCheck whether the pattern completes.\nShare this: subtract a growing amount until the series stops.",
+      "forgeId": "batch-085#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Powers of Two",
+      "question": "Powers of two: 1, 2, 4, 8, 16, 32. Which term follows?",
+      "choices": [
+        "64",
+        "48",
+        "40",
+        "56"
+      ],
+      "correctAnswer": "64",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 64. Doubling thirty-two gives sixty-four, the next power of two.",
+      "incorrectExplanation": "The answer is 64. Each term is twice the previous one, which is the defining feature of this family.",
+      "lessonContent": "Recognise familiar exponential families.\nDoubling recurs in many contexts.\nPowers grow quickly at the tail.\nConfirm by halving back.\nShare this: double a small number until it feels large.",
+      "forgeId": "batch-085#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Doubling from Six",
+      "question": "Doubling from six: 6, 12, 24, 48. What is the next term?",
+      "choices": [
+        "96",
+        "84",
+        "72",
+        "60"
+      ],
+      "correctAnswer": "96",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 96. Doubling forty-eight gives ninety-six.",
+      "incorrectExplanation": "The answer is 96. The gap grows with each step, which rules out a constant difference.",
+      "lessonContent": "Growing gaps indicate multiplication.\nConstant gaps indicate addition.\nClassify before extending.\nConfirm the operation on two steps.\nShare this: decide whether one pattern adds or multiplies.",
+      "forgeId": "batch-085#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Times Five",
+      "question": "Multiplying by five: 1, 5, 25, 125. Which number continues the series?",
+      "choices": [
+        "625",
+        "500",
+        "250",
+        "300"
+      ],
+      "correctAnswer": "625",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 625. Multiplying one hundred and twenty-five by five gives six hundred and twenty-five.",
+      "incorrectExplanation": "The answer is 625. Adding five would fall far short, so the ratio of five is the rule.",
+      "lessonContent": "Check the ratio between consecutive terms.\nA constant ratio means multiplication.\nRatios of five grow quickly.\nCompute the product carefully.\nShare this: find the ratio in one growth series.",
+      "forgeId": "batch-085#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "One Less",
+      "question": "Each term is one less than a power of two: 3, 7, 15, 31. What comes next?",
+      "choices": [
+        "63",
+        "62",
+        "64",
+        "47"
+      ],
+      "correctAnswer": "63",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 63. Sixty-four minus one gives sixty-three, continuing the pattern.",
+      "incorrectExplanation": "The answer is 63. Recognising the nearby powers of two reveals the rule behind the odd-looking gaps.",
+      "lessonContent": "Terms can sit near a familiar family.\nLook for a small offset from a known pattern.\nSpotting the family simplifies the work.\nVerify the offset on every term.\nShare this: find a familiar pattern just beside one series.",
+      "forgeId": "batch-085#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Odd Differences",
+      "question": "The differences are odd numbers: 2, 5, 10, 17, 26. What follows?",
+      "choices": [
+        "37",
+        "35",
+        "34",
+        "40"
+      ],
+      "correctAnswer": "37",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 37. The gaps are three, five, seven, nine, and next eleven, so twenty-six plus eleven is thirty-seven.",
+      "incorrectExplanation": "The answer is 37. Listing the differences exposes the pattern that the terms alone conceal.",
+      "lessonContent": "Differences often follow their own sequence.\nWrite them out to see the rule.\nOdd gaps grow by two each time.\nLook one level down.\nShare this: list the gaps in one sequence and find their pattern.",
+      "forgeId": "batch-085#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Odd Additions",
+      "question": "Each term adds the next odd number: 0, 3, 8, 15, 24. Which term comes next?",
+      "choices": [
+        "35",
+        "34",
+        "36",
+        "33"
+      ],
+      "correctAnswer": "35",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 35. The additions are three, five, seven, nine, and next eleven, so twenty-four plus eleven is thirty-five.",
+      "incorrectExplanation": "The answer is 35. The growing gaps are consecutive odd numbers, which is the hidden rule.",
+      "lessonContent": "Consecutive odd gaps are a common pattern.\nTrack how much each step adds.\nThe increments themselves form a series.\nConfirm across all terms.\nShare this: identify the growing increments in one number list.",
+      "forgeId": "batch-085#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Dividing by Ten",
+      "question": "Dividing by ten each time: 1000, 100, 10. What number follows?",
+      "choices": [
+        "1",
+        "0",
+        "10",
+        "100"
+      ],
+      "correctAnswer": "1",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 1. Ten divided by ten is one, the next step down the scale.",
+      "incorrectExplanation": "The answer is 1. Dividing by ten removes one place value each step rather than reaching zero.",
+      "lessonContent": "Decimal places shift predictably.\nDividing by ten removes a zero visually.\nDistinguish this from subtracting.\nCheck the final place value.\nShare this: divide a round number by ten until it becomes one.",
+      "forgeId": "batch-085#23",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Multiples of Seven",
+      "question": "Multiples of seven: 7, 14, 21, 28. What is the next multiple?",
+      "choices": [
+        "35",
+        "34",
+        "36",
+        "42"
+      ],
+      "correctAnswer": "35",
+      "xpReward": 25,
+      "lessonGroup": "Sequence Secrets",
+      "correctExplanation": "Exactly 35. Five times seven is thirty-five, continuing the family of multiples.",
+      "incorrectExplanation": "The answer is 35. Skipping to forty-two would miss the next multiple in order.",
+      "lessonContent": "Multiples form constant-gap series.\nThe gap equals the base number.\nKeep the family in order.\nCheck by dividing the term.\nShare this: list a few multiples of one number from memory.",
+      "forgeId": "batch-085#24",
+      "forgeScore": 100
+    }
+  ]
+}

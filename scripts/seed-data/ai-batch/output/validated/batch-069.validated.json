@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-069",
+  "generatedAt": "2026-09-17T13:27:42.484Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Inside View",
+      "question": "A team estimates a project will take three months, reasoning only from the plan in front of them. Which forecasting error does this illustrate?",
+      "choices": [
+        "The estimate came from the inside view",
+        "The estimate borrowed from finished projects",
+        "The estimate used a wide confidence range",
+        "The estimate ignored the current details"
+      ],
+      "correctAnswer": "The estimate came from the inside view",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. The team reasoned only from the plan's details rather than comparing with comparable finished work.",
+      "incorrectExplanation": "The answer is: the estimate came from the inside view. The outside view would anchor on how long comparable work actually took.",
+      "lessonContent": "Plans are built from imagined steps.\nImagined steps rarely match lived ones.\nAnchor estimates on completed comparable work.\nUse your plan for detail, history for duration.\nShare this: time one upcoming task against how long its twin took.",
+      "forgeId": "batch-069#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Reference Class",
+      "question": "A supplier checks how long comparable orders took last year before quoting a delivery date. Which principle is being applied?",
+      "choices": [
+        "Forecasting should start from similar past cases",
+        "Forecasting should ignore all previous orders",
+        "Forecasting should trust only the latest order",
+        "Forecasting should begin with the largest order"
+      ],
+      "correctAnswer": "Forecasting should start from similar past cases",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Comparing against a group of comparable completed jobs grounds the estimate in evidence.",
+      "incorrectExplanation": "The answer is: forecasting should start from similar past cases. A group of precedents corrects the optimism of a single imagined plan.",
+      "lessonContent": "A reference class turns anecdotes into evidence.\nChoose the class carefully; too broad misleads.\nCompare like with like, then adjust.\nPrecedent beats prediction when history is rich.\nShare this: build a small reference class for one decision today.",
+      "forgeId": "batch-069#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Hofstadters Rule",
+      "question": "Everyone knows that projects overrun, yet each team still promises it will finish exactly on schedule. Which rule names this pattern?",
+      "choices": [
+        "Knowing delays recur, we still expect to finish on time",
+        "Knowing delays recur, we pad every estimate",
+        "Knowing delays recur, we cancel every project",
+        "Knowing delays recur, we finish ahead of plan"
+      ],
+      "correctAnswer": "Knowing delays recur, we still expect to finish on time",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. The rule captures how awareness of overruns never seems to correct the next promise.",
+      "incorrectExplanation": "The answer is: knowing delays recur, we still expect to finish on time. Each team treats its own plan as the exception to a rule it fully accepts.",
+      "lessonContent": "Awareness of a bias does not remove it.\nSelf-exemption is the hidden move.\nApply the base rate to your own case too.\nAssume the overrun, then plan around it.\nShare this: add an explicit buffer to one estimate today.",
+      "forgeId": "batch-069#2",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Optimism Bias",
+      "question": "A study finds that most renovation projects cost more and please less than their owners expected. Which bias does this describe?",
+      "choices": [
+        "We underestimate costs and overestimate benefits",
+        "We overestimate costs and underestimate benefits",
+        "We estimate costs and benefits perfectly",
+        "We ignore both costs and benefits entirely"
+      ],
+      "correctAnswer": "We underestimate costs and overestimate benefits",
+      "xpReward": 25,
+      "lessonGroup": "Fallacy Field Guide",
+      "correctExplanation": "Right. The pattern is systematic: outlays surprise upward while payoffs disappoint downward.",
+      "incorrectExplanation": "The answer is: we underestimate costs and overestimate benefits. Planning would improve if the base rate, not the hope, set the starting point.",
+      "lessonContent": "Forecasts skew toward the outcome we want.\nSystematic error distorts whole industries.\nUse base rates as the neutral anchor.\nDiscount your own rosy estimate by default.\nShare this: revise one budget tonight using the base rate instead.",
+      "forgeId": "batch-069#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Premortem Habit",
+      "question": "Before launching, a team imagines the project has failed and writes down every plausible cause. What does this exercise achieve?",
+      "choices": [
+        "Imagining failure in advance surfaces hidden risks",
+        "Imagining failure in advance guarantees success",
+        "Imagining failure in advance wastes the team's time",
+        "Imagining failure in advance replaces the plan"
+      ],
+      "correctAnswer": "Imagining failure in advance surfaces hidden risks",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Assuming the failure has already happened frees people to name worries they would otherwise suppress.",
+      "incorrectExplanation": "The answer is: imagining failure in advance surfaces hidden risks. The technique does not predict doom but enlarges the list of things worth watching.",
+      "lessonContent": "Dissent is easier when the outcome is already assumed.\nNaming risks lowers their surprise value.\nA premortem converts silence into a checklist.\nPractise the failure before living it.\nShare this: run a five-minute premortem before your next big step.",
+      "forgeId": "batch-069#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Buffer Eaten",
+      "question": "A manager adds slack to a schedule, and the extra time quietly disappears into small additions. What is the lesson?",
+      "choices": [
+        "Padding a plan can be absorbed by scope creep",
+        "Padding a plan always shortens the project",
+        "Padding a plan removes every hidden risk",
+        "Padding a plan eliminates the need to plan"
+      ],
+      "correctAnswer": "Padding a plan can be absorbed by scope creep",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Extra time is a resource that unplanned work tends to consume unless it is fenced off.",
+      "incorrectExplanation": "The answer is: padding a plan can be absorbed by scope creep. Slack only protects the deadline if new demands are refused or traded.",
+      "lessonContent": "Slack is a resource and can be spent.\nUnfenced buffer invites extra work.\nProtect reserve by trading, not adding.\nName what the buffer is for.\nShare this: declare today what one reserve must not be used for.",
+      "forgeId": "batch-069#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Range Not Date",
+      "question": "Asked when a task will finish, an experienced planner gives a best and worst case rather than one date. Why?",
+      "choices": [
+        "A range is more honest than a single date",
+        "A range hides the planner's uncertainty",
+        "A range is always wider than reality",
+        "A range means the planner has no idea"
+      ],
+      "correctAnswer": "A range is more honest than a single date",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. A range expresses the real uncertainty that a single number falsely hides.",
+      "incorrectExplanation": "The answer is: a range is more honest than a single date. Precision that outruns evidence is a promise the planner cannot keep.",
+      "lessonContent": "Uncertainty is information, not weakness.\nSingle numbers overstate knowledge.\nGive bounds and state confidence.\nLet ranges guide buffers and decisions.\nShare this: express one estimate today as a range instead of a point.",
+      "forgeId": "batch-069#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Back to Average",
+      "question": "A firm celebrated a record sales month, and the next month was ordinary. What statistical effect explains this?",
+      "choices": [
+        "An extreme result tends to drift back toward average",
+        "An extreme result always repeats exactly",
+        "An extreme result means the firm is failing",
+        "An extreme result cannot be measured at all"
+      ],
+      "correctAnswer": "An extreme result tends to drift back toward average",
+      "xpReward": 25,
+      "lessonGroup": "Mind the Odds",
+      "correctExplanation": "Right. Very high or low outcomes usually reflect some luck that does not persist.",
+      "incorrectExplanation": "The answer is: an extreme result tends to drift back toward average. Reading the return as failure, or the peak as a new normal, misreads random noise.",
+      "lessonContent": "Extremes contain luck as well as signal.\nExpect regression after unusual results.\nJudge interventions against the expected drift.\nDo not treat noise as a trend.\nShare this: note tonight an extreme result and predict its likely drift.",
+      "forgeId": "batch-069#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "After the Fact",
+      "question": "Once an election result is known, commentators say the outcome was obvious all along. Which bias is at work?",
+      "choices": [
+        "We call outcomes predictable only after they happen",
+        "We predict outcomes accurately before they happen",
+        "We remember only the most unlikely outcomes",
+        "We ignore outcomes that already happened"
+      ],
+      "correctAnswer": "We call outcomes predictable only after they happen",
+      "xpReward": 25,
+      "lessonGroup": "Fallacy Field Guide",
+      "correctExplanation": "Right. Hindsight rewrites memory so that the known outcome feels as if it had been foreseeable.",
+      "incorrectExplanation": "The answer is: we call outcomes predictable only after they happen. The cure is to write down predictions before events unfold and score them later.",
+      "lessonContent": "Memory is edited by what we now know.\nHindsight conceals genuine uncertainty.\nRecord forecasts before the fact.\nScore them to calibrate judgement.\nShare this: write one prediction today with a date to check it.",
+      "forgeId": "batch-069#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Recent and Vivid",
+      "question": "After a plane crash dominates the news, travellers overestimate the danger of flying. Which factor is distorting their judgement?",
+      "choices": [
+        "Vivid recent events distort probability estimates",
+        "Air travel is actually becoming deadlier",
+        "News reports always understate real risks",
+        "Statistics are irrelevant to every decision"
+      ],
+      "correctAnswer": "Vivid recent events distort probability estimates",
+      "xpReward": 25,
+      "lessonGroup": "Mind the Odds",
+      "correctExplanation": "Right. Easy recall makes a rare event feel common, so frequency is judged by memory rather than data.",
+      "incorrectExplanation": "The answer is: vivid recent events distort probability estimates. Base rates, not headlines, give the true frequency.",
+      "lessonContent": "Judged frequency follows ease of recall.\nDramatic coverage inflates perceived risk.\nReturn to base rates when emotions spike.\nNotice what memory is doing to your maths.\nShare this: check a real base rate against a recent scare tonight.",
+      "forgeId": "batch-069#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "First Number Trap",
+      "question": "A negotiator opens with an extreme figure, and the final deal lands near it. What effect is being exploited?",
+      "choices": [
+        "The first number drags the whole forecast",
+        "The last number decides the whole deal",
+        "Numbers have no effect on negotiations",
+        "Extreme figures always end negotiations"
+      ],
+      "correctAnswer": "The first number drags the whole forecast",
+      "xpReward": 25,
+      "lessonGroup": "Mind the Odds",
+      "correctExplanation": "Right. An initial figure becomes an anchor, and later adjustments stay tethered to it.",
+      "incorrectExplanation": "The answer is: the first number drags the whole forecast. The defence is to prepare your own number and test whether it is reasonable independently.",
+      "lessonContent": "Anchors pull estimates toward themselves.\nEven implausible numbers leave a trace.\nSet your own reference before listening.\nAdjust from evidence, not from their opening.\nShare this: decide your number before hearing anyone else's.",
+      "forgeId": "batch-069#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Past Spending",
+      "question": "A company keeps funding a failing product because it has already invested heavily. Which trap is this?",
+      "choices": [
+        "Past spending should not decide future steps",
+        "Past spending should always guide future steps",
+        "Future spending justifies the past completely",
+        "Spending decisions cannot ever be reconsidered"
+      ],
+      "correctAnswer": "Past spending should not decide future steps",
+      "xpReward": 25,
+      "lessonGroup": "Fallacy Field Guide",
+      "correctExplanation": "Right. Money already gone cannot be recovered, so only future costs and benefits should steer the decision.",
+      "incorrectExplanation": "The answer is: past spending should not decide future steps. Letting sunk costs rule is throwing good resources after bad.",
+      "lessonContent": "Sunk costs cannot be recovered.\nDecide from what lies ahead, not behind.\nLosses make quitting feel like waste.\nReframe: the waste already happened.\nShare this: name one commitment you would refuse if starting fresh today.",
+      "forgeId": "batch-069#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Many Futures",
+      "question": "A strategist draws several distinct possible futures and plans responses for each, rather than betting on one prediction. What is this approach?",
+      "choices": [
+        "Preparing several futures beats one prediction",
+        "Preparing several futures confuses the whole team",
+        "Preparing several futures replaces all decisions",
+        "Preparing several futures guarantees the best one"
+      ],
+      "correctAnswer": "Preparing several futures beats one prediction",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Robustness across scenarios matters more than being right about a single forecast.",
+      "incorrectExplanation": "The answer is: preparing several futures beats one prediction. Scenarios expose which choices survive regardless of which future arrives.",
+      "lessonContent": "Prediction is fragile; preparation is robust.\nConsider a few divergent futures.\nLook for choices that win in most of them.\nHedge what cannot be decided now.\nShare this: sketch two futures that would change one plan of yours.",
+      "forgeId": "batch-069#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Biggest Unknown",
+      "question": "A project carries one large unknown and many minor ones. Where should effort go first?",
+      "choices": [
+        "Retire the biggest uncertainty first",
+        "Polish the smallest details first",
+        "Ignore uncertainty until launch day",
+        "Add staff to every uncertain area"
+      ],
+      "correctAnswer": "Retire the biggest uncertainty first",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Resolving the largest unknown changes the plan most, so it deserves the earliest attention.",
+      "incorrectExplanation": "The answer is: retire the biggest uncertainty first. Polishing minor details while the core risk remains is comfort work, not progress.",
+      "lessonContent": "Uncertainty has weight as well as count.\nTackle the question that could sink the plan.\nInformation has value when it changes action.\nSpend early effort on the decisive unknown.\nShare this: name the single unknown that most changes your current plan.",
+      "forgeId": "batch-069#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Short Record",
+      "question": "A new restaurant has been busy for two weeks, and an investor projects a decade of growth from that. What is the flaw?",
+      "choices": [
+        "A short track record cannot anchor a forecast",
+        "A short track record guarantees future growth",
+        "A long track record is always misleading",
+        "Restaurants cannot be forecast at all"
+      ],
+      "correctAnswer": "A short track record cannot anchor a forecast",
+      "xpReward": 25,
+      "lessonGroup": "Fallacy Field Guide",
+      "correctExplanation": "Right. Two weeks is dominated by novelty and luck, not by a stable trend.",
+      "incorrectExplanation": "The answer is: a short track record cannot anchor a forecast. Small samples vary wildly, so long-range claims need much more history.",
+      "lessonContent": "Small samples swing widely.\nEarly success often reflects novelty.\nExtend the window before extrapolating.\nSeparate a spark from a steady flame.\nShare this: ask how much data underlies one confident projection you hear.",
+      "forgeId": "batch-069#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Rare and Huge",
+      "question": "Standard models gave no warning before a market collapse that almost nobody foresaw. Which idea captures this?",
+      "choices": [
+        "Rare high-impact events are missed by normal models",
+        "Rare high-impact events are always predicted early",
+        "Normal models capture every extreme event",
+        "Markets collapse on a fixed schedule"
+      ],
+      "correctAnswer": "Rare high-impact events are missed by normal models",
+      "xpReward": 25,
+      "lessonGroup": "Mind the Odds",
+      "correctExplanation": "Right. Tools tuned to ordinary variation understate the tails, where the largest shocks live.",
+      "incorrectExplanation": "The answer is: rare high-impact events are missed by normal models. Risk work must consider extremes outside the familiar range.",
+      "lessonContent": "Models fit the middle, not the tails.\nRare events carry outsized consequences.\nPlan for plausibility, not just frequency.\nKeep slack for the unmodelled.\nShare this: identify one low-probability event worth a contingency.",
+      "forgeId": "batch-069#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Other People Delay",
+      "question": "A manager is confident their own team will hit the deadline but assumes every other team will slip. What is this?",
+      "choices": [
+        "We see others delays but not our own",
+        "We see our own delays but not others",
+        "No one ever delays in large projects",
+        "Delays are always caused by suppliers"
+      ],
+      "correctAnswer": "We see others delays but not our own",
+      "xpReward": 25,
+      "lessonGroup": "Fallacy Field Guide",
+      "correctExplanation": "Right. The same optimism that seems obvious in others stays invisible when turned inward.",
+      "incorrectExplanation": "The answer is: we see others delays but not our own. Applying the observed base rate to one's own team is the correction.",
+      "lessonContent": "We judge others by history and ourselves by hope.\nThe bias hides in the blind spot.\nApply the same rate to your own work.\nAssume your team will face the common friction.\nShare this: predict a delay for your own task before others do.",
+      "forgeId": "batch-069#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Quiet Additions",
+      "question": "A project's deadline holds while a stream of small requested features accumulates. What is happening?",
+      "choices": [
+        "Small additions quietly expand the original plan",
+        "Small additions reduce the total amount of work",
+        "Small additions are always cost-free choices",
+        "Small additions finish projects ahead of time"
+      ],
+      "correctAnswer": "Small additions quietly expand the original plan",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Each request looks minor alone, but together they consume the schedule and the buffer.",
+      "incorrectExplanation": "The answer is: small additions quietly expand the original plan. Scope must be defended deliberately or it drifts.",
+      "lessonContent": "Scope grows by increments, not announcements.\nEach small yes has a hidden cost.\nTrack additions explicitly.\nTrade scope against time or quality.\nShare this: total the small additions you accepted this week.",
+      "forgeId": "batch-069#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Too Many Hands",
+      "question": "A leader doubles the team size expecting the project to finish twice as fast, but it slows down. Why?",
+      "choices": [
+        "More people can slow a project rather than speed it",
+        "More people always double the project's speed",
+        "Team size never affects any project",
+        "Smaller teams cannot finish any project"
+      ],
+      "correctAnswer": "More people can slow a project rather than speed it",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Coordination and communication grow faster than headcount, eating the expected gain.",
+      "incorrectExplanation": "The answer is: more people can slow a project rather than speed it. Beyond a point, onboarding and meetings outweigh added output.",
+      "lessonContent": "Coordination cost grows with each pair of people.\nAdding hands adds communication channels.\nCheck whether work can be partitioned cleanly.\nSometimes shrinking the team speeds delivery.\nShare this: count how much of a recent meeting was coordination.",
+      "forgeId": "batch-069#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Static Assumption",
+      "question": "A pricing plan assumes customers will not change their behaviour after the change. What is the weakness?",
+      "choices": [
+        "Plans that assume a static world ignore reactions",
+        "Plans that assume a static world are always right",
+        "Customers never respond to price changes",
+        "Pricing plans cannot be evaluated at all"
+      ],
+      "correctAnswer": "Plans that assume a static world ignore reactions",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. People respond to new rules, so the world after the change differs from the world used to design it.",
+      "incorrectExplanation": "The answer is: plans that assume a static world ignore reactions. Good planning asks how others will respond once the plan is live.",
+      "lessonContent": "Interventions change the system they enter.\nPeople adapt to new rules quickly.\nModel reactions, not just the first move.\nAsk how the plan looks a year in.\nShare this: name one group whose response could change your plan.",
+      "forgeId": "batch-069#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Worst Case Floor",
+      "question": "A disaster planner asks what the worst realistic outcome is and prepares supplies for it. What does this achieve?",
+      "choices": [
+        "Considering the worst case sets a floor for response",
+        "Considering the worst case predicts the exact outcome",
+        "Considering the worst case prevents all bad events",
+        "Considering the worst case wastes limited resources"
+      ],
+      "correctAnswer": "Considering the worst case sets a floor for response",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Preparing for the worst defines a minimum capability, even though the exact event remains unknown.",
+      "incorrectExplanation": "The answer is: considering the worst case sets a floor for response. It does not forecast one scenario but guarantees a baseline of readiness.",
+      "lessonContent": "Preparedness is measured against the extreme.\nA floor is more useful than a forecast.\nDefine the minimum acceptable response.\nCheck feasibility before committing.\nShare this: name the worst plausible outcome for one plan you hold.",
+      "forgeId": "batch-069#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "False Precision",
+      "question": "A forecast states revenue will reach exactly 4,317,000 next year. What is the main problem?",
+      "choices": [
+        "Precision is asserted without evidence",
+        "Rounding numbers always destroys meaning",
+        "Revenue cannot be measured at all",
+        "Exact numbers are always more honest"
+      ],
+      "correctAnswer": "Precision is asserted without evidence",
+      "xpReward": 25,
+      "lessonGroup": "Fallacy Field Guide",
+      "correctExplanation": "Right. False exactness implies knowledge the forecaster cannot possibly possess.",
+      "incorrectExplanation": "The answer is: precision is asserted without evidence. Honest forecasts give ranges and state their confidence.",
+      "lessonContent": "Exact digits imply exact knowledge.\nFalse precision misleads decision makers.\nRound to the confidence you actually have.\nSignal uncertainty openly.\nShare this: round one wildly specific figure you meet today.",
+      "forgeId": "batch-069#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Road Not Taken",
+      "question": "A company judges a decision only by how the chosen path turned out, ignoring the paths it never tried. Which error is this?",
+      "choices": [
+        "Judging only the path taken hides the alternatives",
+        "The chosen path always reveals the truth",
+        "Alternatives are irrelevant to any decision",
+        "Outcomes never inform good judgement"
+      ],
+      "correctAnswer": "Judging only the path taken hides the alternatives",
+      "xpReward": 25,
+      "lessonGroup": "Fallacy Field Guide",
+      "correctExplanation": "Right. The unchosen options remain unknown, so the outcome alone cannot prove the decision was wise or foolish.",
+      "incorrectExplanation": "The answer is: judging only the path taken hides the alternatives. Good evaluation reconstructs what was likely under the roads not taken.",
+      "lessonContent": "Outcomes are noisy measures of decisions.\nThe counterfactual also had possibilities.\nJudge the process, not just the result.\nImagine how the other path might have fared.\nShare this: assess one past choice by its reasoning, not only its result.",
+      "forgeId": "batch-069#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Filling the Time",
+      "question": "A task that could be done in a day is given a week, and it takes the whole week. Which principle is this?",
+      "choices": [
+        "Work expands to fill the available time",
+        "Work shrinks to fit the available time",
+        "Deadlines have no effect on the work",
+        "Short deadlines always improve quality"
+      ],
+      "correctAnswer": "Work expands to fill the available time",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Generous time invites over-elaboration and delays until the deadline forces completion.",
+      "incorrectExplanation": "The answer is: work expands to fill the available time. Tight but realistic limits can focus effort without harming quality.",
+      "lessonContent": "Time available shapes effort, not just capacity.\nDeadlines ration attention.\nSet durations deliberately, not generously.\nWatch for polish that adds no value.\nShare this: shorten one deadline modestly and observe the result.",
+      "forgeId": "batch-069#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Tracking Accuracy",
+      "question": "A forecaster records predictions and later checks how often the confident ones were right. What is being improved?",
+      "choices": [
+        "Track forecasts to learn how wrong you tend to be",
+        "Track forecasts to guarantee future accuracy",
+        "Track forecasts to avoid making more of them",
+        "Track forecasts to impress other people"
+      ],
+      "correctAnswer": "Track forecasts to learn how wrong you tend to be",
+      "xpReward": 25,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Feedback turns vague confidence into a measurable calibration that can be corrected.",
+      "incorrectExplanation": "The answer is: track forecasts to learn how wrong you tend to be. Keeping score is how judgement learns its own biases.",
+      "lessonContent": "Unmeasured judgement cannot improve.\nFeedback converts confidence into data.\nKeep a record of predictions and outcomes.\nAdjust your confidence from the score.\nShare this: log one prediction tonight and set a date to check it.",
+      "forgeId": "batch-069#24",
+      "forgeScore": 100
+    }
+  ]
+}

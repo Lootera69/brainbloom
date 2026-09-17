@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-031",
+  "generatedAt": "2026-09-17T13:27:41.725Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "One Layer Thicker",
+      "question": "Two insulating films have the same material and barrier height. Film B is only slightly thicker than film A. Electrons tunnel through A at a useful rate. What is the best prediction for B?",
+      "choices": [
+        "Its current can be exponentially smaller",
+        "Its current is smaller only in direct proportion",
+        "Its current is unchanged below a critical thickness",
+        "Its electrons emerge with proportionally less energy"
+      ],
+      "correctAnswer": "Its current can be exponentially smaller",
+      "xpReward": 25,
+      "correctExplanation": "Correct. A wave amplitude decays inside a forbidden region, so adding even a little width can multiply the suppression rather than merely subtract a fixed amount.",
+      "incorrectExplanation": "Not quite. Its current can be exponentially smaller because tunneling probability depends exponentially on barrier width. The barrier changes transmission probability, not the energy of each successfully transmitted electron.",
+      "lessonContent": "A quantum wave generally decays rather than vanishing inside a finite forbidden region.\nTransmission depends exponentially on the distance over which that decay acts.\nSmall fabrication errors can therefore create large changes in leakage current.\nSuccessful transmission does not mean a particle gradually spent its energy crossing.\nShare this: compare exponential sensitivity with a merely proportional change in an everyday estimate.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Heavy Twin Delay",
+      "question": "Equal-energy protons and deuterons face the same narrow barrier. Ignoring nuclear reactions, which beam should show more tunneling, and why?",
+      "choices": [
+        "Deuterons, because greater mass carries more momentum",
+        "Protons, because lower mass weakens decay inside the barrier",
+        "Both equally, because their charges are equal",
+        "Deuterons, because heavier particles borrow more energy"
+      ],
+      "correctAnswer": "Protons, because lower mass weakens decay inside the barrier",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. For equal energy and barrier shape, the under-barrier decay constant grows with the square root of mass, suppressing the heavier isotope more strongly.",
+      "incorrectExplanation": "Actually, protons tunnel more because lower mass weakens decay inside the barrier. Equal charge does not erase the mass dependence, and no particle needs to borrow energy.",
+      "lessonContent": "Under-barrier attenuation depends on both the obstacle and the particle's mass.\nAt equal energy, heavier matter waves decay more steeply through the same forbidden region.\nIsotope substitution can expose tunneling because chemistry changes little while mass changes noticeably.\nThe common energy-borrowing story is not part of the calculation.\nShare this: ask a friend whether equal charge guarantees equal barrier transmission.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#1",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Raised Gate",
+      "question": "An electron's energy stays fixed while a voltage raises a finite barrier farther above that energy without changing its width. What happens to the tunneling probability?",
+      "choices": [
+        "It rises because the energy gap stores more potential",
+        "It stays fixed until the barrier becomes infinite",
+        "It falls because the wave decays more rapidly inside",
+        "It becomes exactly zero as soon as the barrier is higher"
+      ],
+      "correctAnswer": "It falls because the wave decays more rapidly inside",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Increasing the energy gap between barrier and particle increases the evanescent decay rate, so less amplitude reaches the far side.",
+      "incorrectExplanation": "Close! It falls because the wave decays more rapidly inside. A finite barrier does not switch transmission abruptly to zero, but raising it makes the surviving amplitude much smaller.",
+      "lessonContent": "A classically forbidden region is set by potential energy exceeding the particle's total energy.\nThe larger that excess, the faster the wave amplitude attenuates.\nFinite barriers usually suppress transmission continuously rather than with an on-off threshold.\nVoltage can tune a barrier's effective height in electronic devices.\nShare this: sketch how a smooth probability curve differs from a classical step function.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Energy After Passage",
+      "question": "An electron tunnels through a static barrier and enters a region with the same potential energy as where it began. Compared with its initial total energy, what energy is measured afterward?",
+      "choices": [
+        "A higher value supplied by the barrier",
+        "A lower value spent penetrating the barrier",
+        "A random value allowed by uncertainty",
+        "The same value, for an elastic static barrier"
+      ],
+      "correctAnswer": "The same value, for an elastic static barrier",
+      "xpReward": 25,
+      "correctExplanation": "Right. A time-independent barrier can reflect or transmit an energy eigenstate without changing its total energy; tunneling changes the odds, not the energy ledger.",
+      "incorrectExplanation": "The answer is the same value, for an elastic static barrier. Tunneling is not powered by a temporary energy loan, and a static potential does not consume or add energy to a transmitted particle.",
+      "lessonContent": "Transmission probability and energy conservation answer different questions.\nA static potential can split a wave into reflected and transmitted parts at the same energy.\nUncertainty relations do not authorize measurable violations of conservation laws.\nEnergy can change only when another system or time-dependent field exchanges it.\nShare this: challenge one 'borrowed energy' explanation by checking the final energy balance.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#3",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Wall Without Exit",
+      "question": "A finite barrier and a semi-infinite step have the same height above an incoming particle's energy. Why can the finite barrier transmit while the step cannot deliver flux beyond its far side?",
+      "choices": [
+        "Only the finite barrier has a second boundary where a traveling wave can reappear",
+        "The finite barrier gives the particle extra kinetic energy",
+        "The step destroys conservation of probability",
+        "Only the step is observed by the environment"
+      ],
+      "correctAnswer": "Only the finite barrier has a second boundary where a traveling wave can reappear",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. Both regions contain a decaying wave, but only a finite barrier ends soon enough for nonzero amplitude to connect to a propagating solution beyond it.",
+      "incorrectExplanation": "Not quite. Only the finite barrier has a second boundary where a traveling wave can reappear. A decaying tail inside an endless forbidden region carries no transmitted flux to a distant allowed region.",
+      "lessonContent": "Penetration into a forbidden region is not automatically transmission through it.\nA finite obstacle has two boundaries; an endless step has no far exit.\nBoundary conditions connect wave amplitudes across every interface.\nA nonzero evanescent tail need not represent a traveling particle current.\nShare this: draw a finite wall and an endless plateau, then mark where an outgoing wave could exist.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Nucleus Escape Route",
+      "question": "An alpha particle is bound inside a nucleus by an attractive well but faces a repulsive barrier outside. How does quantum theory explain spontaneous alpha decay?",
+      "choices": [
+        "The alpha heats up until it climbs over the barrier",
+        "A detector pulls the alpha through the nuclear surface",
+        "Its confined wave has a small amplitude beyond the finite barrier",
+        "The alpha violates charge conservation for an instant"
+      ],
+      "correctAnswer": "Its confined wave has a small amplitude beyond the finite barrier",
+      "xpReward": 25,
+      "correctExplanation": "Correct. The preformed alpha's wave can penetrate the Coulomb barrier, giving a small escape probability per unit time and therefore a radioactive lifetime.",
+      "incorrectExplanation": "Actually, its confined wave has a small amplitude beyond the finite barrier. Thermal climbing is inadequate at ordinary nuclear temperatures, and the process conserves charge and energy.",
+      "lessonContent": "Metastable quantum states can be trapped while retaining a small escape amplitude.\nRepeated escape probability produces exponential radioactive decay across an ensemble.\nNuclear barriers can be finite even when classical particle energy lies below their peaks.\nLong lifetimes can emerge from tiny transmission probabilities per attempt.\nShare this: explain how a rare escape chance can create a predictable half-life for a large sample.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Cold Stellar Fire",
+      "question": "The Sun's core is cooler than the classical energy needed for most protons to overcome their electric repulsion. Why can fusion still proceed?",
+      "choices": [
+        "Gravity cancels electric charge during collisions",
+        "Every proton briefly reaches infinite temperature",
+        "Neutrinos open holes in the electric field",
+        "Wave penetration lets some close encounters cross the Coulomb barrier"
+      ],
+      "correctAnswer": "Wave penetration lets some close encounters cross the Coulomb barrier",
+      "xpReward": 25,
+      "correctExplanation": "Right. The thermal distribution supplies energetic encounters, and tunneling gives some of those encounters a nonzero chance to penetrate the Coulomb barrier.",
+      "incorrectExplanation": "The answer is wave penetration lets some close encounters cross the Coulomb barrier. Gravity confines the plasma but does not neutralize proton charge, and fusion needs neither infinite temperatures nor neutrino-made openings.",
+      "lessonContent": "Fusion rates combine a distribution of collision energies with a quantum penetration probability.\nHotter particles collide more forcefully, while tunneling softens the classical threshold.\nThe most productive stellar collisions occupy a compromise called the Gamow window.\nGravity confines stellar fuel but does not switch off electromagnetic repulsion.\nShare this: describe the Sun as using both thermal motion and quantum probability rather than either alone.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Tip Moves Closer",
+      "question": "A scanning tunneling microscope holds voltage fixed and moves its metal tip slightly closer to a conducting surface. What should happen first to the tunneling current?",
+      "choices": [
+        "It rises sharply because the vacuum gap narrows",
+        "It rises linearly because contact area increases",
+        "It stays zero until tip and surface touch",
+        "It falls because closer electrons repel one another"
+      ],
+      "correctAnswer": "It rises sharply because the vacuum gap narrows",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The current is exponentially sensitive to tip-surface separation, allowing tiny height changes to produce measurable current changes before mechanical contact.",
+      "incorrectExplanation": "Not quite. It rises sharply because the vacuum gap narrows. The microscope exploits tunneling before contact, and the response is far steeper than a simple linear area effect.",
+      "lessonContent": "Vacuum can act as a finite barrier between two nearby conductors.\nTunneling current changes exponentially with separation at atomic distances.\nFeedback can convert current changes into a map of surface structure.\nThe signal also depends on electronic states, so it is not a purely geometric photograph.\nShare this: identify which measured signal a microscope could use to hold an invisible gap constant.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Leaky Memory Gate",
+      "question": "A flash-memory designer makes the oxide barrier much thinner to speed electron tunneling during writes. What tradeoff becomes most likely?",
+      "choices": [
+        "Stored charge becomes heavier and slows reading",
+        "The cell loses all quantum behavior",
+        "Unwanted leakage increases, threatening data retention",
+        "Electrons tunnel only while the device is powered off"
+      ],
+      "correctAnswer": "Unwanted leakage increases, threatening data retention",
+      "xpReward": 25,
+      "correctExplanation": "Correct. A thinner barrier speeds intended charge transfer but also raises unwanted transmission, making it harder to keep charge isolated for years.",
+      "incorrectExplanation": "Close! Unwanted leakage increases, threatening data retention. Barrier engineering balances write speed against isolation; thinning does not turn quantum mechanics off or confine tunneling to power-off periods.",
+      "lessonContent": "Engineered barriers often balance rapid switching against long-term isolation.\nThe same exponential sensitivity that enables writing can cause leakage during storage.\nReliability problems emerge when repeated high fields damage an insulating layer.\nDevice optimization rarely means maximizing transmission under every condition.\nShare this: name one technology tradeoff where faster access competes with longer retention.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Current Runs Backward",
+      "question": "In a tunnel diode, increasing voltage can move filled states on one side out of alignment with empty states on the other. What unusual response can result?",
+      "choices": [
+        "Current becomes independent of available states",
+        "Current decreases while voltage increases",
+        "Resistance becomes infinite at every voltage",
+        "Electrons emerge with negative total energy"
+      ],
+      "correctAnswer": "Current decreases while voltage increases",
+      "xpReward": 25,
+      "correctExplanation": "Right. Reduced overlap between occupied and available states can lower tunneling current as voltage rises, producing negative differential resistance over part of the curve.",
+      "incorrectExplanation": "The answer is current decreases while voltage increases. Tunneling depends on matching occupied and vacant states as well as barrier shape, so more voltage need not monotonically produce more current.",
+      "lessonContent": "A tunneling rate depends on available initial and final quantum states.\nVoltage can improve alignment over one range and spoil it over another.\nNegative differential resistance means the slope of a current-voltage curve is negative, not that energy conservation fails.\nThat nonlinearity can support very fast oscillators and switches.\nShare this: sketch a curve that falls locally even while its horizontal variable rises.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Double Wall Window",
+      "question": "A particle crosses two barriers separated by a small well. At one special energy, transmission becomes unexpectedly large. What best explains the peak?",
+      "choices": [
+        "The first barrier permanently lends energy to the particle",
+        "Two reflections heat the particle above both barriers",
+        "Measurement in the well forces forward motion",
+        "A quasi-bound state aligns phases for resonant transmission"
+      ],
+      "correctAnswer": "A quasi-bound state aligns phases for resonant transmission",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. Multiple reflected amplitudes can add constructively when the middle well supports a matching quasi-bound state, opening a narrow resonant transmission window.",
+      "incorrectExplanation": "Not quite. A quasi-bound state aligns phases for resonant transmission. The peak comes from coherent interference among amplitudes, not heating, observation, or an energy loan.",
+      "lessonContent": "Multiple barriers create several paths whose quantum amplitudes can interfere.\nA confined middle region supports preferred phase conditions and quasi-bound energies.\nConstructive interference can make a compound obstacle more transparent at narrow resonances.\nDestroying phase coherence tends to wash out sharp interference features.\nShare this: compare resonance in a double barrier with a musical cavity favoring selected notes.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#10",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Hydrogen Wins",
+      "question": "A reaction transfers either hydrogen or deuterium across nearly the same molecular barrier. The hydrogen reaction is much faster than ordinary mass effects predict. What is the strongest tunneling clue?",
+      "choices": [
+        "A large kinetic isotope effect favoring hydrogen",
+        "Identical rates for both isotopes at all temperatures",
+        "A rate determined only by molecular color",
+        "Faster deuterium transfer because it is heavier"
+      ],
+      "correctAnswer": "A large kinetic isotope effect favoring hydrogen",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Replacing hydrogen with heavier deuterium steepens under-barrier attenuation, so an unusually large isotope effect can reveal a tunneling contribution.",
+      "incorrectExplanation": "Actually, a large kinetic isotope effect favoring hydrogen is the clue. The isotopes have nearly identical chemistry but different masses, which makes their barrier penetration probabilities diverge.",
+      "lessonContent": "Isotopes preserve electric charge and much chemistry while changing nuclear mass.\nThat controlled substitution helps separate mass-sensitive quantum motion from other effects.\nLight-particle transfer is the most plausible setting for tunneling in chemistry.\nA single rate difference needs comparison with ordinary vibrational isotope effects before attribution.\nShare this: explain why swapping an isotope can function like a controlled scientific probe.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#11",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Cooling Test",
+      "question": "A reaction slows rapidly while cooling, then its rate becomes much less temperature-sensitive at low temperature. Which interpretation best fits barrier crossing by tunneling?",
+      "choices": [
+        "Cooling raises every particle above the barrier",
+        "A low-temperature quantum path remains after thermal activation fades",
+        "The barrier vanishes exactly at low temperature",
+        "Energy conservation stops applying near absolute zero"
+      ],
+      "correctAnswer": "A low-temperature quantum path remains after thermal activation fades",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. Thermal over-barrier activation usually falls strongly with temperature, while tunneling can leave a weaker temperature dependence when the barrier itself remains.",
+      "incorrectExplanation": "The answer is a low-temperature quantum path remains after thermal activation fades. Cooling does not erase the barrier or suspend conservation laws; it reduces thermal climbing and can expose another route.",
+      "lessonContent": "Thermal activation and tunneling can contribute to the same observed rate.\nCooling strongly suppresses populations energetic enough to cross over an obstacle.\nA residual weakly temperature-dependent rate can signal penetration through it.\nAlternative mechanisms must still be excluded before treating a plateau as proof.\nShare this: ask what temperature trend would separate two competing routes through an energy landscape.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Rounded Barrier Advantage",
+      "question": "Two barriers have equal maximum height and width. One stays near its maximum across most of the width; the other is rounded and lower except at its peak. Which is generally easier to tunnel through?",
+      "choices": [
+        "The flat barrier, because only maximum height matters",
+        "Both, because equal width fixes transmission",
+        "The rounded barrier, because its integrated under-barrier action is smaller",
+        "Neither, because any classically forbidden region blocks completely"
+      ],
+      "correctAnswer": "The rounded barrier, because its integrated under-barrier action is smaller",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Semiclassical transmission depends on accumulated decay across the entire forbidden profile, not just its peak height and endpoint width.",
+      "incorrectExplanation": "Close! The rounded barrier is generally easier because its integrated under-barrier action is smaller. Equal peaks and nominal widths can hide different amounts of attenuation across the path.",
+      "lessonContent": "Barrier shape matters throughout the forbidden interval, not only at its highest point.\nSemiclassical reasoning accumulates local decay along the full path.\nA narrow high section can transmit more than a broad shoulder with the same peak.\nComparing area-like action is more informative than comparing one maximum value.\nShare this: draw two equal-height hills with different profiles and predict which suppresses passage more.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#13",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Inside the Barrier",
+      "question": "A student says, 'The particle must have ordinary negative kinetic energy while inside the barrier.' What is the better quantum description?",
+      "choices": [
+        "It follows a hidden classical path with reversed time",
+        "Its mass becomes negative until it exits",
+        "Its total energy rises above the barrier when unobserved",
+        "Its stationary wave is evanescent rather than an ordinary traveling wave"
+      ],
+      "correctAnswer": "Its stationary wave is evanescent rather than an ordinary traveling wave",
+      "xpReward": 25,
+      "correctExplanation": "Right. In the forbidden region the wave number becomes imaginary in the stationary solution, producing exponential decay rather than a classical trajectory with measurable negative kinetic energy.",
+      "incorrectExplanation": "The answer is that its stationary wave is evanescent rather than an ordinary traveling wave. Extending classical kinetic-energy language into that region creates a fictional path that the quantum state does not supply.",
+      "lessonContent": "Classical trajectory language can fail inside a quantum forbidden region.\nAn imaginary wave number signals spatial attenuation, not an observable imaginary speed.\nThe wavefunction predicts amplitudes and measurement probabilities rather than a hidden movie of motion.\nMathematical continuation should not be mistaken for a new kind of negative-mass particle.\nShare this: flag one place where a familiar classical word is being stretched beyond what is measurable.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#14",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Fast Looking Delay",
+      "question": "A pulse experiment assigns a very short delay to transmission through a thick barrier, yielding distance divided by delay greater than light speed. What conclusion is justified?",
+      "choices": [
+        "The peak delay need not be a particle transit time or usable signal speed",
+        "The particle carried information faster than light",
+        "The barrier accelerated every frequency component equally",
+        "Relativity fails only inside forbidden regions"
+      ],
+      "correctAnswer": "The peak delay need not be a particle transit time or usable signal speed",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Barriers reshape pulses and preferentially transmit early components, so a peak-based delay can look superluminal without moving new information faster than light.",
+      "incorrectExplanation": "Not quite. The peak delay need not be a particle transit time or usable signal speed. Pulse reshaping can move a maximum forward while the causal front and any new message remain limited by relativity.",
+      "lessonContent": "A pulse peak is a feature assembled from many frequency components.\nSelective transmission can reshape that feature and alter its apparent delay.\nSignal velocity must track causal information, not blindly divide length by a fitted peak time.\nApparent superluminal group effects occur in classical wave systems too.\nShare this: distinguish movement of a pulse's peak from arrival of its first genuinely new feature.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#15",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Rare Not Weak",
+      "question": "Only one electron in a million tunnels through a static barrier. A detector measures the transmitted electrons' energy. Which pattern should it find for a nearly monoenergetic incident beam?",
+      "choices": [
+        "Each transmitted electron has one-millionth the incident energy",
+        "Successful electrons have random energies up to the barrier height",
+        "Transmitted energy alternates with reflected energy",
+        "Successful electrons retain nearly the incident energy"
+      ],
+      "correctAnswer": "Successful electrons retain nearly the incident energy",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. A tiny transmission coefficient means few successes, not fractional particles or diluted energy per successful event.",
+      "incorrectExplanation": "Actually, successful electrons retain nearly the incident energy. Quantum probability controls how often detection occurs on the far side; it does not divide one electron's conserved energy among a million trials.",
+      "lessonContent": "Quantum probabilities govern frequencies across repeated preparations.\nA low-probability outcome can still carry the full conserved quantities of one particle.\nIntensity loss and per-particle energy loss are different experimental signatures.\nDetectors register discrete events rather than fractions of an electron.\nShare this: compare a rare full payout with a frequent tiny payout to clarify probability versus amount.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#16",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Prism Gap Bridge",
+      "question": "Light totally internally reflects in one prism, but placing a second prism extremely close allows some light across the air gap. Which feature makes this analogous to tunneling?",
+      "choices": [
+        "Air secretly amplifies light above the critical angle",
+        "An evanescent field spans a finite forbidden gap and couples onward",
+        "Photons lose all energy while crossing the gap",
+        "The second prism measures each photon into existence"
+      ],
+      "correctAnswer": "An evanescent field spans a finite forbidden gap and couples onward",
+      "xpReward": 25,
+      "correctExplanation": "Right. The evanescent optical field decays into the gap but can overlap the second prism if the gap is thin, enabling frustrated total internal reflection.",
+      "incorrectExplanation": "The answer is an evanescent field spans a finite forbidden gap and couples onward. The analogy is wave attenuation plus a nearby second boundary, not amplification, lost photon energy, or conscious measurement.",
+      "lessonContent": "Evanescent fields occur whenever wave boundary conditions forbid ordinary propagation in a region.\nA nearby second medium can capture a decaying field before it becomes negligible.\nThis classical-wave analogue reveals why finite width is essential to barrier transmission.\nShared mathematics does not mean photons follow little classical routes through the gap.\nShare this: use two nearby media to explain why 'forbidden' can mean decaying rather than exactly absent.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Field Sharpens Exit",
+      "question": "A strong electric field is applied near a metal surface, making the vacuum barrier triangular and narrower. Why does electron emission rise dramatically even if the metal is not heated much?",
+      "choices": [
+        "The field makes electrons conscious of the surface",
+        "The field converts every electron into a photon",
+        "The shortened barrier greatly increases tunneling",
+        "The field abolishes electron charge temporarily"
+      ],
+      "correctAnswer": "The shortened barrier greatly increases tunneling",
+      "xpReward": 25,
+      "correctExplanation": "Correct. The field tilts the potential and narrows the forbidden region, exponentially enhancing field emission without requiring thermal over-barrier escape.",
+      "incorrectExplanation": "Close! The shortened barrier greatly increases tunneling. The field reshapes the potential landscape; it neither removes charge nor relies on heating every electron above the surface barrier.",
+      "lessonContent": "External fields can reshape a potential barrier rather than merely push harder against an unchanged wall.\nNarrowing a forbidden region can matter as much as lowering its peak.\nField emission differs from thermionic emission, which relies mainly on heating.\nSharp tips concentrate electric fields and enhance this effect.\nShare this: identify whether a proposed control changes a barrier's height, width, or both.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#18",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Pressure Barely Matters",
+      "question": "A sealed alpha-emitting sample is put under ordinary laboratory pressure thousands of times atmospheric pressure. Why is its half-life expected to change negligibly?",
+      "choices": [
+        "Pressure prevents all nuclear tunneling equally",
+        "The nuclear barrier scale is scarcely altered by ordinary compression",
+        "Half-life depends only on how often a detector looks",
+        "Alpha particles become massless under compression"
+      ],
+      "correctAnswer": "The nuclear barrier scale is scarcely altered by ordinary compression",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. Mechanical pressure strongly affects atomic spacing compared with everyday scales but barely changes the femtometre nuclear potential controlling alpha escape.",
+      "incorrectExplanation": "Not quite. The nuclear barrier scale is scarcely altered by ordinary compression. Radioactive decay is not scheduled by observation, and laboratory pressure does not make alpha particles massless or stop tunneling.",
+      "lessonContent": "Applied conditions matter only if they significantly alter the relevant energy landscape.\nNuclear distances are vastly smaller than the atomic spacing changed by ordinary pressure.\nScale comparison can rule out an appealing mechanism before detailed calculation.\nSome decay modes involving atomic electrons are more environmentally sensitive, so the reasoning is process-specific.\nShare this: compare the scale of a proposed intervention with the scale of the mechanism it claims to change.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#19",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Fusion Sweet Spot",
+      "question": "In a star, very fast nuclei are rare but tunnel readily; slower nuclei are common but tunnel poorly. Which collisions dominate fusion?",
+      "choices": [
+        "Only nuclei exactly at the average thermal energy",
+        "Only the single fastest nucleus present",
+        "All collision energies contribute equally",
+        "An intermediate high-energy window balancing abundance and penetration"
+      ],
+      "correctAnswer": "An intermediate high-energy window balancing abundance and penetration",
+      "xpReward": 25,
+      "correctExplanation": "Right. Multiplying the falling thermal population by the rising penetration probability produces a Gamow peak above the average energy but below a naive classical threshold.",
+      "incorrectExplanation": "The answer is an intermediate high-energy window balancing abundance and penetration. Neither the most common nor the easiest-to-penetrate collisions dominate alone; the product of both trends selects the useful range.",
+      "lessonContent": "Competing exponential trends often create a dominant middle range.\nThermal populations decrease with energy while barrier penetration increases with it.\nReaction rates depend on the product of availability, collision speed, and cross-section.\nA representative average can miss the tail that controls a rare process.\nShare this: find another problem where multiplying a rising trend by a falling trend creates a sweet spot.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Enzyme Distance Test",
+      "question": "A protein mutation leaves donor and acceptor energies similar but moves them slightly farther apart. Electron-transfer rate drops by orders of magnitude. Which explanation best fits?",
+      "choices": [
+        "Longer distance exponentially weakens tunneling coupling",
+        "The electron loses charge while crossing protein",
+        "All proteins become classical after mutation",
+        "Greater distance raises the electron's measured mass"
+      ],
+      "correctAnswer": "Longer distance exponentially weakens tunneling coupling",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Electron-transfer coupling through a molecular barrier often falls exponentially with donor-acceptor separation, so a small structural shift can have a large kinetic effect.",
+      "incorrectExplanation": "Actually, longer distance exponentially weakens tunneling coupling. The mutation need not alter electron charge or mass; changing separation alone can strongly suppress transfer amplitude.",
+      "lessonContent": "Molecular electron transfer can be controlled by wavefunction overlap across a bridge.\nThat coupling often decreases exponentially with donor-acceptor distance.\nProtein structure can tune rates by arranging pathways without changing the electron itself.\nA dramatic rate change from a small distance change is suggestive but still needs chemical controls.\nShare this: explain why molecular geometry can act like an electronic control knob.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Pairs Cross Together",
+      "question": "Two superconductors are separated by an ultrathin insulator. At zero applied voltage, a phase difference can drive a current. What crosses the barrier in the basic Josephson effect?",
+      "choices": [
+        "Hot electrons climbing independently over the insulator",
+        "Coherent Cooper-pair amplitude tunneling through it",
+        "Magnetic monopoles punching temporary channels",
+        "Photons converting the insulator into metal"
+      ],
+      "correctAnswer": "Coherent Cooper-pair amplitude tunneling through it",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. The superconducting states maintain a phase relation across the thin barrier, allowing Cooper-pair tunneling and a supercurrent without an applied voltage.",
+      "incorrectExplanation": "Not quite. Coherent Cooper-pair amplitude tunnels through the insulator. The zero-voltage current is a collective phase effect, not thermal climbing or a temporary destruction of the barrier.",
+      "lessonContent": "Superconductors are described by a collective quantum state with a measurable phase.\nA thin insulating barrier can weakly couple two such states.\nThe resulting current depends on their phase difference rather than ordinary resistive voltage alone.\nMagnetic sensing and voltage standards exploit this macroscopic tunneling effect.\nShare this: tell someone that an insulator can link two collective quantum phases without becoming a metal.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#22",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Above Yet Reflected",
+      "question": "A particle's energy is slightly above a finite barrier, so classical physics predicts certain passage. Why can quantum mechanics still predict reflection?",
+      "choices": [
+        "Crossing would violate the uncertainty principle",
+        "The barrier secretly becomes taller during observation",
+        "Wave mismatch at the boundaries creates a reflected amplitude",
+        "The particle must lose energy before entering any new region"
+      ],
+      "correctAnswer": "Wave mismatch at the boundaries creates a reflected amplitude",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Even when propagation is allowed inside, matching waves at abrupt potential changes generally produces both transmitted and reflected amplitudes.",
+      "incorrectExplanation": "Close! Wave mismatch at the boundaries creates a reflected amplitude. Quantum barriers are not simply pass-below and block-above switches; interfaces can reflect waves even without a classically forbidden section.",
+      "lessonContent": "Quantum reflection can occur at an abrupt potential change even when energy exceeds it.\nBoundary matching plays a role similar to partial reflection of light at a glass surface.\nClassical permission to enter does not imply unit transmission for a wave.\nSmooth and abrupt changes can produce different reflection strengths.\nShare this: compare an electron at a potential step with light partly reflecting from a clear window.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Series Barrier Trap",
+      "question": "Two thin barriers are placed in series. A student multiplies their separate transmission probabilities and declares the answer complete. When can that fail badly?",
+      "choices": [
+        "When electrons have any nonzero charge",
+        "When coherent reflections between barriers interfere resonantly",
+        "When both barriers have the same material",
+        "When the detector is placed after the second barrier"
+      ],
+      "correctAnswer": "When coherent reflections between barriers interfere resonantly",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. If phase information survives, repeated reflections in the middle region combine as amplitudes and can create resonant peaks that independent probabilities miss.",
+      "incorrectExplanation": "Not quite. It can fail badly when coherent reflections between barriers interfere resonantly. Multiplying probabilities assumes the middle stage erases phase information or otherwise behaves independently.",
+      "lessonContent": "Quantum alternatives combine as complex amplitudes while coherence is preserved.\nSequential probabilities may be multiplied only after relevant phase relations become irrelevant.\nMultiple reflections can produce constructive or destructive transmission features.\nAdding environmental scattering often converts coherent amplitude reasoning into ordinary rate reasoning.\nShare this: identify the independence assumption before multiplying two probabilities in series.",
+      "lessonGroup": "Quantum Café",
+      "forgeId": "batch-031#24",
+      "forgeScore": 100
+    }
+  ]
+}

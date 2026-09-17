@@ -1,0 +1,477 @@
+[
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Favoured Applicant",
+    "question": "A recruiter likes one applicant's opening story and spends the interview seeking examples of initiative. Other applicants get tougher questions about failures. Which redesign best tests whether the first impression is deserved?",
+    "choices": [
+      "Score identical work samples before conducting any interviews",
+      "Give every applicant more time to describe personal strengths",
+      "Ask a second recruiter whether the opening story sounded credible",
+      "Let the recruiter add more evidence supporting the early impression"
+    ],
+    "correctAnswer": "Score identical work samples before conducting any interviews",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. A common task gathered before personal contact prevents an early preference from deciding which evidence gets requested and noticed.",
+    "incorrectExplanation": "Not quite — the strongest fix is to score identical work samples before conducting any interviews. More conversation can simply produce more selectively gathered support; standardization creates comparable evidence before a favourite exists.",
+    "lessonContent": "Confirmation bias changes which questions we ask, not only how we judge the answers.\nEarly impressions are especially powerful when later evidence is gathered selectively.\nStandardized evidence makes candidates comparable instead of letting each conversation follow its own theory.\nSeparating evidence collection from judgement reduces opportunities to protect a first guess.\nShare this: write three fixed questions before your next interview or important conversation.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Brilliant Seller",
+    "question": "A salesperson exceeds every target, so executives assume she will also coach patiently, plan budgets well, and resolve conflict. What is the best response before promoting her to management?",
+    "choices": [
+      "Treat exceptional sales as proof of broad professional excellence",
+      "Assess coaching, budgeting, and conflict skills as separate competencies",
+      "Ask her best clients whether they admire her personality",
+      "Promote her temporarily because success usually transfers across roles"
+    ],
+    "correctAnswer": "Assess coaching, budgeting, and conflict skills as separate competencies",
+    "xpReward": 25,
+    "correctExplanation": "Right. Sales performance is relevant evidence about selling, not automatic evidence about unrelated management skills; each trait needs its own test.",
+    "incorrectExplanation": "Actually, assess coaching, budgeting, and conflict skills as separate competencies. The halo from one conspicuous strength makes unmeasured traits feel proven, while admiration and temporary promotion preserve the same inference.",
+    "lessonContent": "A halo forms when one vivid strength spills into ratings of unrelated qualities.\nRole changes are risky because excellence in the old task can hide missing skills in the new one.\nIndependent scorecards force each competency to earn its own evidence.\nSpecific behavioural tests beat global impressions such as 'leadership material.'\nShare this: split one broad judgement of a colleague into three separately evidenced traits.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "Tutorial Confidence",
+    "question": "After one coding tutorial, Mina says she is ready to secure a payment system because every exercise felt easy. Which check most directly tests whether her confidence has outrun her competence?",
+    "choices": [
+      "Ask how motivated she felt while completing the tutorial",
+      "Let her explain why the examples seemed straightforward",
+      "Give her unfamiliar security tasks with expert-scored failure cases",
+      "Count how many tutorial sections she completed without pausing"
+    ],
+    "correctAnswer": "Give her unfamiliar security tasks with expert-scored failure cases",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. Transfer to unfamiliar tasks and expert evaluation reveal blind spots that guided exercises conceal.",
+    "incorrectExplanation": "Close! The answer is to give her unfamiliar security tasks with expert-scored failure cases. Ease inside a guided tutorial may measure scaffolding, while independent transfer exposes whether she can recognize and handle errors herself.",
+    "lessonContent": "Beginners can mistake fluency with examples for mastery of a domain.\nMetacognition depends partly on the same knowledge needed to perform the task.\nNovel problems reveal whether learning transfers beyond the training format.\nExternal criteria calibrate confidence more reliably than feelings of ease.\nShare this: test one newly learned skill on an unfamiliar problem before claiming mastery.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Miracle Thread",
+    "question": "Leo believes a supplement improves memory. He collects dozens of enthusiastic posts from users who felt sharper. Which missing evidence would most challenge his conclusion?",
+    "choices": [
+      "Whether the posts use scientific-sounding vocabulary",
+      "Whether some users took the supplement for several months",
+      "Whether the most enthusiastic users recommend the same brand",
+      "Whether comparable non-users improved, and how many users noticed nothing"
+    ],
+    "correctAnswer": "Whether comparable non-users improved, and how many users noticed nothing",
+    "xpReward": 25,
+    "correctExplanation": "Correct. Testimonials omit both a comparison group and the silent failures, so they cannot show that the supplement caused improvement.",
+    "incorrectExplanation": "It's simpler than it looks: ask whether comparable non-users improved, and how many users noticed nothing. Supporting stories are selected from visible successes; a denominator and comparison group test the belief rather than decorate it.",
+    "lessonContent": "Evidence selected by satisfied users hides failures and natural improvement.\nA denominator asks how many total cases produced the celebrated successes.\nA comparison group estimates what would have happened without the intervention.\nGood belief testing searches for missing cases, not merely additional stories.\nShare this: ask 'out of how many?' the next time a testimonial impresses you.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "Luxury in a Glass",
+    "question": "Guests rate wine from an elegant heavy bottle as richer than the same wine poured from a plain bottle. Which follow-up best isolates the wine's actual sensory quality?",
+    "choices": [
+      "Serve coded samples under identical conditions and compare ratings",
+      "Tell guests that both bottles came from respected vineyards",
+      "Invite experienced collectors to inspect both labels closely",
+      "Repeat the tasting after displaying the premium bottle longer"
+    ],
+    "correctAnswer": "Serve coded samples under identical conditions and compare ratings",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. Blind, matched presentation removes the packaging glow, leaving the liquid as the meaningful difference.",
+    "incorrectExplanation": "The answer is to serve coded samples under identical conditions and compare ratings. Prestige cues can spread into taste judgements; more label information or exposure strengthens that halo instead of isolating sensory evidence.",
+    "lessonContent": "Status cues can colour perception before the underlying object is evaluated.\nBranding, price, and presentation often act as halos around identical products.\nBlinding removes identity cues that could leak into supposedly independent ratings.\nMatched conditions ensure that only the feature under study changes.\nShare this: compare two everyday products once without seeing their brands.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "Borrowed Expertise",
+    "question": "A celebrated architect insists he can personally audit the firm's cybersecurity because he solves complex design problems daily. What should the partners infer?",
+    "choices": [
+      "Complex expertise reliably transfers to any other complex domain",
+      "His cybersecurity judgement needs the same external validation as a novice's",
+      "His confidence proves he has learned enough informally to lead the audit",
+      "Architectural success makes technical mistakes unlikely in general"
+    ],
+    "correctAnswer": "His cybersecurity judgement needs the same external validation as a novice's",
+    "xpReward": 25,
+    "correctExplanation": "Right. Expertise is domain-specific; distinction in architecture does not supply the concepts needed to detect one's cybersecurity errors.",
+    "incorrectExplanation": "Not quite — his cybersecurity judgement needs the same external validation as a novice's. General intelligence may help learning, but it does not replace domain knowledge or make self-assessment accurate in a new field.",
+    "lessonContent": "Expertise usually consists of domain-specific patterns, feedback, and error knowledge.\nSuccess in one difficult field can create unjustified confidence in another.\nGeneral intelligence accelerates learning but does not erase novice blind spots.\nCalibration requires tests tied to the domain being claimed.\nShare this: name one area where your professional confidence should not automatically transfer.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Favourite Bug",
+    "question": "A developer thinks a memory leak causes an app crash. Logs showing rising memory excite her; stable-memory crashes get called 'noise.' What is the most informative next test?",
+    "choices": [
+      "Collect more examples in which memory rises before a crash",
+      "Ask teammates why memory leaks often cause instability",
+      "Predict an observation the leak theory forbids, then try to produce it",
+      "Rewrite the logs so memory changes appear more prominently"
+    ],
+    "correctAnswer": "Predict an observation the leak theory forbids, then try to produce it",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. A risky prediction creates a chance for the theory to fail, unlike collecting more compatible cases.",
+    "incorrectExplanation": "Actually, predict an observation the leak theory forbids, then try to produce it. A hypothesis gains diagnostic value from surviving possible refutation; supportive examples alone may fit many competing causes.",
+    "lessonContent": "Confirmation testing asks whether evidence fits; falsification asks what the idea cannot survive.\nA useful hypothesis excludes some possible observations.\nAnomalies should update a theory rather than be relabelled automatically as noise.\nCompeting explanations become clearer when each makes a different prediction.\nShare this: write one result that would disprove your current explanation of a problem.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Famous Face",
+    "question": "A beloved actor fronts a disaster charity. Donations surge because supporters assume a kind public persona means the organization is effective. What is the most relevant check?",
+    "choices": [
+      "How consistently the actor has played sympathetic characters",
+      "How warmly audiences describe the actor in interviews",
+      "How many other celebrities praise the campaign publicly",
+      "How independently audited outcomes compare with similar charities"
+    ],
+    "correctAnswer": "How independently audited outcomes compare with similar charities",
+    "xpReward": 25,
+    "correctExplanation": "Correct. The actor's likability is separate from the charity's cost, governance, and measured impact.",
+    "incorrectExplanation": "The answer is to check how independently audited outcomes compare with similar charities. Celebrity warmth can illuminate unrelated judgements, while comparative outcome evidence evaluates the organization itself.",
+    "lessonContent": "Admiration for a messenger can spread to claims and organizations they endorse.\nA trustworthy evaluation follows money and outcomes rather than borrowed affection.\nIndependent audits reduce the influence of reputation on measurement.\nComparisons matter because a good intention may still produce weak results.\nShare this: check one endorsed cause by its measured impact rather than its spokesperson.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Lucky Trade",
+    "question": "Noah makes one risky stock pick after watching two videos; it doubles, and he concludes he can beat professional investors. Which evaluation best separates skill from luck?",
+    "choices": [
+      "Track many pre-recorded decisions against a suitable benchmark",
+      "Measure how strongly Noah now believes in his investing method",
+      "Compare his profit with friends who avoided that particular stock",
+      "Ask whether he can tell a persuasive story about the winning company"
+    ],
+    "correctAnswer": "Track many pre-recorded decisions against a suitable benchmark",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. A long, recorded sample compared with a benchmark can reveal repeatable advantage; one noisy win cannot.",
+    "incorrectExplanation": "Close! Track many pre-recorded decisions against a suitable benchmark. Confidence and a compelling story are compatible with luck, while repeated out-of-sample performance tests whether the claimed skill persists.",
+    "lessonContent": "Noisy domains can reward weak methods over short runs.\nA lucky outcome often raises confidence faster than it raises competence.\nPre-recording prevents winners from quietly forgetting their losing predictions.\nBenchmarks show whether performance exceeds what ordinary exposure would produce.\nShare this: keep a dated scorecard for your next ten predictions in a noisy domain.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Friendly Feed",
+    "question": "Priya's news feed mostly shows articulate arguments for her political view. She wants to know whether the view survives serious challenge, not merely whether supporters can defend it. What should she do?",
+    "choices": [
+      "Read a larger number of posts recommended by the same feed",
+      "Seek the strongest opposing case and state it fairly before replying",
+      "Count how many supportive posts include links to any source",
+      "Mute emotional supporters while retaining only calm supporters"
+    ],
+    "correctAnswer": "Seek the strongest opposing case and state it fairly before replying",
+    "xpReward": 25,
+    "correctExplanation": "Right. A strong opposing case probes the belief's weakest points; more polished agreement only deepens the same evidence channel.",
+    "incorrectExplanation": "Not quite — seek the strongest opposing case and state it fairly before replying. Filtering for calmer allies may improve tone but not exposure to disconfirming reasons; fair restatement prevents dismissing a caricature.",
+    "lessonContent": "Selective exposure can make a contested belief feel unanimously supported.\nAlgorithms learn engagement preferences, not which evidence a belief most needs.\nSteel-manning means reconstructing the strongest rival case before evaluating it.\nA view tested against weak opponents has not yet passed a serious test.\nShare this: summarize one opposing argument so its advocate would say you got it right.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "One Late Report",
+    "question": "An employee with years of strong work misses one visible deadline. Her manager now describes her ideas, communication, and judgement as generally poor. Which correction best prevents one failure from darkening every score?",
+    "choices": [
+      "Delay the review until the missed deadline feels less irritating",
+      "Ask colleagues whether they were also disappointed by the delay",
+      "Rate each competency from its own behavioural record and time window",
+      "Average the manager's overall impression with the employee's self-rating"
+    ],
+    "correctAnswer": "Rate each competency from its own behavioural record and time window",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. Trait-specific evidence prevents a salient failure from becoming a negative halo over unrelated performance.",
+    "incorrectExplanation": "The answer is to rate each competency from its own behavioural record and time window. Waiting may cool emotion, but only separate evidence stops one event from contaminating every category.",
+    "lessonContent": "Negative halos are often called horn effects: one flaw darkens unrelated ratings.\nRecent, vivid failures can outweigh a long and relevant record.\nBehaviourally anchored scales force vague impressions into observable evidence.\nSeparate time windows keep one incident from rewriting an entire history.\nShare this: revisit one global criticism and identify the exact behaviour it actually supports.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Expert Shortcut",
+    "question": "A veteran analyst says a new dashboard is intuitive and needs no instructions. New hires repeatedly fail to use it. Which evidence would best reveal whether expertise is hiding the design's difficulty?",
+    "choices": [
+      "The analyst's speed after years of using similar dashboards",
+      "A vote among the experienced designers who built the interface",
+      "The number of advanced features available to expert users",
+      "Observed first-time users completing realistic tasks without coaching"
+    ],
+    "correctAnswer": "Observed first-time users completing realistic tasks without coaching",
+    "xpReward": 25,
+    "correctExplanation": "Correct. Novice task performance tests the interface for its intended learners; expert ease may reflect knowledge they no longer notice using.",
+    "incorrectExplanation": "The answer is observed first-time users completing realistic tasks without coaching. Experienced designers share hidden assumptions, so their confidence cannot substitute for watching the target users work independently.",
+    "lessonContent": "Deep skill can make experts underestimate how many steps beginners must learn.\nAutomatic knowledge becomes hard to notice and therefore hard to explain.\nUsability must be measured with representative users, not only creators.\nWatching unaided performance exposes instructions that experts silently supply themselves.\nShare this: ask a beginner to try something you designed while you remain silent.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Ominous Text",
+    "question": "After suspecting a friend is angry, Sam reads 'fine, talk later' as hostile and remembers only curt replies. Which move best checks the suspicion without simply seeking reassurance?",
+    "choices": [
+      "List rival explanations and specify what each predicts next",
+      "Reread every short message until its hostile tone feels clearer",
+      "Ask another worried friend whether the wording also seems cold",
+      "Collect earlier occasions when brief replies preceded an argument"
+    ],
+    "correctAnswer": "List rival explanations and specify what each predicts next",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. Competing explanations turn an ambiguous cue into testable predictions instead of allowing suspicion to interpret every detail.",
+    "incorrectExplanation": "Actually, list rival explanations and specify what each predicts next. Repeated reading and like-minded consultation can strengthen the original frame; distinct predictions create evidence capable of separating anger from busyness or fatigue.",
+    "lessonContent": "Ambiguous evidence readily takes the shape of an existing expectation.\nGenerating alternatives interrupts the jump from cue to single story.\nPredictions make explanations compete on future evidence rather than emotional fit.\nMemory search is biased when only one theory supplies the search terms.\nShare this: write three explanations for one ambiguous message before responding.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Silver Tongue",
+    "question": "A lecturer speaks fluently and uses beautiful slides, so students assume his historical claims are accurate. Which check most cleanly separates presentation quality from factual reliability?",
+    "choices": [
+      "Compare his speaking confidence with other popular lecturers",
+      "Verify a preselected sample of claims against independent sources",
+      "Ask students how inspired they felt immediately after the lecture",
+      "Inspect whether his slides use consistent fonts and citations"
+    ],
+    "correctAnswer": "Verify a preselected sample of claims against independent sources",
+    "xpReward": 25,
+    "correctExplanation": "Right. Independent fact-checking evaluates accuracy directly, whereas fluency and polish can create a halo without improving truth.",
+    "incorrectExplanation": "Not quite — verify a preselected sample of claims against independent sources. Inspiration, confidence, and visual consistency all belong to the presentation halo; sampling claims tests the separate trait at issue.",
+    "lessonContent": "Processing fluency makes information feel truer and its source feel more competent.\nStyle and substance can correlate, but one does not prove the other.\nPreselecting claims prevents a checker from choosing only easy or favourable examples.\nIndependent sources break the loop in which polish validates itself.\nShare this: fact-check one polished claim that you accepted mainly because it sounded smooth.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Hidden Errors",
+    "question": "A trainee labels medical images and says she is 95% accurate. She has never seen expert labels and cannot describe common error patterns. What feedback would most improve both skill and self-assessment?",
+    "choices": [
+      "Praise her confidence so difficult cases feel less intimidating",
+      "Let her repeat only the images she already labelled quickly",
+      "Compare each prediction with expert labels and explain near misses",
+      "Ask her to increase her confidence estimate after every completed set"
+    ],
+    "correctAnswer": "Compare each prediction with expert labels and explain near misses",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. Item-level correction teaches the distinctions required both to perform well and to recognize one's own mistakes.",
+    "incorrectExplanation": "Close! Compare each prediction with expert labels and explain near misses. Repetition without an answer key can automate errors; diagnostic feedback builds the knowledge that accurate self-grading requires.",
+    "lessonContent": "Poor calibration persists when learners receive completion signals but no correctness signals.\nDetailed feedback teaches both task rules and the boundaries of current skill.\nNear misses are valuable because they reveal which distinctions remain blurred.\nConfidence should be scored against outcomes, not rewarded for its own intensity.\nShare this: seek item-level feedback on one task you currently judge only by feel.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Winning Metric",
+    "question": "A team expects its redesign to help. After launch, retention falls but time-on-page rises, so it declares time-on-page the real goal. What would have best protected the evaluation from this shift?",
+    "choices": [
+      "Collecting many more metrics after seeing the initial results",
+      "Letting the design team explain why its preferred metric matters",
+      "Removing any measure that contradicts the redesign's intended story",
+      "Committing beforehand to primary measures and decision thresholds"
+    ],
+    "correctAnswer": "Committing beforehand to primary measures and decision thresholds",
+    "xpReward": 25,
+    "correctExplanation": "Correct. Advance commitments prevent the team from promoting whichever outcome happens to confirm its hope.",
+    "incorrectExplanation": "The answer is committing beforehand to primary measures and decision thresholds. More metrics create more chances to find a flattering result; a preregistered rule separates prediction from post-hoc storytelling.",
+    "lessonContent": "When many outcomes are available, almost any result can support a preferred story.\nChoosing success criteria after results converts testing into rationalization.\nAdvance commitments preserve the difference between prediction and explanation.\nSecondary measures remain useful when clearly labelled as exploratory.\nShare this: define success and failure before starting your next personal experiment.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "Charisma at Scale",
+    "question": "Investors love a founder's confidence and compelling mission, then rate the startup's security, market demand, and financial controls highly without checking them. Which process offers the strongest defence?",
+    "choices": [
+      "Score predefined evidence for each risk before meeting the founder",
+      "Invite the founder to give a longer and more detailed presentation",
+      "Average every investor's overall impression after the pitch",
+      "Treat confidence as evidence that hidden operational details are sound"
+    ],
+    "correctAnswer": "Score predefined evidence for each risk before meeting the founder",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. Independent, pre-pitch risk scoring prevents personal magnetism from becoming evidence about controls the investors have not examined.",
+    "incorrectExplanation": "Actually, score predefined evidence for each risk before meeting the founder. Longer exposure and averaged impressions can spread the same halo across the group; predefined criteria make each risk answer to its own evidence.",
+    "lessonContent": "Charisma is vivid social information that can contaminate technical judgements.\nGroup discussion does not cancel a halo when everyone shares the same first impression.\nPredefined criteria reduce the freedom to reinterpret missing evidence favourably.\nEvaluating components before the whole protects analysis from global liking.\nShare this: make a scorecard before the next persuasive pitch you hear.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "Calibration Class",
+    "question": "The weakest performers in a statistics course greatly overrate their scores. After training, their scores and self-estimates both improve. What is the most careful interpretation?",
+    "choices": [
+      "Their original confidence must have caused their weak performance",
+      "Learning the subject also improved the tools needed to judge their work",
+      "Low performers always become less confident as soon as they practise",
+      "Accurate self-assessment develops independently of task knowledge"
+    ],
+    "correctAnswer": "Learning the subject also improved the tools needed to judge their work",
+    "xpReward": 25,
+    "correctExplanation": "Right. The knowledge that improves performance can also reveal what counts as an error, so skill and calibration may rise together.",
+    "incorrectExplanation": "Not quite — learning the subject also improved the tools needed to judge their work. The result does not show that confidence caused low scores or that confidence must fall; it shows task knowledge can support metacognition.",
+    "lessonContent": "Self-evaluation is not a separate magic faculty; it draws on domain knowledge.\nTraining can improve both answers and recognition of what a good answer requires.\nCalibration means matching confidence to accuracy, not merely lowering confidence.\nA learner may become more confident and better calibrated at the same time.\nShare this: compare confidence and accuracy before and after your next study session.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Referral Note",
+    "question": "Before examining a patient, a doctor reads a referral strongly suggesting migraine. Every later symptom gets interpreted through that diagnosis. Which procedure best reduces the pull of the initial theory?",
+    "choices": [
+      "Read the referral repeatedly until its reasoning is fully memorable",
+      "Ask the patient only questions that distinguish migraine subtypes",
+      "Record an independent differential from raw findings before viewing the referral",
+      "Search old migraine cases for symptoms resembling this patient's report"
+    ],
+    "correctAnswer": "Record an independent differential from raw findings before viewing the referral",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. An independent assessment preserves alternatives before the referral hypothesis can organize attention and interpretation.",
+    "incorrectExplanation": "The answer is to record an independent differential from raw findings before viewing the referral. Repeated referral review and migraine-focused questions narrow the search further; temporal separation protects a second evidential path.",
+    "lessonContent": "Diagnostic labels guide attention toward matching symptoms and away from alternatives.\nIndependent first-pass judgements preserve information that an anchor might suppress.\nDifferential reasoning keeps multiple causes alive until evidence separates them.\nOrder matters: evidence seen first can organize everything interpreted later.\nShare this: form your own estimate before reading someone else's confident conclusion.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "Prestige on Paper",
+    "question": "Reviewers praise a candidate's writing, teamwork, and judgement after noticing she worked at a famous company. Which change most directly tests whether prestige is inflating unrelated ratings?",
+    "choices": [
+      "Tell reviewers which famous teams the candidate collaborated with",
+      "Ask the candidate to describe why the company hired her",
+      "Have reviewers discuss the company's reputation before scoring",
+      "Remove employer identities and rescore the same evidence independently"
+    ],
+    "correctAnswer": "Remove employer identities and rescore the same evidence independently",
+    "xpReward": 25,
+    "correctExplanation": "Correct. A blinded rescore changes the prestige cue while holding the underlying evidence constant.",
+    "incorrectExplanation": "It's simpler than it looks: remove employer identities and rescore the same evidence independently. More discussion of the famous employer magnifies the halo; blinding creates a direct comparison of ratings with and without it.",
+    "lessonContent": "Institutional prestige can act as a halo around an individual's unmeasured qualities.\nA clean test changes the identity cue while preserving the work being judged.\nIndependent rescoring prevents discussion from pressuring reviewers toward consensus.\nBlind review cannot remove every bias, but it can isolate a specific source.\nShare this: evaluate one piece of work before learning who made it.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "Confident but Vague",
+    "question": "In meetings, Arun confidently claims a project is 'certain to succeed' but gives no measurable forecast. Which request would make his self-assessment easiest to calibrate?",
+    "choices": [
+      "Ask for a dated, testable prediction with a numerical confidence level",
+      "Ask him to repeat the claim after the team lists its concerns",
+      "Let him define success only after the project has finished",
+      "Count how many colleagues describe his delivery as convincing"
+    ],
+    "correctAnswer": "Ask for a dated, testable prediction with a numerical confidence level",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. A specific forecast can be scored later, turning impressive certainty into evidence about actual calibration.",
+    "incorrectExplanation": "The answer is to ask for a dated, testable prediction with a numerical confidence level. Vague certainty escapes correction because success can be redefined; scored forecasts reveal whether confidence frequencies match outcomes.",
+    "lessonContent": "Vague claims protect confidence from contact with failure.\nCalibration compares stated probabilities with long-run outcome frequencies.\nDated forecasts prevent memory from polishing what was originally predicted.\nSpecificity turns confidence from a performance into a measurable claim.\nShare this: attach a probability and deadline to one prediction you make today.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Beloved Stock",
+    "question": "An investor owns a company she admires. She reads every positive report and dismisses bad news as short-term noise. Which rule would best expose her thesis to genuine revision?",
+    "choices": [
+      "Buy more whenever a favourable report confirms management's story",
+      "Write observable sell conditions now and review them on fixed dates",
+      "Follow additional commentators who already own the same company",
+      "Judge each negative report by how uncomfortable it makes her feel"
+    ],
+    "correctAnswer": "Write observable sell conditions now and review them on fixed dates",
+    "xpReward": 25,
+    "correctExplanation": "Right. Advance exit criteria stop affection from moving the evidential goalposts whenever contrary information arrives.",
+    "incorrectExplanation": "Not quite — write observable sell conditions now and review them on fixed dates. More like-minded commentary compounds selective exposure; predetermined conditions state what evidence must trigger revision before emotions negotiate exceptions.",
+    "lessonContent": "Commitment makes disconfirming evidence easier to reinterpret as temporary noise.\nA belief needs explicit revision conditions before contrary facts arrive.\nFixed review dates reduce reactions to daily emotional swings.\nDecision rules are useful only when written clearly enough to resist later editing.\nShare this: write one concrete condition that would make you abandon a current plan.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "Warmth and Trust",
+    "question": "A friendly contractor remembers everyone's names and apologizes charmingly for delays. The client therefore assumes his invoices are accurate. What evidence should carry the most weight?",
+    "choices": [
+      "How sincerely he appears to regret each scheduling problem",
+      "How many clients describe him as pleasant to work with",
+      "Whether sampled charges match receipts, rates, and completed work",
+      "Whether his friendliness remains consistent during the audit"
+    ],
+    "correctAnswer": "Whether sampled charges match receipts, rates, and completed work",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. Warmth may matter for the relationship, but invoice accuracy is a separate claim requiring transactional evidence.",
+    "incorrectExplanation": "Actually, check whether sampled charges match receipts, rates, and completed work. Charm and sincere apologies can cast a halo over honesty; matching records directly tests the financial claim.",
+    "lessonContent": "Warmth and integrity are distinct traits even when they often travel together.\nSocial ease can lower scrutiny precisely when verification still matters.\nSampling records tests a concrete claim without requiring global distrust.\nSeparating person-liking from process-checking protects both relationships and decisions.\nShare this: verify one practical detail independently even when you like the person responsible.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Narrow Certificate",
+    "question": "After passing a short quiz on privacy rules, a manager claims she can design the company's entire data-governance system. What is the fairest way to assess that leap?",
+    "choices": [
+      "Accept it because any formal certificate proves broad competence",
+      "Reject it because beginners can never assess their own progress",
+      "Repeat the same quiz until her score becomes nearly perfect",
+      "Test the additional skills with realistic, independently scored tasks"
+    ],
+    "correctAnswer": "Test the additional skills with realistic, independently scored tasks",
+    "xpReward": 25,
+    "correctExplanation": "Correct. The quiz supports only the skill it sampled; broader competence must be demonstrated on broader tasks.",
+    "incorrectExplanation": "The answer is to test the additional skills with realistic, independently scored tasks. A narrow credential can trigger overgeneralization, but automatic rejection is also unjustified; representative evidence should decide.",
+    "lessonContent": "A test supports claims only about the knowledge and tasks it actually samples.\nBeginners may overgeneralize a visible milestone into mastery of a wider system.\nRepresentative tasks reveal planning, transfer, and error detection that quizzes can miss.\nFair calibration neither flatters nor dismisses; it measures the claimed scope.\nShare this: state exactly what one of your credentials demonstrates and what it does not.",
+    "lessonGroup": "Mind Mirrors"
+  },
+  {
+    "type": "multiple-choice",
+    "category": "wonders",
+    "difficulty": "medium",
+    "title": "The Silent Estimates",
+    "question": "A team lead predicts a two-week delivery and opens discussion by defending that estimate. Soon everyone finds reasons it is realistic. Which meeting change best preserves independent evidence?",
+    "choices": [
+      "Collect private estimates and failure reasons before revealing anyone's view",
+      "Let the lead present more success stories before inviting objections",
+      "Ask only people who agree to explain their reasoning in detail",
+      "Take a public vote immediately after the lead's opening argument"
+    ],
+    "correctAnswer": "Collect private estimates and failure reasons before revealing anyone's view",
+    "xpReward": 25,
+    "correctExplanation": "Exactly. Independent estimates prevent the leader's hypothesis from determining what everyone searches for and reports.",
+    "incorrectExplanation": "Not quite — collect private estimates and failure reasons before revealing anyone's view. Public discussion after an authoritative opening encourages supportive search and social alignment; simultaneous private input preserves diverse information.",
+    "lessonContent": "A stated group preference becomes a search cue for reasons that support it.\nIndependent elicitation protects information held by quieter or lower-status members.\nFailure prompts counter the natural tendency to plan from the success story alone.\nReveal order matters because early views shape later evidence production.\nShare this: gather written opinions before discussion at your next group decision.",
+    "lessonGroup": "Mind Mirrors"
+  }
+]

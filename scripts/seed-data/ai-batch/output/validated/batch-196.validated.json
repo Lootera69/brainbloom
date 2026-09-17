@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-196",
+  "generatedAt": "2026-09-17T13:27:46.061Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "Steer effort — release traffic",
+      "correctExplanation": "Right — horns move no bumpers; playlists and patience are yours. Effort obeys; traffic doesn't.",
+      "incorrectExplanation": "Not quite — steer effort, release traffic. You command calm and timing, never the jam.",
+      "lessonContent": "Jams belong to fate; moods belong to you.\nSteer inputs, release outputs.\nCommuters choose calm or steam.\nShare this: play one calm playlist tomorrow.",
+      "lessonGroup": "Think Deeper",
+      "question": "Stuck in a jam, late for work. What does Stoic wisdom advise?",
+      "title": "The Patient Commute",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Steer effort — release traffic",
+        "Honk harder — bend traffic",
+        "Blame dawn — curse early",
+        "Speed later — repay minutes"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Move ceremony — accept rain",
+      "correctExplanation": "Correct — skies ignore invitations; tents and laughter obey. Plans bend, vows hold.",
+      "incorrectExplanation": "Close! Move ceremony, accept rain. Control the venue's roof, not the clouds' mood.",
+      "lessonContent": "Skies ignore wedding invitations.\nTents obey; clouds don't.\nVows outlast weather always.\nShare this: pack one backup plan gladly.",
+      "lessonGroup": "Think Deeper",
+      "question": "Rain threatens the outdoor wedding. Stoic move?",
+      "title": "The Wet Vows",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Move ceremony — accept rain",
+        "Curse clouds — demand sun",
+        "Cancel love — blame forecast",
+        "Sue meteorologists — bill clouds"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#1",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Read calmly — release departures",
+      "correctExplanation": "Yes — gates obey airlines; books obey you. Waiting belongs to whoever waits well.",
+      "incorrectExplanation": "Not quite — read calmly, release departures. Gate agents own schedules; you own attention.",
+      "lessonContent": "Gates obey airlines, never passengers.\nBooks obey readers completely.\nWaits belong to waiters' attitudes.\nShare this: carry one gate-ready book.",
+      "lessonGroup": "Think Deeper",
+      "question": "Flight delayed three hours. Stoic response?",
+      "title": "The Grounded Reader",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Read calmly — release departures",
+        "Rage loudly — hurry planes",
+        "Bribe agents — buy runways",
+        "Tweet storms — shame airlines"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Earplugs in — release neighbors",
+      "correctExplanation": "Right — lease can't hush neighbors; earplugs hush evenings. Walls are fate; sleep is craft.",
+      "incorrectExplanation": "Actually, earplugs in, release neighbors. You own bedtime rituals, not upstairs footsteps.",
+      "lessonContent": "Neighbors ignore lease clauses nightly.\nEarplugs obey instantly.\nSleep is craft; quiet is luck.\nShare this: gift yourself one quiet night.",
+      "lessonGroup": "Think Deeper",
+      "question": "Upstairs neighbors stomp nightly. Stoic fix?",
+      "title": "The Stomping Ceiling",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Earplugs in — release neighbors",
+        "Bang back — teach rhythm",
+        "Move monthly — chase silence",
+        "Sleepless pride — endure loudly"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#3",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Improve craft — release reviewers",
+      "correctExplanation": "Correct — one star belongs to its author; the next chapter belongs to you. Reviews inform, never define.",
+      "incorrectExplanation": "Close! Improve craft, release reviewers. Stars are data; worth is yours.",
+      "lessonContent": "Stars belong to their authors.\nCraft belongs to its maker.\nReviews inform; selves decide.\nShare this: mine one bad review calmly.",
+      "lessonGroup": "Think Deeper",
+      "question": "A one-star review stings. Stoic reading?",
+      "title": "The Single Star",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Improve craft — release reviewers",
+        "Quit writing — obey stars",
+        "Flame back — duel reviewers",
+        "Bribe stars — buy fives"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Examine claim — release sting",
+      "correctExplanation": "Yes — insults describe speakers; examination serves you. Stings fade under inspection.",
+      "incorrectExplanation": "Not quite — examine claim, release sting. True parts teach; false parts describe the speaker.",
+      "lessonContent": "Insults describe their speakers.\nExamination extracts tuition or trash.\nStings fade under microscopes.\nShare this: inspect one insult coolly.",
+      "lessonGroup": "Think Deeper",
+      "question": "A colleague calls you incompetent. Stoic reply?",
+      "title": "The Cool Examination",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Examine claim — release sting",
+        "Retaliate sharply — wound back",
+        "Ruminate nightly — replay sting",
+        "Resign promptly — flee words"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Do work — release moods",
+      "correctExplanation": "Right — the boss's weather is theirs; your deliverables are yours. Moods pass; work remains.",
+      "incorrectExplanation": "Actually, do work, release moods. Storms in corner offices need no umbrellas from you.",
+      "lessonContent": "Bosses own their weather.\nDeliverables obey workers.\nStorms pass; records remain.\nShare this: deliver through one storm.",
+      "lessonGroup": "Think Deeper",
+      "question": "The boss storms in furious. Stoic posture?",
+      "title": "The Corner Storm",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Do work — release moods",
+        "Panic early — mirror storms",
+        "Flatter wildly — calm thunder",
+        "Hide hourly — dodge lightning"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Hold course — release tickers",
+      "correctExplanation": "Correct — markets ignore your needs; allocation obeys your plan. Tickers flicker; courses hold.",
+      "incorrectExplanation": "Close! Hold course, release tickers. Plans outlast red days.",
+      "lessonContent": "Markets ignore personal needs.\nPlans obey their planners.\nRed days test philosophies.\nShare this: check portfolios quarterly.",
+      "lessonGroup": "Think Deeper",
+      "question": "Markets crash 10% in a week. Stoic investor?",
+      "title": "The Red Week",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Hold course — release tickers",
+        "Panic sell — obey fear",
+        "Leverage up — gamble back",
+        "Blame analysts — curse screens"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Vote values — release results",
+      "correctExplanation": "Yes — ballots express conscience; counts belong to millions. Citizenship is effort, not outcome.",
+      "incorrectExplanation": "Not quite — vote values, release results. One vote speaks; millions decide.",
+      "lessonContent": "Ballots speak; millions decide.\nConscience votes regardless.\nCitizenship is participation.\nShare this: vote one conscience fully.",
+      "lessonGroup": "Think Deeper",
+      "question": "Your candidate lost the election. Stoic citizen?",
+      "title": "The Lost Race",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Vote values — release results",
+        "Despair fully — quit republic",
+        "Blame neighbors — curse voters",
+        "Move abroad — flee counts"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#8",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Advise once — release choices",
+      "correctExplanation": "Right — counsel is yours; decisions are theirs. Love advises; control strangles.",
+      "incorrectExplanation": "Actually, advise once, release choices. Friends own their crossroads.",
+      "lessonContent": "Counsel belongs to friends' ears.\nDecisions belong to deciders.\nLove releases its grip kindly.\nShare this: advise once, then hush.",
+      "lessonGroup": "Think Deeper",
+      "question": "Your friend takes a job you dislike. Stoic friend?",
+      "title": "The Friend's Fork",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Advise once — release choices",
+        "Command firmly — steer friends",
+        "Sulking monthly — punish choices",
+        "Recruit allies — stage interventions"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Train what remains — use injury",
+      "correctExplanation": "Correct — the season ended; the athlete continues. Rehab obeys; ligaments healed on their schedule.",
+      "incorrectExplanation": "Close! Train what remains, use injury. Obstacles reroute athletes, never stop them.",
+      "lessonContent": "Injuries reroute, never stop.\nRehab obeys the patient.\nSeasons end; athletes continue.\nShare this: train around one limit.",
+      "lessonGroup": "Think Deeper",
+      "question": "A knee injury ends her season. Stoic athlete?",
+      "title": "The Torn Season",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Train what remains — use injury",
+        "Mourn fully — quit sport",
+        "Blame turf — sue fields",
+        "Deny pain — play broken"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#10",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Mine feedback — use rejection",
+      "correctExplanation": "Yes — the letter closed one door; its reasons open others. Rejections instruct the receptive.",
+      "incorrectExplanation": "Not quite — mine feedback, use rejection. No's carry maps to yes's.",
+      "lessonContent": "Rejections map routes to yes's.\nFeedback hides in form letters.\nDoors close; corridors open.\nShare this: mine one no for directions.",
+      "lessonGroup": "Think Deeper",
+      "question": "Dream job rejects him. Stoic applicant?",
+      "title": "The Rejected Application",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Mine feedback — use rejection",
+        "Burn bridges — curse firms",
+        "Quit field — obey one no",
+        "Stalk recruiters — demand yes"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#11",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Dance wet — love rain",
+      "correctExplanation": "Right — picnics drown; memories don't have to. Rain falls; dancers choose joy.",
+      "incorrectExplanation": "Actually, dance wet, love rain. Soaked blankets can't soak willing moods.",
+      "lessonContent": "Rain falls; dancers choose joy.\nSoaked plans invite improvisation.\nWeather writes; moods direct.\nShare this: dance in one rain.",
+      "lessonGroup": "Think Deeper",
+      "question": "Rain soaks the picnic. Amor fati says?",
+      "title": "The Soaked Blanket",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Dance wet — love rain",
+        "Wail loudly — curse drops",
+        "Sue skies — bill clouds",
+        "Starve proudly — shun indoors"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#12",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Laugh, change — love stains",
+      "correctExplanation": "Correct — coffee owns the shirt now; laughter owns the morning. Stains happen; moods choose.",
+      "incorrectExplanation": "Close! Laugh, change, love stains. Spills author anecdotes, not tragedies.",
+      "lessonContent": "Spills author anecdotes gladly.\nShirts wash; mornings pass.\nLaughter launders best.\nShare this: laugh at one spill.",
+      "lessonGroup": "Think Deeper",
+      "question": "Coffee spills on the white shirt pre-interview. Amor fati?",
+      "title": "The Stained Shirt",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Laugh, change — love stains",
+        "Rage fully — curse cups",
+        "Cancel life — obey spots",
+        "Wear shame — flaunt stains"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Act today — remember dusk",
+      "correctExplanation": "Yes — days number unknown; today's work is certain. Mortality schedules priorities.",
+      "incorrectExplanation": "Not quite — act today, remember dusk. Finite days price each sunrise.",
+      "lessonContent": "Days number unknown totals.\nMortality prices sunrises.\nToday's work is certain.\nShare this: do one mortal priority.",
+      "lessonGroup": "Think Deeper",
+      "question": "He postpones dreams 'for someday'. Memento mori replies?",
+      "title": "The Someday Postpone",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Act today — remember dusk",
+        "Wait longer — trust someday",
+        "Hoard years — save living",
+        "Fear fully — freeze now"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#14",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Forgive fast — remember graves",
+      "correctExplanation": "Right — grudges rent skull-space to the dead-while-living. Graves level all scores.",
+      "incorrectExplanation": "Actually, forgive fast, remember graves. Tomorrows aren't promised to feuders.",
+      "lessonContent": "Graves level every score.\nGrudges tax the living only.\nForgiveness frees holders first.\nShare this: drop one old grudge.",
+      "lessonGroup": "Think Deeper",
+      "question": "A decade-old grudge still burns. Memento mori?",
+      "title": "The Old Ember",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Forgive fast — remember graves",
+        "Nurse flames — feed grudges",
+        "Plot coolly — await revenge",
+        "Bill debtors — charge interest"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#15",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Look up — remember brevity",
+      "correctExplanation": "Correct — hours scroll past unreturning; skies wait unopened. Brevity summons eyes upward.",
+      "incorrectExplanation": "Close! Look up, remember brevity. Feeds outlast no one.",
+      "lessonContent": "Feeds outlast nobody's attention.\nSkies wait above screens.\nBrevity summons eyes up.\nShare this: watch one real sunset.",
+      "lessonGroup": "Think Deeper",
+      "question": "She scrolls four hours nightly. Memento mori?",
+      "title": "The Scrolling Night",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Look up — remember brevity",
+        "Scroll more — feed emptiness",
+        "Upgrade phone — scroll faster",
+        "Blame apps — curse coders"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Fix method — use failure",
+      "correctExplanation": "Yes — the F exposes methods, not worth. Failures tutor the teachable.",
+      "incorrectExplanation": "Not quite — fix method, use failure. Grades diagnose; egos distract.",
+      "lessonContent": "Grades diagnose methods, not worth.\nFailures tutor teachables.\nMethods evolve through red ink.\nShare this: revise one failed method.",
+      "lessonGroup": "Think Deeper",
+      "question": "Failed the exam. Obstacle-as-way says?",
+      "title": "The Red Ink",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Fix method — use failure",
+        "Quit school — obey letters",
+        "Blame teacher — curse graders",
+        "Cheat next — dodge learning"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#17",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Extract lesson — use ashes",
+      "correctExplanation": "Right — ventures die; founders keep tuition. Ashes fertilize next fields.",
+      "incorrectExplanation": "Actually, extract lesson, use ashes. Bankruptcies teach the undefeated-by-failure.",
+      "lessonContent": "Ventures die; tuition persists.\nAshes fertilize next attempts.\nFounders keep educations.\nShare this: journal one failure's lesson.",
+      "lessonGroup": "Think Deeper",
+      "question": "Startup folds after two years. Obstacle-as-way?",
+      "title": "The Folded Venture",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Extract lesson — use ashes",
+        "Hide forever — shun risk",
+        "Blame market — curse customers",
+        "Borrow more — double ashes"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Coach others — use sidelines",
+      "correctExplanation": "Correct — benched bodies can still build teams. Sidelines coach the willing.",
+      "incorrectExplanation": "Close! Coach others, use sidelines. Whistles replace cleats gracefully.",
+      "lessonContent": "Benches build coaches daily.\nSidelines teach willing eyes.\nTeams need voices too.\nShare this: coach one teammate kindly.",
+      "lessonGroup": "Think Deeper",
+      "question": "Benched all season. Obstacle-as-way?",
+      "title": "The Warm Bench",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Coach others — use sidelines",
+        "Sulk fully — poison dugouts",
+        "Quit team — abandon mates",
+        "Fake injury — excuse bench"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Cherish job — imagine loss",
+      "correctExplanation": "Yes — picturing unemployment gilds Monday meetings. Imagined loss teaches present love.",
+      "incorrectExplanation": "Not quite — cherish job, imagine loss. Negative visions fertilize gratitude.",
+      "lessonContent": "Imagined losses gild presents.\nMondays shine post-farewell.\nVisions fertilize thankfulness.\nShare this: savor one ordinary Monday.",
+      "lessonGroup": "Think Deeper",
+      "question": "He dreads Mondays. Negative visualization?",
+      "title": "The Dreaded Monday",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Cherish job — imagine loss",
+        "Quit now — flee dread",
+        "Sleep in — skip Mondays",
+        "Curse calendar — blame weeks"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Back up — imagine loss",
+      "correctExplanation": "Right — picturing a dead phone motivates backups tonight. Foresight rescues futures.",
+      "incorrectExplanation": "Actually, back up, imagine loss. Lost-photo grief prevents digitally.",
+      "lessonContent": "Dead phones teach backup liturgies.\nPhotos vanish without copies.\nForesight rescues memories.\nShare this: back up one device tonight.",
+      "lessonGroup": "Think Deeper",
+      "question": "Phone holds three years of photos, no backup. Negative visualization?",
+      "title": "The Unbacked Years",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Back up — imagine loss",
+        "Trust luck — court loss",
+        "Buy charms — insure mystically",
+        "Delete all — practice detachment"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Walk today — imagine frailty",
+      "correctExplanation": "Correct — picturing stiff joints animates evening strolls. Future frailty funds present steps.",
+      "incorrectExplanation": "Close! Walk today, imagine frailty. Imagined wheelchairs move legs now.",
+      "lessonContent": "Imagined frailty funds footsteps.\nStrolls bank against stiffness.\nFutures motivate presents.\nShare this: walk one extra block.",
+      "lessonGroup": "Think Deeper",
+      "question": "She skips walks for years. Negative visualization?",
+      "title": "The Skipped Stroll",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Walk today — imagine frailty",
+        "Wait decades — trust joints",
+        "Buy gadgets — outsource legs",
+        "Rest fully — save steps"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Shower cold — train comfort",
+      "correctExplanation": "Yes — chosen discomforts shrink complained ones. Voluntary chills build involuntary calm.",
+      "incorrectExplanation": "Not quite — shower cold, train comfort. Small hardships vaccinate moods.",
+      "lessonContent": "Chosen chills shrink complaints.\nVoluntary hard builds calm.\nComfort zones expand by visits.\nShare this: end one shower cold.",
+      "lessonGroup": "Think Deeper",
+      "question": "Every inconvenience ruins his day. Voluntary discomfort?",
+      "title": "The Cold Finish",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Shower cold — train comfort",
+        "Avoid all — pad life",
+        "Complain more — vent pressure",
+        "Sue weather — bill breezes"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#23",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Skip dessert — train appetite",
+      "correctExplanation": "Right — declined sweets prove wants obey. Appetites submit to practice.",
+      "incorrectExplanation": "Actually, skip dessert, train appetite. Hunger obeys rehearsed refusals.",
+      "lessonContent": "Declined sweets prove mastery.\nAppetites obey practice.\nWants shrink when refused kindly.\nShare this: decline one craving calmly.",
+      "lessonGroup": "Think Deeper",
+      "question": "Cravings command her evenings. Voluntary discomfort?",
+      "title": "The Declined Sweet",
+      "type": "multiple-choice",
+      "category": "wonders",
+      "choices": [
+        "Skip dessert — train appetite",
+        "Binge first — exhaust want",
+        "Blame bakeries — curse ovens",
+        "Hide food — outsource will"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-196#24",
+      "forgeScore": 100
+    }
+  ]
+}

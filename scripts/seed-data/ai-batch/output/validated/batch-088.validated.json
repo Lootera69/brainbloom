@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-088",
+  "generatedAt": "2026-09-17T13:27:42.858Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Attacker Eyes",
+      "question": "A security review asks how the system could be breached rather than only how it will be used. What does this stance reveal?",
+      "choices": [
+        "An attacker finds the gap you ignored",
+        "The system is certainly secure",
+        "Users will never misbehave",
+        "Reviewing wastefully delays progress"
+      ],
+      "correctAnswer": "An attacker finds the gap you ignored",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Adopting a hostile viewpoint surfaces weaknesses that a friendly perspective overlooks.",
+      "incorrectExplanation": "The answer is an attacker finds the gap you ignored. Thinking adversarially exposes assumptions that ordinary use never tests.",
+      "lessonContent": "Hostile viewpoints reveal hidden weaknesses.\nDesigners share blind spots with users.\nAttack the design before others do.\nAdopt the opponent's eyes.\nShare this: find one weak point in a plan by asking how to break it.",
+      "forgeId": "batch-088#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Opposing Case",
+      "question": "A team appoints someone to argue rigorously against its own proposal. What is this practice called?",
+      "choices": [
+        "Red teaming argues the opposing case",
+        "Groupthink reinforces the majority",
+        "Brainstorming collects every idea",
+        "Consensus building seeks agreement"
+      ],
+      "correctAnswer": "Red teaming argues the opposing case",
+      "xpReward": 50,
+      "lessonGroup": "Argument Repair",
+      "correctExplanation": "Right. Deliberately assigning the opposition tests the plan before reality does.",
+      "incorrectExplanation": "The answer is red teaming argues the opposing case. The role is serious argument, not token dissent or mere brainstorming.",
+      "lessonContent": "Assigning opposition tests a plan.\nSerious dissent beats polite agreement.\nWeaknesses found early are cheap.\nMake criticism a role, not a risk.\nShare this: argue against one of your own decisions this week.",
+      "forgeId": "batch-088#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Strongest Version",
+      "question": "Before responding to an argument, you restate it in its most defensible form. What is this called?",
+      "choices": [
+        "Steelmanning strengthens the other side",
+        "Strawmanning weakens the other side",
+        "Ignoring the argument entirely",
+        "Conceding without examining it"
+      ],
+      "correctAnswer": "Steelmanning strengthens the other side",
+      "xpReward": 50,
+      "lessonGroup": "Argument Repair",
+      "correctExplanation": "Right. Answering the best version of a view avoids the easy victory of a distorted target.",
+      "incorrectExplanation": "The answer is steelmanning strengthens the other side. It is the opposite of attacking a weakened caricature.",
+      "lessonContent": "Answer the best version of a view.\nDefeating a weak version proves little.\nStrengthen before you critique.\nUnderstand fully, then respond.\nShare this: restate an opposing view better than its holder did.",
+      "forgeId": "batch-088#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Role Not Belief",
+      "question": "Someone argues a position they do not hold in order to test a discussion. What role are they playing?",
+      "choices": [
+        "A devil's advocate tests an idea",
+        "A spokesperson represents a group",
+        "A mediator settles a dispute",
+        "A witness reports what happened"
+      ],
+      "correctAnswer": "A devil's advocate tests an idea",
+      "xpReward": 50,
+      "lessonGroup": "Argument Repair",
+      "correctExplanation": "Right. The role exists to stress-test reasoning, not to declare a personal view.",
+      "incorrectExplanation": "The answer is a devil's advocate tests an idea. Their argument is a probe, so the position need not reflect their belief.",
+      "lessonContent": "Roles can be played for a purpose.\nTest ideas from an uncommitted angle.\nSeparate the role from the person.\nValue the probe, not the pose.\nShare this: play the sceptic on one plan you actually like.",
+      "forgeId": "batch-088#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Binding Future",
+      "question": "A person locks away tempting food to protect their later choices. What strategy is this?",
+      "choices": [
+        "Precommitment binds your future self",
+        "Wishful thinking ignores reality",
+        "Hindsight explains the past",
+        "Denial refuses the problem"
+      ],
+      "correctAnswer": "Precommitment binds your future self",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Acting now to constrain later options guards against predictable weakness.",
+      "incorrectExplanation": "The answer is precommitment binds your future self. It assumes your future self will be tempted and removes the choice in advance.",
+      "lessonContent": "Present action can constrain later choices.\nAnticipate your own weakness.\nDesign the environment before temptation.\nMake the good choice the easy one.\nShare this: set up one constraint against a known weak moment.",
+      "forgeId": "batch-088#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Moving Target",
+      "question": "Why does a fixed defence eventually fail against a determined opponent?",
+      "choices": [
+        "Adversaries adapt to your defences",
+        "Defences never work at all",
+        "Opponents never change their methods",
+        "Fixed plans are always optimal"
+      ],
+      "correctAnswer": "Adversaries adapt to your defences",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Any static arrangement can be studied and worked around by someone with the will to try.",
+      "incorrectExplanation": "The answer is adversaries adapt to your defences. The assumption of a static opponent is what makes a plan fragile.",
+      "lessonContent": "Opponents react to what you do.\nStatic plans invite circumvention.\nAssume adaptation on the other side.\nReview and revise defences.\nShare this: identify one plan that assumes the other side stays still.",
+      "forgeId": "batch-088#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Misuse First",
+      "question": "A designer lists how a feature might be misused before listing its intended uses. What are they mapping?",
+      "choices": [
+        "Enumerate abuse cases not just uses",
+        "Ignore every edge condition",
+        "Assume all users are honest",
+        "Design only for the happy path"
+      ],
+      "correctAnswer": "Enumerate abuse cases not just uses",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Anticipating misuse shapes a design that survives hostile or careless behaviour.",
+      "incorrectExplanation": "The answer is enumerate abuse cases not just uses. The happy path is not the only path, and the others need design too.",
+      "lessonContent": "Design for misuse, not only use.\nHostile behaviour follows different incentives.\nAnticipate the unintended path.\nTest the edges, not just the centre.\nShare this: list three ways one of your plans could be misused.",
+      "forgeId": "batch-088#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Proving Wrong",
+      "question": "A scientist devises an experiment that could disprove their favourite theory. What principle is at work?",
+      "choices": [
+        "Seek what would prove you wrong",
+        "Seek only confirming examples",
+        "Avoid any risky test",
+        "Trust the theory without testing"
+      ],
+      "correctAnswer": "Seek what would prove you wrong",
+      "xpReward": 50,
+      "lessonGroup": "Argument Repair",
+      "correctExplanation": "Right. A claim earns confidence by surviving genuine attempts to refute it.",
+      "incorrectExplanation": "The answer is seek what would prove you wrong. Looking only for support produces comfort, not knowledge.",
+      "lessonContent": "Confidence grows by surviving refutation.\nDesign tests that could fail.\nConfirmation alone proves little.\nPrefer the risky test.\nShare this: name one result that would change your mind about a belief.",
+      "forgeId": "batch-088#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Reading Motives",
+      "question": "Rather than listening to a party's stated goals, an analyst studies what they stand to gain. Why?",
+      "choices": [
+        "Read others incentives not their words",
+        "Words always reveal true intent",
+        "Incentives never affect behaviour",
+        "Stated goals are always accurate"
+      ],
+      "correctAnswer": "Read others incentives not their words",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Incentives predict behaviour more reliably than announcements, which can be strategic.",
+      "incorrectExplanation": "The answer is read others incentives not their words. What a party gains shapes what they will actually do, spoken aims notwithstanding.",
+      "lessonContent": "Incentives predict behaviour well.\nStatements can be strategic.\nLook past the announcement.\nPredict action from advantage.\nShare this: predict one person's next move from what they gain.",
+      "forgeId": "batch-088#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Finding the Motive",
+      "question": "An investigator traces who profits from a decision in order to understand why it was made. What are they doing?",
+      "choices": [
+        "Follow the incentives to find the motive",
+        "Assume decisions are random",
+        "Ignore the outcome entirely",
+        "Trust the official explanation alone"
+      ],
+      "correctAnswer": "Follow the incentives to find the motive",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Benefits reveal likely motivations that public reasons may leave out.",
+      "incorrectExplanation": "The answer is follow the incentives to find the motive. Understanding who gains clarifies puzzling choices.",
+      "lessonContent": "Benefits hint at reasons.\nAsk who gains from a decision.\nMotives can differ from explanations.\nTrace the advantage.\nShare this: ask who benefits from one decision you recently heard about.",
+      "forgeId": "batch-088#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Who Pays",
+      "question": "Before trusting a study, a reader checks who funded it and what the funder wants. Which safeguard is this?",
+      "choices": [
+        "Check for conflicts of interest",
+        "Ignore the source entirely",
+        "Assume funding never matters",
+        "Accept the conclusion uncritically"
+      ],
+      "correctAnswer": "Check for conflicts of interest",
+      "xpReward": 50,
+      "lessonGroup": "Argument Repair",
+      "correctExplanation": "Right. Interests can shape questions, methods, and reporting even without deliberate dishonesty.",
+      "incorrectExplanation": "The answer is check for conflicts of interest. Funding does not prove bias but it is a relevant condition to weigh.",
+      "lessonContent": "Interests can shape what is studied and shown.\nFunding is relevant, not decisive.\nWeigh the source before the claim.\nAsk who benefits from the result.\nShare this: check the funding behind one claim you trust.",
+      "forgeId": "batch-088#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "After the Reaction",
+      "question": "A policy will change behaviour in ways the designer did not intend. What must be considered?",
+      "choices": [
+        "Second-order effects change the outcome",
+        "Only the first move matters",
+        "People never respond to policies",
+        "Reactions are always desirable"
+      ],
+      "correctAnswer": "Second-order effects change the outcome",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Following the consequences of responses reveals effects that a static analysis misses.",
+      "incorrectExplanation": "The answer is second-order effects change the outcome. People adapt to new rules, so the world after the change differs from the world used to design it.",
+      "lessonContent": "Interventions trigger reactions.\nFollow effects past the first step.\nPeople adapt to new rules.\nModel responses, not just actions.\nShare this: trace one decision two steps past its first result.",
+      "forgeId": "batch-088#11",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Floor of Readiness",
+      "question": "A planner prepares for the worst plausible case rather than the average. What does this establish?",
+      "choices": [
+        "Worst-case analysis sets a readiness floor",
+        "Average-case analysis sets the ceiling",
+        "No preparation is needed at all",
+        "The exact outcome is predicted"
+      ],
+      "correctAnswer": "Worst-case analysis sets a readiness floor",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Preparing for the extreme guarantees a minimum capability even though the event itself remains uncertain.",
+      "incorrectExplanation": "The answer is worst-case analysis sets a readiness floor. It does not forecast one scenario but ensures a baseline response.",
+      "lessonContent": "Preparedness is measured against the extreme.\nA floor beats a forecast.\nDefine the minimum acceptable response.\nCheck feasibility before committing.\nShare this: set a minimum standard for handling one worst case.",
+      "forgeId": "batch-088#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Surface the Hidden",
+      "question": "Before committing to a plan, a team writes out what must be true for it to succeed. What is this exercise?",
+      "choices": [
+        "Surface assumptions before committing",
+        "Hide uncertainties from the team",
+        "Assume success without checking",
+        "Increase confidence without evidence"
+      ],
+      "correctAnswer": "Surface assumptions before committing",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Naming the beliefs a plan depends on turns hidden risks into testable claims.",
+      "incorrectExplanation": "The answer is surface assumptions before committing. Unstated beliefs are the ones that quietly sink a plan.",
+      "lessonContent": "Hidden beliefs cause quiet failures.\nWrite out what must hold true.\nTest assumptions before they matter.\nMake the implicit explicit.\nShare this: list three assumptions behind one plan you hold.",
+      "forgeId": "batch-088#13",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Both Chairs",
+      "question": "A debater argues first for a proposal and then against it with equal effort. What does this accomplish?",
+      "choices": [
+        "Playing both sides exposes weak points",
+        "It wastes time with no benefit",
+        "It proves the proposal is correct",
+        "It avoids understanding the issue"
+      ],
+      "correctAnswer": "Playing both sides exposes weak points",
+      "xpReward": 50,
+      "lessonGroup": "Argument Repair",
+      "correctExplanation": "Right. Switching sides forces a fair hearing of both cases and reveals where each is vulnerable.",
+      "incorrectExplanation": "The answer is playing both sides exposes weak points. Arguing each position seriously deepens understanding of the whole issue.",
+      "lessonContent": "Arguing both ways deepens understanding.\nEach side reveals the other's gaps.\nSympathy for both sharpens judgement.\nRotate perspectives deliberately.\nShare this: argue an issue first one way, then the other.",
+      "forgeId": "batch-088#14",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Hostile User",
+      "question": "An engineer asks how a determined bad actor would misuse a new feature. What question are they answering?",
+      "choices": [
+        "Ask what a hostile user would exploit",
+        "Ask what a friendly user prefers",
+        "Ask what the designer intended",
+        "Ask what looks best in a demo"
+      ],
+      "correctAnswer": "Ask what a hostile user would exploit",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Imagining the worst user turns design flaws into concrete attack paths before they are used.",
+      "incorrectExplanation": "The answer is ask what a hostile user would exploit. Friendly use cases rarely reveal what a malicious one would find.",
+      "lessonContent": "Imagine the worst user.\nHostile use reveals design gaps.\nFriendly cases hide attack paths.\nDesign for the adversary.\nShare this: ask how one tool could be used to cause harm.",
+      "forgeId": "batch-088#15",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Two Kinds Unknown",
+      "question": "Why should a decision distinguish outcomes with known odds from outcomes with unknown odds?",
+      "choices": [
+        "Distinguish risk from uncertainty",
+        "The two are exactly the same",
+        "Unknown odds are always safer",
+        "Known odds guarantee success"
+      ],
+      "correctAnswer": "Distinguish risk from uncertainty",
+      "xpReward": 50,
+      "lessonGroup": "Mind the Odds",
+      "correctExplanation": "Right. Risks can be priced and hedged, while true uncertainty cannot be reduced to a reliable number.",
+      "incorrectExplanation": "The answer is distinguish risk from uncertainty. Treating the unknown as if it had known odds creates false confidence.",
+      "lessonContent": "Some unknowns have odds; others do not.\nDo not assign numbers without a basis.\nHandle uncertainty differently from risk.\nName which kind you face.\nShare this: label one current unknown as risk or uncertainty.",
+      "forgeId": "batch-088#16",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "One Weak Link",
+      "question": "A chain of safeguards fails because a single element is missing. What concept does this illustrate?",
+      "choices": [
+        "Find the single point of failure",
+        "Redundancy guarantees safety",
+        "Every part is equally critical",
+        "Failures never cascade"
+      ],
+      "correctAnswer": "Find the single point of failure",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Identifying the one element whose loss breaks everything guides where to add protection.",
+      "incorrectExplanation": "The answer is find the single point of failure. Systems often have one vulnerable link that determines overall reliability.",
+      "lessonContent": "Reliability can hinge on one link.\nMap which losses are fatal.\nProtect the critical element.\nRedundancy helps where it matters.\nShare this: name the single element whose loss would break one system you rely on.",
+      "forgeId": "batch-088#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Survive Being Wrong",
+      "question": "Why does an investor spread holdings across different assets?",
+      "choices": [
+        "Diversify to survive being wrong",
+        "Concentrate to maximise risk",
+        "Keep all eggs in one basket",
+        "Ignore the possibility of error"
+      ],
+      "correctAnswer": "Diversify to survive being wrong",
+      "xpReward": 50,
+      "lessonGroup": "Mind the Odds",
+      "correctExplanation": "Right. Spreading exposure limits the damage any single mistake can cause.",
+      "incorrectExplanation": "The answer is diversify to survive being wrong. Accepting that predictions fail, the strategy reduces the cost of being mistaken.",
+      "lessonContent": "Assume some predictions will fail.\nSpread exposure to limit damage.\nDiversification manages error.\nDesign for survival, not just success.\nShare this: find one plan that survives a wrong prediction.",
+      "forgeId": "batch-088#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Fighting Bias",
+      "question": "A writer actively searches for evidence against their own position. What error are they guarding against?",
+      "choices": [
+        "Seek disconfirmation of your own view",
+        "Collect only supporting evidence",
+        "Trust your first impression",
+        "Stop questioning once convinced"
+      ],
+      "correctAnswer": "Seek disconfirmation of your own view",
+      "xpReward": 50,
+      "lessonGroup": "Argument Repair",
+      "correctExplanation": "Right. Hunting for contrary evidence counters the tendency to notice only what confirms us.",
+      "incorrectExplanation": "The answer is seek disconfirmation of your own view. Motivated reasoning fades when you actively look for counterevidence.",
+      "lessonContent": "We notice what confirms us.\nActively hunt for contrary evidence.\nComfortable beliefs need the most testing.\nSeek the awkward fact.\nShare this: read one source that disagrees with a view you hold.",
+      "forgeId": "batch-088#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Unlikely Failure",
+      "question": "Why should a plan account for the failure mode that seems least likely?",
+      "choices": [
+        "Plan for the failure you least expect",
+        "Ignore unlikely events entirely",
+        "Assume the worst case cannot happen",
+        "Only plan for common problems"
+      ],
+      "correctAnswer": "Plan for the failure you least expect",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Overlooked failures often cause the most damage precisely because nobody prepared for them.",
+      "incorrectExplanation": "The answer is plan for the failure you least expect. Rare events can be catastrophic when no response exists.",
+      "lessonContent": "Overlooked failures hurt most.\nRare does not mean harmless.\nPrepare a response before you need it.\nAttend to the neglected case.\nShare this: name one unlikely failure worthy of a contingency.",
+      "forgeId": "batch-088#20",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Check Separately",
+      "question": "A buyer checks a claim with a second source that has no relationship to the first. Why?",
+      "choices": [
+        "Verify claims independently",
+        "Trust the first source only",
+        "Avoid all sources of evidence",
+        "Assume every source is honest"
+      ],
+      "correctAnswer": "Verify claims independently",
+      "xpReward": 50,
+      "lessonGroup": "Argument Repair",
+      "correctExplanation": "Right. Independent confirmation is worth far more than repetition from parties who share the same origin.",
+      "incorrectExplanation": "The answer is verify claims independently. Corroboration from a linked source is not real corroboration at all.",
+      "lessonContent": "Linked sources share the same errors.\nIndependence gives real confirmation.\nCheck whether sources are truly separate.\nTest claims at the origin.\nShare this: confirm one claim using a source that is not connected to the first.",
+      "forgeId": "batch-088#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Rules Can Bend",
+      "question": "Before adopting a rule, a designer asks how people might follow it literally to absurd ends. What are they testing?",
+      "choices": [
+        "Consider how a rule can be gamed",
+        "Assume rules are always followed in spirit",
+        "Ignore unintended compliance",
+        "Trust that wording cannot be twisted"
+      ],
+      "correctAnswer": "Consider how a rule can be gamed",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. People optimise for the letter of a rule, so loopholes must be anticipated.",
+      "incorrectExplanation": "The answer is consider how a rule can be gamed. Literal compliance can defeat the purpose the rule was written to serve.",
+      "lessonContent": "People optimise for the letter.\nWording creates loopholes.\nAnticipate literal compliance.\nTest a rule against its own purpose.\nShare this: find one loophole in a rule you follow.",
+      "forgeId": "batch-088#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Competence Assumed",
+      "question": "A strategist plans on the assumption that the opponent will act well, not badly. Why?",
+      "choices": [
+        "Assume competence in your opponent",
+        "Assume the opponent will blunder",
+        "Plan only for easy scenarios",
+        "Trust that rivals are careless"
+      ],
+      "correctAnswer": "Assume competence in your opponent",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Plans that rely on the other side's mistakes are fragile, since good opponents will not make them.",
+      "incorrectExplanation": "The answer is assume competence in your opponent. Preparing for a capable rival produces a plan that holds even when they play well.",
+      "lessonContent": "Do not rely on others' mistakes.\nAssume a capable opponent.\nRobust plans survive good play.\nPrepare for the strong case.\nShare this: revise one plan so it still works if others act well.",
+      "forgeId": "batch-088#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Review Beats Consensus",
+      "question": "A team invites harsh critique before a launch rather than seeking quick agreement. What does this improve?",
+      "choices": [
+        "Adversarial review beats optimistic consensus",
+        "Agreement guarantees a good plan",
+        "Criticism should always be avoided",
+        "Consensus removes every risk"
+      ],
+      "correctAnswer": "Adversarial review beats optimistic consensus",
+      "xpReward": 50,
+      "lessonGroup": "Map & Territory",
+      "correctExplanation": "Right. Pressure-testing a plan uncovers problems that agreeable discussion would leave hidden.",
+      "incorrectExplanation": "The answer is adversarial review beats optimistic consensus. Harmony feels good but it does not find the flaws that matter.",
+      "lessonContent": "Harmony can hide flaws.\nInvite critique before the launch.\nReward the person who finds the problem.\nMake dissent safe and early.\nShare this: ask one person for harsh feedback on a plan this week.",
+      "forgeId": "batch-088#24",
+      "forgeScore": 100
+    }
+  ]
+}

@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-061",
+  "generatedAt": "2026-09-17T13:27:42.319Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Four Times as Old",
+      "question": "A father is four times as old as his son. In twenty years he will be only twice as old. How old is the son now?",
+      "choices": [
+        "10",
+        "8",
+        "12",
+        "6"
+      ],
+      "correctAnswer": "10",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. With the son at ten and the father at forty, twenty years gives sixty against thirty — exactly twice.",
+      "incorrectExplanation": "The answer is 10. Writing the father as four times the son and adding twenty years to both yields ten. Check it: forty plus twenty is sixty, and ten plus twenty is thirty.",
+      "lessonContent": "Age puzzles reward writing the relationship as algebra.\nAdd the same number of years to both people.\nSubstitute the relationship into the future equation.\nVerify the answer by rebuilding both ages.\nShare this: solve tonight one age puzzle by checking the future relationship.",
+      "forgeId": "batch-061#0",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Three Times Today",
+      "question": "A mother is three times her daughter's age. In twelve years she will be twice as old. How old is the daughter now?",
+      "choices": [
+        "9",
+        "12",
+        "15",
+        "10"
+      ],
+      "correctAnswer": "12",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. A twelve-year-old daughter and a thirty-six-year-old mother become twenty-four and forty-eight in twelve years.",
+      "incorrectExplanation": "The answer is 12. The trick is that the gap stays constant while the ratio shrinks; equality of the fixed gap is what nails the current ages. Twelve and thirty-six satisfy both conditions exactly.",
+      "lessonContent": "Ratios between ages change as years pass.\nAge differences stay fixed forever.\nUse the fixed gap to compare two ratio statements.\nChecking the future pair confirms the algebra.\nShare this: notice tonight how a fixed age gap feels smaller as ratios shift.",
+      "forgeId": "batch-061#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Sum of Fifty",
+      "question": "A father and son's ages add to fifty, and the father is four times the son. How old is the son?",
+      "choices": [
+        "8",
+        "10",
+        "12",
+        "14"
+      ],
+      "correctAnswer": "10",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Five equal shares of fifty make ten for the son and forty for the father.",
+      "incorrectExplanation": "The answer is 10. If the father is four parts and the son one part, the total is five parts of fifty. Dividing gives each part, and the check confirms forty is four times ten.",
+      "lessonContent": "Sum-plus-ratio puzzles divide a total into parts.\nName the parts before assigning ages.\nOne part carries the whole answer.\nVerify by rebuilding the total and ratio.\nShare this: split one family total into ratio parts aloud tonight.",
+      "forgeId": "batch-061#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Thirty Years Apart",
+      "question": "A man is thirty years older than his son. In ten years he will be three times as old. How old is the son now?",
+      "choices": [
+        "3",
+        "5",
+        "7",
+        "9"
+      ],
+      "correctAnswer": "5",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Five and thirty-five become fifteen and forty-five, and forty-five is three times fifteen.",
+      "incorrectExplanation": "The answer is 5. The fixed thirty-year gap must equal twice the son's future age, since triple minus single leaves two parts. Halving thirty gives fifteen, then subtracting the ten future years returns five.",
+      "lessonContent": "Fixed gaps set the scale for future ratios.\nTranslate the ratio into how many extra parts the gap fills.\nWork backward from the future to the present.\nConfirm with both ages after the wait.\nShare this: use the gap method tonight on any two-age puzzle.",
+      "forgeId": "batch-061#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Ten Years Back",
+      "question": "Ten years ago a father was seven times his son's age; now he is exactly three times. How old is the son now?",
+      "choices": [
+        "12",
+        "15",
+        "18",
+        "20"
+      ],
+      "correctAnswer": "15",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. A fifteen-year-old with a forty-five-year-old father matches both the triple now and the sevenfold a decade ago.",
+      "incorrectExplanation": "The answer is 15. Set the father as three times the son, then apply the ten-year subtraction to both and require the older ratio. Substituting and solving gives fifteen.",
+      "lessonContent": "Past conditions require subtracting years from both people.\nTwo statements about different times pin one answer.\nSolve the future or present first, then test the past.\nEvery condition must hold simultaneously.\nShare this: test both time points tonight before trusting an age answer.",
+      "forgeId": "batch-061#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Four Times Before",
+      "question": "Two sisters' ages sum to forty. Five years ago the elder was four times the younger. How old is the younger sister now?",
+      "choices": [
+        "9",
+        "11",
+        "13",
+        "15"
+      ],
+      "correctAnswer": "11",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. At eleven and twenty-nine, five years earlier gave six and twenty-four — a clean fourfold.",
+      "incorrectExplanation": "The answer is 11. Five years ago both ages drop by five, and the total thirty divides into parts of one and four. Restoring the five years returns eleven and twenty-nine.",
+      "lessonContent": "Shift both ages together when moving through time.\nThe sum also shifts by twice the year difference.\nDivide the shifted total into ratio parts.\nAdd the years back to report current ages.\nShare this: try the shift-and-divide trick tonight on a sibling puzzle.",
+      "forgeId": "batch-061#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Reversed Ages",
+      "question": "A mother's age and her daughter's are both two-digit numbers that are reverses of each other. Their digits sum to twelve and the ages differ by thirty-six. How old is the mother?",
+      "choices": [
+        "84",
+        "73",
+        "62",
+        "95"
+      ],
+      "correctAnswer": "84",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. The digits eight and four sum to twelve and differ by four, which doubles into a thirty-six-year gap when positions swap.",
+      "incorrectExplanation": "The answer is 84. Reversing digits moves four times the digit difference into the age gap, so a thirty-six-year gap needs digits four apart. With a sum of twelve, the digits are eight and four, making the older age eighty-four.",
+      "lessonContent": "Reversed-digit puzzles convert gaps into digit differences.\nA one-position swap multiplies digit gaps by nine.\nTwo constraints pin two unknown digits.\nTest candidates by rebuilding both numbers.\nShare this: construct one reverse-digit age pair tonight for a friend.",
+      "forgeId": "batch-061#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Old Ratios Fade",
+      "question": "Five years ago, A was twice B's age. Now A is one and a half times B's age. How old is B now?",
+      "choices": [
+        "8",
+        "10",
+        "12",
+        "15"
+      ],
+      "correctAnswer": "10",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. B at ten and A at fifteen fit the current ratio and, five years earlier, three-to-six fell to exactly double.",
+      "incorrectExplanation": "The answer is 10. Both descriptions must hold at once, so substitute one ratio into the other and solve. Ten and fifteen satisfy today and, five years back, six against three.",
+      "lessonContent": "Multiple ratio statements must all hold together.\nSubstitution turns prose conditions into one equation.\nNon-integer ratios are easiest handled as fractions.\nChecking every stated time builds confidence.\nShare this: express one pair of ages as both a ratio and a difference tonight.",
+      "forgeId": "batch-061#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Three Generations Sum",
+      "question": "A grandfather, father, and son have ages totalling one hundred and five. The father is twice the son and the grandfather is twice the father. How old is the son?",
+      "choices": [
+        "12",
+        "15",
+        "18",
+        "21"
+      ],
+      "correctAnswer": "15",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. One part fifteen, two parts thirty, four parts sixty — seven equal portions of one hundred and five.",
+      "incorrectExplanation": "The answer is 15. The ratios make one, two, and four parts, or seven parts in total. Dividing the total by seven gives fifteen, and the chain of doublings confirms it.",
+      "lessonContent": "Chain ratios create power-of-two parts.\nTotal divided by the part count yields each share.\nRebuild every age to verify the chain.\nMulti-generation puzzles are ratio puzzles in costume.\nShare this: express one three-generation family as a chain of ratios tonight.",
+      "forgeId": "batch-061#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Fortieth Birthday",
+      "question": "Today is a father's fortieth birthday and his daughter's tenth. In how many years will he be exactly twice her age?",
+      "choices": [
+        "15",
+        "20",
+        "25",
+        "30"
+      ],
+      "correctAnswer": "20",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Twenty years later he is sixty and she is thirty — the doubling point.",
+      "incorrectExplanation": "The answer is 20. The thirty-year gap must equal her future age for him to be double, so she must reach thirty. From ten, that takes twenty years.",
+      "lessonContent": "Doubling occurs when the gap equals the younger age.\nIdentify the condition before setting up algebra.\nSolve for the younger age, then convert to years.\nInterpret the result as elapsed time, not a date.\nShare this: find tonight when a parent-child pair hits a doubling point.",
+      "forgeId": "batch-061#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Four Times Soon",
+      "question": "A mother is thirty-five and her child is five. In how many years will she be exactly four times as old as the child?",
+      "choices": [
+        "3",
+        "5",
+        "7",
+        "10"
+      ],
+      "correctAnswer": "5",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Five years later she is forty and the child ten, a clean fourfold.",
+      "incorrectExplanation": "The answer is 5. Setting the future ages equal to a four-to-one ratio solves directly. Skipping the setup and guessing fails because the ratio falls as time passes.",
+      "lessonContent": "Ratios drift downward over time for older pairs.\nSet future ages equal to the stated ratio.\nSolve for elapsed years, not for ages.\nConfirm by rebuilding the future pair.\nShare this: track tonight how a fixed ratio loosens with every passing year.",
+      "forgeId": "batch-061#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Six Years Ago",
+      "question": "Two friends' ages sum to thirty. Six years ago one was twice the other. How old is the older friend now?",
+      "choices": [
+        "14",
+        "16",
+        "18",
+        "20"
+      ],
+      "correctAnswer": "18",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Eighteen and twelve sum to thirty, and six years earlier those were twelve and six.",
+      "incorrectExplanation": "The answer is 18. Six years ago the total was eighteen, split one-to-two into six and twelve. Adding six years back gives twelve and eighteen.",
+      "lessonContent": "Shift the total before splitting by ratio.\nThe total drops by twice the elapsed years.\nRatio parts then give each past age.\nRestore the years to report the present.\nShare this: solve one past-ratio puzzle tonight using the shifted total.",
+      "forgeId": "batch-061#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Five Times Before",
+      "question": "A man is three times as old as his brother. Six years ago he was five times as old. How old is the younger brother now?",
+      "choices": [
+        "10",
+        "12",
+        "14",
+        "16"
+      ],
+      "correctAnswer": "12",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Twelve and thirty-six become six and thirty when six years are removed — a fivefold gap.",
+      "incorrectExplanation": "The answer is 12. Substituting the triple relationship into the earlier fivefold condition and solving gives the younger age. Both conditions then check out.",
+      "lessonContent": "Older ratios appear further back in time.\nCombine a present ratio with a past one by substitution.\nSolve for the younger age first.\nRebuild the past pair to verify.\nShare this: chart tonight how sibling ratios change from past to present.",
+      "forgeId": "batch-061#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "As Old as Now",
+      "question": "A man is forty-two and his son is twelve. When the son becomes as old as his father is today, how old will the father be?",
+      "choices": [
+        "72",
+        "70",
+        "74",
+        "76"
+      ],
+      "correctAnswer": "72",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. The son needs thirty years to reach forty-two, and the father gains those same thirty years, landing at seventy-two.",
+      "incorrectExplanation": "The answer is 72. The son gains thirty years to match today's father, and time adds to both equally. Reaching a fixed age is simple addition once the wait is measured.",
+      "lessonContent": "Fixed-age conditions make elapsed time the unknown.\nMeasure the wait first, then apply it to everyone.\nBoth ages advance by the same number of years.\nReference points like today's age anchor the math.\nShare this: figure out tonight when your age will match an earlier target.",
+      "forgeId": "batch-061#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Twins and Father",
+      "question": "A father and his twin sons have ages summing to sixty. The father is exactly twice the age of one son. How old is the father?",
+      "choices": [
+        "24",
+        "28",
+        "30",
+        "32"
+      ],
+      "correctAnswer": "30",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Two sons at fifteen each plus a thirty-year-old father make sixty.",
+      "incorrectExplanation": "The answer is 30. The twins count as two parts and the father as two parts, so the total splits into four equal shares of fifteen. The father takes two shares, thirty.",
+      "lessonContent": "Twins create duplicated parts in ratio puzzles.\nCount every person as a share of the total.\nDivide, then reconstruct the family.\nIdentical ages double one unknown, not two.\nShare this: split one family total into shares tonight as a party trick.",
+      "forgeId": "batch-061#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Memory Arithmetic",
+      "question": "In eight years a girl will be three times as old as she was four years ago. How old is she now?",
+      "choices": [
+        "8",
+        "10",
+        "12",
+        "14"
+      ],
+      "correctAnswer": "10",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Ten plus eight is eighteen, and ten minus four is six, which is one third of eighteen.",
+      "incorrectExplanation": "The answer is 10. Future and past conditions both reference her current age, so both translate directly into one equation. Solving gives ten, and both ages verify.",
+      "lessonContent": "Conditions can point backward and forward simultaneously.\nTranslate each into the same unknown.\nSolving both together beats guessing ages.\nVerify using both time directions.\nShare this: write one past-and-future condition tonight for your own age.",
+      "forgeId": "batch-061#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Married Twenty Years",
+      "question": "A couple has been married for twenty years, and the husband was twenty-five on their wedding day. How old is he now?",
+      "choices": [
+        "35",
+        "40",
+        "45",
+        "50"
+      ],
+      "correctAnswer": "45",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Twenty-five plus twenty years of marriage gives forty-five.",
+      "incorrectExplanation": "The answer is 45. The wedding age anchors the arithmetic, and the years since simply add on. Anniversary puzzles are ordinary addition wearing a story hat.",
+      "lessonContent": "Anchors plus elapsed time solve timeline questions.\nIdentify the reference event's dated value.\nAdd the interval in the correct direction.\nStories dress up simple addition; find the anchor.\nShare this: compute one family anniversary age tonight without a calculator.",
+      "forgeId": "batch-061#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Three Under Twice",
+      "question": "My age is three years less than twice my sister's, and together we are twenty-seven. How old is my sister?",
+      "choices": [
+        "8",
+        "10",
+        "11",
+        "13"
+      ],
+      "correctAnswer": "10",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. A ten-year-old sister and a seventeen-year-old me add to twenty-seven, and seventeen is three less than twenty.",
+      "incorrectExplanation": "The answer is 10. Replace my age with the described expression and solve the single equation. Checking both conditions confirms ten.",
+      "lessonContent": "Translate descriptive phrases into expressions.\nReplace one unknown to reduce to a single variable.\nCheck that every clause holds.\nDescriptive arithmetic is just algebra in words.\nShare this: encode one family age rule as an expression tonight.",
+      "forgeId": "batch-061#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Sum of Siblings",
+      "question": "A father's age equals the sum of his three children's ages, which are five, seven, and ten. How old is the father?",
+      "choices": [
+        "20",
+        "22",
+        "24",
+        "26"
+      ],
+      "correctAnswer": "22",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. Five plus seven plus ten equals twenty-two, the father's age.",
+      "incorrectExplanation": "The answer is 22. The stated relationship is an equality, so simple addition of the children's ages finishes the job. Overcomplicating this one is the only real trap.",
+      "lessonContent": "Some puzzles are one-step addition in disguise.\nRead the relationship before assumed complexity.\nSum the given parts exactly.\nSimple answers deserve the same checking.\nShare this: note tonight how often a 'hard' problem is plain arithmetic.",
+      "forgeId": "batch-061#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "A Decade Either Way",
+      "question": "Ten years from now a man will be three times as old as he was ten years ago. How old is he now?",
+      "choices": [
+        "15",
+        "18",
+        "20",
+        "25"
+      ],
+      "correctAnswer": "20",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Twenty plus ten is thirty, and twenty minus ten is ten — a clean triple.",
+      "incorrectExplanation": "The answer is 20. Both conditions describe the same current age, so one equation settles it. Thirty against ten verifies the result immediately.",
+      "lessonContent": "Symmetric past and future conditions are one equation.\nBoth sides reference the same present unknown.\nSolve, then verify in both directions.\nSymmetry often hides in plain phrasing.\nShare this: find one symmetric condition in a timeline puzzle tonight.",
+      "forgeId": "batch-061#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Five Years Senior",
+      "question": "A woman is five years older than her husband, and their ages total seventy-five. How old is the woman?",
+      "choices": [
+        "35",
+        "38",
+        "40",
+        "42"
+      ],
+      "correctAnswer": "40",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. A thirty-five-year-old husband and a forty-year-old wife total seventy-five.",
+      "incorrectExplanation": "The answer is 40. Subtract the five-year head start from the total, halve it for the husband, then add the difference back for the wife. The check confirms both clauses.",
+      "lessonContent": "Remove the known difference, then split evenly.\nAdd the difference back to the older party.\nVerification catches sign errors quickly.\nWord problems hide clean arithmetic under names.\nShare this: solve one difference-plus-total puzzle tonight mentally.",
+      "forgeId": "batch-061#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Twice the Young Man",
+      "question": "A father is fifty and his son is fourteen. In how many years will the father be exactly twice as old as his son?",
+      "choices": [
+        "18",
+        "20",
+        "22",
+        "25"
+      ],
+      "correctAnswer": "22",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Twenty-two years later the father is seventy-two and the son thirty-six.",
+      "incorrectExplanation": "The answer is 22. The thirty-six-year gap must equal the son's future age for doubling. From fourteen, reaching thirty-six takes twenty-two years.",
+      "lessonContent": "Doubling happens when the gap equals the younger age.\nWork from the gap rather than ratio guessing.\nConvert the needed future age into elapsed years.\nHistoric doubling puzzles all use this shortcut.\nShare this: explain tonight why the gap determines any doubling date.",
+      "forgeId": "batch-061#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Born at Twenty-Two",
+      "question": "A mother and daughter's ages sum to forty-four, and the mother was twenty-two when the daughter was born. How old is the daughter?",
+      "choices": [
+        "9",
+        "11",
+        "13",
+        "15"
+      ],
+      "correctAnswer": "11",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Right. An eleven-year-old daughter with a thirty-three-year-old mother totals forty-four and matches the birth-age clue.",
+      "incorrectExplanation": "The answer is 11. The mother's age at the birth is exactly their fixed gap, so subtract that gap from the total and halve for the daughter. The check confirms the birth age.",
+      "lessonContent": "Birth ages encode the fixed gap between parent and child.\nGap plus total determines both ages.\nSubtract the gap, halve the remainder.\nReal family data often embeds the gap directly.\nShare this: derive one friend's parent age from the birth-date clue.",
+      "forgeId": "batch-061#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Two Years Apart",
+      "question": "Three siblings are each two years apart in age, and their ages sum to twenty-four. How old is the youngest?",
+      "choices": [
+        "4",
+        "6",
+        "8",
+        "10"
+      ],
+      "correctAnswer": "6",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. Six, eight, and ten are two years apart and total twenty-four.",
+      "incorrectExplanation": "The answer is 6. Three equal ages would total twenty-four as eight each; spread the extra four years across the spacing to get six, eight, and ten. Averaging is the shortcut.",
+      "lessonContent": "Evenly spaced ages average to the middle value.\nDivide the total by the count for the center.\nStep down for younger, up for older.\nSpacing puzzles are averaging puzzles.\nShare this: average one set of spaced ages tonight in your head.",
+      "forgeId": "batch-061#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "Product of Ages",
+      "question": "A brother is twice as old as his sister, and the product of their ages is seventy-two. How old is the sister?",
+      "choices": [
+        "4",
+        "6",
+        "8",
+        "9"
+      ],
+      "correctAnswer": "6",
+      "xpReward": 25,
+      "lessonGroup": "Number Crunch",
+      "correctExplanation": "Exactly. If the sister is six, the brother is twelve, and six times twelve is seventy-two.",
+      "incorrectExplanation": "The answer is 6. Writing the brother as double the sister turns the product into twice her squared age. Seventy-two halved is thirty-six, whose square root is six.",
+      "lessonContent": "Products of ages need one variable expressed in another.\nDoubling relationships turn products into squares.\nFactoring or square roots finish the job.\nTest a candidate to verify the product.\nShare this: turn one product-of-ages puzzle tonight into a square.",
+      "forgeId": "batch-061#24",
+      "forgeScore": 100
+    }
+  ]
+}

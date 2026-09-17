@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-163",
+  "generatedAt": "2026-09-17T13:27:44.889Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "23 classmates",
+      "correctExplanation": "Yes — just 23 classmates push the odds past fifty-fifty. Pairs grow quadratically while birthdays stay fixed at 365.",
+      "incorrectExplanation": "Not quite — the answer is 23 classmates. Pairs multiply fast (253 pairs among 23), so the tipping point arrives shockingly early.",
+      "lessonContent": "Shared-birthday odds count pairs, not people — and pairs explode quadratically.\nThat mismatch between linear intuition and quadratic reality is the whole paradox.\nWhenever matches matter, count the pairs first.\nShare this: ask a room of 23 if any two share a birthday.",
+      "lessonGroup": "Mind the Odds",
+      "question": "How many classmates in a room push the odds of a shared birthday past fifty-fifty?",
+      "title": "The Classroom Pair",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "23 classmates",
+        "10 classmates",
+        "50 classmates",
+        "100 classmates"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 70%",
+      "correctExplanation": "Right — 30 people hold 435 pairs, and 435 chances at 1-in-365 land around 70%. Add seven people past 23 and the odds jump twenty points.",
+      "incorrectExplanation": "Actually, about 70%. Thirty people make 435 pairs, and that many shots at a 1-in-365 match pile up fast.",
+      "lessonContent": "Each extra person adds pairs with everyone already present.\nThat is why the odds climb steeply, not gradually.\nGrowth problems reward pair-counting over head-counting.\nShare this: guess the odds for 30 people before revealing seventy percent.",
+      "lessonGroup": "Mind the Odds",
+      "question": "In an office of 30 people, what are the odds that some two share a birthday?",
+      "title": "The Office Pool",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 8%",
+        "About 30%",
+        "About 70%",
+        "About 99%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#1",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 97%",
+      "correctExplanation": "Exactly — 50 people make 1,225 pairs, nearly certain to collide. At fifty heads the shared birthday is almost guaranteed.",
+      "incorrectExplanation": "Not quite — about 97%. Fifty people generate 1,225 pairs, and that many draws from 365 days almost always repeat.",
+      "lessonContent": "Twelve hundred pairs drawn from 365 days cannot plausibly all differ.\nCertainty arrives long before intuition expects it.\nBig groups make coincidences routine, not remarkable.\nShare this: test a fifty-person wedding party for a match.",
+      "lessonGroup": "Mind the Odds",
+      "question": "At a wedding with 50 guests, how likely is a shared birthday?",
+      "title": "The Wedding Collision",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 50%",
+        "About 70%",
+        "About 97%",
+        "About 25%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 99.9%",
+      "correctExplanation": "Yes — 70 people make 2,415 pairs against 365 days. A miss would be the real miracle.",
+      "incorrectExplanation": "Close! About 99.9%. Seventy people hold 2,415 pairs, so dodging every collision is a one-in-a-thousand fluke.",
+      "lessonContent": "Past a point, the surprise flips: no match becomes the miracle.\nKnowing where certainty lives stops you betting against it.\nRare events stay rare only while the trials stay few.\nShare this: name the group size where you'd bet the house.",
+      "lessonGroup": "Mind the Odds",
+      "question": "In a lecture hall of 70 students, what are the odds of a shared birthday?",
+      "title": "The Lecture Hall",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 75%",
+        "About 50%",
+        "About 99.9%",
+        "About 90%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "253 party guests",
+      "correctExplanation": "Right — matching YOUR birthday needs about 253 guests for even odds. Any-pair needs 23; a specified date needs ten times more.",
+      "incorrectExplanation": "Actually, 253 party guests. Your date is one fixed target, so each guest is a single 1-in-365 shot — a far slower climb than any-pair.",
+      "lessonContent": "Any-match and my-match are wildly different questions.\nSpecified targets climb linearly; free pairs climb quadratically.\nAlways check which game is actually being played.\nShare this: challenge friends to match your birthday specifically.",
+      "lessonGroup": "Mind the Odds",
+      "question": "How many party guests give even odds that someone shares YOUR birthday?",
+      "title": "The Birthday Trap",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "253 party guests",
+        "23 party guests",
+        "50 party guests",
+        "183 party guests"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "366 people",
+      "correctExplanation": "Exactly — 366 people and 365 birthdays force a repeat. That iron guarantee is the pigeonhole principle wearing a party hat.",
+      "incorrectExplanation": "Not quite — 366 people. With one more person than birthdays, some date must double up no matter the arrangement.",
+      "lessonContent": "Guarantees come from pigeonholes: more items than boxes forces sharing.\nOdds describe likelihood; pigeonholes describe certainty.\nSpot the boxes-and-items structure to find free guarantees.\nShare this: explain why 366 strangers guarantee a pair.",
+      "lessonGroup": "Mind the Odds",
+      "question": "How many strangers guarantee that two share a birthday (ignoring leap day)?",
+      "title": "The Iron Guarantee",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "366 people",
+        "365 people",
+        "183 people",
+        "730 people"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Over fifty-fifty",
+      "correctExplanation": "Yes — a 23-player squad sits just past the tipping point. Real squads really do collide this often.",
+      "incorrectExplanation": "Close! Over fifty-fifty. Twenty-three players cross the classic threshold, so shared birthdays in squads are the norm, not news.",
+      "lessonContent": "The paradox predicts real dressing rooms, not just textbooks.\nSports squads, casts, and crews of 23-plus collide constantly.\nTheory earns trust when it calls real outcomes.\nShare this: check any 23-player squad list for a pair.",
+      "lessonGroup": "Mind the Odds",
+      "question": "A World Cup squad has 23 players. What are the odds two share a birthday?",
+      "title": "The Squad List",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Under 5%",
+        "About 25%",
+        "Over fifty-fifty",
+        "Near certain"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 14 pairs",
+      "correctExplanation": "Right — 100 people hold 4,950 pairs, averaging about 14 collisions. Big rooms don't just match once; they match repeatedly.",
+      "incorrectExplanation": "Actually, about 14 pairs. Divide 4,950 pairs by 365 days and the average lands near fourteen shared dates.",
+      "lessonContent": "Averages reveal what single-match odds hide: collisions pile up.\nExpected counts come from pairs divided by possibilities.\nAsk 'how many' after asking 'how likely'. \nShare this: guess how many pairs a hundred minds hold.",
+      "lessonGroup": "Mind the Odds",
+      "question": "In a crowd of 100, how many shared-birthday pairs should you expect on average?",
+      "title": "The Crowded Count",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 3 pairs",
+        "About 14 pairs",
+        "About 30 pairs",
+        "About 50 pairs"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Under one pair",
+      "correctExplanation": "Exactly — 253 pairs across 365 days average under one collision. Fifty-fifty odds with under one expected pair is the paradox inside the paradox.",
+      "incorrectExplanation": "Not quite — under one pair. Spread 253 pairs over 365 dates and the average stays below one, yet the odds still top half.",
+      "lessonContent": "Averages and odds tell different stories — learn to hear both.\nBelow-average expectations can still carry above-half chances.\nDistributions matter more than their centers.\nShare this: explain how half the time beats the average.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Among 23 people there are 253 pairs. How many collisions happen on average?",
+      "title": "The Quiet Average",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About two pairs",
+        "Under one pair",
+        "About five pairs",
+        "About ten pairs"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#8",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "About 49%",
+      "correctExplanation": "Yes — the no-match chance at 23 is just under half, mirroring the match chance just over it. The threshold sits exactly there.",
+      "incorrectExplanation": "Close! About 49%. Multiply the shrinking no-collision fractions for 23 people and just under half the scenarios stay clean.",
+      "lessonContent": "Complementary odds always sum to one — compute whichever is easier.\nNo-match chains multiply cleanly; match events tangle.\nFlip to the complement whenever counting gets messy.\nShare this: solve one probability by counting its opposite.",
+      "lessonGroup": "Mind the Odds",
+      "question": "With 23 people, what are the odds that NO two share a birthday?",
+      "title": "The Clean Room",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 49%",
+        "About 5%",
+        "About 25%",
+        "About 75%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Over 60%",
+      "correctExplanation": "Right — five friends across twelve months collide over 60% of the time. Fewer boxes mean faster collisions.",
+      "incorrectExplanation": "Actually, over 60%. Five people make ten pairs against twelve months, so a shared month is the likely outcome.",
+      "lessonContent": "Shrink the boxes and collisions arrive sooner.\nTwelve months behave like a miniature 365-day year.\nBox-count sets the whole tempo of matching.\nShare this: test five friends for a shared birth month.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Among five friends, what are the odds two share a birth month?",
+      "title": "The Month Match",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Under 20%",
+        "About 40%",
+        "Over 60%",
+        "Near certain"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 43%",
+      "correctExplanation": "Yes — four friends across twelve months land near 43%. One fewer person nearly halves the action.",
+      "incorrectExplanation": "Not quite — about 43%. Four people hold six pairs against twelve months, landing well short of even odds.",
+      "lessonContent": "Removing one person removes pairs with everyone else.\nSmall groups swing wildly with each arrival or exit.\nFeel the sensitivity: every head counts double.\nShare this: compare four friends against five and feel the jump.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Drop four friends' birthdays into twelve month-boxes. How often does one box end up holding two?",
+      "title": "The Four Friends",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 43%",
+        "About 70%",
+        "About 10%",
+        "About 90%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#11",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 65%",
+      "correctExplanation": "Correct — four people across seven weekdays collide about 65% of the time. Tiny boxes fill astonishingly fast.",
+      "incorrectExplanation": "Close! About 65%. Four people make six pairs against seven weekdays, so a shared weekday is favored.",
+      "lessonContent": "Seven boxes are so few that four people nearly fill them doubly.\nWeekday collisions explain déjà vu rotas everywhere.\nSmall universes make repeats the default.\nShare this: check four colleagues for a shared weekday birthday.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Four colleagues were born on various weekdays. What are the odds two share one?",
+      "title": "The Weekday Clash",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 25%",
+        "About 65%",
+        "About 90%",
+        "About 10%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#12",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Under 40%",
+      "correctExplanation": "Right — three people across seven weekdays land under 40%. Three heads make only three pairs.",
+      "incorrectExplanation": "Not quite — under 40%. Three people hold three pairs against seven days, so distinct weekdays stay likely.",
+      "lessonContent": "Few pairs mean the boxes usually survive unshared.\nThree is the quiet zone before collisions take over.\nThresholds hide between small numbers — map them.\nShare this: find the smallest group where you'd bet on a clash.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Three siblings' weekday birthdays land in seven day-slots. How often does some slot collect two?",
+      "title": "The Three Siblings",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Under 40%",
+        "About 65%",
+        "About 85%",
+        "Over 95%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 85%",
+      "correctExplanation": "Yes — five people across seven weekdays reach about 85%. Ten pairs against seven boxes barely miss.",
+      "incorrectExplanation": "Actually, about 85%. Five people make ten pairs, overwhelming seven weekdays, so a clash is highly likely.",
+      "lessonContent": "Ten pairs versus seven boxes is a rout, not a contest.\nWatch certainty assemble as pairs outnumber boxes.\nCount pairs against boxes to forecast any collision.\nShare this: predict a five-person weekday clash before checking.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Deal five teammates' birthdays across the seven weekdays like cards. How often does a weekday pair up?",
+      "title": "The Team Rota",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 50%",
+        "About 85%",
+        "About 30%",
+        "About 99%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#14",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Nearly two in three",
+      "correctExplanation": "Correct — three people across four seasons collide nearly two-thirds of the time. Four boxes are almost no boxes at all.",
+      "incorrectExplanation": "Close! Nearly two in three. Three people make three pairs against four seasons, favoring a shared one.",
+      "lessonContent": "Four seasons behave like a toy calendar for collisions.\nSeason-mates are everywhere once you start looking.\nTiny category counts turn strangers into sharers.\nShare this: find two season-mates in your next trio.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Three strangers meet. What are the odds two were born in the same season?",
+      "title": "The Season Twins",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About one in four",
+        "Nearly two in three",
+        "About one in ten",
+        "Near certain"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#15",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "About 91%",
+      "correctExplanation": "Exactly — four people across four seasons hit about 91%. Six pairs against four boxes rarely all spread out.",
+      "incorrectExplanation": "Not quite — about 91%. Four people make six pairs, and squeezing six pairs into four seasons almost always doubles one.",
+      "lessonContent": "More pairs than boxes makes spreading out the real long shot.\nFull houses of distinct seasons are the rare outcome.\nExpect stacking whenever pairs exceed boxes.\nShare this: bet on a season clash in any foursome.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Four hikers each name a birth season — four names drawn from four seasons. How often do two names coincide?",
+      "title": "The Trail Quartet",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 50%",
+        "About 70%",
+        "About 91%",
+        "About 30%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Roughly 40%",
+      "correctExplanation": "Right — six people across thirty day-numbers land near 40%. Fifteen pairs against thirty slots stay under even odds.",
+      "incorrectExplanation": "Actually, roughly 40%. Six people hold fifteen pairs against thirty possible day-numbers, keeping a clash the underdog.",
+      "lessonContent": "Day-of-month is a thirty-box calendar with its own tempo.\nFifteen pairs versus thirty boxes lands below half.\nEvery calendar size writes its own collision schedule.\nShare this: test six friends for a shared day-number.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Six friends compare day-of-month birthdays (1–30). What are the odds two match?",
+      "title": "The Date Digits",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Roughly 40%",
+        "About 75%",
+        "Under 10%",
+        "About 60%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#17",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "1,013 people",
+      "correctExplanation": "Yes — a 1-in-1461 shot needs about 1,013 people for even odds. Rare birthdays obey the same pair logic, just stretched thin.",
+      "incorrectExplanation": "Close! 1,013 people. Leap-day odds climb far slower than ordinary birthdays, but the same math governs the wait.",
+      "lessonContent": "Rare categories just stretch the same curve longer.\nLeap babies wait a thousand heads for even odds.\nScale the groups with the rarity, not against it.\nShare this: estimate the wait for any one-in-a-thousand trait.",
+      "lessonGroup": "Mind the Odds",
+      "question": "About how many people give even odds of including a leap-day (Feb 29) birthday?",
+      "title": "The Leap Wait",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "366 people",
+        "1,013 people",
+        "2,000 people",
+        "146 people"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 63%",
+      "correctExplanation": "Correct — 365 strangers each take one 1-in-365 shot at the star's date, landing near 63%. One fixed target, hundreds of arrows.",
+      "incorrectExplanation": "Not quite — about 63%. Each of 365 strangers independently risks the star's exact date, and the hits accumulate.",
+      "lessonContent": "Fixed-target problems accumulate single shots, not pairs.\nThree hundred sixty-five arrows at one date hit most years.\nCrowds make even exact-date matches routine.\nShare this: check a crowd for your idol's birthday.",
+      "lessonGroup": "Mind the Odds",
+      "question": "In a crowd of 365, what are the odds someone shares a chosen celebrity's birthday?",
+      "title": "The Star Share",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 25%",
+        "About 63%",
+        "About 95%",
+        "Under 5%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Roughly even odds",
+      "correctExplanation": "Exactly — fourteen people give birthdays within a day of each other roughly even odds. Widen the window and collisions come sooner.",
+      "incorrectExplanation": "Close! Roughly even odds. A three-day window triples every pair's chances, so fourteen people suffice.",
+      "lessonContent": "Wider windows multiply every pair's collision chance.\nNear-matches arrive far sooner than exact ones.\nAdjust the window deliberately before estimating.\nShare this: hunt near-birthdays, not exact ones, in a group.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Fourteen people gather. What are the odds two birthdays fall within a day of each other?",
+      "title": "The Close Call",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Roughly even odds",
+        "About one in ten",
+        "Near certain",
+        "About one in four"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 12%",
+      "correctExplanation": "Right — ten people hold just 45 pairs, worth about 12%. Below the threshold, collisions stay genuinely surprising.",
+      "incorrectExplanation": "Not quite — about 12%. Ten people make only 45 pairs, far too few to threaten 365 dates.",
+      "lessonContent": "Below-threshold groups keep coincidences honestly rare.\nTen heads feel social but compute nearly silent.\nRespect the quiet zone under the tipping point.\nShare this: enjoy a ten-person dinner with no clash expected.",
+      "lessonGroup": "Mind the Odds",
+      "question": "At a dinner of ten, what are the odds of any shared birthday?",
+      "title": "The Quiet Dinner",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 12%",
+        "About 40%",
+        "About 60%",
+        "About 3%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 88%",
+      "correctExplanation": "Yes — forty people hold 780 pairs, good for about 88%. The seventies-to-eighties climb is steep and fast.",
+      "incorrectExplanation": "Actually, about 88%. Seven hundred eighty pairs against 365 dates miss only about one time in eight.",
+      "lessonContent": "Mid-size groups live on the steepest part of the curve.\nEach added guest shifts the odds several points.\nSteep zones are where small changes matter most.\nShare this: watch odds jump as a guest list grows past thirty.",
+      "lessonGroup": "Mind the Odds",
+      "question": "A conference room holds 40 people. What are the odds of a shared birthday?",
+      "title": "The Conference Clash",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 50%",
+        "About 88%",
+        "About 99%",
+        "About 65%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Over 99%",
+      "correctExplanation": "Correct — sixty people hold 1,770 pairs, clearing 99%. Past sixty, doubters pay up.",
+      "incorrectExplanation": "Close! Over 99%. One thousand seven hundred seventy pairs leave almost nowhere for birthdays to hide.",
+      "lessonContent": "Sixty heads turn a party trick into a bankable bet.\nKnow the number where skepticism becomes foolishness.\nCertainty has an address — memorize it.\nShare this: offer even money on sixty strangers and collect.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Sixty strangers enter a hall. What are the odds two share a birthday?",
+      "title": "The Full Hall",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 90%",
+        "Over 99%",
+        "About 75%",
+        "About 80%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#23",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Under 8%",
+      "correctExplanation": "Exactly — the host's date is one fixed target, and thirty guests take thirty single shots: under 8%. Compare the 70% any-pair odds for the same thirty.",
+      "incorrectExplanation": "Not quite — under 8%. Thirty independent 1-in-365 shots at the host's date rarely connect, unlike any-pair's 435 chances.",
+      "lessonContent": "Side-by-side numbers teach the any-versus-mine lesson forever.\nSame room, same count, tenfold different odds.\nFraming chooses the game; the game chooses the odds.\nShare this: stage both bets at one party and watch jaws drop.",
+      "lessonGroup": "Mind the Odds",
+      "question": "At the host's party of 30, what are the odds someone shares the HOST's birthday?",
+      "title": "The Host's Date",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Under 8%",
+        "About 70%",
+        "About 30%",
+        "About 50%"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-163#24",
+      "forgeScore": 92
+    }
+  ]
+}

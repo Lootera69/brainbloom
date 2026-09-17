@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-186",
+  "generatedAt": "2026-09-17T13:27:45.657Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "7 crossings — the goose shuttles",
+      "correctExplanation": "Yes — goose over, back empty, fox over, goose back, grain over, back empty, goose over: seven. The middle of the chain commutes.",
+      "incorrectExplanation": "Not quite — 7 crossings: the goose shuttles. The peacemaker of the food chain rides thrice.",
+      "lessonContent": "Food-chain middles commute while ends relocate.\nSeven crossings solve the classic trio.\nShuttling the peacemaker prevents feasts.\nShare this: stage the trio with coins.",
+      "lessonGroup": "Think Different",
+      "question": "Fox, goose, grain; boat holds the farmer plus one. Goose eats grain, fox eats goose. Minimum crossings?",
+      "title": "The Feathered Shuttle",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "5 crossings — rush it",
+        "7 crossings — the goose shuttles",
+        "9 crossings — ultra-safe",
+        "3 crossings — bundle up"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#0",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "The goose rides first",
+      "correctExplanation": "Right — only the chain's middle leaves two safe shores. Ends first strand victims behind.",
+      "incorrectExplanation": "Actually, the goose rides first. Leaving fox with grain is safe; any other opener feasts.",
+      "lessonContent": "Middles travel first in predation chains.\nSafe shores constrain openers strictly.\nEnds wait while centers commute.\nShare this: open one chain from its middle.",
+      "lessonGroup": "Think Different",
+      "question": "Same trio. Which passenger must cross first?",
+      "title": "The Opening Cargo",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "The goose rides first",
+        "The fox leads",
+        "The grain goes first",
+        "Any opener works"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#1",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Fox plus grain",
+      "correctExplanation": "Correct — foxes ignore grain entirely. The safe pairing unlocks the whole schedule.",
+      "incorrectExplanation": "Close! Fox plus grain. Vegetarian foxes make ideal shore-mates.",
+      "lessonContent": "Safe pairings unlock river schedules.\nFoxes fast beside grain safely.\nSpot non-predators among cargo.\nShare this: pair two safe shore-mates.",
+      "lessonGroup": "Think Different",
+      "question": "Which two may wait together unsupervised?",
+      "title": "The Safe Shore",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Fox plus grain",
+        "Goose plus grain",
+        "Fox plus goose",
+        "None pair safely"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Seven dollars of crossings",
+      "correctExplanation": "Yes — seven mandatory crossings at a dollar each. Optimal routes minimize tolls automatically.",
+      "incorrectExplanation": "Not quite — seven dollars of crossings. Every return trip bills the optimal solver.",
+      "lessonContent": "Tolls punish return trips equally.\nOptimal routes minimize budgets too.\nCounting crossings prices ferries.\nShare this: toll one classic crossing.",
+      "lessonGroup": "Think Different",
+      "question": "The ferryman charges $1 per crossing. Cheapest total for the trio?",
+      "title": "The Toll Ferry",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Three dollars flat",
+        "Seven dollars of crossings",
+        "Eleven dollars total",
+        "Five dollars exact"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "3 crossings — pairs ride together",
+      "correctExplanation": "Yes — fox plus goose over, farmer back alone, fox plus grain over. Roomier boats collapse schedules.",
+      "incorrectExplanation": "Actually, 3 crossings: pairs ride together. Extra seats dissolve classic constraints.",
+      "lessonContent": "Roomier boats collapse classic schedules.\nPairs ride where singles queued.\nCapacity rewrites river mathematics.\nShare this: upgrade one boat mentally.",
+      "lessonGroup": "Think Different",
+      "question": "The boat now holds the farmer plus TWO. Trio crossings needed?",
+      "title": "The Double Seat",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "7 crossings still",
+        "3 crossings — pairs ride together",
+        "1 crossing — all aboard",
+        "5 crossings exactly"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Impossible — four-links strand",
+      "correctExplanation": "Correct — every shore of three hosts a feast. Chains of four defeat single-seat boats provably.",
+      "incorrectExplanation": "Close! Impossible: four-links strand. Leave any three and something dines.",
+      "lessonContent": "Four-chains defeat single boats provably.\nImpossibility is a valid answer.\nExhaust shores to prove dead ends.\nShare this: strand one four-chain yourself.",
+      "lessonGroup": "Think Different",
+      "question": "Add a dog that eats the fox: dog>fox>goose>grain, boat holds one. Possible?",
+      "title": "The Fourth Link",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "7 crossings suffice",
+        "Impossible — four-links strand",
+        "9 crossings manage",
+        "11 crossings squeeze"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "3 crossings — weight allows pairs",
+      "correctExplanation": "Yes — farmer (50kg) plus goose and beans (15kg) rides under the 100kg limit; fox ferries separately. Scales add arithmetic to logic.",
+      "incorrectExplanation": "Not quite — 3 crossings: weight allows pairs. Light cargo doubles up within limits.",
+      "lessonContent": "Weight limits add arithmetic to rivers.\nLight pairs share crossings legally.\nBudgets constrain boats doubly.\nShare this: weigh one ferry manifest.",
+      "lessonGroup": "Think Different",
+      "question": "Boat limit 100kg; farmer 50kg, fox 30kg, goose 10kg, beans 5kg. Minimum crossings?",
+      "title": "The Loaded Ferry",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "7 crossings — singles only",
+        "3 crossings — weight allows pairs",
+        "5 crossings — fox swims",
+        "2 crossings — stack all"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "11 trips — the classic count",
+      "correctExplanation": "Right — three couples need eleven crossings with a two-seat boat. Jealousy costs exactly eleven.",
+      "incorrectExplanation": "Actually, 11 trips: the classic count. Wives never abide strangers; the schedule obeys.",
+      "lessonContent": "Jealous couples cost eleven crossings.\nConstraints compound across shores.\nClassic counts reward memorization.\nShare this: ferry three couples tonight.",
+      "lessonGroup": "Think Different",
+      "question": "Three missionaries, three cannibals, boat holds two, cannibals never outnumber. Crossings?",
+      "title": "The Jealous Eleven",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "7 trips suffice",
+        "11 trips — the classic count",
+        "9 trips with luck",
+        "13 trips minimum"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "5 trips — roomier boat",
+      "correctExplanation": "Correct — three seats ferry all in five: three cannibals over, one back, three missionaries over... verified sequence totals five. Seats save six trips.",
+      "incorrectExplanation": "Close! 5 trips: roomier boat. Three seats collapse eleven crossings to five.",
+      "lessonContent": "Third seats collapse eleven to five.\nCapacity slashes jealous schedules.\nSeats scale solutions nonlinearly.\nShare this: upgrade one jealous boat.",
+      "lessonGroup": "Think Different",
+      "question": "Same six, but the boat holds THREE. Crossings now?",
+      "title": "The Triple Seat",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "3 trips flat",
+        "5 trips — roomier boat",
+        "7 trips still",
+        "11 trips regardless"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#8",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "11 trips — stripes don't matter",
+      "correctExplanation": "Yes — lions and zebras replay missionaries exactly. Stripes never change arithmetic.",
+      "incorrectExplanation": "Not quite — 11 trips: stripes don't matter. Rename the players; the count stands.",
+      "lessonContent": "Skins never alter river arithmetic.\nIsomorphic puzzles share solutions.\nRecognize skeletons under costumes.\nShare this: reskin one classic yourself.",
+      "lessonGroup": "Think Different",
+      "question": "Three lions, three zebras, boat of two, zebras never outnumbered. Crossings?",
+      "title": "The Striped Replay",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "7 trips suffice",
+        "11 trips — stripes don't matter",
+        "9 trips with courage",
+        "5 trips — lions row fast"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "A wife rows back",
+      "correctExplanation": "Right — returns need trustworthy rowers; wives rebalance shores. Jealous arithmetic picks its couriers.",
+      "incorrectExplanation": "Actually, a wife rows back. Returns must preserve both shores' ratios.",
+      "lessonContent": "Return rowers preserve shore ratios.\nJealousy constrains couriers strictly.\nBack-trips need trusted oars.\nShare this: row one jealous return.",
+      "lessonGroup": "Think Different",
+      "question": "First forward trip done in the 3-couple puzzle. Who should row back?",
+      "title": "The Return Rower",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "A husband rows back",
+        "A wife rows back",
+        "Nobody returns",
+        "The boat drifts back"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "17 minutes — slow pair together",
+      "correctExplanation": "Correct — 1+2 cross (2), 1 returns (1), 7+10 cross (10), 2 returns (2), 1+2 cross (2): seventeen. Slowest pair shares one crossing.",
+      "incorrectExplanation": "Close! 17 minutes: slow pair together. Bundling the slowest beats shuttling them.",
+      "lessonContent": "Slowest pairs cross bundled always.\nFastest shuttles waste slow crossings.\nSeventeen solves 1-2-7-10.\nShare this: torch-race four friends.",
+      "lessonGroup": "Think Different",
+      "question": "Four cross a night bridge in 1, 2, 7, 10 minutes, one torch, max two. Minimum time?",
+      "title": "The Slow Pair's Seventeen",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "19 minutes — shuttle fast",
+        "17 minutes — slow pair together",
+        "21 minutes — escort each",
+        "15 minutes — rush all"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#11",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "15 minutes — bundle slowest",
+      "correctExplanation": "Yes — 1+2 (2), 1 back (1), 5+8 (8), 2 back (2), 1+2 (2): fifteen. Pairing giants wins again.",
+      "incorrectExplanation": "Not quite — 15 minutes: bundle slowest. Eights and fives cross once, together.",
+      "lessonContent": "Fifteen solves 1-2-5-8 cleanly.\nGiants share single crossings.\nPatterns repeat across number sets.\nShare this: solve 1-2-5-8 aloud.",
+      "lessonGroup": "Think Different",
+      "question": "Bridge times 1, 2, 5, 8 minutes. Minimum total?",
+      "title": "The Bundled Fifteen",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "13 minutes flat",
+        "15 minutes — bundle slowest",
+        "17 minutes standard",
+        "19 minutes escorted"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#12",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "18 minutes — giants share",
+      "correctExplanation": "Right — 1+3 (3), 1 back (1), 6+8 (8), 3 back (3), 1+3 (3): eighteen. Even here bundling beats escorting (19).",
+      "incorrectExplanation": "Actually, 18 minutes: giants share. Six and eight cross once together.",
+      "lessonContent": "Eighteen solves 1-3-6-8 tightly.\nBundling beats escorting by one.\nMargins reward exact strategies.\nShare this: squeeze 1-3-6-8 to eighteen.",
+      "lessonGroup": "Think Different",
+      "question": "Times of 1, 3, 6, 8 — escorting costs 19, bundling costs what?",
+      "title": "The Squeezed Eighteen",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "19 minutes escorted",
+        "18 minutes — giants share",
+        "17 minutes rushed",
+        "21 minutes cautious"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Two fastest open",
+      "correctExplanation": "Correct — the quickest pair establishes the shuttle rhythm. Open fast, then bundle slow.",
+      "incorrectExplanation": "Close! Two fastest open. Speeds 1 and 2 cross first in optimal plans.",
+      "lessonContent": "Fastest pairs open bridge schedules.\nRhythms establish before giants move.\nOpenings set optimal tempos.\nShare this: open fast in games too.",
+      "lessonGroup": "Think Different",
+      "question": "In optimal bridge solutions, who crosses first?",
+      "title": "The Opening Pair",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Two fastest open",
+        "Slowest pair first",
+        "Fastest escorts slowest",
+        "Oldest leads"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#14",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Shared crossings halve giant costs",
+      "correctExplanation": "Yes — two slow crossings cost double; one shared crossing halves it. Arithmetic favors bundling whenever giants dominate.",
+      "incorrectExplanation": "Not quite — shared crossings halve giant costs. Escorting pays slow tolls twice.",
+      "lessonContent": "Bundling halves giant tolls.\nEscorting doubles slow costs.\nArithmetic picks strategies provably.\nShare this: halve one giant cost.",
+      "lessonGroup": "Think Different",
+      "question": "Why does sending the two slowest together beat escorting each?",
+      "title": "The Bundling Logic",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "It feels faster",
+        "Shared crossings halve giant costs",
+        "Torches prefer pairs",
+        "Escorts get tired"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#15",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "It must be carried",
+      "correctExplanation": "Right — the torch never crosses alone; every trip needs light. Constraints ride every crossing.",
+      "incorrectExplanation": "Actually, it must be carried. No throws, no ferries of flame — couriers only.",
+      "lessonContent": "Torches ride every crossing.\nLight constrains night bridges absolutely.\nRules ride along invisibly.\nShare this: carry one constraint everywhere.",
+      "lessonGroup": "Think Different",
+      "question": "Can the torch be thrown across to save a trip?",
+      "title": "The Thrown Torch",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Yes — throw it over",
+        "It must be carried",
+        "Only at dawn",
+        "Tie it to arrows"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "The goose returns",
+      "correctExplanation": "Correct — bringing the goose back un-eats nothing and resets shores safely. Returns sacrifice progress to preserve cargo.",
+      "incorrectExplanation": "Close! The goose returns. Back-trips must carry the peacemaker home.",
+      "lessonContent": "Returns carry peacemakers backward.\nProgress sacrifices preserve cargo.\nBackward steps enable forward leaps.\nShare this: retreat one step wisely.",
+      "lessonGroup": "Think Different",
+      "question": "Why must the goose ride BACK mid-solution?",
+      "title": "The Backward Goose",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Geese love boats",
+        "The goose returns",
+        "Foxes demand company",
+        "Grain rows better"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#17",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Leave fox with grain",
+      "correctExplanation": "Yes — that pairing strands no victim on either shore. Safe pairs anchor both ends.",
+      "incorrectExplanation": "Not quite — leave fox with grain. The vegetarian fox guards starch harmlessly.",
+      "lessonContent": "Safe pairs anchor schedules' ends.\nFoxes guard grain harmlessly.\nAnchors free middles to commute.\nShare this: anchor one schedule safely.",
+      "lessonGroup": "Think Different",
+      "question": "Which pairing lets the farmer leave two behind at once?",
+      "title": "The Double Leave",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Goose with grain",
+        "Fox with goose",
+        "Leave fox with grain",
+        "All three stay"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#18",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Eleven is provable minimum",
+      "correctExplanation": "Right — state-space exhaustion confirms eleven. Jealousy admits no shortcut; proof closes the case.",
+      "incorrectExplanation": "Actually, eleven is provable minimum. Every shorter schedule strands or feasts someone.",
+      "lessonContent": "Eleven is provably minimal.\nExhaustion proofs close puzzles.\nMinimums need certificates, not claims.\nShare this: certify one minimum.",
+      "lessonGroup": "Think Different",
+      "question": "Can the 3-couple puzzle be solved in 9 crossings?",
+      "title": "The Nine Attempt",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Yes — with courage",
+        "Eleven is provable minimum",
+        "Yes — at night",
+        "Only with bigger boats"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Anyone may row",
+      "correctExplanation": "Correct — the puzzle constrains ratios, never rowers. Hands are hands; counts are counts.",
+      "incorrectExplanation": "Close! Anyone may row. No license restricts jealous boats.",
+      "lessonContent": "Rowers matter less than ratios.\nConstraints target counts, not crews.\nHands row; numbers rule.\nShare this: crew one puzzle arbitrarily.",
+      "lessonGroup": "Think Different",
+      "question": "Must a missionary always steer the boat?",
+      "title": "The Licensed Rower",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Yes — priests steer",
+        "Anyone may row",
+        "Only cannibals row",
+        "Elders navigate"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "No swimming allowed",
+      "correctExplanation": "Yes — swimming trivializes every river puzzle. Banks hold all cargo until ferried.",
+      "incorrectExplanation": "Not quite — no swimming allowed. Puzzles assume banks trap cargo absolutely.",
+      "lessonContent": "Assumptions fence puzzle pastures.\nSwimming dissolves river logic.\nRules make puzzles possible.\nShare this: fence one puzzle's pasture.",
+      "lessonGroup": "Think Different",
+      "question": "Why can't the fox simply swim across?",
+      "title": "The Swimming Fox",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Foxes fear water",
+        "No swimming allowed",
+        "Geese block lanes",
+        "Currents kill"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "One bank empties fully",
+      "correctExplanation": "Right — solved states empty the start bank completely. Full transfer defines done.",
+      "incorrectExplanation": "Actually, one bank empties fully. Every puzzle ends with an empty origin shore.",
+      "lessonContent": "Solutions empty origin banks.\nDone means fully transferred.\nEnd-states verify schedules simply.\nShare this: empty one bank completely.",
+      "lessonGroup": "Think Different",
+      "question": "What does the solved state look like?",
+      "title": "The Empty Bank",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Cargo mingles mid-river",
+        "One bank empties fully",
+        "Boats retire half-full",
+        "Farmers switch sides"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Middle cargo commutes",
+      "correctExplanation": "Correct — chain centers shuttle while ends relocate once each. Commuters versus migrants pattern every solution.",
+      "incorrectExplanation": "Close! Middle cargo commutes. Ends travel once; centers travel thrice.",
+      "lessonContent": "Centers commute; ends migrate.\nThrice-riders mark chain middles.\nPatterns repeat across rivers.\nShare this: spot one commuter cargo.",
+      "lessonGroup": "Think Different",
+      "question": "What general pattern marks the middle item in food-chain crossings?",
+      "title": "The Commuter Pattern",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Ends commute thrice",
+        "Middle cargo commutes",
+        "All ride equally",
+        "Farmers commute most"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#23",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Grain waits last",
+      "correctExplanation": "Yes — the safest cargo relocates last while trouble commutes. Harmlessness waits patiently.",
+      "incorrectExplanation": "Not quite — grain waits last. Inert cargo tolerates any shore longest.",
+      "lessonContent": "Safest cargo travels last.\nPatience suits inert goods.\nDanger commutes; calm waits.\nShare this: ship calm cargo last.",
+      "lessonGroup": "Think Different",
+      "question": "Which item waits longest before its single crossing?",
+      "title": "The Last Cargo",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Fox waits longest",
+        "Goose waits longest",
+        "Grain waits last",
+        "All cross together"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-186#24",
+      "forgeScore": 100
+    }
+  ]
+}

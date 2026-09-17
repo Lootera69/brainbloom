@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-042",
+  "generatedAt": "2026-09-17T13:27:41.927Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Pruned Pathways",
+      "question": "During adolescence the human brain eliminates many unused synaptic connections while strengthening frequently used ones, and this pruning is a normal part of healthy development.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Developmental pruning removes weak synapses and keeps efficient circuits, which is why teenage brains remodel rather than simply grow.",
+      "incorrectExplanation": "It is true. Pruning is construction through subtraction: unused connections are cleared while active ones stabilize. The process refines networks instead of signaling damage.",
+      "lessonContent": "Plasticity includes both growth and well-timed removal of connections.\nUse preserves circuits while neglect marks them for pruning.\nAdolescence remodels networks toward adult efficiency.\nMore synapses do not always mean better function.\nShare this: explain tonight why forgetting unused routes can make a network smarter.",
+      "forgeId": "batch-042#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Ten Percent Myth",
+      "question": "Humans normally use only about ten percent of their brains in daily life, leaving the remaining ninety percent dormant and waiting to be unlocked.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. Brain imaging shows virtually all regions active across a day, with different networks engaging for different tasks.",
+      "incorrectExplanation": "It is false. Scans reveal no large dormant reserve sitting idle. Damage to almost any area causes deficits, which would be impossible if ninety percent did nothing.",
+      "lessonContent": "Popular brain myths often promise hidden reserves without evidence.\nModern imaging tracks activity across the whole organ during ordinary days.\nSelective activation is efficiency, not idleness.\nA claim that flatters the listener deserves extra skepticism.\nShare this: ask someone where they first heard the ten-percent claim and check its source.",
+      "forgeId": "batch-042#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Newborn Neurons",
+      "question": "In adult humans, new neurons continue to form in the hippocampus, a brain region central to learning and memory.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Evidence supports ongoing hippocampal neurogenesis in adults, where newborn cells gradually integrate into memory circuits.",
+      "incorrectExplanation": "It is true. The adult brain is not entirely fixed in cell number. Hippocampal newborn neurons take weeks to mature and then participate in forming new memories.",
+      "lessonContent": "Some brain regions retain a capacity for generating new neurons.\nNew cells need time, activity, and survival signals to integrate.\nLearning and exercise influence whether newborn cells persist.\nPlasticity spans synapses, maps, and in limited regions new cells.\nShare this: name one hippocampus-dependent skill you practiced this month.",
+      "forgeId": "batch-042#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Sleep Files Memories",
+      "question": "Sleep after learning helps stabilize new memories, so material followed by sleep is typically recalled better than the same material followed by staying awake.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Sleep supports consolidation: replay and restructuring during rest strengthen fragile traces into durable ones.",
+      "incorrectExplanation": "It is true. Study-sleep-test designs repeatedly favor the sleep condition. Rest does active work, replaying patterns and integrating them with older knowledge.",
+      "lessonContent": "Consolidation continues after practice ends.\nSleep replay lets fragile traces stabilize and connect.\nTiming study before rest can protect new learning.\nRest is part of training, not its opposite.\nShare this: schedule one study session to finish before sleep this week.",
+      "forgeId": "batch-042#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Wanting Versus Liking",
+      "question": "Dopamine mainly produces the feeling of pleasure itself, so raising dopamine always increases how much someone enjoys a reward.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. Dopamine drives wanting and motivation more than liking; pleasure itself depends on additional systems.",
+      "incorrectExplanation": "It is false. Experiments separate pursuit from enjoyment: dopamine-depleted animals still show liking reactions but stop working for rewards. Craving and pleasure are distinct circuits.",
+      "lessonContent": "Motivation and pleasure run on partly separate machinery.\nWanting pushes pursuit while liking registers enjoyment.\nConfusing the two misreads cravings as happiness.\nLabels like pleasure chemical oversimplify careful findings.\nShare this: notice one craving today and ask whether it promises wanting or liking.",
+      "forgeId": "batch-042#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Costly Task Switching",
+      "question": "Rapidly alternating between two demanding tasks is just as efficient as completing each in turn, because attention divides between tasks without any cost.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. Switching imposes measurable costs in time and errors as the brain reconfigures goals and rules.",
+      "incorrectExplanation": "It is false. What feels like parallel work is rapid serial switching. Each switch pays a reconfiguration toll, so heavy multitasking slows both tasks and raises mistakes.",
+      "lessonContent": "Attention is a limited resource that must be reallocated.\nSwitch costs appear in slower responses and extra errors.\nSingle-tasking protects demanding reasoning from interruption.\nFeeling busy is not evidence of thinking well.\nShare this: time one task with and without phone interruptions today.",
+      "forgeId": "batch-042#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Locked After Childhood",
+      "question": "Once early childhood critical periods close, the adult brain cannot reorganize at all, which makes any recovery of lost function impossible.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. Adult plasticity is reduced in some domains but remains real, and rehabilitation routinely drives partial recovery.",
+      "incorrectExplanation": "It is false. Critical periods set sensitivities, not padlocks. Adult maps remap after injury and training, which is the entire basis of modern neurorehabilitation.",
+      "lessonContent": "Critical periods shape timing without ending all change.\nAdult reorganization is slower and more effortful, yet genuine.\nTraining dose and specificity decide much of the outcome.\nAbsolutes like never and impossible misdescribe biology.\nShare this: describe one adult skill you watched someone rebuild through practice.",
+      "forgeId": "batch-042#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Exercise Feeds Memory",
+      "question": "Regular aerobic exercise is associated with higher levels of brain growth factors and with better memory performance in older adults.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Trials link sustained aerobic activity to growth-factor signaling and to measurable gains in hippocampus-dependent memory.",
+      "incorrectExplanation": "It is true. The effect is association plus converging trial evidence, not magic. Movement supports the chemistry that plasticity runs on, especially in aging brains.",
+      "lessonContent": "The body supplies conditions the brain remodels within.\nAerobic habits correlate with healthier memory aging.\nGrowth factors translate activity into synaptic support.\nSmall sustained doses beat rare heroic workouts.\nShare this: take one brisk walk today and treat it as memory training.",
+      "forgeId": "batch-042#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Recovery Through Rewiring",
+      "question": "After a stroke, intensive rehabilitation can recruit undamaged brain areas to take over functions once handled by damaged tissue.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Constraint and task-specific training push surviving networks to reorganize and assume impaired roles.",
+      "incorrectExplanation": "It is true. Recovery is not only swelling subsiding. Imaging shows neighboring and connected regions changing their responses as patients regain movement and language.",
+      "lessonContent": "Rehabilitation is applied plasticity with a schedule.\nSpecific, repeated, challenging practice drives remapping.\nSpared tissue can learn jobs it never held before.\nDose and difficulty matter more than vague encouragement.\nShare this: explain why rehab exercises repeat one movement hundreds of times.",
+      "forgeId": "batch-042#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Phantom Map Shift",
+      "question": "In some arm amputees, touch on the face is felt as coming from the missing hand, because neighboring cortical maps expand after losing their normal input.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Face and hand zones sit adjacently in cortex, so deprived hand territory gets invaded by face inputs.",
+      "incorrectExplanation": "It is true. The mislocation follows the cortical map, not the skin. Neighboring representations compete for deprived territory, which reveals how dynamically maps are maintained.",
+      "lessonContent": "Cortical maps are maintained by competition between inputs.\nLosing input lets neighbors expand into silent territory.\nFelt location follows brain mapping, not just skin site.\nRemapping explains both phantom sensations and recovery.\nShare this: sketch the cortical homunculus and find the hand-face border.",
+      "forgeId": "batch-042#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Memory Update Window",
+      "question": "Briefly recalling an established memory can make it temporarily malleable, so new information presented in that window can update the stored trace.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Recalled traces enter a labile reconsolidation phase before stabilizing again, admitting targeted updates.",
+      "incorrectExplanation": "It is true. Retrieval does not merely read a file. The reactivated trace must restabilize, and interference or new learning during that window reshapes what persists.",
+      "lessonContent": "Retrieval opens memories to editing, not just replay.\nLabile windows close as traces restabilize.\nUpdate beats erasure as a model of memory change.\nTherapy and teaching can exploit restabilization deliberately.\nShare this: recall one memory today and notice which details feel reconstructed.",
+      "forgeId": "batch-042#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Spacing Beats Cramming",
+      "question": "Spreading study sessions across several days produces stronger long-term retention than massing the same total study hours into a single night.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Distributed practice consistently outperforms massed practice on delayed tests across subjects and ages.",
+      "incorrectExplanation": "It is true. Cramming inflates immediate familiarity while spacing builds durable retrieval routes. The advantage grows as the test delay lengthens.",
+      "lessonContent": "Timing of practice matters as much as total hours.\nSpacing forces effortful reconstruction that strengthens traces.\nImmediate fluency is a poor predictor of lasting recall.\nPlan review at expanding intervals for durable learning.\nShare this: split your next study topic into three short sessions.",
+      "forgeId": "batch-042#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Testing Beats Rereading",
+      "question": "Actively retrieving information during practice strengthens later recall more than spending the same time simply rereading the material.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. The testing effect shows retrieval practice builds stronger memories than restudying, even when practice feels harder.",
+      "incorrectExplanation": "It is true. Rereading raises fluency without building access routes. Effortful recall modifies the trace itself, which is why self-quizzing wins on delayed tests.",
+      "lessonContent": "Retrieval is a memory modifier, not just a measurement.\nDifficulty during practice often predicts durability later.\nSelf-testing exposes gaps that rereading hides.\nLow-stakes quizzes convert study time into recall strength.\nShare this: close the book and recall its points before rereading anything.",
+      "forgeId": "batch-042#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Stress Sharpens Everything",
+      "question": "Acute severe stress improves every kind of thinking equally, including flexible reasoning, working memory, and creative problem solving.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. Severe stress typically impairs prefrontal flexibility and working memory while favoring rigid habit responses.",
+      "incorrectExplanation": "It is false. Stress hormones retune the brain toward fast defensive routines. Simple well-drilled actions may survive, but deliberation and mental juggling reliably suffer.",
+      "lessonContent": "Arousal reshapes which systems control behavior.\nModerate pressure can focus simple tasks and wreck complex ones.\nHabit circuits gain influence as flexible planning degrades.\nOne lever rarely moves every ability in the same direction.\nShare this: notice which thinking style your next deadline strengthens or weakens.",
+      "forgeId": "batch-042#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Repurposed Visual Cortex",
+      "question": "People blind from an early age often recruit visual cortex for hearing and touch tasks, demonstrating cross-modal reorganization.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Deprived visual areas get colonized by other senses, and disrupting them impairs Braille reading and sound localization.",
+      "incorrectExplanation": "It is true. Cortex is less strictly single-purpose than textbook labels imply. When vision never arrives, remaining senses bid for the unused computational territory.",
+      "lessonContent": "Cortical territory follows input, not just labels.\nDeprivation invites takeover by surviving senses.\nFunction follows connectivity more than anatomy names.\nThe brain reassigns hardware before wasting it.\nShare this: describe blindness as reassignment rather than a switched-off module.",
+      "forgeId": "batch-042#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Cab Drivers Hippocampus",
+      "question": "Experienced London taxi drivers who memorized the city's full street layout show structural differences in the hippocampus compared with matched controls.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Navigation expertise correlates with hippocampal differences that grow with years of demanding spatial practice.",
+      "incorrectExplanation": "It is true. Memorizing thousands of routes is years of spatial training. The associated structural pattern supports experience shaping the adult brain rather than talent alone explaining performance.",
+      "lessonContent": "Sustained expertise leaves structural traces.\nSpatial memory taxes the hippocampus heavily.\nYears of practice, not weeks, produce the clearest changes.\nCorrelation invites training studies before claiming causation.\nShare this: navigate one familiar route from memory without assistance today.",
+      "forgeId": "batch-042#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Enriched Cages",
+      "question": "Rats raised in complex stimulating environments develop denser synaptic connections than rats raised in bare isolated cages.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Enrichment studies show thicker cortex and richer connectivity in animals given novelty, company, and activity.",
+      "incorrectExplanation": "It is true. The differences survive controls for handling and exercise. An impoverished environment is itself an intervention that shrinks what a normal one would build.",
+      "lessonContent": "Environment sculpts synaptic density measurably.\nNovelty, social life, and movement each contribute.\nControl conditions decide what counts as baseline.\nDeprivation studies reveal what stimulation normally builds.\nShare this: add one novel demanding activity to your week as enrichment.",
+      "forgeId": "batch-042#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Fixed White Matter",
+      "question": "Only gray matter changes with learning, while the brain's white-matter pathways are permanently fixed after childhood and never remodel.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. White matter shows experience-dependent change too, including myelin remodeling that tunes conduction speed.",
+      "incorrectExplanation": "It is false. Imaging of musicians, jugglers, and readers finds white-matter differences tied to practice. Insulation as well as wiring adapts to demand.",
+      "lessonContent": "Learning tunes transmission, not only computation.\nMyelin adjusts speed and synchrony along used routes.\nBoth gray and white matter participate in skill.\nFixed-versus-plastic framings usually collapse under data.\nShare this: think of practice as upgrading cables as well as processors.",
+      "forgeId": "batch-042#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Juggling Grows Cortex",
+      "question": "Months of juggling practice can produce measurable gray-matter changes in visual motion areas, which recede after practice stops.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Training studies found transient gray-matter expansion tied to juggling that diminished with detraining.",
+      "incorrectExplanation": "It is true. The rise-and-fall pattern links the change to practice itself. Brains expand the machinery a skill needs and release it when demand ends.",
+      "lessonContent": "Structural change can be rapid and reversible.\nNew skills rent cortical space while they are needed.\nDetraining reversals strengthen causal interpretation.\nShort studies can reveal what lifelong data only suggest.\nShare this: practice one coordination skill daily for two weeks and track progress.",
+      "forgeId": "batch-042#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Video Recorder Memory",
+      "question": "Human memory works like a video recorder, storing exact copies of events that replay unchanged every time they are recalled.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. Memory is reconstructive: each recall rebuilds the event from fragments and current context, introducing distortions.",
+      "incorrectExplanation": "It is false. Confidence predicts accuracy poorly because recall reassembles rather than replays. Misinformation and leading questions demonstrably rewrite details.",
+      "lessonContent": "Recall reconstructs instead of replaying.\nFragments plus expectations assemble each remembering.\nConfidence is a feeling, not a fidelity meter.\nExternal records beat vivid recollection for accuracy.\nShare this: compare your memory of one event with a photo or message record.",
+      "forgeId": "batch-042#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Limits of Attention",
+      "question": "Conscious attention has no meaningful capacity limit, so a person focused on one demanding task is guaranteed to notice any unexpected object nearby.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. Inattentional blindness shows focused observers can miss even conspicuous unexpected events in plain view.",
+      "incorrectExplanation": "It is false. The famous invisible-gorilla studies prove missing the obvious while counting passes. Attention selects, and selection necessarily discards the rest.",
+      "lessonContent": "Seeing requires attention as well as open eyes.\nFocused tasks filter supposedly obvious surroundings.\nNo observer catches everything in a scene.\nDesign for limits instead of denying them.\nShare this: watch a familiar walk once for something you never noticed.",
+      "forgeId": "batch-042#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Shock Therapy Myth",
+      "question": "Modern electroconvulsive therapy improves severe depression by destroying large areas of brain tissue, with no involvement of plasticity mechanisms.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. Modern ECT is controlled and does not lesion tissue; its benefits are linked to seizure-related plasticity and growth-factor signaling.",
+      "incorrectExplanation": "It is false. Imaging shows no large-scale destruction, while markers of plasticity rise after treatment. The historical brutality narrative misdescribes the regulated modern procedure.",
+      "lessonContent": "Effective treatments can work through plasticity, not damage.\nMechanism claims need tissue-level evidence.\nHistory colors perception of modern procedures.\nSeparate past misuse from current controlled practice.\nShare this: replace one movie-myth treatment claim with its measured evidence.",
+      "forgeId": "batch-042#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Musicians Finger Maps",
+      "question": "String players show enlarged cortical representation for the fingers of their fretting hand compared with people who do not play such instruments.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "True. Intensive left-hand fingering expands its sensory maps, with the effect strongest in early starters.",
+      "incorrectExplanation": "It is true. Thousands of hours of precise finger work reshape sensory cortex. Map size follows practice history rather than musical talent alone.",
+      "lessonContent": "Repetition with precision expands sensory maps.\nStarting age and practice hours both predict map size.\nSkill lives partly in reorganized perception.\nPractice writes itself into the sensing brain.\nShare this: compare fingertip sensitivity across your own two hands.",
+      "forgeId": "batch-042#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Game Boosts Everything",
+      "question": "Playing one commercial brain-training game for a few hours permanently raises general intelligence across all unrelated tasks.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. Training improves the trained task and close neighbors, but far transfer to general intelligence is weak or absent.",
+      "incorrectExplanation": "It is false. Reviews find near transfer without broad gains. Getting better at a game mostly means getting better at that game, not upgrading the whole mind.",
+      "lessonContent": "Transfer is narrow unless training shares real demands.\nNear gains do not imply general upgrades.\nMarketing leaps from task scores to intelligence claims.\nJudge programs by independent untrained measures.\nShare this: test any brain claim by asking what untrained skill improved.",
+      "forgeId": "batch-042#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Mozart Effect Promise",
+      "question": "Having infants listen to classical music for a few minutes permanently raises their intelligence lasting into adulthood.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "False. The original finding was a brief spatial-task boost in adults, not a lasting intelligence increase in babies.",
+      "incorrectExplanation": "It is false. Short arousal effects were inflated into permanent genius claims. Follow-ups find no enduring IQ gain from passive listening sessions.",
+      "lessonContent": "Brief performance lifts differ from lasting ability change.\nArousal and mood explain many music-listening boosts.\nExtraordinary claims need longitudinal evidence.\nEnrichment means engagement, not background audio.\nShare this: swap passive listening for active music-making with a child.",
+      "forgeId": "batch-042#24",
+      "forgeScore": 100
+    }
+  ]
+}

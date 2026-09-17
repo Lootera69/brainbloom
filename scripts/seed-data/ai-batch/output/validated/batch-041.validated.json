@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-041",
+  "generatedAt": "2026-09-17T13:27:41.914Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Falling Phone",
+      "question": "A phone's accelerometer reads 9.8 m/s^2 while resting on a table. The phone then falls inside a vacuum chamber. Ignoring air resistance, what should it read during the fall?",
+      "choices": [
+        "About 9.8 m/s^2 downward",
+        "Nearly zero until impact",
+        "About 19.6 m/s^2 downward",
+        "An increasing value as speed rises"
+      ],
+      "correctAnswer": "Nearly zero until impact",
+      "xpReward": 50,
+      "correctExplanation": "Correct. An accelerometer measures proper acceleration from support forces, not coordinate acceleration; in free fall, phone and sensor mass follow the same local geodesic.",
+      "incorrectExplanation": "Not quite. The reading is nearly zero until impact because gravity accelerates the entire instrument together. The table produced the earlier reading by continually pushing the phone away from its free-fall path.",
+      "lessonContent": "Accelerometers measure departure from free motion rather than velocity or coordinate acceleration.\nA support can create a reading even while an object remains at fixed coordinates.\nFreely moving test bodies define local inertial motion in general relativity.\nImpact produces a large reading because contact abruptly changes that motion.\nShare this: open a phone sensor app and compare its reading flat, tilted, and gently tossed onto a cushion.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Two Sealed Rooms",
+      "question": "One small sealed lab rests on a planet where tidal effects are undetectably tiny. An identical lab accelerates uniformly through empty space. Which experiment performed entirely inside can identify the planetary lab?",
+      "choices": [
+        "Timing how fast a dropped ball reaches the floor",
+        "Measuring the force needed to hold a mass still",
+        "Watching a pendulum hang toward the floor",
+        "No local experiment under those ideal conditions"
+      ],
+      "correctAnswer": "No local experiment under those ideal conditions",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. In a sufficiently small region, uniform acceleration and a uniform gravitational environment produce the same local outcomes; only nonlocal information or detectable tidal variation can separate them.",
+      "incorrectExplanation": "Actually, no local experiment under those ideal conditions can distinguish the rooms. Drops, scales, and pendulums respond to the same effective downward direction in both, which is the operational content of the equivalence principle.",
+      "lessonContent": "Equivalence is a statement about experiments confined to a sufficiently small spacetime region.\nLocal means both spatially small and brief enough that field variation is negligible.\nMechanical, optical, and clock experiments must agree under the same idealization.\nInformation from outside the laboratory can break a comparison that local data cannot.\nShare this: ask a friend what a sealed room would need to measure before claiming it knows where it is.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#1",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Converging Drops",
+      "question": "Two balls are released side by side in a very wide, freely falling shaft above Earth. Sensitive tracking shows their separation slowly shrinks as both descend. What does that observation reveal?",
+      "choices": [
+        "A tidal effect that cannot be removed across the whole shaft",
+        "Air pressure pushing both balls toward the centerline",
+        "A failure of equal free-fall acceleration",
+        "A support force acting despite the shaft's fall"
+      ],
+      "correctAnswer": "A tidal effect that cannot be removed across the whole shaft",
+      "xpReward": 50,
+      "correctExplanation": "Right. Radial free-fall paths point toward Earth's center, so neighboring geodesics converge; their relative acceleration is a measurable signature of spacetime curvature.",
+      "incorrectExplanation": "Close! It is a tidal effect that cannot be removed across the whole shaft. Each ball is locally weightless, yet comparing separated trajectories exposes variation in the gravitational field that no single freely falling frame erases everywhere.",
+      "lessonContent": "Curvature is detected by comparing nearby free trajectories, not by inspecting only one.\nTidal effects describe relative stretching or squeezing between separated test bodies.\nA local inertial frame removes uniform first-order effects at one event.\nField gradients survive that choice and become important over larger regions.\nShare this: draw two arrows toward Earth's center at separated locations and extend them until their convergence is obvious.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Laser Across Deck",
+      "question": "A rocket accelerates upward through empty space while a laser fires horizontally across its cabin. Relative to marks painted on the cabin wall, where does the beam arrive compared with its launch height?",
+      "choices": [
+        "Higher, because acceleration adds energy to light",
+        "At the same height, because light ignores acceleration",
+        "Lower, because the cabin rises while light crosses",
+        "Randomly displaced by the observer's motion"
+      ],
+      "correctAnswer": "Lower, because the cabin rises while light crosses",
+      "xpReward": 50,
+      "correctExplanation": "Correct. In an inertial view the light travels straight while the accelerating cabin rises beneath it, so cabin coordinates describe a downward-curving path, matching the local gravitational prediction.",
+      "incorrectExplanation": "The beam arrives lower because the cabin rises while light crosses. Light does not need a downward force in the inertial description; equivalence requires the same apparent sag in a laboratory supported in a gravitational field.",
+      "lessonContent": "Accelerating coordinates can make straight inertial paths appear curved.\nEquivalence applies to light experiments as well as falling material objects.\nCoordinate descriptions may differ while the recorded meeting event remains invariant.\nA geometric account avoids treating photons as tiny projectiles with rest mass.\nShare this: sketch the same beam once against empty space and once against the rising cabin walls.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#3",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Rocket Clock Ladder",
+      "question": "Identical clocks are fixed at the nose and tail of a long rocket undergoing steady proper acceleration, with the nose in the effective 'up' direction. After accounting for signal travel time, how do their rates compare?",
+      "choices": [
+        "The tail clock runs faster because it began accelerating first",
+        "The nose clock runs faster than the tail clock",
+        "Both rates remain identical because the rocket is rigid",
+        "The comparison depends only on the clocks' brands"
+      ],
+      "correctAnswer": "The nose clock runs faster than the tail clock",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. The accelerating frame has a position-dependent clock rate: the clock higher in the effective field accumulates more proper time, reproducing gravitational time dilation locally.",
+      "incorrectExplanation": "Not quite. The nose clock runs faster than the tail clock. Signals exchanged while the receiver changes velocity reveal the same rate gradient that stationary clocks exhibit at different gravitational potentials.",
+      "lessonContent": "Equivalence connects clock-rate gradients in supported frames with those in accelerating frames.\nComparing remote clocks requires correcting for changing signal travel times.\nProper time is the duration recorded along each clock's own worldline.\nRigid acceleration in relativity cannot assign identical proper acceleration to every point.\nShare this: place two clock icons on a rocket drawing and predict which accumulates more proper time before checking.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Erasing the Field",
+      "question": "A researcher chooses freely falling coordinates so a dropped particle has no gravitational acceleration at one event. What has the coordinate choice physically eliminated?",
+      "choices": [
+        "All curvature throughout the surrounding region",
+        "Every measurable tidal effect for all time",
+        "The planet's mass-energy source",
+        "The connection terms at that event, not curvature generally"
+      ],
+      "correctAnswer": "The connection terms at that event, not curvature generally",
+      "xpReward": 50,
+      "correctExplanation": "Right. Local inertial coordinates can make the connection vanish at one event, but curvature depends on derivatives and combinations that remain detectable through nearby relative motion.",
+      "incorrectExplanation": "The answer is the connection terms at that event, not curvature generally. Coordinates can remove a local appearance of force, but they cannot erase invariant tidal relationships over a finite neighborhood.",
+      "lessonContent": "Coordinate-dependent quantities can vanish by choosing a convenient freely moving frame.\nInvariant curvature is encoded in how such local frames fail to fit together across a region.\nA zero value at one point need not imply zero spatial or temporal derivatives.\nPhysical claims should be tied to measurements that survive relabeling.\nShare this: challenge one statement that confuses choosing coordinates with changing the underlying system.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#5",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Orbiting Scale Test",
+      "question": "An astronaut in a circular orbit carries a perfect accelerometer, while mission control reports a large inward coordinate acceleration. How can both readings be correct?",
+      "choices": [
+        "The astronaut follows free motion while coordinates curve around Earth",
+        "The accelerometer is shielded from gravity by the spacecraft",
+        "Centrifugal force cancels gravity inside the sensor only",
+        "Orbital speed converts gravitational force into mass"
+      ],
+      "correctAnswer": "The astronaut follows free motion while coordinates curve around Earth",
+      "xpReward": 50,
+      "correctExplanation": "Correct. The astronaut's worldline is geodesic and has zero proper acceleration, while Earth-centered coordinates assign that curved path an inward coordinate acceleration.",
+      "incorrectExplanation": "Actually, the astronaut follows free motion while coordinates curve around Earth. No shielding or exact force cancellation is required; proper acceleration and coordinate acceleration are different observables.",
+      "lessonContent": "Proper acceleration is what a carried accelerometer records along a worldline.\nCoordinate acceleration depends on the reference coordinates used to describe that path.\nFree orbital motion can be curved on a map while remaining force-free locally.\nSeparating these meanings prevents apparent contradictions between instruments and tracking data.\nShare this: ask someone whether a zero accelerometer reading guarantees a straight line on every map.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#6",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Grounded Accelerometer",
+      "question": "A precision accelerometer sits motionless on Earth's surface and points upward. In general-relativistic terms, why does it register about 1 g although its height is constant?",
+      "choices": [
+        "Earth's rotation alone creates the full reading",
+        "Gravity pulls only the sensor's internal proof mass",
+        "The ground forces it away from its natural free-fall path",
+        "Its fixed coordinates guarantee zero proper acceleration"
+      ],
+      "correctAnswer": "The ground forces it away from its natural free-fall path",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. The surface supplies an upward contact force that prevents geodesic motion, and the accelerometer records that proper acceleration even at constant height.",
+      "incorrectExplanation": "Not quite. The ground forces it away from its natural free-fall path. Being stationary in Earth-fixed coordinates is not inertial rest; the support continuously bends the instrument's worldline away from free motion.",
+      "lessonContent": "Weight is associated with support forces rather than with free motion itself.\nA worldline can stay at fixed spatial coordinates and still possess proper acceleration.\nContact pressure is locally measurable without looking outside the laboratory.\nFree-fall and supported rest exchange the everyday roles of 'accelerating' and 'stationary.'\nShare this: compare what a bathroom scale reports in a parked lift, a rising lift, and a falling lift.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Charged Drop Pair",
+      "question": "A charged and an uncharged sphere are released together in a falling laboratory, but a strong external electric field acts only on the charged sphere. They separate. Does this observation by itself violate gravitational equivalence?",
+      "choices": [
+        "Yes, because all released bodies must share every trajectory",
+        "No, because a composition-dependent nongravitational force acts",
+        "Yes, because electric charge changes gravitational mass",
+        "No, because equivalence applies only to neutral planets"
+      ],
+      "correctAnswer": "No, because a composition-dependent nongravitational force acts",
+      "xpReward": 50,
+      "correctExplanation": "Right. Universal gravitational free fall is tested only after controlling other forces; the electric field supplies a known, charge-dependent acceleration unrelated to gravitational universality.",
+      "incorrectExplanation": "Close! No violation follows because a composition-dependent nongravitational force acts. Equivalence does not claim differently charged objects respond identically when an electromagnetic field is deliberately added.",
+      "lessonContent": "Universality tests compare bodies after accounting for every relevant nongravitational interaction.\nCharge, magnetism, buoyancy, drag, and thermal forces can imitate differential falling.\nA clean null test changes composition while suppressing known confounders.\nA principle should not be blamed for effects outside the conditions it specifies.\nShare this: list three forces an experimenter must control before comparing two falling materials.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#8",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Quiet Horizon Crossing",
+      "question": "A large spacecraft coasts across the event horizon of a supermassive black hole. Its cabin is small enough that tidal effects are negligible there. What does a sealed accelerometer register at the crossing?",
+      "choices": [
+        "An infinite outward acceleration",
+        "A sudden reversal from down to up",
+        "Exactly the black hole's surface gravity",
+        "No special spike; it remains near zero"
+      ],
+      "correctAnswer": "No special spike; it remains near zero",
+      "xpReward": 50,
+      "correctExplanation": "Correct. A freely falling horizon crossing is locally ordinary when curvature across the cabin is mild; the horizon is a global causal boundary, not a material surface that strikes the craft.",
+      "incorrectExplanation": "The reading shows no special spike; it remains near zero. Hovering near a horizon would require enormous proper acceleration, but coasting through it is locally free motion rather than collision with a wall.",
+      "lessonContent": "Local instruments need not detect a boundary defined by the future escape of light.\nFree fall and hovering are physically different worldlines near compact objects.\nCurvature strength at a horizon depends on the central object's mass.\nGlobal causal structure can matter even when one crossing event looks locally uneventful.\nShare this: explain to someone why a map boundary need not behave like a physical membrane.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Two Horizon Sizes",
+      "question": "Two astronauts cross the horizons of black holes with very different masses. Which astronaut can experience weaker head-to-foot tidal stress exactly at the horizon?",
+      "choices": [
+        "The one crossing the more massive black hole",
+        "The one crossing the less massive black hole",
+        "Both, because every horizon has identical curvature",
+        "Neither, because tidal stress is infinite at any horizon"
+      ],
+      "correctAnswer": "The one crossing the more massive black hole",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. A more massive black hole has a much larger horizon radius and weaker curvature at that radius, so a large traveler can cross before severe tidal gradients develop.",
+      "incorrectExplanation": "Actually, the one crossing the more massive black hole can experience weaker tidal stress. Horizon status does not set one universal local curvature; small black holes have much steeper gradients at their horizons.",
+      "lessonContent": "Tidal stress depends on how rapidly a gravitational field varies across an object's size.\nA boundary's causal importance does not fix its local curvature magnitude.\nScaling a compact object's mass also scales the radius of its horizon.\nComparing gradients, not merely field labels, predicts stretching and compression.\nShare this: contrast a steep small whirlpool with a broad gentle one as a gradient analogy.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Falling Sphere Swarm",
+      "question": "A small spherical cloud of freely falling beads approaches a compact mass. No bead feels a support force. Which deformation most directly expresses geodesic deviation?",
+      "choices": [
+        "Uniform shrinking in every direction",
+        "Rigid translation with no internal change",
+        "Radial stretching paired with sideways squeezing",
+        "Random heating caused by vacuum friction"
+      ],
+      "correctAnswer": "Radial stretching paired with sideways squeezing",
+      "xpReward": 50,
+      "correctExplanation": "Right. Neighboring radial paths separate while neighboring transverse paths converge, turning the initially spherical swarm into an elongated shape even though each bead is locally weightless.",
+      "incorrectExplanation": "The deformation is radial stretching paired with sideways squeezing. Curvature acts through relative acceleration between neighboring geodesics, not through drag or an equal compression in all directions.",
+      "lessonContent": "Geodesic deviation predicts relative motion among neighboring freely moving test bodies.\nTidal geometry can stretch along one axis while compressing along others.\nEach member may read zero proper acceleration even as the group's shape changes.\nExtended collections reveal information unavailable to a single pointlike observer.\nShare this: draw a circle of dots and deform it using inward side arrows and outward radial arrows.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Flat Yet Heavy",
+      "question": "An accelerating laboratory in otherwise flat spacetime has floor scales, hanging pendulums, and position-dependent clock rates. Which further result would show its apparent gravitational field is not caused by spacetime curvature?",
+      "choices": [
+        "Dropped objects reach the floor",
+        "A complete tidal measurement finds zero curvature",
+        "The floor scale reports a nonzero weight",
+        "Light appears to bend in laboratory coordinates"
+      ],
+      "correctAnswer": "A complete tidal measurement finds zero curvature",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Acceleration can reproduce uniform local gravitational phenomena in flat spacetime, but an invariant tidal survey distinguishes coordinate gravity from genuine curvature over a region.",
+      "incorrectExplanation": "The decisive result is that a complete tidal measurement finds zero curvature. Drops, weights, clock gradients, and apparent light bending all occur in accelerating coordinates and therefore do not establish curved spacetime by themselves.",
+      "lessonContent": "Inertial effects can imitate a uniform gravitational field inside an accelerating frame.\nCurvature requires invariant relative-motion measurements across neighboring trajectories.\nA coordinate force may be useful without representing a new physical field source.\nLocal equivalence does not make all extended gravitational situations globally identical.\nShare this: sort four familiar effects into those one point can measure and those requiring spatial separation.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Spinning Habitat Test",
+      "question": "A rotating space habitat produces floor weight that resembles gravity. Which cabin experiment can distinguish it from a small nonrotating room supported in an approximately uniform gravitational field?",
+      "choices": [
+        "Weighing one stationary object",
+        "Dropping an object straight toward the floor",
+        "Timing a pendulum's ordinary period",
+        "Launching objects sideways and detecting Coriolis deflection"
+      ],
+      "correctAnswer": "Launching objects sideways and detecting Coriolis deflection",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Rotation creates velocity-dependent Coriolis effects detectable inside the habitat, so rotational artificial gravity is not locally equivalent to simple linear acceleration for all motions.",
+      "incorrectExplanation": "The distinguishing test is launching objects sideways and detecting Coriolis deflection. Static weight alone can look gravitational, but rotation leaves direction- and velocity-dependent signatures beyond a uniform downward acceleration.",
+      "lessonContent": "Rotation is absolute enough to reveal itself through local inertial effects.\nCoriolis deflection depends on an object's velocity relative to the rotating frame.\nCentrifugal strength also changes with distance from the rotation axis.\nArtificial weight can match one gravitational feature without matching every experiment.\nShare this: predict which way a tossed ball curves inside a clockwise rotating room.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Cable Cut Reading",
+      "question": "A person stands on a scale in a lift held motionless above Earth. The cable snaps, and the lift enters ideal free fall. What happens to the scale reading before any impact?",
+      "choices": [
+        "It falls to nearly zero because person and scale share free fall",
+        "It doubles because Earth accelerates both downward",
+        "It stays unchanged because gravitational mass is unchanged",
+        "It becomes negative because the lift moves downward"
+      ],
+      "correctAnswer": "It falls to nearly zero because person and scale share free fall",
+      "xpReward": 50,
+      "correctExplanation": "Right. A scale measures contact force; once the lift, person, and scale follow neighboring free-fall paths together, that support force nearly disappears.",
+      "incorrectExplanation": "Close! It falls to nearly zero because person and scale share free fall. The person's mass and Earth's gravity remain, but weight as a contact reading vanishes until tides or impact create relative force.",
+      "lessonContent": "Scales report normal force rather than an object's invariant mass.\nSupport force disappears when an observer and instrument enter the same free motion.\nChanging velocity direction does not make a force reading negative.\nOperational definitions clarify why mass can remain while apparent weight changes.\nShare this: state what a scale actually measures before using the word weight in one conversation.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#14",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Engine-Off Course",
+      "question": "A probe near a star switches off its engine and follows a curved orbit. Which description best fits general relativity from the probe's local perspective?",
+      "choices": [
+        "A hidden force pulls it off its natural straight path",
+        "Its inertia shuts down until the engine restarts",
+        "It follows the straightest available spacetime path",
+        "Its mass continually converts into orbital speed"
+      ],
+      "correctAnswer": "It follows the straightest available spacetime path",
+      "xpReward": 50,
+      "correctExplanation": "Correct. With no thrust, the probe follows a geodesic: locally inertial motion whose projection into space can look like a curved orbit because spacetime geometry is curved.",
+      "incorrectExplanation": "The probe follows the straightest available spacetime path. Calling the spatial orbit curved does not imply a local force; the full spacetime trajectory is the free-motion path selected by the geometry.",
+      "lessonContent": "A geodesic generalizes straight inertial motion to curved spacetime.\nSpatial pictures omit the time dimension and can make free paths look force-bent.\nEngines and supports create departures from geodesic motion that instruments can feel.\nGeometry predicts trajectories without requiring gravity to act as an ordinary push.\nShare this: trace a route on a globe and compare its flat-map curve with its surface geodesic.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#15",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Half a Prediction",
+      "question": "A calculation treats starlight as fast Newtonian particles responding only to a gravitational potential and predicts half the observed deflection near a star. What did that approximation omit?",
+      "choices": [
+        "Photons losing rest mass as they travel",
+        "The contribution of spatial curvature to the null path",
+        "Atmospheric refraction at the star's surface",
+        "Quantum collapse caused by the telescope"
+      ],
+      "correctAnswer": "The contribution of spatial curvature to the null path",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. A potential-like time-curvature argument captures only part of general relativity's result; spatial geometry contributes the other part to the light ray's null geodesic.",
+      "incorrectExplanation": "The missing piece is the contribution of spatial curvature to the null path. Light has no rest mass to lose, and the factor-of-two discrepancy arises from incomplete spacetime geometry rather than telescope or atmospheric effects.",
+      "lessonContent": "Relativistic predictions use the geometry of both space and time.\nA Newtonian analogy can capture one limit while omitting equally real geometric terms.\nLight follows null trajectories determined by the full spacetime metric.\nAgreement in order of magnitude does not guarantee a model contains the whole mechanism.\nShare this: find one scientific analogy and ask explicitly which part of the full theory it leaves out.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Self-Energy Fall",
+      "question": "Lunar laser ranging checks whether Earth and Moon fall toward the Sun at slightly different rates because Earth contains more gravitational binding energy. Which principle is this especially testing?",
+      "choices": [
+        "Conservation of electric charge",
+        "The uncertainty principle for massive bodies",
+        "Only equality of ordinary material composition",
+        "Strong equivalence including gravitational self-energy"
+      ],
+      "correctAnswer": "Strong equivalence including gravitational self-energy",
+      "xpReward": 50,
+      "correctExplanation": "Right. Comparing bodies with different fractions of gravitational binding energy probes whether gravity itself falls universally, a stronger demand than ordinary composition tests with laboratory materials.",
+      "incorrectExplanation": "The test targets strong equivalence including gravitational self-energy. Earth and Moon differ not only chemically but also in how much of their mass-energy comes from their own gravity, allowing orbital polarization to expose a violation.",
+      "lessonContent": "Several equivalence principles make related but differently strong claims.\nLaboratory composition tests mainly compare nongravitational forms of internal energy.\nSelf-gravitating astronomical bodies extend the question to gravitational binding energy.\nLong-baseline orbital measurements can amplify tiny differential accelerations.\nShare this: explain why comparing two planets can test a stronger claim than dropping two laboratory samples.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Balance of Materials",
+      "question": "A torsion balance compares two materials as Earth falls around the Sun. If their ratios of passive gravitational mass to inertial mass differed, what signal would appear?",
+      "choices": [
+        "A composition-dependent twist synchronized with the Sun's direction",
+        "An equal twist for both samples with no daily pattern",
+        "A universal change in the speed of light",
+        "A loss of mass whenever the balance rotates"
+      ],
+      "correctAnswer": "A composition-dependent twist synchronized with the Sun's direction",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Unequal gravitational-to-inertial mass ratios would give the samples different solar accelerations, producing a differential torque whose orientation tracks the external field.",
+      "incorrectExplanation": "The expected signal is a composition-dependent twist synchronized with the Sun's direction. A common acceleration largely cancels in the differential instrument; only unequal response between the materials produces the sought torque.",
+      "lessonContent": "Differential instruments reject effects shared equally by two test bodies.\nTorsion fibers convert tiny horizontal force differences into measurable angular shifts.\nChanging material composition tests whether internal constitution affects free response.\nA predicted time or direction signature helps separate signal from laboratory drift.\nShare this: identify one common-mode disturbance that a paired measurement could cancel.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Twin Mass Gradiometer",
+      "question": "Inside an orbiting satellite, two free test masses each have accelerometers reading zero, yet their separation oscillates slightly along the orbit. What should engineers infer?",
+      "choices": [
+        "The accelerometers disprove the separation data",
+        "One mass must be secretly supported",
+        "Relative free motion is measuring the local gravity gradient",
+        "The masses alternate between having positive and negative inertia"
+      ],
+      "correctAnswer": "Relative free motion is measuring the local gravity gradient",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Individual zero proper acceleration is compatible with changing separation; a gradiometer measures geodesic deviation and therefore tidal curvature rather than ordinary support force.",
+      "incorrectExplanation": "Relative free motion is measuring the local gravity gradient. The two instruments answer different questions: each accelerometer tests its own support-free path, while their separation tests how nearby free paths converge or diverge.",
+      "lessonContent": "A gravity gradiometer compares nearby free trajectories instead of measuring one absolute pull.\nCommon spacecraft acceleration can be rejected while differential motion remains.\nTidal signals vary with orbital position and instrument orientation.\nMultiple valid instruments can disagree numerically because they measure different quantities.\nShare this: ask what each sensor measures before treating two different readings as a contradiction.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Oversized Laboratory",
+      "question": "A freely falling laboratory is expanded from one metre to hundreds of kilometres while its instruments become more precise. Which assumption behind treating it as an inertial frame eventually fails?",
+      "choices": [
+        "Free fall works only for microscopic objects",
+        "Light ceases to have a constant local speed",
+        "Gravity varies negligibly across the laboratory",
+        "The laboratory must lose all internal pressure"
+      ],
+      "correctAnswer": "Gravity varies negligibly across the laboratory",
+      "xpReward": 50,
+      "correctExplanation": "Right. Equivalence supplies a local inertial approximation, but an enormous lab spans enough spacetime for gradients to produce measurable relative accelerations and clock-rate differences.",
+      "incorrectExplanation": "The failed assumption is that gravity varies negligibly across the laboratory. Free fall remains valid for each small part, but no single frame makes an extended, curved region behave inertially everywhere.",
+      "lessonContent": "Local approximations depend on a scale set by measurement precision and field gradients.\nMaking an experiment larger can reveal effects hidden in a smaller version.\nCurved regions can be tiled with local inertial frames that do not merge into one global frame.\nAn idealization should always be paired with the regime where its neglected terms stay small.\nShare this: name one everyday approximation that fails when the distance or duration becomes large enough.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Released in Flight",
+      "question": "In a rocket accelerating upward through empty space, an astronaut releases a wrench. In an external inertial frame the wrench then coasts. Why does it hit the cabin floor?",
+      "choices": [
+        "The accelerating floor catches up to the coasting wrench",
+        "The wrench acquires gravitational charge when released",
+        "The rocket's exhaust attracts the wrench downward",
+        "Release removes the wrench's upward inertia"
+      ],
+      "correctAnswer": "The accelerating floor catches up to the coasting wrench",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Once released, the wrench retains its instantaneous velocity while the rocket continues accelerating, so the floor overtakes it; rocket occupants describe the same event as downward fall.",
+      "incorrectExplanation": "The accelerating floor catches up to the coasting wrench. No new downward interaction appears at release; the apparent field is a consequence of using the rocket's accelerating coordinates.",
+      "lessonContent": "One event can have a force-free inertial description and an apparent-force accelerating description.\nRelease removes contact force without erasing an object's existing velocity.\nObservers agree on where worldlines meet even when they assign different coordinate accelerations.\nSwitching frames should not introduce an invented physical interaction.\nShare this: draw floor and wrench positions at three successive times in an outside frame.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#21",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Drifting Constants",
+      "question": "Two identical freely falling laboratories perform the same nongravitational atomic experiment at different places and epochs. After standard relativistic corrections, they obtain systematically different dimensionless constants. Which foundational claim would that challenge?",
+      "choices": [
+        "Only the universality of material free fall",
+        "Only conservation of angular momentum",
+        "The existence of tidal spacetime curvature",
+        "Local position invariance within Einstein equivalence"
+      ],
+      "correctAnswer": "Local position invariance within Einstein equivalence",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Local position invariance requires outcomes of nongravitational experiments to be independent of where and when a freely falling laboratory performs them.",
+      "incorrectExplanation": "The challenged claim is local position invariance within Einstein equivalence. Differential falling concerns trajectories, whereas a reproducible change in a dimensionless atomic result would make local nongravitational physics depend on spacetime location.",
+      "lessonContent": "Einstein equivalence combines more than the universality of falling test bodies.\nLocal position invariance demands that nongravitational laws not depend on place or epoch.\nDimensionless constants avoid ambiguities caused merely by changing measurement units.\nClock networks and precision spectroscopy can search for tiny violations.\nShare this: explain why a changing dimensionless ratio is more meaningful than saying one dimensional constant changed.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Turning Free Lab",
+      "question": "A compact freely falling lab rotates its apparatus through different orientations while moving through the same event. If a nongravitational interference experiment's result depended on absolute orientation or constant lab velocity, what would be violated?",
+      "choices": [
+        "Local Lorentz invariance",
+        "Conservation of gravitational binding energy",
+        "The definition of an event horizon",
+        "Only Newton's inverse-square approximation"
+      ],
+      "correctAnswer": "Local Lorentz invariance",
+      "xpReward": 50,
+      "correctExplanation": "Right. Local Lorentz invariance says nongravitational experiments in a local inertial frame do not reveal an absolute uniform velocity or preferred spatial orientation.",
+      "incorrectExplanation": "The violated principle would be local Lorentz invariance. A repeatable orientation- or boost-dependent local result would identify a preferred frame, contradicting a central component of Einstein equivalence.",
+      "lessonContent": "Local Lorentz symmetry denies preferred inertial directions and uniform velocities in local physics.\nRotating an apparatus is a standard way to search for anisotropy.\nComparisons over time can exploit Earth's changing orientation and motion.\nA local symmetry test is conceptually distinct from measuring tidal gravity.\nShare this: identify what pattern a preferred direction would leave as Earth turns during one day.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "Antimatter Drop",
+      "question": "Neutral antihydrogen released in Earth's field is observed to accelerate downward. Which conclusion is scientifically justified from that result alone?",
+      "choices": [
+        "Antimatter has no gravitational response",
+        "All strong-equivalence tests are now complete",
+        "A simple universal upward-antigravity model is disfavored",
+        "Antihydrogen must fall at exactly g with unlimited precision"
+      ],
+      "correctAnswer": "A simple universal upward-antigravity model is disfavored",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Downward acceleration rules against the popular claim that antimatter universally falls upward, while finite experimental precision leaves room for testing smaller differences in magnitude.",
+      "incorrectExplanation": "The justified conclusion is that a simple universal upward-antigravity model is disfavored. One measurement does not prove exact equality to arbitrary precision or settle every stronger equivalence claim.",
+      "lessonContent": "Experiments constrain specific alternatives within stated uncertainties rather than proving exact equality forever.\nNeutral composite antimatter reduces electromagnetic disturbances that would swamp a gravity test.\nDirection and magnitude are separate questions with different evidential demands.\nA broad principle can survive while precision tests continue narrowing possible violations.\nShare this: rephrase one absolute science headline as the narrower model constraint the data actually support.",
+      "lessonGroup": "Relativity Road",
+      "forgeId": "batch-041#24",
+      "forgeScore": 100
+    }
+  ]
+}

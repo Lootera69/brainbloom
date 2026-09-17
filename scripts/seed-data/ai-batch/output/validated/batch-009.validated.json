@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-009",
+  "generatedAt": "2026-09-17T13:27:41.429Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Two Minds, One Skull",
+      "question": "Psychologist Daniel Kahneman described thinking as running on two systems: one fast and intuitive, one slow and deliberate.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right — System 1 jumps to answers, System 2 checks them; his book 'Thinking, Fast and Slow' mapped the partnership.",
+      "incorrectExplanation": "It is True. Kahneman's two-system model pairs a fast, automatic, intuitive mode with a slow, effortful, deliberate one. Most of daily life runs on the fast system — the slow one is lazy and expensive, which is exactly why it checks so rarely.",
+      "lessonContent": "Dual-process theory: intuition (fast, effortless) and reasoning (slow, effortful) share one skull.\nThe fast system answers before the slow one is consulted — usually correctly, sometimes catastrophically.\nThe slow system is lazy by design: deliberate thought costs real energy.\nNoticing when to demand the slow system is the trainable skill.\nShare this: catch yourself answering something instantly today, then redo it slowly and compare.",
+      "forgeId": "batch-009#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "The Anchor Drag",
+      "question": "Hearing a random number shortly before estimating a price can shift your estimate toward that number, even when you know it is irrelevant.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly — anchoring: irrelevant numbers drag estimates toward themselves, and even knowing the trick barely helps.",
+      "incorrectExplanation": "It is True. Anchoring is one of the most robust effects in decision research: a spun wheel's number moved people's guesses about African countries in the UN. The adjustment away from the anchor is always too small — even when the anchor is obviously random.",
+      "lessonContent": "Anchoring: any number in view drags estimates toward itself, even numbers known to be meaningless.\nNegotiators exploit it by naming first; car dealers print inflated sticker prices.\nThe drag survives knowledge — knowing the bias only slightly weakens it.\nThe defence is generating your own estimate before hearing any number.\nShare this: write your own price guess for something before checking any listing.",
+      "forgeId": "batch-009#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Easy Come, Easy Recall",
+      "question": "People tend to judge how common something is by how easily examples come to mind, which is why vivid, recent events feel more frequent than they are.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right — the availability heuristic: ease of recall masquerades as frequency.",
+      "incorrectExplanation": "It is True — this is the availability heuristic. Vivid, recent events dominate recall, so they dominate risk perception too: plane crashes feel common while car crashes, the deadlier everyday event, feel routine. The mind substitutes an easy question for a hard one: how easily examples come rather than how often the thing happens.",
+      "lessonContent": "The availability heuristic: ease of recall substitutes for actual frequency.\nVivid, emotional, recent events dominate recall — so they dominate risk perception.\nNews media supply vividness, not proportion; the picture is systematically skewed.\nThe counter-move is asking for base rates — how often per million, actually?\nShare this: next fear you feel from a headline, search the base rate before sharing the worry.",
+      "forgeId": "batch-009#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Framing the Meat",
+      "question": "Describing beef as '75% lean' versus '25% fat' changes how people rate its quality — even though the two phrases state identical facts.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly — framing effects: identical information, differently slanted, produces different judgements.",
+      "incorrectExplanation": "It is True. The classic experiment found people rated the same beef tastier when framed as lean rather than fat — a pure wording effect on identical content. Doctors' decisions, too, shift between '90% survival' and '10% mortality' framings.",
+      "lessonContent": "Framing: logically equivalent statements evoke different responses — 75% lean beats 25% fat.\nGain frames and loss frames steer risk choices in opposite directions.\nMedicine feels different as survival rates versus mortality rates; so do investments as gains versus losses.\nThe defence is reframing every important claim both ways before deciding.\nShare this: restate one today's headline as a loss frame and watch the temperature change.",
+      "forgeId": "batch-009#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "The Confidence Gap",
+      "question": "People with the least skill in a domain tend to be the most confident about their ability in it.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Correct — the Dunning-Kruger finding: the unskilled lack the very skill needed to notice their unskilledness.",
+      "incorrectExplanation": "It is True. In the original studies, the lowest-scoring students overestimated their performance most — assessing your own work is itself a skill, so incompetence hides itself. Top performers show the opposite bias, slightly underestimating their standing.",
+      "lessonContent": "Dunning-Kruger: self-assessment requires the same competence being assessed — so the unskilled can't see the gap.\nBeginners often feel peak confidence just past total ignorance — the confidence curve climbs before skill does.\nExperts err the other way, assuming what's easy for them is easy for everyone.\nHumility plus feedback loops is the practical antidote.\nShare this: in one area today, ask a mentor to grade your self-grade.",
+      "forgeId": "batch-009#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Proving What You Believe",
+      "question": "Cognitive dissonance is the discomfort of holding contradictory beliefs, and people typically resolve it by changing the beliefs to match their actions.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right — Festinger's insight: when action and belief collide, belief quietly bends to justify the action.",
+      "incorrectExplanation": "It is True. Festinger observed a doomsday cult whose members, after the predicted end failed to arrive, believed more fervently rather than less — the contradiction was resolved by adding explanation, not abandoning the belief. We rationalize choices after making them, curating beliefs to fit behaviour.",
+      "lessonContent": "Cognitive dissonance: contradictions between belief and action create pressure, usually resolved in the belief's direction.\nFestinger's doomsday cult doubled down when prophecy failed — explanation beat evidence.\nPost-purchase rationalization and sour grapes are dissonance at work in daily life.\nNoticing the moment of rationalization is uncomfortable and valuable.\nShare this: catch one decision today that your reasons followed, not preceded.",
+      "forgeId": "batch-009#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "The Shocking Orders",
+      "question": "In Milgram's famous experiments, most ordinary volunteers refused to deliver what they believed were dangerous electric shocks when instructed by an authority figure.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Correct — about two-thirds obeyed to the maximum voltage, to the experimenters' own shock.",
+      "incorrectExplanation": "It is False. Roughly 65% of ordinary, decent volunteers delivered the maximum 'shock' when calmly instructed to continue — far beyond what psychiatrists had predicted. The lesson is not about monsters; it is about how thin obedience makes the membrane between ordinary people and harm.",
+      "lessonContent": "Milgram's obedience studies: roughly two-thirds of ordinary volunteers followed instructions to maximum 'shock'.\nExperts had predicted near-total refusal — the surprise is the baseline, not the exception.\nProximity to the victim and distant, calm authority both raised compliance.\nThe finding recalibrated how bureaucracies spread responsibility thin.\nShare this: name one system today where 'just following process' quietly carries the harm.",
+      "forgeId": "batch-009#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "The Line Experiment",
+      "question": "In Asch's conformity experiments, volunteers gave obviously wrong answers about simple line lengths after hearing everyone else answer wrongly first.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly — about a third of responses conformed to the unanimous-but-wrong majority on absurdly easy judgements.",
+      "incorrectExplanation": "It is True. Facing a unanimous wrong majority, roughly a third of all answers bent to match — on comparisons so easy that alone, people erred under 1% of the time. One dissenting ally was enough to collapse the conformity dramatically.",
+      "lessonContent": "Asch's lines: unanimous majorities bend a third of answers on trivially easy judgements.\nOne visible dissenter restores most independence — allies matter disproportionately.\nEye-witnesses' public statements shift like this, which is why police separate them.\nThe discomfort of standing alone is the mechanism, not stupidity.\nShare this: in your next group decision, note what the first dissent changes.",
+      "forgeId": "batch-009#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Believing Is Seeing",
+      "question": "Confirmation bias is the tendency to search for, interpret and remember evidence that supports what you already believe.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right — belief acts as a filter: supporting evidence flows through, contradicting evidence gets stopped at the border.",
+      "incorrectExplanation": "It is True. Confirmation bias works at every stage — what you search for, how you interpret ambiguity, what you remember later. Even scientists needed double-blind methods invented precisely because the bias survives good intentions.",
+      "lessonContent": "Confirmation bias operates on search, interpretation and memory — three filters for one belief.\nScience's answer is adversarial design: pre-registration, blinding, replication.\nWason's rule-discovery puzzles show people test what confirms, never what could refute.\nThe counter-habit is asking 'what would change my mind?' before collecting evidence.\nShare this: write down today what evidence would change one belief you hold.",
+      "forgeId": "batch-009#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "The Halo Polish",
+      "question": "Judging someone as intelligent because you find them attractive is an example of the halo effect.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly — one positive trait spills over and colours unrelated judgements of the same person.",
+      "incorrectExplanation": "It is True. The halo effect lets one admired trait — attractiveness, fame, confidence — brighten judgements of unrelated ones like intelligence or honesty. It is why tall candidates win elections and confident pitchmen raise millions.",
+      "lessonContent": "The halo effect: one admired trait inflates ratings of unrelated traits.\nAttractive defendants receive lighter sentences; taller candidates win more votes.\nInterviews are halo minefields — first impressions contaminate everything scored after.\nSeparate trait ratings on paper before meeting people to blunt it.\nShare this: audit one judgement you made about a person and split the traits honestly.",
+      "forgeId": "batch-009#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Choice Overload",
+      "question": "Research suggests that more options can sometimes make people less likely to choose anything at all, and less satisfied with what they do choose.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right — the jam study: 24 flavours attracted browsers, but 6 flavours produced far more buyers.",
+      "incorrectExplanation": "It is True. The famous supermarket display showed a 24-jam table drawing crowds while a 6-jam table sold far more — overload paralysis. Regret and anticipated regret rise with options, and satisfaction with the final choice drops.",
+      "lessonContent": "Choice overload: beyond a handful of options, decision quality and satisfaction fall while deferral rises.\nThe jam experiment: more browsing, less buying, at the bigger display.\nRegret grows with forgone alternatives — every extra option is a future second-guess.\nSatisficing (good enough) beats maximizing for happiness, per Schwartz's analysis.\nShare this: shop tonight from three pre-chosen options instead of scrolling infinite ones.",
+      "forgeId": "batch-009#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Knew It All Along",
+      "question": "Hindsight bias is the tendency to see past events as having been predictable all along, once you know the outcome.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly — the 'knew-it-all-along' effect: outcomes feel inevitable only after they happen.",
+      "incorrectExplanation": "It is True. Once the result is known, memory quietly rewrites the past as obvious — surprise evaporates in hindsight. Doctors reviewing case histories judge complications as more foreseeable than they were in the moment, which is why the bias matters for blame and learning.",
+      "lessonContent": "Hindsight bias: known outcomes masquerade as having been predictable.\nMemory rewrites the past's surprise — 'I knew it' is usually an illusion.\nThe bias corrupts blame: judges and juries see negligence where there was uncertainty.\nDecision journals — writing predictions before outcomes — are the antidote.\nShare this: write a prediction down today, seal it, and reread it in a month.",
+      "forgeId": "batch-009#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "The Marshmallow Prediction",
+      "question": "The famous marshmallow test found that a child's ability to delay gratification showed no relation to later life outcomes.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Correct — the original study did find correlations with later outcomes; the refinement came later.",
+      "incorrectExplanation": "It is False. The original Stanford studies did link early delay ability to later measures like academic success. The refinement came decades on: larger, more diverse samples showed the effect largely reflects family background and trust — a child who has learned promises get broken rationally eats the marshmallow now.",
+      "lessonContent": "The marshmallow test's story has two acts: strong correlations, then a smaller story after controls.\nReplication with diverse samples found family circumstances carry much of the effect.\nA child's waiting measures trust in the environment as much as willpower.\nScience self-corrects — follow-up studies are the mechanism, not the embarrassment.\nShare this: retell the marshmallow story tonight with its honest second act.",
+      "forgeId": "batch-009#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Face Feels First",
+      "question": "The facial feedback hypothesis holds that facial expressions can feed back and influence the emotions you feel, not just express them.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right — holding a pen in your teeth (forcing a smile-ish pose) made cartoons rate funnier in the classic study.",
+      "incorrectExplanation": "It is True. Strack's pen study — holding a pen with teeth versus lips — found the smile-adjacent pose amplified amusement. The effect's size remains debated after replication attempts, but the broader principle survives: the body reports to the mind, not only the reverse.",
+      "lessonContent": "Facial feedback: expressions feed back into feeling — the face is partly an input device.\nThe pen-in-teeth study is the classic demo; its replication story is itself instructive.\nPosture and breath run the same loop — slumping reports gloom to the brain.\nThe effect is real but modest; it nudges, never commands.\nShare this: hold a genuine smile for thirty seconds and grade your mood before and after.",
+      "forgeId": "batch-009#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "The Bystander Count",
+      "question": "Bystander research suggests people are more likely to help someone in trouble when many other witnesses are present.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Correct — it is the reverse: more witnesses, less helping, as responsibility diffuses across the crowd.",
+      "incorrectExplanation": "It is False. The bystander effect: helping drops as group size rises, because responsibility diffuses and everyone waits to read urgency from everyone else. The famous smoke-filled-room study had people literally watching smoke curl in while others calmly ignored it.",
+      "lessonContent": "The bystander effect: responsibility diffuses across witnesses — crowds watch, individuals act.\nPluralistic ignorance compounds it: everyone reads calm from everyone else.\nNaming a specific person ('you, in the red jacket, call help') collapses the diffusion.\nEmergency training now drills exactly this.\nShare this: tell someone tonight why pointing at one person beats shouting at a crowd.",
+      "forgeId": "batch-009#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Left Brain, Right Brain",
+      "question": "Neuroscience confirms that people are dominated by either their logical left brain or their creative right brain.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right — brain imaging shows both hemispheres cooperating in nearly all tasks; the dominant-personality idea is pop folklore.",
+      "incorrectExplanation": "It is False. Scans show both hemispheres working together on logic and creativity alike — the split-brain studies behind the myth concerned rare patients whose hemispheres had been surgically separated. No evidence supports teaching-to-your-hemisphere learning styles either.",
+      "lessonContent": "The left-brain/right-brain personality split is folklore — both hemispheres co-operate on almost everything.\nThe myth grew from split-brain patients, whose特殊情况 made the division visible.\nLearning-styles (visual/auditory) sorting fares no better under testing.\nBrain myths persist because tidy labels feel like insight.\nShare this: retire one brain myth at dinner tonight with the imaging evidence.",
+      "forgeId": "batch-009#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Subliminal Power",
+      "question": "Carefully controlled studies show subliminal advertising messages powerfully control buying behaviour.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Correct — the famous popcorn story was a marketing fabrication; real subliminal effects are weak and fleeting.",
+      "incorrectExplanation": "It is False. The 1957 'drink Coca-Cola, eat popcorn' claim was admitted fabrication — the theatre study never happened as described. Real subliminal priming effects exist in labs but are tiny and momentary; plain, visible advertising does far more work.",
+      "lessonContent": "The subliminal-advertising panic traces to a fabricated theatre study from 1957.\nLab priming effects are real but small and brief — nothing like mind control.\nVisible, repeated, emotional advertising is the powerful one; it needs no hiding.\nThe myth survives because hidden influence feels like a better story.\nShare this: retell the popcorn hoax tonight and watch who believed it.",
+      "forgeId": "batch-009#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "The Nocebo Twin",
+      "question": "A nocebo effect — experiencing negative side effects from a treatment you expect to harm you — genuinely exists.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly — expectation cuts both ways: believing a harmless pill causes harm can produce real symptoms.",
+      "incorrectExplanation": "It is True. The nocebo effect is placebo's dark twin: warned side effects arrive more often, even in sugar-pill groups — studies show sham-treatment arms reporting the exact symptoms the label promised. Expectation is a pharmacy that fills prescriptions both ways.",
+      "lessonContent": "Nocebo: negative expectation produces genuine negative symptoms — the mind fills prescriptions both ways.\nSham-treatment arms in trials report warned side effects at surprising rates.\nWarning labels and symptom checklists can thus manufacture symptoms ethically-tricky territory.\nCommunication of risk is a clinical skill with measurable physical consequences.\nShare this: notice today how a health warning you read turned into a symptom you felt.",
+      "forgeId": "batch-009#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Memory Reconsolidation",
+      "question": "Each time you recall a memory, it becomes temporarily modifiable before being re-stored — recalling is partly rewriting.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right — reconsolidation: memory returns to a labile, editable state on retrieval before saving again.",
+      "incorrectExplanation": "It is True. Reactivated memories enter a fragile window during which they can be strengthened, weakened or updated before re-storage. Therapies for trauma exploit this window, and it explains why the story you tell most becomes polished beyond recognition.",
+      "lessonContent": "Reconsolidation: every recall reopens the file for editing before saving.\nThe most-retold stories drift most — the telling is the rewriting.\nTrauma therapy exploits the window to soften memory's charge.\nThis is why vivid memories and accurate ones are different claims.\nShare this: compare a twice-told family story with someone who was there, line by line.",
+      "forgeId": "batch-009#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Sunk Money",
+      "question": "Rational decision-making about the future should generally ignore money already spent and unrecoverable, no matter how large.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly — sunk costs are gone; only future costs and benefits should decide, though the feeling says otherwise.",
+      "incorrectExplanation": "It is True. Economically, only marginal future costs matter — the spent money exists identically in both futures. Yet humans honor sunk costs obsessively: finishing terrible movies, holding losing stocks, escalating wars. Concorde was famously continued partly because so much had already been spent.",
+      "lessonContent": "Sunk costs are unrecoverable and identical in every future — so they deserve zero weight.\nThe feeling of waste is real but points backwards, where decisions cannot go.\nThe Concorde fallacy names the plane nobody could stop funding.\nThe counter-move: ask 'starting fresh today, would I choose this?'.\nShare this: audit one ongoing commitment tonight with the fresh-start question.",
+      "forgeId": "batch-009#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Peak and End",
+      "question": "People largely remember an experience by its most intense moment and its ending, rather than the average of every moment.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right — the peak-end rule: the colonoscopy studies found adding a few gentler minutes at the end improved memories of the whole procedure.",
+      "incorrectExplanation": "It is True. Kahneman's colonoscopy findings showed remembered experience tracks the peak intensity and the final moments — duration itself barely registers. A longer, gentler ending beat a shorter sharp one in memory, which rewrote how medicine judged patient comfort.",
+      "lessonContent": "The peak-end rule: memory keeps the highest moment and the closing one, discarding duration.\nColonoscopy studies found appended comfort minutes improved total memory of the procedure.\nVacations, meals and arguments are all recalled this way.\nDesigning endings is thus designing memories — teachers and hosts take note.\nShare this: end one interaction today deliberately well, and trust the memory math.",
+      "forgeId": "batch-009#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Naming the Colours",
+      "question": "Naming the ink colour of colour-words written in mismatched ink (like 'RED' in blue ink) is slower than naming plain coloured squares — the Stroop effect.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly — reading is automatic and interferes with colour-naming; the clash costs measurable time.",
+      "incorrectExplanation": "It is True. The Stroop effect: automatic reading races ahead of intentional colour-naming, and suppressing the word's meaning costs milliseconds per trial. It remains a workhorse measure of cognitive control and mental effort.",
+      "lessonContent": "The Stroop effect: automatic habits interfere with deliberate tasks — reading beats naming unless you fight it.\nThe slowdown is measurable per trial, making it a workhorse for attention research.\nIt generalizes: fluent habits always contend with deliberate intentions.\nCognitive control is a limited budget; Stroop is how labs spend it.\nShare this: write colour words in mismatched inks and race a friend at naming them.",
+      "forgeId": "batch-009#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Lost in Translation Bias",
+      "question": "People believe others notice their appearance, mistakes and blunders far more than they actually do — the spotlight effect.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right — the Barry Manilow t-shirt study: students wearing embarrassing shirts vastly overestimated how many others noticed.",
+      "incorrectExplanation": "It is True. Gilovich's t-shirt experiment had students enter a room wearing an embarrassing shirt; they guessed about half the room noticed, when the true figure was under a quarter. Everyone is busy starring in their own movie — your blooper reel has few viewers.",
+      "lessonContent": "The spotlight effect: we overestimate how much others notice our appearance and blunders.\nThe embarrassing-t-shirt study put the guess at double the reality.\nEveryone is the protagonist of their own attention — few eyes are on you.\nThis should be liberating: the audience you fear is mostly absent.\nShare this: recall your most cringe moment and ask around — nobody else filed it.",
+      "forgeId": "batch-009#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Practice Makes Permanent",
+      "question": "Merely repeating a skill for many hours guarantees expert-level performance, regardless of how the practice is structured.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Correct — deliberate practice — focused, feedback-rich, at the edge of ability — is what drives improvement; mere repetition plateaus.",
+      "incorrectExplanation": "It is False. Ten thousand hours of comfortable repetition entrenches current ability; improvement demands deliberate practice — specific weaknesses, immediate feedback, full concentration. Twenty years of driving makes no one a racing driver.",
+      "lessonContent": "Deliberate practice: targeted weaknesses, immediate feedback, edge-of-ability difficulty.\nMere repetition plateaus — comfort is where improvement goes to sleep.\nFeedback quality separates experts-in-training from experience-collectors.\nThe ten-thousand-hours headline dropped these conditions entirely.\nShare this: redesign one routine practice tonight around a single weakness and a feedback source.",
+      "forgeId": "batch-009#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "The IKEA Effect",
+      "question": "People tend to value an object more highly when they assembled or created it themselves.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly — labour breeds love: self-built items get inflated valuations, even fold-out furniture.",
+      "incorrectExplanation": "It is True. The IKEA effect: participants who folded origami or built boxes valued their own creations near expert-made equivalents that others rated far lower. Effort invested converts directly to affection — which is why hobbies feel precious and startups feel destined.",
+      "lessonContent": "The IKEA effect: invested labour converts to affection — we overvalue what we assemble.\nOrigami studies priced own work near expert pieces, in the maker's eyes only.\nThe bias explains hobby pride, startup devotion, and cake-mix marketing's clever half-step.\nBuyer beware: your effort is not the market's price.\nShare this: price something you made, then check the market's reply with a smile.",
+      "forgeId": "batch-009#24",
+      "forgeScore": 100
+    }
+  ]
+}

@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-108",
+  "generatedAt": "2026-09-17T13:27:43.305Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Two Sons",
+      "question": "A father says, 'I have two children, and at least one is a boy.' Assuming equal odds, what is the probability both are boys?",
+      "choices": [
+        "1/2, since the other child is equally either",
+        "1/4, since two boys was always unlikely",
+        "1/3, because only BB, BG, and GB remain",
+        "2/3, because boys are already confirmed"
+      ],
+      "correctAnswer": "1/3, because only BB, BG, and GB remain",
+      "xpReward": 25,
+      "correctExplanation": "Exactly 1/3. 'At least one boy' eliminates only GG, leaving BB, BG, GB equally likely — one of three is BB. Information prunes cases; count survivors.",
+      "incorrectExplanation": "Not quite — the answer is 1/3, because only BB, BG, and GB remain. 'At least one boy' kills just the GG case, not the mixed ones. List all four original cases, cross out GG, and BB is one of three survivors.",
+      "lessonContent": "Information prunes cases — recount the survivors.\n'At least one' eliminates fewer cases than intuition claims.\nList all originals before crossing any out.\nOrder matters in counting: BG and GB are distinct.\nShare this: run the two-sons cases on coins with a friend.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Guessing Pass",
+      "question": "A 10-question true-false quiz needs 6 correct to pass. A student guesses blindly on every question. What is the pass chance?",
+      "choices": [
+        "About 38%, summing the passing combinations",
+        "Exactly 1/2, since each answer is fifty-fifty",
+        "1/10, since only one score in ten passes",
+        "Near zero, since guessing never works"
+      ],
+      "correctAnswer": "About 38%, summing the passing combinations",
+      "xpReward": 25,
+      "correctExplanation": "Correct — 386 of 1,024 possible answer keys pass (210+120+45+10+1 for scores 6–10), about 38%. Blind guessing passes far more often than pride admits.",
+      "incorrectExplanation": "Not quite — the answer is about 38%, summing the passing combinations. Fifty-fifty per question doesn't mean fifty-fifty overall: 386 of the 1,024 possible keys reach 6+. Count keys, not questions — combinations decide.",
+      "lessonContent": "Per-trial odds never equal whole-test odds.\nCount passing keys among all possible keys.\nCombinations, not questions, decide batch outcomes.\nGuessing outperforms intuition more often than admitted.\nShare this: compute one blind-guessing pass rate by hand.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Three Boxes",
+      "question": "Three boxes hold GG, SS, and GS coins. You open a random box, draw a gold coin, and consider the other coin inside. What is the chance it is also gold?",
+      "choices": [
+        "1/2, since the GS box is now equally likely",
+        "1/3, since two boxes remain possible",
+        "Certainty, since silver boxes show silver",
+        "2/3, because the draw favors the GG box"
+      ],
+      "correctAnswer": "2/3, because the draw favors the GG box",
+      "xpReward": 25,
+      "correctExplanation": "Correct — 2/3. Three gold coins could have been drawn (two in GG, one in GS); two of those three leave gold behind. The draw is evidence for which box you hold.",
+      "incorrectExplanation": "Not quite — the answer is 2/3, because the draw favors the GG box. Count drawable golds, not boxes: GG offers two paths to this observation, GS only one. Observations update which box you're likely holding.",
+      "lessonContent": "Count paths to the observation, not containers.\nDraws are evidence about which box you hold.\nTwo-to-one path ratios beat fifty-fifty feelings.\nBertrand's box is Monty Hall's quiet cousin.\nShare this: play three boxes with coins and tally thirty draws.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Red Streak",
+      "question": "A fair roulette wheel lands red eight times running. A gambler piles onto black, 'due' at last. What is black's chance on the next spin?",
+      "choices": [
+        "Far above half, since balance is overdue",
+        "Exactly the wheel's usual black odds, near 18/37",
+        "Zero, since red has momentum now",
+        "Certainty, since alternation must resume"
+      ],
+      "correctAnswer": "Exactly the wheel's usual black odds, near 18/37",
+      "xpReward": 25,
+      "correctExplanation": "Yes — wheels have no memory. Eight reds are history, not debt; black pays its usual ~48.6%. Streaks in random data are normal, not corrective.",
+      "incorrectExplanation": "Actually, the answer is exactly the wheel's usual black odds, near 18/37. Independence means history can't load the next spin. Long streaks feel meaningful but occur routinely — casinos price this fallacy into the carpet.",
+      "lessonContent": "Independent trials carry no memory or debt.\nStreaks are routine output of randomness.\n'Due' is the costliest word in gambling.\nThe wheel's odds reset every single spin.\nShare this: flip nine heads then ask what comes next.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#3",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Waiting Pattern",
+      "question": "Flipping a fair coin, which pattern typically appears first: HH (two heads running) or HT (head then tail)?",
+      "choices": [
+        "HT, since it can overlap itself into existence",
+        "HH, since heads attract heads",
+        "They tie exactly, both being 1/4 per pair",
+        "Neither ever reliably precedes"
+      ],
+      "correctAnswer": "HT, since it can overlap itself into existence",
+      "xpReward": 25,
+      "correctExplanation": "Right — HT wins the race on average (about 4 flips versus about 6). A failed HH attempt (ending in T) restarts from zero, while HT's fragments recycle. Overlap structure sets waiting times.",
+      "incorrectExplanation": "Not quite — the answer is HT, since it can overlap itself into existence. Equal per-trial odds don't mean equal waiting times: sequences overlap differently. After a lone H, a T completes HT but merely continues HH's wait — structure, not luck.",
+      "lessonContent": "Equal odds per trial, unequal waiting times.\nOverlap structure governs pattern races.\nFailed attempts recycle differently per pattern.\n'Feels the same' is not 'arrives the same'.\nShare this: race HH versus HT over twenty flips.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Dice Duel",
+      "question": "Rolling three dice, a total of 9 beats 10 in folk wisdom. Counting the 216 outcomes shows one total genuinely leads. Which one, and why?",
+      "choices": [
+        "9, since smaller totals cluster naturally",
+        "They tie, by symmetry of the dice",
+        "Neither — totals can't be compared",
+        "10, with 27 combinations against 9's 25"
+      ],
+      "correctAnswer": "10, with 27 combinations against 9's 25",
+      "xpReward": 25,
+      "correctExplanation": "Correct — 10 has 27 paths, 9 only 25. Galileo settled a duke's gambling dispute this way: partitions of a total aren't equally numerous. Count compositions, not vibes.",
+      "incorrectExplanation": "Actually, the answer is 10, with 27 combinations against 9's 25. Folk wisdom counted partitions (ways to split) instead of compositions (ordered outcomes). Ordered dice distinguish 1-2-6 from 6-2-1 — and the totals differ.",
+      "lessonContent": "Partitions differ from compositions — order counts.\nFolk wisdom often counts the wrong units.\n216 outcomes is a countable universe; count it.\nDukes and Galileos settled bets by enumeration.\nShare this: list the partitions of 9 versus 10.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Chevalier's Dice",
+      "question": "A 17th-century gambler preferred betting on at least one six in 4 die rolls, but lost on double-six in 24 rolls of two dice. What explains the reversal?",
+      "choices": [
+        "Dice remember past games and punish greed",
+        "The two bets only look equivalent but their odds differ",
+        "Double sixes are luckier and rarer by design",
+        "Gamblers always lose eventually regardless"
+      ],
+      "correctAnswer": "The two bets only look equivalent but their odds differ",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. One six in 4 rolls hits ~51.8%; double-six in 24 rolls lands ~49.1% — straddling even. The 'equivalent' scaling (4:6 vs 24:36) is a mirage; compute, don't proportion.",
+      "incorrectExplanation": "Not quite — the answer is that the two bets only look equivalent but their odds differ. Naive scaling suggests equal chances, but compounding differs: 1−(5/6)⁴ ≈ 0.518 versus 1−(35/36)²⁴ ≈ 0.491. Proportional intuition fails compound lotteries.",
+      "lessonContent": "Naive scaling fails compound lotteries.\nCompute both sides; never proportion across bets.\nStraddling even by 1% decides professional fates.\nde Méré's losses founded probability theory.\nShare this: compute 1−(5/6)⁴ with a skeptic.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#6",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Airport Swab",
+      "question": "A security test catches 99% of threats but false-alarms on 1% of innocents. Threats are 1 in 10,000 travelers. A flagged traveler is most likely…",
+      "choices": [
+        "A genuine threat, given 99% accuracy",
+        "Equally either, since the test is symmetric",
+        "An innocent false alarm, swamped by base rates",
+        "Unknowable without interrogation first"
+      ],
+      "correctAnswer": "An innocent false alarm, swamped by base rates",
+      "xpReward": 25,
+      "correctExplanation": "Right. Roughly 1 true flag per 100 false ones (1 threat vs ~100 false alarms per 10,000). Accuracy percentages mislead when bases are extreme — always multiply by the base.",
+      "incorrectExplanation": "Actually, the answer is an innocent false alarm, swamped by base rates. 99% accuracy sounds decisive until 9,999 innocents each roll 1% false-alarm dice. Tests screen; base rates judge. Bayes is just this multiplication done honestly.",
+      "lessonContent": "Accuracy percentages mislead at extreme base rates.\nMultiply sensitivity by the base before believing flags.\nTests screen populations; bases judge individuals.\nRare targets drown in common false alarms.\nShare this: compute one medical-test scare honestly.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#7",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Sophomore Slump",
+      "question": "Rookies of the year usually play worse the next season. Fans smell curses and pressure. What is the likelier mechanism?",
+      "choices": [
+        "Regression: an extreme season is usually followed by a merely good one",
+        "Award ceremonies drain athletic souls",
+        "Seniors conspire against winners",
+        "Trophies add measurable physical weight"
+      ],
+      "correctAnswer": "Regression: an extreme season is usually followed by a merely good one",
+      "xpReward": 25,
+      "correctExplanation": "Correct — regression to the mean. Award seasons select for career-best luck plus skill; the luck component rarely repeats. Extremes are followed by typicals, curses unnecessary.",
+      "incorrectExplanation": "Not quite — the answer is regression: an extreme season is usually followed by a merely good one. Best-of-career years bundle peak skill with peak luck, and luck doesn't defend titles. Expect the second year to resemble the career, not the peak.",
+      "lessonContent": "Extremes bundle skill with unrepeatable luck.\nAward filters select peaks, then peaks relax.\nCurses are regression wearing a costume.\nPredict careers from averages, not trophies.\nShare this: name one 'cursed' winner regression explains.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#8",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Million-to-One Match",
+      "question": "A DNA match with a 1-in-a-million random chance is found by trawling a database of 5 million profiles. What does the match alone establish?",
+      "choices": [
+        "Guilt at a million to one",
+        "Nothing whatsoever about anyone",
+        "That databases should be abolished",
+        "A lead worth investigating, since trawling multiplies chances"
+      ],
+      "correctAnswer": "A lead worth investigating, since trawling multiplies chances",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. Across 5 million profiles, several random matches are expected — the prosecutor's fallacy confuses P(match|innocent) with P(innocent|match). Database size dilutes single-match meaning.",
+      "incorrectExplanation": "Actually, the answer is a lead worth investigating, since trawling multiplies chances. One-in-a-million per comparison times millions of comparisons yields expected hits. Match statistics need the search size attached — without it, they're courtroom confetti.",
+      "lessonContent": "Search size dilutes every single match.\nP(evidence|innocent) is not P(innocent|evidence).\nTrawling manufactures expected coincidences.\nAttach the database size to every match claim.\nShare this: explain why big searches find 'impossible' hits.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#9",
+      "forgeScore": 76
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Green Jellybean",
+      "question": "Scientists test 20 jellybean colors against acne with 5% significance each. Only green 'links' to spots, and headlines erupt. What is the sound conclusion?",
+      "choices": [
+        "Green jellybeans cause acne — publish the warning",
+        "Expect about one fluke hit in twenty tests, so replicate first",
+        "Ban all jellybeans as a precaution",
+        "Statistics disprove dermatology entirely"
+      ],
+      "correctAnswer": "Expect about one fluke hit in twenty tests, so replicate first",
+      "xpReward": 25,
+      "correctExplanation": "Right. Twenty tests at 5% error each virtually guarantee a 'finding' by chance. Headlines report the hit; method counts the tries. Replicate before regulating.",
+      "incorrectExplanation": "Not quite — the answer is to expect about one fluke hit in twenty tests, so replicate first. Multiple testing manufactures significance the way sieves manufacture gravel. The famous cartoon is a methods lesson: count the tries, not just the hit.",
+      "lessonContent": "Count the tries behind every reported hit.\nTwenty tests at 5% guarantee carnival findings.\nHeadlines harvest; replication verifies.\nPre-register or perish by multiplicity.\nShare this: retell the jellybean cartoon at your next readout.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#10",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Missing Holes",
+      "question": "WWII analysts armored bomber zones showing the fewest bullet holes in returning planes. Survivors' pristine zones marked…",
+      "choices": [
+        "Where enemy aim was worst",
+        "Armor that already worked perfectly",
+        "Where hits proved fatal, since those planes never returned",
+        "Zones gunners had polished clean"
+      ],
+      "correctAnswer": "Where hits proved fatal, since those planes never returned",
+      "xpReward": 25,
+      "correctExplanation": "Correct — survivorship bias. Returning planes display survivable hits; missing holes mark where damaged bombers died. Wald armored the absence, and losses fell.",
+      "incorrectExplanation": "Actually, the answer is where hits proved fatal, since those planes never returned. The dataset was pre-filtered by survival — holes cluster where planes can afford them. Armor the silence, not the noise: absence is data.",
+      "lessonContent": "Surviving datasets pre-filter their own lessons.\nAbsence is data — armor the silence.\nHoles mark survivable zones, not vulnerable ones.\nAsk who is missing before patching the present.\nShare this: retell Wald's planes the next time data flatters.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#11",
+      "forgeScore": 76
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Heard Head",
+      "question": "Two fair coins flip. You learn at least one landed heads. What is the chance both are heads?",
+      "choices": [
+        "1/3, since HH, HT, and TH remain",
+        "1/2, since the other coin is fifty-fifty",
+        "1/4, since double heads is rare",
+        "2/3, since heads dominate"
+      ],
+      "correctAnswer": "1/3, since HH, HT, and TH remain",
+      "xpReward": 25,
+      "correctExplanation": "Exactly 1/3. 'At least one head' removes only TT, leaving three equally likely cases with HH among them. Coins don't consult each other; cases do the work.",
+      "incorrectExplanation": "Not quite — the answer is 1/3, since HH, HT, and TH remain. The 'other coin' framing smuggles in a specific coin that was never identified. Unspecified information prunes cases, not coins — enumerate, then count.",
+      "lessonContent": "Unspecified news prunes cases, never coins.\n'At least one' kills exactly one of four.\nThe 'other coin' is a mirage without identity.\nEnumerate first, intuit second.\nShare this: flip two coins and condition aloud ten times.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Marble Scoop",
+      "question": "A bag holds 3 red and 2 blue marbles. You draw two without looking or replacing. What is the chance both are red?",
+      "choices": [
+        "9/25, since each draw is 3/5 red",
+        "1/2, since reds outnumber blues",
+        "3/5, since the first draw decides",
+        "3/10, since draws multiply and deplete"
+      ],
+      "correctAnswer": "3/10, since draws multiply and deplete",
+      "xpReward": 25,
+      "correctExplanation": "Right: 3/5 × 2/4 = 3/10. Without replacement, the first draw consumes redness — denominators and numerators both shrink. Replacement status changes everything.",
+      "incorrectExplanation": "Actually, the answer is 3/10, since draws multiply and deplete. 9/25 assumes replacement (putting redness back); 3/5 answers a different question. Track what each draw removes, not just what it reveals.",
+      "lessonContent": "Without replacement, draws consume their own odds.\nShrink numerators and denominators together.\nReplacement status is the first question to ask.\nSequential odds multiply; they never merely repeat.\nShare this: draw marbles twice and feel the depletion.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Blind Pair",
+      "question": "In the dark you grab two socks from 4 black and 6 white. What is the chance they match?",
+      "choices": [
+        "1/2, since pairs are natural",
+        "7/15, counting black pairs plus white pairs",
+        "2/5, since black is scarcer",
+        "4/5, since white dominates"
+      ],
+      "correctAnswer": "7/15, counting black pairs plus white pairs",
+      "xpReward": 25,
+      "correctExplanation": "Correct: (4/10×3/9) + (6/10×5/9) = 12/90 + 30/90 = 7/15. Matching sums two separate pair-paths — black-black plus white-white.",
+      "incorrectExplanation": "Not quite — the answer is 7/15, counting black pairs plus white pairs. Matching is a sum over colors: black pairs (12/90) plus white pairs (30/90). Single-color thinking halves the answer; add both roads.",
+      "lessonContent": "Matching sums over every color's pair-path.\nAdd both roads; single-color thinking halves answers.\nSequential depletion applies within each path.\nBreak 'match' into its disjoint cases first.\nShare this: compute your own drawer's match odds.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Lucky Numbers",
+      "question": "Maya always plays her children's birthdays; her friend plays quick-pick randoms. Both hold one ticket each. Whose jackpot odds are better?",
+      "choices": [
+        "Maya's, since meaningful numbers attract luck",
+        "The quick-pick's, since randomness is stronger",
+        "Equal — the draw ignores how numbers were chosen",
+        "Neither, since birthdays exceed 31"
+      ],
+      "correctAnswer": "Equal — the draw ignores how numbers were chosen",
+      "xpReward": 25,
+      "correctExplanation": "Exactly equal. Balls don't read tickets; every combination faces identical odds. (Birthdays do risk sharing jackpots — but winning odds never differ.)",
+      "incorrectExplanation": "Actually, the answer is equal — the draw ignores how numbers were chosen. Meaning attaches to players, never to balls. One subtlety survives: popular numbers split prizes more often, so randoms keep more when they win.",
+      "lessonContent": "Draws ignore ticket biographies completely.\nMeaning lives with players, never with balls.\nEqual odds can still mean unequal payouts (sharing!).\nChoose unpopular numbers to keep more if you win.\nShare this: free a birthday-player from luck theory.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#15",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Doubling System",
+      "question": "A gambler doubles losing roulette bets, certain that one win recovers everything. What flaw sinks this martingale?",
+      "choices": [
+        "Table limits and finite bankrolls meet inevitable long streaks",
+        "Casinos ban all mathematics at the door",
+        "Doubling is illegal in most jurisdictions",
+        "Winning too much gets gamblers arrested"
+      ],
+      "correctAnswer": "Table limits and finite bankrolls meet inevitable long streaks",
+      "xpReward": 25,
+      "correctExplanation": "Right. Exponentials outrun wallets: 10 straight losses need 1,024× the base bet, and limits cap recovery. Negative expectation per spin can't be laundered by sizing.",
+      "incorrectExplanation": "Not quite — the answer is table limits and finite bankrolls meeting inevitable long streaks. The math needs infinite wealth and no ceiling; reality supplies neither. Bet sizing rearranges risk — it never creates edge.",
+      "lessonContent": "Exponentials outrun every wallet eventually.\nSizing rearranges risk; it never creates edge.\nLimits and bankrolls are the system's ceiling.\nNegative expectation survives all choreography.\nShare this: price ten straight losses at a $5 table.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#16",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Carnival Eleven",
+      "question": "A carnival charges $5 to roll two dice, paying $20 for totals of 11 or more. What is the player's expected fate per game?",
+      "choices": [
+        "Profit, since 11-or-more feels common",
+        "Roughly even money over many plays",
+        "Jackpot riches with patience",
+        "A steady loss, since 3 winning faces pay below fair odds"
+      ],
+      "correctAnswer": "A steady loss, since 3 winning faces pay below fair odds",
+      "xpReward": 25,
+      "correctExplanation": "Correct. Totals 11–12 cover 3 of 36 faces (2/36 + 1/36) — fair pay would be $60, not $20. Expected value: (3/36×$20) − $5 = −$3.33 per roll. Carnivals price hope, not math.",
+      "incorrectExplanation": "Actually, the answer is a steady loss, since 6 winning faces pay below fair odds. Count: 11 has two paths, 12 has one — 3 of 36 faces. At $20 for a 1-in-12 shot, the game keeps two-thirds of every dollar long-term.",
+      "lessonContent": "Count faces before feeling odds.\nFair pay equals the reciprocal of the chance.\nHope is the carnival's highest-margin product.\nExpected value settles every game in one line.\nShare this: compute one carnival game's true price.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#17",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Warranty Pitch",
+      "question": "A $400 appliance offers a $90 three-year warranty; breakdowns in that window hit 12% of units at $250 average repair. What says the math?",
+      "choices": [
+        "Buy it — peace of mind is priceless",
+        "Decline: expected repair cost ($30) sits far below $90",
+        "Buy two warranties for double safety",
+        "Repairs always cost exactly the average"
+      ],
+      "correctAnswer": "Decline: expected repair cost ($30) sits far below $90",
+      "xpReward": 25,
+      "correctExplanation": "Right: 0.12 × $250 = $30 expected cost versus $90 price — a 3× markup funding commissions and profit. Self-insure small risks; reserve insurance for catastrophes.",
+      "incorrectExplanation": "Not quite — the answer is to decline: expected repair cost ($30) sits far below $90. Warranties are profits wrapped in reassurance — retailers push them because margins, not mercy, set the price. Insure catastrophes, not appliances.",
+      "lessonContent": "Expected cost is probability times price — compute it.\nMarkups fund commissions, not your safety.\nSelf-insure the small; insure the catastrophic.\n'Peace of mind' has a price — check the tag.\nShare this: compute one warranty's expected value aloud.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#18",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Playlist Cluster",
+      "question": "A music app's true shuffle dealt three same-artist songs in a row, and users cried 'broken!' So the app made shuffles feel fairer. What did engineers sacrifice?",
+      "choices": [
+        "Sound quality and battery life",
+        "Artist royalties and licensing",
+        "True randomness, since real shuffles cluster naturally",
+        "The entire concept of playlists"
+      ],
+      "correctAnswer": "True randomness, since real shuffles cluster naturally",
+      "xpReward": 25,
+      "correctExplanation": "Exactly. Genuine randomness clusters — streaks are its signature — while humans expect unclumpy spread. Spotify-style fixes trade statistical honesty for perceived fairness.",
+      "incorrectExplanation": "Actually, the answer is true randomness, since real shuffles cluster naturally. Random sequences contain runs; 'looks random' means evenly spread, which is non-random. Perceived fairness and statistical fairness are different products.",
+      "lessonContent": "Real randomness clusters; expectations don't.\nStreaks are randomness's signature, not its failure.\n'Looks fair' and 'is fair' are different products.\nClustering illusions drive conspiracy thinking everywhere.\nShare this: deal cards and admire a natural clump.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#19",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Jury Majority",
+      "question": "Each juror independently judges correctly 60% of the time. Which verdict is more trustworthy: a unanimous 12–0 or a narrow 7–5?",
+      "choices": [
+        "12–0, since agreement among fallibles compounds",
+        "7–5, since debate sharpens truth",
+        "Equal, since jurors are equally skilled",
+        "Neither — juries are pure theater"
+      ],
+      "correctAnswer": "12–0, since agreement among fallibles compounds",
+      "xpReward": 25,
+      "correctExplanation": "Correct — Condorcet's jury logic. Twelve independent 60% signals agreeing is astronomically stronger than a near split. Majorities don't just win; their size testifies.",
+      "incorrectExplanation": "Not quite — the answer is 12–0, since agreement among fallibles compounds. Independent errors rarely align: unanimity concentrates evidence while 7–5 nearly cancels out. Count the margin, not just the winner.",
+      "lessonContent": "Margins testify, not just winners.\nIndependent errors rarely align by chance.\nUnanimity concentrates scattered evidence.\nNear splits nearly cancel themselves out.\nShare this: compare a 12–0 with a 7–5 aloud.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Dice Duelists",
+      "question": "Two players race to 6 round-wins at dice, halting at 4–2 when the table collapses. How should the stakes fairly split?",
+      "choices": [
+        "Evenly, since the game never finished",
+        "4:2, matching wins already banked",
+        "Winner-takes-all to whoever shouts first",
+        "By each player's chance of eventually winning (about 15:1)"
+      ],
+      "correctAnswer": "By each player's chance of eventually winning (about 15:1)",
+      "xpReward": 25,
+      "correctExplanation": "Right — Pascal and Fermat's problem of points. The leader needs 2 more wins, the trailer 4; the trailer must sweep four straight (1/16), so the leader takes ~15/16 of futures. Fairness prices unfinished games by continuation odds.",
+      "incorrectExplanation": "Actually, the answer is by each player's chance of eventually winning (about 15:1). Past wins matter only through the remaining paths: the trailer survives only by winning four in a row (1/2)^4 = 1/16. Probability was born settling exactly this bar tab.",
+      "lessonContent": "Unfinished games price by continuation odds.\nRemaining paths, not banked wins, set fairness.\nThe problem of points founded probability itself.\nEnumerate finishes before splitting anything.\nShare this: settle one interrupted game by counting futures.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Exact Streak",
+      "question": "Flipping a fair coin 4 times, which exact sequence is most likely: HHHH, HTHT, or HTTT?",
+      "choices": [
+        "HHHH, since heads run hot",
+        "All equal at 1/16 each",
+        "HTHT, since it looks properly mixed",
+        "HTTT, since tails dominate late"
+      ],
+      "correctAnswer": "All equal at 1/16 each",
+      "xpReward": 25,
+      "correctExplanation": "Exactly equal — every specific 4-flip sequence holds probability (1/2)⁴. 'Looks random' is an aesthetic; the coin writes each script with the same pen.",
+      "incorrectExplanation": "Not quite — the answer is all equal at 1/16 each. HHHH feels special and HTHT feels typical, but feelings aren't frequencies: sixteen scripts, one pen, equal ink. Randomness has no favorite handwriting.",
+      "lessonContent": "Every exact sequence ties at (1/2)^n.\n'Looks random' is aesthetics, not arithmetic.\nRepresentativeness fools pattern-hungry minds.\nCount scripts before judging handwriting.\nShare this: bet a friend HHHH beats HTHT, then collect.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Second Picker",
+      "question": "Annemarie calls HHT for three flips; then Bernardo, seeing her call, picks THH. Whose pattern arrives first more often?",
+      "choices": [
+        "Annemarie's, since first picks set the pace",
+        "Neither — pattern races always tie",
+        "Bernardo's — second pickers hold a systematic edge",
+        "Both always arrive simultaneously"
+      ],
+      "correctAnswer": "Bernardo's — second pickers hold a systematic edge",
+      "xpReward": 25,
+      "correctExplanation": "Correct — Penney's game. The second chooser can always counter (take the opposite of Annemarie's second symbol, prefixed by her first two): THH beats HHT 2-to-1. Position beats priority in pattern duels.",
+      "incorrectExplanation": "Actually, the answer is Bernardo's — second pickers hold a systematic edge. Penney's game is nontransitive: whatever pattern you name, a counter-pattern wins twice as often. Going second with full information dominates going first.",
+      "lessonContent": "Second movers with full information dominate.\nNontransitive games have no best first pick.\nCounter-patterns exploit overlap structure.\nPosition can beat priority — check turn order.\nShare this: challenge a friend to name a pattern first.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#23",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "medium",
+      "title": "The Streak Premium",
+      "question": "A bettor wagers that at least one run of 5 heads appears in 100 flips. Should you take the other side?",
+      "choices": [
+        "No: such runs are near-certain across 100 flips",
+        "Yes — 5-head runs are freak events",
+        "Only if the coin is proven biased",
+        "Only on alternate Tuesdays"
+      ],
+      "correctAnswer": "No: such runs are near-certain across 100 flips",
+      "xpReward": 25,
+      "correctExplanation": "Right. With ~96 overlapping windows each holding 1/32 odds, the chance of dodging all of them is roughly (31/32)⁹⁶ ≈ 5%. Long sequences make 'rare' runs routine — length manufactures streaks.",
+      "incorrectExplanation": "Not quite — the answer is no: such runs are near-certain across 100 flips. Five heads feels freakish once, but 96 overlapping chances convert freaks into fixtures. Length is the streak factory; windows multiply chances.",
+      "lessonContent": "Length manufactures streaks from freaks.\nOverlapping windows multiply slim chances.\n'Rare once' differs from 'rare somewhere'.\nCount windows before pricing run-bets.\nShare this: hunt a 5-run inside 100 real flips.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-108#24",
+      "forgeScore": 92
+    }
+  ]
+}

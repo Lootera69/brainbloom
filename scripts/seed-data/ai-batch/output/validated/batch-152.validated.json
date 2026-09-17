@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-152",
+  "generatedAt": "2026-09-17T13:27:44.487Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Disappearing Heap",
+      "question": "A heap minus one grain stays a heap — yet repeated removals leave bare floor. Refusing any single step as the turning point, what follows?",
+      "choices": [
+        "Heaps never vanish physically",
+        "Logic forbids removing grains",
+        "Paradox: undeniable steps, impossible end",
+        "Counting grains is illegal"
+      ],
+      "correctAnswer": "Paradox: undeniable steps, impossible end",
+      "xpReward": 50,
+      "correctExplanation": "Paradox undeniable — each tolerance step compels, yet floors aren't heaps. Valid-seeming marches end absurdly.",
+      "incorrectExplanation": "Not quite — the answer is paradox: undeniable steps, impossible end. Floors don't vanish and logic doesn't forbid grains: tolerance plus iteration yields contradiction. Steps compel; destinations appall.",
+      "lessonContent": "Steps compel; destinations appall reliably.\nTolerance plus iteration breeds paradox.\nUndeniable premises, impossible conclusions.\nMarches mislead one grain at a time.\nShare this: remove one grain mentally.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Tolerant Step",
+      "question": "Sorites arguments run on a tolerance principle: tiny differences never flip category membership. What does tolerance license?",
+      "choices": [
+        "Step-by-step marches to absurdity",
+        "Skipping all reasoning",
+        "Ignoring evidence always",
+        "Louder assertions"
+      ],
+      "correctAnswer": "Step-by-step marches to absurdity",
+      "xpReward": 50,
+      "correctExplanation": "Step marches to absurdity — tolerance makes each move safe and the journey impossible. Local safety, global disaster.",
+      "incorrectExplanation": "Actually, the answer is step-by-step marches to absurdity. Skipping, ignoring, and volume miss it: tolerance blesses every footstep toward cliffs. Locally safe composes globally absurd.",
+      "lessonContent": "Locally safe composes globally absurd.\nFootsteps blessed march toward cliffs.\nTolerance licenses treks, never jumps.\nSafety per step hides journey peril.\nShare this: bless one small step.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Receding Hairline",
+      "question": "Losing one hair never makes anyone bald — yet bald heads exist in mirrors everywhere. What mirrors the heap exactly?",
+      "choices": [
+        "Hair transplants",
+        "Baldness sorites",
+        "Shampoo chemistry",
+        "Hat fashions"
+      ],
+      "correctAnswer": "Baldness sorites",
+      "xpReward": 50,
+      "correctExplanation": "Baldness sorites — hair-by-hair tolerance marches to shining crowns. Mirrors confirm what logic denies.",
+      "incorrectExplanation": "Not quite — the answer is baldness sorites. Transplants, chemistry, and fashion miss it: one-hair tolerance iterates into baldness. Crowns shine where steps compelled.",
+      "lessonContent": "Hair-by-hair tolerance marches onward.\nCrowns shine where steps compelled.\nMirrors confirm logic's denials false.\nMarches end on bare scalps.\nShare this: lose one hair hypothetically.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Dollar Line",
+      "question": "Poverty lines declare $X poor, $X+1 not — a cent manufacturing prosperity. What does the line reveal?",
+      "choices": [
+        "Precise moral truth",
+        "Stipulation, not discovery",
+        "Divine revelation",
+        "Market magic"
+      ],
+      "correctAnswer": "Stipulation, not discovery",
+      "xpReward": 50,
+      "correctExplanation": "Stipulation, not discovery — lines drawn for administration, not found in nature. Cents don't create prosperity.",
+      "incorrectExplanation": "Actually, the answer is stipulation, not discovery. Truth, revelation, and magic miss it: thresholds serve bureaucracy, never metaphysics. Drawn lines administer; they never discern.",
+      "lessonContent": "Thresholds administer; they never discern.\nCents manufacture nothing real ever.\nDrawn lines serve bureaucracies solely.\nStipulation poses as discovery daily.\nShare this: move one line by a cent.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Moved Definition",
+      "question": "Death was cardiac arrest for millennia; now brain criteria decide, partly to serve transplants. What does the shift show?",
+      "choices": [
+        "Doctors murder patients",
+        "Hearts stopped mattering",
+        "Death's boundary is partly stipulated",
+        "Machines gained souls"
+      ],
+      "correctAnswer": "Death's boundary is partly stipulated",
+      "xpReward": 50,
+      "correctExplanation": "Death's boundary partly stipulated — criteria track practices (transplant needs) as well as biology. Definitions serve as well as describe.",
+      "incorrectExplanation": "Not quite — the answer is death's boundary is partly stipulated. Murder, irrelevance, and souls miss it: cardiac-to-brain moves mixed discovery with decision. Boundaries serve practices too.",
+      "lessonContent": "Definitions serve as well as describe.\nCriteria track practices partly always.\nBoundaries mix discovery with decision.\nStipulation shares work with science.\nShare this: move one definition kindly.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#4",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Birthday Majority",
+      "question": "Voting at 18, drinking at 21, renting cars at 25 — maturity arrives by statute, differently per privilege. What are these ages?",
+      "choices": [
+        "Legal stipulations",
+        "Neurological facts",
+        "Moral absolutes",
+        "Physical laws"
+      ],
+      "correctAnswer": "Legal stipulations",
+      "xpReward": 50,
+      "correctExplanation": "Legal stipulations — ages vary by jurisdiction and purpose: maturity has no birthday in nature. Statutes decide what brains blur.",
+      "incorrectExplanation": "Actually, the answer is legal stipulations. Neurology, morals, and physics miss it: thresholds differ across borders and beverages. Administrations need lines; nature provides none.",
+      "lessonContent": "Administrations need lines nature lacks.\nThresholds vary by border and beverage.\nMaturity has no birthday in nature.\nStatutes decide what brains blur.\nShare this: celebrate one arbitrary age.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Circling Song",
+      "question": "Greenish warblers ring Tibet: each population interbreeds with neighbors, but end populations cannot. What breaks in nature?",
+      "choices": [
+        "The birds' wings",
+        "Migration routes",
+        "Feather colors",
+        "The species concept"
+      ],
+      "correctAnswer": "The species concept",
+      "xpReward": 50,
+      "correctExplanation": "The species concept — ring species make 'same species' intransitive: A=B, B=C, yet A≠C. Nature ignores our filing.",
+      "incorrectExplanation": "Not quite — the answer is the species concept. Wings, routes, and colors miss it: interbreeding chains loop back incompatible. Filing systems fail where continua flow.",
+      "lessonContent": "Continua flow where filing fails.\nIntransitivity breaks species logic.\nChains loop back incompatible fully.\nNature ignores human filing.\nShare this: circle one species ring.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Orange Border",
+      "question": "Red shades into orange with no borderline in the spectrum — yet English insists on two color words. What lacks edges?",
+      "choices": [
+        "Prism glass",
+        "Color terms' extensions",
+        "Light bulbs",
+        "Paint tubes"
+      ],
+      "correctAnswer": "Color terms' extensions",
+      "xpReward": 50,
+      "correctExplanation": "Color terms' extensions — spectra flow continuously; words cut arbitrarily. Edges live in language, never light.",
+      "incorrectExplanation": "Actually, the answer is color terms' extensions. Glass, bulbs, and tubes miss it: boundaries sit in vocabulary, not wavelengths. Continua defy dictionaries daily.",
+      "lessonContent": "Boundaries live in vocabulary solely.\nSpectra flow; words cut arbitrarily.\nEdges absent from light itself.\nContinua defy dictionaries daily.\nShare this: border one rainbow.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#7",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Height Line",
+      "question": "At what exact height does short become tall?",
+      "choices": [
+        "No sharp cutoff exists",
+        "Exactly 180cm",
+        "At median height",
+        "When doctors say so"
+      ],
+      "correctAnswer": "No sharp cutoff exists",
+      "xpReward": 50,
+      "correctExplanation": "No sharp cutoff — tallness lacks edges by nature: 179.9 vs 180.0 differ negligibly. Vagueness lives here.",
+      "incorrectExplanation": "Not quite — the answer is no sharp cutoff exists. Centimeters, medians, and doctors miss it: predicates without borders admit no lines. Height varies; tallness vagaries persist.",
+      "lessonContent": "Predicates without borders admit no lines.\nCentimeters vary; tallness vagaries persist.\nCutoffs invented, never discovered here.\nHeight flows; labels dam arbitrarily.\nShare this: measure one borderless trait.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#8",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Wealth Line",
+      "question": "How many dollars make someone rich?",
+      "choices": [
+        "One million exactly",
+        "Ten million exactly",
+        "No principled dollar divides",
+        "One billion exactly"
+      ],
+      "correctAnswer": "No principled dollar divides",
+      "xpReward": 50,
+      "correctExplanation": "No principled dollar — riches fade in gradually: millions differ by degree, never kind. Lines serve taxes, not truths.",
+      "incorrectExplanation": "Actually, the answer is no principled dollar divides. Round millions pretend precision: no cent transforms pauper to prince. Gradual fortunes defy sharp coronations.",
+      "lessonContent": "Gradual fortunes defy sharp coronations.\nCents transform nothing essential ever.\nLines serve taxes, never truths.\nRichness fades in by degrees.\nShare this: price one rich moment.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Fountain Verdict",
+      "question": "Duchamp's urinal in a gallery: art or plumbing?",
+      "choices": [
+        "Plumbing forever",
+        "Vandalism only",
+        "Context confers art status",
+        "Weight decides"
+      ],
+      "correctAnswer": "Context confers art status",
+      "xpReward": 50,
+      "correctExplanation": "Context confers status — galleries, intentions, histories make art, not porcelain. Essences absent; institutions present.",
+      "incorrectExplanation": "Not quite — the answer is context confers art status. Plumbing, vandalism, and weight miss it: placement plus theory transmute fixtures. Art lives in frames, never atoms.",
+      "lessonContent": "Frames transmute fixtures into art.\nInstitutions present what essences can't.\nPlacement plus theory perform magic.\nGalleries author statuses daily.\nShare this: frame one ordinary thing.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#10",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Game Resemblance",
+      "question": "Wittgenstein: games share no single essence, only overlapping similarities like family faces. What replaces definitions?",
+      "choices": [
+        "Bigger dictionaries",
+        "Stricter rules",
+        "Private ostension",
+        "Family resemblance"
+      ],
+      "correctAnswer": "Family resemblance",
+      "xpReward": 50,
+      "correctExplanation": "Family resemblance — crisscrossing similarities without common cores: noses here, temperaments there. Essences retire; networks suffice.",
+      "incorrectExplanation": "Actually, the answer is family resemblance. Dictionaries, rules, and pointing miss it: games hang together resemblantly, never essentially. Look, don't think, for essences.",
+      "lessonContent": "Networks suffice where essences retire.\nResemblances crisscross without cores.\nLook-and-see beats define-and-fail.\nFamilies share faces, never formulas.\nShare this: resemble one game tonight.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#11",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Unanimous Verdict",
+      "question": "Supertrue means true on every admissible way of sharpening a vague term. What survives all precisifications?",
+      "choices": [
+        "Supertruth",
+        "Louder claims",
+        "Older sayings",
+        "Shorter sentences"
+      ],
+      "correctAnswer": "Supertruth",
+      "xpReward": 50,
+      "correctExplanation": "Supertruth — unanimity across sharpenings: borderline cases may vary, core truths persist. Precision-proof verdicts stand.",
+      "incorrectExplanation": "Not quite — the answer is supertruth. Volume, age, and brevity miss it: truth surviving every admissible sharpening earns the prefix. Cores persist; penumbras wobble.",
+      "lessonContent": "Cores persist; penumbras wobble always.\nUnanimity across sharpenings decides.\nPrecision-proof verdicts stand firm.\nBorders vary; centers hold fast.\nShare this: sharpen one term fully.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Secret Threshold",
+      "question": "Williamson holds vague boundaries exist sharply but unknowably — some exact cent makes tallness, forever hidden. What is claimed?",
+      "choices": [
+        "Nothing whatsoever",
+        "Unknowable sharp cutoffs",
+        "Fuzzy everything",
+        "Linguistic magic"
+      ],
+      "correctAnswer": "Unknowable sharp cutoffs",
+      "xpReward": 50,
+      "correctExplanation": "Unknowable sharp cutoffs — epistemicism: bivalence holds with ignorance guaranteed. Lines exist unseen by design.",
+      "incorrectExplanation": "Actually, the answer is unknowable sharp cutoffs. Nothings, fuzzies, and magic miss it: margins of error hide exact borders necessarily. Ignorance is structural, not temporary.",
+      "lessonContent": "Ignorance structures vague domains.\nBorders exist unseen by design.\nMargins of error hide exactness.\nBivalence holds without witnesses.\nShare this: posit one hidden cutoff.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Graded Truth",
+      "question": "Fuzzy logic assigns heapness 0.7 instead of plain true or false. What replaces bivalence?",
+      "choices": [
+        "Louder logic",
+        "Angrier debates",
+        "Graded truth values",
+        "Longer proofs"
+      ],
+      "correctAnswer": "Graded truth values",
+      "xpReward": 50,
+      "correctExplanation": "Graded truth — degrees between 0 and 1: heaps 0.7, baldness 0.3. Bivalence yields to spectra.",
+      "incorrectExplanation": "Not quite — the answer is graded truth values. Volume, anger, and length miss it: truth comes in degrees here. Spectra replace switches in vague domains.",
+      "lessonContent": "Spectra replace switches in vagueness.\nDegrees quantify borderline standings.\nBivalence yields gracefully here.\nTruth admits sevenths and thirds.\nShare this: grade one truth decimally.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#14",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Blurry Borderline",
+      "question": "Borderline cases have borderline borderlines — 'definitely' gets vague too, endlessly. What regresses?",
+      "choices": [
+        "Counting ability",
+        "Grammar rules",
+        "Spelling tests",
+        "Vagueness itself"
+      ],
+      "correctAnswer": "Vagueness itself",
+      "xpReward": 50,
+      "correctExplanation": "Vagueness itself — higher-order vagueness: borderlines blur recursively. Definitely needs its own border patrol.",
+      "incorrectExplanation": "Actually, the answer is vagueness itself. Counting, grammar, and spelling miss it: definitively-definite recedes forever. Orders ascend without terminating.",
+      "lessonContent": "Borders blur recursively always.\nDefinitely needs border patrol too.\nOrders ascend without terminating.\nVagueness infects its own edges.\nShare this: border one borderline.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The March Diagnosis",
+      "question": "The forced march compels each step while forbidding the destination. What is the standard shape of the puzzle?",
+      "choices": [
+        "Valid-seeming steps, unacceptable end",
+        "Invalid first step",
+        "No premises at all",
+        "Sound argument, true conclusion"
+      ],
+      "correctAnswer": "Valid-seeming steps, unacceptable end",
+      "xpReward": 50,
+      "correctExplanation": "Valid-seeming steps, unacceptable end — puzzle shape: plausible moves composing impossible treks. Diagnosis precedes cure.",
+      "incorrectExplanation": "Not quite — the answer is valid-seeming steps, unacceptable end. Invalid-first, premise-less, and sound-true miss it: the puzzle's form is compelling-parts-absurd-whole. Shape recognized, solutions vary.",
+      "lessonContent": "Compelling parts compose absurd wholes.\nShape recognized precedes cures found.\nPlausible moves mislead systematically.\nDiagnosis maps puzzle anatomy.\nShare this: diagnose one march.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#16",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Reasonable Ghost",
+      "question": "Law judges by the 'reasonable person' — a vague standard applied daily without precision. Why does law embrace vagueness?",
+      "choices": [
+        "Judges are lazy",
+        "Lawyers bill more",
+        "Juries nap otherwise",
+        "Vagueness enables contextual justice"
+      ],
+      "correctAnswer": "Vagueness enables contextual justice",
+      "xpReward": 50,
+      "correctExplanation": "Vagueness enables contextual justice — reasonable persons adapt across cases rules cannot foresee. Flexibility needs blur.",
+      "incorrectExplanation": "Actually, the answer is vagueness enables contextual justice. Laziness, billing, and naps miss it: precision would petrify judgment. Ghosts haunt courtrooms usefully.",
+      "lessonContent": "Flexibility needs blur to function.\nPrecision would petrify judgment fully.\nGhosts haunt courtrooms usefully.\nContextual justice needs vague vessels.\nShare this: reason reasonably once.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#17",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Doubt Standard",
+      "question": "'Beyond reasonable doubt' convicts without numbers — roughly 90%? 95%? Deliberately unstated. What kind of standard is this?",
+      "choices": [
+        "Mathematical formula",
+        "Moral certainty, unquantified",
+        "Coin flip",
+        "Judicial whim"
+      ],
+      "correctAnswer": "Moral certainty, unquantified",
+      "xpReward": 50,
+      "correctExplanation": "Moral certainty, unquantified — firm conviction without percentages: conscience calibrated, never computed. Numbers would cheapen verdicts.",
+      "incorrectExplanation": "Not quite — the answer is moral certainty, unquantified. Formulas, coins, and whims miss it: law demands settled minds, not tallied odds. Certainty moralized decides fates.",
+      "lessonContent": "Settled minds decide fates lawfully.\nNumbers would cheapen verdicts badly.\nConscience calibrated, never computed.\nUnquantified certainty convicts justly.\nShare this: doubt reasonably once.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#18",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Conscious Machine",
+      "question": "If an AI claimed consciousness convincingly, no settled test could verify it — the hard problem has no meter. What is missing?",
+      "choices": [
+        "Faster chips",
+        "Agreed criteria",
+        "Louder speakers",
+        "Bigger datasets"
+      ],
+      "correctAnswer": "Agreed criteria",
+      "xpReward": 50,
+      "correctExplanation": "Agreed criteria — consciousness lacks operational tests all accept: claims outrun verification permanently. Meters missing, debates permanent.",
+      "incorrectExplanation": "Actually, the answer is agreed criteria. Chips, speakers, and data miss it: the hard problem yields no instrument. Convincing performances prove nothing settled.",
+      "lessonContent": "Performances prove nothing settled ever.\nMeters missing stall verdicts permanently.\nHard problems yield no instruments.\nCriteria precede consciousness tests.\nShare this: test one machine kindly.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Checking Habit",
+      "question": "Desire admits borderlines — enthusiasm, pressure, ambiguity mix in real encounters. What do gray zones demand?",
+      "choices": [
+        "Continuous communication",
+        "Signed contracts only",
+        "Mind reading",
+        "Avoidance of dating"
+      ],
+      "correctAnswer": "Continuous communication",
+      "xpReward": 50,
+      "correctExplanation": "Continuous communication — gray zones need checking, not assuming: ongoing consent navigates borderlines. Talk charts murky waters.",
+      "incorrectExplanation": "Not quite — the answer is continuous communication. Contracts, telepathy, and avoidance miss it: borderlines require dialogue, not documents. Checking respects ambiguity.",
+      "lessonContent": "Dialogue navigates borderline waters.\nChecking respects ambiguity fully.\nDocuments freeze what talk thaws.\nGray zones demand ongoing talk.\nShare this: check in once kindly.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Disease Edge",
+      "question": "Is aging a disease? Is grief? Medicine's categories blur at edges where treatment meets enhancement. What does this show?",
+      "choices": [
+        "Doctors know nothing",
+        "All treatment is fraud",
+        "Health is myth",
+        "Borderline cases exist"
+      ],
+      "correctAnswer": "Borderline cases exist",
+      "xpReward": 50,
+      "correctExplanation": "Borderline cases exist — disease concepts fade at edges: aging, grief, shyness sit astride. Categories blur honestly.",
+      "incorrectExplanation": "Actually, the answer is borderline cases exist. Ignorance, fraud, and myth miss it: nosology has penumbras like all vague kinds. Edges humble definers.",
+      "lessonContent": "Penumbras humble all definers.\nEdges blur honest categories.\nNosology shares vague fates.\nBorderlines exist in medicine too.\nShare this: blur one boundary kindly.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Martian Question",
+      "question": "A Martian chemical system self-replicates sluggishly without clear cells. Alive or not?",
+      "choices": [
+        "Obviously alive",
+        "Obviously dead",
+        "Genuinely borderline",
+        "Secretly Martian"
+      ],
+      "correctAnswer": "Genuinely borderline",
+      "xpReward": 50,
+      "correctExplanation": "Genuinely borderline — life criteria pull both ways: replication yes, cells unclear. Mars tests definitions honestly.",
+      "incorrectExplanation": "Not quite — the answer is genuinely borderline. Obvious answers overclaim: sluggish self-copying sits astride life's vague edges. Definitions strain at frontiers.",
+      "lessonContent": "Frontiers strain all definitions.\nSluggish copying sits astride life.\nObvious answers overclaim here.\nBorderlines test biology best.\nShare this: greet one borderline.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Voted Planet",
+      "question": "Pluto's 2006 demotion followed a vote on definitions, not new telescope data about Pluto itself. What demoted it?",
+      "choices": [
+        "Shrinking size",
+        "Orbital drift",
+        "Colder temperatures",
+        "Stipulative redefinition"
+      ],
+      "correctAnswer": "Stipulative redefinition",
+      "xpReward": 50,
+      "correctExplanation": "Stipulative redefinition — astronomers voted criteria (clearing orbit) Pluto fails: definitions demote, discoveries don't. Planets by ballot.",
+      "incorrectExplanation": "Actually, the answer is stipulative redefinition. Size, drift, and cold miss it: Pluto unchanged, category moved. Ballots reclassify heavens regularly.",
+      "lessonContent": "Ballots reclassify heavens regularly.\nCategories move; objects persist.\nDefinitions demote, data merely sit.\nPlanets elected, never discovered purely.\nShare this: vote one definition.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Exact Heap",
+      "question": "How many grains make a heap — exactly?",
+      "choices": [
+        "No sharp number exists",
+        "10,000 precisely",
+        "1,000,000 exactly",
+        "Grains can't be counted"
+      ],
+      "correctAnswer": "No sharp number exists",
+      "xpReward": 50,
+      "correctExplanation": "No sharp number — heaps admit no exact threshold: vagueness all the way down. Questions outrun answers here.",
+      "incorrectExplanation": "Not quite — the answer is no sharp number exists. Precise millions pretend precision vagueness forbids: countability differs from cutoffs. Grains count; heaps don't begin.",
+      "lessonContent": "Countability differs from cutoffs fully.\nGrains count; heaps never begin sharply.\nPrecision pretends where vagueness reigns.\nQuestions outrun answers sometimes.\nShare this: count grains heaplessly.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-152#24",
+      "forgeScore": 100
+    }
+  ]
+}

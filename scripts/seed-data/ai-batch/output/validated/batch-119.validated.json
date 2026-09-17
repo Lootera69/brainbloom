@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-119",
+  "generatedAt": "2026-09-17T13:27:43.639Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Primary Drive",
+      "question": "Freud crowned pleasure and Adler crowned power as humanity's master motive. Frankl, surviving Auschwitz, crowned a third drive instead. What did he name as primary?",
+      "choices": [
+        "The pursuit of perfect security",
+        "Comfort through endless novelty",
+        "The will toward meaning",
+        "Obedience to social norms"
+      ],
+      "correctAnswer": "The will toward meaning",
+      "xpReward": 25,
+      "correctExplanation": "The will toward meaning — humans are pulled by purposes worth serving, not pushed by pleasures or power alone. Camps proved meaning outlasts comfort.",
+      "incorrectExplanation": "Not quite — the answer is the will toward meaning. Freud's pleasure and Adler's power describe fragments; Frankl watched prisoners survive on why, not on comfort. Purposes pull harder than appetites push.",
+      "lessonContent": "Purposes pull where appetites merely push.\nSurvival follows why more than comfort.\nThird drives complete partial theories.\nName your pull before feeding your push.\nShare this: state one purpose that pulls you.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Three Doors",
+      "question": "Frankl mapped three routes to meaning: creating a work, experiencing love or beauty, and taking a stance toward unavoidable suffering. A prisoner with nothing left but attitude uses which route?",
+      "choices": [
+        "The creative door of deeds and works",
+        "The experiential door of love and beauty",
+        "The attitudinal door of chosen stance",
+        "No door remains in such conditions"
+      ],
+      "correctAnswer": "The attitudinal door of chosen stance",
+      "xpReward": 25,
+      "correctExplanation": "The attitudinal door — when deeds and encounters are stripped, stance remains. Last freedoms live entirely in attitude.",
+      "incorrectExplanation": "Actually, the answer is the attitudinal door of chosen stance. Deeds need materials and encounters need others; attitude needs only consciousness. Stripped conditions close two doors and spotlight the third.",
+      "lessonContent": "Stance survives when materials vanish.\nThree doors stand; one never locks.\nAttitude needs only consciousness to open.\nLast freedoms live entirely inside.\nShare this: choose one stance deliberately today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#1",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Highest Value",
+      "question": "Frankl ranked creative and experiential values highly — yet named one class highest, reachable precisely when fate cannot be changed. Which values crown the hierarchy?",
+      "choices": [
+        "Creative values of work and achievement",
+        "Experiential values of love and nature",
+        "Attitudinal values toward unchangeable fate",
+        "Monetary values of security and status"
+      ],
+      "correctAnswer": "Attitudinal values toward unchangeable fate",
+      "xpReward": 25,
+      "correctExplanation": "Attitudinal values — bearing the unchangeable nobly outranks making and meeting. Fate faced well is humanity's peak performance.",
+      "incorrectExplanation": "Not quite — the answer is attitudinal values toward unchangeable fate. Works end and encounters fade, but stance toward the unalterable defines the person permanently. Highest honors go to the incurable borne well.",
+      "lessonContent": "Bearing outranks making at the human peak.\nUnchangeable fates host the highest values.\nStance defines persons permanently.\nIncurable borne well is peak performance.\nShare this: bear one unchangeable nobly today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Tragic Yes",
+      "question": "Frankl's 'tragic optimism' says yes to life despite its triad of unavoidable darkness. Which three does the triad name?",
+      "choices": [
+        "Pain, guilt, and death",
+        "Poverty, illness, and ignorance",
+        "Fear, anger, and boredom",
+        "War, famine, and plague"
+      ],
+      "correctAnswer": "Pain, guilt, and death",
+      "xpReward": 25,
+      "correctExplanation": "Pain, guilt, and death — suffering borne, failures owned, finitude faced. Yes-saying includes the shadows, not despite missing them.",
+      "incorrectExplanation": "Actually, the answer is pain, guilt, and death. Each converts: pain into achievement through stance, guilt into change through responsibility, death into urgency through finitude. The triad is curriculum, not curse.",
+      "lessonContent": "Shadows belong inside every yes worth saying.\nPain, guilt, death convert under stance.\nCurriculum replaces curse when faced.\nInclude darkness; exclude nothing real.\nShare this: say yes to one hard thing today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Last Liberty",
+      "question": "Stripped of everything in the camps, Frankl concluded one freedom can never be taken. What remains when all else is confiscated?",
+      "choices": [
+        "The freedom of physical movement",
+        "The freedom of speech and assembly",
+        "The freedom to choose one's attitude",
+        "The freedom from all suffering"
+      ],
+      "correctAnswer": "The freedom to choose one's attitude",
+      "xpReward": 25,
+      "correctExplanation": "The freedom to choose one's attitude — the last human liberty, unconfiscatable by definition. Between stimulus and response, choice survives everything.",
+      "incorrectExplanation": "Not quite — the answer is the freedom to choose one's attitude. Movements can be chained, speech silenced, suffering imposed — but stance selection needs no permission. Inner territory has no prison walls.",
+      "lessonContent": "Inner territory builds no prison walls.\nStance selection needs zero permission.\nConfiscation stops at consciousness.\nLast liberties are definitional, not granted.\nShare this: exercise one unconfiscatable freedom.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Changed Suffering",
+      "question": "Frankl wrote that suffering ceases to be suffering at the moment it finds this. What transforms pain's very nature?",
+      "choices": [
+        "A meaning",
+        "A medical cure",
+        "A distraction",
+        "A sedative"
+      ],
+      "correctAnswer": "A meaning",
+      "xpReward": 25,
+      "correctExplanation": "A meaning — pain with purpose becomes sacrifice, challenge, testimony. Meaning doesn't remove suffering; it transmutes it.",
+      "incorrectExplanation": "Actually, the answer is a meaning. Cures, distractions, and sedatives manage pain; meaning reclassifies it. Sacrifice hurts exactly as much and matters entirely differently.",
+      "lessonContent": "Purpose transmutes pain without removing it.\nSacrifice and suffering share sensations, not meanings.\nReclassification beats management for endurance.\nFind the meaning; keep the pain, lose the despair.\nShare this: reclassify one pain by purpose.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Present Meaning",
+      "question": "Asked for life's meaning, Frankl refused abstractions and pointed somewhere smaller and nearer. Where does meaning actually live?",
+      "choices": [
+        "In cosmic purposes revealed by mystics",
+        "In ancient texts decoded by scholars",
+        "In each concrete moment's demand",
+        "In future utopias we must build"
+      ],
+      "correctAnswer": "In each concrete moment's demand",
+      "xpReward": 25,
+      "correctExplanation": "In each moment's demand — meaning is situational, answered hourly, not a riddle solved once. The present interrogates; we respond.",
+      "incorrectExplanation": "Not quite — the answer is in each concrete moment's demand. Abstract life's-meaning quests stall; situational meanings answer daily. The question is asked by each hour, and answered by living it.",
+      "lessonContent": "Hours interrogate; living responds.\nSituational meanings beat abstract quests.\nAnswer daily instead of solving once.\nConcreteness rescues meaning from vagueness.\nShare this: answer one hour's demand fully.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Outward Arrow",
+      "question": "Frankl insisted meaning is found not by staring inward but by aiming past oneself. What direction does fulfillment face?",
+      "choices": [
+        "Inward toward self-actualization",
+        "Backward toward childhood roots",
+        "Outward toward causes and others",
+        "Upward toward social status"
+      ],
+      "correctAnswer": "Outward toward causes and others",
+      "xpReward": 25,
+      "correctExplanation": "Outward — self-transcendence: meaning arrives as a side effect of serving causes and loving people. Inward staring finds only the starer.",
+      "incorrectExplanation": "Actually, the answer is outward toward causes and others. Self-actualization pursued directly misses; it arrives unbidden to those aimed beyond themselves. Arrows pointing out hit selves on the rebound.",
+      "lessonContent": "Aiming out hits selves on rebound.\nInward staring finds only the starer.\nSide effects beat direct pursuits here.\nTranscendence is direction, not destination.\nShare this: aim past yourself once today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Trying Trap",
+      "question": "Frankl observed that demanding sleep, humor, or potency on command reliably destroys them. What does forced pursuit produce?",
+      "choices": [
+        "The opposite of the goal",
+        "Effortless mastery",
+        "Faster results always",
+        "Nothing whatsoever"
+      ],
+      "correctAnswer": "The opposite of the goal",
+      "xpReward": 25,
+      "correctExplanation": "The opposite — hyper-intention summons insomnia, hyper-reflection kills spontaneity. Grasping strangles what relaxing receives.",
+      "incorrectExplanation": "Not quite — the answer is the opposite of the goal. Commanded sleep flees; demanded spontaneity stiffens. Some goods arrive only unpursued — pursuit itself is the repellent.",
+      "lessonContent": "Grasping strangles what relaxing receives.\nCommanded goods flee their commanders.\nHyper-intention manufactures its failures.\nUnpursued arrivals beat forced ones.\nShare this: stop chasing one sleep tonight.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Prescribed Symptom",
+      "question": "A sweating phobic is told to try sweating as much as possible — and the symptom collapses laughing. What technique is this?",
+      "choices": [
+        "Free association",
+        "Dream analysis",
+        "Aversion therapy",
+        "The paradoxical-intention method"
+      ],
+      "correctAnswer": "The paradoxical-intention method",
+      "xpReward": 25,
+      "correctExplanation": "The paradoxical-intention method — prescribing the feared symptom breaks anticipatory anxiety with humor. Wishing for it dissolves dreading it.",
+      "incorrectExplanation": "Actually, the answer is the paradoxical-intention method. Anxiety needs dread; prescribed sweating replaces dread with absurd comedy. Symptoms starve when fear stops feeding them.",
+      "lessonContent": "Prescribed symptoms lose their dreaded edge.\nHumor dissolves anticipatory anxiety fast.\nWishing replaces dreading therapeutically.\nAbsurdity is clinical, not just comic.\nShare this: prescribe yourself one feared blush.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#9",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Averted Gaze",
+      "question": "Patients obsessively monitoring themselves get sicker; Frankl redirects their attention toward meaningful tasks instead. What heals by redirecting?",
+      "choices": [
+        "Hypnosis",
+        "Sedation",
+        "Isolation",
+        "The dereflection technique"
+      ],
+      "correctAnswer": "The dereflection technique",
+      "xpReward": 25,
+      "correctExplanation": "The dereflection technique — attention moved from symptom to service starves self-observation. Microscopes aimed inward magnify illness.",
+      "incorrectExplanation": "Not quite — the answer is the dereflection technique. Hyper-reflection feeds every neurosis it watches; meaningful outward tasks drain the fever of self-monitoring. Gaze redirected is gaze cured.",
+      "lessonContent": "Inward microscopes magnify all illness.\nOutward tasks drain self-monitoring fevers.\nAttention redirected is attention healed.\nService starves symptoms of observation.\nShare this: redirect one gaze outward today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#10",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Sunday Void",
+      "question": "Busy professionals collapse into emptiness every weekend when activity stops. What did Frankl call this scheduled meaninglessness?",
+      "choices": [
+        "Monday motivation",
+        "Holiday euphoria",
+        "Leisure mastery",
+        "The Sunday-neurosis pattern"
+      ],
+      "correctAnswer": "The Sunday-neurosis pattern",
+      "xpReward": 25,
+      "correctExplanation": "The Sunday-neurosis pattern — busyness masked the vacuum all week; stillness reveals it. Weekends audit lives that weekdays merely staff.",
+      "incorrectExplanation": "Actually, the answer is the Sunday-neurosis pattern. Activity anesthetizes emptiness Monday to Friday; Saturday's silence delivers the diagnosis. Stillness reveals what motion concealed.",
+      "lessonContent": "Stillness audits what motion conceals.\nWeekends diagnose weekday anesthetics.\nBusyness masks vacuums it never fills.\nSchedule silence to hear the verdict.\nShare this: sit one unscheduled hour awake.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Modern Malaise",
+      "question": "Frankl named the era's signature complaint: boredom, conformity, and a sense that nothing matters. What did he call this vacuum?",
+      "choices": [
+        "Existential vacuum",
+        "Clinical depression",
+        "Seasonal fatigue",
+        "Information overload"
+      ],
+      "correctAnswer": "Existential vacuum",
+      "xpReward": 25,
+      "correctExplanation": "The existential vacuum — meaninglessness as mass condition, filled by conformity or totalitarianism when unaddressed. Boredom is its Atlantic: vast, calm, drowning.",
+      "incorrectExplanation": "Not quite — the answer is existential vacuum. Not chemical depression but noögenic emptiness: instincts no longer tell us what to do, traditions no longer tell us what we should, and nothing tells us what we must. Vacuums invite filling — choose the filler.",
+      "lessonContent": "Boredom at scale is diagnostic, not trivial.\nUnfilled vacuums invite dangerous fillers.\nInstincts silent plus traditions dead equals drift.\nChoose fillers deliberately or inherit them.\nShare this: name one vacuum you keep busy.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Spiritual Symptom",
+      "question": "Some suffering stems neither from body nor psyche but from frustrated meaning itself. What did Frankl call this class?",
+      "choices": [
+        "Noögenic neurosis",
+        "Psychosomatic illness",
+        "Bipolar disorder",
+        "Chronic fatigue"
+      ],
+      "correctAnswer": "Noögenic neurosis",
+      "xpReward": 25,
+      "correctExplanation": "Noögenic neurosis — conflicts of conscience and value, treatable by philosophy as much as pills. Meaning-frustration is its own diagnostic category.",
+      "incorrectExplanation": "Actually, the answer is noögenic neurosis. Where psychogenic looks to drives and somatic to organs, noögenic looks to spirit: unlived meanings sicken as surely as viruses. Conscience belongs in the clinic.",
+      "lessonContent": "Unlived meanings sicken like pathogens.\nConscience deserves clinical standing.\nSpirit is a diagnostic dimension, not poetry.\nPhilosophy treats what pills cannot reach.\nShare this: ask what unlived meaning aches.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Bearing Why",
+      "question": "Frankl's favorite Nietzsche line claims a strong enough why lets a person endure almost any how. What does the why purchase?",
+      "choices": [
+        "Immunity from all pain",
+        "Wealth beyond measure",
+        "Fame after death",
+        "Endurance of any how"
+      ],
+      "correctAnswer": "Endurance of any how",
+      "xpReward": 25,
+      "correctExplanation": "Endurance of any how — whys don't remove hows, they outbid them. Priced in purpose, unbearable becomes bearable.",
+      "incorrectExplanation": "Not quite — the answer is endurance of any how. The line promises no immunity, wealth, or fame — only bearability through purpose. Hows stay brutal; whys stay bigger.",
+      "lessonContent": "Whys outbid hows without removing them.\nBearability is purchasable with purpose.\nBrutal stays brutal; bigger stays bigger.\nPrice endurance in meaning, not comfort.\nShare this: attach one why to one how.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Loving Gaze",
+      "question": "Among experiential values, Frankl crowned one encounter supreme: beholding another's essence fully. What encounter fulfills most?",
+      "choices": [
+        "Loving another person",
+        "Admiring great art",
+        "Conquering nature",
+        "Collecting experiences"
+      ],
+      "correctAnswer": "Loving another person",
+      "xpReward": 25,
+      "correctExplanation": "Loving another person — love beholds essence, seeing who someone is and may become. Persons outrank landscapes as meaning sources.",
+      "incorrectExplanation": "Actually, the answer is loving another person. Art moves and nature awes, but love alone beholds essence and summons potential. The beloved seen truly becomes more truly.",
+      "lessonContent": "Essence-beholding outranks scenery-gazing.\nLove summons potential it perceives.\nPersons are supreme meaning sources.\nBehold fully; become partially responsible.\nShare this: behold one person completely today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#15",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Contributing Hands",
+      "question": "Frankl valued work — but not careerism or salary. What makes labor meaningful in his account?",
+      "choices": [
+        "Prestige and promotion",
+        "Competition won daily",
+        "Security permanently kept",
+        "Contribution beyond the self"
+      ],
+      "correctAnswer": "Contribution beyond the self",
+      "xpReward": 25,
+      "correctExplanation": "Contribution beyond the self — work matters by what it gives the world, never by rank or pay. Creative values serve, not shine.",
+      "incorrectExplanation": "Not quite — the answer is contribution beyond the self. Promotions fade, salaries spend, victories age; given value endures in others' lives. Serve through work and meaning follows the product out the door.",
+      "lessonContent": "Given value outlives earned rank.\nProducts carry meaning out the door.\nService, not shine, sanctifies labor.\nAsk what work gives, never what it gets.\nShare this: give one work-hour away in spirit.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Useful Guilt",
+      "question": "In tragic optimism, guilt is not merely regretted but used. What does owned guilt become?",
+      "choices": [
+        "An opportunity to change",
+        "A life sentence",
+        "A badge of honor",
+        "A debt to forget"
+      ],
+      "correctAnswer": "An opportunity to change",
+      "xpReward": 25,
+      "correctExplanation": "An opportunity to change — guilt marks where better was possible, hence where better remains possible. Owned pasts fund improved futures.",
+      "incorrectExplanation": "Actually, the answer is an opportunity to change. Denied guilt festers; wallowed guilt paralyzes; owned guilt instructs. The past's debits become the future's curriculum.",
+      "lessonContent": "Owned pasts fund improved futures.\nGuilt instructs where denial festers.\nDebits convert to curriculum when faced.\nChange is guilt's proper interest rate.\nShare this: convert one guilt into one change.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Final Motivator",
+      "question": "Far from depressing us, awareness of death does distinctive work in Frankl's account. What does finitude give time?",
+      "choices": [
+        "Terror that paralyzes action",
+        "Proof that effort is futile",
+        "A reason to hurry anxiously",
+        "Meaning through irreplaceable urgency"
+      ],
+      "correctAnswer": "Meaning through irreplaceable urgency",
+      "xpReward": 25,
+      "correctExplanation": "Meaning through irreplaceable urgency — each hour matters because it occurs once. Finitude prices moments; eternity would bankrupt them.",
+      "incorrectExplanation": "Not quite — the answer is meaning through irreplaceable urgency. Immortal time would make every choice postponable forever; deadlines make choosing matter. Death is time's mint, stamping value on hours.",
+      "lessonContent": "Deadlines mint value onto hours.\nOnce-only occurrences demand choosing.\nPostponability would bankrupt all meaning.\nFinitude funds urgency honestly.\nShare this: spend one hour as irreplaceable.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Camp Humor",
+      "question": "Frankl recorded jokes and cabaret in Auschwitz itself. What work does humor do under horror?",
+      "choices": [
+        "Denial of reality",
+        "Distancing that preserves selfhood",
+        "Disrespect for the dead",
+        "Distraction from escape plans"
+      ],
+      "correctAnswer": "Distancing that preserves selfhood",
+      "xpReward": 25,
+      "correctExplanation": "Distancing that preserves selfhood — humor steps outside horror far enough to remain human inside it. The soul's self-defense needs no weapon but wit.",
+      "incorrectExplanation": "Actually, the answer is distancing that preserves selfhood. Jokes didn't deny the camps; they refused them total jurisdiction. Self-detachment through laughter kept inner territory unoccupied.",
+      "lessonContent": "Laughter refuses horror total jurisdiction.\nDistance preserves what immersion dissolves.\nWit defends souls without weapons.\nStep outside to remain human inside.\nShare this: laugh once at one darkness today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Choosing Space",
+      "question": "'Between stimulus and response there is a space' — and in that space lives everything Frankl defends. What lives there?",
+      "choices": [
+        "Reflex and instinct",
+        "Our freedom to choose",
+        "Random neural noise",
+        "Conditioned habit"
+      ],
+      "correctAnswer": "Our freedom to choose",
+      "xpReward": 25,
+      "correctExplanation": "Our freedom to choose — the gap between trigger and act is liberty's whole territory. Widen the space and responsibility grows with it.",
+      "incorrectExplanation": "Not quite — the answer is our freedom to choose. Reflexes, noise, and habits all bypass the space; choice inhabits it. Growth means widening gaps, not quickening reactions.",
+      "lessonContent": "Gaps between triggers hold all liberty.\nWiden spaces; grow responsibility.\nReactions bypass what choices inhabit.\nPause is freedom's physical form.\nShare this: widen one gap before reacting.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Side-Effect Joys",
+      "question": "Frankl warned that happiness and success pursued directly always dodge capture. How do they actually arrive?",
+      "choices": [
+        "Through relentless self-promotion",
+        "As side effects of dedication",
+        "By lowering all standards",
+        "Through chemical assistance"
+      ],
+      "correctAnswer": "As side effects of dedication",
+      "xpReward": 25,
+      "correctExplanation": "As side effects of dedication — happiness ensues from meaning served, never from happiness chased. Aim past joy to receive it.",
+      "incorrectExplanation": "Actually, the answer is as side effects of dedication. Direct pursuit inverts the mechanism: joy comes unbidden to the dedicated as sleep comes to the unworried. Chase causes; receive effects.",
+      "lessonContent": "Chased joys dodge; served meanings deliver.\nEffects arrive unbidden to the dedicated.\nAim past targets to receive them.\nDedication is joy's only reliable address.\nShare this: dedicate past one happiness today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Meaning Organ",
+      "question": "Frankl described conscience as the intuitive capacity that senses what each situation demands. What does conscience detect?",
+      "choices": [
+        "Social approval levels",
+        "Situational meanings",
+        "Legal liabilities",
+        "Genetic imperatives"
+      ],
+      "correctAnswer": "Situational meanings",
+      "xpReward": 25,
+      "correctExplanation": "Situational meanings — conscience smells the unique meaning of each moment like a compass smells north. Intuition instruments what reason maps slowly.",
+      "incorrectExplanation": "Not quite — the answer is situational meanings. Not approval, liability, or instinct, but the one thing this hour asks. Conscience is a meaning organ: train it by heeding it.",
+      "lessonContent": "Hours ask unique things; conscience hears them.\nIntuition instruments what reason maps slowly.\nHeeding trains the organ that hears.\nNorth-smelling beats map-reading for moments.\nShare this: heed one conscience nudge today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Beyond Meaning",
+      "question": "Beyond all discoverable meanings, Frankl posited an ultimate meaning exceeding human grasp. What did he call this horizon?",
+      "choices": [
+        "Collective myth",
+        "Supra-meaning",
+        "Positive thinking",
+        "Social consensus"
+      ],
+      "correctAnswer": "Supra-meaning",
+      "xpReward": 25,
+      "correctExplanation": "Supra-meaning — ultimate meaning beyond comprehension, approached by faith rather than seized by reason. Horizons guide without being reached.",
+      "incorrectExplanation": "Actually, the answer is supra-meaning. Myths, optimism, and consensus stay human-scale; supra-meaning names what exceeds grasp yet orients striving. Unreachable horizons still steer ships.",
+      "lessonContent": "Unreachable horizons still steer ships.\nExceeding-grasp differs from missing-meaning.\nFaith approaches what reason cannot seize.\nOrientation needs no arrival to function.\nShare this: steer by one unreachable star.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#23",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Second Living",
+      "question": "Frankl advised living as if experiencing life a second time — with the knowledge of what actually mattered. What does this heuristic correct?",
+      "choices": [
+        "Nostalgia for childhood",
+        "Present-moment triviality",
+        "Fear of the future",
+        "Regret about genetics"
+      ],
+      "correctAnswer": "Present-moment triviality",
+      "xpReward": 25,
+      "correctExplanation": "Present-moment triviality — viewed as a second chance, trivia reveals itself as the real test. Hindsight borrowed forward upgrades now.",
+      "incorrectExplanation": "Not quite — the answer is present-moment triviality. Second-living exposes which 'urgent' things mattered zero and which quiet ones mattered infinitely. Borrow hindsight; spend it immediately.",
+      "lessonContent": "Hindsight borrowed forward upgrades now.\nTrivia exposed is trivia retired.\nSecond chances clarify first priorities.\nLive twice: once to learn, once to choose.\nShare this: relive one hour better today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-119#24",
+      "forgeScore": 100
+    }
+  ]
+}

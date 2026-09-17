@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-115",
+  "generatedAt": "2026-09-17T13:27:43.536Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Confrontation",
+      "question": "Camus locates the absurd neither in the world alone nor in humans alone, but in their confrontation: our appetite for meaning meeting a silent world.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. The absurd is born of the encounter — longing plus silence. Remove either term and it vanishes; divorce, not desert, is the diagnosis.",
+      "incorrectExplanation": "It is true. Neither a mute universe without questioners nor satisfied minds without questions produces the absurd. Camus places it precisely at the collision: the divorce between appetite and answer.",
+      "lessonContent": "Absurdity lives in encounters, not in objects.\nLonging plus silence equals the full formula.\nSingle-term explanations miss the confrontation.\nDiagnose divorces, not deserts.\nShare this: name one appetite the world leaves unanswered.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Despair Charge",
+      "question": "Because Camus starts from meaninglessness, his philosophy ultimately endorses despair and resignation as the honest response.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. The absurd diagnoses; revolt prescribes. Despair surrenders the confrontation Camus demands we maintain — lucidity without resignation is the whole ethic.",
+      "incorrectExplanation": "Not quite — it is false. Starting from silence, Camus builds revolt, freedom, and passion — never resignation. Despair agrees with the silence; revolt answers it. The Myth's arc climbs from diagnosis to defiance.",
+      "lessonContent": "Diagnoses are not prescriptions — check the arc.\nRevolt answers what despair merely echoes.\nLucidity without resignation is the demanded stance.\nFollow arguments past their first chapter.\nShare this: answer one silence with action today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Happy Condemned",
+      "question": "Camus concludes that Sisyphus — condemned to roll his rock eternally — must be imagined happy, his lucid revolt filling the struggle with meaning.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Conscious fate becomes owned fate: each descent Sisyphus chooses his rock, and the struggle itself suffices. Happiness here is defiance, not comfort.",
+      "incorrectExplanation": "It is true. The famous closing inverts the punishment: lucidity converts sentence into choice, and chosen struggle fills the heart. 'One must imagine Sisyphus happy' crowns revolt, not resignation.",
+      "lessonContent": "Chosen struggle fills hearts that sentences empty.\nLucidity converts punishments into positions.\nSufficiency lives inside effort, not arrival.\nOwn the descent and the rock lightens.\nShare this: choose one burden consciously today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Only Door",
+      "question": "Camus argues that suicide is the one truly serious philosophical problem because a meaningless life logically compels self-destruction.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Suicide is the serious question precisely because Camus answers no: living without appeal refutes it. The problem is real; the compulsion is denied.",
+      "incorrectExplanation": "Not quite — it is false. Camus opens with suicide as the fundamental question in order to reject it — the absurd must be lived, not fled. Evading the confrontation settles nothing; revolt is the argued answer.",
+      "lessonContent": "Serious questions need not compel dark answers.\nOpening with suicide frames the stakes, not the verdict.\nLiving-without-appeal is the argued alternative.\nRead past the first sentence of every provocation.\nShare this: live one question instead of fleeing it.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Second Suicide",
+      "question": "Camus rejects not only physical suicide but also 'philosophical suicide' — the leap of faith that escapes the absurd through God or absolutes.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Leaps to God, Reason, or eternity dodge the confrontation as surely as death. Camus demands the tension be kept, not dissolved by either exit.",
+      "incorrectExplanation": "It is true. Kierkegaard's leap and Husserl's essences both exit the absurd through transcendence — elegant evasions Camus refuses. Two suicides, one physical, one intellectual; revolt rejects both doors.",
+      "lessonContent": "Evasions wear sacred and scholarly costumes alike.\nTension kept beats tension dissolved.\nLeaps exit; revolt remains.\nSuspect every exit that ends the questioning.\nShare this: keep one tension unresolved this week.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Permanent No",
+      "question": "Camusian revolt means defiance without hope of final victory — a permanent 'no' to one's condition paired with living fully inside it.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Revolt refuses consolation and surrender together: no to fate, yes to life. Permanence is the point — a confrontation maintained, never won.",
+      "incorrectExplanation": "It is true. Revolt is not revolution (no final victory promised) but stance: lucid refusal plus passionate living. Temporary rebellion seeks outcomes; revolt is the outcome — maintained tension as a way of life.",
+      "lessonContent": "Stances outlast campaigns when no victory exists.\nRefusal plus passion defines the position.\nMaintained tension is itself a way of life.\nSeek no exit from the confrontation.\nShare this: hold one tension without resolving it.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Answered World",
+      "question": "Even if the universe answered every human longing completely, Camus's absurd would stubbornly survive as a basic mood.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Answered longing dissolves the confrontation that births the absurd — no silence, no divorce. The absurd is conditional, not atmospheric.",
+      "incorrectExplanation": "Not quite — it is false. The absurd needs both terms: appetite and silence. A responding world ends the divorce, and with it the concept. Conditionality is the doctrine's honesty — remove the cause, remove the effect.",
+      "lessonContent": "Conditional doctrines die with their conditions.\nBoth terms are load-bearing, neither decorative.\nMoods pass; structures persist while fed.\nTest concepts by removing each pillar.\nShare this: imagine one longing fully answered.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Quantity Ethic",
+      "question": "Don Juan's endless loves exemplify Camus's ethic of quantity — living the most experiences possible rather than the deepest single one.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. With no ultimate hierarchy of lives, Don Juan multiplies experience: quantity becomes the absurd ethic. Each love lived fully, none mistaken for eternity.",
+      "incorrectExplanation": "It is true. Don Juan doesn't love deeply once but completely each time — the ethic of quantity over illusory depth. Where eternity is unavailable, multiplicity is honesty.",
+      "lessonContent": "Multiplicity can be honesty where eternity is closed.\nQuantity becomes ethic when hierarchies collapse.\nEach fully, none forever: the Don Juan rule.\nDepth-illusions waste what breadth could live.\nShare this: multiply one experience this month.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Many Lives",
+      "question": "Camus's actor lives absurdly well by dying many stage deaths — sampling countless lives within one brief span.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. The actor compresses centuries into evenings, living and dying on schedule. Brief time, maximum lives: quantity's theatrical form.",
+      "incorrectExplanation": "It is true. Where Don Juan multiplies loves, the actor multiplies selves — Hamlet tonight, Lear tomorrow. One lifespan, countless traversals: the absurd arithmetic of the stage.",
+      "lessonContent": "Selves can multiply like loves and days.\nStages compress centuries into evenings.\nTraversal beats duration in absurd arithmetic.\nSample widely within narrow spans.\nShare this: live one borrowed life this weekend.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Day's Master",
+      "question": "The conqueror — Camus's man of action — masters his days by choosing fully within limits, demanding everything from the present hour.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Conquerors act without appeal to tomorrow: efficiency, adventure, chosen struggle. Mastery of hours replaces mastery of history.",
+      "incorrectExplanation": "It is true. The conqueror knows victories fade and acts anyway — present-tense fullness over future-tense salvation. Days, not destinies, are the conquerable territory.",
+      "lessonContent": "Hours are conquerable where histories are not.\nPresent-tense fullness beats future-tense salvation.\nAct without appeal to tomorrow's ledger.\nChoose fully inside acknowledged limits.\nShare this: master one hour completely today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Licensed Blade",
+      "question": "Because revolt rejects all limits, Camus permits revolutionary violence without restraint in the name of freedom.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. The Rebel draws the line: revolt says no to oppression, including the rebel's own slide into executioner. 'Neither victim nor executioner' bounds every blade.",
+      "incorrectExplanation": "Not quite — it is false. Camus's rebel refuses murder's logic even for liberation — unlimited violence repeats the tyranny it claims to fight. Limits are revolt's spine, not its betrayal.",
+      "lessonContent": "Rebellions must refuse their own tyrannies.\nMeans infect ends; blades cut both ways.\nBounded revolt outlasts absolute license.\nCheck every liberation for new executioners.\nShare this: name one cause that ate its own.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Twin Refusal",
+      "question": "'Neither victim nor executioner' compresses Camus's rebel ethic: refuse suffering oppression and refuse inflicting it.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. The twin refusal draws revolt's clean line: resist the executioner without becoming one. Symmetry of refusal is the whole morality.",
+      "incorrectExplanation": "It is true. Victimhood accepted breeds complicity; executionerhood seized breeds tyranny. The rebel's narrow path threads between — refusing both chairs at the violent table.",
+      "lessonContent": "Twin refusals draw cleaner lines than single ones.\nResist without replicating the violence.\nNarrow paths thread between two chairs.\nSymmetry of refusal is complete morality.\nShare this: refuse one of each today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Open License",
+      "question": "Camus's absurd implies that, with no ultimate values, literally everything is permitted and no act can be condemned.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Camus explicitly denies the license: revolt founds values — human solidarity, limits, refusal of murder. Absence of absolutes is not absence of ethics.",
+      "incorrectExplanation": "Not quite — it is false. 'Everything is permitted' is the slogan Camus refutes, not preaches: revolt generates its own limits from shared confrontation. Ethics without absolutes still condemns the executioner.",
+      "lessonContent": "Absence of absolutes never equals absence of ethics.\nShared confrontation founds shared limits.\nRefuted slogans get misattributed constantly.\nRead what follows the famous premises.\nShare this: correct one 'everything permitted' misuse.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Owned Hour",
+      "question": "For the absurd man, the present moment is the only secure possession — neither past nor future can be owned, so full presence is the demand.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Hope mortgages presence to futures that never pay; nostalgia spends it backward. Only the hour in hand is ownable — live it entirely.",
+      "incorrectExplanation": "It is true. Past is uneditable, future unwritten; presence alone is property. Camus's temporal ethic concentrates all wealth into now — spend it completely or lose it doubly.",
+      "lessonContent": "Presence alone is ownable property.\nHope mortgages hours to nonpaying futures.\nNostalgia spends wealth backward.\nConcentrate riches into the hour in hand.\nShare this: own one full hour today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Afterlife Exit",
+      "question": "Hoping for an afterlife that redeems suffering counts, for Camus, as another escape from the absurd rather than an answer to it.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Deferred justice dissolves the confrontation by promising reconciliation — philosophical suicide in eschatological dress. Revolt wants no settlement, here or hereafter.",
+      "incorrectExplanation": "It is true. Afterlife hope trades present lucidity for future compensation, exiting the tension Camus demands we keep. Settlement refused is the doctrine's spine — no deals, temporal or eternal.",
+      "lessonContent": "Deferred settlements exit present tensions.\nCompensation promises dissolve confrontations.\nNo-deals policies span time and eternity.\nKeep the tension; refuse the settlement.\nShare this: live one hour settlement-free.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Hoping Stone",
+      "question": "Sisyphus should hope that this time the rock stays balanced at the summit, since hope would lighten his eternal task.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Hope betrays lucidity — it mortgages the present to a future the gods control. Sisyphus owns only the push; hoping outsources his happiness to the summit.",
+      "incorrectExplanation": "Not quite — it is false. Hope would convert revolt into waiting, surrendering the owned hour to unowned outcomes. The myth's ethic forbids exactly this comfort: no hope, full living.",
+      "lessonContent": "Hope can betray lucidity it claims to serve.\nMortgaged presents enrich no one.\nOwned pushes beat outsourced summits.\nComforts that surrender stance are traps.\nShare this: push one rock hopelessly and happily.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Cold Proof",
+      "question": "Camus derives the absurd through strict logical deduction from self-evident first principles, like a geometer proving theorems.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. He begins from a feeling — the encounter with strangeness, nausea at routine — and reasons outward. Absurd reasoning starts in experience, not axioms.",
+      "incorrectExplanation": "Not quite — it is false. The Myth opens with weariness, disgust, the weight of days: phenomenology first, logic after. Geometers deduce; Camus describes, then follows the description where it leads.",
+      "lessonContent": "Feelings can found philosophies legitimately.\nDescription precedes deduction in lived thought.\nAxioms miss what encounters reveal.\nStart from nausea, not from nothing.\nShare this: describe one strange Tuesday fully.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The World Alone",
+      "question": "A universe empty of all conscious beings would still contain the absurd as a property of silent matter itself.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. No questioners, no confrontation, no absurd — silent matter alone is merely silent. The concept needs its human term absolutely.",
+      "incorrectExplanation": "Not quite — it is false. Absurdity is relational: remove minds and only muteness remains, unopposed and unabsurd. Properties of encounters vanish with either party.",
+      "lessonContent": "Relational properties need both relata present.\nEncounters vanish with either party gone.\nMuteness alone is not absurdity.\nTest attributions by subtraction.\nShare this: subtract minds from one landscape.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Mind Alone",
+      "question": "Human longing by itself — even in a world that answered every question — would still generate the absurd from within.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Satisfied longing is not absurd; the concept requires the world's refusal. Longing alone is just appetite — tragedy needs the locked door.",
+      "incorrectExplanation": "Not quite — it is false. Appetite without obstacle is merely hunger, fed or feedable. The absurd is the locked door experienced by the hungry — remove the lock and only appetite remains.",
+      "lessonContent": "Appetites need obstacles to become tragic.\nLocked doors complete hunger's drama.\nSatisfaction dissolves what refusal creates.\nSingle terms never make relations.\nShare this: find one hunger with no lock.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Worst Labor",
+      "question": "Camus opens by calling Sisyphus's fate horrible: the gods designed futile, hopeless labor as the ultimate punishment.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. The opening grants the horror fully — futile endless toil as the gods' worst invention. Only then does revolt invert it; the happiness lands because the horror was conceded.",
+      "incorrectExplanation": "It is true. Camus never minimizes: 'the horrible punishment' stands unsoftened. Concession precedes inversion — happiness means something only against admitted horror.",
+      "lessonContent": "Concede horror before inverting it.\nUnsoftened premises make real conclusions.\nInversion needs weight to work against.\nNever minimize what you mean to transcend.\nShare this: admit one horror fully today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Lucid Wound",
+      "question": "Sisyphus's consciousness of his fate is simultaneously his tragedy and his victory — it makes the torment real and makes revolt possible.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Unconscious rolling would be mere mechanics; lucid rolling is tragedy owned — and ownership is victory. Consciousness wounds and crowns at once.",
+      "incorrectExplanation": "It is true. The rock crushes, but awareness converts crushing into confrontation: tragedy admitted becomes triumph chosen. One faculty, two edges — the wound that is also the crown.",
+      "lessonContent": "Awareness wounds and crowns together.\nOwned tragedy converts to chosen triumph.\nMechanics become meaning through lucidity.\nSingle faculties cut both ways.\nShare this: own one torment consciously.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Just Gods",
+      "question": "Oedipus concludes that the gods treated him justly, and Camus endorses this theodicy as the myth's true moral.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Oedipus concludes 'all is well' — fate become his own matter — not that gods were fair. Camus endorses lucid ownership, never divine justice.",
+      "incorrectExplanation": "Not quite — it is false. The essay's Oedipus finds everything his own, not everything just: 'all is well' means fate internalized, not gods vindicated. Theodicy is another consolation revolt refuses.",
+      "lessonContent": "Ownership differs from vindication entirely.\n'All is well' internalizes; it never absolves.\nTheodicy is consolation in disguise.\nRead conclusions for what they actually claim.\nShare this: own one fate without justifying it.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Unconsoled",
+      "question": "Camusian revolt permanently refuses consolation — no hope, no faith, no future settlement may soften the lucid confrontation.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Consolation dissolves tension, and tension is the required state. The unconsoled stance holds through every offered comfort.",
+      "incorrectExplanation": "It is true. Hopes, faiths, and settlements all exit through the same door: they end the confrontation revolt must maintain. Refusal is permanent because the condition is.",
+      "lessonContent": "Comforts that end tension are exits.\nPermanence matches the permanent condition.\nRefusal maintained is revolt defined.\nSoftening is surrender spelled kindly.\nShare this: refuse one softening today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Empty Detachment",
+      "question": "Meursault's emotional detachment proves that, for Camus, nothing matters at all — not sun, sea, friendship, or sensory joy.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Meursault loves swimming, sunlight, Marie — his honesty is about feeling truly, not feeling nothing. Detachment from lies, attachment to senses.",
+      "incorrectExplanation": "Not quite — it is false. The Stranger's crime is refusing comforting falsehoods, not lacking love: sun, sea, and Marie fill him genuinely. Honesty about feeling differs totally from absence of it.",
+      "lessonContent": "Honesty about feeling differs from feeling nothing.\nRefusing lies is not refusing life.\nSenses fill whom sermons leave empty.\nRead detachment for its actual object.\nShare this: love one sunlight honestly.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Limitless Emperor",
+      "question": "Caligula's murders and defiance show that absurd freedom recognizes no limits whatsoever — the logical endpoint Camus celebrates.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Caligula is the cautionary inversion: freedom pushed past revolt's limits destroys what revolt protects. Camus stages the endpoint to condemn it.",
+      "incorrectExplanation": "Not quite — it is false. The play exhibits absurd logic weaponized — and self-devouring. Endpoints that eat their own foundations warn; revolt's limits (no murder) are the lesson Caligula's corpse teaches.",
+      "lessonContent": "Endpoints that devour foundations warn, not beckon.\nWeaponized logic self-destructs on schedule.\nLimits protect revolt from its own emperors.\nStage extremes to condemn them.\nShare this: spot one freedom eating itself.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-115#24",
+      "forgeScore": 100
+    }
+  ]
+}

@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-146",
+  "generatedAt": "2026-09-17T13:27:44.331Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Supersonic Fallacy",
+      "question": "The sunk-cost fallacy is nicknamed the Concorde fallacy after the Anglo-French jetliner program continued despite mounting losses.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Concorde flew on after economics failed: prestige plus spent billions overruled arithmetic. Nicknames commemorate famous traps.",
+      "incorrectExplanation": "It is true. The jet lost money nearly every year yet flew for decades: abandoning billions felt worse than losing millions yearly. History's costliest loyalty program.",
+      "lessonContent": "Prestige plus spent billions overrule arithmetic.\nLoyalty programs cost history dearly.\nNicknames commemorate famous traps well.\nAbandoning feels worse than bleeding.\nShare this: name one flying Concorde.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Sacrifice Ledger",
+      "question": "During Vietnam, leaders invoked past American sacrifices as reasons to continue fighting rather than withdraw.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Fallen soldiers became arguments against exit: McNamara and successors priced credibility in sunk lives. Ledgers of the dead funded further dying.",
+      "incorrectExplanation": "It is true. 'Their sacrifice must not be in vain' converted losses into reasons for losses: escalation's moral arithmetic. Sacrifice-ledgers fund folly reliably.",
+      "lessonContent": "Fallen become arguments against exit.\nVain-avoidance funds further dying.\nMoral arithmetic escalates reliably.\nLedgers of dead demand living interest.\nShare this: audit one sacrifice ledger.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Dollar Spiral",
+      "question": "In Shubik's dollar auction — $1 auctioned to the highest bidder, runner-up also paying — final prices routinely exceed one dollar.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Top two bidders both pay, so quitting wastes bids already placed: spirals past face value are standard. Auction design manufactures escalation.",
+      "incorrectExplanation": "It is true. Runner-up-pays converts auctions into traps: each bid protects prior bids, climbing past the prize. Classrooms pay $5 for $1 routinely.",
+      "lessonContent": "Top-two-pays manufactures spirals reliably.\nProtecting bids climbs past prizes.\nDesign traps bidders structurally here.\nFace values fall to sunk logic.\nShare this: auction one dollar tonight.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Responsibility Trap",
+      "question": "Staw found that personal responsibility for an initial decision deepens commitment to failing courses — choosers escalate more than inheritors.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Self-justification fuels escalation: admitting error costs more than funding failure. Choosers defend; inheritors cut.",
+      "incorrectExplanation": "It is true. Responsibility binds: decision-makers double down where successors walk away. Ego invests alongside capital, then outspends it.",
+      "lessonContent": "Ego invests alongside capital always.\nChoosers defend; inheritors cut cleanly.\nAdmitting error costs more than funding.\nResponsibility binds decisions tightly.\nShare this: inherit one decision freshly.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Good Money",
+      "question": "'Throwing good money after bad' describes investing further specifically to justify or rescue past spending.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. The idiom names escalation precisely: fresh funds drafted to vindicate sunk ones. Rescue missions for money already gone.",
+      "incorrectExplanation": "It is true. Good money follows bad hoping vindication: each round defends the last. Idioms encode economics folk-wisely.",
+      "lessonContent": "Fresh funds vindicate sunk ones vainly.\nRescue missions chase gone money.\nIdioms encode economics folk-wisely.\nGood follows bad downhill reliably.\nShare this: halt one good-money march.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Justified Hole",
+      "question": "The need to justify past choices to oneself and others deepens commitment to failing courses of action.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Self-justification converts errors into identities: abandoning means confessing. Holes deepen to protect diggers' pride.",
+      "incorrectExplanation": "It is true. Dissonance funds failing projects: quitting indicts the quitter. Pride digs where arithmetic would fill.",
+      "lessonContent": "Pride digs where arithmetic fills.\nQuitting indicts quitters painfully.\nErrors become identities needing defense.\nJustification deepens holes steadily.\nShare this: confess one sunk error.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Imagined Funeral",
+      "question": "Klein's premortem — imagining a project has already failed, then explaining why — reduces escalation by licensing doubt in advance.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Prospective hindsight legitimizes dissent before commitment hardens: funerals imagined prevent real ones.",
+      "incorrectExplanation": "It is true. Premortems license what meetings punish: voicing failure modes early, when exits stay cheap. Doubt in advance beats regret after.",
+      "lessonContent": "Doubt in advance beats regret after.\nFunerals imagined prevent real ones.\nDissent licensed early stays cheap.\nHindsight prospected prevents escalation.\nShare this: hold one premortem today.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Exit Contract",
+      "question": "Preset kill criteria — exit rules written before investing — reliably curb escalation by deciding in calm weather.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Ulysses contracts bind future selves: calm-weather rules override storm-weather rationalizing. Precommitment beats willpower.",
+      "incorrectExplanation": "It is true. Kill criteria decide exits before attachment forms: storms later cannot rewrite calm contracts. Decide cold to quit hot correctly.",
+      "lessonContent": "Calm contracts override storm rationalizing.\nPrecommitment beats willpower reliably.\nDecide cold to quit hot correctly.\nExits preset survive attachment.\nShare this: write one kill criterion.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Blind Ledger",
+      "question": "Escalating decision-makers systematically ignore opportunity costs — what else the committed money and years could accomplish.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Escalation accounting omits roads not taken: visible losses debated, invisible alternatives ignored. Blind ledgers balance falsely.",
+      "incorrectExplanation": "It is true. Opportunity costs stay invisible while sunk costs glare: ledgers record spending, never forgone gains. Blindness to alternatives funds persistence.",
+      "lessonContent": "Invisible alternatives fund persistence.\nLedgers record spending, never forgone gains.\nOpportunity blindness balances falsely.\nRoads not taken need pricing too.\nShare this: price one road not taken.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Overrun Law",
+      "question": "Megaprojects systematically overrun budgets while underdelivering benefits — Flyvbjerg's iron law of doomed big builds.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Dams, rails, stadiums: over budget, over time, under benefits — systematically. Iron laws describe, then warn.",
+      "incorrectExplanation": "It is true. Flyvbjerg's databases prove the pattern across continents and decades: strategic misrepresentation plus optimism lock in losers. Bigness guarantees overruns statistically.",
+      "lessonContent": "Bigness guarantees overruns statistically.\nOptimism locks in losers early.\nDatabases prove patterns anecdotes hide.\nIron laws describe, then warn.\nShare this: discount one megaproject.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Cancelled Collider",
+      "question": "Congress cancelled the Superconducting Super Collider in 1993 despite roughly $2 billion already spent on it.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. The SSC died with billions buried in Texas: a rare triumph of forward-looking over sunk reasoning. Holes stopped being dug.",
+      "incorrectExplanation": "It is true. Two billion sunk did not save the collider: Congress quit correctly, proving escape possible. Precedents of quitting deserve celebration.",
+      "lessonContent": "Quitting correctly deserves celebration.\nHoles stop being dug sometimes.\nPrecedents prove escape possible.\nForward-looking beats sunk reasoning.\nShare this: praise one great cancellation.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Bygone Rule",
+      "question": "Rational choice treats sunk costs as bygones — relevant to neither future costs nor future benefits.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Bygones are bygones: only forward differences decide rationally. Past payments exit all equations.",
+      "incorrectExplanation": "It is true. Sunk costs appear on no future ledger: rational agents compare futures, never histories. Bygones rule all sound decisions.",
+      "lessonContent": "Pasts exit all future equations.\nFutures compared, histories ignored.\nBygones rule sound decisions fully.\nForward differences decide alone.\nShare this: bygone one sunk cost.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Tactical Retreat",
+      "question": "Grit means passion plus perseverance for ultimate goals — which permits abandoning tactics that fail, since goals outrank methods.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Duckworth's grit aims at summits, not paths: quitting dead trails serves the mountain. Stubbornness about means betrays ends.",
+      "incorrectExplanation": "It is true. Grit perseveres in direction, flexes in method: tactical retreats advance strategic summits. Never-quit-anything misreads perseverance completely.",
+      "lessonContent": "Direction perseveres; methods flex freely.\nSummits outrank trails always.\nTactical retreats advance strategy.\nStubborn means betray flexible ends.\nShare this: retreat one tactic wisely.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Pot Prison",
+      "question": "Pot-committed poker players should always call any further bet, since folding wastes chips already committed.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Committed chips are gone either way: calling needs pot odds, never history. Prisons are mental; exits stay open.",
+      "incorrectExplanation": "Not quite — it is false. 'Pot-committed' confuses sunk chips with live odds: each call needs fresh justification. Folding freedoms survive all prior bets.",
+      "lessonContent": "Fresh calls need fresh justification.\nSunk chips never argue for calls.\nOdds decide; histories watch silently.\nExits stay open despite priors.\nShare this: fold one committed hand.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Falling Knife",
+      "question": "Averaging down on losing stocks — buying more as prices fall — always recovers the losses eventually.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Falling knives cut catchers: losers often keep losing, and doubling down doubles exposure. Recovery is hoped, never owed.",
+      "incorrectExplanation": "Not quite — it is false. 'Always' breaks on bankruptcies: averaging down concentrates risk in proven losers. Knives fall faster than catchers calculate.",
+      "lessonContent": "Losers often keep losing steadily.\nDoubling down doubles exposure too.\nRecovery hoped, never owed, arrives.\nKnives cut optimistic catchers.\nShare this: catch no falling knives.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Tunnel Triumph",
+      "question": "The Channel Tunnel beat its construction budgets and traffic forecasts comfortably, delighting investors.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Costs roughly doubled while traffic disappointed for years: triumph arrived decades late, if at all. Boring succeeded; budgeting failed.",
+      "incorrectExplanation": "Not quite — it is false. Overruns met underuse: investors waited a generation for returns. Tunnels bore through rock and forecasts alike.",
+      "lessonContent": "Boring succeeds; budgeting fails often.\nOverruns meet underuse regularly.\nTriumphs arrive decades late sometimes.\nForecasts tunnel vision reliably.\nShare this: discount one tunnel vision.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Cheap Opera",
+      "question": "Sydney's Opera House finished quickly and under its original budget.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Fourteen times over budget across fourteen years, architect exiled: icons cost what icons cost. Sails bill by decades.",
+      "incorrectExplanation": "Not quite — it is false. Original estimates covered a fraction: Utzon left, costs multiplied, years accumulated. Cheap-and-fast belongs to other buildings.",
+      "lessonContent": "Icons cost what icons cost.\nEstimates cover fractions routinely.\nSails bill by decades, not years.\nCheap-and-fast builds elsewhere.\nShare this: budget one icon honestly.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Profitable Games",
+      "question": "Montreal profited quickly and handsomely from hosting the 1976 Olympics.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. The Big Owe: debt until 2006, thirty years of taxpayer installments. Profits arrived never; bills stayed.",
+      "incorrectExplanation": "Not quite — it is false. Montreal's Olympics cost citizens three decades: 'profitable Games' ranks among history's optimistic phrases. Rings rust; debts compound.",
+      "lessonContent": "Rings rust while debts compound.\nOptimistic phrases cost decades here.\nProfits promised, installments delivered.\nGames end; bills begin marathons.\nShare this: audit one Olympic bid.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Preserved Prize",
+      "question": "All-pay contests — where every bidder pays win or lose — preserve the prize's full value for society overall.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Aggregate bids dissipate the prize: rent-seeking burns value competing for transfers. Contests consume what prizes promise.",
+      "incorrectExplanation": "Not quite — it is false. Tullock dissipation: total spending approaches prize value, vaporizing surplus. Everyone pays, one wins, society loses the difference.",
+      "lessonContent": "Spending approaches prizes wastefully.\nSurplus vaporizes in contests fully.\nEveryone pays; one wins; all lose.\nDissipation is rent-seeking's signature.\nShare this: skip one all-pay contest.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Unique Lab",
+      "question": "Rival laboratories essentially never duplicate each other's research spending in patent races.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Patent races duplicate massively: parallel labs burn parallel budgets chasing single prizes. Redundancy is the system's signature waste.",
+      "incorrectExplanation": "Not quite — it is false. Winners take patents; losers' spending vanishes: races guarantee duplication. Parallel budgets chase singular prizes routinely.",
+      "lessonContent": "Parallel budgets chase singular prizes.\nRedundancy signatures mark patent races.\nLosers' spending vanishes entirely.\nDuplication is systemic, not accidental.\nShare this: share one research lead.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Patient Loss",
+      "question": "Cutting losses early is always the wrong move in investing — patience invariably rewards holders.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. 'Always' breaks both ways: patience rewards some holdings, rots others. Rules need conditions, never absolutes.",
+      "incorrectExplanation": "Not quite — it is false. Invariably is invariably wrong: early exits save some portfolios, doom others. Absolutes mislead in both directions equally.",
+      "lessonContent": "Absolutes mislead both directions equally.\nInvariably is invariably wrong here.\nConditions govern exits, never slogans.\nPatience rewards some, rots others.\nShare this: condition one exit rule.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Golden Years",
+      "question": "Years already invested can never keep anyone in a harmful relationship — people always leave promptly when harmed.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Invested years anchor harmful bonds: 'after all this time' outvotes present pain. Sunk years chain as surely as sunk dollars.",
+      "incorrectExplanation": "Not quite — it is false. Prompt leaving is the exception: shared histories, homes, and decades weigh exits down. Time invested binds like money spent.",
+      "lessonContent": "Shared histories weigh exits down.\nTime invested binds like money.\nPrompt leaving is the rare exception.\nYears anchor harmful bonds sadly.\nShare this: free one anchored heart.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Honored Sunk",
+      "question": "Fully rational decisions should count sunk costs alongside future costs when weighing options.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Counting bygones corrupts every comparison: rational ledgers exclude the unrecoverable. Honor belongs to people, never to sunk dollars.",
+      "incorrectExplanation": "Not quite — it is false. Sunk-inclusive math double-charges the past: options differ only ahead. Textbooks unanimous: bygones exit equations.",
+      "lessonContent": "Bygones exit all equations fully.\nDouble-charging pasts corrupts choices.\nHonor people, never sunk dollars.\nUnanimous textbooks agree here.\nShare this: uncount one sunk dollar.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Flying Profit",
+      "question": "Concorde earned steady, handsome profits for its operators across its service life.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Supersonic prestige bled money nearly throughout: speed sold tickets, economics never closed. Profits promised, losses delivered.",
+      "incorrectExplanation": "Not quite — it is false. Concorde's books ran red across decades: fast, beloved, unprofitable. Prestige flies; arithmetic grounds.",
+      "lessonContent": "Prestige flies; arithmetic grounds always.\nSpeed sells tickets, never profits.\nBeloved losers fill aviation history.\nFast, famous, unprofitable: the trio.\nShare this: ground one prestige project.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Money Trap",
+      "question": "Escalation dynamics affect money only — time, lives, and reputations are immune to sunk-cost logic.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Years, soldiers, and honor escalate exactly like dollars: sunk logic colonizes every currency. Immunity exists nowhere.",
+      "incorrectExplanation": "Not quite — it is false. Wars, careers, and marriages escalate identically: unrecoverable investments bind all domains. Dollars merely illustrate universal dynamics.",
+      "lessonContent": "Unrecoverable binds all domains equally.\nDollars illustrate universal dynamics.\nImmunity exists nowhere to sunk logic.\nCurrencies differ; traps repeat.\nShare this: spot one non-money trap.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-146#24",
+      "forgeScore": 100
+    }
+  ]
+}

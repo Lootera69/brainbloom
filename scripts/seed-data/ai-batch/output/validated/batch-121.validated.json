@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-121",
+  "generatedAt": "2026-09-17T13:27:43.692Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Demon's Question",
+      "question": "A demon whispers that this exact life — every pain, every joy — will recur infinitely, identically. Offered as a test of one's life, what does your reaction reveal?",
+      "choices": [
+        "Whether demons exist in metaphysics",
+        "The demon's own moral character",
+        "How affirmable your life feels to you",
+        "Nothing — passing thoughts prove nothing"
+      ],
+      "correctAnswer": "How affirmable your life feels to you",
+      "xpReward": 50,
+      "correctExplanation": "How affirmable your life feels — crushing weight or divine gladness measures whether you'd re-sign existence. Recurrence is a scale, not a cosmology.",
+      "incorrectExplanation": "Not quite — the answer is how affirmable your life feels to you. The demon asks no belief, only response: gnashing versus blessing diagnoses the lived life. Cosmology undecided, ethics delivered — the thought experiment works regardless of physics.",
+      "lessonContent": "Reactions diagnose lives better than arguments do.\nEternal return weighs moments, not worlds.\nBlessing-versus-gnashing is the honest scale.\nThought experiments bypass belief to reach valuation.\nShare this: ask one moment if it deserves eternity.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Loving Fate",
+      "question": "Amor fati — love of fate — demands wanting nothing in life different: not past wounds, not present limits. What stance does it take toward suffering?",
+      "choices": [
+        "Loving even suffering as necessary to the whole",
+        "Erasing all painful memories deliberately",
+        "Avoiding future pain at any price",
+        "Blaming fate for every wound received"
+      ],
+      "correctAnswer": "Loving even suffering as necessary to the whole",
+      "xpReward": 50,
+      "correctExplanation": "Loving even suffering as necessary — amor fati wills the whole composition, dissonance included. No excerpting, no revision: the piece entire.",
+      "incorrectExplanation": "Actually, the answer is loving even suffering as necessary to the whole. Erasure edits, avoidance shrinks, blame accuses — love alone affirms. The wound belongs to the music; cutting bars ruins symphonies.",
+      "lessonContent": "Wholes include dissonances essentially.\nEditing fate falsifies the composition.\nLove affirms where blame accuses.\nNo-excerpt policies make heavy wholes bearable.\nShare this: love one unchangeable bar today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#1",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Dead God",
+      "question": "'God is dead' announces an event, not a murder: the highest values have lost binding force in European culture. What follows from this diagnosis?",
+      "choices": [
+        "Instant universal conversion to atheism",
+        "Proof that no gods ever existed",
+        "A scientific ban on all rituals",
+        "A crisis of meaning requiring new value-creation"
+      ],
+      "correctAnswer": "A crisis of meaning requiring new value-creation",
+      "xpReward": 50,
+      "correctExplanation": "A meaning crisis demanding creation — dead foundations leave nihilism unless new values are built. Diagnosis convenes legislators, not mourners.",
+      "incorrectExplanation": "Not quite — the answer is a crisis of meaning requiring new value-creation. Conversions, proofs, and bans miss the point: the ground moved, and architects are summoned. Nihilism is the unmanaged interim, not the destination.",
+      "lessonContent": "Dead foundations summon architects, not mourners.\nDiagnosis differs from celebration entirely.\nUnmanaged interims curdle into nihilism.\nValue-creation is the prescribed labor.\nShare this: build one small value this week.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Two Moralities",
+      "question": "Master morality begins in noble self-affirmation (good versus base); slave morality begins in the powerless condemning strength (good versus evil). What separates their starting points?",
+      "choices": [
+        "Different historical centuries",
+        "Noble self-affirmation versus ressentiment of the powerless",
+        "Eastern versus Western geography",
+        "Religious versus secular authorship"
+      ],
+      "correctAnswer": "Noble self-affirmation versus ressentiment of the powerless",
+      "xpReward": 50,
+      "correctExplanation": "Self-affirmation versus ressentiment — masters value from fullness, slaves from revenge. Origins shape content: celebration begets virtues, grievance begets prohibitions.",
+      "incorrectExplanation": "Actually, the answer is noble self-affirmation versus ressentiment of the powerless. Centuries, maps, and pulpits miss it: one morality says yes to itself first, the other says no to another first. Starting gestures echo through whole systems.",
+      "lessonContent": "Starting gestures echo through whole systems.\nYes-to-self differs from no-to-others foundationally.\nFullness celebrates; grievance prohibits.\nTrace any morality to its first movement.\nShare this: spot one no-first valuation today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#3",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Resentful Creation",
+      "question": "Slave morality is born, Nietzsche argues, from ressentiment — repressed revenge that cannot act and so inverts values instead. What does this feeling manufacture?",
+      "choices": [
+        "A morality condemning the strong as evil",
+        "Forgiveness toward all oppressors",
+        "Physical strength through suffering",
+        "Wealth redistributed fairly"
+      ],
+      "correctAnswer": "A morality condemning the strong as evil",
+      "xpReward": 50,
+      "correctExplanation": "A morality condemning strength as evil — impotence baptized as virtue, power denounced as sin. Revenge delayed becomes revenge moralized.",
+      "incorrectExplanation": "Not quite — the answer is a morality condemning the strong as evil. Unexercised revenge doesn't vanish; it legislates. Meekness praised is often muscle envied — genealogy unmasks the swap.",
+      "lessonContent": "Delayed revenge legislates instead of striking.\nPraised meekness may be envied muscle.\nImpotence baptized passes for virtue.\nUnmask swaps before honoring verdicts.\nShare this: detect one revenge-moralized claim.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#4",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Growing Will",
+      "question": "Will to power names Nietzsche's basic drive — not mere domination but growth, overcoming, discharge of strength. What does this will fundamentally seek?",
+      "choices": [
+        "Obedience from all weaker parties",
+        "Accumulation of luxury goods",
+        "Political office and titles",
+        "Expansion and overcoming of resistance"
+      ],
+      "correctAnswer": "Expansion and overcoming of resistance",
+      "xpReward": 50,
+      "correctExplanation": "Expansion and overcoming — life asserting more life against resistance. Domination is one dialect; creation, mastery, and play are others.",
+      "incorrectExplanation": "Actually, the answer is expansion and overcoming of resistance. Offices, luxuries, and obedience are narrow currencies of a universal spending: strength discharging against obstacles. Read power as verb (overcoming), never just noun (position).",
+      "lessonContent": "Power verbs (overcoming) beat power nouns (office).\nResistance is the will's necessary gymnasium.\nGrowth generalizes domination's narrow case.\nStrength spends itself against obstacles.\nShare this: overcome one resistance deliberately.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#5",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Overcoming Figure",
+      "question": "The Übermensch overcomes man as man overcame the ape — legislating values after the old tablets break. What kind of figure is this?",
+      "choices": [
+        "A coming biological super-race",
+        "A resurrected ancient hero",
+        "A goal and self-overcoming, not a biological rank",
+        "A political office to be elected"
+      ],
+      "correctAnswer": "A goal and self-overcoming, not a biological rank",
+      "xpReward": 50,
+      "correctExplanation": "A goal, not a rank — direction ('overcome!') rather than species. Misreadings breed supermen fantasies; the text summons self-surpassing.",
+      "incorrectExplanation": "Not quite — the answer is a goal and self-overcoming, not a biological rank. No breeding program, no ballot, no resurrection: a rope stretched between beast and beyond, crossed by creating values. Read rope, not race.",
+      "lessonContent": "Ropes indicate directions, never pedigrees.\nOvercome is imperative, not description.\nValue-creation is the crossing action.\nMisread goals as ranks at civilization's peril.\nShare this: cross one rope-segment today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Blinking Herd",
+      "question": "The last men have abolished poverty, war, and gods — and with them all aspiration. 'We have invented happiness,' they blink. What does this portrait warn against?",
+      "choices": [
+        "Technology and medicine",
+        "Contentment without aspiration",
+        "Democracy and voting",
+        "Literacy and schools"
+      ],
+      "correctAnswer": "Contentment without aspiration",
+      "xpReward": 50,
+      "correctExplanation": "Contentment without aspiration — comforts kept, horizons deleted. The last man is modernity's selfie: safe, smug, finished.",
+      "incorrectExplanation": "Actually, the answer is contentment without aspiration. Tools, votes, and books are innocent; the blink is the indictment — no questioning, no longing, no beyond. Happiness inventoried replaces happiness pursued.",
+      "lessonContent": "Comforts kept can delete horizons.\nBlinking replaces questioning at civilization's end.\nInventoried happiness differs from pursued joy.\nAspiration is the attic modernity sealed.\nShare this: unblink at one horizon today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#7",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Twin Gods",
+      "question": "Apollo supplies form, dream, and individuation; Dionysus supplies ecstasy, dissolution, and music. Greek tragedy fuses both. What does each god contribute?",
+      "choices": [
+        "Form and boundary versus rapture and dissolution",
+        "Good versus evil in balance",
+        "Reason versus emotion in combat",
+        "Past versus future in sequence"
+      ],
+      "correctAnswer": "Form and boundary versus rapture and dissolution",
+      "xpReward": 50,
+      "correctExplanation": "Form versus rapture — Apollo individuates, Dionysus dissolves; tragedy needs sculpted frenzy. One god alone makes decoration or orgy, never art.",
+      "incorrectExplanation": "Not quite — the answer is form and boundary versus rapture and dissolution. Moral, rational, and temporal framings moralize what is aesthetic: dreams need waking, ecstasy needs shape. Great art marries the twins.",
+      "lessonContent": "Great art marries form to frenzy.\nIndividuation needs periodic dissolution.\nSingle gods make decoration or orgy.\nAesthetic twins precede moral categories.\nShare this: wed one form to one frenzy.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#8",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Many Eyes",
+      "question": "'There are no facts, only interpretations' — perspectivism denies any view from nowhere. Done honestly, what does this yield?",
+      "choices": [
+        "Permission to believe anything",
+        "The end of all argument",
+        "Proof that science is fraud",
+        "Objectivity as multiplicity of perspectives"
+      ],
+      "correctAnswer": "Objectivity as multiplicity of perspectives",
+      "xpReward": 50,
+      "correctExplanation": "Objectivity as multiplicity — more eyes, different eyes, fuller seeing. Perspectivism disciplines knowledge; it never licenses fantasy.",
+      "incorrectExplanation": "Actually, the answer is objectivity as multiplicity of perspectives. Denying the God's-eye view multiplies required viewpoints instead of abolishing standards. Relativism excuses; perspectivism recruits.",
+      "lessonContent": "More eyes see more completely, always.\nGod's-eye denial recruits viewpoints, not whims.\nRelativism excuses; perspectivism disciplines.\nFullness grows with perspectives added.\nShare this: add one eye to one issue.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Worn Metaphors",
+      "question": "Truths are 'illusions of which we have forgotten that they are illusions' — metaphors worn smooth by long use. What does this claim about concepts?",
+      "choices": [
+        "Concepts are useless fictions",
+        "Science should abandon all terms",
+        "Concepts are metaphors hardened by use",
+        "Only poets may use language"
+      ],
+      "correctAnswer": "Concepts are metaphors hardened by use",
+      "xpReward": 50,
+      "correctExplanation": "Metaphors hardened by use — coins worn smooth: the embossing (live metaphor) effaced by circulation. Usefulness survives; literalness was never there.",
+      "incorrectExplanation": "Not quite — the answer is concepts are metaphors hardened by use. Forgetting the figurative origin lets abstractions pose as discoveries. Coins still spend; just remember they were minted.",
+      "lessonContent": "Abstractions pose as discoveries too easily.\nCirculation effaces live metaphor daily.\nUsefulness survives literalness never-had.\nRemember minting while spending coins.\nShare this: unforget one metaphor today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#10",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Moral Excavation",
+      "question": "Genealogy traces moral concepts to contingent histories — debt, punishment, priestly power — rather than timeless reason. What method is this?",
+      "choices": [
+        "Linguistic analysis of word roots",
+        "Explaining values by their contingent origins",
+        "Polling public opinion scientifically",
+        "Deriving ought from is logically"
+      ],
+      "correctAnswer": "Explaining values by their contingent origins",
+      "xpReward": 50,
+      "correctExplanation": "Explaining values by contingent origins — showing how 'good' and 'guilty' were made, not found. Histories humble eternal pretensions.",
+      "incorrectExplanation": "Actually, the answer is explaining values by their contingent origins. Roots help, polls describe, logic derives — genealogy narrates the accidents that pose as necessities. Made-things can be remade.",
+      "lessonContent": "Accidents posing as necessities invite narration.\nMade values can be remade deliberately.\nHistories humble eternal pretensions.\nAsk how before asking whether.\nShare this: historicize one sacred value.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#11",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Inward Cruelty",
+      "question": "Bad conscience forms when cruelty, blocked from outward discharge by society, turns back on its bearer. Genealogically, what is guilt?",
+      "choices": [
+        "Internalized cruelty turned against the self",
+        "A divine voice warning sinners",
+        "An inborn moral compass",
+        "Indigestion of rich food"
+      ],
+      "correctAnswer": "Internalized cruelty turned against the self",
+      "xpReward": 50,
+      "correctExplanation": "Internalized cruelty — caged instincts lacerate their keeper. Guilt is savagery with no exit but inward.",
+      "incorrectExplanation": "Not quite — the answer is internalized cruelty turned against the self. Voices, compasses, and digestions mystify a hydraulic fact: blocked discharge floods inward. Civilization's price is paid in self-laceration.",
+      "lessonContent": "Blocked discharge floods inward always.\nCages convert savagery to conscience.\nHydraulics precede moralizing explanations.\nSavagery needs exits, not sermons.\nShare this: build one outward channel today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#12",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Gazing Lesson",
+      "question": "'Whoever fights monsters should see to it that he does not become one. When you gaze into the abyss, the abyss gazes also into you.' What is warned against?",
+      "choices": [
+        "All resistance to evil",
+        "Studying dangerous subjects",
+        "Struggle against evil adopting evil's shape",
+        "Looking at deep holes"
+      ],
+      "correctAnswer": "Struggle against evil adopting evil's shape",
+      "xpReward": 50,
+      "correctExplanation": "Struggle adopting evil's shape — methods infect aims; hunters learn the monster's tread. Vigilance must watch the watcher too.",
+      "incorrectExplanation": "Actually, the answer is struggle against evil adopting evil's shape. Resistance stays mandatory; contamination is the warned cost. Abysses teach their students regardless of curriculum — study monsters without enrolling.",
+      "lessonContent": "Methods infect aims silently always.\nHunters learn treads they track.\nWatchers need watching most of all.\nResist without enrolling in evil's school.\nShare this: check one method for contagion.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#13",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Three Changes",
+      "question": "Spirit becomes camel (kneeling for burdens), then lion (roaring No to duty), then child (innocent new beginning). What journey do the stages map?",
+      "choices": [
+        "Aging from youth to senility",
+        "Seasons of the calendar year",
+        "Careers from apprentice to master",
+        "Burden, rebellion, and new beginning"
+      ],
+      "correctAnswer": "Burden, rebellion, and new beginning",
+      "xpReward": 50,
+      "correctExplanation": "Burden, rebellion, beginning — reverence learns weight, strength learns refusal, innocence learns creation. The child plays where the lion only negated.",
+      "incorrectExplanation": "Not quite — the answer is burden, rebellion, and new beginning. Calendars, careers, and aging miss the logic: Yes-bearing, then No-roaring, then play-creating. Negation clears ground that only innocence builds on.",
+      "lessonContent": "Negation clears what innocence builds on.\nYes-bearing precedes No-roaring developmentally.\nPlay crowns struggles that refusal began.\nStages sequence spiritually, never chronologically.\nShare this: play where you once only refused.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#14",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Self Command",
+      "question": "'Become who you are' orders self-creation through self-discovery — neither copying the herd nor obeying a fixed essence. What does it reject?",
+      "choices": [
+        "All effort and discipline",
+        "Both herd conformity and fixed essence",
+        "Education and reading",
+        "Friendship and love"
+      ],
+      "correctAnswer": "Both herd conformity and fixed essence",
+      "xpReward": 50,
+      "correctExplanation": "Both conformity and essence — becoming navigates between imitation and fatalism. The self is task, neither template nor tombstone.",
+      "incorrectExplanation": "Actually, the answer is both herd conformity and fixed essence. Copies abdicate; essences excuse — becoming demands originals without blueprints. Task-selves beat given-selves and borrowed-selves alike.",
+      "lessonContent": "Selves are tasks, never templates or tombstones.\nCopies abdicate; essences excuse equally.\nOriginals need no blueprints to begin.\nNavigate between imitation and fatalism.\nShare this: author one unborrowed hour.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#15",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Eternity Test",
+      "question": "Applied as ethics, recurrence asks of every act: would you will this moment infinitely? What does the test measure?",
+      "choices": [
+        "Whether the moment deserves eternity",
+        "The act's economic profitability",
+        "Public approval of the deed",
+        "Legal permissibility strictly"
+      ],
+      "correctAnswer": "Whether the moment deserves eternity",
+      "xpReward": 50,
+      "correctExplanation": "Whether the moment deserves eternity — infinite weight crushes trivia and crowns devotion. Decide as if forever watches.",
+      "incorrectExplanation": "Not quite — the answer is whether the moment deserves eternity. Profits, applause, and statutes weigh nothing on infinite scales; only affirmability registers. Eternity-tests bankrupt the trivial instantly.",
+      "lessonContent": "Infinite weight crowns devotion, crushes trivia.\nEternity-tests bankrupt small motives fast.\nAffirmability is the only valid currency.\nDecide as if forever watches you.\nShare this: eternity-test one habit today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#16",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Ranked World",
+      "question": "With moral facts denied, Nietzsche keeps valuations: life must rank, prefer, overcome. What remains standing after facts fall?",
+      "choices": [
+        "Total moral indifference",
+        "Scientific proof of duties",
+        "Interpretations and rank-orderings of value",
+        "Divine commandments restored"
+      ],
+      "correctAnswer": "Interpretations and rank-orderings of value",
+      "xpReward": 50,
+      "correctExplanation": "Interpretations and rankings — anti-realism about facts, passion for rank. Life ranks or rots; neutrality is slow death.",
+      "incorrectExplanation": "Actually, the answer is interpretations and rank-orderings of value. Indifference, proofs, and commandments all miss the survivor: valuing without foundations. Standpoints persist where facts evaporated.",
+      "lessonContent": "Valuing survives foundations' collapse.\nRank or rot: life's standing order.\nNeutrality is slow death by abstention.\nStandpoints persist past evaporated facts.\nShare this: rank one thing unapologetically.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Great Reversal",
+      "question": "Revaluation of values means overturning slave morality's verdicts — calling good what was condemned as evil, affirming becoming over being. What gets overturned?",
+      "choices": [
+        "The laws of physics",
+        "Life-denying moral verdicts",
+        "Democratic elections",
+        "Grammatical conventions"
+      ],
+      "correctAnswer": "Life-denying moral verdicts",
+      "xpReward": 50,
+      "correctExplanation": "Life-denying verdicts — strength, health, and becoming revalued upward; pity, humility, and stasis demoted. Tables turn, not planets.",
+      "incorrectExplanation": "Not quite — the answer is life-denying moral verdicts. Physics, ballots, and grammar stand untouched; only valuations rotate. Revaluation legislates morals, never nature.",
+      "lessonContent": "Tables turn while planets keep spinning.\nValuations rotate; nature stands pat.\nStrength revalued upward heals cultures.\nLegislate morals, never physics.\nShare this: reverse one life-denying verdict.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#18",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Whole Yes",
+      "question": "Dionysian wisdom affirms existence entire — terror with rapture, destruction with creation. What scope does this yes cover?",
+      "choices": [
+        "Pleasant experiences only",
+        "Future joys exclusively",
+        "Other people's happiness",
+        "Existence entire, suffering included"
+      ],
+      "correctAnswer": "Existence entire, suffering included",
+      "xpReward": 50,
+      "correctExplanation": "Existence entire — partial yeses are disguised nos. Terror belongs to the festival; excluding it cancels attendance.",
+      "incorrectExplanation": "Actually, the answer is existence entire, suffering included. Selective affirmation smuggles rejection: yes-to-joy plus no-to-pain equals decorated nihilism. Festivals include storms or they are picnics.",
+      "lessonContent": "Partial yeses are disguised refusals.\nStorms belong to festivals essentially.\nTerror-included distinguishes affirmation from picnic.\nWholes or nothing: the Dionysian tariff.\nShare this: yes one terror today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#19",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Neighbor Law",
+      "question": "Herd instinct moralizes neighbor-love while punishing anyone who stands out — conscience as social reflex. What does it enforce?",
+      "choices": [
+        "Conformity as conscience",
+        "Genuine altruism always",
+        "Rebellion and genius",
+        "Solitude and hermitage"
+      ],
+      "correctAnswer": "Conformity as conscience",
+      "xpReward": 50,
+      "correctExplanation": "Conformity as conscience — the 'thou shalt not stand out' preaching as virtue. Neighbors applaud mirrors, never windows.",
+      "incorrectExplanation": "Not quite — the answer is conformity as conscience. Altruism, rebellion, and solitude all miss the mechanism: social reflex baptized as ethics. Standing out feels like sin because herds school guilt.",
+      "lessonContent": "Social reflexes baptize themselves as ethics.\nMirrors applauded; windows punished consistently.\nStanding out feels sinful by schooling.\nConscience needs auditing for herd content.\nShare this: stand out microscopically today.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#20",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Useful Forgetting",
+      "question": "Active forgetfulness — the power to close the doors of consciousness — is necessary for action, cheer, and health. Why must minds forget?",
+      "choices": [
+        "Memories are all false anyway",
+        "The past never happened at all",
+        "Brains lack storage capacity",
+        "Rumination would paralyze all acting"
+      ],
+      "correctAnswer": "Rumination would paralyze all acting",
+      "xpReward": 50,
+      "correctExplanation": "Rumination would paralyze acting — undigested pasts jam every present. Forgetting is digestion: closed doors let rooms be lived in.",
+      "incorrectExplanation": "Actually, the answer is rumination would paralyze all acting. False-memory, never-happened, and storage theories misdiagnose: the issue is function, not capacity. Doors must close for rooms to be inhabitable.",
+      "lessonContent": "Digestion needs closed doors behind it.\nUnforgotten pasts jam all presents.\nForgetting is active faculty, not failure.\nInhabitable rooms need shut doors.\nShare this: close one door deliberately.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Living Dangerously",
+      "question": "'Build your cities on the slopes of Vesuvius' — live dangerously, risking comfort for intensity. What does chosen danger supply?",
+      "choices": [
+        "Guaranteed success and riches",
+        "Stakes that make life vivid",
+        "Approval from brave peers",
+        "Immunity from all failure"
+      ],
+      "correctAnswer": "Stakes that make life vivid",
+      "xpReward": 50,
+      "correctExplanation": "Stakes that make life vivid — danger concentrates existence the way lenses concentrate light. Safety diffuses; risk focuses.",
+      "incorrectExplanation": "Not quite — the answer is stakes that make life vivid. Riches, applause, and immunity miss the yield entirely: intensity itself is the dividend. Vesuvius slopes grow the most awake citizens.",
+      "lessonContent": "Intensity is danger's true dividend.\nLenses concentrate; safety diffuses.\nStakes focus existence sharply.\nAwake beats secure on every ledger.\nShare this: risk one comfort for vividness.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Stronger Paradox",
+      "question": "'What does not kill me makes me stronger' circulates as gym wisdom. Faithful to Nietzsche, what is its actual scope?",
+      "choices": [
+        "All suffering strengthens everyone",
+        "Gym workouts exclusively",
+        "Some sufferings strengthen; others destroy",
+        "Positive thinking always works"
+      ],
+      "correctAnswer": "Some sufferings strengthen; others destroy",
+      "xpReward": 50,
+      "correctExplanation": "Some strengthen, others destroy — dosage, constitution, and meaning decide. Slogans universalize what texts particularize.",
+      "incorrectExplanation": "Actually, the answer is some sufferings strengthen while others destroy. Gym wisdom flattens a conditional claim into a poster: many break exactly where posters promise growth. Read scope before repeating maxims.",
+      "lessonContent": "Slogans flatten conditional claims daily.\nDosage, constitution, meaning decide outcomes.\nPosters promise what texts particularize.\nRead scope before repeating maxims.\nShare this: scope one slogan honestly.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#23",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Dark Consolation",
+      "question": "Nietzsche wrote that the thought of suicide gets one through many a bad night. What function does he grant this thought?",
+      "choices": [
+        "An exit that makes endurance voluntary",
+        "A duty everyone must perform",
+        "Proof that life is worthless",
+        "A sin to confess immediately"
+      ],
+      "correctAnswer": "An exit that makes endurance voluntary",
+      "xpReward": 50,
+      "correctExplanation": "An exit making endurance voluntary — the door's existence converts staying into choosing. Consolation, not commandment.",
+      "incorrectExplanation": "Not quite — the answer is an exit that makes endurance voluntary. Duties, proofs, and sins misread entirely: the open door transforms suffered nights into chosen ones. Freedom's margin consoles without commanding.",
+      "lessonContent": "Open doors convert suffering into choosing.\nVoluntary endurance differs from trapped pain.\nMargins console without commanding exits.\nFreedom's edge steadies midnight hours.\nShare this: note one door that steadies you.",
+      "lessonGroup": "Think Deeper",
+      "forgeId": "batch-121#24",
+      "forgeScore": 100
+    }
+  ]
+}

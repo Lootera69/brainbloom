@@ -1,0 +1,507 @@
+{
+  "version": 1,
+  "batchId": "batch-006",
+  "generatedAt": "2026-09-17T13:27:41.400Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Coin in the Air",
+      "question": "Before you look, a quantum particle can genuinely be in two states at once — not merely unknown to us, but undetermined by reality itself.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Quantum Café",
+      "correctExplanation": "Right — superposition is ontic, not epistemic: experiments rule out the 'it was secretly one all along' picture.",
+      "incorrectExplanation": "It is True. Bell-test experiments have closed the loopholes: the particle genuinely occupies a blend of states until measured, rather than hiding a secret answer. A spinning coin is only a metaphor — the coin knows; the particle does not.",
+      "lessonContent": "Superposition means a system occupies a blend of states, not one hidden state we can't see.\nBell tests since the 1970s (Nobel-honoured in 2022) rule out the 'secret answer' explanation.\nThe difference matters: unknown versus undetermined is the whole quantum revolution.\nMetaphors like spinning coins help beginners but quietly break at this exact point.\nShare this: ask someone if an unobserved particle 'has' a position — then enjoy the conversation.",
+      "forgeId": "batch-006#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Cat Bluff",
+      "question": "Schrödinger invented the cat story because he believed cats can literally be both alive and dead.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Quantum Café",
+      "correctExplanation": "Correct — the cat was a reductio: Schrödinger built an absurdity to expose a gap in the measurement story.",
+      "incorrectExplanation": "It is False. Schrödinger designed the cat as a teasing attack on the interpretation, not an endorsement — he wanted to show that extending superposition to everyday objects produces nonsense. History kept the cat and forgot the punchline.",
+      "lessonContent": "Schrödinger's cat was satire: an absurdity designed to expose the measurement problem, not a claim about pets.\nReductio ad absurdum — extending a rule until it breaks — is a scientist's protest move.\nThe thought experiment still bites because the measurement problem is still open.\nFamous thought experiments often outlive their original purpose.\nShare this: retell the cat story tonight and reveal it was a joke with a serious point.",
+      "forgeId": "batch-006#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Secret Instructions",
+      "question": "A quantum computer works by trying every possible answer in parallel universes and reporting the best one.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Quantum Café",
+      "correctExplanation": "Right — parallel universes is one contested interpretation; the machine itself is built from interference, not cosmic search.",
+      "incorrectExplanation": "It is False. Quantum computers choreograph amplitudes so wrong answers cancel and right ones reinforce — interference does the work. The 'tries everything at once' slogan is marketing shorthand that hides the actual mathematics.",
+      "lessonContent": "Quantum speedups come from interference: amplitudes for wrong answers cancel, right ones add.\nThe 'tries all answers at once' slogan drops the hard part — reading out only one answer.\nShor's factoring algorithm is choreography: cycles of interference that spotlight factors.\nInterpretations (many worlds, collapse) describe the same mathematics differently.\nShare this: next time someone says parallel universes make it fast, say 'interference' and smile.",
+      "forgeId": "batch-006#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Spooky Signals",
+      "question": "Two entangled particles can be used to send a message faster than light if the operators coordinate cleverly enough.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Quantum Café",
+      "correctExplanation": "Exactly — the correlation is instant but each side's outcome is random; no message rides on randomness.",
+      "incorrectExplanation": "It is False. Each observer sees pure noise locally; the perfect correlation only appears when the two result lists are compared — and that comparison travels at light speed or slower. Nature enforces its speed limit even here.",
+      "lessonContent": "Entanglement correlates outcomes instantly but carries no controllable signal.\nEach end alone sees random results — the pattern exists only in the comparison.\nComparing requires classical communication, which obeys the light-speed limit.\nQuantum cryptography uses exactly this structure to detect eavesdroppers.\nShare this: explain why the instant correlation still can't carry your voice across the galaxy.",
+      "forgeId": "batch-006#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Observer Error",
+      "question": "In quantum physics, 'observation' means a conscious mind looking at the system.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Quantum Café",
+      "correctExplanation": "Right — a measurement is any physical interaction that leaves a record; machines and air molecules qualify.",
+      "incorrectExplanation": "It is False. In the laboratory, any irreversible interaction counts as measurement — a detector, a photon, stray gas. Consciousness was one historical speculation, but experiments show unconscious apparatus does the job perfectly well.",
+      "lessonContent": "Measurement in quantum physics means physical interaction that leaves a record, not awareness.\nA detector click, a stray photon, even air molecules can perform it.\nDecoherence explains why big things stay classical: they are measured by the environment constantly.\nThe conscious-observer idea survives mainly in pop mysticism.\nShare this: next time someone says the moon needs watchers, mention the air is watching it.",
+      "forgeId": "batch-006#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Tunnel Travels",
+      "question": "Quantum tunnelling lets particles occasionally pass through barriers that classical physics calls impassable.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Quantum Café",
+      "correctExplanation": "Exactly — the particle's wavefunction leaks through the barrier, and sometimes it is found on the far side.",
+      "incorrectExplanation": "It is True. Where a particle's wave might exist, it partly does — including beyond barriers that should stop it cold. The effect is real technology: flash memory writes bits by tunnelling electrons through insulators.",
+      "lessonContent": "Tunnelling: a particle's wavefunction doesn't hit zero at a barrier, so a small probability survives beyond it.\nFlash memory, tunnel diodes and the Sun's fusion all depend on this leak.\nThe probability decays with barrier thickness — a design knob engineers tune.\nThe Sun shines only because quantum leakage lets protons fuse despite the electric wall.\nShare this: tell someone their phone's memory works by ghosts walking through walls.",
+      "forgeId": "batch-006#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Quantum Fridge",
+      "question": "Quantum effects only matter at microscopic scales and never affect everyday objects like fridges or cars.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Quantum Café",
+      "correctExplanation": "Right — transistors, LEDs, lasers and MRI machines are everyday quantum physics in a box.",
+      "incorrectExplanation": "It is False. Every computer chip is a quantum device — transistor behaviour requires electron wave mechanics. Lasers, LEDs, MRI and flash memory all exploit quantum rules. The quantum world is not elsewhere; it is the floor under everything.",
+      "lessonContent": "Quantum mechanics is not exotic fringe — it is the operating system of matter.\nTransistors work because electrons behave as waves spreading through crystals.\nLasers, LEDs, MRI scanners and atomic clocks are quantum engineering, plainly labelled.\nDecoherence hides the weirdness at large scales but the rules never turn off.\nShare this: count the quantum devices you touch before lunch tomorrow.",
+      "forgeId": "batch-006#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Fading Coherence",
+      "question": "Decoherence is the process by which a quantum system loses its delicate superpositions by interacting with its environment.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Quantum Café",
+      "correctExplanation": "Exactly — the environment 'measures' the system constantly, smearing the quantum information away.",
+      "incorrectExplanation": "It is True. Stray photons and air molecules keep taking readings of any system, and each reading entangles it with the world, washing out the superposition. That leakage is why quantum computers need isolation colder than space.",
+      "lessonContent": "Decoherence: environmental interactions entangle a system with the world, leaking its quantum character away.\nIt is the reason big objects look classical — not a change in rules but a loss of isolation.\nQuantum engineers fight it with vacuum, cold and shielding — the price of preserving superposition.\nIt sets the practical limit on quantum computer sizes today.\nShare this: explain tonight why your coffee can't be in two places — the air keeps looking at it.",
+      "forgeId": "batch-006#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Heisenberg's Blur",
+      "question": "The uncertainty principle says we cannot measure a particle's position and momentum precisely at the same time.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Quantum Café",
+      "correctExplanation": "Correct — it is a property of the particle itself, not a limitation of instruments: sharpness in one trait blurs the other.",
+      "incorrectExplanation": "It is True. Position and momentum are paired opposites in quantum mechanics — the more precisely one is defined, the fuzzier the other must be. Better tools cannot beat it because it is not a tool problem; it is how waves are.",
+      "lessonContent": "Uncertainty pairs complementary properties: sharp position forces blurry momentum, by nature not by clumsiness.\nWaves illustrate it — a pure tone has no location; a sharp click has no pitch.\nFourier mathematics underlies the trade-off, and it applies to sound and images too.\nQuantum cryptography banks on it: measuring a quantum message disturbs it visibly.\nShare this: clap once (sharp time, no pitch) then hum (pure pitch, no start) and show the trade.",
+      "forgeId": "batch-006#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Absolute Zero Chill",
+      "question": "Reaching absolute zero is impossible because removing the last bits of heat takes infinite effort.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Exactly — each step closer extracts less heat for more work; the third law forbids arriving.",
+      "incorrectExplanation": "It is True. The third law of thermodynamics shows the final approach costs unbounded effort — you can get arbitrarily close, never there. Quantum zero-point energy also never fully switches off, so perfect stillness has no meaning.",
+      "lessonContent": "The third law: absolute zero is approachable but unreachable — each halving of temperature costs more work.\nZero-point motion remains even at the limit; quantum mechanics forbids total stillness.\nLabs have slid to billionths of a degree above zero, cold enough for exotic states of matter.\nThe scale of the universe's coldest places is beaten routinely by human refrigerators.\nShare this: ask someone how cold 'as cold as possible' is, then reveal the universe never quite allows it.",
+      "forgeId": "batch-006#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Glassy Flow",
+      "question": "Glass in old cathedral windows is thicker at the bottom because the glass has slowly flowed downward over centuries.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right — glass at room temperature flows on astronomical timescales at most; the thick bottoms are manufacturing unevenness.",
+      "incorrectExplanation": "It is False. Old glass was spun into panes of uneven thickness, and craftsmen mounted the heavy edge down for stability. Calculations put glass flow timescales far beyond the age of the universe. Some panes are even thicker at the top.",
+      "lessonContent": "The flowing-glass story is a durable myth — real flow timescales exceed the universe's age.\nCrown-glass panes were uneven by manufacture; glaziers placed the thick edge downward.\nAmorphous solids are rigid: they hold shape for geological epochs.\nMyths about materials survive because they tell a satisfying story about time.\nShare this: point at an old window tonight and retire this legend for good.",
+      "forgeId": "batch-006#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Watery Rainbow",
+      "question": "A rainbow is created by sunlight reflecting inside raindrops while bending twice — once entering, once leaving.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Earth & Space",
+      "correctExplanation": "Exactly — refraction in, internal reflection off the back, refraction out: the colours split along the way.",
+      "incorrectExplanation": "It is True. Each raindrop refracts sunlight entering, reflects it off its far side, and refracts it leaving — the two bendings split the colours. Every observer sees a private rainbow built by different drops than anyone else's.",
+      "lessonContent": "Rainbow anatomy: refract, reflect, refract — two bends and a bounce split white into bands.\nThe 42-degree arc is geometry: drops at that angle from your shadow send colours back.\nEveryone's rainbow is personal — your drops, your antisolar point.\nDouble rainbows add a second internal bounce, flipping the colour order and dimming the bow.\nShare this: at the next rainbow, find the shadow of your own head — the bow rings it.",
+      "forgeId": "batch-006#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Shooting Stars",
+      "question": "A 'shooting star' is usually a star falling out of the sky.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Earth & Space",
+      "correctExplanation": "Correct — it is a speck of comet dust burning in our atmosphere, typically no bigger than a rice grain.",
+      "incorrectExplanation": "It is False. Meteors are sand-grain to pebble-sized fragments, mostly comet debris, vaporizing at 30-70 km altitude. Actual stars are suns — unimaginably farther and larger — and never fall anywhere.",
+      "lessonContent": "Meteors are dust and grit vaporizing high above — the streak is air glowing, not the particle burning like wood.\nMost are comet crumbs spread along orbits the Earth crosses each year, giving regular showers.\nStars never fall — the name is an ancient mistake fossilized in language.\nSome meteors survive to the ground as meteorites, the only space rocks we can hold.\nShare this: during the next shower, remind everyone each streak is a grain of a comet.",
+      "forgeId": "batch-006#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Season Reasons",
+      "question": "Summer is warmer because Earth is closer to the Sun in those months.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Earth & Space",
+      "correctExplanation": "Right — seasons come from Earth's axial tilt changing the Sun's height and day length, not distance.",
+      "incorrectExplanation": "It is False. Earth is actually closest to the Sun in early January, mid-winter for the north. The 23-degree tilt aims your hemisphere at or away from the Sun, changing daylight hours and the Sun's angle — that is the whole of summer and winter.",
+      "lessonContent": "Seasons are tilt, not distance: a 23-degree lean aims each hemisphere toward or away from the Sun.\nEarth's orbit is nearly circular — closest approach falls in January, height of northern winter.\nTilt works two ways: longer days and higher Sun both pour in more energy.\nThe southern hemisphere runs the opposite calendar for the same reason.\nShare this: ask someone why Australia has Christmas in summer, then watch the tilt dawn on them.",
+      "forgeId": "batch-006#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Space Silence",
+      "question": "In space, no one can hear you scream because sound needs a medium of matter to travel through.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Earth & Space",
+      "correctExplanation": "Exactly — sound is matter jostling matter, and the near-vacuum between worlds has almost nothing to jostle.",
+      "incorrectExplanation": "It is True. Sound is a relay of collisions between molecules; the interplanetary vacuum is too thin to pass the baton. Light and radio need no medium, which is why telecommunication works where screaming cannot.",
+      "lessonContent": "Sound is a chain of molecular collisions — break the chain and nothing arrives.\nSpace is not empty but is far too thin: a few atoms per cubic centimetre can't carry a shout.\nRadio and light travel as waves needing no medium at all.\nAstronauts are radios, not megaphones, by necessity.\nShare this: explain tonight why a supernova — the loudest event imaginable — detonates in total silence.",
+      "forgeId": "batch-006#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Light-Years Ahead",
+      "question": "A light-year measures distance, not time — specifically how far light travels in a year.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Earth & Space",
+      "correctExplanation": "Right — it is a ruler about 9.5 trillion kilometres long, dressed in a clock's clothing.",
+      "incorrectExplanation": "It is True. A light-year is the distance light covers in one year at 300,000 km per second — roughly 9.5 trillion kilometres. The name misleads because the unit sounds like duration, but it measures pure space.",
+      "lessonContent": "A light-year is distance: about 9.5 trillion kilometres, the length light covers in one year.\nStar distances make the unit practical — kilometres would drown in zeroes.\nLooking at the night sky is looking into the past: light left each star on its own schedule.\nAndromeda's light left before humans existed; you see it as it was, not as it is.\nShare this: point at Andromeda tonight and tell someone they are seeing 2.5-million-year-old light.",
+      "forgeId": "batch-006#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Comet Trails",
+      "question": "A comet's tail streams out behind it along its direction of travel, like exhaust from a moving car.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Earth & Space",
+      "correctExplanation": "Correct — the tail points away from the Sun regardless of motion, pushed by sunlight and solar wind.",
+      "incorrectExplanation": "It is False. Solar radiation and wind blow the released gas and dust outward from the Sun, so the tail leads the comet on its way out and trails on its way in. Motion has nothing to do with it — sunlight does.",
+      "lessonContent": "Comet tails point away from the Sun, not backwards along the path — radiation and solar wind do the pushing.\nThat means a comet leaving the inner system travels tail-first.\nComets can grow two tails: straight ion tails and curved dust tails, obeying different physics.\nThe tail appears only near the Sun, where heat finally frees the material.\nShare this: sketch a comet's orbit and let someone guess the tail's direction — then reveal it flips.",
+      "forgeId": "batch-006#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Sunblock in Space",
+      "question": "Astronauts on the Space Station feel weightless because they have escaped Earth's gravity.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Earth & Space",
+      "correctExplanation": "Right — gravity up there is about 90% of surface strength; they feel weightless because everything falls together.",
+      "incorrectExplanation": "It is False. At the station's altitude Earth's gravity still pulls almost as hard as at sea level. The station and everything in it are perpetually falling around the Earth — free fall reads as weightlessness. Escape was never achieved; only a very fast fall.",
+      "lessonContent": "Orbit is continuous free fall: falling toward Earth while moving sideways fast enough to keep missing it.\nGravity at station height remains about 90% of surface strength.\nWeightlessness means falling with your surroundings, not escaping gravity's grip.\nNewton's cannonball thought experiment drew this picture three centuries ago.\nShare this: explain tonight that astronauts float because they are falling, not because gravity stopped.",
+      "forgeId": "batch-006#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Five Senses",
+      "question": "Humans have far more than five senses — balance, temperature and body position among them.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Body & Biology",
+      "correctExplanation": "Exactly — the classic five are a two-thousand-year-old simplification; researchers count closer to a dozen or more.",
+      "incorrectExplanation": "It is True. Beyond sight, hearing, taste, smell and touch lie balance (vestibular sense), temperature, pain, body position (proprioception) and internal signals like hunger. Aristotle's tidy five was never the scientific count.",
+      "lessonContent": "The five-senses model is Aristotle's summary, not biology's census.\nProprioception — knowing where your limbs are without looking — is why you can touch your nose with closed eyes.\nThe vestibular system senses rotation and acceleration; its failure is what vertigo is.\nInteroception reads internal states: hunger, breath, a full bladder.\nShare this: close your eyes and touch your earlobes, then ask someone which sense just did that.",
+      "forgeId": "batch-006#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Tongue Map",
+      "question": "Different regions of the tongue detect different tastes — sweet at the tip, bitter at the back.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Body & Biology",
+      "correctExplanation": "Correct — all taste qualities are detected across the whole tongue's surface; the famous map was a mistranslation.",
+      "incorrectExplanation": "It is False. The tongue map came from a misread of a German paper a century ago and was disproved decades since: every region senses all five tastes, with only slight sensitivity differences. Textbooks just took a very long time to drop the picture.",
+      "lessonContent": "The tongue map is a textbook fossil — a misinterpreted 1901 chart that outlived its correction.\nAll five taste qualities are detected everywhere on the tongue, with minor sensitivity variation.\nFlavour is mostly smell: block your nose and an onion tastes like an apple.\nScience's corrections travel slower than its charts — bad pictures outlive good data.\nShare this: put a drop of sweet water on the back of a friend's tongue and retire the map.",
+      "forgeId": "batch-006#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Sweet Blue Spot",
+      "question": "There is a single genetically dedicated taste receptor type for sweetness in humans.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Body & Biology",
+      "correctExplanation": "Exactly — sweet, umami and bitter each run through their own dedicated receptor families.",
+      "incorrectExplanation": "It is True. Sweet sensing runs through its own receptor pair, distinct from the families for bitter, umami, salty and sour. Evolution gave sugar its private door because detecting energy-rich food was survival-critical.",
+      "lessonContent": "Taste receptors are quality-specific: dedicated hardware for sweet, umami, bitter, salty and sour.\nSweetness detection was survival gold — ripe fruit means quick energy.\nBitter receptors are the poison alarms — hence the many variants in that family.\nCats lost the sweet door entirely: their lineage went full carnivore.\nShare this: tell a cat owner their pet literally cannot taste sugar, and watch them test it.",
+      "forgeId": "batch-006#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Dark Lightning",
+      "question": "Lightning travels upward from the ground as well as downward from the cloud.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Earth & Space",
+      "correctExplanation": "Right — a faint leader steps down, then a much brighter return stroke races up from the ground; the flash you see is mostly the upward trip.",
+      "incorrectExplanation": "It is True. A stepped leader gropes down from the cloud invisibly; when it connects, a luminous return stroke erupts upward from the ground. The brilliant part of the flash travels up — the sky's own two-stage handshake.",
+      "lessonContent": "Lightning is a two-way event: a dim stepped leader descends, a brilliant return stroke erupts upward.\nThe visible flash is mostly the return — ground-to-cloud, not cloud-to-ground.\nHigh-speed cameras revealed the ladder-like descent of the leader in the 20th century.\nThe whole negotiation finishes in milliseconds.\nShare this: next storm, mention that the flash you just saw actually started at the ground.",
+      "forgeId": "batch-006#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Magnetic Flip",
+      "question": "Earth's magnetic poles have reversed many times in the planet's history.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Earth & Space",
+      "correctExplanation": "Exactly — the seafloor's striped magnetic record shows hundreds of full reversals across geological time.",
+      "incorrectExplanation": "It is True. Ocean-floor basalt locked in the field's direction as it cooled, revealing stripes of alternating polarity — hundreds of reversals over millions of years. The last full flip was about 780,000 years ago, and nobody alive knows when the next one lands.",
+      "lessonContent": "Seafloor spreading records polarity like a tape: cooling basalt freezes the field direction into stripes.\nThose stripes prove hundreds of pole reversals across Earth's history.\nThe last flip, 780,000 years ago, makes the current stretch slightly overdue.\nReversals take thousands of years and no mass extinctions correlate with them.\nShare this: tell someone the compass needle would have pointed south a million years ago.",
+      "forgeId": "batch-006#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Colour of Blood",
+      "question": "Human blood is red in the body and blue in the veins beneath the skin.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Body & Biology",
+      "correctExplanation": "Right — deoxygenated blood is dark red, never blue; veins only look blue through skin filtering light.",
+      "incorrectExplanation": "It is False. Blood runs bright red when oxygenated and dark red when not — the blue is an optical trick of skin scattering light. Blood drawn from any vein is dark red in the syringe, whatever the diagram colours claim.",
+      "lessonContent": "Blood is always red — bright with oxygen, dark without; blue is a diagram convention that became folklore.\nVeins look blue because skin scatters red light more, letting blue dominate what returns to your eye.\nSome animals truly have blue blood — octopuses and horseshoe crabs build theirs on copper.\nDiagrams colour veins blue for contrast, and the picture escaped its caption.\nShare this: next blood test, watch the dark red fill the vial and retire the blue legend.",
+      "forgeId": "batch-006#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Sleep Filing",
+      "question": "Sleep helps consolidate memories — the brain strengthens and files what the day deposited.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "lessonGroup": "Body & Biology",
+      "correctExplanation": "Exactly — overnight, the hippocampus replays the day to the cortex, converting fragile traces into durable ones.",
+      "incorrectExplanation": "It is True. During deep sleep the hippocampus replays the day's patterns to the cortex, stabilizing them into long-term storage. Students pulling all-nighters lose the filing stage itself — the studying never gets saved.",
+      "lessonContent": "Memory consolidation is a night shift: the hippocampus replays the day, and the cortex files it for keeps.\nDeep sleep handles factual memories; REM sleep seems to weave skills and emotional threads.\nSleep deprivation is un-filing: information that never got saved cannot be recalled.\nNaps as short as an hour measurably improve retention.\nShare this: defend your afternoon nap tonight as memory maintenance with receipts.",
+      "forgeId": "batch-006#24",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "Dopamine Drives",
+      "question": "Dopamine is primarily the brain's reward for feeling pleasure at the moment of enjoyment.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "lessonGroup": "Mind Machinery",
+      "correctExplanation": "Correct — dopamine is better described as the chemistry of wanting and prediction: it surges for anticipation and surprise, not enjoyment itself.",
+      "incorrectExplanation": "It is False. Dopamine drives seeking and expectation — it spikes before the reward, when the outcome is uncertain, and when reality beats prediction. Pleasure itself leans more on other systems. Addiction hijacks the wanting, which is why craving outlives enjoyment.",
+      "lessonContent": "Dopamine is wanting, not liking: it powers pursuit and prediction, not the pleasure itself.\nIts spikes track surprise — when reality beats the forecast.\nAddiction is runaway wanting: cravings persist long after enjoyment fades.\nThe wanting-liking split explains why we chase things that no longer delight us.\nShare this: name one thing you crave but don't actually enjoy anymore — that's dopamine talking.",
+      "forgeId": "batch-006#25",
+      "forgeScore": 100
+    }
+  ]
+}

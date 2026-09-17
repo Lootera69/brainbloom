@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-086",
+  "generatedAt": "2026-09-17T13:27:42.812Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Replaced Planks",
+      "question": "A ship has every plank replaced one by one over years. Most people still call it the same ship. What are they tracking?",
+      "choices": [
+        "The pattern persists despite new parts",
+        "The original wood alone",
+        "The ship's exact weight",
+        "Nothing meaningful at all"
+      ],
+      "correctAnswer": "The pattern persists despite new parts",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Identity is often assigned to an enduring arrangement rather than to the material that fills it.",
+      "incorrectExplanation": "The answer is the pattern persists despite new parts. The arrangement and history continue even as the stuff is swapped.",
+      "lessonContent": "Identity can attach to form, not matter.\nArrangement can outlast ingredients.\nNotice what stays constant through change.\nDistinguish stuff from structure.\nShare this: name one thing whose identity survives its parts changing.",
+      "forgeId": "batch-086#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Thread of Memory",
+      "question": "One theory says you are the same person over time because of what kind of link?",
+      "choices": [
+        "Continuity of memory and character",
+        "Exactly the same atoms",
+        "An unchanging name",
+        "A fixed physical location"
+      ],
+      "correctAnswer": "Continuity of memory and character",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. On this view, psychological connections carry identity forward even as the body changes.",
+      "incorrectExplanation": "The answer is continuity of memory and character. The thread is mental rather than material, which is why amnesia raises hard questions.",
+      "lessonContent": "Identity may rest on connections over time.\nPsychological links can carry a person forward.\nMaterial sameness is not required.\nAsk what kind of continuity matters.\nShare this: note one thing you carry forward from your past self.",
+      "forgeId": "batch-086#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Invisible Drift",
+      "question": "Why can a person change enormously over decades without noticing any single leap?",
+      "choices": [
+        "Gradual replacement makes change invisible",
+        "People never actually change",
+        "Change happens only in sudden jumps",
+        "Memory erases all differences"
+      ],
+      "correctAnswer": "Gradual replacement makes change invisible",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Small daily shifts escape notice, yet their sum can be transformative.",
+      "incorrectExplanation": "The answer is gradual replacement makes change invisible. Slow drift hides itself, which is why sudden comparisons surprise us.",
+      "lessonContent": "Slow change evades daily notice.\nAccumulated small shifts become large.\nCompare across time, not day to day.\nLook for gradual drift in yourself.\nShare this: compare an old photo or note with your present self.",
+      "forgeId": "batch-086#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "No Permanent Self",
+      "question": "The bundle theory holds that what we call the self is really a collection of what?",
+      "choices": [
+        "Changing experiences and mental states",
+        "One permanent unchanging soul",
+        "The physical body alone",
+        "A single fixed memory"
+      ],
+      "correctAnswer": "Changing experiences and mental states",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. On this view there is no core owner behind experience, only the bundle of experiences themselves.",
+      "incorrectExplanation": "The answer is changing experiences and mental states. The sense of a unified self may be a pattern rather than a thing.",
+      "lessonContent": "Some theories deny a core owner.\nExperiences may be all there is to a self.\nUnity can be a pattern, not a substance.\nQuestion what seems obvious.\nShare this: observe for a minute the stream of your own experience.",
+      "forgeId": "batch-086#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Life as Story",
+      "question": "The narrative view of the self says personal identity is shaped mainly by what?",
+      "choices": [
+        "The story we tell about ourselves",
+        "The exact cells we retain",
+        "Our legal name and documents",
+        "Our unchanging preferences"
+      ],
+      "correctAnswer": "The story we tell about ourselves",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Coherence comes from a narrative that links past, present, and future into one arc.",
+      "incorrectExplanation": "The answer is the story we tell about ourselves. Meaning and continuity are constructed through the accounts we build.",
+      "lessonContent": "Narratives create coherence over time.\nWe link events into a story.\nIdentity may be authored, not fixed.\nNotice the plot you live by.\nShare this: tell one chapter of your life in three sentences.",
+      "forgeId": "batch-086#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Same Body",
+      "question": "Why does bodily continuity alone fail to fully explain personal identity?",
+      "choices": [
+        "It is neither necessary nor sufficient",
+        "It is always exactly sufficient",
+        "It has no connection to identity",
+        "It explains everything perfectly"
+      ],
+      "correctAnswer": "It is neither necessary nor sufficient",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. We can imagine psychological continuity without the same body, and bodily continuity without the same person.",
+      "incorrectExplanation": "The answer is it is neither necessary nor sufficient. Thought experiments show the body can be neither required nor enough on its own.",
+      "lessonContent": "Single criteria often prove incomplete.\nThought experiments test necessity and sufficiency.\nConsider whether a factor is required or enough.\nWeigh several criteria together.\nShare this: test whether one condition is required or merely helpful.",
+      "forgeId": "batch-086#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "What It Is",
+      "question": "What do philosophers call the properties without which a thing would no longer be itself?",
+      "choices": [
+        "Essential properties",
+        "Accidental properties",
+        "Temporary properties",
+        "Unknown properties"
+      ],
+      "correctAnswer": "Essential properties",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. These define what kind of thing it is, as opposed to traits it merely happens to have.",
+      "incorrectExplanation": "The answer is essential properties. Their loss changes the thing's identity, unlike traits that can come and go.",
+      "lessonContent": "Some traits define, others merely accompany.\nDistinguish the necessary from the incidental.\nAsk what could change without loss of identity.\nTest by imagining removal.\nShare this: name one property you would call essential to something you value.",
+      "forgeId": "batch-086#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Change Without Loss",
+      "question": "Which kinds of traits can change while a thing remains itself?",
+      "choices": [
+        "Accidental properties",
+        "Essential properties",
+        "Defining properties",
+        "No properties at all"
+      ],
+      "correctAnswer": "Accidental properties",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Incidental features come and go without altering what the thing fundamentally is.",
+      "incorrectExplanation": "The answer is accidental properties. A haircut or a new address does not change personal identity, while some changes would.",
+      "lessonContent": "Not every change is identity-changing.\nSeparate the incidental from the defining.\nAsk what could vary without loss.\nUse imagination to test the boundary.\nShare this: list three things about you that could change without changing you.",
+      "forgeId": "batch-086#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Slow Versus Sudden",
+      "question": "Why do we accept slow change as preserving identity but resist an instant total swap?",
+      "choices": [
+        "Continuity of process is preserved slowly",
+        "Instant swaps are physically common",
+        "Slow change never alters anything",
+        "Identity has no relation to time"
+      ],
+      "correctAnswer": "Continuity of process is preserved slowly",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. An unbroken path of change feels like one continuing thing, unlike a sudden replacement.",
+      "incorrectExplanation": "The answer is continuity of process is preserved slowly. Continuity itself, not the amount of change, seems to do the work.",
+      "lessonContent": "Continuity can matter more than magnitude.\nAn unbroken process preserves identity.\nA break feels like a different thing.\nAsk whether the path was continuous.\nShare this: notice one gradual change you accepted without alarm.",
+      "forgeId": "batch-086#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Perfect Copy",
+      "question": "A perfect duplicate of you appears. Why do most people deny it is you?",
+      "choices": [
+        "A copy is not the original",
+        "It shares all your memories",
+        "It looks exactly like you",
+        "It cannot be distinguished"
+      ],
+      "correctAnswer": "A copy is not the original",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Exact similarity is not the same as being the continuing original thing.",
+      "incorrectExplanation": "The answer is a copy is not the original. Sameness of features does not establish sameness of history and continuity.",
+      "lessonContent": "Similarity is not identity.\nDuplicates share traits but not history.\nContinuity of origin matters.\nDistinguish looks from lineage.\nShare this: name one thing that can be copied without being the same thing.",
+      "forgeId": "batch-086#9",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Copy and Erase",
+      "question": "A machine copies you exactly, then destroys the original. Does the copy continue you?",
+      "choices": [
+        "It tests whether continuity or pattern matters",
+        "It is clearly impossible",
+        "It settles the question instantly",
+        "It proves identity is only physical"
+      ],
+      "correctAnswer": "It tests whether continuity or pattern matters",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. The scenario isolates what we value: an unbroken path or the information pattern itself.",
+      "incorrectExplanation": "The answer is it tests whether continuity or pattern matters. Intuitions differ, which shows how contested the criteria are.",
+      "lessonContent": "Thought experiments isolate hidden commitments.\nYour answer reveals what you truly value.\nConflicting intuitions signal deep questions.\nUse puzzles to probe principles.\nShare this: ask someone whether a perfect copy would be them.",
+      "forgeId": "batch-086#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Matter Swap",
+      "question": "Why does complete material replacement not automatically destroy identity for many people?",
+      "choices": [
+        "Sameness of arrangement outweighs sameness of stuff",
+        "Matter is completely irrelevant always",
+        "Identity is only a legal fiction",
+        "Nothing ever truly persists"
+      ],
+      "correctAnswer": "Sameness of arrangement outweighs sameness of stuff",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. The organization and history can persist even when the underlying material is entirely new.",
+      "incorrectExplanation": "The answer is sameness of arrangement outweighs sameness of stuff. Structure, not substance, carries much of what we call identity.",
+      "lessonContent": "Organization can outrank material.\nStructure carries information forward.\nSeparate pattern from substance.\nAsk what must be preserved.\nShare this: find one system whose pattern matters more than its parts.",
+      "forgeId": "batch-086#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Self as Process",
+      "question": "Some philosophers say the self is better understood as what kind of thing?",
+      "choices": [
+        "A process rather than a fixed object",
+        "A permanent solid object",
+        "An unchanging atom",
+        "A simple label with no reality"
+      ],
+      "correctAnswer": "A process rather than a fixed object",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. On this view, identity is an ongoing activity of maintaining and revising oneself, like a flame rather than a stone.",
+      "incorrectExplanation": "The answer is a process rather than a fixed object. Persistence becomes continuity of activity, not the endurance of a static thing.",
+      "lessonContent": "Some things persist by renewing, not by staying still.\nA flame is the same while always changing.\nProcesses can have identity too.\nChoose the right category for a phenomenon.\nShare this: name one thing that persists by constantly renewing.",
+      "forgeId": "batch-086#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Seen by Others",
+      "question": "What does the social dimension of identity depend on?",
+      "choices": [
+        "Recognition and roles assigned by others",
+        "Only internal memories",
+        "Exactly the same atoms",
+        "Nothing outside the self"
+      ],
+      "correctAnswer": "Recognition and roles assigned by others",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Part of who we are is sustained by how others see and treat us.",
+      "incorrectExplanation": "The answer is recognition and roles assigned by others. Identity is partly relational, not purely an inner fact.",
+      "lessonContent": "Identity has a social face.\nRecognition by others shapes who we are.\nRoles are assigned and adopted.\nConsider the relational dimension.\nShare this: notice one part of who you are that others help sustain.",
+      "forgeId": "batch-086#13",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "More Than Looks",
+      "question": "Why do we treat character as more central to identity than appearance?",
+      "choices": [
+        "Character shapes choices and relationships",
+        "Appearance is entirely unknowable",
+        "Character never changes",
+        "Appearance has no cause at all"
+      ],
+      "correctAnswer": "Character shapes choices and relationships",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Traits that guide action and connection seem to define a person more deeply than surface features.",
+      "incorrectExplanation": "The answer is character shapes choices and relationships. What we do and how we relate carries more weight than how we look.",
+      "lessonContent": "We rank some traits as more central.\nConduct and relationships define a person.\nSurface features matter less.\nAsk what you would least want changed.\nShare this: name one character trait you consider central to you.",
+      "forgeId": "batch-086#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Gaps in Memory",
+      "question": "What challenge do memory lapses pose for the psychological view of identity?",
+      "choices": [
+        "Breaks in memory threaten continuity",
+        "Memory has no role in identity",
+        "Lapses prove identity is physical",
+        "All memories are perfectly reliable"
+      ],
+      "correctAnswer": "Breaks in memory threaten continuity",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. If identity depends on remembered connections, gaps make the thread harder to trace.",
+      "incorrectExplanation": "The answer is breaks in memory threaten continuity. This is why some theories loosen the requirement to allow overlapping chains.",
+      "lessonContent": "Any criterion faces hard cases.\nGaps test a theory's limits.\nLoosen requirements when needed.\nRevise the theory to fit the evidence.\nShare this: consider how a gap would change one of your life stories.",
+      "forgeId": "batch-086#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Same River",
+      "question": "Heraclitus noted you cannot step twice into the same river. What does this illustrate?",
+      "choices": [
+        "Identity can endure through constant flow",
+        "Rivers never change at all",
+        "Nothing can be identified",
+        "Water has no identity"
+      ],
+      "correctAnswer": "Identity can endure through constant flow",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. The river keeps its name and course even though the water is always new.",
+      "incorrectExplanation": "The answer is identity can endure through constant flow. Change and persistence can be two sides of the same phenomenon.",
+      "lessonContent": "Persistence can coexist with change.\nNames can track a flowing process.\nDo not equate sameness with stillness.\nHold constancy and change together.\nShare this: name one thing that stays itself while always changing.",
+      "forgeId": "batch-086#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "In Between",
+      "question": "Some philosophers suggest personal identity can come in what form rather than all-or-nothing?",
+      "choices": [
+        "Degrees, with stronger or weaker links",
+        "A single binary fact",
+        "A purely legal status",
+        "An unmeasurable mystery"
+      ],
+      "correctAnswer": "Degrees, with stronger or weaker links",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Continuity can be stronger or weaker, as when memory connections thin out over time.",
+      "incorrectExplanation": "The answer is degrees, with stronger or weaker links. Identity may be a matter of more or less rather than yes or no.",
+      "lessonContent": "Some properties admit gradations.\nPersistence may vary in strength.\nReject unnecessary either-or framing.\nConsider a spectrum.\nShare this: find one yes-or-no question that is really a matter of degree.",
+      "forgeId": "batch-086#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Aims and Plans",
+      "question": "What connects your present self to a future self even when traits change?",
+      "choices": [
+        "Continued projects and intentions",
+        "Identical physical features",
+        "The same clothing",
+        "An unchanging address"
+      ],
+      "correctAnswer": "Continued projects and intentions",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Ongoing commitments and goals give a practical thread from present to future.",
+      "incorrectExplanation": "The answer is continued projects and intentions. Responsibility and planning depend on this forward-looking connection.",
+      "lessonContent": "Projects link present and future.\nIntentions carry responsibility across time.\nPractical identity looks forward.\nNotice what you are committed to completing.\nShare this: name one long-term project that defines your future self.",
+      "forgeId": "batch-086#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Given and Made",
+      "question": "How do many philosophers describe the sources of personal identity?",
+      "choices": [
+        "Partly given and partly chosen",
+        "Entirely fixed at birth",
+        "Entirely invented at will",
+        "Completely unknowable"
+      ],
+      "correctAnswer": "Partly given and partly chosen",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Circumstances and history set the starting point, while choices revise who we become.",
+      "incorrectExplanation": "The answer is partly given and partly chosen. Neither total determinism nor unlimited self-invention captures the reality.",
+      "lessonContent": "Some conditions are inherited.\nChoices revise what is given.\nAvoid both fatalism and pure will.\nWork with the material you have.\nShare this: note one given trait and one chosen trait in yourself.",
+      "forgeId": "batch-086#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Not Fixed",
+      "question": "What does the developmental view of the self emphasise?",
+      "choices": [
+        "Identity forms and changes over a lifetime",
+        "Identity is set once and never moves",
+        "Identity has no history",
+        "Identity is only biological"
+      ],
+      "correctAnswer": "Identity forms and changes over a lifetime",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Who we are develops through stages, experiences, and choices rather than arriving complete.",
+      "incorrectExplanation": "The answer is identity forms and changes over a lifetime. Growth and revision are normal, not a failure of consistency.",
+      "lessonContent": "Development continues through life.\nIdentity is a work in progress.\nChange is not betrayal of self.\nAllow for growth.\nShare this: note one way you have developed in the past five years.",
+      "forgeId": "batch-086#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Two Rival Views",
+      "question": "What is the core disagreement between bodily and psychological theories of identity?",
+      "choices": [
+        "Which kind of continuity is essential",
+        "Whether identity exists at all",
+        "Whether people have bodies",
+        "Whether time is real"
+      ],
+      "correctAnswer": "Which kind of continuity is essential",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Both accept continuity; they differ on whether the body or the mind carries it.",
+      "incorrectExplanation": "The answer is which kind of continuity is essential. The debate is about the right criterion, not the existence of continuity.",
+      "lessonContent": "Rival theories can share assumptions.\nLocate the precise disagreement.\nCompare criteria directly.\nTest each with hard cases.\nShare this: find the exact point where two views actually diverge.",
+      "forgeId": "batch-086#21",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "What We Value",
+      "question": "In identity puzzles, what do people usually care about preserving most?",
+      "choices": [
+        "The continuing pattern of a life",
+        "The exact original molecules",
+        "The physical location",
+        "The legal record"
+      ],
+      "correctAnswer": "The continuing pattern of a life",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. What matters is that the life and its connections continue, not that the same matter remains.",
+      "incorrectExplanation": "The answer is the continuing pattern of a life. Values, memories, and relationships carry more weight than atoms.",
+      "lessonContent": "Puzzles reveal underlying values.\nWhat we protect shows what we prize.\nPatterns and connections matter.\nAsk what you would refuse to lose.\nShare this: name the one thread of your life you would most want preserved.",
+      "forgeId": "batch-086#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Real Change",
+      "question": "Must a thing stop being itself in order to change genuinely?",
+      "choices": [
+        "No, real change can occur while identity persists",
+        "Yes, all change destroys identity",
+        "Change and identity cannot coexist",
+        "Identity means complete stillness"
+      ],
+      "correctAnswer": "No, real change can occur while identity persists",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Growth and change are compatible with remaining the same subject through time.",
+      "incorrectExplanation": "The answer is that real change can occur while identity persists. Persistence does not require frozen sameness.",
+      "lessonContent": "Change need not erase identity.\nEnduring subjects can develop.\nReject the idea that sameness means stillness.\nHold continuity and change together.\nShare this: describe one way you changed while remaining yourself.",
+      "forgeId": "batch-086#23",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Beyond Practical",
+      "question": "Why is the problem of personal identity more than a practical question?",
+      "choices": [
+        "It concerns what we fundamentally are",
+        "It only affects legal paperwork",
+        "It has no implications at all",
+        "It is settled by common sense"
+      ],
+      "correctAnswer": "It concerns what we fundamentally are",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. The puzzle reaches questions of nature and existence, not just convenience or convention.",
+      "incorrectExplanation": "The answer is it concerns what we fundamentally are. Practical labels may work, yet the deeper question of our nature remains open.",
+      "lessonContent": "Some questions run deeper than convention.\nPractical answers may not settle metaphysics.\nAsk what kind of thing a person is.\nFollow a question to its foundations.\nShare this: reflect on what you take yourself most fundamentally to be.",
+      "forgeId": "batch-086#24",
+      "forgeScore": 100
+    }
+  ]
+}

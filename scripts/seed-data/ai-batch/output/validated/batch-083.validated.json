@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-083",
+  "generatedAt": "2026-09-17T13:27:42.753Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Bent Molecule",
+      "question": "Why is water so good at dissolving salts and sugars?",
+      "choices": [
+        "Its molecules are polar",
+        "It is completely nonpolar",
+        "It has no electric charge anywhere",
+        "It repels all ions"
+      ],
+      "correctAnswer": "Its molecules are polar",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. One end carries partial positive charge and the other partial negative, so water pulls dissolved particles apart.",
+      "incorrectExplanation": "The answer is its molecules are polar. Charged ends surround ions and separate them, which is why so many substances dissolve.",
+      "lessonContent": "Charge distribution decides what dissolves.\nPartial charges attract dissolved ions.\nPolarity explains a solvent's reach.\nLook at molecular shape, not size.\nShare this: notice one substance that dissolves only in a particular liquid.",
+      "forgeId": "batch-083#0",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Sticky Neighbours",
+      "question": "What kind of attraction holds water molecules close to one another?",
+      "choices": [
+        "Hydrogen bonds between molecules",
+        "Strong nuclear forces inside atoms",
+        "Magnetic attraction between drops",
+        "Gravity between small masses"
+      ],
+      "correctAnswer": "Hydrogen bonds between molecules",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. These bonds between molecules explain water's unusually high boiling point and strong surface effects.",
+      "incorrectExplanation": "The answer is hydrogen bonds between molecules. They are weaker than the bonds inside a molecule but strong enough to shape water's behaviour.",
+      "lessonContent": "Intermolecular forces shape bulk properties.\nWeak attractions can have large effects in numbers.\nDistinguish bonds within from bonds between.\nConnect structure to behaviour.\nShare this: notice one substance whose properties come from weak attractions.",
+      "forgeId": "batch-083#1",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Slow to Warm",
+      "question": "Why does water change temperature more slowly than most liquids?",
+      "choices": [
+        "It has a high specific heat",
+        "It conducts heat instantly",
+        "It has no thermal capacity",
+        "It cools only by freezing"
+      ],
+      "correctAnswer": "It has a high specific heat",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Absorbing energy goes largely into disrupting attractions rather than raising temperature.",
+      "incorrectExplanation": "The answer is it has a high specific heat. Water soaks up a lot of energy for a modest temperature change, stabilising climates and bodies.",
+      "lessonContent": "Some materials buffer temperature well.\nEnergy can go into structure, not motion.\nThermal inertia stabilises systems.\nRelate heat capacity to everyday comfort.\nShare this: notice one thing that stays cool or warm for a long time.",
+      "forgeId": "batch-083#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Lighter Solid",
+      "question": "Why does ice float on liquid water?",
+      "choices": [
+        "Its crystal structure is less dense",
+        "Ice is chemically a different substance",
+        "Ice contains trapped gas",
+        "Liquid water repels solids"
+      ],
+      "correctAnswer": "Its crystal structure is less dense",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. The ordered lattice spaces molecules farther apart than the liquid arrangement, so the solid is lighter per volume.",
+      "incorrectExplanation": "The answer is its crystal structure is less dense. Most solids sink in their own liquids, which makes this behaviour unusual and important for life.",
+      "lessonContent": "Ordered structures can be less dense than disordered ones.\nExceptions to rules often matter most.\nDensity decides floating and sinking.\nLink molecular arrangement to bulk behaviour.\nShare this: name one consequence of ice floating.",
+      "forgeId": "batch-083#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Skin on Water",
+      "question": "Why can some insects stand on the surface of a pond?",
+      "choices": [
+        "Surface tension from cohesive molecules",
+        "The water is frozen solid",
+        "Insects are lighter than air",
+        "Pond water has no density"
+      ],
+      "correctAnswer": "Surface tension from cohesive molecules",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Molecules pull on each other at the surface, forming a taut layer that supports small weights.",
+      "incorrectExplanation": "The answer is surface tension from cohesive molecules. The surface acts like a weak skin because molecules there have fewer neighbours to balance their pull.",
+      "lessonContent": "Bulk forces create surface effects.\nCohesion produces an elastic boundary.\nScale decides whether a surface holds.\nConnect molecular pull to visible behaviour.\nShare this: notice one surface effect you can see in a full glass.",
+      "forgeId": "batch-083#4",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Climbing Paper",
+      "question": "Why does water crawl up a narrow glass tube against gravity?",
+      "choices": [
+        "Adhesion plus capillary action",
+        "The tube pushes it upward",
+        "Water loses all weight in tubes",
+        "Gravity reverses inside glass"
+      ],
+      "correctAnswer": "Adhesion plus capillary action",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Attraction to the glass and the pull of neighbouring molecules together lift the column.",
+      "incorrectExplanation": "The answer is adhesion plus capillary action. The narrower the tube, the higher the climb, which is why paper towels soak upward.",
+      "lessonContent": "Attraction to a surface can oppose gravity.\nNarrow spaces amplify capillary effects.\nUnderstand how plants draw water.\nCombine adhesion with cohesion.\nShare this: watch a tissue wick water upward.",
+      "forgeId": "batch-083#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Universal Solvent",
+      "question": "Water is often called the universal solvent because it dissolves what?",
+      "choices": [
+        "Many ionic and polar substances",
+        "Literally every known material",
+        "Only nonpolar oils",
+        "Nothing at all"
+      ],
+      "correctAnswer": "Many ionic and polar substances",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Its polarity suits a wide range of dissolved partners, though oils and nonpolar substances resist it.",
+      "incorrectExplanation": "The answer is many ionic and polar substances. The nickname is a convenience, not a literal claim that water dissolves everything.",
+      "lessonContent": "Popular names often overstate a claim.\nDissolving depends on matching polarity.\nLike dissolves like in chemistry.\nTest a generalisation against exceptions.\nShare this: find one substance water cannot dissolve.",
+      "forgeId": "batch-083#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Acid Scale",
+      "question": "What does a low pH indicate about a solution?",
+      "choices": [
+        "A high concentration of hydrogen ions",
+        "A high concentration of hydroxide ions",
+        "A neutral, balanced mixture",
+        "The absence of any ions"
+      ],
+      "correctAnswer": "A high concentration of hydrogen ions",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Acidity means more of these ions, which is why the scale runs low for strong acids.",
+      "incorrectExplanation": "The answer is a high concentration of hydrogen ions. Bases instead carry more hydroxide ions and sit at the high end of the scale.",
+      "lessonContent": "Scales summarise a hidden quantity.\nIon concentration drives acidity.\nAcids and bases are complementary.\nRead a scale in both directions.\nShare this: check the pH of one household liquid.",
+      "forgeId": "batch-083#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Bitter and Slippery",
+      "question": "What distinguishes a base from an acid in solution?",
+      "choices": [
+        "It releases hydroxide ions",
+        "It releases hydrogen ions",
+        "It dissolves only in oil",
+        "It has a pH below seven"
+      ],
+      "correctAnswer": "It releases hydroxide ions",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Bases raise pH by providing hydroxide, which is why they feel slippery and taste bitter.",
+      "incorrectExplanation": "The answer is it releases hydroxide ions. Acids do the opposite, contributing hydrogen ions and lowering pH.",
+      "lessonContent": "Acids and bases act in opposite ways.\nIon release determines the direction.\nSensory cues can hint at chemistry.\nPair opposites to understand each.\nShare this: name one common household base and one acid.",
+      "forgeId": "batch-083#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Dissolved Salt",
+      "question": "When table salt dissolves in water, what happens to it at the particle level?",
+      "choices": [
+        "It separates into charged ions",
+        "It becomes a new element",
+        "It evaporates into the air",
+        "It turns into pure water"
+      ],
+      "correctAnswer": "It separates into charged ions",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. The crystal breaks into positive and negative particles that water molecules surround.",
+      "incorrectExplanation": "The answer is it separates into charged ions. This is why salt water conducts electricity while pure water barely does.",
+      "lessonContent": "Dissolving can break a crystal apart.\nCharged particles enable conduction.\nObservation can reveal hidden ions.\nConnect dissolving to electrical behaviour.\nShare this: test whether one dissolved substance conducts electricity.",
+      "forgeId": "batch-083#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Maximum Dissolved",
+      "question": "What is a saturated solution?",
+      "choices": [
+        "It holds the maximum solute at that temperature",
+        "It contains no solute at all",
+        "It can dissolve unlimited amounts",
+        "It is always acidic"
+      ],
+      "correctAnswer": "It holds the maximum solute at that temperature",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Beyond that point extra solute settles instead of dissolving unless conditions change.",
+      "incorrectExplanation": "The answer is it holds the maximum solute at that temperature. Heating often raises the limit, which is why the temperature matters.",
+      "lessonContent": "Solubility has limits that depend on conditions.\nTemperature shifts the maximum.\nExcess settles when the limit is reached.\nLook for the boundary of a process.\nShare this: watch sugar stop dissolving in a drink.",
+      "forgeId": "batch-083#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Adding Water",
+      "question": "What happens to a solution's concentration when you add more solvent?",
+      "choices": [
+        "It decreases by dilution",
+        "It increases by dilution",
+        "It stays exactly the same",
+        "It becomes a new compound"
+      ],
+      "correctAnswer": "It decreases by dilution",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Spreading the same amount of solute through more liquid lowers the concentration.",
+      "incorrectExplanation": "The answer is it decreases by dilution. The amount of solute is unchanged while the volume grows, so the ratio falls.",
+      "lessonContent": "Concentration is a ratio.\nChanging one part of a ratio changes the whole.\nTrack amounts, not just volumes.\nPredict effects before mixing.\nShare this: estimate the change when you water down a drink.",
+      "forgeId": "batch-083#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Through a Membrane",
+      "question": "What is the movement of water across a semi-permeable membrane toward higher solute concentration called?",
+      "choices": [
+        "Osmosis",
+        "Evaporation",
+        "Combustion",
+        "Sublimation"
+      ],
+      "correctAnswer": "Osmosis",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Water crosses toward the more concentrated side, balancing the two solutions over time.",
+      "incorrectExplanation": "The answer is osmosis. Cells rely on this balance, which is why salt can draw water out of living tissue.",
+      "lessonContent": "Concentration differences drive flow.\nBarriers let some things pass and not others.\nBalance emerges over time.\nLink gradients to movement.\nShare this: notice how salt changes a fresh vegetable.",
+      "forgeId": "batch-083#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Spreading Out",
+      "question": "Why does a drop of ink spread through still water with no stirring?",
+      "choices": [
+        "Random particle motion causes diffusion",
+        "Water pushes it outward deliberately",
+        "Ink weighs more than water",
+        "The container repels the ink"
+      ],
+      "correctAnswer": "Random particle motion causes diffusion",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Constant random motion drifts particles from crowded regions to emptier ones.",
+      "incorrectExplanation": "The answer is random particle motion causes diffusion. No push is needed; concentration differences alone drive the spread.",
+      "lessonContent": "Random motion still produces order-like results.\nGradients flatten without any force.\nDiffusion explains many everyday spreads.\nTrust statistics over intention.\nShare this: watch one scent or dye spread through the air or water.",
+      "forgeId": "batch-083#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Carrying Charge",
+      "question": "Why does salty water conduct electricity better than pure water?",
+      "choices": [
+        "Dissolved ions carry the current",
+        "Salt lowers the temperature",
+        "Pure water is a metal",
+        "Salt blocks all electrons"
+      ],
+      "correctAnswer": "Dissolved ions carry the current",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Mobile charged particles let charge move, which pure water provides only in tiny amounts.",
+      "incorrectExplanation": "The answer is dissolved ions carry the current. More dissolved salt means more carriers, so conduction improves.",
+      "lessonContent": "Conduction needs mobile charges.\nDissolved ions provide them.\nPurity affects electrical behaviour.\nConnect composition to performance.\nShare this: compare a dry and a wet path for electricity.",
+      "forgeId": "batch-083#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Raised Boiling Point",
+      "question": "Why does adding salt to water raise its boiling temperature slightly?",
+      "choices": [
+        "Dissolved particles interfere with vapour formation",
+        "Salt adds its own heat",
+        "Salt lowers the pressure above water",
+        "Salt removes the water's attractions"
+      ],
+      "correctAnswer": "Dissolved particles interfere with vapour formation",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. The solute makes it harder for molecules to escape into vapour, so more energy is needed.",
+      "incorrectExplanation": "The answer is dissolved particles interfere with vapour formation. Boiling needs higher energy to overcome the extra obstacle.",
+      "lessonContent": "Dissolved particles change physical properties.\nBoiling requires molecules to escape.\nSolutes raise the energy needed.\nRelate mixtures to changed thresholds.\nShare this: notice a property that shifts when you mix two substances.",
+      "forgeId": "batch-083#15",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Lowered Freezing Point",
+      "question": "Why does salt spread on icy roads help melt the ice?",
+      "choices": [
+        "It lowers water's freezing point",
+        "It warms the road chemically",
+        "It raises the air temperature",
+        "It makes ice denser than water"
+      ],
+      "correctAnswer": "It lowers water's freezing point",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. With dissolved salt, water stays liquid at temperatures that would otherwise freeze it.",
+      "incorrectExplanation": "The answer is it lowers water's freezing point. The salt does not heat the road; it prevents the water from solidifying as easily.",
+      "lessonContent": "Solutes shift phase-change thresholds.\nLowering the freezing point keeps liquids flowing.\nPractical uses follow from chemistry.\nAvoid assuming heat where none is added.\nShare this: notice one winter trick grounded in chemistry.",
+      "forgeId": "batch-083#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Hard Water",
+      "question": "What causes water to be described as hard?",
+      "choices": [
+        "Dissolved calcium and magnesium ions",
+        "A high concentration of sugar",
+        "Extremely low temperature",
+        "The presence of visible bubbles"
+      ],
+      "correctAnswer": "Dissolved calcium and magnesium ions",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. These ions react with soap and form scale, which is why hard water lathers poorly.",
+      "incorrectExplanation": "The answer is dissolved calcium and magnesium ions. Their presence leaves deposits in kettles and pipes over time.",
+      "lessonContent": "Dissolved minerals shape water's behaviour.\nReactions with soap reveal composition.\nDeposits accumulate from recurring chemistry.\nLink a nuisance to a cause.\nShare this: inspect one appliance for mineral scale.",
+      "forgeId": "batch-083#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Separating by Heat",
+      "question": "What process separates water from dissolved salt by evaporation and condensation?",
+      "choices": [
+        "Distillation",
+        "Filtration",
+        "Magnetisation",
+        "Sedimentation"
+      ],
+      "correctAnswer": "Distillation",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Evaporating the water and collecting it leaves the dissolved solid behind.",
+      "incorrectExplanation": "The answer is distillation. It exploits different boiling points, unlike filtration which traps solid particles.",
+      "lessonContent": "Separation methods exploit a difference.\nBoiling points separate dissolved mixtures.\nMatch the method to the property.\nCompare trapping with evaporating.\nShare this: choose a method to separate one mixture you know.",
+      "forgeId": "batch-083#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Trapping Solids",
+      "question": "Which method removes fine solid particles suspended in water?",
+      "choices": [
+        "Filtration through a fine barrier",
+        "Boiling the mixture dry",
+        "Adding more water",
+        "Cooling until it freezes"
+      ],
+      "correctAnswer": "Filtration through a fine barrier",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. A barrier with small pores catches suspended solids while the liquid passes through.",
+      "incorrectExplanation": "The answer is filtration through a fine barrier. Dissolved substances would pass through, so it works only for suspended particles.",
+      "lessonContent": "Barriers separate by size.\nDissolved and suspended behave differently.\nPick the method to match the target.\nSize is a useful separating property.\nShare this: try to separate one cloudy mixture at home.",
+      "forgeId": "batch-083#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Seeding Crystals",
+      "question": "What happens when a hot saturated solution cools slowly?",
+      "choices": [
+        "Crystals form as solubility drops",
+        "The solute disappears entirely",
+        "The solution turns into a gas",
+        "Nothing at all changes"
+      ],
+      "correctAnswer": "Crystals form as solubility drops",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Cooler water holds less solute, so the excess returns to solid form as ordered crystals.",
+      "incorrectExplanation": "The answer is crystals form as solubility drops. Slow cooling yields larger crystals because particles have time to arrange.",
+      "lessonContent": "Limits change with temperature.\nExcess material returns to solid form.\nSlow processes make ordered structures.\nControl conditions to control outcomes.\nShare this: grow a small crystal from a saturated solution.",
+      "forgeId": "batch-083#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Like Dissolves Like",
+      "question": "Why does oil not dissolve in water?",
+      "choices": [
+        "Its molecules are nonpolar",
+        "It is heavier than water",
+        "It contains dissolved salt",
+        "It is too cold to dissolve"
+      ],
+      "correctAnswer": "Its molecules are nonpolar",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Water's polar molecules have little attraction for nonpolar oil, so the two separate.",
+      "incorrectExplanation": "The answer is its molecules are nonpolar. Matching polarity is what lets a solvent pull a substance apart.",
+      "lessonContent": "Polar and nonpolar substances separate.\nSimilarity of charge permits dissolving.\nMixing depends on molecular character.\nPredict separation from polarity.\nShare this: notice two liquids that refuse to mix.",
+      "forgeId": "batch-083#21",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Counting Particles",
+      "question": "What does the concentration unit molarity measure?",
+      "choices": [
+        "Moles of solute per litre",
+        "Grams of solvent per litre",
+        "Litres of water per gram",
+        "Degrees of temperature change"
+      ],
+      "correctAnswer": "Moles of solute per litre",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. It counts particles rather than mass, which is why it suits reactions so well.",
+      "incorrectExplanation": "The answer is moles of solute per litre. Counting particles lets chemists predict how much of each substance will react.",
+      "lessonContent": "Counting particles beats weighing mass.\nReactions depend on numbers of particles.\nUnits encode what is being measured.\nUse the unit that fits the question.\nShare this: check what a concentration unit on a label measures.",
+      "forgeId": "batch-083#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Neutral Point",
+      "question": "What happens chemically when an acid and a base react in the right proportions?",
+      "choices": [
+        "They neutralise into salt and water",
+        "They become more acidic",
+        "They turn into pure metal",
+        "They release only heat with no products"
+      ],
+      "correctAnswer": "They neutralise into salt and water",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Hydrogen and hydroxide ions combine, leaving a salt solution and water.",
+      "incorrectExplanation": "The answer is they neutralise into salt and water. The opposing properties cancel rather than intensifying.",
+      "lessonContent": "Opposites can cancel, not compound.\nReactions produce new substances.\nBalance matters in combining reagents.\nPredict products from reactants.\nShare this: name one everyday neutralisation you have seen.",
+      "forgeId": "batch-083#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Separating Colours",
+      "question": "Which technique separates the pigments in ink by letting a solvent climb a paper strip?",
+      "choices": [
+        "Chromatography",
+        "Distillation",
+        "Electrolysis",
+        "Filtration"
+      ],
+      "correctAnswer": "Chromatography",
+      "xpReward": 25,
+      "lessonGroup": "Crazy Chemistry",
+      "correctExplanation": "Right. Components travel at different speeds and separate into bands along the paper.",
+      "incorrectExplanation": "The answer is chromatography. Differences in how components cling to paper and dissolve in solvent do the separating.",
+      "lessonContent": "Separation can exploit differential movement.\nSpeed differences reveal components.\nVisual results aid analysis.\nPick a method by the property exploited.\nShare this: separate the colours in one marker on paper.",
+      "forgeId": "batch-083#24",
+      "forgeScore": 100
+    }
+  ]
+}

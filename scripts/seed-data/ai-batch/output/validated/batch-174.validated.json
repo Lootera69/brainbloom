@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-174",
+  "generatedAt": "2026-09-17T13:27:45.232Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "Sound pictures",
+      "correctExplanation": "Right — bats shout ultrasound and read echoes. Darkness becomes navigable through reflected sound.",
+      "incorrectExplanation": "Not quite — sound pictures. Bats emit calls and paint surroundings from returning echoes.",
+      "lessonContent": "Echoes map darkness for bats and submarines alike.\nCalls outbound, pictures inbound — nature's sonar.\nEyes rest while ears navigate nightly.\nShare this: clap in a tunnel and hear shape.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do bats navigate in total darkness?",
+      "title": "The Night Navigator",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Perfect night vision",
+        "Sound pictures",
+        "Magnetic whiskers",
+        "Glowing eyes"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Swiveling heads",
+      "correctExplanation": "Correct — fixed tube eyes can't roll, so necks rotate 270 degrees. Heads turn where eyeballs cannot.",
+      "incorrectExplanation": "Actually, swiveling heads. Owls' eyes lock in place; extraordinary necks compensate.",
+      "lessonContent": "Fixed eyes trade motion for light-gathering power.\nNecks evolve to cover eyes' limitations.\nTube eyes drink dim light deeply.\nShare this: try reading with fixed eyes tonight.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why can owls turn their heads so far?",
+      "title": "The Turning Hunter",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Rubber necks",
+        "Swiveling heads",
+        "Spinning brains",
+        "Double spines"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#1",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Mood billboards",
+      "correctExplanation": "Yes — color cells broadcast temper and temperature. Camouflage helps, but conversation drives the palette.",
+      "incorrectExplanation": "Close! Mood billboards. Chameleons signal rivals and mates; background-matching is a side effect.",
+      "lessonContent": "Skin advertises feelings across species constantly.\nCuttlefish, squid, and chameleons text in color.\nTemperature also tunes living palettes.\nShare this: read a pet's mood from posture.",
+      "lessonGroup": "Body & Biology",
+      "question": "What is chameleon color-change mostly for?",
+      "title": "The Living Signal",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Hiding always",
+        "Mood billboards",
+        "Attracting flies",
+        "Cooling skin"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Fat pantries",
+      "correctExplanation": "Right — humps warehouse fat, metabolized into energy plus water. Pantries, not canteens, cross deserts.",
+      "incorrectExplanation": "Not quite — fat pantries. Stored fat converts to fuel and metabolic water on long treks.",
+      "lessonContent": "Fat stores energy plus hidden water.\nDesert travelers bank calories in humps.\nMetabolism mints water from fat cleverly.\nShare this: name one animal pantry besides humps.",
+      "lessonGroup": "Body & Biology",
+      "question": "What do camels store in their humps?",
+      "title": "The Desert Pantry",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Water tanks",
+        "Fat pantries",
+        "Spare blood",
+        "Sand filters"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Ear radiators",
+      "correctExplanation": "Correct — huge thin ears dump heat through dense vessels. Desert foxes wear cooling towers.",
+      "incorrectExplanation": "Actually, ear radiators. Blood radiates warmth through oversized thin ears.",
+      "lessonContent": "Ears double as radiators in desert foxes.\nThin skin plus blood equals cooling fins.\nElephants flap for the same physics.\nShare this: feel your ears warm after running.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why do fennec foxes have giant ears?",
+      "title": "The Cooling Towers",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Better hearing only",
+        "Ear radiators",
+        "Scaring predators",
+        "Storing water"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Rotating huddle",
+      "correctExplanation": "Yes — penguins cycle the freezing edge inward so all share warmth. Democracy of down feathers.",
+      "incorrectExplanation": "Close! Rotating huddle. Birds trade the cold rim for the warm core in slow rotation.",
+      "lessonContent": "Huddles share warmth through slow rotation.\nEdge duty cycles fairly among penguins.\nCooperation beats feathers alone.\nShare this: huddle dramatically in next cold snap.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do penguins survive Antarctic cold together?",
+      "title": "The Warm Democracy",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Thick blubber only",
+        "Rotating huddle",
+        "Heated nests",
+        "Never standing still"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Scent memory",
+      "correctExplanation": "Right — salmon imprint their birth stream's chemistry and climb home by smell. Noses navigate continents of water.",
+      "incorrectExplanation": "Not quite — scent memory. Young salmon memorize home-stream odors for the return journey.",
+      "lessonContent": "Smell guides salmon across thousands of miles.\nBirth streams imprint lifelong chemical maps.\nSacrificing travelers feed whole forests.\nShare this: follow one familiar scent home.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do salmon find their birth stream?",
+      "title": "The Homeward Swimmer",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Ocean currents",
+        "Scent memory",
+        "Following elders",
+        "Magnetic maps only"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Dance maps",
+      "correctExplanation": "Correct — waggle dances encode direction and distance to flowers. Bees read choreography like maps.",
+      "incorrectExplanation": "Actually, dance maps. Angle and duration spell out floral coordinates precisely.",
+      "lessonContent": "Bees dance coordinates to rich flowers.\nAngles encode sun-relative directions.\nColonies vote with their feet nightly.\nShare this: direct a friend using only gestures.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do honeybees share flower locations?",
+      "title": "The Waggle News",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Pheromone trails",
+        "Dance maps",
+        "Leading flights",
+        "Buzzing loudly"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Scent highways",
+      "correctExplanation": "Yes — ants lay pheromone trails that nestmates follow and reinforce. Highways emerge from tiny deposits.",
+      "incorrectExplanation": "Close! Scent highways. Each ant's chemical crumbs pave roads crowds then widen.",
+      "lessonContent": "Pheromones pave invisible ant highways.\nTraffic reinforces successful routes automatically.\nNo leader directs the foraging flow.\nShare this: watch one ant trail's two-way rush.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do ants march in perfect lines?",
+      "title": "The Tiny Highway",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Holding hands",
+        "Scent highways",
+        "Seeing footprints",
+        "Queen's orders"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#8",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Space feelers",
+      "correctExplanation": "Right — whiskers gauge gaps and air currents. Cats measure doorways before committing whiskers-first.",
+      "incorrectExplanation": "Not quite — space feelers. Sensitive hairs report clearance and nearby motion.",
+      "lessonContent": "Whiskers measure worlds cats can't see.\nGap-gauging prevents stuck-cat rescues.\nTrimming them blinds navigation cruelly.\nShare this: watch whiskers test one gap.",
+      "lessonGroup": "Body & Biology",
+      "question": "What are cat whiskers for?",
+      "title": "The Sensitive Rulers",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Catching mice",
+        "Space feelers",
+        "Looking fierce",
+        "Balancing tails"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Scent millions",
+      "correctExplanation": "Correct — hundreds of millions of receptors plus dedicated brain real estate. Noses that read history in smells.",
+      "incorrectExplanation": "Actually, scent millions. Canine noses outnumber human sensors a hundredfold.",
+      "lessonContent": "Dog noses sample worlds humans miss entirely.\nReceptor counts set smelling resolution.\nTraining aims this hardware precisely.\nShare this: let one dog sniff uninterrupted.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why is a dog's sense of smell so powerful?",
+      "title": "The Hundredfold Nose",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Bigger nostrils",
+        "Scent millions",
+        "Wetter noses",
+        "Longer snouts"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Half-brain naps",
+      "correctExplanation": "Yes — one hemisphere sleeps while the other surfaces to breathe. Dolphins rest without drowning.",
+      "incorrectExplanation": "Close! Half-brain naps. Alternating hemispheres keep breathers breathing through sleep.",
+      "lessonContent": "Half brains sleep while halves stand guard.\nBreathing stays voluntary even unconscious.\nMigrating birds nap similarly aloft.\nShare this: rest one 'hemisphere' this afternoon.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do dolphins sleep without drowning?",
+      "title": "The Waking Sleeper",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Holding breath hours",
+        "Half-brain naps",
+        "Sleeping on beaches",
+        "Never truly sleeping"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#11",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "High-pressure plumbing",
+      "correctExplanation": "Right — mighty hearts and tight vessels push blood six feet up. Giraffes engineer against gravity daily.",
+      "incorrectExplanation": "Not quite — high-pressure plumbing. Double human blood pressure lifts lunch to the brain.",
+      "lessonContent": "Giraffes out-pump gravity with mighty hearts.\nValves prevent fainting at every head-dip.\nHeights demand hydraulic engineering.\nShare this: feel your pulse after bending low.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do giraffes pump blood to tall heads?",
+      "title": "The Towering Heart",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Extra hearts",
+        "High-pressure plumbing",
+        "Slow heartbeats",
+        "Gravity-proof blood"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#12",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Shock-proof skull",
+      "correctExplanation": "Correct — spongy bone plus a wrapping tongue absorbs hammering. Woodpeckers wear built-in helmets.",
+      "incorrectExplanation": "Actually, shock-proof skull. Cushioned braincases shrug off twenty hits per second.",
+      "lessonContent": "Spongy skulls absorb relentless hammering.\nTongues anchor around the braincase cleverly.\nEvolution crash-tests heads daily.\nShare this: knock wood appreciating your skull.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why don't woodpeckers get concussions?",
+      "title": "The Hammer Head",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "No brains inside",
+        "Shock-proof skull",
+        "Soft trees only",
+        "Slow pecking"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Detachable spears",
+      "correctExplanation": "Yes — barbed quills lodge in attackers and stay behind. Porcupines never shoot; victims impale themselves.",
+      "incorrectExplanation": "Close! Detachable spears. Quills release on contact; lunging predators collect them.",
+      "lessonContent": "Quills defend by staying behind in attackers.\nBarbs resist backward removal painfully.\nMyths of shooting quills persist wrongly.\nShare this: retire the shooting-quill myth.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do porcupine quills defend them?",
+      "title": "The Barbed Defense",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Shooting quills",
+        "Detachable spears",
+        "Poison tips",
+        "Rattling warnings"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#14",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Mating lanterns",
+      "correctExplanation": "Right — species-specific flash patterns advertise for mates. Chemistry courts in code.",
+      "incorrectExplanation": "Not quite — mating lanterns. Each species blinks its own love password.",
+      "lessonContent": "Fireflies court in coded light pulses.\nChemistry manufactures cold light efficiently.\nMimics hack the codes predatorily.\nShare this: decode one backyard flash dialogue.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why do fireflies glow?",
+      "title": "The Blinking Courtship",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Lighting paths",
+        "Mating lanterns",
+        "Warning bats",
+        "Digesting food"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#15",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Glowing bait",
+      "correctExplanation": "Correct — bacteria-powered lures dangle before cavernous jaws. Hungry prey approaches the nightlight.",
+      "incorrectExplanation": "Actually, glowing bait. Symbiotic microbes light lures in lightless depths.",
+      "lessonContent": "Anglerfish fish with living lanterns.\nSymbiosis lights the abyssal trap.\nPatience plus glow equals dinner.\nShare this: dangle metaphorical bait patiently once.",
+      "lessonGroup": "Body & Biology",
+      "question": "What is the anglerfish's glowing lure for?",
+      "title": "The Deep Lantern",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Seeing prey",
+        "Glowing bait",
+        "Mating dances",
+        "Warming water"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#16",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Tun-state survival",
+      "correctExplanation": "Yes — tardigrades dry into armored tuns, pausing life for decades. Space itself failed to kill them.",
+      "incorrectExplanation": "Close! Tun-state survival. Dehydrated dormancy survives vacuum, radiation, and time.",
+      "lessonContent": "Dormancy pauses life past lethal extremes.\nWater bears outlast space exposure.\nCryptobiosis redefines toughness completely.\nShare this: marvel at moss-dwelling immortals.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do tardigrades survive outer space?",
+      "title": "The Indestructible Speck",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Thick shells",
+        "Tun-state survival",
+        "Tiny size hides",
+        "Eating radiation"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#17",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Limb regrowth",
+      "correctExplanation": "Right — axolotls regrow legs, jaws, even heart tissue scar-free. Mammals heal; salamanders rebuild.",
+      "incorrectExplanation": "Not quite — limb regrowth. Blastema cells replay development at wound sites.",
+      "lessonContent": "Regeneration replays development at injuries.\nBlastemas rebuild perfect copies routinely.\nScars are mammals' hasty compromise.\nShare this: watch one regrowth video amazed.",
+      "lessonGroup": "Body & Biology",
+      "question": "What makes axolotls medically famous?",
+      "title": "The Rebuilt Limb",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Immortal cells",
+        "Limb regrowth",
+        "Poison skin",
+        "Gill breathing"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Living camouflage",
+      "correctExplanation": "Correct — chromatophores flash new patterns in milliseconds. Skin becomes a screen of mood and mimicry.",
+      "incorrectExplanation": "Actually, living camouflage. Pigment sacs open and shut like pixels instantly.",
+      "lessonContent": "Chromatophores pixelate living skin instantly.\nMood and background share the display.\nHypnosis of prey starts with pattern.\nShare this: watch one camouflage video frame by frame.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do cuttlefish change color instantly?",
+      "title": "The Pixel Skin",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Paint glands",
+        "Living camouflage",
+        "Mood lighting",
+        "Water pressure"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Pack roll-call",
+      "correctExplanation": "Yes — howls rally scattered packs and warn rivals off territory. Moons merely decorate the chorus.",
+      "incorrectExplanation": "Close! Pack roll-call. Howling coordinates hunts and borders, moon or none.",
+      "lessonContent": "Howls assemble packs across dark miles.\nTerritories announce themselves nightly.\nMoons get credit for pack business.\nShare this: howl once; note answering dogs.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why do wolves howl at night?",
+      "title": "The Midnight Chorus",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Serenading moons",
+        "Pack roll-call",
+        "Scaring ghosts",
+        "Cooling throats"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Territory clock",
+      "correctExplanation": "Right — internal clocks trigger dawn crows claiming territory. Light cues the schedule, rivals hear the deed.",
+      "incorrectExplanation": "Not quite — territory clock. Roosters announce holdings at first light daily.",
+      "lessonContent": "Roosters crow property deeds at sunrise.\nCircadian clocks keep farmyard time.\nLoudest claims stake earliest hours.\nShare this: wake once with the roosters' logic.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why do roosters crow at dawn?",
+      "title": "The Dawn Deed",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Waking farmers",
+        "Territory clock",
+        "Praising sunrise",
+        "Chasing darkness"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Tongue cooling",
+      "correctExplanation": "Correct — dogs own few sweat glands, so panting evaporates heat off tongues. Lolling tongues are radiators.",
+      "incorrectExplanation": "Actually, tongue cooling. Rapid panting moves air across wet tongues, dumping heat.",
+      "lessonContent": "Panting evaporates heat where sweat cannot.\nTongues serve as canine radiators.\nBreeds differ in cooling efficiency.\nShare this: offer water to one panting dog.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why do dogs pant with tongues out?",
+      "title": "The Lolling Radiator",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Tired jaws",
+        "Tongue cooling",
+        "Tasting air",
+        "Smiling happily"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Hollow struts",
+      "correctExplanation": "Yes — hollow fused bones brace flight loads lightly. Strength per gram, not solidity, lifts birds.",
+      "incorrectExplanation": "Close! Hollow struts. Internal bracing makes lightness strong enough to fly.",
+      "lessonContent": "Hollowness lightens without weakening wisely.\nStruts and fusion brace thin walls.\nEngineers copy birds in aircraft frames.\nShare this: hold one wishbone's lightness thoughtfully.",
+      "lessonGroup": "Body & Biology",
+      "question": "Why are bird bones hollow?",
+      "title": "The Featherweight Frame",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Storing air",
+        "Hollow struts",
+        "Saving calcium",
+        "Missing marrow"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#23",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Accidental forestry",
+      "correctExplanation": "Right — forgotten caches sprout into oak empires. Squirrels plant forests by losing nuts.",
+      "incorrectExplanation": "Not quite — accidental forestry. Buried-and-lost acorns become tomorrow's canopy.",
+      "lessonContent": "Forgetful squirrels afforest continents slowly.\nCaching spreads seeds beyond parent shade.\nLosses compound into woodlands.\nShare this: plant one nut and forget it.",
+      "lessonGroup": "Body & Biology",
+      "question": "How do forgetful squirrels help forests?",
+      "title": "The Forgetful Forester",
+      "type": "multiple-choice",
+      "category": "science",
+      "choices": [
+        "Spreading fertilizer",
+        "Accidental forestry",
+        "Chasing pests",
+        "Digging rain pools"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-174#24",
+      "forgeScore": 100
+    }
+  ]
+}

@@ -51,3 +51,6 @@ repomix-output.xml
 
 # salesforce cli cache (unrelated tooling)
 /.sf
+
+# forge batch pipeline: cross-batch duplicate memory is derived state
+scripts/seed-data/ai-batch/output/.registry.json

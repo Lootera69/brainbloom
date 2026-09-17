@@ -1,0 +1,541 @@
+{
+  "version": 1,
+  "batchId": "batch-191",
+  "generatedAt": "2026-09-17T13:27:45.884Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "M is 1",
+      "acceptedAnswers": [
+        "M is 1",
+        "M equals 1",
+        "letter M is 1"
+      ],
+      "correctExplanation": "Right — adding two four-digit numbers peaks below 20000, so the carried leading digit is one. Bounds crown M.",
+      "incorrectExplanation": "The answer is M is 1. The five-digit total's head can only be a carried one.",
+      "lessonContent": "Leading carries bound alphametic heads.\nFour-plus-four peaks below twenty thousand.\nMaximums dictate leading digits.\nShare this: bound one sum's head digit.",
+      "lessonGroup": "Number Crunch",
+      "question": "SEND + MORE = MONEY. What digit is M?",
+      "title": "The Leading One",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "O is 0",
+      "acceptedAnswers": [
+        "O is 0",
+        "O equals 0",
+        "letter O is 0"
+      ],
+      "correctExplanation": "Correct — the thousands column resolves S+1 to O with O necessarily zero. Carries cascade into zeros.",
+      "incorrectExplanation": "The answer is O is 0. Column arithmetic forces the round digit here.",
+      "lessonContent": "Zeros emerge from carry cascades.\nThousands columns hide round digits.\nFollow carries to their landings.\nShare this: chase one carry to zero.",
+      "lessonGroup": "Number Crunch",
+      "question": "Thousands column of the famous money sum hides a round digit. Name it.",
+      "title": "The Round Second",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#1",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "S is 9",
+      "acceptedAnswers": [
+        "S is 9",
+        "S equals 9",
+        "letter S is 9"
+      ],
+      "correctExplanation": "Yes — only S=9 produces a five-digit total. Maximal heads demand nines.",
+      "incorrectExplanation": "The answer is S is 9. Five-digit results need near-maximal openers.",
+      "lessonContent": "Maximal openers build longest totals.\nNines head the biggest sums.\nLength demands leading weight.\nShare this: maximize one addition's head.",
+      "lessonGroup": "Number Crunch",
+      "question": "Only one opener makes the money sum five digits long. Which?",
+      "title": "The Maximal Head",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "D is 5",
+      "acceptedAnswers": [
+        "D is 5",
+        "D equals 5",
+        "letter D is 5"
+      ],
+      "correctExplanation": "Right — the famous DONALD + GERALD = ROBERT opens with D=5. Classics anchor on fives.",
+      "incorrectExplanation": "The answer is D is 5. 526485 plus 197485 totals 723970.",
+      "lessonContent": "Famous puzzles anchor known digits.\nClassics reward memorized landmarks.\nFive opens the Donald sum.\nShare this: quote one classic total.",
+      "lessonGroup": "Number Crunch",
+      "question": "DONALD + GERALD = ROBERT. What digit is D?",
+      "title": "The Donald Five",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "F is 2",
+      "acceptedAnswers": [
+        "F is 2",
+        "F equals 2",
+        "letter F is 2"
+      ],
+      "correctExplanation": "Correct — FORTY + TEN + TEN = SIXTY solves with F=2 (29786 + 850 + 850 = 31486). Forties hide twos.",
+      "incorrectExplanation": "The answer is F is 2. Twenty-nine thousand opens the forty.",
+      "lessonContent": "Forty-words hide small heads.\nTriple addends constrain openings.\nVerify totals after solving.\nShare this: check one forty-sum.",
+      "lessonGroup": "Number Crunch",
+      "question": "FORTY + TEN + TEN = SIXTY. What digit is F?",
+      "title": "The Forty Two",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "D is 1",
+      "acceptedAnswers": [
+        "D is 1",
+        "D equals 1",
+        "letter D is 1"
+      ],
+      "correctExplanation": "Yes — CROSS + ROADS = DANGER gains a digit, so D is the carried one. Length gains crown ones.",
+      "incorrectExplanation": "The answer is D is 1. Six-digit totals from five-digit addends start with one.",
+      "lessonContent": "Length gains crown carried ones.\nExtra digits arrive via carries.\nHeads of grown totals read one.\nShare this: spot one grown total's head.",
+      "lessonGroup": "Number Crunch",
+      "question": "CROSS + ROADS = DANGER. What digit is D?",
+      "title": "The Grown Head",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Always 1",
+      "acceptedAnswers": [
+        "Always 1",
+        "One always",
+        "1 in all cases"
+      ],
+      "correctExplanation": "Right — two four-digit numbers sum below 20000 forever. Bounds never bend.",
+      "incorrectExplanation": "The answer is always 1. No pair of four-digit addends escapes the teens.",
+      "lessonContent": "Four-digit doubles peak below twenty thousand.\nBounds hold across all instances.\nMaximums legislate leading digits.\nShare this: bound one sum's length.",
+      "lessonGroup": "Number Crunch",
+      "question": "Any 4-digit + 4-digit = 5-digit sum: what must the leading digit be?",
+      "title": "The Certain Head",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Only zero",
+      "acceptedAnswers": [
+        "Only zero",
+        "Zero alone",
+        "0 only"
+      ],
+      "correctExplanation": "Correct — doubling any nonzero digit never returns itself. Zero alone survives self-addition.",
+      "incorrectExplanation": "The answer is only zero. Z plus Z equals Z admits one digit.",
+      "lessonContent": "Self-addition fixes zero uniquely.\nDoubling moves all else onward.\nFixed points constrain cryptarithms.\nShare this: solve Z plus Z tonight.",
+      "lessonGroup": "Number Crunch",
+      "question": "A letter plus itself equals itself (Z + Z = Z). What digit?",
+      "title": "The Fixed Self",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Eleven always",
+      "acceptedAnswers": [
+        "Eleven always",
+        "Always eleven",
+        "divisible by 11"
+      ],
+      "correctExplanation": "Yes — AB + BA factors as 11(A+B). Reversals summon elevens invariably.",
+      "incorrectExplanation": "The answer is eleven always. Tens and ones regroup into elevens.",
+      "lessonContent": "Reversed pairs factor elevens out.\nEleven divides every AB-plus-BA.\nFactorizations reveal hidden divisors.\nShare this: test one reversal sum.",
+      "lessonGroup": "Number Crunch",
+      "question": "AB + BA (A,B distinct digits) is always divisible by what?",
+      "title": "The Reversal Divisor",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#8",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Ninety-nine always",
+      "acceptedAnswers": [
+        "Ninety-nine always",
+        "Always ninety-nine",
+        "divisible by 99"
+      ],
+      "correctExplanation": "Right — ABC − CBA factors as 99(A−C). Mirrored differences bow to ninety-nine.",
+      "incorrectExplanation": "The answer is ninety-nine always. Hundreds and ones regroup into ninety-nines.",
+      "lessonContent": "Mirrored differences factor ninety-nines.\nReversals subtract into nines squared.\nPlace values conspire elegantly.\nShare this: subtract one mirror number.",
+      "lessonGroup": "Number Crunch",
+      "question": "ABC − CBA is always divisible by what?",
+      "title": "The Mirror Divisor",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Sum is eleven",
+      "acceptedAnswers": [
+        "Sum is eleven",
+        "sum eleven",
+        "total of 11"
+      ],
+      "correctExplanation": "Correct — AA + BB = 11(A+B) = 121 forces A+B = 11. Repdigit sums split elevens.",
+      "incorrectExplanation": "The answer is sum is eleven. One-twenty-one divided by eleven.",
+      "lessonContent": "Repdigit sums divide instructively.\nOne-twenty-one splits eleven-wise.\nDoubles factor cleanly always.\nShare this: split one repdigit sum.",
+      "lessonGroup": "Number Crunch",
+      "question": "AA + BB = 121 (A,B distinct). What is A + B?",
+      "title": "The Doubled Eleven",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Six apart",
+      "acceptedAnswers": [
+        "Six apart",
+        "Differ by 6",
+        "gap of six"
+      ],
+      "correctExplanation": "Yes — 99(A−C) = 594 forces A−C = 6. Differences divide out cleanly.",
+      "incorrectExplanation": "The answer is six apart. Five-ninety-four over ninety-nine.",
+      "lessonContent": "Mirror gaps divide by ninety-nine.\nQuotients reveal outer gaps.\nDifferences decode digit spreads.\nShare this: gap-decode one mirror pair.",
+      "lessonGroup": "Number Crunch",
+      "question": "ABC − CBA = 594. By how much do A and C differ?",
+      "title": "The Outer Gap",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#11",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "A is 7",
+      "acceptedAnswers": [
+        "A is 7",
+        "A equals 7",
+        "A is seven"
+      ],
+      "correctExplanation": "Right — 9A = 63 gives A = 7. Nines isolate unknowns swiftly.",
+      "incorrectExplanation": "The answer is A is 7. Sixty-three ninths.",
+      "lessonContent": "Nines isolate unknowns swiftly.\nMirror subtractions yield nines.\nDivision finishes the hunt.\nShare this: nine-hunt one unknown.",
+      "lessonGroup": "Number Crunch",
+      "question": "A4 − 4A = 27 (two-digit numbers). What is A?",
+      "title": "The Nine Hunt",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#12",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "A is 4",
+      "acceptedAnswers": [
+        "A is 4",
+        "A equals 4",
+        "A is four"
+      ],
+      "correctExplanation": "Correct — 11A = 44 gives A = 4. Elevens collect like terms.",
+      "incorrectExplanation": "The answer is A is 4. Forty-four elevenths.",
+      "lessonContent": "Elevens collect reversed pairs.\nLike terms merge across mirrors.\nDivision crowns the unknown.\nShare this: eleven-collect one pair.",
+      "lessonGroup": "Number Crunch",
+      "question": "3A + A3 = 77 (A a digit). What is A?",
+      "title": "The Collected Pair",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "B is 3",
+      "acceptedAnswers": [
+        "B is 3",
+        "B equals 3",
+        "B is three"
+      ],
+      "correctExplanation": "Yes — 45 − 9B = 18 gives B = 3. Nines release unknowns gently.",
+      "incorrectExplanation": "The answer is B is 3. Forty-five less eighteen ninths.",
+      "lessonContent": "Mirror subtractions free unknowns.\nForty-fives yield to nines.\nGentle division ends hunts.\nShare this: free one mirrored unknown.",
+      "lessonGroup": "Number Crunch",
+      "question": "5B − B5 = 18 (B a digit). What is B?",
+      "title": "The Freed Unknown",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#14",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "X is 6",
+      "acceptedAnswers": [
+        "X is 6",
+        "X equals 6",
+        "X is six"
+      ],
+      "correctExplanation": "Right — 11X = 66 gives X = 6. Sevens and ones merge into sixty-six.",
+      "incorrectExplanation": "The answer is X is 6. Sixty-six elevenths.",
+      "lessonContent": "Sevens plus mirrored ones total sixty-six.\nElevens gather scattered terms.\nSixty-six splits evenly.\nShare this: gather one scattered sum.",
+      "lessonGroup": "Number Crunch",
+      "question": "7X + X7 = 143 (X a digit). What is X?",
+      "title": "The Gathered Sum",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#15",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Y is 5",
+      "acceptedAnswers": [
+        "Y is 5",
+        "Y equals 5",
+        "Y is five"
+      ],
+      "correctExplanation": "Correct — 81 − 9Y = 36 gives Y = 5. Nineties surrender fives.",
+      "incorrectExplanation": "The answer is Y is 5. Eighty-one less thirty-six ninths.",
+      "lessonContent": "Nineties minus mirrors yield fives.\nSubtractions surrender unknowns.\nDivision completes deductions.\nShare this: surrender one ninety.",
+      "lessonGroup": "Number Crunch",
+      "question": "9Y − Y9 = 36 (Y a digit). What is Y?",
+      "title": "The Surrendered Five",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Sum is seven",
+      "acceptedAnswers": [
+        "Sum is seven",
+        "sum seven",
+        "total of 7"
+      ],
+      "correctExplanation": "Yes — 11(A+B) = 77 forces the sum seven. Seventy-seven splits seven-wise.",
+      "incorrectExplanation": "The answer is sum is seven. Seventy-seven elevenths.",
+      "lessonContent": "Seventy-seven splits seven-wise.\nSums hide inside reversals.\nDivision exposes totals.\nShare this: total one reversal pair.",
+      "lessonGroup": "Number Crunch",
+      "question": "AB + BA = 77, with A − B = 1. What is A + B?",
+      "title": "The Hidden Total",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#17",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Y is 3",
+      "acceptedAnswers": [
+        "Y is 3",
+        "Y equals 3",
+        "Y is three"
+      ],
+      "correctExplanation": "Right — sum nine with gap three gives Y three. Systems solve pairs jointly.",
+      "incorrectExplanation": "The answer is Y is 3. Nine less three halved.",
+      "lessonContent": "Sums plus gaps solve pairs.\nHalve remainders for smalls.\nSystems beat guessing always.\nShare this: system-solve one pair.",
+      "lessonGroup": "Number Crunch",
+      "question": "XY − YX = 27, with X + Y = 9. What is Y?",
+      "title": "The Smaller Digit",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "D plus E",
+      "acceptedAnswers": [
+        "D plus E",
+        "D and E",
+        "D+E",
+        "units column"
+      ],
+      "correctExplanation": "Correct — the units column adds D + E to make Y (plus carry). Endings start at the right edge.",
+      "incorrectExplanation": "The answer is D plus E. Rightmost columns decide final letters.",
+      "lessonContent": "Units columns decide final letters.\nRight edges start deductions.\nEndings anchor alphametics.\nShare this: read one sum right-to-left.",
+      "lessonGroup": "Number Crunch",
+      "question": "In SEND + MORE = MONEY, which column sum determines Y?",
+      "title": "The Deciding Column",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "0, 1, 5, 6",
+      "acceptedAnswers": [
+        "0, 1, 5, 6",
+        "zero one five six",
+        "0 1 5 6"
+      ],
+      "correctExplanation": "Yes — only 0, 1, 5, 6 end their own squares. Automorphic endings are exclusive.",
+      "incorrectExplanation": "The answer is 0, 1, 5, 6. Twenty-five and thirty-six prove five and six.",
+      "lessonContent": "Squares end in six possible digits.\nSelf-ending squares restrict further.\nEndings filter candidates fast.\nShare this: square digits zero to nine.",
+      "lessonGroup": "Number Crunch",
+      "question": "Which single digits end their own squares?",
+      "title": "The Self Endings",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "None exist",
+      "acceptedAnswers": [
+        "None exist",
+        "No such squares",
+        "Impossible digits",
+        "Zero cases"
+      ],
+      "correctExplanation": "Right — no nonzero digit squares to a repdigit. Elevens and twenty-twos never square up.",
+      "incorrectExplanation": "The answer is none exist. Check zero through nine: no doubles appear.",
+      "lessonContent": "Repdigit squares never occur nonzero.\nExhaustion proves small universes.\nCheck all ten and rest.\nShare this: square zero through nine.",
+      "lessonGroup": "Number Crunch",
+      "question": "Which nonzero digit squares to a repdigit (11, 22, ...)?",
+      "title": "The Missing Square",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Impossible by parity",
+      "acceptedAnswers": [
+        "Impossible by parity",
+        "Parity forbids",
+        "Cannot happen",
+        "Parity blocks"
+      ],
+      "correctExplanation": "Correct — even plus even stays even, never odd. Parity vetoes the equation outright.",
+      "incorrectExplanation": "The answer is impossible by parity. Evens sum to evens, always.",
+      "lessonContent": "Parity vetoes equations outright.\nEvens sum to evens forever.\nOne parity check saves hours.\nShare this: parity-check one sum.",
+      "lessonGroup": "Number Crunch",
+      "question": "Can EVEN + EVEN = ODD hold with consistent digits?",
+      "title": "The Parity Veto",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Five apart",
+      "acceptedAnswers": [
+        "Five apart",
+        "Differ by 5",
+        "gap of five"
+      ],
+      "correctExplanation": "Yes — 9(A−B) = 45 forces the gap five. Forty-five ninths reveal spreads.",
+      "incorrectExplanation": "The answer is five apart. Forty-five divided by nine.",
+      "lessonContent": "Forty-five ninths reveal gaps.\nDifferences divide out cleanly.\nNines decode spreads swiftly.\nShare this: gap-decode one difference.",
+      "lessonGroup": "Number Crunch",
+      "question": "AB − BA = 45. By how much do A and B differ?",
+      "title": "The Forty-Five Gap",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#23",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "E is 5",
+      "acceptedAnswers": [
+        "E is 5",
+        "E equals 5",
+        "E is five"
+      ],
+      "correctExplanation": "Right — the classic solution runs 9567 + 1085 = 10652, seating E at five. Middles cascade from carries.",
+      "incorrectExplanation": "The answer is E is 5. Nine-five-six-seven plus one-oh-eight-five.",
+      "lessonContent": "Classic solutions seat fives centrally.\nCarries cascade through middles.\nVerify famous totals digitwise.\nShare this: verify 10652 tonight.",
+      "lessonGroup": "Number Crunch",
+      "question": "Middle cascade of the money sum seats which digit at E?",
+      "title": "The Central Five",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-191#24",
+      "forgeScore": 100
+    }
+  ]
+}

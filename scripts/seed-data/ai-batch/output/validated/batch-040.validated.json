@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-040",
+  "generatedAt": "2026-09-17T13:27:41.893Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Discounted Confession",
+      "question": "Two suspects each choose Silence or Confess. Against Silence, Confess gives 0 years instead of 1; against Confess, it gives 5 years instead of 8. Yet mutual Silence gives 1 year each, better than mutual Confess at 5. This payoff structure is a prisoner's dilemma.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Confessing reduces each suspect's sentence under either action by the other, while both would prefer the mutual-silence outcome to mutual confession.",
+      "incorrectExplanation": "It is True. Comparing each column shows Confess is individually better, but comparing the two symmetric outcomes shows the dominant-strategy result is collectively worse.",
+      "lessonContent": "A prisoner's dilemma combines an individual incentive to defect with a shared gain from mutual cooperation.\nThe defining payoff order is temptation above reward above punishment above the sucker outcome.\nDominance is checked separately against each possible opposing action.\nThe social trap appears only after individual and joint comparisons are both made.\nShare this: write a two-by-two payoff table for one situation people casually call a dilemma.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-040#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Insurance Changes Sides",
+      "question": "Two firms can Maintain or Cut safety spending. If the rival Maintains, Cut pays 6 versus Maintain's 4; if the rival Cuts, Maintain pays 3 versus Cut's 1 because insurance penalizes joint cutting. Cutting is still a dominant strategy for each firm.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Cutting is better against Maintain, but Maintaining is better against Cut, so neither action dominates across both cases.",
+      "incorrectExplanation": "It is False. A dominant strategy must beat the alternative for every opposing move; the insurance penalty reverses the comparison when the rival cuts.",
+      "lessonContent": "Dominance requires one action to outperform another in every relevant contingency.\nOne favorable column is not enough to establish a dominant strategy.\nPolicies can transform a dilemma by changing only one strategically decisive payoff.\nBest-response arrows reveal whether incentives point the same way across the table.\nShare this: compare both opponent columns before calling one workplace tactic inevitable.",
+      "lessonGroup": "Think Straight",
+      "forgeId": "batch-040#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Stable Yet Wasteful",
+      "question": "In a one-shot game, each airline gains by cutting price whether its rival holds or cuts, but both earn more if both hold. Mutual price-cutting can therefore be both a Nash equilibrium and Pareto-inferior to mutual restraint.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Neither airline can improve alone from mutual cutting, making it stable, even though coordinated restraint would make both better off.",
+      "incorrectExplanation": "It is True. Nash equilibrium tests unilateral deviation, while Pareto comparison asks whether another outcome benefits everyone; those tests can point to stability and waste at once.",
+      "lessonContent": "Nash equilibrium means no player benefits by changing alone.\nPareto improvement means at least one player gains and nobody loses.\nA stable outcome need not maximize welfare or total payoff.\nCoordination problems often persist precisely because the better move must be joint.\nShare this: find one stable routine where no individual can profitably improve it alone.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-040#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Solo Escape Route",
+      "question": "At mutual defection in a standard prisoner's dilemma, either player can move the pair to the mutually cooperative payoff simply by cooperating alone while the other keeps defecting.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. A unilateral cooperator receives the sucker payoff while the other receives temptation; reaching mutual cooperation requires both actions to change.",
+      "incorrectExplanation": "It is False. Changing one action moves to an asymmetric outcome, not the cooperative corner, and makes the lone cooperator worse off under the defining payoff order.",
+      "lessonContent": "A payoff matrix outcome is determined by the combination of all players' actions.\nChanging one coordinate cannot directly reach a corner that differs in both coordinates.\nThe sucker payoff makes unilateral moral effort strategically vulnerable.\nEscaping a social trap often needs coordination, enforcement, or repeated incentives.\nShare this: ask which other actions must change before proposing an individual fix to a shared trap.",
+      "lessonGroup": "Solve It",
+      "forgeId": "batch-040#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Contracted Restraint",
+      "question": "Two suppliers face a one-shot prisoner's dilemma over quality. They sign an enforceable contract imposing a penalty larger than the gain from secretly cutting quality. The contract can remove defection's dominance by changing the effective payoffs.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. A sufficiently large enforceable penalty makes the tempting deviation less profitable, so the strategic game after contracting is no longer the original dilemma.",
+      "incorrectExplanation": "It is True. Enforcement is not mere persuasion: it subtracts from the deviation payoff and can reverse the best response that generated the trap.",
+      "lessonContent": "Institutions change behaviour by changing consequences attached to actions.\nAn enforceable penalty must exceed the private gain it is meant to deter.\nWhen effective payoffs change, the resulting strategic game may change category.\nContracts convert promises into incentives only when breach is detectable and costly.\nShare this: identify the monitoring and penalty that make one real agreement credible.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-040#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Promise Over Coffee",
+      "question": "Before a one-shot prisoner's dilemma, both players sincerely promise to cooperate, but promises are nonbinding and do not alter preferences, information, or reputation. Their conversation alone logically guarantees mutual cooperation.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. The promise may influence beliefs or values in real life, but under the stated unchanged game each player still gains by defecting after any verbal agreement.",
+      "incorrectExplanation": "It is False. Cheap talk can coordinate when interests partly align, but it cannot logically erase a dominant deviation while every payoff and consequence remains unchanged.",
+      "lessonContent": "Cheap talk is communication that carries no direct enforcement cost.\nMessages can reveal intentions without making those intentions incentive-compatible.\nA promise is strategically reliable only when preferences, reputation, or penalties support keeping it.\nSeparating sincerity from incentive prevents hopeful words from being treated as guarantees.\nShare this: ask what makes one promise costly to break rather than merely easy to say.",
+      "lessonGroup": "Think Straight",
+      "forgeId": "batch-040#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Last Round Shadow",
+      "question": "Two perfectly rational players know their standard prisoner's dilemma will end after exactly ten rounds, and all rationality is common knowledge. Backward induction by itself predicts cooperation in round one because nine future punishments remain.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Defection is dominant in the final round; removing that round's leverage repeats the argument backward until the first round.",
+      "incorrectExplanation": "It is False. With a known final round, there is no later punishment there, and common knowledge lets that unravel every earlier threat by backward induction.",
+      "lessonContent": "Backward induction solves a finite game from its final decision point.\nA last round with no future consequences restores the one-shot incentive.\nCommon knowledge lets players carry that conclusion into every preceding round.\nReal finite relationships may cooperate because rationality, horizons, or information are imperfect.\nShare this: locate the final enforceable consequence before relying on a repeated threat.",
+      "lessonGroup": "Master Mind",
+      "forgeId": "batch-040#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Unknown Final Meeting",
+      "question": "If partners believe each round may be followed by another and care enough about future gains, a threat to stop cooperating after betrayal can make present cooperation rational even though one-shot defection dominates.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. A sufficiently valuable shadow of the future can make the stream of cooperative rewards exceed the one-time temptation followed by punishment.",
+      "incorrectExplanation": "It is True. Uncertain continuation prevents a known final round from unraveling the relationship, allowing future losses to discipline a profitable betrayal today.",
+      "lessonContent": "Repeated games add future consequences to an action's effective payoff.\nContinuation probability and patience determine the size of the future shadow.\nConditional strategies can reward cooperation and punish observed betrayal.\nThe stage game stays unchanged while the strategy across time changes incentives.\nShare this: identify one relationship where expected future contact supports trust today.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-040#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Patient Partners",
+      "question": "Each cooperative round pays 3. Defecting once pays 5, then punishment pays 1 forever. With continuation weight 0.8, cooperation is sustainable because 3/(1-0.8) exceeds 5 + 0.8/(1-0.8).",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Continued cooperation is worth 15, while deviation followed by punishment is worth 9, so the threat makes restraint optimal.",
+      "incorrectExplanation": "It is True. The discounted cooperative stream is 15, and the tempting 5 plus the discounted stream of 1s totals only 9.",
+      "lessonContent": "Discounted value adds future payoffs with progressively smaller weights.\nA deviation comparison includes its immediate gain and the continuation it triggers.\nCooperation is sustainable when its full stream beats temptation plus punishment.\nExplicit sums reveal how patience changes strategic incentives.\nShare this: calculate how many future benefits are needed to outweigh one short-term gain.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-040#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Short Future",
+      "question": "Using the same payoffs - cooperation 3 forever, deviation 5 then punishment 1 - a continuation weight of 0.2 is enough to sustain cooperation under the threat.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Cooperation is worth 3.75, while deviation is worth 5.25, so a weakly valued future cannot outweigh the immediate temptation.",
+      "incorrectExplanation": "It is False. Substituting 0.2 gives 3/(0.8) = 3.75 versus 5 + 0.2/(0.8) = 5.25, leaving betrayal profitable.",
+      "lessonContent": "Future punishment works only when future payoffs receive enough weight.\nLow continuation probability shrinks both future rewards and future sanctions.\nThe same strategy can be stable in a lasting relationship and unstable in a fleeting one.\nThreshold calculations replace the vague claim that repetition always creates cooperation.\nShare this: estimate whether one threatened future cost is large enough to change today's incentive.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-040#9",
+      "forgeScore": 84
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Echoing Mistake",
+      "question": "Two players use strict tit-for-tat: start by cooperating, then copy the other's previous move. After one accidental defection by only one player, perfect copying can make them alternate cooperation and defection indefinitely rather than immediately restore mutual cooperation.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Each player answers the other's last move, so the accidental defection bounces back and forth one round out of phase.",
+      "incorrectExplanation": "It is True. The mistaken defection is copied by the victim next round while the original player copies the victim's earlier cooperation, creating an alternating echo.",
+      "lessonContent": "Reciprocal strategies use recent behaviour as both reward and punishment.\nImplementation noise can make a fair response target an accidental move.\nSymmetric retaliation may propagate an error instead of cancelling it.\nRobust cooperation needs a recovery path as well as a deterrent.\nShare this: trace three rounds after one mistaken action before judging a reciprocal rule resilient.",
+      "lessonGroup": "Spot the Pattern",
+      "forgeId": "batch-040#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "One Forgiving Move",
+      "question": "In a noisy repeated dilemma, occasionally cooperating after the opponent's defection can stop accidental retaliation loops, though excessive forgiveness may invite deliberate exploitation.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Limited forgiveness creates a route back to mutual cooperation, but making punishment too unreliable weakens deterrence.",
+      "incorrectExplanation": "It is True. Noise makes some defections unintentional, so a strategy needs both enough retaliation to deter and enough forgiveness to recover.",
+      "lessonContent": "Error tolerance and deterrence pull repeated strategies in opposite directions.\nForgiveness can absorb noise by resetting a cycle of retaliation.\nUnlimited forgiveness removes the future cost that disciplines opportunism.\nGood rules balance responsiveness with a credible path back to trust.\nShare this: design one response rule that distinguishes a first mistake from repeated exploitation.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-040#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Grim but Credible",
+      "question": "In an infinitely repeated standard prisoner's dilemma, grim trigger prescribes permanent defection after any betrayal. Once punishment starts, continuing to defect is credible because mutual defection is already a stage-game equilibrium.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. During the punishment phase, neither player gains by unilaterally cooperating, so carrying out the threat is sequentially rational under the standard payoffs.",
+      "incorrectExplanation": "It is True. A threat deters only if players will execute it later; here the prescribed punishment coincides with the one-shot equilibrium once cooperation has ended.",
+      "lessonContent": "A credible threat must remain rational when the time comes to carry it out.\nSubgame reasoning tests strategies after histories that may never occur on the intended path.\nStage-game equilibria often supply credible punishment states.\nSeverity alone does not create credibility; future incentives do.\nShare this: test whether you would really carry out one threat after its triggering event.",
+      "lessonGroup": "Master Mind",
+      "forgeId": "batch-040#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Costly Empty Threat",
+      "question": "A manager threatens to impose a punishment that would cost the manager more than tolerating a supplier's defection, with no reputational or future benefit. The punishment is credible merely because it was announced in advance.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. If carrying it out is worse when the moment arrives and no commitment changes that calculation, the announcement is dynamically incredible.",
+      "incorrectExplanation": "It is False. Advance words do not bind later incentives; a rational supplier can anticipate that the manager will prefer not to execute a self-harming sanction.",
+      "lessonContent": "Threat credibility is evaluated at the future decision node, not when words are spoken.\nA costly punishment may need commitment, delegation, or reputation to become believable.\nEmpty threats fail when the target can reason backward from later incentives.\nStrategic promises and threats share the need for incentive compatibility.\nShare this: ask what would make one announced consequence rational to enforce later.",
+      "lessonGroup": "Think Straight",
+      "forgeId": "batch-040#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Glass-Walled Choices",
+      "question": "In a one-shot prisoner's dilemma, making both choices perfectly observable before payoffs are delivered automatically removes defection's dominance, even if neither player can revise and no payoff changes.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Observation after simultaneous irrevocable choice may aid accountability elsewhere, but it does not change either payoff comparison inside the stated one-shot game.",
+      "incorrectExplanation": "It is False. Transparency affects strategy only through consequences such as revision, reputation, punishment, or changed preferences; bare visibility does not rewrite the matrix.",
+      "lessonContent": "Information changes incentives only when some action or payoff can respond to it.\nObservability after an irreversible move differs from observation before a revisable move.\nTransparency can matter through reputation or enforcement without being magic itself.\nA mechanism should specify the causal route from seeing to strategic consequence.\nShare this: ask what anyone can do differently with one proposed transparency measure.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-040#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Taxing Betrayal",
+      "question": "A prisoner's-dilemma payoff table is T=5, R=3, P=1, S=0. A tax of 2 applies whenever a player defects. After the tax, defection is no longer strictly dominant.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Against cooperation, taxed defection ties cooperation at 3; against defection, taxed defection gives -1 while cooperation gives 0, so strict dominance disappears.",
+      "incorrectExplanation": "It is True. Subtracting 2 from each defection payoff creates a tie in one column and makes cooperation better in the other, defeating strict dominance.",
+      "lessonContent": "Taxes and penalties modify the payoff attached to the targeted action.\nStrict dominance requires a strict advantage in every opponent contingency.\nA policy need not make cooperation dominant to remove defection's dominance.\nRecomputing every affected cell prevents intuitive but incorrect mechanism claims.\nShare this: adjust one payoff table with a proposed fine and redraw its best responses.",
+      "lessonGroup": "Solve It",
+      "forgeId": "batch-040#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Tiny Green Bonus",
+      "question": "For T=5, R=3, P=1, S=0, giving a bonus of 1 whenever a player cooperates makes cooperation strictly dominant.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Against cooperation, cooperating rises to 4 but defection still pays 5; against defection, cooperation and defection tie at 1.",
+      "incorrectExplanation": "It is False. The bonus improves both cooperation cells, but not enough to beat defection in either column strictly.",
+      "lessonContent": "An incentive must be tested against every strategic response, not merely added symbolically.\nA small subsidy can weaken a trap without fully reversing it.\nStrict dominance is stronger than being competitive or tied.\nMinimum effective incentive size follows from the largest relevant payoff gap.\nShare this: calculate the smallest bonus that would reverse one unwanted private incentive.",
+      "lessonGroup": "Solve It",
+      "forgeId": "batch-040#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Crowded Pasture",
+      "question": "Ten herders each gain privately from adding one animal, while the resulting pasture damage is shared across all ten and eventually leaves everyone worse off if all add. This is a many-player social dilemma even though it is not literally a two-player matrix.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Each herder captures the concentrated benefit but bears only part of the shared cost, so individually attractive additions can aggregate into collective loss.",
+      "incorrectExplanation": "It is True. The number of players changes the formal model, but the conflict between private marginal gain and shared damage preserves the social-dilemma logic.",
+      "lessonContent": "Many-player dilemmas distribute the cost of one action across a group.\nPrivate benefits can exceed a person's share of harm while total harm exceeds total benefit.\nThe tragedy emerges through aggregation rather than one uniquely malicious actor.\nQuotas, ownership, and pricing can align marginal private and social costs.\nShare this: identify who captures the benefit and who shares the cost in one common resource.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-040#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "One Different Player",
+      "question": "A game is automatically a standard prisoner's dilemma whenever mutual cooperation beats mutual defection, even if one player prefers cooperating when the other cooperates.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. The standard dilemma requires defection to be each player's dominant strategy; one player's cooperative best response breaks that defining condition.",
+      "incorrectExplanation": "It is False. A collectively better cooperative outcome is necessary but not sufficient; the individual best-response pattern must also create the trap for both players.",
+      "lessonContent": "Social inefficiency alone does not identify a particular game form.\nEach player's best response must be checked because asymmetric incentives matter.\nGames with conditional cooperation may instead resemble coordination or assurance problems.\nCorrect classification predicts which remedies can work.\nShare this: check every player's incentives before applying a familiar game-theory label.",
+      "lessonGroup": "Think Straight",
+      "forgeId": "batch-040#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Caring Changes Payoffs",
+      "question": "If players begin valuing the other's welfare as part of their own utility, an unchanged table of cash payments may no longer represent the same strategic prisoner's dilemma.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Strategic payoffs represent what players value, not merely cash; concern for the other can reorder outcomes and change best responses.",
+      "incorrectExplanation": "It is True. The monetary consequences may stay fixed while utility changes, so calling the cash table the complete payoff table would misdescribe the players' actual objectives.",
+      "lessonContent": "Game-theoretic payoffs encode preferences over outcomes, not necessarily money alone.\nFairness, guilt, loyalty, and identity can enter utility alongside material reward.\nChanging preferences can transform a game without changing external cash flows.\nObserved cooperation does not by itself prove a calculation error.\nShare this: list one nonmonetary value that changes how people respond to a financial incentive.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-040#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Renamed Buttons",
+      "question": "A lab relabels the Defect button 'Protect Yourself' and Cooperate 'Trust Stranger' but leaves all outcomes and information unchanged. The Nash equilibria must change because the moral framing changed.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. In the formal game with fixed preferences and payoffs, labels do not change best responses, though real human preferences might respond to framing.",
+      "incorrectExplanation": "It is False. Equilibrium follows from payoffs and available strategies; names matter empirically only if they alter utility, beliefs, or behaviour beyond the stipulated model.",
+      "lessonContent": "Formal solutions are invariant under pure relabeling of identical strategies.\nHuman experiments can show framing effects because words alter interpretation or preferences.\nA model should distinguish a cosmetic rename from a psychological intervention.\nHolding all else fixed is a substantive assumption, not a claim about every real person.\nShare this: test whether one persuasive label changes consequences or only your first impression.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-040#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Mediator Says Cooperate",
+      "question": "A mediator privately recommends Cooperate to both players in a one-shot standard prisoner's dilemma but cannot enforce or reward compliance. Following both recommendations is therefore a Nash equilibrium.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Given that the other follows the recommendation, each player still earns more by defecting, so obedience fails the unilateral-deviation test.",
+      "incorrectExplanation": "It is False. A recommendation can coordinate compatible interests, but it cannot make mutual cooperation an equilibrium while each recipient benefits from privately disobeying.",
+      "lessonContent": "A correlated recommendation works only when obeying is incentive-compatible after receiving it.\nMediation supplies information, not automatic enforcement.\nDominant defection survives every recommendation that leaves payoffs unchanged.\nEquilibrium checks what each player wants to do conditional on their signal.\nShare this: ask why each person would follow a coordinator's advice after hearing it.",
+      "lessonGroup": "Master Mind",
+      "forgeId": "batch-040#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Contingent Side Payment",
+      "question": "An outside sponsor can verify both actions and pays each player a bonus only when both cooperate. If the bonus exceeds every gain from unilateral defection, mutual cooperation can become an equilibrium.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Losing a sufficiently large joint-contingent bonus makes deviation unprofitable when the other cooperates, satisfying the equilibrium condition at mutual cooperation.",
+      "incorrectExplanation": "It is True. Verification and contingency matter: the deviator forfeits a bonus larger than the original temptation gain, so staying cooperative becomes the best response to cooperation.",
+      "lessonContent": "Side payments can implement outcomes by changing selected payoff differences.\nA joint-contingent reward is lost when either participant defects.\nVerification is essential because unverifiable conditions cannot reliably trigger payment.\nImplementation asks whether the desired outcome survives unilateral deviation.\nShare this: specify one measurable condition that would make a team reward incentive-compatible.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-040#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Anonymous Tomorrow",
+      "question": "A player defects today against a stranger and tomorrow meets a new anonymous stranger who cannot observe any history. Merely having another game tomorrow creates a reputational cost for today's defection.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. With no identity link, observation, or effect on future matching, tomorrow's payoff cannot depend on today's act, so repetition alone creates no reputation.",
+      "incorrectExplanation": "It is False. Future encounters discipline current behaviour only through a connecting channel such as memory, public records, partner continuity, or changed selection.",
+      "lessonContent": "Reputation requires information from past conduct to reach future decision-makers.\nRepeated dates are not strategically linked when players and records are fully anonymous.\nIdentity, observability, and matching rules determine whether history affects future payoff.\nA shadow of the future needs a causal bridge, not just another calendar event.\nShare this: identify how one platform carries past behaviour into a future stranger's decision.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-040#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Exit After Betrayal",
+      "question": "Two contractors may freely end a valuable relationship after any round. Even without fines, the credible loss of future trade can function as a punishment that supports present cooperation.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. If continued trade is valuable enough, a one-time cheating gain can be outweighed by the future cooperative surplus forfeited when the partner exits.",
+      "incorrectExplanation": "It is True. Exit changes the continuation payoff after betrayal, allowing the relationship itself to serve as collateral when both value its future.",
+      "lessonContent": "Future surplus can act as an informal bond in ongoing relationships.\nExit is credible when the betrayed party prefers leaving to continued exploitation.\nThe deterrent equals the value of trade that a deviator expects to lose.\nRelational contracts rely on repeated value when courts cannot enforce every detail.\nShare this: identify what future benefit makes one informal agreement self-enforcing.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-040#24",
+      "forgeScore": 100
+    }
+  ]
+}

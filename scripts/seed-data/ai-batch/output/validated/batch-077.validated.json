@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-077",
+  "generatedAt": "2026-09-17T13:27:42.635Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Fence Reason",
+      "question": "You find a fence across an unused path and want it gone. What should you establish before removing it?",
+      "choices": [
+        "The fence is there for a reason",
+        "The fence is old enough to ignore",
+        "The path is prettier without it",
+        "Nobody is watching the field"
+      ],
+      "correctAnswer": "The fence is there for a reason",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Its purpose may not be obvious, so understand it before tearing anything down.",
+      "incorrectExplanation": "The answer is the fence is there for a reason. Structures often serve needs that are invisible until the day they are removed.",
+      "lessonContent": "Old arrangements may serve unseen purposes.\nInvestigate function before demanding change.\nAbsence of an obvious reason is not proof of none.\nAsk who built this and what it protects.\nShare this: question the purpose of one rule you dislike.",
+      "forgeId": "batch-077#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Look First",
+      "question": "A reformer wants to abolish an institution immediately. What should come before any removal?",
+      "choices": [
+        "Understand before you remove",
+        "Announce before you study",
+        "Remove before you survey",
+        "Celebrate before you plan"
+      ],
+      "correctAnswer": "Understand before you remove",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Diagnosis must precede surgery, or the operation damages what it meant to heal.",
+      "incorrectExplanation": "The answer is understand before you remove. Acting fast on an unexamined target risks destroying something valuable.",
+      "lessonContent": "Diagnosis precedes treatment.\nUnderstanding is cheap compared with regret.\nSpeed is not the same as progress.\nStudy the system before altering it.\nShare this: learn the purpose of one thing before changing it.",
+      "forgeId": "batch-077#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Hidden Knowledge",
+      "question": "An inherited custom seems arbitrary but has survived generations. What might it hold?",
+      "choices": [
+        "Institutions store hidden knowledge",
+        "Nothing at all of any value",
+        "Only superstition and error",
+        "A trap for the naive"
+      ],
+      "correctAnswer": "Institutions store hidden knowledge",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Long-lived practices often encode solutions to problems we no longer remember facing.",
+      "incorrectExplanation": "The answer is institutions store hidden knowledge. Survival across generations hints at a function worth discovering.",
+      "lessonContent": "Long survival suggests some usefulness.\nCustoms can carry forgotten lessons.\nBefore discarding, ask what problem it solved.\nTreat inherited practice as evidence.\nShare this: find the forgotten problem behind one tradition.",
+      "forgeId": "batch-077#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Diagnose First",
+      "question": "A team blames every problem on one department and proposes dissolving it. What is missing?",
+      "choices": [
+        "Reform needs a diagnosis first",
+        "Reform needs more funding",
+        "Reform needs a new leader",
+        "Reform needs a slogan"
+      ],
+      "correctAnswer": "Reform needs a diagnosis first",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Naming a culprit is not the same as understanding the cause of the trouble.",
+      "incorrectExplanation": "The answer is reform needs a diagnosis first. Without knowing why something fails, dissolution may remove a needed function.",
+      "lessonContent": "Blame is not analysis.\nA culprit is not necessarily a cause.\nFind the mechanism before cutting it out.\nSeparate symptom from source.\nShare this: separate one symptom from its actual cause today.",
+      "forgeId": "batch-077#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Ancient Solutions",
+      "question": "A traditional practice looks inefficient but has never caused serious harm. What may it be?",
+      "choices": [
+        "Tradition can encode solutions",
+        "Tradition is always wasteful",
+        "Tradition is a sign of ignorance",
+        "Tradition blocks all progress"
+      ],
+      "correctAnswer": "Tradition can encode solutions",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Ongoing practice may be quietly preventing a problem that reappears when it stops.",
+      "incorrectExplanation": "The answer is tradition can encode solutions. What looks inefficient may be holding a risk at bay.",
+      "lessonContent": "Efficiency is not the only measure.\nSome practices prevent invisible harms.\nAbsence of harm can be evidence.\nAsk what would happen if it stopped.\nShare this: consider the hidden benefit of one habit you keep.",
+      "forgeId": "batch-077#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Hasty Change",
+      "question": "A policy is revoked quickly without testing it. What often follows?",
+      "choices": [
+        "Unintended consequences follow hasty change",
+        "Everything improves immediately",
+        "Nothing at all changes",
+        "The original problems vanish"
+      ],
+      "correctAnswer": "Unintended consequences follow hasty change",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Removing one part of a system usually shifts pressure somewhere unexpected.",
+      "incorrectExplanation": "The answer is unintended consequences follow hasty change. Complex systems react in ways no quick reform anticipates.",
+      "lessonContent": "Systems push back when altered.\nEffects ripple beyond the target.\nTest small before changing everything.\nExpect surprises and plan for them.\nShare this: predict one side effect before making a change.",
+      "forgeId": "batch-077#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Who Must Prove",
+      "question": "Someone wants to abolish a long-standing rule. Who carries the burden of proof?",
+      "choices": [
+        "The burden of proof falls on the reformer",
+        "The burden of proof falls on the rule",
+        "No proof is needed at all",
+        "The burden falls on bystanders"
+      ],
+      "correctAnswer": "The burden of proof falls on the reformer",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. The person proposing the change must show why it is an improvement.",
+      "incorrectExplanation": "The answer is the burden of proof falls on the reformer. Existing arrangements get the benefit of the doubt until a case is made.",
+      "lessonContent": "Change is not automatically progress.\nWhoever proposes a change argues for it.\nThe default deserves a charitable reading.\nDemand reasons, not just enthusiasm.\nShare this: ask for the case behind one proposed change.",
+      "forgeId": "batch-077#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Chestertons Rule",
+      "question": "A principle warns against removing a structure before you know why it was built. What is it called?",
+      "choices": [
+        "Chestertons fence principle",
+        "Occams razor",
+        "Murphys law",
+        "Pareto principle"
+      ],
+      "correctAnswer": "Chestertons fence principle",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. You should only clear an obstacle once you understand its original purpose.",
+      "incorrectExplanation": "The answer is Chestertons fence principle. It counsels comprehension before demolition, not reverence for everything old.",
+      "lessonContent": "Named principles compress practical wisdom.\nComprehension should precede removal.\nObstacles may be protections in disguise.\nLearn the history before you act.\nShare this: apply one cautionary principle to a change you plan.",
+      "forgeId": "batch-077#7",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Locked In Choices",
+      "question": "Why can a poor layout persist even after everyone agrees it is poor?",
+      "choices": [
+        "Path dependence locks in choices",
+        "People enjoy inefficiency",
+        "Nobody notices the problem",
+        "Improvement is impossible"
+      ],
+      "correctAnswer": "Path dependence locks in choices",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Early decisions shape what is easy to change later, so inferior arrangements can survive.",
+      "incorrectExplanation": "The answer is path dependence locks in choices. Each step built on the last makes reversal costly, regardless of quality.",
+      "lessonContent": "History constrains present options.\nEarly choices raise the cost of later change.\nWhat is stuck may still be improvable.\nLook for the decisions that locked things in.\nShare this: find one trapped choice and ask what locked it.",
+      "forgeId": "batch-077#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Load Bearing",
+      "question": "A policy seems to do nothing useful but removing it causes collapse elsewhere. What was it?",
+      "choices": [
+        "What looks pointless may be load bearing",
+        "What looks pointless is always pointless",
+        "What looks pointless was an accident",
+        "What looks pointless is a lie"
+      ],
+      "correctAnswer": "What looks pointless may be load bearing",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. A piece can hold the whole structure up while appearing entirely idle.",
+      "incorrectExplanation": "The answer is what looks pointless may be load bearing. Function is not always visible from the outside.",
+      "lessonContent": "Visible idleness can hide essential support.\nRemoval is a test that reveals function.\nTest on a small scale if you must.\nAssume support until proven otherwise.\nShare this: identify one quiet element holding a system together.",
+      "forgeId": "batch-077#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Visible Function",
+      "question": "A reformer notices only the obvious purpose of an institution and ignores the rest. What is the risk?",
+      "choices": [
+        "Reformers see only the visible function",
+        "Reformers see everything at once",
+        "Reformers never miss anything",
+        "Reformers always improve things"
+      ],
+      "correctAnswer": "Reformers see only the visible function",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Institutions usually do several jobs, and the loudest one is not always the most important.",
+      "incorrectExplanation": "The answer is reformers see only the visible function. Hidden roles go unprotected when change targets only the obvious one.",
+      "lessonContent": "Organisations serve multiple purposes.\nThe obvious role may be the least vital.\nAsk what else this does for people.\nProtect functions you did not set out to touch.\nShare this: name a second job done by one familiar institution.",
+      "forgeId": "batch-077#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Local Knowledge",
+      "question": "A central planner replaces a local practice with a uniform rule. What is often lost?",
+      "choices": [
+        "Local knowledge beats central plans",
+        "Nothing of any consequence",
+        "Only inefficiency and error",
+        "The need for any rules"
+      ],
+      "correctAnswer": "Local knowledge beats central plans",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. The people closest to a situation hold details that no distant plan can capture.",
+      "incorrectExplanation": "The answer is local knowledge beats central plans. Uniform rules can override context-specific solutions that worked well.",
+      "lessonContent": "Context-specific detail resists central design.\nPeople on the spot know their constraints.\nUniform rules can erase working solutions.\nConsult those closest to the problem.\nShare this: ask a local expert for a detail no plan accounts for.",
+      "forgeId": "batch-077#11",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Time Reveals",
+      "question": "Why might an old, tested practice be more trustworthy than a clever new one?",
+      "choices": [
+        "Time reveals what design cannot",
+        "Old always beats new",
+        "Clever ideas are always wrong",
+        "Testing makes things worse"
+      ],
+      "correctAnswer": "Time reveals what design cannot",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Long use exposes failures that a designer cannot foresee at a desk.",
+      "incorrectExplanation": "The answer is time reveals what design cannot. Survival through many real conditions is a form of evidence.",
+      "lessonContent": "Real-world testing beats theory alone.\nSurvival across conditions is evidence.\nNew does not automatically mean better.\nWeigh track record against promise.\nShare this: compare one new idea with an older proven alternative.",
+      "forgeId": "batch-077#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Small Steps",
+      "question": "A reform can be done all at once or in stages. What does the caution suggest?",
+      "choices": [
+        "Incremental change is safer than wholesale",
+        "Wholesale change is always best",
+        "No change should ever happen",
+        "Stages only add delay"
+      ],
+      "correctAnswer": "Incremental change is safer than wholesale",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Staged change lets you see effects and correct course before too much is altered.",
+      "incorrectExplanation": "The answer is incremental change is safer than wholesale. Smaller steps keep the door open to adjustment and reversal.",
+      "lessonContent": "Staged change preserves the option to correct.\nSmall steps reveal effects early.\nAll-at-once change forecloses adjustment.\nKeep reversibility where you can.\nShare this: split one big change into a testable first step.",
+      "forgeId": "batch-077#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Past Survivors",
+      "question": "A practice has outlasted many attempts to replace it. What does this survivorship suggest?",
+      "choices": [
+        "Survivors of past tests deserve respect",
+        "Survivors are simply lucky",
+        "Survivors should be abolished",
+        "Survivors prove nothing at all"
+      ],
+      "correctAnswer": "Survivors of past tests deserve respect",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Lasting through repeated challenges is weak but real evidence of usefulness.",
+      "incorrectExplanation": "The answer is survivors of past tests deserve respect. What endures has passed trials that alternatives did not.",
+      "lessonContent": "Survival is a form of testing.\nWhat endures has met many challenges.\nRespect is not the same as worship.\nInvestigate why it persists.\nShare this: ask why one longstanding practice keeps returning.",
+      "forgeId": "batch-077#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Forgotten Conflicts",
+      "question": "A rule seems to make life harder for no visible gain. What might it be preventing?",
+      "choices": [
+        "Rules often resolve forgotten conflicts",
+        "Rules exist only to annoy people",
+        "Rules are always written by mistake",
+        "Rules protect nobody at all"
+      ],
+      "correctAnswer": "Rules often resolve forgotten conflicts",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Many rules are the residue of disputes that would flare again if the rule vanished.",
+      "incorrectExplanation": "The answer is rules often resolve forgotten conflicts. Their cost is visible while the harm they prevent is not.",
+      "lessonContent": "Rules can be solutions to old disputes.\nThe conflict may be invisible now.\nCost of compliance is easier to see than avoided harm.\nAsk what would return if the rule went.\nShare this: find the old conflict behind one annoying rule.",
+      "forgeId": "batch-077#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Removed Support",
+      "question": "Taking away a small guideline causes problems in unrelated places. What does this reveal?",
+      "choices": [
+        "Removing a support reveals its role",
+        "The guideline was irrelevant",
+        "Problems are always coincidences",
+        "Nothing can be learned from it"
+      ],
+      "correctAnswer": "Removing a support reveals its role",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. A quiet rule may be holding several things together in ways nobody noticed.",
+      "incorrectExplanation": "The answer is removing a support reveals its role. Function becomes apparent only when the element is withdrawn.",
+      "lessonContent": "Removal is a diagnostic test.\nQuiet elements can support many parts.\nWatch distant effects to find a role.\nLearn structure from what breaks.\nShare this: notice what changes when one small support is gone.",
+      "forgeId": "batch-077#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Novelty Trap",
+      "question": "A team assumes anything newer must be superior to what it replaces. What is the error?",
+      "choices": [
+        "Novelty is not improvement",
+        "Newer is always superior",
+        "Older is always inferior",
+        "Change cannot be evaluated"
+      ],
+      "correctAnswer": "Novelty is not improvement",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Being recent says nothing about being better; only results can show that.",
+      "incorrectExplanation": "The answer is novelty is not improvement. Recency is a description, not a measure of quality.",
+      "lessonContent": "Freshness and quality are separate traits.\nNew things can be worse than what they replace.\nJudge by outcomes, not by date.\nResist fashion in decisions.\nShare this: evaluate one new thing by results rather than novelty.",
+      "forgeId": "batch-077#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Context First",
+      "question": "A solution that worked in one place fails somewhere else. What should guide the decision?",
+      "choices": [
+        "Context matters more than theory",
+        "Theory guarantees success anywhere",
+        "Context is irrelevant to planning",
+        "Failure means the theory is wrong"
+      ],
+      "correctAnswer": "Context matters more than theory",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. The same rule works differently depending on the conditions around it.",
+      "incorrectExplanation": "The answer is context matters more than theory. A general model must be adapted to the particular setting.",
+      "lessonContent": "General rules meet particular conditions.\nWhat works here may fail there.\nAdapt before transplanting.\nStudy the receiving environment.\nShare this: adapt one general tip to your specific situation.",
+      "forgeId": "batch-077#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Pilot Test",
+      "question": "Before rolling out a new policy everywhere, what does a cautious approach recommend?",
+      "choices": [
+        "Test changes on a small scale first",
+        "Apply it everywhere at once",
+        "Announce it before designing it",
+        "Ignore early results"
+      ],
+      "correctAnswer": "Test changes on a small scale first",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. A trial run surfaces problems cheaply before they affect everyone.",
+      "incorrectExplanation": "The answer is test changes on a small scale first. Pilots contain the cost of mistakes and inform the full rollout.",
+      "lessonContent": "Small trials contain the cost of error.\nLearn before committing everything.\nMeasure the result against a comparison.\nScale only what works.\nShare this: pilot one change before applying it broadly.",
+      "forgeId": "batch-077#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Who Built It",
+      "question": "Before judging an old practice as absurd, what question should you ask?",
+      "choices": [
+        "Ask who built this and why",
+        "Ask who can be blamed",
+        "Ask how to remove it fastest",
+        "Ask who will notice"
+      ],
+      "correctAnswer": "Ask who built this and why",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Knowing the original problem and builder clarifies whether the practice still serves a need.",
+      "incorrectExplanation": "The answer is ask who built this and why. Understanding the origin turns a mystery into a decision about present relevance.",
+      "lessonContent": "Origins explain present form.\nUnderstand the problem before judging the answer.\nDesigners faced constraints you may share.\nHistory informs current choices.\nShare this: learn the origin of one practice in your life.",
+      "forgeId": "batch-077#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Bad Rules",
+      "question": "A rule is genuinely flawed yet persists. What might still be true of it?",
+      "choices": [
+        "Even bad rules can do useful work",
+        "Bad rules are entirely useless",
+        "Bad rules never survive",
+        "Bad rules help no one ever"
+      ],
+      "correctAnswer": "Even bad rules can do useful work",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. An imperfect rule may yet provide stability or coordination worth preserving in a replacement.",
+      "incorrectExplanation": "The answer is even bad rules can do useful work. Reform should carry over the function, not just remove the fault.",
+      "lessonContent": "Faults and functions can coexist.\nReform should keep what works.\nTotal removal may lose hidden benefits.\nReplace rather than merely delete.\nShare this: identify a useful function inside one flawed rule.",
+      "forgeId": "batch-077#21",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Preserve Function",
+      "question": "You replace an old rule with a better one. What should the new rule aim to keep?",
+      "choices": [
+        "Reform should preserve function",
+        "Reform should discard everything old",
+        "Reform should add as much as possible",
+        "Reform should surprise everyone"
+      ],
+      "correctAnswer": "Reform should preserve function",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. The point is to fix the flaw while retaining the job the old rule was doing.",
+      "incorrectExplanation": "The answer is reform should preserve function. Skipping this step repeats the original error in reverse.",
+      "lessonContent": "Change should keep the good.\nIdentify the function before replacing it.\nReform is surgery, not demolition.\nCheck that the new version still works.\nShare this: state the function a change must preserve.",
+      "forgeId": "batch-077#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Invisible Reasons",
+      "question": "Why is it hard to judge whether an old arrangement should stay or go?",
+      "choices": [
+        "Historical reasons are often invisible",
+        "Old arrangements have no reasons",
+        "Reasons are always written down",
+        "Nothing ever changes in practice"
+      ],
+      "correctAnswer": "Historical reasons are often invisible",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. The original rationale may never have been documented and the context is long gone.",
+      "incorrectExplanation": "The answer is historical reasons are often invisible. Missing records force careful inference rather than assumption.",
+      "lessonContent": "Reasons may never have been recorded.\nContext disappears before explanations do.\nInfer purpose from effects.\nAsk people who remember.\nShare this: recover the reason behind one undocumented practice.",
+      "forgeId": "batch-077#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "easy",
+      "title": "Reversible Steps",
+      "question": "When uncertain about a change, what property makes it safer to attempt?",
+      "choices": [
+        "Reversibility is a virtue in reform",
+        "Permanence is always preferable",
+        "Irreversible changes are best",
+        "Uncertainty should be ignored"
+      ],
+      "correctAnswer": "Reversibility is a virtue in reform",
+      "xpReward": 10,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. A step you can undo allows learning without locking in the consequences.",
+      "incorrectExplanation": "The answer is reversibility is a virtue in reform. Keeping options open reduces the cost of being wrong.",
+      "lessonContent": "Undoable decisions are cheaper to try.\nReversibility limits downside risk.\nKeep exits open under uncertainty.\nPrefer steps you can retract.\nShare this: design one change so it can be undone.",
+      "forgeId": "batch-077#24",
+      "forgeScore": 100
+    }
+  ]
+}

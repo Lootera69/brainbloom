@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-134",
+  "generatedAt": "2026-09-17T13:27:44.024Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Spreading Truth",
+      "question": "Textbooks call entropy 'disorder' — teenagers picture messy bedrooms. Physicists increasingly teach it as energy spreading out. What does entropy actually track?",
+      "choices": [
+        "Messiness visible to human eyes",
+        "The number of dirty dishes",
+        "Energy spreading across microstates",
+        "Moral decay of the universe"
+      ],
+      "correctAnswer": "Energy spreading across microstates",
+      "xpReward": 50,
+      "correctExplanation": "Energy spreading across microstates — disorder metaphors mislead (a tidy crystal can hold more entropy than slush). Spreading, not messiness, is the quantity.",
+      "incorrectExplanation": "Not quite — the answer is energy spreading across microstates. Eyes, dishes, and morals miss it: entropy counts energetic arrangements, and tidy ice can outrank messy water. Bedrooms mislead thermodynamics.",
+      "lessonContent": "Metaphors mislead where quantities clarify.\nSpreading, never messiness, is tracked.\nTidy crystals can outrank slushy melts.\nBedrooms are terrible thermodynamic models.\nShare this: retire one disorder metaphor.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#0",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Open Kitchen",
+      "question": "Creationists argue evolution violates the second law (order from chaos). Earth, however, bathes in solar influx while radiating waste heat. Why is there no violation?",
+      "choices": [
+        "The second law applies only to isolated systems",
+        "Evolution breaks physical laws",
+        "Sunlight pauses entropy locally",
+        "Biologists voted to exempt life"
+      ],
+      "correctAnswer": "The second law applies only to isolated systems",
+      "xpReward": 50,
+      "correctExplanation": "Only isolated systems — Earth trades energy with space: low-entropy sunlight in, high-entropy heat out. Local order paid by solar income.",
+      "incorrectExplanation": "Actually, the answer is the second law applies only to isolated systems. Law-breaking, pauses, and exemptions miss it: open systems order themselves on through-flows. Life is a solar-powered eddy, fully lawful.",
+      "lessonContent": "Open systems order on through-flows lawfully.\nIsolation scopes the second law strictly.\nSolar income funds biological complexity.\nEddies obey rivers they ride within.\nShare this: audit one open system.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#1",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Costly Meal",
+      "question": "Schrödinger said life feeds on 'negative entropy' — importing order to stave off decay. Every meal, at bottom, imports what?",
+      "choices": [
+        "Calories as pure heat",
+        "Low-entropy arrangement",
+        "Moral satisfaction",
+        "Water exclusively"
+      ],
+      "correctAnswer": "Low-entropy arrangement",
+      "xpReward": 50,
+      "correctExplanation": "Low-entropy arrangement — food's value is structural order organisms dismantle for work. Calories count energy; arrangement counts usefulness.",
+      "incorrectExplanation": "Not quite — the answer is low-entropy arrangement. Heat, morals, and water miss it: bodies harvest molecular order, excreting disorder as heat and waste. Eating is entropy arbitrage.",
+      "lessonContent": "Bodies harvest order, excrete disorder.\nArrangement counts beyond calories.\nEntropy arbitrage funds all living.\nOrder imported staves decay daily.\nShare this: eat one negentropy lunch.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#2",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Final Equilibrium",
+      "question": "Cosmology's heat death pictures a universe expanded into uniform lukewarm equilibrium. What ends when gradients vanish?",
+      "choices": [
+        "Matter itself disappearing",
+        "All change, work, and life",
+        "Gravity reversing direction",
+        "Time flowing backward"
+      ],
+      "correctAnswer": "All change, work, and life",
+      "xpReward": 50,
+      "correctExplanation": "All change, work, and life — gradients drive everything; equilibrium drives nothing. The end is boredom, not bang.",
+      "incorrectExplanation": "Actually, the answer is all change, work, and life. Matter persists, gravity holds, time flows — but nothing happens anywhere. Difference, not substance, is existence's fuel.",
+      "lessonContent": "Gradients drive; equilibrium idles forever.\nDifference fuels existence, not substance.\nBoredom, not bang, ends universes.\nWork needs slopes of every kind.\nShare this: cherish one gradient today.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Unrecyclable Remainder",
+      "question": "Enthusiasts promise fully circular economies, but thermodynamics mandates losses: dissipation, mixing, contamination. What can recycling never fully defeat?",
+      "choices": [
+        "Entropy's dissipative toll",
+        "Corporate greed alone",
+        "Consumer laziness",
+        "Insufficient bin colors"
+      ],
+      "correctAnswer": "Entropy's dissipative toll",
+      "xpReward": 50,
+      "correctExplanation": "Entropy's toll — every cycle scatters some material beyond economic recovery. Circularity approaches but never arrives.",
+      "incorrectExplanation": "Not quite — the answer is entropy's dissipative toll. Greed, laziness, and bins miss it: physics taxes each loop with dispersion. Perfect circles violate the second law's economics.",
+      "lessonContent": "Physics taxes every loop with losses.\nDispersion defeats perfect circularity.\nApproach circles; never promise them.\nTolls apply regardless of virtue.\nShare this: trace one dissipative loss.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Energy Ledger",
+      "question": "Energy Return on Investment divides energy delivered by energy spent getting it. Early oil returned ~100:1; modern sources return far less. What does falling EROI mean?",
+      "choices": [
+        "Energy companies earn less profit",
+        "More effort per unit of useful energy",
+        "Oil becoming chemically weaker",
+        "Sunlight dimming measurably"
+      ],
+      "correctAnswer": "More effort per unit of useful energy",
+      "xpReward": 50,
+      "correctExplanation": "More effort per useful unit — civilization runs on surplus energy, and shrinking surpluses squeeze everything built atop them. Net energy, not gross, powers societies.",
+      "incorrectExplanation": "Actually, the answer is more effort per unit of useful energy. Profits, chemistry, and sunlight miss it: EROI measures physical surplus before economics. Societies spend net, never gross.",
+      "lessonContent": "Net energy powers societies, never gross.\nSurpluses squeezed strain everything atop.\nPhysical returns precede economic ones.\nLedger energy before pricing it.\nShare this: compute one EROI roughly.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Coal Paradox",
+      "question": "Efficient steam engines were meant to save coal; coal use soared instead, as cheaper power multiplied uses. What paradox is this?",
+      "choices": [
+        "Engines breaking down",
+        "Celebrations of waste",
+        "New coal discoveries",
+        "Efficiency raising total consumption"
+      ],
+      "correctAnswer": "Efficiency raising total consumption",
+      "xpReward": 50,
+      "correctExplanation": "Efficiency raising total consumption — Jevons paradox: cheaper steam expanded applications faster than savings accumulated. Frugality per unit, profligacy in total.",
+      "incorrectExplanation": "Not quite — the answer is efficiency raising total consumption. Breakdowns, celebrations, and discoveries miss it: falling costs grow demand beyond engineering savings. Economies rebound past engineers' arithmetic.",
+      "lessonContent": "Falling costs grow demand past savings.\nFrugality per unit, profligacy in total.\nRebounds outrun engineering arithmetic.\nEfficiency needs caps to save anything.\nShare this: spot one Jevons rebound.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Driven Miles",
+      "question": "Fuel-efficient cars get driven extra miles, clawing back part of the engineering savings. What is this take-back called?",
+      "choices": [
+        "Engine failure",
+        "Tire wear",
+        "Road taxes",
+        "Direct rebound effect"
+      ],
+      "correctAnswer": "Direct rebound effect",
+      "xpReward": 50,
+      "correctExplanation": "Direct rebound — cheaper miles invite more miles: 10-30% of savings typically return as driving. Efficiency leaks through behavior.",
+      "incorrectExplanation": "Actually, the answer is direct rebound effect. Failures, tires, and taxes miss it: per-mile savings fund extra miles directly. Engineering gains share proceeds with behavior.",
+      "lessonContent": "Per-mile savings fund extra miles.\nBehavior shares engineering proceeds.\nTake-backs run ten to thirty percent.\nEfficiency leaks through use patterns.\nShare this: track one rebound of yours.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#7",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Finite Pie",
+      "question": "Ecological economists argue endless GDP growth on a finite planet collides with material-energy realities. What ultimately constrains perpetual growth?",
+      "choices": [
+        "Material-energy throughput limits",
+        "Bankers' imaginations",
+        "A lack of advertising",
+        "Slow internet speeds"
+      ],
+      "correctAnswer": "Material-energy throughput limits",
+      "xpReward": 50,
+      "correctExplanation": "Material-energy throughput limits — economies metabolize matter and energy; planets supply finite flows. Growth hits physics before imagination.",
+      "incorrectExplanation": "Not quite — the answer is material-energy throughput limits. Bankers, ads, and bandwidth miss it: throughput, not money, binds. Dematerialization helps at margins; physics holds the totals.",
+      "lessonContent": "Throughput binds where money only measures.\nMetabolisms need material flows always.\nMargins yield; totals obey physics.\nGrowth meets geology eventually.\nShare this: weigh one throughput limit.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#8",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Exported Smoke",
+      "question": "Factories vent smoke freely while neighbors cough: real costs dumped outside market prices. Economically, what is pollution?",
+      "choices": [
+        "A gift to neighbors",
+        "A marketing strategy",
+        "An accounting error",
+        "An unpriced entropy export"
+      ],
+      "correctAnswer": "An unpriced entropy export",
+      "xpReward": 50,
+      "correctExplanation": "An unpriced entropy export — disorder shipped off-book to shared airs and waters. Prices lie by omission; lungs keep true ledgers.",
+      "incorrectExplanation": "Actually, the answer is an unpriced entropy export. Gifts, strategies, and errors miss it: externalities are thermodynamic dumping with the invoice torn up. Markets optimize the priced and ignore the rest.",
+      "lessonContent": "Invoices torn up don't cancel costs.\nLungs keep ledgers markets omit.\nDisorder shipped off-book returns as harm.\nPrices lie most by omission.\nShare this: price one externality.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Thinning Vein",
+      "question": "Copper ores slid from ~4% metal to under 1%; each ton now demands far more energy and rock moved. What makes modern mining hungrier?",
+      "choices": [
+        "Lazier miners",
+        "Declining ore grades",
+        "Heavier helmets",
+        "Longer lunch breaks"
+      ],
+      "correctAnswer": "Declining ore grades",
+      "xpReward": 50,
+      "correctExplanation": "Declining ore grades — rich veins mined first leave lean rock: energy per ton climbs as concentration falls. Geology grades on a curve downward.",
+      "incorrectExplanation": "Not quite — the answer is declining ore grades. Laziness, helmets, and lunches miss it: concentration dictates energy cost directly. First fruits were richest; tailings grow leaner.",
+      "lessonContent": "Concentration dictates energy cost directly.\nFirst fruits run richest always.\nLean rock demands fat energy.\nGrades slide; costs climb correspondingly.\nShare this: trace one thinning vein.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Flow Peak",
+      "question": "'Peak oil' was misread as running dry; the real crunch is flow rates — how fast wells deliver, not totals underground. What actually peaks?",
+      "choices": [
+        "Oil's market price",
+        "Total underground volume",
+        "Extractable flow rate",
+        "Geologists' careers"
+      ],
+      "correctAnswer": "Extractable flow rate",
+      "xpReward": 50,
+      "correctExplanation": "Extractable flow rate — economies burn flows, not stocks: delivery speed constrains before reserves empty. Peaks are about pace.",
+      "incorrectExplanation": "Actually, the answer is extractable flow rate. Prices, volumes, and careers miss it: civilization drinks from a straw, and straws narrow first. Stocks comfort; flows command.",
+      "lessonContent": "Straws narrow before wells empty.\nFlows command where stocks comfort.\nDelivery speed constrains economies first.\nPace peaks precede volume peaks.\nShare this: watch one flow narrow.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Hundred Millennia",
+      "question": "Some nuclear waste stays dangerous 100,000+ years — longer than writing, cities, or states have existed. What unprecedented problem is this?",
+      "choices": [
+        "Deep-time stewardship",
+        "Short-term storage costs",
+        "Reactor paint colors",
+        "Uranium flavors"
+      ],
+      "correctAnswer": "Deep-time stewardship",
+      "xpReward": 50,
+      "correctExplanation": "Deep-time stewardship — guarding hazards across civilizational timescales no institution has survived. Waste outlives every warden imagined.",
+      "incorrectExplanation": "Not quite — the answer is deep-time stewardship. Costs, paint, and flavors miss it: the problem is temporal, not technical — warning beings 3,000 generations hence. Ethics must outlive languages.",
+      "lessonContent": "Hazards outlive every imagined warden.\nTemporal problems dwarf technical ones.\nWarnings must cross civilizational gaps.\nStewardship spans a hundred millennia.\nShare this: warn one distant descendant.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Discounted Future",
+      "question": "Climate economics hinges on discounting: Stern's near-zero pure time preference versus Nordhaus's higher rate moves trillions. What is truly debated?",
+      "choices": [
+        "Thermometer brands",
+        "Weather forecasts",
+        "Carbon dating methods",
+        "Discounting future welfare ethically"
+      ],
+      "correctAnswer": "Discounting future welfare ethically",
+      "xpReward": 50,
+      "correctExplanation": "Discounting future welfare — how much less tomorrow's lives count is ethics disguised as math. Rates are moral philosophy with decimal points.",
+      "incorrectExplanation": "Actually, the answer is discounting future welfare ethically. Brands, forecasts, and dating miss it: pure time preference prices unborn lives. Trillions swing on moral parameters.",
+      "lessonContent": "Rates are moral philosophy decimalized.\nDecimals price unborn lives directly.\nTrillions hinge on ethical parameters.\nMath disguises morals here completely.\nShare this: price one future life.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#13",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Carbon Purse",
+      "question": "For 1.5°C, humanity may emit only ~400 GtCO₂ more — a finite stock, not a yearly rate that resets. What does the budget frame?",
+      "choices": [
+        "Annual weather variance",
+        "Monthly utility bills",
+        "Election cycles",
+        "A finite total stock"
+      ],
+      "correctAnswer": "A finite total stock",
+      "xpReward": 50,
+      "correctExplanation": "A finite total stock — every ton spends shared purse permanently. Budgets make procrastination visible as spending.",
+      "incorrectExplanation": "Not quite — the answer is a finite total stock. Variance, bills, and cycles miss it: stocks don't reset January first. Delay spends; the purse notices.",
+      "lessonContent": "Stocks never reset January first.\nDelay spends from shared purses.\nProcrastination is visible spending here.\nPurses notice what calendars forgive.\nShare this: spend one carbon ton mindfully.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#14",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The One-Way Door",
+      "question": "Ice sheets and rainforests may flip past thresholds with no return trip at any price — collapse now, regret forever. What makes these special?",
+      "choices": [
+        "Their reversibility",
+        "Their low cost",
+        "Irreversible thresholds",
+        "Their popularity"
+      ],
+      "correctAnswer": "Irreversible thresholds",
+      "xpReward": 50,
+      "correctExplanation": "Irreversible thresholds — one-way doors in Earth systems: crossing costs everything, uncrossing costs impossibility. Precaution prices asymmetry.",
+      "incorrectExplanation": "Actually, the answer is irreversible thresholds. Reversibility, cheapness, and fame miss it: some doors lock behind crossers permanently. Asymmetry demands precaution mathematics.",
+      "lessonContent": "Doors lock behind crossers permanently.\nAsymmetry demands precaution math.\nCrossing costs everything; return costs impossibility.\nOne-way systems punish experiments.\nShare this: respect one locked door.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#15",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Costly Kilogram",
+      "question": "Roughly 10% of energy passes each trophic level — a beef kilogram costs many feed kilograms. What does this rule imply for diets?",
+      "choices": [
+        "Meat's thermodynamic costliness",
+        "Vegetables tasting worse",
+        "Farmers working less",
+        "Cows photosynthesizing"
+      ],
+      "correctAnswer": "Meat's thermodynamic costliness",
+      "xpReward": 50,
+      "correctExplanation": "Meat's thermodynamic costliness — each level taxes 90%: eat low for energetic thrift. Trophic arithmetic favors plants enormously.",
+      "incorrectExplanation": "Not quite — the answer is meat's thermodynamic costliness. Taste, labor, and photosynthesis miss it: tenths compound cruelly up food chains. Diets are energy strategies wearing culture.",
+      "lessonContent": "Tenths compound cruelly up chains.\nLow eating is energetic thrift.\nDiets strategize energy under culture.\nPlants win thermodynamic accounting.\nShare this: eat one level lower.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Pale Harvest",
+      "question": "Crops convert barely 1-2% of sunlight to biomass — reflection, off-spectrum light, and respiration claim the rest. Why is harvest so thin?",
+      "choices": [
+        "Lazy chloroplasts",
+        "Insufficient sunlight",
+        "Plant conspiracy",
+        "Losses at every conversion step"
+      ],
+      "correctAnswer": "Losses at every conversion step",
+      "xpReward": 50,
+      "correctExplanation": "Losses at every step — reflection, spectrum mismatch, photorespiration, maintenance: physics taxes photons repeatedly. Thin harvests are honest accounting.",
+      "incorrectExplanation": "Actually, the answer is losses at every conversion step. Laziness, scarcity, and plots miss it: each transformation keeps its cut. Biomass is what survives the gauntlet.",
+      "lessonContent": "Gauntlets tax photons repeatedly.\nThin harvests are honest accounting.\nEach transformation keeps its cut.\nBiomass survives stacked losses.\nShare this: thank one surviving photon.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Mandatory Waste",
+      "question": "No heat engine beats the Carnot limit fixed by reservoir temperatures. Waste heat isn't poor engineering but what?",
+      "choices": [
+        "Union rules",
+        "Thermodynamic necessity",
+        "Cheap materials",
+        "Bad luck"
+      ],
+      "correctAnswer": "Thermodynamic necessity",
+      "xpReward": 50,
+      "correctExplanation": "Thermodynamic necessity — temperature gaps cap conversion absolutely: some heat must exit. Necessity, not negligence, warms rivers.",
+      "incorrectExplanation": "Not quite — the answer is thermodynamic necessity. Unions, materials, and luck miss it: the second law takes its cut from every engine. Perfect conversion is forbidden, not merely difficult.",
+      "lessonContent": "Second law takes cuts from all engines.\nForbidden differs from difficult entirely.\nNecessity warms rivers, not negligence.\nGaps cap conversions absolutely.\nShare this: forgive one warm river.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#18",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Impossible Efficiency",
+      "question": "Heat pumps deliver 3-4 heat units per electricity unit — over 100% 'efficient' without breaking physics. How is this possible?",
+      "choices": [
+        "Perpetual motion achieved",
+        "Faulty meters",
+        "Moving ambient heat, not making it",
+        "Burning secret fuel"
+      ],
+      "correctAnswer": "Moving ambient heat, not making it",
+      "xpReward": 50,
+      "correctExplanation": "Moving, not making — pumps relocate ambient warmth instead of manufacturing it. Efficiency exceeds 100% because the denominator counts only the moving work.",
+      "incorrectExplanation": "Actually, the answer is moving ambient heat, not making it. Perpetual motion, faulty meters, and secret fuel miss it: relocation beats creation thermodynamically. Pump, don't produce.",
+      "lessonContent": "Relocation beats creation thermodynamically.\nDenominators count moving work only.\nPump ambient; don't manufacture.\nOver-100% is bookkeeping, not magic.\nShare this: move one unit of warmth.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#19",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Erasure Price",
+      "question": "Erasing one bit of information costs at least kT ln 2 of energy — computation has a thermodynamic floor. What sets this minimum?",
+      "choices": [
+        "Landauer's limit",
+        "Moore's law",
+        "Metcalfe's law",
+        "Murphy's law"
+      ],
+      "correctAnswer": "Landauer's limit",
+      "xpReward": 50,
+      "correctExplanation": "Landauer's limit — forgetting is physical: erased bits heat the universe measurably. Information is thermodynamic currency.",
+      "incorrectExplanation": "Not quite — the answer is Landauer's limit. Moore, Metcalfe, and Murphy miss it: erasure dissipates, reversibility excepted. Forgetting costs; computers pay in heat.",
+      "lessonContent": "Forgetting costs physical currency.\nErased bits heat universes measurably.\nInformation is thermodynamic throughout.\nFloors exist beneath all computing.\nShare this: erase one bit reverently.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Demon's Ledger",
+      "question": "Maxwell's demon sorts molecules seemingly for free — until physicists billed the measurement itself. What exorcises the demon?",
+      "choices": [
+        "Bigger demons",
+        "Faster sorting",
+        "Information has physical cost",
+        "Larger boxes"
+      ],
+      "correctAnswer": "Information has physical cost",
+      "xpReward": 50,
+      "correctExplanation": "Information's physical cost — knowing which molecule goes where costs entropy that pays the books. Demons starve on honest accounting.",
+      "incorrectExplanation": "Actually, the answer is information has physical cost. Bigger, faster, and larger miss it: measurement and memory are thermodynamic acts. Ledgers balance; demons default.",
+      "lessonContent": "Knowing costs entropy always.\nMeasurement is thermodynamic action.\nLedgers balance; demons default.\nHonest accounting starves paradoxes.\nShare this: price one measurement.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#21",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Stubborn Sectors",
+      "question": "Aviation, steel, and cement resist electrification — energy density, blast heat, and process chemistry block easy swaps. What makes them hardest?",
+      "choices": [
+        "Pilot unions",
+        "No easy physical substitutes",
+        "Lack of trying",
+        "Bad public relations"
+      ],
+      "correctAnswer": "No easy physical substitutes",
+      "xpReward": 50,
+      "correctExplanation": "No easy substitutes — physics, not will, blocks: batteries can't fly far, furnaces need carbon chemistry. Hard sectors need new processes, not pep talks.",
+      "incorrectExplanation": "Not quite — the answer is no easy physical substitutes. Unions, effort, and PR miss it: constraints are material. Decarbonizing atoms differs from decarbonizing electrons.",
+      "lessonContent": "Material constraints beat pep talks.\nAtoms decarbonize harder than electrons.\nSubstitutes missing means processes needed.\nPhysics, not will, blocks hardest.\nShare this: respect one hard sector.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#22",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Mile Myth",
+      "question": "Food miles dominate green-eating debates, yet production method dwarfs transport in most footprints. What matters more than distance traveled?",
+      "choices": [
+        "Packaging colors",
+        "Truck brands",
+        "How it was grown",
+        "Shelf height"
+      ],
+      "correctAnswer": "How it was grown",
+      "xpReward": 50,
+      "correctExplanation": "How it was grown — production dominates footprints: heated greenhouses out-emit field imports. Methods outweigh mileage massively.",
+      "incorrectExplanation": "Actually, the answer is how it was grown. Colors, brands, and shelves miss it: analyses rank production first, transport a distant second. Miles mislead; methods matter.",
+      "lessonContent": "Production dominates footprints decisively.\nMethods outweigh mileage massively.\nGreenhouses out-emit imports routinely.\nMiles mislead; methods matter.\nShare this: grow one awareness.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "hard",
+      "title": "The Limestone Debt",
+      "question": "Cement emits CO₂ not just from kiln fuel but from limestone's own chemistry (calcination). Why do these emissions resist fixes?",
+      "choices": [
+        "Chemistry itself releases CO₂",
+        "Workers exhale too much",
+        "Kilns painted dark",
+        "Bags too small"
+      ],
+      "correctAnswer": "Chemistry itself releases CO₂",
+      "xpReward": 50,
+      "correctExplanation": "Chemistry itself releases it — CaCO₃ becomes CaO plus CO₂ by formula, not by fuel choice. Process emissions ignore energy swaps.",
+      "incorrectExplanation": "Not quite — the answer is chemistry itself releases CO₂. Workers, paint, and bags miss it: the reaction exhales regardless of heat source. Formulas, not furnaces, set the floor.",
+      "lessonContent": "Formulas set floors furnaces cannot.\nReactions exhale regardless of fuel.\nProcess emissions ignore energy swaps.\nChemistry constrains before engineering.\nShare this: read one formula's exhaust.",
+      "lessonGroup": "Earth & Space",
+      "forgeId": "batch-134#24",
+      "forgeScore": 92
+    }
+  ]
+}

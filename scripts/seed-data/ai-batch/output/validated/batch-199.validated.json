@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-199",
+  "generatedAt": "2026-09-17T13:27:46.170Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — unstructured play builds creativity and problem-solving. Playgrounds out-teach worksheets socially.",
+      "incorrectExplanation": "It's true. Free play develops minds worksheets can't reach.",
+      "lessonContent": "Free play builds creative minds.\nPlaygrounds out-teach worksheets.\nUnstructured hours develop judgment.\nShare this: gift one unstructured hour.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Unstructured play helps children learn.",
+      "title": "The Free Hour",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — adults need play for stress, bonding, and ideas. Playgrounds have no age limits.",
+      "incorrectExplanation": "It's false. Grown-ups play for health, humor, and invention.",
+      "lessonContent": "Adults need play equally.\nStress dissolves in games.\nAge limits insult players.\nShare this: play one adult game.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Play is only useful for children.",
+      "title": "The Ageless Game",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#1",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — negotiating rules teaches fairness firsthand. Games referee themselves.",
+      "incorrectExplanation": "It's true. Rule-bound games school justice early.",
+      "lessonContent": "Games school fairness firsthand.\nRules teach justice playfully.\nNegotiation starts on playgrounds.\nShare this: referee one game fairly.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Playing games with rules teaches fairness.",
+      "title": "The Fair Rules",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — pretending to be others builds empathy and theory of mind. Costumes cultivate compassion.",
+      "incorrectExplanation": "It's true. Role-play rehearses other minds.",
+      "lessonContent": "Pretending builds empathy steadily.\nCostumes cultivate compassion.\nOther minds become imaginable.\nShare this: role-play one viewpoint.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Pretend play builds empathy in children.",
+      "title": "The Borrowed Shoes",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — wrestling within limits teaches strength's boundaries. Tumbles tutor gentleness.",
+      "incorrectExplanation": "It's true. Rough play calibrates force safely.",
+      "lessonContent": "Rough play calibrates strength.\nTumbles tutor boundaries safely.\nLimits teach gentle power.\nShare this: wrestle gently once.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Rough-and-tumble play teaches physical boundaries.",
+      "title": "The Gentle Tumble",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — curiosity-driven learning outlasts reward-driven cramming. Wonder beats stickers.",
+      "incorrectExplanation": "It's true. Intrinsic questions stick; extrinsic bribes fade.",
+      "lessonContent": "Wonder outlasts stickers always.\nQuestions stick; bribes fade.\nCuriosity fuels durable learning.\nShare this: follow one wonder today.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Curiosity motivates learning better than rewards.",
+      "title": "The Wonder Fuel",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — self-testing beats rereading for memory. Retrieval strengthens traces.",
+      "incorrectExplanation": "It's true. Quizzing outperforms highlighting reliably.",
+      "lessonContent": "Testing beats rereading reliably.\nRetrieval strengthens memory traces.\nQuizzes beat highlighters.\nShare this: self-quiz one topic tonight.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Testing yourself beats rereading notes.",
+      "title": "The Retrieval Quiz",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — sleep consolidates daytime learning into memory. Nights file the day's lessons.",
+      "incorrectExplanation": "It's true. Resting brains archive waking lessons.",
+      "lessonContent": "Sleep files daytime lessons.\nNights archive waking study.\nRest completes learning cycles.\nShare this: sleep on one lesson.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Sleep helps consolidate what you learned.",
+      "title": "The Filing Night",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — mistakes signal growth zones; corrected errors stick hardest. Stumbles teach footing.",
+      "incorrectExplanation": "It's true. Wrong answers, corrected, out-memorize easy wins.",
+      "lessonContent": "Mistakes mark growth zones.\nCorrected errors stick hardest.\nStumbles teach sure footing.\nShare this: celebrate one error.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Making mistakes can help learning.",
+      "title": "The Useful Error",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#8",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — empty hours invite inventive minds. Boredom is creativity's waiting room.",
+      "incorrectExplanation": "It's true. Unfilled time breeds original games.",
+      "lessonContent": "Boredom breeds original games.\nEmpty hours invite invention.\nUnscheduled minds create freely.\nShare this: bore yourself creatively once.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Boredom can spark creativity.",
+      "title": "The Bored Spark",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — packed schedules crowd out free play. Calendars can starve childhoods.",
+      "incorrectExplanation": "It's true. Every hour scheduled is an hour unplayed.",
+      "lessonContent": "Packed calendars starve play.\nScheduled hours crowd free ones.\nWhite space feeds childhoods.\nShare this: unschedule one afternoon.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Overscheduling reduces children's free play.",
+      "title": "The Crowded Calendar",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — screens supplement but never replace running, digging, and climbing. Bodies need real playgrounds.",
+      "incorrectExplanation": "It's false. Pixels can't teach knees about gravel.",
+      "lessonContent": "Screens supplement, never replace.\nBodies need real playgrounds.\nGravel teaches knees uniquely.\nShare this: trade pixels for dirt.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Screen play fully replaces outdoor play.",
+      "title": "The Pixel Swap",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#11",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — playful problem-solving transfers to real challenges. Games rehearse resourcefulness.",
+      "incorrectExplanation": "It's true. Playful minds solve seriously.",
+      "lessonContent": "Play rehearses resourcefulness.\nGames transfer to real trials.\nPlayful minds solve seriously.\nShare this: gamify one chore lightly.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Play builds real problem-solving skills.",
+      "title": "The Playful Solver",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#12",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — laughter boosts attention and memory. Joy glues lessons in place.",
+      "incorrectExplanation": "It's true. Humor cements learning chemically.",
+      "lessonContent": "Laughter glues lessons firmly.\nJoy cements memory traces.\nHumor teaches memorably.\nShare this: laugh while learning once.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Laughter helps people learn and remember.",
+      "title": "The Laughing Lesson",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — explaining cements the explainer's grasp. Teaching tests understanding ruthlessly.",
+      "incorrectExplanation": "It's true. The teacher learns most in every lesson.",
+      "lessonContent": "Teaching cements explainers' grasp.\nProtégés test mentors ruthlessly.\nExplanation exposes gaps kindly.\nShare this: teach one thing today.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Teaching others deepens your own understanding.",
+      "title": "The Teaching Test",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#14",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — effort praise grows resilience; talent praise breeds fragility. Words shape mindsets.",
+      "incorrectExplanation": "It's true. 'Worked hard' beats 'so smart' for growth.",
+      "lessonContent": "Effort praise grows resilience.\nTalent praise breeds fragility.\nWords shape growing mindsets.\nShare this: praise one effort specifically.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Praising effort beats praising talent for growth.",
+      "title": "The Effort Praise",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#15",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — 'not yet' turns fixed verdicts into growth trajectories. Yet postpones judgment kindly.",
+      "incorrectExplanation": "It's true. Adding yet reopens closed cases.",
+      "lessonContent": "Yet reopens closed verdicts.\nFixed judgments soften temporally.\nGrowth needs unfinished sentences.\nShare this: append yet to one can't.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Adding 'yet' to 'I can't' helps a growth mindset.",
+      "title": "The Powerful Yet",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "False",
+      "correctExplanation": "False — cardboard boxes outplay plastic aisles. Imagination needs emptiness, not price tags.",
+      "incorrectExplanation": "It's false. The box beats the toy inside regularly.",
+      "lessonContent": "Boxes beat their contents regularly.\nEmptiness invites invention.\nPrice tags never buy wonder.\nShare this: gift one empty box.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Great play needs expensive toys.",
+      "title": "The Cardboard Castle",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#17",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — new experiences stock imagination's shelves. Inputs feed inventive outputs.",
+      "incorrectExplanation": "It's true. Traveled minds invent richer games.",
+      "lessonContent": "Experiences stock imagination's shelves.\nInputs feed inventive outputs.\nMuseums fuel playgrounds later.\nShare this: feed one new experience.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "New experiences fuel children's imagination.",
+      "title": "The Stocked Shelf",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — movement breaks restore attention measurably. Recess refuels classrooms.",
+      "incorrectExplanation": "It's true. Play breaks sharpen school focus.",
+      "lessonContent": "Recess refuels young attention.\nMovement restores focus measurably.\nBreaks boost classroom hours.\nShare this: defend one recess fiercely.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Recess breaks improve classroom attention.",
+      "title": "The Refueling Break",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — stories carry facts past forgetting. Narratives glue data memorably.",
+      "incorrectExplanation": "It's true. Plotlines ferry lessons into memory.",
+      "lessonContent": "Stories ferry facts memorably.\nPlots glue data durably.\nNarratives beat bullet points.\nShare this: story-wrap one fact.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Stories help people remember facts.",
+      "title": "The Remembered Tale",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — punishing questions teaches silence. Welcomed wonder multiplies queries.",
+      "incorrectExplanation": "It's true. Mocked curiosity retreats permanently.",
+      "lessonContent": "Mockery murders curiosity swiftly.\nWelcomed questions multiply freely.\nWonder needs safe harbors.\nShare this: welcome one odd question.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Curiosity dies when questions get mocked.",
+      "title": "The Mocked Wonder",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — asking beats answering for growing minds. Questions open; answers close.",
+      "incorrectExplanation": "It's true. Inquiry drives deeper than information.",
+      "lessonContent": "Questions open; answers close.\nInquiry drives growth fastest.\nAsking beats telling daily.\nShare this: ask before answering once.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Asking questions grows minds more than memorizing answers.",
+      "title": "The Open Inquiry",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — humor tags memories for priority storage. Funny lessons linger longest.",
+      "incorrectExplanation": "It's true. Amusement highlights mental pages.",
+      "lessonContent": "Humor highlights mental pages.\nAmusement tags priority storage.\nFunny lingers longest.\nShare this: joke one lesson memorable.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Humor improves memory for lessons.",
+      "title": "The Funny Tag",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#23",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "True",
+      "correctExplanation": "True — building together bonds deeper than consuming together. Co-creation cements friendships.",
+      "incorrectExplanation": "It's true. Shared projects out-bond shared screens.",
+      "lessonContent": "Co-creation cements friendships.\nBuilding bonds deeper than watching.\nProjects outlast programs.\nShare this: build one thing together.",
+      "lessonGroup": "Mind Stretchers",
+      "question": "Playing together builds stronger bonds than watching together.",
+      "title": "The Built Bond",
+      "type": "true-false",
+      "category": "wonders",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-199#24",
+      "forgeScore": 100
+    }
+  ]
+}

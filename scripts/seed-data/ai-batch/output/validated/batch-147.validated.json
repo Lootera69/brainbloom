@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-147",
+  "generatedAt": "2026-09-17T13:27:44.358Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Three Marks",
+      "question": "Buddhist teaching marks all conditioned things with three characteristics. Joined with suffering and non-self, what completes the trio?",
+      "choices": [
+        "Permanence",
+        "Divine creation",
+        "Universal impermanence",
+        "Eternal souls"
+      ],
+      "correctAnswer": "Universal impermanence",
+      "xpReward": 50,
+      "correctExplanation": "Universal impermanence (anicca) — all compounded things dissolve: bodies, thoughts, nations. Three marks describe, never condemn.",
+      "incorrectExplanation": "Not quite — the answer is universal impermanence. Permanence, creation, and souls miss it: anicca joins dukkha and anatta as existence's fine print. Marks describe reality's terms, not its flaws.",
+      "lessonContent": "Fine print precedes all signatures.\nCompounds dissolve by definition here.\nMarks describe; they never condemn.\nThree characteristics frame everything made.\nShare this: watch one compound dissolve.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Clinging Cause",
+      "question": "The second noble truth locates suffering's origin not in pain itself but in our stance toward experience. What causes suffering?",
+      "choices": [
+        "Clinging and craving",
+        "External events alone",
+        "Bad luck mostly",
+        "Other people"
+      ],
+      "correctAnswer": "Clinging and craving",
+      "xpReward": 50,
+      "correctExplanation": "Clinging and craving (upādāna, taṇhā) — grasping at pleasant, shoving away unpleasant. Pain happens; suffering is the grip.",
+      "incorrectExplanation": "Actually, the answer is clinging and craving. Events, luck, and others miss it: pain arrives uninvited, suffering checks in by choice. Grip, not circumstance, manufactures misery.",
+      "lessonContent": "Grips manufacture miseries reliably.\nPain arrives; suffering checks in chosen.\nStances cause more than events do.\nCraving grasps; aversion shoves.\nShare this: ungrip one held thing.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Reverse Grip",
+      "question": "Clinging pulls pleasant things close — but pushing unpleasant things away with equal force is also bondage. What is aversion?",
+      "choices": [
+        "Wisdom in disguise",
+        "Clinging in reverse",
+        "Healthy boundaries",
+        "Moral courage"
+      ],
+      "correctAnswer": "Clinging in reverse",
+      "xpReward": 50,
+      "correctExplanation": "Clinging in reverse — aversion grips by pushing: hatred binds as tightly as hunger. Both directions shackle.",
+      "incorrectExplanation": "Not quite — the answer is clinging in reverse. Wisdom, boundaries, and courage miss it: shoving hardens contact exactly like grasping. Pushers stay as bound as pullers.",
+      "lessonContent": "Pushing hardens contact like grasping.\nShovers stay bound as pullers do.\nHatred grips with both hands too.\nReverse gears drive same bondage.\nShare this: unpush one shoved thing.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#2",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Unbinding",
+      "question": "Nirvana is routinely mistaken for a Buddhist heaven of eternal bliss. Literally 'blowing out,' what does the word actually name?",
+      "choices": [
+        "A paradise realm",
+        "Cessation of clinging fires",
+        "Reunion with loved ones",
+        "Eternal youth granted"
+      ],
+      "correctAnswer": "Cessation of clinging fires",
+      "xpReward": 50,
+      "correctExplanation": "Cessation of clinging — greed, hatred, delusion blown out like flames. Cooling, not crowning: the end of fuel.",
+      "incorrectExplanation": "Actually, the answer is cessation of clinging fires. Paradises, reunions, and youth miss it: nirvana extinguishes, never enthrones. Blowing out ends burning.",
+      "lessonContent": "Extinguishing ends burning completely.\nCooling, never crowning, defines peace.\nFires out mean suffering unfueled.\nBlowing out beats building up.\nShare this: blow out one small fire.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Mustard Search",
+      "question": "Grief-mad Kisa Gotami was told to fetch mustard seed from a house untouched by death. What did the impossible errand teach?",
+      "choices": [
+        "Better farming methods",
+        "Seed storage tricks",
+        "Universality of loss",
+        "Village geography"
+      ],
+      "correctAnswer": "Universality of loss",
+      "xpReward": 50,
+      "correctExplanation": "Universality of loss — every door had mourned: her private grief joined the human commons. Errands teach what sermons cannot.",
+      "incorrectExplanation": "Not quite — the answer is universality of loss. Farming, storage, and maps miss it: door after door confessed dead. Private agonies dissolve into shared condition.",
+      "lessonContent": "Shared conditions dissolve private agonies.\nEvery door confesses dead eventually.\nErrands teach what sermons cannot.\nCommons comfort better than counsel.\nShare this: knock one mourning door.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Abandoned Raft",
+      "question": "The Buddha compared teachings to a raft: essential for crossing, absurd to carry afterward. What should happen to doctrines post-crossing?",
+      "choices": [
+        "Enshrinement forever",
+        "Abandonment after use",
+        "Literal worship daily",
+        "Burial at sea"
+      ],
+      "correctAnswer": "Abandonment after use",
+      "xpReward": 50,
+      "correctExplanation": "Abandonment after use — rafts serve rivers, not backs: clinging to teachings repeats the disease. Use fully, then set down.",
+      "incorrectExplanation": "Actually, the answer is abandonment after use. Enshrinement, worship, and burial miss it: vehicles serve transits, never destinations. Carrying rafts ashore looks devout and walks slowly.",
+      "lessonContent": "Vehicles serve transits, never destinations.\nSet down what carried you over.\nClinging to cures repeats diseases.\nUse fully, then abandon freely.\nShare this: beach one raft today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Second Arrow",
+      "question": "Being struck hurts; raging at the strike — 'why me,' revenge fantasies — hurts separately. The Buddha distinguished two arrows. Which one is optional?",
+      "choices": [
+        "The first arrow of pain",
+        "The second arrow of reactivity",
+        "Neither can be avoided",
+        "Both strike equally"
+      ],
+      "correctAnswer": "The second arrow of reactivity",
+      "xpReward": 50,
+      "correctExplanation": "The second arrow — pain arrives uninvited; suffering-about-pain is self-inflicted archery. First arrows wound; second arrows are volunteered.",
+      "incorrectExplanation": "Not quite — the answer is the second arrow of reactivity. First arrows (pain) strike all bodies; second arrows (rage, pity, revenge) strike only volunteers. Archers of self wound selves most.",
+      "lessonContent": "Volunteers wound themselves secondarily.\nPain arrives; suffering enlists optionally.\nArchery self-inflicted hurts worst.\nFirst arrows wound all bodies.\nShare this: dodge one second arrow.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Heap Inquiry",
+      "question": "Form, feeling, perception, mental formations, consciousness — dissected one by one, no owner appears. What are these five?",
+      "choices": [
+        "Five heaps",
+        "The five senses",
+        "The five elements",
+        "The five precepts"
+      ],
+      "correctAnswer": "Five heaps",
+      "xpReward": 50,
+      "correctExplanation": "Five heaps (khandhas) — every experience decomposes into ownerless piles. Selves hide in none of them.",
+      "incorrectExplanation": "Actually, the answer is five heaps. Senses, elements, and precepts miss it: form through consciousness exhaust experience without producing proprietors. Heaps, never holders, constitute persons.",
+      "lessonContent": "Heaps constitute persons, never holders.\nDissection finds piles, never owners.\nExperience exhausts into ownerless piles.\nProprietors hide in no pile.\nShare this: dissect one experience tonight.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#7",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Ownerless House",
+      "question": "Searching body and mind for an unchanging essence finds processes but no proprietor. What does this absence establish?",
+      "choices": [
+        "No fixed self",
+        "Nihilism about everything",
+        "That bodies don't exist",
+        "That minds are machines"
+      ],
+      "correctAnswer": "No fixed self",
+      "xpReward": 50,
+      "correctExplanation": "No fixed self (anatta) — absence of essence, not of persons: selves function without foundations. Houses stand ownerless, fully furnished.",
+      "incorrectExplanation": "Not quite — the answer is no fixed self. Nihilism, denial, and mechanism miss it: persons operate ownerlessly, like corporations act without ghost-CEOs. Function needs no essence.",
+      "lessonContent": "Function needs no essence ever.\nHouses stand ownerless, furnished fully.\nPersons operate without proprietors.\nAbsence liberates; it never negates.\nShare this: inhabit one ownerless house.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Missing Chariot",
+      "question": "Nagasena asked King Milinda: point to the 'chariot' among wheels, axle, yoke, reins — nowhere found, yet kings ride. What does the analogy prove?",
+      "choices": [
+        "No fixed self beyond parts",
+        "Chariots don't exist",
+        "Kings can't ride",
+        "Wheels are illusions"
+      ],
+      "correctAnswer": "No fixed self beyond parts",
+      "xpReward": 50,
+      "correctExplanation": "No fixed self beyond parts — chariot names an arrangement, not an extra entity. Persons likewise: patterns, never proprietors.",
+      "incorrectExplanation": "Not quite — the answer is no fixed self beyond parts. Nonexistence, riding bans, and illusions miss it: chariots function perfectly unowned. Arrangements suffice; essences add nothing.",
+      "lessonContent": "Arrangements suffice; essences add nothing.\nPatterns function perfectly unowned.\nNames label systems, never substances.\nChariots carry kingless kings daily.\nShare this: disassemble one chariot mentally.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Charnel School",
+      "question": "Monks meditate in charnel grounds on bloating, discoloring, devoured bodies. What does this grim curriculum teach?",
+      "choices": [
+        "Anatomy for doctors",
+        "Fear of the dark",
+        "Impermanence of the body",
+        "Better burial methods"
+      ],
+      "correctAnswer": "Impermanence of the body",
+      "xpReward": 50,
+      "correctExplanation": "Impermanence of the body — charnel facts internalized: this flesh futures likewise. Corpses instruct the living directly.",
+      "incorrectExplanation": "Actually, the answer is impermanence of the body. Anatomy, darkness, and burials miss it: grounds teach owners their own trajectory. Future corpses meditate present ones.",
+      "lessonContent": "Grounds teach owners their trajectories.\nFuture corpses instruct present ones.\nFlesh futures likewise, always.\nGrim schools graduate undeluded minds.\nShare this: visit one charnel thought.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Daily Dying",
+      "question": "Daily mindfulness of death is prescribed not to sadden practitioners but to energize them. What does death-awareness produce?",
+      "choices": [
+        "Chronic depression",
+        "Morality police",
+        "Diligence in practice",
+        "Fear of sleep"
+      ],
+      "correctAnswer": "Diligence in practice",
+      "xpReward": 50,
+      "correctExplanation": "Diligence in practice — maranasati converts mortality into urgency: days finite, practice now. Death meditated motivates.",
+      "incorrectExplanation": "Not quite — the answer is diligence in practice. Depression, police, and fear miss it: remembrance fuels rather than freezes. Finite days demand infinite care.",
+      "lessonContent": "Remembrance fuels rather than freezes.\nFinite days demand infinite care.\nMortality meditated motivates fully.\nDeath aware, practice blazes.\nShare this: die daily for diligence.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Steady Scale",
+      "question": "The sage meets praise and blame, gain and loss, with perfectly balanced mind. What virtue holds steady amid all eight winds?",
+      "choices": [
+        "Indifference to all",
+        "Suppressed emotions",
+        "Cynical detachment",
+        "Balanced mind"
+      ],
+      "correctAnswer": "Balanced mind",
+      "xpReward": 50,
+      "correctExplanation": "Balanced mind (upekkha) — steady amid winds, neither grasping gusts nor fleeing gales. Steadiness, not numbness.",
+      "incorrectExplanation": "Actually, the answer is balanced mind. Indifference, suppression, and cynicism miss it: balance feels fully while clinging to nothing. Scales steady, winds blow on.",
+      "lessonContent": "Balance feels fully, clings never.\nScales steady while winds blow on.\nSteadiness differs from numbness deeply.\nGusts pass; balances remain.\nShare this: balance one wind today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Eight Winds",
+      "question": "Gain and loss, fame and disrepute, praise and blame, pleasure and pain — the forces tossing worldlings about. How are they grouped?",
+      "choices": [
+        "Eight worldly winds",
+        "Four noble truths",
+        "Three poisons",
+        "Twelve links"
+      ],
+      "correctAnswer": "Eight worldly winds",
+      "xpReward": 50,
+      "correctExplanation": "Eight worldly winds — four pairs tossing the unanchored: fortune's weather system mapped completely. Sages build shelters, not sails.",
+      "incorrectExplanation": "Not quite — the answer is eight worldly winds. Truths, poisons, and links miss it: gain-loss, fame-shame, praise-blame, pleasure-pain — eight gusts, one forecast. Weather mapped can be withstood.",
+      "lessonContent": "Weather mapped can be withstood.\nEight gusts, one forecast complete.\nShelters beat sails in storms.\nFortune's system mapped fully here.\nShare this: shelter one gust today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Visiting Anger",
+      "question": "Anger arrives, stays a while, and departs — observed mindfully, never obeyed. In this practice, what are emotions?",
+      "choices": [
+        "Soul's essence",
+        "Passing visitors",
+        "Divine messages",
+        "Brain errors"
+      ],
+      "correctAnswer": "Passing visitors",
+      "xpReward": 50,
+      "correctExplanation": "Passing visitors — emotions transit consciousness without constituting it. Hosts need not become guests.",
+      "incorrectExplanation": "Actually, the answer is passing visitors. Essences, messages, and errors miss it: anger visits, never moves in — unless obeyed. Observation hosts without identifying.",
+      "lessonContent": "Hosts need not become guests ever.\nVisits end; identifications persist wrongly.\nObservation hosts without merging.\nTransients pass; awareness remains.\nShare this: host one anger briefly.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Begging Bowl",
+      "question": "Monks beg daily food instead of storing wealth or earning wages. What does the bowl systematically teach?",
+      "choices": [
+        "Culinary skills",
+        "Real estate values",
+        "Dependence and humility",
+        "Cooking recipes"
+      ],
+      "correctAnswer": "Dependence and humility",
+      "xpReward": 50,
+      "correctExplanation": "Dependence and humility — daily receiving dissolves self-sufficiency myths. Bowls teach interdependence bite by bite.",
+      "incorrectExplanation": "Not quite — the answer is dependence and humility. Cuisine, property, and recipes miss it: begging practices neediness openly. Self-sufficiency starves where bowls fill.",
+      "lessonContent": "Neediness openly practiced humbles deeply.\nBowls fill where self-sufficiency starves.\nReceiving teaches what earning hides.\nInterdependence bites daily here.\nShare this: receive one gift openly.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Centered Way",
+      "question": "The Buddha tried sensual indulgence, then years of self-starvation; awakening came through neither extreme. What resulted?",
+      "choices": [
+        "Strict hedonism",
+        "Total withdrawal",
+        "Competitive fasting",
+        "Middle path"
+      ],
+      "correctAnswer": "Middle path",
+      "xpReward": 50,
+      "correctExplanation": "Middle path — between indulgence and mortification: nourished body, trained mind. Extremes fail symmetrically.",
+      "incorrectExplanation": "Actually, the answer is middle path. Hedonism, withdrawal, and contests miss it: palace and forest both failed before the middle succeeded. Extremes teach by failing.",
+      "lessonContent": "Extremes teach by failing symmetrically.\nPalace and forest both failed first.\nNourished bodies train minds best.\nMiddles succeed where edges starve.\nShare this: walk one middle today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Starved Sage",
+      "question": "Emaciated nearly to death by austerities, the future Buddha abandoned extreme fasting as fruitless. What did the failure teach?",
+      "choices": [
+        "Extremes fail both ways",
+        "Eat more meat",
+        "Avoid all effort",
+        "Sleep all day"
+      ],
+      "correctAnswer": "Extremes fail both ways",
+      "xpReward": 50,
+      "correctExplanation": "Extremes fail both ways — indulgence scatters, mortification weakens: only the middle sustains inquiry. Starvation taught by failing.",
+      "incorrectExplanation": "Not quite — the answer is extremes fail both ways. Meat, effortlessness, and sleep miss it: the skeleton proved asceticism bankrupt. Failure instructed where success misleads.",
+      "lessonContent": "Skeletons prove methods bankrupt truly.\nBankruptcy instructs better than success.\nIndulgence scatters; mortification weakens.\nMiddles sustain what edges starve.\nShare this: abandon one extreme.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Kalamas' Charter",
+      "question": "The Kalamas were told not to believe reports, traditions, or teachers — but to test teachings in their own experience. What authority remains standing?",
+      "choices": [
+        "The loudest monk",
+        "Royal decrees",
+        "Ancient books",
+        "One's own testing"
+      ],
+      "correctAnswer": "One's own testing",
+      "xpReward": 50,
+      "correctExplanation": "One's own testing — ehipassiko, come-and-see: verification by living, never by lineage. Experience outranks eminence.",
+      "incorrectExplanation": "Actually, the answer is one's own testing. Loudness, royalty, and antiquity miss it: the charter democratizes verification radically. Test in living, not in libraries.",
+      "lessonContent": "Living verifies what lineage cannot.\nExperience outranks eminence always.\nDemocratized verification empowers all.\nTest teachings the way tasters taste.\nShare this: test one teaching livedly.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Final Instruction",
+      "question": "'Work out your salvation with diligence' ranks among the Buddha's attributed last words. Whose effort liberates?",
+      "choices": [
+        "Priests' rituals",
+        "Paid professionals",
+        "Gods' grace",
+        "One's own effort"
+      ],
+      "correctAnswer": "One's own effort",
+      "xpReward": 50,
+      "correctExplanation": "One's own effort — no savior outsources liberation: diligence is the whole vehicle. Last words assign first responsibility.",
+      "incorrectExplanation": "Not quite — the answer is one's own effort. Rituals, fees, and graces miss it: salvation un-outsourceable defines the teaching. Vehicles carry only willing walkers.",
+      "lessonContent": "Vehicles carry willing walkers only.\nLiberation un-outsourceable defines paths.\nDiligence is the whole vehicle.\nLast words assign first responsibility.\nShare this: walk diligently once.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#19",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Watched Flame",
+      "question": "Anger watched mindfully without being acted out tends to do what?",
+      "choices": [
+        "Dissolve unacted",
+        "Grow forever",
+        "Possess the watcher",
+        "Become permanent"
+      ],
+      "correctAnswer": "Dissolve unacted",
+      "xpReward": 50,
+      "correctExplanation": "Dissolve unacted — observed anger burns its fuel without finding targets. Watching metabolizes what indulgence feeds.",
+      "incorrectExplanation": "Not quite — the answer is dissolve unacted. Growth, possession, and permanence miss it: unwatched anger acts out, watched anger burns out. Attention digests what reaction feeds.",
+      "lessonContent": "Attention digests what reaction feeds.\nUnwatched anger acts out fully.\nObserved flames burn fuel only.\nWatching metabolizes all fires.\nShare this: watch one flame out.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Nine Stages",
+      "question": "Why contemplate corpses through nine stages of decay rather than meditate on beautiful bodies?",
+      "choices": [
+        "Morbid entertainment",
+        "Medical training",
+        "Artistic inspiration",
+        "To internalize impermanence"
+      ],
+      "correctAnswer": "To internalize impermanence",
+      "xpReward": 50,
+      "correctExplanation": "To internalize impermanence — decay viewed directly rewires denial structurally. Beauty meditated flatters; corpses instruct.",
+      "incorrectExplanation": "Actually, the answer is to internalize impermanence. Entertainment, medicine, and art miss it: nine stages leave denial nowhere to stand. Direct seeing beats beautiful thinking.",
+      "lessonContent": "Denial stands nowhere against corpses.\nDirect seeing beats beautiful thinking.\nNine stages exhaust all euphemism.\nDecay instructs the living precisely.\nShare this: view one stage bravely.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Triple Refuge",
+      "question": "Amid universal flux, Buddhists take refuge in Buddha, Dharma, and Sangha. What are these three?",
+      "choices": [
+        "Gods to worship",
+        "Refuges in change",
+        "Magic spells",
+        "Lottery numbers"
+      ],
+      "correctAnswer": "Refuges in change",
+      "xpReward": 50,
+      "correctExplanation": "Refuges in change — teacher, teaching, community: reliable amid flux, not escapes from it. Shelter, not exemption.",
+      "incorrectExplanation": "Not quite — the answer is refuges in change. Gods, spells, and numbers miss it: refuge means reliable orientation, never immunity. Storms continue; sailors hold ropes.",
+      "lessonContent": "Orientation steadies amid storms fully.\nReliable differs from exempting always.\nRopes hold sailors, never calm seas.\nRefuges guide; they never extract.\nShare this: hold one rope steady.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Warm Release",
+      "question": "Critics call non-attachment cold indifference. Practitioners reply it frees a warmer response than clinging allowed. What survives clinging's end?",
+      "choices": [
+        "Apathy",
+        "Numbness",
+        "Compassion freed",
+        "Cynicism"
+      ],
+      "correctAnswer": "Compassion freed",
+      "xpReward": 50,
+      "correctExplanation": "Compassion freed — ungrasping love flows wider than needy love. Release warms what grip chilled.",
+      "incorrectExplanation": "Actually, the answer is compassion freed. Apathy, numbness, and cynicism miss it: non-attachment removes grasping, never caring. Freed hands hold more gently.",
+      "lessonContent": "Ungrasping love flows wider always.\nRelease warms what gripping chilled.\nFreed hands hold most gently.\nCaring survives clinging's end fully.\nShare this: free one caring today.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#23",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Cloud Paper",
+      "question": "Thich Nhat Hanh's interbeing: this sheet holds cloud, rain, logger, sunshine — nothing exists alone. What does everything do?",
+      "choices": [
+        "Exist separately",
+        "Compete always",
+        "Decay alone",
+        "Mutually arise"
+      ],
+      "correctAnswer": "Mutually arise",
+      "xpReward": 50,
+      "correctExplanation": "Mutually arise — interbeing: all things co-originate, none self-sufficient. Paper contains weather systems.",
+      "incorrectExplanation": "Not quite — the answer is mutually arise. Separation, competition, and solitude miss it: remove cloud and paper vanishes. Co-arising describes reality's weave.",
+      "lessonContent": "Remove cloud and paper vanishes.\nCo-arising weaves reality fully.\nNothing self-sufficient exists anywhere.\nSheets hold weather systems truly.\nShare this: interbe with one sheet.",
+      "lessonGroup": "Life Puzzles",
+      "forgeId": "batch-147#24",
+      "forgeScore": 100
+    }
+  ]
+}

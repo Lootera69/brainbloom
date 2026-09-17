@@ -1,0 +1,477 @@
+[
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Vanishing Biscuits",
+    "question": "Biscuits vanish from the jar. Explanation A: your sleepwalking sibling ate them. Explanation B: a nocturnal ghost with a sweet tooth took them. Both fit the facts. Which should a careful reasoner prefer?",
+    "choices": [
+      "The one that needs fewer new assumptions",
+      "The one that is more exciting to tell",
+      "The one that cannot be checked at all",
+      "The one that explains less but sounds deeper"
+    ],
+    "correctAnswer": "The one that needs fewer new assumptions",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Exactly. Sleepwalking siblings are a known quantity; ghosts require importing an entire hidden world to explain crumbs.",
+    "incorrectExplanation": "The answer is: the one that needs fewer new assumptions. Every extra posit is extra debt your evidence must pay down. Excitement is not evidence, and depth that shrinks scope is a cost, not a bonus.",
+    "lessonContent": "Competing explanations are priced by their assumptions.\nKnown entities are cheap; novel entities are expensive.\nEvery new posit is a debt the evidence must repay.\nPrefer the account with the smaller invoice.\nShare this: price two competing stories tonight by counting their assumptions."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Skeptic-Proof Power",
+    "question": "A healer announces her powers work on everyone except nonbelievers and except when skeptics observe. What has this claim achieved?",
+    "choices": [
+      "It has been immunized against any test",
+      "It has been confirmed by contradiction",
+      "It has been narrowed to a useful law",
+      "It has passed a genuine trial"
+    ],
+    "correctAnswer": "It has been immunized against any test",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. Any failure is pre-excused, so no outcome could ever count against the claim.",
+    "incorrectExplanation": "The answer is: it has been immunized against any test. A claim that fits every possible result explains none of them. The patches do not strengthen the power — they quietly remove it from the reach of evidence.",
+    "lessonContent": "Ad hoc patches trade testability for survival.\nA claim protected from failure is protected from confirmation too.\nAsk what result would count against a claim before accepting it.\nExcuse-making is a tax on explanation.\nShare this: ask one confident claim tonight what would change its mind."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Hoofbeats Logic",
+    "question": "You hear hoofbeats outside your window in a suburban street. Which hypothesis should lead your list, and why?",
+    "choices": [
+      "Horses are kept nearby, because common causes come first",
+      "Zebras, because exotic animals make memorable stories",
+      "A film shoot, because surprises are more newsworthy",
+      "No ranking is ever allowed before checking"
+    ],
+    "correctAnswer": "Horses are kept nearby, because common causes come first",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Exactly. Frequency is evidence: the more common cause starts ahead and keeps ahead until evidence says otherwise.",
+    "incorrectExplanation": "The answer is: horses are kept nearby, because common causes come first. The famous medical maxim — think horses, not zebras — is probability doing triage. Rarity is not romance; it is a burden a hypothesis must carry.",
+    "lessonContent": "Prior frequency is a legitimate part of reasoning.\nCommon causes explain most observations by sheer arithmetic.\nRarity is a tax, not a thrill.\nRevise the ranking only as evidence arrives.\nShare this: rank three possible causes of tonight's odd noise by how often each occurs."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Chart That Fits All",
+    "question": "A horoscope reader says her chart predicted your week perfectly: it mentioned challenges, a conversation, and a decision. What is the strongest objection?",
+    "choices": [
+      "Wording vague enough to fit anyone explains no one",
+      "Astrology needs more training to work properly",
+      "The stars move too slowly for weekly readings",
+      "Your memory of the week is unusually sharp"
+    ],
+    "correctAnswer": "Wording vague enough to fit anyone explains no one",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. Predictions that can never miss have never actually said anything.",
+    "incorrectExplanation": "The answer is: wording vague enough to fit anyone explains no one. Everyone faces challenges, conversations, and decisions, so the chart risked nothing. Explanatory power comes from what an account rules out, not from what it allows.",
+    "lessonContent": "An explanation's power lives in what it forbids.\nClaims that fit every outcome have empty content.\nVagueness is a strategy for never being wrong.\nRespect predictions that could have failed.\nShare this: reread one horoscope tonight and list what it ruled out."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Conspiracy or Confusion",
+    "question": "A ministry memo leaks with contradictory numbers inside. Two accounts arise: a vast coordinated disinformation campaign, or two departments failing to sync spreadsheets. What does good reasoning lean toward?",
+    "choices": [
+      "The mundane coordination failure, absent further evidence",
+      "The campaign, because scale implies competence",
+      "The campaign, because leaks are never accidental",
+      "Always the version officials deny first"
+    ],
+    "correctAnswer": "The mundane coordination failure, absent further evidence",
+    "xpReward": 25,
+    "lessonGroup": "Map & Territory",
+    "correctExplanation": "Exactly. Incompetence is everywhere and requires no secret coordination; vast silent conspiracies require many things to be true at once.",
+    "incorrectExplanation": "The answer is: the mundane coordination failure, absent further evidence. Coordinated deception needs dozens of people staying silent forever — a stack of low-probability commitments. Botched spreadsheets need only Monday morning.",
+    "lessonContent": "Grand conspiracies assume improbable competence and silence.\nOrdinary error is common and self-sufficient.\nScale of an explanation's requirements matters as much as its story.\nLet evidence, not drama, escalate the hypothesis.\nShare this: explain one odd mistake today with the boring theory first."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Judge's Criteria",
+    "question": "Judging rival explanations of the same event, which combination marks the stronger candidate?",
+    "choices": [
+      "Broad coverage at a low assumption cost",
+      "Narrow coverage with many extra entities",
+      "Broad coverage requiring a hidden world",
+      "Emotional resonance with maximum mystery"
+    ],
+    "correctAnswer": "Broad coverage at a low assumption cost",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. Explain more, assume less — that is the whole scoreboard between rivals.",
+    "incorrectExplanation": "The answer is: broad coverage at a low assumption cost. Scope earns credit; assumptions spend it. Mystery is not a currency, however satisfying the shiver.",
+    "lessonContent": "Explanations compete on coverage and economy.\nScope is income; assumptions are expenses.\nA healthy account runs a surplus, not a deficit.\nMystery is a feeling, not a credit.\nShare this: audit one explanation today for scope versus expenses."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "What the Razor Is",
+    "question": "What exactly does the famous razor of simplicity license you to conclude?",
+    "choices": [
+      "It guides preference between accounts; it proves nothing",
+      "It proves the simpler account is the true one",
+      "It proves reality is always mathematically minimal",
+      "It licenses discarding evidence that complicates"
+    ],
+    "correctAnswer": "It guides preference between accounts; it proves nothing",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Exactly. The razor is a tie-breaker among explanations, not a proof that nature obeys our taste for tidiness.",
+    "incorrectExplanation": "The answer is: it guides preference between accounts; it proves nothing. Reality has often turned out more complicated than the neatest story. The razor tells you where to place your bets first, never what is true.",
+    "lessonContent": "Simplicity is a wagering rule, not a law of nature.\nTie-breakers are useful precisely when proof is absent.\nNature has frequently out-complicated our neatness.\nPreference and truth are different documents.\nShare this: explain tonight where the razor helps and where it must stop."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Twice-Born Coincidence",
+    "question": "Your birthday matches your boss's, and this year your flight seat also matched hers. Astonishing conspiracy, or something else?",
+    "choices": [
+      "Routine clustering that large samples deliver",
+      "Proof she has studied your file closely",
+      "Evidence the airline favors your family",
+      "A sign you should ask for a raise"
+    ],
+    "correctAnswer": "Routine clustering that large samples deliver",
+    "xpReward": 25,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Right. With enough shared contexts and days, collisions are not just possible — they are scheduled.",
+    "incorrectExplanation": "The answer is: routine clustering that large samples deliver. Coincidences are what randomness looks like up close. The astonishment is real; the conspiracy is the mind adding a director to a scene that needed none.",
+    "lessonContent": "Coincidence is the close-up face of randomness.\nLarge sample sizes guarantee striking collisions somewhere.\nAsking how many chances existed tames the astonishment.\nThe mind prefers agents over accidents.\nShare this: count tonight how many near-misses surrounded today's one hit."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Faces in the Static",
+    "question": "People report seeing a face in toast, in clouds, in wall sockets. What is the most economical account of these sightings?",
+    "choices": [
+      "Pattern-hungry perception projecting onto noise",
+      "Faces genuinely materialize in porous objects",
+      "Only certified mystics see the true ones",
+      "Cameras cause the faces to appear"
+    ],
+    "correctAnswer": "Pattern-hungry perception projecting onto noise",
+    "xpReward": 25,
+    "lessonGroup": "Map & Territory",
+    "correctExplanation": "Exactly. One well-documented bias explains thousands of sightings without inventing a single ghost.",
+    "incorrectExplanation": "The answer is: pattern-hungry perception projecting onto noise. The mind's face-detector fires generously because false alarms were historically cheap and misses expensive. Bread is innocent; the detector is eager.",
+    "lessonContent": "Perception is hypothesis-driven, not a passive camera.\nFace detectors over-fire by evolutionary design.\nOne good bias explains a genre of sightings.\nEconomical accounts can cover mountains of anecdotes.\nShare this: hunt one face in random texture today and name the mechanism."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "After the Car Wash",
+    "question": "Your engine dies the morning after a car wash. A friend blames the wash; the mechanic finds a failing pump common in your model. How should the tie be broken?",
+    "choices": [
+      "By the track record of each account under testing",
+      "By whichever story you heard first",
+      "By the confidence of the person telling it",
+      "By always blaming the most recent event"
+    ],
+    "correctAnswer": "By the track record of each account under testing",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. The mechanic's account carries a documented failure rate; the wash story carries a neighbor's nod.",
+    "incorrectExplanation": "The answer is: by the track record of each account under testing. Sequence is not causation, and confidence is not evidence. Histories of predictions that worked are the currency of trust between explanations.",
+    "lessonContent": "Explanations earn trust through past performance.\nDocumented failure rates beat vivid timing stories.\nJust-so sequencing is the oldest causal illusion.\nAsk each account for its record before believing it.\nShare this: ask one claim today about its track record with other cases."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Idle Passenger",
+    "question": "Two theories predict a planet's orbit identically. One includes an extra, undetectable crystal sphere doing no work. Which deserves preference?",
+    "choices": [
+      "The one without the idle extra entity",
+      "The one with the sphere, for completeness",
+      "Either, since predictions currently match",
+      "The older one, out of reverence"
+    ],
+    "correctAnswer": "The one without the idle extra entity",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Exactly. A component that changes nothing explains nothing — it is decoration billed as theory.",
+    "incorrectExplanation": "The answer is: the one without the idle extra entity. Identical predictions mean the sphere earns nothing; it only adds ontological weight. Cut what does no explanatory work.",
+    "lessonContent": "Entities that do no work deserve no seat in a theory.\nIdentical predictions expose decoration as decoration.\nOntological budgets are real budgets.\nCutting idle parts is hygiene, not vandalism.\nShare this: remove one idle assumption from a plan tonight and note nothing breaks."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Patch Cascade",
+    "question": "A prediction fails; its author adds a clause. It fails again; another clause arrives. After five failures, five clauses. What pattern is this?",
+    "choices": [
+      "A degenerating account buying survival with content",
+      "Healthy science refining toward truth",
+      "Proof the original claim was nearly right",
+      "Evidence the critic is badgering the author"
+    ],
+    "correctAnswer": "A degenerating account buying survival with content",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. Each patch spends meaning to purchase survival until nothing falsifiable remains.",
+    "incorrectExplanation": "The answer is: a degenerating account buying survival with content. Refinement predicts new things; excusing only evades old failures. The direction of the patching tells you which is happening.",
+    "lessonContent": "There is a difference between refining and excusing.\nRefinements buy new predictions; excuses buy immunity.\nTrack whether a theory's patches add content or remove it.\nDegeneration is visible in the direction of change.\nShare this: watch one debate tonight and score patches as refine or excuse."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Clinic's First Guess",
+    "question": "A patient's symptoms match a common illness and, equally well, a rare one. Where should the clinician's reasoning start?",
+    "choices": [
+      "With the common illness, weighted by its frequency",
+      "With the rare illness, for the satisfying diagnosis",
+      "With whichever the patient fears most",
+      "With whichever the newest app suggests"
+    ],
+    "correctAnswer": "With the common illness, weighted by its frequency",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Exactly. When evidence fits both, the background frequency is the tie-breaker — base rates are evidence.",
+    "incorrectExplanation": "The answer is: with the common illness, weighted by its frequency. Satisfaction is not a symptom. The rare diagnosis must earn its promotion with findings the common one cannot explain.",
+    "lessonContent": "Base rates are part of the evidence, not a bias.\nEqual fit means frequency decides the starting line.\nRare explanations need exclusive findings to advance.\nDiagnostic drama is a known cognitive trap.\nShare this: ask tonight which of two equally fitting stories is simply more common."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Ancient Engineers",
+    "question": "Explaining a precisely cut ancient stone block: aliens with laser tools, or human craftsman with patience, ramps, and grit? What does the evidence most support?",
+    "choices": [
+      "Skilled humans, whose tools and marks are found",
+      "Aliens, since the cuts look impressively precise",
+      "Aliens, because ancient people lacked all skill",
+      "A lost energy source no one can describe"
+    ],
+    "correctAnswer": "Skilled humans, whose tools and marks are found",
+    "xpReward": 25,
+    "lessonGroup": "Map & Territory",
+    "correctExplanation": "Right. Quarries, tools, and trial-and-error marks are on-site; the alien account must import an entire civilization from nowhere.",
+    "incorrectExplanation": "The answer is: skilled humans, whose tools and marks are found. Underestimating ancestors is the quiet assumption powering the alien stories. The boring account has physical receipts; the exciting one has none.",
+    "lessonContent": "Underestimating past people is itself an assumption.\nPhysical tools and marks are strong evidence.\nExciting hypotheses must pay for imported civilizations.\nReceipts on-site beat wonder imported from afar.\nShare this: examine one impressive old object tonight and find its tool marks."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Risky Prediction",
+    "question": "Two accounts explain yesterday's market move. One posted its forecast in advance; the other explains the move only after seeing it. Which earns more credit?",
+    "choices": [
+      "The one that risked a falsifiable prediction",
+      "The one with the richer post-hoc vocabulary",
+      "The one admitting markets are unknowable",
+      "The one that matches your portfolio hopes"
+    ],
+    "correctAnswer": "The one that risked a falsifiable prediction",
+    "xpReward": 25,
+    "lessonGroup": "Map & Territory",
+    "correctExplanation": "Exactly. A prediction that could have failed carries information; after-the-fact fitting carries none.",
+    "incorrectExplanation": "The answer is: the one that risked a falsifiable prediction. Post-hoc storytellers are never wrong — which is the same as never informative. Timestamps are the cheapest possible quality control.",
+    "lessonContent": "Predictions that could fail carry information.\nAfter-the-fact fitting is unfalsifiable by design.\nTimestamps are cheap, powerful quality control.\nPrefer accounts that stuck their neck out.\nShare this: ask one analyst tonight what they predicted in advance."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Counting Simplicity",
+    "question": "In judging explanations, what does simplicity properly measure?",
+    "choices": [
+      "The number of independent assumptions, not words",
+      "The brevity of the sentence expressing it",
+      "How easy the story is to remember",
+      "How little mathematics it happens to use"
+    ],
+    "correctAnswer": "The number of independent assumptions, not words",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. A short sentence can smuggle a library of assumptions; simplicity is about posits, not prose.",
+    "incorrectExplanation": "The answer is: the number of independent assumptions, not words. God did it is two words and infinite expense. Complexity of expression and complexity of commitment are entirely different ledgers.",
+    "lessonContent": "Brevity of phrasing can hide enormous assumptions.\nSimplicity counts posits, not syllables.\nTwo-word theories can be the most expensive in history.\nLearn to price the commitments inside the phrasing.\nShare this: reprice one short slogan tonight by its hidden assumptions."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "When Accounts Tie",
+    "question": "Two explanations match on assumptions and coverage. Is a coin flip the right tie-breaker?",
+    "choices": [
+      "No — background knowledge and history break ties",
+      "Yes — reason has nothing further to offer",
+      "No — instinct is the only tie-breaker allowed",
+      "Yes — and you should believe both equally"
+    ],
+    "correctAnswer": "No — background knowledge and history break ties",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Exactly. Track records, fit with established knowledge, and independent lines of evidence all still count.",
+    "incorrectExplanation": "The answer is: no — background knowledge and history break ties. Apparent deadlocks usually ignore the quiet evidence of how each kind of account has performed elsewhere. Reason has more moves than the coin.",
+    "lessonContent": "Ties are usually evidence left uncounted.\nTrack records and fit with known science are evidence.\nCoin flips are for genuinely exhausted inquiry.\nMost deadlocks dissolve under wider accounting.\nShare this: resolve one stale debate tonight by consulting track records."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Lucky Charm Audit",
+    "question": "A student credits a charm for three good exam days. What best explains the pattern?",
+    "choices": [
+      "Selective memory logging the hits quietly",
+      "The charm demonstrably alters probability fields",
+      "Three successes are too many for chance alone",
+      "Belief alone cannot be ruled out as mechanism"
+    ],
+    "correctAnswer": "Selective memory logging the hits quietly",
+    "xpReward": 25,
+    "lessonGroup": "Map & Territory",
+    "correctExplanation": "Right. The misses generate no stories; the hits generate three. The ledger is rigged by forgetting.",
+    "incorrectExplanation": "The answer is: selective memory logging the hits quietly. Confirmation bias curates the dataset: good days are filed under charm, bad days under fatigue. An honest tally needs the misses recorded too.",
+    "lessonContent": "Memory curates evidence in favor of beliefs.\nHits generate stories; misses generate silence.\nAn honest ledger records misses in advance.\nRetrospective tallies are biased by construction.\nShare this: pre-register one prediction tonight and check it fairly tomorrow."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Curve Through Everything",
+    "question": "A model passes through every historical data point perfectly yet fails every new case. What went wrong?",
+    "choices": [
+      "It fitted noise instead of the underlying signal",
+      "It was too simple to capture the truth",
+      "The new cases were gathered dishonestly",
+      "History and the future obey different logic"
+    ],
+    "correctAnswer": "It fitted noise instead of the underlying signal",
+    "xpReward": 25,
+    "lessonGroup": "Map & Territory",
+    "correctExplanation": "Exactly. Perfect fits to the past are usually the signature of memorizing accidents rather than capturing causes.",
+    "incorrectExplanation": "The answer is: it fitted noise instead of the underlying signal. Real processes are noisy, so a model with zero past error has bought the noise at the price of the future. Slight imperfection is the toll of honesty.",
+    "lessonContent": "Perfect fits to noisy data are warnings, not trophies.\nModels can memorize accidents instead of causes.\nZero past error often prices out the future.\nPrefer models that miss a little everywhere over ones that miss nothing then everything.\nShare this: distrust tonight any forecast that explains the past flawlessly."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Explaining It All",
+    "question": "What is wrong with a theory its author proudly says explains absolutely every observation ever made?",
+    "choices": [
+      "A theory that forbids nothing asserts nothing",
+      "It is too successful to be stated accurately",
+      "It merely needs more publicity to be accepted",
+      "Nothing — totality is the goal of science"
+    ],
+    "correctAnswer": "A theory that forbids nothing asserts nothing",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. Content is measured in exclusions; a theory compatible with everything makes no claims at all.",
+    "incorrectExplanation": "The answer is: a theory that forbids nothing asserts nothing. Explaining everything and explaining anything are inverses. The measure of a good account is the observations it would have ruled out.",
+    "lessonContent": "Explanatory content lives in the exclusions.\nCompatibility with everything equals emptiness.\nAsk a theory what it forbids, not what it permits.\nTotal coverage is a red flag, not a triumph.\nShare this: ask one theory tonight to name its forbidden observations."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Odd Email",
+    "question": "A colleague's email contains a paragraph irrelevant to its subject. Malice, or mistake? What does ordinary experience support?",
+    "choices": [
+      "The likelier honest error of a copy-paste slip",
+      "Malice, given the paragraph's embarrassing content",
+      "Neither — all emails are intentional artifacts",
+      "Malice, because mistakes never leak content"
+    ],
+    "correctAnswer": "The likelier honest error of a copy-paste slip",
+    "xpReward": 25,
+    "lessonGroup": "Map & Territory",
+    "correctExplanation": "Exactly. Everyone has pasted into the wrong window; few have plotted via misplaced paragraphs.",
+    "incorrectExplanation": "The answer is: the likelier honest error of a copy-paste slip. Frequency again: clumsy keystrokes outnumber cunning schemes a million to one. Intent is a heavy assumption that embarrassment does not justify.",
+    "lessonContent": "Common errors outnumber rare schemes everywhere.\nEmbarrassment of content is not evidence of intent.\nIntent is an expensive posit.\nDefault to the everyday failure mode first.\nShare this: forgive one odd message today with the copy-paste theory."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Misused Razor",
+    "question": "Which use of the simplicity principle is correct?",
+    "choices": [
+      "Fewest new posits, not the sentence that sounds tidiest",
+      "Whatever explanation a five-year-old could follow",
+      "The account requiring the least effort to verify",
+      "The story with the fewest named characters"
+    ],
+    "correctAnswer": "Fewest new posits, not the sentence that sounds tidiest",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. Simplicity is about metaphysical invoices — new entities, forces, or mechanisms — not rhetoric.",
+    "incorrectExplanation": "The answer is: fewest new posits, not the sentence that sounds tidiest. A tidy sentence can hide a dragon; a technical paragraph can be assumption-free. Count what must newly exist, not what sounds neat.",
+    "lessonContent": "Simplicity audits posits, not prose style.\nTidy sentences can conceal dragons.\nTechnical language can be assumption-light.\nThe unit of simplicity is the new entity or force.\nShare this: find one tidy claim tonight and count its hidden dragons."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "The Checkable Detail",
+    "question": "What detail most strengthens a mundane explanation's credibility?",
+    "choices": [
+      "A specific checkable detail it could have gotten wrong",
+      "Confidence expressed by its teller",
+      "How many people already believe it",
+      "How elegantly it rhymes when retold"
+    ],
+    "correctAnswer": "A specific checkable detail it could have gotten wrong",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Exactly. Risky specifics are the fingerprint of genuine accounts — fabrications stay safely vague.",
+    "incorrectExplanation": "The answer is: a specific checkable detail it could have gotten wrong. Truth-tellers risk details; inventors avoid them. A verifiable claim that survives checking is worth a bucket of confident vagueness.",
+    "lessonContent": "Risky, specific details signal honest accounts.\nFabrications stay vague to stay safe.\nVerifiable claims that pass checking build real credit.\nAsk for the detail that could have failed.\nShare this: probe one story tonight for a detail it could have gotten wrong."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Proportional Evidence",
+    "question": "A claim, if true, would overturn well-established knowledge. What does its evidence need to be?",
+    "choices": [
+      "Proportional to how much it asks you to revise",
+      "The same as any small everyday claim",
+      "Nothing but the claimant's sincerity",
+      "Only a majority vote of current believers"
+    ],
+    "correctAnswer": "Proportional to how much it asks you to revise",
+    "xpReward": 25,
+    "lessonGroup": "Map & Territory",
+    "correctExplanation": "Right. The bigger the revision requested, the stronger the receipts must be — that is proportionality.",
+    "incorrectExplanation": "The answer is: proportional to how much it asks you to revise. Ordinary claims ride on ordinary evidence; extraordinary ones must pay full freight. This is not stubbornness — it is bookkeeping that keeps knowledge stable.",
+    "lessonContent": "Evidence demands scale with the size of the revision.\nExtraordinary claims pay full freight.\nProportionality keeps knowledge stable yet revisable.\nOpenness to revision is not the same as low standards.\nShare this: scale tonight one claim's evidence against what it asks you to abandon."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "medium",
+    "title": "Why the Bus Is Late",
+    "question": "Your bus is late. Account A: heavy traffic on the ring road, as happens weekly. Account B: the driver was briefly abducted for questioning. Why prefer A?",
+    "choices": [
+      "Past frequency makes the traffic account far cheaper",
+      "Abductions are actually quite common at rush hour",
+      "Because whichever account is funnier must be wrong",
+      "Because drivers can never be trusted at all"
+    ],
+    "correctAnswer": "Past frequency makes the traffic account far cheaper",
+    "xpReward": 25,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Exactly. One explanation happens all the time; the other has essentially never been documented. Frequency is a huge evidential discount.",
+    "incorrectExplanation": "The answer is: past frequency makes the traffic account far cheaper. Abduction adds an enormously rare event to explain a painfully common one. Humor cannot be an evidential criterion — frequency can.",
+    "lessonContent": "Past frequency quietly discounts explanations.\nCommon events deserve common causes.\nRare mechanisms are expensive imports.\nHumor is not evidence; base rates are.\nShare this: price tonight's small annoyance by how often each cause occurs."
+  }
+]

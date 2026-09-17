@@ -1,0 +1,477 @@
+[
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Same Shape Trap",
+    "question": "A chef argues that because a cook must taste food while preparing it, a surgeon should operate on their own body during surgery. What is the central flaw?",
+    "choices": [
+      "A shared surface word masks a relevant difference",
+      "The conclusion rests on a tested mechanism",
+      "The analogy is strong because both are skilled trades",
+      "The reasoning is circular but still convincing"
+    ],
+    "correctAnswer": "A shared surface word masks a relevant difference",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. Tasting is sampling for quality, not operating on yourself — the shared word hides wildly different actions.",
+    "incorrectExplanation": "The answer is: a shared surface word masks a relevant difference. The two roles share a vocabulary, not a method, and the whole conclusion rides on that coincidence.",
+    "lessonContent": "Surface wording can disguise a deep difference in action.\nAnalogy transfers only when the underlying mechanism matches.\nTest whether the shared term means the same thing twice.\nName the relevant feature the comparison ignores.\nShare this: find tonight one comparison that survives only on a shared word."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Old Law New Phone",
+    "question": "A legislator says a rule for organising a bookshelf is so obviously sensible that the same plan must work for a national economy. Why does the comparison fail?",
+    "choices": [
+      "The systems differ in complexity and feedback",
+      "The two cases follow exactly equal rules",
+      "Economies are merely larger bookshelves",
+      "The argument was never meant as a comparison"
+    ],
+    "correctAnswer": "The systems differ in complexity and feedback",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. A shelf is static and small; an economy is adaptive, with countless actors reacting to every rule.",
+    "incorrectExplanation": "The answer is: the systems differ in complexity and feedback. Scale and feedback turn a tidy principle into a warning, because people respond to the plan in ways shelves never do.",
+    "lessonContent": "Scale can change what a rule actually does.\nSystems with feedback behave unlike static ones.\nCheck whether both cases respond to intervention.\nComplexity is a relevant difference, not a detail.\nShare this: name tonight one plan that needs a different version at a larger scale."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Both Sides Wrong",
+    "question": "Someone breaks a promise and someone else cheats on a test. Because both acted wrongly, an arguer concludes the two offences are equally serious. What is the mistake?",
+    "choices": [
+      "Equal labels do not make equal magnitude",
+      "Broken promises are always the graver act",
+      "Cheating is never a matter of wrongdoing",
+      "Only one of the two sides was at fault"
+    ],
+    "correctAnswer": "Equal labels do not make equal magnitude",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. Calling both acts wrong says nothing about how wrong each one is — severity is a separate question.",
+    "incorrectExplanation": "The answer is: equal labels do not make equal magnitude. Sharing a category is not sharing a weight, and treating the two as identical erases the very trade-offs morality needs.",
+    "lessonContent": "Sharing a category is not sharing a degree.\nSeparate whether an act is wrong from how wrong it is.\nMagnitude needs its own evidence and scale.\nWatch for labels that flatten important differences.\nShare this: weigh tonight two wrongs you know without using the same word for both."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "One Shared Feature",
+    "question": "Two plans both use the colour blue, and a manager concludes that whichever plan works better here will also work better abroad. What is the reasoning error?",
+    "choices": [
+      "One shared feature is doing all the work",
+      "The plans are identical in every respect",
+      "Colour has no bearing on anything at all",
+      "Foreign markets should not be compared"
+    ],
+    "correctAnswer": "One shared feature is doing all the work",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. Blue is irrelevant to performance, so the resemblance proves nothing about how either plan behaves.",
+    "incorrectExplanation": "The answer is: one shared feature is doing all the work. An analogy needs relevant overlap, and an irrelevant trait cannot carry a conclusion about outcomes.",
+    "lessonContent": "Analogies need overlap that bears on the conclusion.\nIrrelevant similarities are noise, not evidence.\nAsk which shared feature could actually cause the result.\nDistinguish decorative likeness from causal likeness.\nShare this: spot tonight one argument that leans on a purely decorative similarity."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Irrelevant Disanalogy",
+    "question": "An enthusiast says a bicycle and a corporation are alike because both have spokespeople, so a bike manual should guide a boardroom. Which reply best diagnoses the analogy?",
+    "choices": [
+      "The comparison ignores the relevant domain difference",
+      "Corporations and bicycles share no traits at all",
+      "Repair manuals are useful in every setting",
+      "The analogy is sound but the conclusion is rude"
+    ],
+    "correctAnswer": "The comparison ignores the relevant domain difference",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. The shared word 'spokes' is a pun, and the domains of machines and governance behave nothing alike.",
+    "incorrectExplanation": "The answer is: the comparison ignores the relevant domain difference. It is not that nothing is shared, but that what is shared cannot support the transfer of one domain's methods to the other.",
+    "lessonContent": "Some similarities are real yet useless for transfer.\nA pun is not a structural resemblance.\nTest whether the shared trait could bear the conclusion's weight.\nName the domain difference the analogy skips.\nShare this: separate tonight a genuine similarity from a merely verbal one."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Precedent Transfer",
+    "question": "A lawyer argues that a ruling about noisy neighbours settles a case about industrial pollution because both involve disturbance. When does the precedent actually transfer?",
+    "choices": [
+      "Precedent transfers only when the mechanism transfers",
+      "Precedent always transfers whenever judges feel it fits",
+      "Noisy neighbours and polluters are legally identical",
+      "Precedent never transfers between distinct settings"
+    ],
+    "correctAnswer": "Precedent transfers only when the mechanism transfers",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. A ruling follows the legal reasoning that produced it, so the new case must share the mechanism, not just the mood.",
+    "incorrectExplanation": "The answer is: precedent transfers only when the mechanism transfers. Noise and toxic discharge may both annoy, but the duties, harms, and standards they trigger are entirely different.",
+    "lessonContent": "Rules travel with reasons, not with vibes.\nA shared effect does not guarantee a shared mechanism.\nIdentify the principle a ruling actually rests on.\nMatch that principle to the new facts before transferring.\nShare this: apply tonight one rule by first stating the reason behind it."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Same Outcome Same Cause",
+    "question": "Two students both fail an exam. One never studied; the other was ill. A teacher blames laziness in both cases. What is the flaw?",
+    "choices": [
+      "Similarity of outcome does not prove similarity of cause",
+      "Illness always explains every academic failure",
+      "Both students cannot possibly have failed fairly",
+      "Laziness is never a real explanation for anyone"
+    ],
+    "correctAnswer": "Similarity of outcome does not prove similarity of cause",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. One result can have many routes, so matching failures says nothing about matching reasons.",
+    "incorrectExplanation": "The answer is: similarity of outcome does not prove similarity of cause. Diagnosis requires looking at each path, not inferring the cause from the shared finish line.",
+    "lessonContent": "Results can converge from unrelated causes.\nNever infer one cause from one shared outcome.\nInvestigate each case before generalising.\nTreat correlation and causation as distinct tools.\nShare this: ask tonight about two similar failures before assuming one reason."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Vivid Not Evidence",
+    "question": "To prove a diet works, a speaker shows a dramatic before-and-after photo and asks the audience to be convinced. What is wrong with this argument?",
+    "choices": [
+      "The vivid comparison substitutes for evidence",
+      "Photographs are always honest and reliable",
+      "Dieting has no measurable effects on anyone",
+      "The audience failed to appreciate the image"
+    ],
+    "correctAnswer": "The vivid comparison substitutes for evidence",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. A striking image is memorable, but a single anecdote cannot stand in for controlled results.",
+    "incorrectExplanation": "The answer is: the vivid comparison substitutes for evidence. Vividness is a feature of presentation, not of proof, and it can make weak claims feel overwhelming.",
+    "lessonContent": "Vividness persuades without proving.\nMemorable examples still need systematic support.\nSeparate presentation strength from evidential strength.\nAsk what data would confirm the claim beyond one case.\nShare this: notice tonight where a striking image is doing an argument's work."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Asymmetric Wrongs",
+    "question": "An arguer says you cannot criticise a small theft by a citizen because a bank also broke the law. What is the defect in this comparison?",
+    "choices": [
+      "Both sides are not symmetric because both erred somewhere",
+      "Banks are inherently more honest than citizens",
+      "Small thefts are the most serious of all crimes",
+      "Citizens are never permitted to commit crimes"
+    ],
+    "correctAnswer": "Both sides are not symmetric because both erred somewhere",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. Two wrongs of different size and character do not cancel out; the reply changes the subject instead of answering.",
+    "incorrectExplanation": "The answer is: both sides are not symmetric because both erred somewhere. The offender's own fault does not erase the citizen's, and treating them as equal is the real distortion.",
+    "lessonContent": "A counter-wrong does not nullify a first wrong.\nSymmetry must be argued, not assumed from shared guilt.\nNotice when a reply dodges rather than answers.\nCompare like with like in scale and kind.\nShare this: watch tonight for a defence that only changes the subject."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Map Is Not Territory",
+    "question": "A strategist treats a simplified diagram of a city as if every feature of the real streets were captured in it. What mistake is being made?",
+    "choices": [
+      "The map is not the territory it describes",
+      "Diagrams are useless for any real planning",
+      "Cities never change once they are mapped",
+      "The strategist should ignore the real streets"
+    ],
+    "correctAnswer": "The map is not the territory it describes",
+    "xpReward": 50,
+    "lessonGroup": "Map & Territory",
+    "correctExplanation": "Right. Every model omits something, and mistaking the abridgement for the place itself is what leads plans astray.",
+    "incorrectExplanation": "The answer is: the map is not the territory it describes. The diagram is useful precisely because it leaves things out, but usefulness is not completeness.",
+    "lessonContent": "All models simplify by necessity.\nForgetting the omissions turns a tool into a trap.\nMatch the model's purpose to your question.\nReturn to the terrain before betting on the plan.\nShare this: name tonight one thing a favourite model of yours leaves out."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Metaphor as Mechanism",
+    "question": "Someone explains memory by saying the brain is a filing cabinet, then concludes memories must be stored in alphabetical order. What error has occurred?",
+    "choices": [
+      "A metaphor is being treated as a mechanism",
+      "Filing cabinets are poorly understood devices",
+      "Memory research has produced no useful results",
+      "The brain contains no physical structures at all"
+    ],
+    "correctAnswer": "A metaphor is being treated as a mechanism",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. The cabinet is a helpful image, but an image has no gears, so its incidental features carry no real predictions.",
+    "incorrectExplanation": "The answer is: a metaphor is being treated as a mechanism. Pictures aid intuition, yet only an actual mechanism can license claims about how something must work.",
+    "lessonContent": "Metaphors illuminate without explaining.\nDo not infer details from a figure of speech.\nAsk what independent process could produce the result.\nKeep illustration separate from mechanism.\nShare this: catch tonight one metaphor you have started taking literally."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Question-Begging Analogy",
+    "question": "A speaker claims that since a good team is a family, members owe absolute obedience, because families demand absolute obedience. What is the flaw?",
+    "choices": [
+      "The analogy begs the question it was meant to answer",
+      "Teams and families have nothing in common at all",
+      "Obedience is always required inside every group",
+      "The speaker has proven the conclusion properly"
+    ],
+    "correctAnswer": "The analogy begs the question it was meant to answer",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. The claim to be supported is smuggled into the comparison, so the argument assumes what it set out to show.",
+    "incorrectExplanation": "The answer is: the analogy begs the question it was meant to answer. The disputed feature is loaded into the premise, which turns the reasoning into a circle.",
+    "lessonContent": "Check whether the premise already contains the conclusion.\nAnalogiests can smuggle in the very point at issue.\nA valid argument cannot assume its own result.\nRestate the claim without the analogy to test it.\nShare this: strip tonight an argument of its metaphor and see what remains."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Scale Changes Properties",
+    "question": "Because a paper boat floats, a child concludes that a steel ship of the same shape must also float. The reasoning needs which correction?",
+    "choices": [
+      "Scale changes the properties being compared",
+      "Steel vessels are simply paper in disguise",
+      "Nothing large can ever be made to float",
+      "The child's conclusion was fully justified"
+    ],
+    "correctAnswer": "Scale changes the properties being compared",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. The child's conclusion happens to be true, but not for the reason given — material and buoyancy behave differently at scale.",
+    "incorrectExplanation": "The answer is: scale changes the properties being compared. Weight grows with volume while the hull's support grows differently, so an inference from a small model needs more than shape.",
+    "lessonContent": "Properties can shift as size increases.\nShape alone rarely determines behaviour at scale.\nSmall models test feasibility, not certainty.\nRecheck assumptions whenever magnitude changes.\nShare this: notice tonight one thing that behaves differently when made much bigger."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Fallacy of One Case",
+    "question": "One rainy Monday had low sales, so a manager declares that rain always depresses sales everywhere. Which diagnosis fits best?",
+    "choices": [
+      "The analogy commits the fallacy of the single case",
+      "Rain reliably lowers sales in every market",
+      "One Monday cannot be measured at all",
+      "Sales data should never be collected"
+    ],
+    "correctAnswer": "The analogy commits the fallacy of the single case",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. A single observation cannot support a universal rule, no matter how tidy it looks.",
+    "incorrectExplanation": "The answer is: the analogy commits the fallacy of the single case. One rainy Monday might be a coincidence or a local quirk, so generality needs many cases and a comparison group.",
+    "lessonContent": "A single instance cannot ground a universal rule.\nGenerality needs many cases and a contrast.\nWatch for confident claims built from one observation.\nAsk for the base rate before accepting a trend.\nShare this: question tonight one sweeping claim that rests on a lone example."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "One Example Rule",
+    "question": "A traveller meets one rude waiter in a city and concludes that everyone there is rude. What is the reasoning error?",
+    "choices": [
+      "One example is stretched into a general rule",
+      "Waiters are the best judges of a whole city",
+      "Cities can have only one waiter each",
+      "The traveller's experience was impossible"
+    ],
+    "correctAnswer": "One example is stretched into a general rule",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. A sample of one says almost nothing about a population, however striking the encounter felt.",
+    "incorrectExplanation": "The answer is: one example is stretched into a general rule. The traveller generalises from an unrepresentative moment, and strong feelings make small samples feel conclusive.",
+    "lessonContent": "Samples must be large enough to support a claim.\nEmotion can disguise a tiny sample as proof.\nAsk how representative the example really is.\nWithhold general verdicts until the evidence widens.\nShare this: catch tonight one broad conclusion drawn from a single person."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Whatabout Conduct",
+    "question": "Asked about a company's emissions, a spokesperson replies that another firm littered last year, so the question should be dropped. What is this manoeuvre?",
+    "choices": [
+      "Whataboutism compares conduct rather than the argument",
+      "The spokesperson answered the question directly",
+      "Littering is worse than every other offence",
+      "Companies should never be asked about emissions"
+    ],
+    "correctAnswer": "Whataboutism compares conduct rather than the argument",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. The reply shifts attention to a different party instead of addressing the question that was asked.",
+    "incorrectExplanation": "The answer is: whataboutism compares conduct rather than the argument. Even a genuine fault elsewhere is irrelevant to whether this company's emissions are a problem.",
+    "lessonContent": "Changing the subject is not answering.\nAnother's conduct cannot settle this question.\nNotice when a reply redirects rather than replies.\nReturn the discussion to the original claim.\nShare this: hold tonight one conversation to its original question."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Smuggled Value",
+    "question": "An article calls one method clean and another dirty before presenting any data, then argues the first is superior. What is the problem?",
+    "choices": [
+      "The comparison smuggles in a value judgment",
+      "Data are irrelevant to every comparison",
+      "Cleanliness is a measurable physical property",
+      "The second method is definitely the better one"
+    ],
+    "correctAnswer": "The comparison smuggles in a value judgment",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. Loading the labels with approval does the arguing before a single fact arrives.",
+    "incorrectExplanation": "The answer is: the comparison smuggles in a value judgment. Word choice prejudges the question, so the reader is persuaded by framing rather than by evidence.",
+    "lessonContent": "Labels can carry hidden verdicts.\nChoose neutral terms before weighing evidence.\nNotice framing that steers conclusions in advance.\nSeparate description from evaluation.\nShare this: rewrite tonight one loaded description in neutral words."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Natural Is Good",
+    "question": "A label claims a product is superior because its ingredients are natural rather than synthetic. What is the inferential gap?",
+    "choices": [
+      "Natural is not a synonym for good",
+      "Synthetic substances are always harmless",
+      "Labels are legally required to be true",
+      "Nature contains nothing dangerous at all"
+    ],
+    "correctAnswer": "Natural is not a synonym for good",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. Origin says nothing about safety or quality — many natural things are deadly and many synthetic ones are beneficial.",
+    "incorrectExplanation": "The answer is: natural is not a synonym for good. The argument slides from a descriptive fact about origin to a value judgment about worth, which needs its own support.",
+    "lessonContent": "Origin and value are separate questions.\nNatural does not imply safe, and synthetic does not imply harmful.\nDemand evidence for the leap from source to quality.\nWatch for pleasant words doing logical work.\nShare this: examine tonight one 'natural' claim and ask what it actually guarantees."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Trying Same Way",
+    "question": "When a study method failed for one student, a coach says the student simply must try harder and repeat exactly the same routine. What is the flaw?",
+    "choices": [
+      "Trying harder is not the same as trying the same way",
+      "Effort is completely irrelevant to all learning",
+      "Study methods can never be improved by anyone",
+      "The student's failure proves the method works"
+    ],
+    "correctAnswer": "Trying harder is not the same as trying the same way",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. More effort on a faulty method often deepens the rut, since intensity cannot repair an inappropriate approach.",
+    "incorrectExplanation": "The answer is: trying harder is not the same as trying the same way. Persistence matters, but repeating an unsuitable routine just spends more energy on the same mistake.",
+    "lessonContent": "Effort and method are different variables.\nMore intensity on a bad method wastes resources.\nDiagnose the approach before demanding more grit.\nChange one variable at a time when progress stalls.\nShare this: review tonight one struggle where the method, not the effort, needs changing."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Middle Not True",
+    "question": "Two experts disagree about a medical dose, so a journalist concludes the correct amount is exactly halfway between their numbers. What is the error?",
+    "choices": [
+      "The middle option is not automatically the true one",
+      "Experts never disagree about medical doses",
+      "Halfway values are always the safest choice",
+      "Journalists should not report on medicine"
+    ],
+    "correctAnswer": "The middle option is not automatically the true one",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. Splitting a difference feels fair but has no evidential basis — one expert may simply be mistaken.",
+    "incorrectExplanation": "The answer is: the middle option is not automatically the true one. Truth is not a compromise between positions, and averaging them can land on a dose neither side supports.",
+    "lessonContent": "Fairness is not the same as accuracy.\nA midpoint between claims is not thereby true.\nWeigh the evidence behind each position separately.\nDo not let conflict resolution settle empirical questions.\nShare this: resist tonight the urge to split a disagreement down the middle."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Anecdote Not Mechanism",
+    "question": "A supplement seller cites one customer who felt better after taking it as proof that the product works for everyone. What is missing?",
+    "choices": [
+      "An anecdote is not a mechanism",
+      "Customers are never reliable witnesses",
+      "Supplements always work for every person",
+      "Feeling better proves a product is effective"
+    ],
+    "correctAnswer": "An anecdote is not a mechanism",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. Feeling better may come from time, expectation, or coincidence, and none of those paths are the product working.",
+    "incorrectExplanation": "The answer is: an anecdote is not a mechanism. A single recovery story cannot show why the outcome occurred or whether the product caused it at all.",
+    "lessonContent": "Personal stories cannot isolate a cause.\nRecovery has many possible explanations besides a product.\nMechanisms require controlled comparison.\nAsk what would have happened without the intervention.\nShare this: question tonight one testimonial about what actually caused the improvement."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Irrelevant Domain",
+    "question": "A debater argues that because chess rewards patience, the same patience must win every negotiation. Why is the analogy weak?",
+    "choices": [
+      "The analogy's domain is irrelevant to the claim",
+      "Chess and negotiation are the same activity",
+      "Patience never helps in any board game",
+      "Negotiations require no skill whatsoever"
+    ],
+    "correctAnswer": "The analogy's domain is irrelevant to the claim",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. Patience may help in both, but the claim covers all negotiations, and the chess setting cannot support that scope.",
+    "incorrectExplanation": "The answer is: the analogy's domain is irrelevant to the claim. Similar virtues can appear in different activities without one guaranteeing success in the other.",
+    "lessonContent": "A virtue's value is relative to its setting.\nDifferent activities reward the same trait differently.\nCheck whether the borrowed domain covers the conclusion.\nTest the claim inside the target setting.\nShare this: list tonight one skill that helps in one arena but not another."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Proves Too Much",
+    "question": "A defence of astrology notes that its predictions feel accurate, which would equally justify any fortune-telling system. What is the flaw?",
+    "choices": [
+      "The analogy proves too much to be useful",
+      "Fortune-telling systems are all scientifically sound",
+      "Feeling accurate is the best test of truth",
+      "Astrology has no competitors of any kind"
+    ],
+    "correctAnswer": "The analogy proves too much to be useful",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. A test that passes every system cannot distinguish the good from the worthless, so it supports nothing in particular.",
+    "incorrectExplanation": "The answer is: the analogy proves too much to be useful. When the same reasoning would validate any rival, it has no discriminating power and cannot establish the claim.",
+    "lessonContent": "A test must be able to fail something.\nEvidence that fits every outcome distinguishes nothing.\nAsk whether a rival could use the same reasoning.\nPrefer criteria with discriminating power.\nShare this: check tonight whether one of your standards could ever rule anything out."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Word Just",
+    "question": "An arguer says a hospital is just a business, therefore it should cut every unprofitable ward. What does the word just conceal?",
+    "choices": [
+      "The word just hides an unsupported equivalence",
+      "Hospitals genuinely are ordinary shops",
+      "Profit is the only measure of any value",
+      "Wards are never expensive to operate"
+    ],
+    "correctAnswer": "The word just hides an unsupported equivalence",
+    "xpReward": 50,
+    "lessonGroup": "Argument Repair",
+    "correctExplanation": "Right. 'Just' asserts that hospitals are nothing more than businesses, which is the very claim that needed proving.",
+    "incorrectExplanation": "The answer is: the word just hides an unsupported equivalence. The little word flattens a contested comparison into a premise, smuggling the conclusion into the setup.",
+    "lessonContent": "Small words can smuggle large claims.\n'Just' and 'merely' often assert an unproven reduction.\nNotice when equivalence is assumed rather than argued.\nRemove the qualifier and test the claim plainly.\nShare this: spot tonight one 'just' that quietly assumes the point at issue."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Kinds Apart",
+    "question": "A reviewer says a hammer is like a lawyer because both handle problems, then argues a hammer should be allowed to advise clients. What is the fundamental error?",
+    "choices": [
+      "The two items belong to different logical categories",
+      "Hammers and lawyers are essentially interchangeable",
+      "Legal advice is a form of manual labour",
+      "The reviewer correctly matched two professions"
+    ],
+    "correctAnswer": "The two items belong to different logical categories",
+    "xpReward": 50,
+    "lessonGroup": "Fallacy Field Guide",
+    "correctExplanation": "Right. A tool and a professional are different kinds of thing, so capacities belonging to one cannot be reassigned to the other.",
+    "incorrectExplanation": "The answer is: the two items belong to different logical categories. Comparing across kinds can suggest shared abilities that the categories themselves rule out.",
+    "lessonContent": "Comparisons must respect what kind of thing each item is.\nCapacities do not transfer across category boundaries.\nAsk whether the two belong to the same logical type.\nBeware analogies that blur object with agent.\nShare this: name tonight one comparison that quietly crosses between kinds."
+  }
+]

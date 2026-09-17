@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-039",
+  "generatedAt": "2026-09-17T13:27:41.874Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Forecasted Fortune",
+      "question": "A reliable model puts $1,000,000 in an opaque box when it predicts you will take only that box; a clear box always holds $10,000. In past cases, P(full | opaque-only) = 0.99 and P(full | both) = 0.01. Which act has the higher expected payout?",
+      "choices": [
+        "Take only the opaque box, with an expected $990,000",
+        "Take both boxes, with an expected $20,000",
+        "Randomize evenly, with an expected $505,000",
+        "Either act, because the past prediction is already fixed"
+      ],
+      "correctAnswer": "Take only the opaque box, with an expected $990,000",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Conditioning on the contemplated act gives $990,000 for opaque-only versus $20,000 for both, so the observed act-outcome link overwhelms the clear-box bonus.",
+      "incorrectExplanation": "Not quite - take only the opaque box, with an expected $990,000. The relevant conditional payoffs are 0.99 x $1,000,000 and 0.01 x $1,000,000 + $10,000; saying the prediction is fixed does not make those evidential expectations equal.",
+      "lessonContent": "Evidential decision rules compare outcomes conditional on each available act.\nA strong act-outcome correlation can outweigh a smaller guaranteed addition.\nConditional expectation multiplies each possible payoff by its probability under that choice.\nThis reasoning evaluates what an action indicates, not only what it physically changes.\nShare this: calculate two conditional expected values before trusting a verbal intuition about a risky choice.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#0",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Accuracy Line",
+      "question": "An opaque box pays $1,000,000. A clear box pays $10,000. A symmetric predictor is correct with probability p: it fills the opaque box for predicted one-boxers. Using conditional expected value, above what p does opaque-only beat taking both?",
+      "choices": [
+        "Any p greater than 0.500",
+        "Any p greater than 0.505",
+        "Any p greater than 0.510",
+        "Any p greater than 0.990"
+      ],
+      "correctAnswer": "Any p greater than 0.505",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Opaque-only yields pM, while both yields (1-p)M + $10,000; solving pM > (1-p)M + $10,000 gives p > 0.505.",
+      "incorrectExplanation": "Actually, the threshold is any p greater than 0.505. The comparison is not merely whether the predictor beats chance: its advantage over chance must also cover the clear box's one-percent-sized bonus.",
+      "lessonContent": "Decision thresholds occur where two expected-payoff expressions are equal.\nA small guaranteed bonus shifts the break-even point above bare predictive chance.\nSymmetric accuracy makes a contemplated act alter which prediction error matters.\nWriting the inequality prevents vague words such as reliable from deciding the problem.\nShare this: turn one verbal risk trade-off into an inequality and find its break-even probability.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-039#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Frozen Box Contents",
+      "question": "The predictor has left and both boxes are sealed. You reason causally: your hand movement cannot alter either box now. Holding their contents fixed, what does dominance reasoning recommend?",
+      "choices": [
+        "Take opaque-only because it signals the richer state",
+        "Randomize because neither act changes the past",
+        "Take both because it adds the clear-box money in either state",
+        "Refuse because prediction makes agency incoherent"
+      ],
+      "correctAnswer": "Take both because it adds the clear-box money in either state",
+      "xpReward": 50,
+      "correctExplanation": "Right. If the opaque box is full, both pays the bonus more; if it is empty, both still pays the bonus more, so causal state-by-state comparison favors both.",
+      "incorrectExplanation": "Close! Take both because it adds the clear-box money in either state. Correlation with the hidden state motivates the rival view, but dominance deliberately holds that already-set state constant across the two acts.",
+      "lessonContent": "Dominance compares actions within every possible fixed state of the world.\nAn action dominates when it does at least as well in all states and better in some.\nCausal reasoning holds past variables fixed when evaluating a present intervention.\nNewcomb-style cases become difficult because evidential and causal comparisons hold different things fixed.\nShare this: make a state-by-state payoff table for one choice whose evidence and causal effects seem to conflict.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#2",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Random Hands Trial",
+      "question": "After predictors fill boxes, researchers randomly assign participants to take one or both. The opaque box is full in 60% of each assigned group; the clear box holds $5,000. What result best isolates the causal effect of taking both?",
+      "choices": [
+        "The one-box group earns $5,000 more on average",
+        "The prediction becomes only 60% accurate",
+        "Random assignment makes both acts pay equally",
+        "The two-box group earns $5,000 more on average"
+      ],
+      "correctAnswer": "The two-box group earns $5,000 more on average",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Random assignment breaks the usual selection link, and equal opaque-fill rates leave the clear-box amount as the entire average causal difference.",
+      "incorrectExplanation": "The answer is that the two-box group earns $5,000 more on average. With the hidden-box distribution balanced by random assignment, the groups differ only in whether they also collect the clear box.",
+      "lessonContent": "Random assignment severs common causes between a chosen action and an outcome.\nObservational conditioning can mix an action's effect with the traits that predict the action.\nA balanced hidden-state rate lets the remaining payoff difference identify the intervention effect.\nCausal evidence asks what changes when the action is assigned rather than merely observed.\nShare this: ask whether one persuasive comparison came from self-selection or random assignment.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-039#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Signature Before Prediction",
+      "question": "Tomorrow a 99%-accurate predictor will inspect whether you signed an enforceable opaque-only contract, then fill a $1,000,000 box accordingly. Staying flexible lets you take both tomorrow but will be predicted as such. The clear box has $1,000. What should a payoff-maximizer do today?",
+      "choices": [
+        "Sign the opaque-only contract before inspection",
+        "Stay flexible and take both boxes tomorrow",
+        "Stay flexible and randomize tomorrow",
+        "Decline both boxes to avoid manipulation"
+      ],
+      "correctAnswer": "Sign the opaque-only contract before inspection",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. The commitment is made while it can still affect the predictor's evidence, making the likely million far more valuable than preserving tomorrow's small local bonus.",
+      "incorrectExplanation": "Not quite - sign the opaque-only contract before inspection. Flexibility has local value after the boxes are filled, but here it changes what the predictor sees and therefore sharply reduces the chance that the valuable box is funded.",
+      "lessonContent": "Commitment can change an earlier observer's forecast by changing future feasible actions.\nThe value of flexibility is not always positive when others condition rewards on reliability.\nAn ex ante policy comparison includes consequences that disappear from an ex post act comparison.\nContracts and public promises often work by deliberately narrowing later choice.\nShare this: identify one goal where a modest loss of future flexibility would improve incentives today.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#4",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Tomorrow's Temptation",
+      "question": "Today you may bind tomorrow's choice before a perfect predictor fills the opaque box. Tomorrow, after filling, taking both adds $1,000 whatever happened. Which pair describes the time conflict?",
+      "choices": [
+        "Decline commitment today; take opaque-only tomorrow",
+        "Commit to opaque-only today; prefer both when tomorrow arrives unbound",
+        "Commit to both today; prefer opaque-only when tomorrow arrives",
+        "Randomize today; decline all money tomorrow"
+      ],
+      "correctAnswer": "Commit to opaque-only today; prefer both when tomorrow arrives unbound",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Before prediction, commitment secures the funded box; after prediction, an unbound causal comparison sees only the extra $1,000, producing dynamic inconsistency.",
+      "incorrectExplanation": "It's simpler than it looks: commit to opaque-only today, but prefer both when tomorrow arrives unbound. The information structure changes between stages, so a policy that is best before prediction need not be the act favored after the prediction is fixed.",
+      "lessonContent": "Dynamic inconsistency occurs when plans favored at one time are rejected at another.\nInformation and causal timing can change what a local comparison counts as fixed.\nCommitment devices let an earlier policy survive a later temptation.\nReflective decision rules aim to choose plans their future versions can predictably execute.\nShare this: find one recurring choice where your advance plan and moment-of-action preference diverge.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#5",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Copied Program",
+      "question": "A predictor runs an exact copy of your deterministic decision program, then fills the opaque box if the copy outputs ONE. Your live program receives the same inputs. Which counterfactual best captures their logical link?",
+      "choices": [
+        "Changing your output leaves the copied output fixed by definition",
+        "Only physical signals sent after prediction can connect the outputs",
+        "A different program output would occur in both matching computations",
+        "Exact copying makes every counterfactual meaningless"
+      ],
+      "correctAnswer": "A different program output would occur in both matching computations",
+      "xpReward": 50,
+      "correctExplanation": "Right. The outputs need not communicate through time; they covary because they instantiate the same computation on the same input.",
+      "incorrectExplanation": "Actually, a different program output would occur in both matching computations. Holding the simulation fixed while changing the identical live computation breaks the stipulated logical identity, even though the earlier physical box remains fixed.",
+      "lessonContent": "Logical dependence can connect matching computations without a physical signal between them.\nCounterfactual reasoning must decide whether copies of one algorithm vary together.\nSimulation-based predictors make source-code policy relevant to later rewards.\nPhysical causation and mathematical covariation answer different comparison questions.\nShare this: distinguish a shared-rule correlation from a message-passing connection in one system you use.",
+      "lessonGroup": "Master Mind",
+      "forgeId": "batch-039#6",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "No Message Backward",
+      "question": "A neuroscientist predicts your box choice from yesterday's brain scan, then fills the box. Today your choice strongly correlates with yesterday's prediction. What best explains this without backward causation?",
+      "choices": [
+        "Today's hand movement changes yesterday's scan",
+        "The sealed box transmits a signal into your motor cortex",
+        "Correlation itself proves a future-to-past causal arrow",
+        "The scan and choice reflect the same earlier decision-making state"
+      ],
+      "correctAnswer": "The scan and choice reflect the same earlier decision-making state",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. A common prior state can generate both the forecast and the later act, creating predictive dependence without any influence traveling backward in time.",
+      "incorrectExplanation": "The answer is that the scan and choice reflect the same earlier decision-making state. Predictability requires shared information or structure, not a causal message from the later action into the past.",
+      "lessonContent": "A common cause can make two events informative about each other without either causing the other.\nPrediction exploits traces of a process that later produces behaviour.\nTemporal correlation alone does not identify the direction of causation.\nCausal diagrams force proposed arrows and shared causes to be stated separately.\nShare this: draw a common-cause explanation for one correlation that is often described causally.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-039#7",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Unequal Prediction Errors",
+      "question": "An opaque box holds $1,000,000 when the model predicts ONE. It predicts ONE for 90% of actual one-boxers but also for 5% of actual two-boxers. A clear box holds $5,000. Under observed conditional payoff, which choice wins?",
+      "choices": [
+        "Opaque-only: $900,000 versus $55,000",
+        "Both boxes: $905,000 versus $50,000",
+        "Opaque-only: $950,000 versus $105,000",
+        "Both boxes: $1,005,000 versus $900,000"
+      ],
+      "correctAnswer": "Opaque-only: $900,000 versus $55,000",
+      "xpReward": 50,
+      "correctExplanation": "Correct. The relevant rates are conditional on each actual act: 0.90 x $1,000,000 versus 0.05 x $1,000,000 + $5,000.",
+      "incorrectExplanation": "Not quite - opaque-only yields $900,000 versus $55,000. Sensitivity and false-positive rate enter different action columns, so they must not be added or mistaken for one symmetric accuracy figure.",
+      "lessonContent": "Asymmetric predictors have separate error rates for different actual behaviours.\nExpected payoff uses the error rate conditional on the act being evaluated.\nA single accuracy percentage can conceal strategically important asymmetry.\nConfusion matrices keep true and false predictions in the correct columns.\nShare this: request separate false-positive and false-negative rates for one classifier you encounter.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-039#8",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Ninety Nine Percent",
+      "question": "A report says a predictor is 99% accurate overall, but gives neither how often people choose each act nor its error rate for each act. Can you derive P(opaque full | you take both) from that headline alone?",
+      "choices": [
+        "Yes; it must equal 1%",
+        "No; base rates and the two conditional error rates are missing",
+        "Yes; it must equal 99%",
+        "No; overall accuracy contains no information whatsoever"
+      ],
+      "correctAnswer": "No; base rates and the two conditional error rates are missing",
+      "xpReward": 50,
+      "correctExplanation": "Right. Overall accuracy is a weighted average, and many combinations of act prevalence and asymmetric errors produce the same 99% headline.",
+      "incorrectExplanation": "Actually, no; base rates and the two conditional error rates are missing. One percent is the total error share, not necessarily the error probability within the subgroup of people who take both.",
+      "lessonContent": "Aggregate accuracy averages performance across groups using their prevalence as weights.\nA rare class can have poor conditional prediction while barely moving the headline number.\nDecision payoffs usually require class-specific conditional probabilities.\nBayesian reasoning keeps overall, joint, and conditional rates distinct.\nShare this: challenge one accuracy claim by asking for class frequencies and both kinds of error.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-039#9",
+      "forgeScore": 76
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Large Clear Box",
+      "question": "P(full | opaque-only) = 0.75 and P(full | both) = 0.20. The opaque box pays $200,000 and the clear box pays $150,000. Which act maximizes conditional expected money?",
+      "choices": [
+        "Opaque-only, because $150,000 exceeds $40,000",
+        "Opaque-only, because predictor accuracy always dominates bonuses",
+        "Both, because $190,000 exceeds $150,000",
+        "Both, because its opaque box is more likely to be full"
+      ],
+      "correctAnswer": "Both, because $190,000 exceeds $150,000",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Opaque-only averages $150,000, while both averages $40,000 from the opaque box plus the guaranteed $150,000.",
+      "incorrectExplanation": "The answer is both, because $190,000 exceeds $150,000. A predictive advantage is not decisive by itself; its monetary value must be compared with the size of the certain bonus.",
+      "lessonContent": "Probabilities and payoff magnitudes jointly determine expected value.\nA more favorable signal can lose to a sufficiently large guaranteed component.\nDecision labels should never replace multiplication and addition of outcomes.\nSensitivity analysis asks how a recommendation changes as stakes change.\nShare this: vary one payoff in a decision table until the preferred action switches.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Utility Bends Money",
+      "question": "Opaque-only gives a 60% chance of $1,000,000 and otherwise $0. Both gives a 10% chance of $1,400,000 and otherwise a guaranteed $400,000. For utility u(x) = sqrt(x), which has greater expected utility?",
+      "choices": [
+        "Opaque-only, because its expected money is $600,000",
+        "Opaque-only, because utility preserves every money ranking",
+        "They tie because both can include the opaque prize",
+        "Both boxes, because about 688 utility units exceed 600"
+      ],
+      "correctAnswer": "Both boxes, because about 688 utility units exceed 600",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Opaque-only gives 0.6 x 1000 = 600 utility units, while both gives 0.1 x sqrt(1,400,000) + 0.9 x sqrt(400,000), about 688.",
+      "incorrectExplanation": "Close! Both boxes gives about 688 utility units, exceeding 600. Concave utility values the reliable $400,000 floor enough to reverse the ranking by expected dollars.",
+      "lessonContent": "Expected utility applies probabilities to experienced value rather than raw money.\nConcave utility represents diminishing marginal value and aversion to payoff spread.\nTwo acts can reverse order when evaluated by dollars and by utility.\nA stated utility function turns vague risk preference into a checkable calculation.\nShare this: compare one gamble by both expected money and a concave value scale.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#11",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Perfect Peek",
+      "question": "Before choosing, you may learn for free whether the already-sealed opaque box is full. In either revealed state, taking both adds $10,000 and changes nothing else. For a causal decision-maker, what is the peek's decision value?",
+      "choices": [
+        "Zero, because the same act is best after either signal",
+        "$10,000, because information is worth the clear box",
+        "$500,000, because uncertainty is cut in half",
+        "$1,000,000, because the opaque state becomes certain"
+      ],
+      "correctAnswer": "Zero, because the same act is best after either signal",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Information has instrumental value only when it can improve the contingent action; here both remains better whether the opaque box is full or empty.",
+      "incorrectExplanation": "Not quite - the peek's decision value is zero, because the same act is best after either signal. Learning a hidden fact may satisfy curiosity, but it cannot improve this decision when it never changes the chosen branch.",
+      "lessonContent": "The value of information comes from choosing different actions after different signals.\nPerfect certainty can be worthless when one action dominates in every revealed state.\nInformation value is measured against the best decision available without the signal.\nCuriosity value and instrumental decision value should be kept separate.\nShare this: before buying information, name the action that each possible result would change.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Admission Price",
+      "question": "A 90%-reliable Newcomb game charges $100,000 before prediction. Opaque-only conditionally pays $1,000,000 with probability 0.9; both gets that prize with probability 0.1 plus $10,000. Your outside option is $700,000. Which plan has greatest expected money after the fee?",
+      "choices": [
+        "Decline and keep the $700,000 outside option",
+        "Enter and choose opaque-only for an expected net $800,000",
+        "Enter and take both for an expected net $10,000",
+        "Enter and randomize for an expected net $405,000"
+      ],
+      "correctAnswer": "Enter and choose opaque-only for an expected net $800,000",
+      "xpReward": 50,
+      "correctExplanation": "Right. The fee reduces the opaque-only expectation from $900,000 to $800,000, which still beats the outside option; the two-box net is only $10,000.",
+      "incorrectExplanation": "The best plan is to enter and choose opaque-only for an expected net $800,000. Entry and action are separate decisions, so each in-game expectation must be reduced by the common fee and then compared with declining.",
+      "lessonContent": "Sequential choices require comparing complete plans rather than isolated moves.\nEntry costs affect every participating strategy but not the outside option.\nA game can contain an attractive act yet be unattractive to enter, or vice versa.\nDecision trees keep fees, branches, and fallback payoffs in the correct order.\nShare this: include the cost of access before comparing the advertised rewards of one opportunity.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#13",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Forecast in Public",
+      "question": "A predictor publicly announces whether you will take one or both. You have precommitted to do the opposite of its announcement. What follows about a claimed perfect deterministic predictor in this setup?",
+      "choices": [
+        "It remains perfect if it announces opaque-only",
+        "It remains perfect if it announces both boxes",
+        "No announcement can be correct under the opposite-act rule",
+        "It can restore perfection by announcing at random"
+      ],
+      "correctAnswer": "No announcement can be correct under the opposite-act rule",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Either announcement triggers the other act, so public access plus a guaranteed contrarian response diagonalizes against every deterministic forecast.",
+      "incorrectExplanation": "The answer is that no announcement can be correct under the opposite-act rule. Predicting either branch causes the committed agent to select its complement; random announcing changes frequencies but cannot make each forecast perfect.",
+      "lessonContent": "A prediction can alter the system when the predicted agent observes it.\nDiagonal strategies construct an output specifically different from a proposed forecast.\nPerfect prediction claims need assumptions about secrecy, response, or restricted agents.\nSelf-reference often turns passive measurement into an interactive loop.\nShare this: ask what changes when the subject of a forecast gets to read it before acting.",
+      "lessonGroup": "Paradox Alley",
+      "forgeId": "batch-039#14",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Seeded Coin Flip",
+      "question": "You plan to use a hardware coin to hide your box choice, but the predictor reads both its physical state and your decision rule before filling the box. What does randomization accomplish against a perfect physical simulation?",
+      "choices": [
+        "It guarantees the opaque prize on half the trials",
+        "It makes taking both dominate without affecting prediction",
+        "It forces the predictor to leave both boxes empty",
+        "It adds no unpredictability because the simulated seed fixes the flip"
+      ],
+      "correctAnswer": "It adds no unpredictability because the simulated seed fixes the flip",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. A process can look random to you while remaining predictable to a model that knows the relevant physical seed and rule.",
+      "incorrectExplanation": "Not quite - it adds no unpredictability because the simulated seed fixes the flip. Randomization helps only relative to an observer missing the random source; stipulating complete state access removes that informational advantage.",
+      "lessonContent": "Randomness is often defined relative to what an observer can know or compute.\nA pseudorandom or physically seeded act is predictable to an agent with the seed and rule.\nMixed strategies gain value by concealing realization from an opponent.\nAdding a coin does not help when the prediction model includes the coin.\nShare this: identify what information makes one supposedly random process predictable.",
+      "lessonGroup": "Master Mind",
+      "forgeId": "batch-039#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Rewarding Surprise",
+      "question": "A model predicts your act correctly 90% of the time. An opaque box gets $100,000 only when the model is wrong; a clear box always gets $20,000. The model has the same error rate for either act. Which choice maximizes expected money?",
+      "choices": [
+        "Take both for an expected $30,000",
+        "Take opaque-only for an expected $90,000",
+        "Randomize for a guaranteed $60,000",
+        "Either act for an expected $10,000"
+      ],
+      "correctAnswer": "Take both for an expected $30,000",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Either act gets the opaque reward only on the 10% error, worth $10,000 in expectation, while taking both adds the certain $20,000.",
+      "incorrectExplanation": "Actually, take both for an expected $30,000. Because the miss rate is stipulated equal for both acts, neither choice improves the opaque-box chance; only the clear-box addition distinguishes them.",
+      "lessonContent": "Reversing a reward rule can remove the correlation that favored a familiar strategy.\nEqual conditional error rates give both actions the same expected hidden reward.\nA guaranteed component then decides the comparison by simple addition.\nDecision procedures should follow the stated mechanism rather than the story's familiar surface.\nShare this: reverse one incentive in a familiar puzzle and recompute instead of reusing its usual answer.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Craving Gene",
+      "question": "A gene causes both a harmless craving to smoke and cancer; assume smoking itself has no effect on cancer. Smoking gives a small pleasure. Population data show smokers get more cancer. What does causal decision theory recommend for a carrier deciding now?",
+      "choices": [
+        "Avoid smoking because the act is evidence of cancer",
+        "Smoke if the pleasure exceeds its stipulated non-cancer costs",
+        "Randomize because the gene and act are correlated",
+        "Avoid the choice because genetic causes remove agency"
+      ],
+      "correctAnswer": "Smoke if the pleasure exceeds its stipulated non-cancer costs",
+      "xpReward": 50,
+      "correctExplanation": "Right. Once the common gene and the stipulated absence of a smoking-to-cancer arrow are respected, intervening on smoking does not change cancer risk, so only actual causal costs and benefits remain.",
+      "incorrectExplanation": "Not quite - smoke if the pleasure exceeds its stipulated non-cancer costs. The observed association is generated by the gene; treating the act as a cause would confuse evidence about an already-set risk with an effect on that risk.",
+      "lessonContent": "A common cause can make an act predict harm even when the act does not produce it.\nCausal decision rules evaluate interventions that break incoming arrows into the chosen action.\nEvidence about hidden traits and effects of present behaviour are different quantities.\nThe conclusion depends on the causal assumptions, which real health cases must establish empirically.\nShare this: separate predictive association from intervention evidence in one health headline.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-039#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "The Bitter Marker",
+      "question": "A harmless bitter tablet has no biological effect. A hidden biomarker independently causes recovery and a willingness to swallow it, so tablet-takers recover more often. You already know your biomarker status cannot change. Which conclusion follows causally?",
+      "choices": [
+        "Taking the tablet improves recovery because takers recover more",
+        "Refusing the tablet worsens recovery by signaling the marker",
+        "The tablet choice cannot alter recovery under the stated graph",
+        "The better choice depends only on the population recovery rate"
+      ],
+      "correctAnswer": "The tablet choice cannot alter recovery under the stated graph",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. The biomarker explains both willingness and recovery, while the problem explicitly removes a causal path from the tablet to health.",
+      "incorrectExplanation": "The answer is that the tablet choice cannot alter recovery under the stated graph. Choosing differently may be surprising evidence about what sort of person you are, but it cannot rewrite the fixed biomarker or create a missing biological effect.",
+      "lessonContent": "Medical Newcomb cases contrast diagnostic evidence with treatment effects.\nA marker can predict both uptake and outcome, creating selection bias.\nIntervention questions ask what forcing treatment changes while holding prior causes fixed.\nReal treatment decisions require trials or credible causal designs, not uptake correlations alone.\nShare this: ask whether patients chose a treatment before interpreting their outcome difference.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-039#18",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Membership as Evidence",
+      "question": "A gym is free to use, but buying a $200 badge strongly predicts who will attend because committed people buy it. The badge itself changes neither access nor motivation. How do evidential and causal reasoning differ?",
+      "choices": [
+        "Both buy because attendance and purchase are correlated",
+        "Both decline because prediction never matters to decisions",
+        "Causal reasoning buys, while evidential reasoning declines",
+        "Evidential reasoning may buy, while causal reasoning declines"
+      ],
+      "correctAnswer": "Evidential reasoning may buy, while causal reasoning declines",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Buying is favorable evidence about attendance but, by stipulation, does not cause attendance; the causal comparison therefore sees only its $200 cost.",
+      "incorrectExplanation": "Close! Evidential reasoning may buy, while causal reasoning declines. The disagreement comes from whether conditioning on a self-chosen signal should count its correlation with a valuable outcome when the signal has no causal route to that outcome.",
+      "lessonContent": "Self-signaling choices can correlate with success because underlying traits produce both.\nEvidential rules may value an act for the favorable type it indicates.\nCausal rules ignore diagnostic value when intervention leaves the outcome mechanism unchanged.\nPractical commitments often have real motivational effects, so causal stipulations must be checked.\nShare this: ask whether one paid commitment changes behaviour or merely identifies people already likely to act.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Arrows Into Choice",
+      "question": "A diagram has stable trait T pointing to both predictor output P and your choice C; P points to box content B. There is no arrow from C to B. Under an intervention do(C = both), what happens to B?",
+      "choices": [
+        "It stays governed by P while the incoming T-to-C link is cut",
+        "It becomes full because both includes the opaque box",
+        "It becomes empty because intervention disproves P",
+        "It changes only if C remains correlated with T"
+      ],
+      "correctAnswer": "It stays governed by P while the incoming T-to-C link is cut",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. The intervention replaces the normal causes of C but creates no new path to B, which remains determined upstream by P.",
+      "incorrectExplanation": "Not quite - B stays governed by P while the incoming T-to-C link is cut. Intervention semantics alter the chosen node's generating equation, not every correlated ancestor or downstream variable elsewhere in the graph.",
+      "lessonContent": "A causal intervention sets one node while removing its ordinary incoming arrows.\nOther structural equations remain intact unless a directed path carries the intervention onward.\nCorrelation through a shared ancestor disappears when the action is externally set.\nGraph surgery makes the phrase holding everything else fixed more precise.\nShare this: draw one action-outcome graph and mark which arrows an intervention would cut.",
+      "lessonGroup": "Master Mind",
+      "forgeId": "batch-039#20",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Visible Commitment Badge",
+      "question": "For $20,000 you can wear an enforceable badge requiring opaque-only. A 95%-accurate predictor sees badges before filling a $1,000,000 box; flexible players intending both get the prize 5% of the time plus $10,000. Which policy pays more in expectation?",
+      "choices": [
+        "Stay flexible, worth $60,000",
+        "Buy the badge, worth $930,000 after its cost",
+        "Buy the badge, worth exactly $980,000",
+        "Stay flexible, worth $1,010,000"
+      ],
+      "correctAnswer": "Buy the badge, worth $930,000 after its cost",
+      "xpReward": 50,
+      "correctExplanation": "Right. The visible commitment yields 0.95 x $1,000,000 - $20,000 = $930,000, far above the flexible two-box expectation of $60,000.",
+      "incorrectExplanation": "The answer is to buy the badge, worth $930,000 after its cost. Its expense must be subtracted, but its effect on the predictor's forecast makes it an investment rather than a mere restriction.",
+      "lessonContent": "Observable commitments can alter other agents' predictions and responses.\nTheir value equals the induced payoff change minus the cost of lost flexibility and enforcement.\nCredibility matters because an unenforceable signal may not move a sophisticated observer.\nInstitutions often sell trust by making later defection expensive or impossible.\nShare this: find one bond, deposit, or deadline whose cost creates a valuable credible signal.",
+      "lessonGroup": "Decision Frames",
+      "forgeId": "batch-039#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Empty Despite Wisdom",
+      "question": "A decision rule selects opaque-only because P(full | opaque-only) = 0.8 and the alternative's expected payoff is far lower. This time the opaque box is empty. What is the soundest evaluation?",
+      "choices": [
+        "The empty box proves taking both was rational all along",
+        "Any rule that sometimes loses is irrational",
+        "The policy can be rational despite this unlucky outcome",
+        "Prediction accuracy must be recomputed as zero"
+      ],
+      "correctAnswer": "The policy can be rational despite this unlucky outcome",
+      "xpReward": 50,
+      "correctExplanation": "Correct. Rationality under uncertainty grades the choice using available probabilities and payoffs, not by demanding that the higher-value gamble win on every trial.",
+      "incorrectExplanation": "Actually, the policy can be rational despite this unlucky outcome. An 80% event fails one time in five, and observing a loss does not retroactively change the information or expected values available at choice time.",
+      "lessonContent": "Decision quality and outcome quality separate whenever uncertainty remains.\nA good probabilistic policy can lose, while a poor one can get lucky.\nOutcome bias imports information revealed later into evaluation of an earlier choice.\nFair review reconstructs the evidence and alternatives available at the decision point.\nShare this: reassess one past choice using only what was knowable before its outcome.",
+      "lessonGroup": "Think Straight",
+      "forgeId": "batch-039#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Buying Better Foresight",
+      "question": "Before prediction, you can upgrade a symmetric predictor from 60% to 90% accuracy. You will use opaque-only, the opaque prize is $1,000,000, and there is no other payoff. Ignoring risk attitudes, what is the upgrade's maximum fair price?",
+      "choices": [
+        "$30,000, the percentage-point increase times $1,000",
+        "$60,000, the original error probability times the prize",
+        "$900,000, the upgraded expected prize",
+        "$300,000, the increase in expected prize"
+      ],
+      "correctAnswer": "$300,000, the increase in expected prize",
+      "xpReward": 50,
+      "correctExplanation": "Exactly. Expected prize rises from $600,000 to $900,000, so any fee above $300,000 consumes more value than the accuracy upgrade creates.",
+      "incorrectExplanation": "Not quite - the maximum fair price is $300,000, the increase in expected prize. Pricing an improvement uses the difference between optimized expectations, not the new total reward or an unscaled percentage-point count.",
+      "lessonContent": "The value of a forecasting improvement is its marginal effect on expected payoff.\nAccuracy percentages acquire economic meaning only when combined with stakes and decisions.\nA fair fee compares the best achievable expectation before and after the upgrade.\nTotal value and incremental value answer different purchasing questions.\nShare this: price one information upgrade by estimating how much it can change your actual decision outcome.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-039#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "hard",
+      "title": "Rich One Boxers",
+      "question": "Records show voluntary one-boxers averaged $900,000 while two-boxers averaged $20,000. A critic says this proves physically taking the clear box destroys $880,000. What is the strongest reply?",
+      "choices": [
+        "The groups were selected by predictable choice, so earnings do not identify the act's causal effect",
+        "The average gap proves the clear box contained negative money",
+        "A larger sample would necessarily make the causal claim true",
+        "Voluntary data cannot contain any useful predictive information"
+      ],
+      "correctAnswer": "The groups were selected by predictable choice, so earnings do not identify the act's causal effect",
+      "xpReward": 50,
+      "correctExplanation": "Correct. The predictor deliberately creates different hidden-box distributions for people disposed toward different acts, so the observational earnings gap mixes selection with any causal effect.",
+      "incorrectExplanation": "The strongest reply is that the groups were selected by predictable choice, so earnings do not identify the act's causal effect. The records can strongly predict earnings while still failing to show that adding the clear-box action physically empties a sealed box.",
+      "lessonContent": "Selection bias occurs when compared groups differ before the focal action is applied.\nPrediction mechanisms can engineer enormous observational gaps without matching intervention effects.\nMore data reduce sampling noise but do not repair a biased comparison design.\nPredictive usefulness and causal identification should be judged separately.\nShare this: identify the selection rule behind one dramatic average difference before calling it an effect.",
+      "lessonGroup": "Map & Territory",
+      "forgeId": "batch-039#24",
+      "forgeScore": 100
+    }
+  ]
+}

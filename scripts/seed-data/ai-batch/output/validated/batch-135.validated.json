@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-135",
+  "generatedAt": "2026-09-17T13:27:44.050Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Clashing Pair",
+      "question": "Cognitive dissonance theory holds that holding inconsistent beliefs — or acting against beliefs — produces real psychological discomfort.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Inconsistency hurts: minds strain toward coherence, and the strain motivates change. Discomfort is the theory's engine.",
+      "incorrectExplanation": "It is true. Festinger's core claim is affective, not just logical: contradiction feels bad, and feeling bad moves minds. Comfort demands consistency.",
+      "lessonContent": "Contradiction feels bad before thinking starts.\nStrain motivates changes logic cannot.\nCoherence comforts more than truth does.\nDiscomfort engines all dissonance effects.\nShare this: notice one clash aching.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Dollar Gap",
+      "question": "In Festinger and Carlsmith's classic study, participants paid $1 to lie about a boring task later rated it MORE enjoyable than those paid $20.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Twenty dollars justified lying externally; one dollar forced internal justification — attitude followed. Less pay, more persuasion of self.",
+      "incorrectExplanation": "It is true. The $20 group blamed the money; the $1 group, lacking cover, convinced themselves. Insufficient justification moves attitudes that ample bribes leave parked.",
+      "lessonContent": "Small rewards move attitudes most.\nCover lacking forces internal rewrites.\nBribes park what pennies persuade.\nJustification scales inversely with pay.\nShare this: justify one dollar task.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Thin Excuse",
+      "question": "Dissonance effects grow strongest when external justification for an act is minimal — big excuses leave attitudes untouched.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Ample excuses absorb inconsistency externally; thin ones force internal revision. Justification and attitude change trade off exactly.",
+      "incorrectExplanation": "It is true. Large bribes and threats explain acts away, sparing beliefs; crumbs of justification leave minds to reconcile alone. Thin cover, thick change.",
+      "lessonContent": "Thin cover forces thick change.\nExcuses absorb what attitudes would carry.\nTrade-offs govern justification effects.\nCrumbs persuade; banquets merely pay.\nShare this: act on thin excuse once.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Big Bribe",
+      "question": "Larger financial rewards for saying something you disbelieve produce proportionally larger shifts in your actual belief.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Big rewards explain the act away — no dissonance, no shift. Bribery scales inversely with persuasion of self.",
+      "incorrectExplanation": "Not quite — it is false. Twenty dollars buys compliance while sparing conviction; one dollar buys conviction by starving excuses. Persuasion of self needs poverty, not wealth.",
+      "lessonContent": "Wealth excuses; poverty persuades selves.\nBribery scales against belief change.\nConviction needs thin justification.\nPaid minds stay put inside.\nShare this: resist one big excuse.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Harsh Welcome",
+      "question": "Aronson and Mills found that volunteers enduring severe initiation to join a dull group later rated the group MORE favorably.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Effort justification: suffering for entry must mean the group is worth it. Ordeals inflate affection reliably.",
+      "incorrectExplanation": "It is true. Severe-initiation subjects loved the dull discussion; mild-initiation ones shrugged. Minds price memberships by pain paid, not quality received.",
+      "lessonContent": "Pain paid prices memberships highly.\nOrdeals inflate affection reliably.\nSuffering for entry must mean worth.\nEffort justifies what reason wouldn't.\nShare this: value one hard-won group.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Easy Door",
+      "question": "Groups that admit members effortlessly inspire the deepest loyalty and highest ratings from joiners.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Costless entry breeds indifference: without suffering to justify, affection stays flat. Easy doors open onto lukewarm rooms.",
+      "incorrectExplanation": "Not quite — it is false. Mild-initiation controls rated dull groups dully: no pain, no price inflation. Loyalty needs investment to feel valuable.",
+      "lessonContent": "Costless entry breeds indifference reliably.\nFlat affection follows painless joining.\nInvestment creates value feelings.\nEasy doors open lukewarm rooms.\nShare this: earn one membership dearly.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Spread Choice",
+      "question": "After difficult decisions, people rate chosen options higher and rejected ones lower than before choosing — the spreading of alternatives.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Choice creates dissonance; spreading resolves it: winners gilded, losers tarnished post-decision. Deciding rewrites desirability.",
+      "incorrectExplanation": "It is true. Brehm's appliances proved it: post-choice ratings diverge from pre-choice ones systematically. Minds flatter decisions already made.",
+      "lessonContent": "Decisions rewrite desirability after the fact.\nWinners gilded, losers tarnished routinely.\nChoosing creates the dissonance spreading cures.\nMinds flatter their own verdicts.\nShare this: catch one spread happening.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Failed Prophecy",
+      "question": "When a cult's doomsday prophecy failed publicly, Festinger observed believers proselytizing harder rather than dispersing.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Disconfirmation plus public commitment plus social support produced intensified faith: 'When Prophecy Fails' documented it. Failed dates recruit, given sunk belief.",
+      "incorrectExplanation": "It is true. The Seekers' saucer never landed — and members preached more fervently after. Public commitment plus effort converts disproof into recommitment.",
+      "lessonContent": "Disproof converts the heavily invested.\nPublic commitment blocks graceful exits.\nFailed dates recruit under sunk belief.\nEffort defends what evidence attacks.\nShare this: update one failed belief.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Shattered Flock",
+      "question": "Failed prophecies invariably destroy religious movements, scattering followers permanently in every documented case.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Prophecy failure sometimes intensifies movements (Seekers, Millerites' remnants): conditions decide, not failure alone. Dispersal is one outcome among several.",
+      "incorrectExplanation": "Not quite — it is false. History shows recommitment, reinterpretation, and schism alongside collapse: failure's effects depend on commitment, support, and leadership. Invariably is always wrong here.",
+      "lessonContent": "Failure's effects depend on conditions.\nRecommitment rivals collapse historically.\nInvariably claims fail most reliably.\nProphecies fail; movements adapt variously.\nShare this: study one survived failure.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Buyer's Glow",
+      "question": "After expensive purchases, buyers rate their chosen product higher and rivals lower than beforehand — post-decision spreading in showrooms.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Costly choices demand justification: owned items gild, rejected rivals tarnish. Receipts rewrite ratings reliably.",
+      "incorrectExplanation": "It is true. Post-purchase spreading is showroom dissonance: money spent must mean value gained. Buyers remorse less by esteeming more.",
+      "lessonContent": "Receipts rewrite ratings reliably.\nOwned items gild post-purchase.\nCostly choices demand flattering follow-ups.\nRemorse fades where esteem grows.\nShare this: catch one buyer's glow.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Unmoved Chooser",
+      "question": "Difficult decisions leave people's evaluations of the options essentially unchanged — attitudes stay frozen through hard choices.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Hard choices move evaluations most: near-ties generate maximum dissonance, maximum spreading. Difficulty drives revision, never stasis.",
+      "incorrectExplanation": "Not quite — it is false. Easy choices barely ripple; agonizing ones reshape preferences deeply. Frozen attitudes contradict decades of spreading data.",
+      "lessonContent": "Agony reshapes preferences deeply.\nNear-ties generate maximum revision.\nDifficulty drives change, never stasis.\nFrozen attitudes contradict the data.\nShare this: feel one choice reshape you.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Forced Smile",
+      "question": "Acts performed under heavy coercion generate maximum dissonance, since the helplessness stings most sharply.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Coercion supplies complete external justification — no dissonance at all. Guns explain acts fully; attitudes rest undisturbed.",
+      "incorrectExplanation": "Not quite — it is false. Forced compliance needs no internal revision: the gun accounts for everything. Dissonance requires felt choice, however slight.",
+      "lessonContent": "Guns explain acts too completely.\nFelt choice, however slight, is required.\nCoercion spares attitudes entirely.\nHelplessness stings without dissonating.\nShare this: choose slightly, feel fully.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Cool Observer",
+      "question": "Bem's self-perception theory offered a rival account: people infer attitudes from behavior dispassionately, with no discomfort required.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False as a full replacement — Bem's account explains some findings elegantly but arousal evidence (misattribution studies) proves real discomfort operates. Rivals coexist; neither monopolizes.",
+      "incorrectExplanation": "Not quite — it is false. Self-perception handles low-arousal cases neatly, yet physiological evidence shows genuine discomfort driving classic effects. Both mechanisms live in the literature together.",
+      "lessonContent": "Rivals coexist in mature literatures.\nArousal evidence proves real discomfort.\nElegance never monopolizes explanation.\nBoth-and beats either-or here.\nShare this: feel one theory working.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Trivial Clash",
+      "question": "Any inconsistency, however trivial and consequence-free, generates full-strength dissonance regardless of outcomes or self-relevance.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Cooper and Fazio showed dissonance needs aversive consequences plus felt responsibility: trivialities fizzle. Stakes and ownership gate the effect.",
+      "incorrectExplanation": "Not quite — it is false. Mismatched socks cognitions change nothing because nothing matters and nobody chose. Consequences plus responsibility are entry tickets.",
+      "lessonContent": "Stakes gate effects reliably always.\nTrivialities fizzle without consequences.\nOwnership plus outcomes open the gates.\nMismatches need mattering to move.\nShare this: shrug one trivial clash.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Minor Mirror",
+      "question": "Threats to trivial self-images — being once slightly late, misplacing keys — produce the strongest dissonance effects of all.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Aronson showed dissonance strikes hardest at central self-conceptions (competence, morality), not trivia. Mirrors crack over core reflections.",
+      "incorrectExplanation": "Not quite — it is false. Lateness and keys barely register; cheating and cruelty detonate. Self-concept centrality scales the blast.",
+      "lessonContent": "Centrality scales every blast radius.\nTrivia tickles; core threats detonate.\nMirrors crack over core reflections.\nCompetence and morals matter most.\nShare this: guard one core reflection.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Smoker's Library",
+      "question": "Smokers commonly reduce quit-pressure by disputing evidence, citing long-lived smoking relatives, and postponing action to someday.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Classic dissonance management: attack the cognition that quitting is urgent. Libraries of excuses shelve the same fear.",
+      "incorrectExplanation": "It is true. 'Inconclusive evidence,' 'grandpa smoked,' 'I'll quit Monday' — the canon of smoked reasoning. Dissonance writes extensive apologetics.",
+      "lessonContent": "Apologetics shelve identical fears widely.\nExcuse canons share structures globally.\nDisputing evidence soothes cheapest.\nSomeday postpones every reckoning.\nShare this: shelve one excuse permanently.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Prompt Quitter",
+      "question": "Learning about smoking risks makes the large majority of smokers quit promptly without further struggle or delay.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Knowledge rarely suffices: most smokers continue, managing dissonance instead of behavior. Information informs; addiction and habit decide.",
+      "incorrectExplanation": "Not quite — it is false. Decades of warnings coexist with persistent smoking: facts lose to rationalization routinely. Quitting needs more than knowing.",
+      "lessonContent": "Facts lose to rationalization routinely.\nKnowing rarely suffices for quitting.\nInformation informs; habits decide.\nWarnings coexist with persistence.\nShare this: act on one known fact.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Mind Denial",
+      "question": "Meat eaters tend to deny minds to food animals while granting rich inner lives to pets — the meat paradox in action.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Bastian's work shows moral status tracks menus: edible minds shrink, pet minds expand. Categories serve appetites.",
+      "incorrectExplanation": "It is true. Pigs lose smarts while dogs gain souls in eaters' ratings — motivated mind-perception. Appetites sculpt ontologies conveniently.",
+      "lessonContent": "Appetites sculpt ontologies conveniently.\nMenus sort minds, not just meals.\nCategories serve stomachs silently.\nDenied minds ease full plates.\nShare this: grant one food animal mind.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Pledge Price",
+      "question": "Fraternity hazing severity predicts later member loyalty and alumni giving — harsher pledging, tighter brothers.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Effort justification in Greek letters: suffering for brotherhood must mean brotherhood is precious. Pledges price loyalty in bruises.",
+      "incorrectExplanation": "It is true. Hazing research mirrors the lab: severe initiations bind tighter than mild ones. Bruises become bonds through dissonance arithmetic.",
+      "lessonContent": "Bruises become bonds through arithmetic.\nSeverity binds tighter than kindness.\nPrices paid inflate prizes won.\nPledges purchase loyalty in pain.\nShare this: earn one bond gently instead.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Fleeing Flock",
+      "question": "Everyone subjected to painful initiations abandons such groups at the first opportunity, since suffering repels rational joiners.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Sufferers disproportionately stay and praise: dissonance converts pain into devotion. Rational joiners are the first to re-enlist.",
+      "incorrectExplanation": "Not quite — it is false. Pain predicts persistence, not flight: the harsher the welcome, the warmer the remembered home. Leaving would waste the suffering already spent.",
+      "lessonContent": "Pain predicts persistence paradoxically.\nSuffering spent demands devotion returns.\nHarsh welcomes warm remembered homes.\nFlight would waste invested agony.\nShare this: question one paid-for loyalty.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Easy A",
+      "question": "Students value effortlessly earned A's more than grades wrested through struggle — ease of victory sets attachment levels.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Wrested grades glow brighter: effort inflates worth just as initiations inflate groups. Easy A's spend lightly because they cost lightly.",
+      "incorrectExplanation": "Not quite — it is false. Struggle-bought grades outshine gifted ones in attachment studies. Effort prices achievement in classrooms exactly as in cults.",
+      "lessonContent": "Struggle-bought grades outshine gifted ones.\nEffort prices achievement universally.\nWrested glows brighter than granted.\nClassrooms replicate cult arithmetic.\nShare this: earn one grade the hard way.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Cold Calculation",
+      "question": "Sunk-cost persistence reflects pure forward-looking calculation with no backward-looking discomfort about wasted investments.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Waste-aversion aches: abandoning investments admits loss, and dissonance prolongs projects past reason. Calculators with feelings keep digging.",
+      "incorrectExplanation": "Not quite — it is false. Forward math says quit; quitters flinch at admitting waste. Dissonance funds failing projects that calculation would shutter.",
+      "lessonContent": "Calculators with feelings keep digging.\nAdmitting waste aches worse than wasting.\nFeelings fund failing projects steadily.\nForward math loses to backward ache.\nShare this: quit one sunk project cleanly.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Averted Headline",
+      "question": "People selectively avoid news, books, and arguments that would clash with their existing commitments.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Selective exposure manages dissonance preemptively: unread challenges can't clash. Avoidance is dissonance insurance.",
+      "incorrectExplanation": "It is true. Readers dodge dissonant headlines; viewers curate comforting feeds. Preemptive avoidance beats post-hoc rationalization for economy.",
+      "lessonContent": "Avoidance beats rationalization economically.\nUnread challenges never clash at all.\nCurated feeds are dissonance insurance.\nPreemption manages cheapest of all.\nShare this: read one clashing headline.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Preacher's Mirror",
+      "question": "Preaching a virtue and then recalling personal lapses reliably moves behavior toward the sermon — the hypocrisy paradigm in action.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Aronson's hypocrisy induction works: advocated standards plus remembered failures equal changed conduct. Mirrors held after sermons convert.",
+      "incorrectExplanation": "It is true. Condom-sermon plus lapse-recall increased real safer behavior: dissonance between pulpit and practice resolves toward pulpits. Preaching binds preachers first.",
+      "lessonContent": "Pulpits bind preachers before audiences.\nLapses recalled convert sermons lived.\nMirrors held after preaching work.\nAdvocacy plus memory equals change.\nShare this: preach one virtue, then practice.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Private Choice",
+      "question": "Dissonance effects require deliberately lying to other people — purely private choices, unwitnessed, never generate dissonance.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Private decisions dissonate fully: spread-of-alternatives needs no audience. Solitude stages dissonance perfectly well.",
+      "incorrectExplanation": "Not quite — it is false. Choosers alone still gild winners and tarnish losers: no witnesses required. Audiences amplify; privacy suffices.",
+      "lessonContent": "Solitude stages dissonance perfectly well.\nAudiences amplify what privacy suffices.\nUnwitnessed choices still spread wide.\nNo lying needed for clashing.\nShare this: decide one thing privately well.",
+      "lessonGroup": "Mind Stretchers",
+      "forgeId": "batch-135#24",
+      "forgeScore": 100
+    }
+  ]
+}

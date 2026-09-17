@@ -1,6 +1,6 @@
 "use client";
 
-import { type Puzzle, type PuzzleFormData, type PuzzleType, type Difficulty, type CipherData } from "@/types/puzzle";
+import { type Puzzle, type PuzzleFormData, type PuzzleType, type Difficulty, type CipherData, type StoryData } from "@/types/puzzle";
 import { getFirebase } from "@/services/firebase";
 import {
   collection,
@@ -36,9 +36,22 @@ function getLocalPuzzles(): Puzzle[] {
   }
 }
 
-function saveLocalPuzzles(puzzles: Puzzle[]) {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(puzzles));
+function saveLocalPuzzles(puzzles: Puzzle[]): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(puzzles));
+    return true;
+  } catch (e) {
+    // 5k+ puzzles exceed the ~5MB localStorage quota. Firestore remains the
+    // source of truth; the app falls back to it automatically.
+    console.warn("Local puzzle cache skipped (storage quota):", e);
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
+    return false;
+  }
 }
 
 export interface SeedPuzzleInput {
@@ -62,6 +75,7 @@ export interface SeedPuzzleInput {
   lessonImageUrl?: string;
   sharePrompt?: string;
   cipherData?: CipherData;
+  storyData?: StoryData;
 }
 
 export interface SeedData {
@@ -91,6 +105,7 @@ function seedPuzzleToFormData(input: SeedPuzzleInput): PuzzleFormData {
     lessonImageUrl: input.lessonImageUrl,
     sharePrompt: input.sharePrompt,
     cipherData: input.cipherData,
+    storyData: input.storyData,
   };
 }
 
@@ -150,6 +165,7 @@ export async function importPuzzleToStore(puzzle: Puzzle): Promise<void> {
         hintText: puzzle.hintText ?? null,
         sharePrompt: puzzle.sharePrompt ?? null,
         cipherData: puzzle.cipherData ?? null,
+        storyData: puzzle.storyData ?? null,
         createdBy: "seed-admin",
         createdAt: Timestamp.fromMillis(puzzle.createdAt),
         lastModifiedBy: "seed-admin",
@@ -182,9 +198,10 @@ export async function clearAllPuzzles(): Promise<{ local: number; firestore: num
       if (!db) return { local: localCount, firestore: 0 };
       const snap = await getDocs(collection(db, "puzzles"));
       firestoreCount = snap.docs.length;
-      if (snap.docs.length > 0) {
+      // Chunked: a single commit caps at 500 writes, and re-seeds wipe 5k+.
+      for (const chunk of splitIntoChunks(snap.docs, FIRESTORE_BATCH_LIMIT)) {
         const batch = writeBatch(db);
-        snap.docs.forEach((d) => batch.delete(doc(db, "puzzles", d.id)));
+        chunk.forEach((d) => batch.delete(doc(db, "puzzles", d.id)));
         await batch.commit();
       }
     } catch (e) {
@@ -218,16 +235,99 @@ export async function seedLessonGroups(groups: Omit<LessonGroupEntry, "createdAt
   return count;
 }
 
-export async function seedPuzzles(inputs: SeedPuzzleInput[]): Promise<number> {
-  let count = 0;
-  for (const input of inputs) {
-    const id = generateId();
-    const formData = seedPuzzleToFormData(input);
-    const puzzle = buildPuzzle(formData, id);
-    await importPuzzleToStore(puzzle);
-    count++;
+export const FIRESTORE_BATCH_LIMIT = 400;
+
+/** Split an array into chunks of at most `size` (pure, unit-tested). */
+export function splitIntoChunks<T>(arr: T[], size: number): T[][] {
+  if (size <= 0) throw new Error("chunk size must be positive");
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+}
+
+/** Flatten a Puzzle into its Firestore document shape (pure, unit-tested). */
+export function puzzleToFirestoreData(puzzle: Puzzle): Record<string, unknown> {
+  return {
+    type: puzzle.type,
+    category: puzzle.category,
+    difficulty: puzzle.difficulty,
+    title: puzzle.title,
+    question: puzzle.question,
+    choices: puzzle.choices,
+    correctAnswer: puzzle.correctAnswer,
+    acceptedAnswers: puzzle.acceptedAnswers ?? null,
+    xpReward: puzzle.xpReward,
+    published: true,
+    reviewStatus: "approved",
+    reviewedBy: null,
+    reviewNote: null,
+    completedBy: 0,
+    correctExplanation: puzzle.correctExplanation ?? null,
+    incorrectExplanation: puzzle.incorrectExplanation ?? null,
+    imageUrl: puzzle.imageUrl ?? null,
+    lessonImageUrl: puzzle.lessonImageUrl ?? null,
+    lessonContent: puzzle.lessonContent ?? null,
+    lessonOrder: puzzle.lessonOrder ?? null,
+    lessonGroup: puzzle.lessonGroup ?? null,
+    lessonGroupOrder: puzzle.lessonGroupOrder ?? null,
+    hintText: puzzle.hintText ?? null,
+    sharePrompt: puzzle.sharePrompt ?? null,
+    cipherData: puzzle.cipherData ?? null,
+    storyData: puzzle.storyData ?? null,
+    createdBy: "seed-admin",
+    createdAt: Timestamp.fromMillis(puzzle.createdAt),
+    lastModifiedBy: "seed-admin",
+    updatedAt: Timestamp.fromMillis(puzzle.updatedAt),
+  };
+}
+
+export async function seedPuzzles(
+  inputs: SeedPuzzleInput[],
+  onProgress?: (message: string) => void,
+): Promise<number> {
+  const puzzles = inputs.map((input) =>
+    buildPuzzle(seedPuzzleToFormData(input), generateId()),
+  );
+
+  if (isFirestoreAvailable()) {
+    try {
+      const { db } = getFirebase();
+      if (db) {
+        const col = collection(db, "puzzles");
+        // Pre-generate doc refs so local IDs match Firestore IDs (prevents
+        // merged duplicates in getPuzzles, which keys on id).
+        const refs = puzzles.map(() => doc(col));
+        const chunks = splitIntoChunks(
+          refs.map((ref, i) => ({ ref, puzzle: puzzles[i] })),
+          FIRESTORE_BATCH_LIMIT,
+        );
+        let done = 0;
+        for (const chunk of chunks) {
+          const batch = writeBatch(db);
+          chunk.forEach(({ ref, puzzle }) =>
+            batch.set(ref, puzzleToFirestoreData(puzzle)),
+          );
+          await batch.commit();
+          done += chunk.length;
+          onProgress?.(`Imported ${done} puzzles...`);
+        }
+        puzzles.forEach((p, i) => {
+          p.id = refs[i].id;
+        });
+      }
+    } catch (e) {
+      console.error("Firestore batched import failed:", e);
+    }
   }
-  return count;
+
+  // Local snapshot in one write (fast even for 5k+ items).
+  const cached = saveLocalPuzzles(puzzles);
+  if (!cached) {
+    onProgress?.(
+      "Note: browser cache skipped (quota) — Firestore holds all puzzles.",
+    );
+  }
+  return puzzles.length;
 }
 
 export async function runSeed(data: SeedData, onProgress?: (message: string) => void): Promise<void> {

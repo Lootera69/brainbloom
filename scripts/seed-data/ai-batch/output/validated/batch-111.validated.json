@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-111",
+  "generatedAt": "2026-09-17T13:27:43.387Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Pushed Car",
+      "question": "A man pushes his car up to a hotel door and immediately declares bankruptcy. What is happening?",
+      "choices": [
+        "He crashed into the hotel entrance",
+        "His car loan was just denied",
+        "He ran out of fuel at the door",
+        "He is playing Monopoly"
+      ],
+      "correctAnswer": "He is playing Monopoly",
+      "xpReward": 10,
+      "correctExplanation": "He is playing Monopoly — the car token landing on a hotel means bankruptcy. The scene reads as real life until the game frame clicks.",
+      "incorrectExplanation": "Not quite — the answer is he is playing Monopoly. The car is a token, the hotel sits on Boardwalk, and bankruptcy is the game's verdict. Real-world readings (crashes, loans, fuel) all ignore the word 'pushes,' which is exactly how tokens move.",
+      "lessonContent": "Verbs betray the frame: tokens get pushed, cars get driven.\nGame frames hide inside realistic scenery.\n'Bankruptcy' plus 'hotel' is Monopoly vocabulary.\nReframe the nouns before solving the scene.\nShare this: narrate one board game as real news.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Surgeon's Son",
+      "question": "A father and son are in a crash; the father dies, the boy needs surgery. The surgeon says, 'I cannot operate — he is my son.' How is this possible?",
+      "choices": [
+        "The surgeon is the boy's mother",
+        "The surgeon is the boy's grandfather",
+        "The surgeon is a priest",
+        "The boy has two fathers"
+      ],
+      "correctAnswer": "The surgeon is the boy's mother",
+      "xpReward": 10,
+      "correctExplanation": "The surgeon is his mother. The puzzle works because 'surgeon' primes male-association, making the mother invisible to many solvers.",
+      "incorrectExplanation": "Actually, the answer is the surgeon is the boy's mother. The riddle exploits the default assumption that surgeons are men; the grandfather and priest options extend the same bias. Two fathers is possible but not the classic answer.",
+      "lessonContent": "Stereotypes hide the simplest answers in plain sight.\nGendered role assumptions are the engine of this classic.\nWhen a puzzle feels impossible, check your defaults.\nThe 'impossible' relation is usually just unassumed.\nShare this: pose it to someone and time their pause.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Late Pass",
+      "question": "During a race you overtake the next-to-last runner. What position are you now in?",
+      "choices": [
+        "Second to last",
+        "Last place",
+        "First place",
+        "Third place"
+      ],
+      "correctAnswer": "Second to last",
+      "xpReward": 10,
+      "correctExplanation": "Second to last — you take the passed runner's spot, and they drop to last. Passing near the back works exactly like passing near the front.",
+      "incorrectExplanation": "Not quite — the answer is second to last. You swapped with the runner you passed, so you stand where they stood. 'Last place' would require passing the final runner, and 'first place' confuses overtaking with leading.",
+      "lessonContent": "Overtaking swaps positions at any point in the line.\nBack-of-pack passes follow identical logic to front ones.\n'Pass X' always means standing where X stood.\nSymmetry between race ends defeats the intuition gap.\nShare this: ask someone about a late-race pass tonight.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Electric Train",
+      "question": "An electric train heads north at 80 km/h; the wind blows south at 20 km/h. Which way does the smoke blow?",
+      "choices": [
+        "North",
+        "South",
+        "East",
+        "There is no smoke"
+      ],
+      "correctAnswer": "There is no smoke",
+      "xpReward": 10,
+      "correctExplanation": "Electric trains produce no smoke. The speed and wind details are irrelevant noise designed to trigger a physics calculation on a non-existent phenomenon.",
+      "incorrectExplanation": "Not quite — the answer is there is no smoke. Electric locomotives have no combustion, so no smoke exists to blow. The wind and speed are decorative numbers meant to lure you into a vector calculation.",
+      "lessonContent": "Check whether the phenomenon exists before calculating its behavior.\nDecorative numbers lure solvers into irrelevant math.\n'Electric' is the kill word — it cancels the premise.\nRead for contradictions, not just variables.\nShare this: verify one phenomenon exists before calculating.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#3",
+      "forgeScore": 76
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Birthday Twice",
+      "question": "A girl was 10 on her last birthday and will be 12 on her next birthday. How is this possible?",
+      "choices": [
+        "She was born on February 29",
+        "She skipped a year in school",
+        "She is lying about her age",
+        "Time zones shifted her year"
+      ],
+      "correctAnswer": "She was born on February 29",
+      "xpReward": 10,
+      "correctExplanation": "She was born on February 29, so parties come every four years while age advances yearly. 'Birthday' here counts parties, not years.",
+      "incorrectExplanation": "Actually, the answer is she was born on February 29. A leap-day baby's party count lags her age count, since February 29 returns quadrennially. The puzzle trades on two meanings of 'birthday': annual party versus birth-date anniversary.",
+      "lessonContent": "Words with multiple meanings are lateral levers.\n'Birthday' can mean annual party or birth-date anniversary.\nLeap-day edge cases turn calendar logic sideways.\nCount what is actually being counted.\nShare this: ask a leap-day baby how old they feel.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Dark Room",
+      "question": "You have one match and enter a cold room with a kerosene lamp, a wood stove, and a candle. What do you light first?",
+      "choices": [
+        "The candle",
+        "The kerosene lamp",
+        "The wood stove",
+        "The match"
+      ],
+      "correctAnswer": "The match",
+      "xpReward": 10,
+      "correctExplanation": "The match — you must light the match before you can light anything else. The three appliances compete for attention; the prerequisite hides in plain sight.",
+      "incorrectExplanation": "Not quite — the answer is the match. You cannot light the lamp, stove, or candle without a flame source. The list of three objects is a distractor menu; the true first step is the tool in your hand.",
+      "lessonContent": "Prerequisites hide inside distractor lists.\nBefore choosing among options, check what enables them.\nThe tool in hand often precedes the menu.\nSequence questions: what must happen first?\nShare this: strike one match before choosing tools.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#5",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Two Coins",
+      "question": "Two coins total 30 cents, and one is not a nickel. What are the two coins?",
+      "choices": [
+        "Quarter and nickel",
+        "Dime and nickel",
+        "Two dimes",
+        "Penny and quarter"
+      ],
+      "correctAnswer": "Quarter and nickel",
+      "xpReward": 10,
+      "correctExplanation": "A quarter (25¢) and a nickel (5¢). 'One is not a nickel' refers to the quarter — the other one *is* a nickel. The phrasing excludes exactly one coin from being a nickel.",
+      "incorrectExplanation": "Actually, the answer is quarter and nickel. The statement 'one is not a nickel' is true of the quarter; it does not say 'neither is a nickel.' Scope ambiguity ('one' vs 'both') is the trap.",
+      "lessonContent": "'One is not X' does not mean 'neither is X'.\nScope quantifiers ('one', 'both', 'neither') are literal.\nCheck which object the quantifier actually covers.\nPrecise reading beats pattern guessing.\nShare this: parse one tricky sentence aloud today.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Months' Code",
+      "question": "What occurs once in a minute, twice in a moment, but never in a thousand years?",
+      "choices": [
+        "The letter M",
+        "The letter E",
+        "A second",
+        "A heartbeat"
+      ],
+      "correctAnswer": "The letter M",
+      "xpReward": 10,
+      "correctExplanation": "The letter M — minute has one M, moment has two Ms, thousand years has zero. Pure orthography, not time.",
+      "incorrectExplanation": "Not quite — the answer is the letter M. Count the Ms: mInute (1), moment (2), thousand years (0). The riddle masquerades as a temporal puzzle but is a spelling census.",
+      "lessonContent": "Temporal puzzles often resolve to orthography.\nCount letters when time language appears.\n'Never in X years' often means zero count in that word.\nShift frames from meaning to spelling.\nShare this: count the Ms in your full name.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Plane Crash",
+      "question": "A plane crashes on the exact border of the US and Canada. Where do they bury the survivors?",
+      "choices": [
+        "US soil",
+        "Canadian soil",
+        "International territory",
+        "You do not bury survivors"
+      ],
+      "correctAnswer": "You do not bury survivors",
+      "xpReward": 10,
+      "correctExplanation": "You don't bury survivors — they are alive. The border detail is theater; the verb 'bury' applies only to the dead.",
+      "incorrectExplanation": "Actually, the answer is you do not bury survivors. Survivors, by definition, are living. The border geography is irrelevant theater designed to trigger a jurisdictional debate over a non-existent problem.",
+      "lessonContent": "Definitions dissolve fake dilemmas.\n'Bury' implies dead; 'survivor' implies alive.\nGeographic details often mask category errors.\nCheck the verb against the subject's state.\nShare this: catch one fake dilemma this week.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#8",
+      "forgeScore": 76
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Bearded Barber",
+      "question": "A man shaves every single day, yet he always keeps a full beard. How is this possible?",
+      "choices": [
+        "He shaves other people for a living",
+        "He only shaves one cheek daily",
+        "His beard regrows overnight",
+        "He uses a special cream"
+      ],
+      "correctAnswer": "He shaves other people for a living",
+      "xpReward": 10,
+      "correctExplanation": "He shaves other people for a living — a barber. The verb's object was never stated; solvers supply their own chin.",
+      "incorrectExplanation": "Actually, the answer is he shaves other people for a living. 'Shaves' needs an object the sentence never gives, so readers donate their own face. Occupation splits the actor from the acted-upon.",
+      "lessonContent": "Transitive verbs need objects the text may withhold.\nReaders donate their own face to bare verbs.\nOccupation splits actors from the acted-upon.\nAsk 'shaves whom?' before answering.\nShare this: pose the bearded barber to a friend.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Wetter Dryer",
+      "question": "A bath towel soaks up water while making you dry. What common object gets wetter through the very act of drying?",
+      "choices": [
+        "A sponge",
+        "A desert",
+        "A towel",
+        "A rainbow"
+      ],
+      "correctAnswer": "A towel",
+      "xpReward": 10,
+      "correctExplanation": "A towel — it absorbs water in the act of drying things. The subject and object of 'dries' are different: it dries you, wetting itself.",
+      "incorrectExplanation": "Not quite — the answer is a towel. 'Dries' is transitive here: the towel dries you while getting wetter itself. Sponges are close but the classic answer is the towel; deserts and rainbows play no drying role.",
+      "lessonContent": "Transitive verbs split subject from object.\n'It dries' begs the question: dries what?\nAbsorbers get wetter through their own work.\nFind both parties of every action verb.\nShare this: ask what gets wetter as it dries.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#10",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Rooftop Egg",
+      "question": "A rooster lays an egg on a slanted roof. Which side does it roll down?",
+      "choices": [
+        "Left side",
+        "Right side",
+        "It stays put",
+        "Roosters do not lay eggs"
+      ],
+      "correctAnswer": "Roosters do not lay eggs",
+      "xpReward": 10,
+      "correctExplanation": "Roosters don't lay eggs — only hens do. The slanted roof and rolling physics are a complete distractor built on a false premise.",
+      "incorrectExplanation": "Actually, the answer is roosters do not lay eggs. Male chickens cannot lay eggs; the scenario is impossible before the roof angle matters. Impossible premises make all derived questions moot.",
+      "lessonContent": "Impossible premises nullify all follow-up logic.\nCheck the subject's capabilities before the scenario.\nBiological facts are hard constraints on riddles.\nDecorative physics cannot rescue a broken premise.\nShare this: check one subject's abilities before its scenario.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#11",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Hole Dirt",
+      "question": "How much dirt is in a hole 3 feet deep, 6 feet long, and 4 feet wide?",
+      "choices": [
+        "72 cubic feet",
+        "36 cubic feet",
+        "None — a hole is empty",
+        "24 cubic feet"
+      ],
+      "correctAnswer": "None — a hole is empty",
+      "xpReward": 10,
+      "correctExplanation": "None — a hole, by definition, is the absence of dirt. The dimensions describe the void, not its contents.",
+      "incorrectExplanation": "Not quite — the answer is none. A hole is empty space where dirt used to be. Calculating volume answers 'how much dirt was removed,' not 'how much is in it.'",
+      "lessonContent": "Definitions decide contents: a hole contains absence.\n'How much in' vs 'how much removed' are different questions.\nVoids hold nothing by definition.\nDimensions of absence are still dimensions of absence.\nShare this: describe one void by its dimensions.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Pill Schedule",
+      "question": "A doctor gives you three pills and says to take one every half hour. How long will the pills last?",
+      "choices": [
+        "90 minutes",
+        "30 minutes",
+        "60 minutes",
+        "120 minutes"
+      ],
+      "correctAnswer": "60 minutes",
+      "xpReward": 10,
+      "correctExplanation": "60 minutes — take the first at 0:00, the second at 0:30, the third at 1:00. The interval is between doses, not after the last one.",
+      "incorrectExplanation": "Actually, the answer is 60 minutes. Three doses create two half-hour intervals (0→30, 30→60), not three. Fencepost error: N items make N−1 gaps.",
+      "lessonContent": "N events create N−1 intervals between them.\nFencepost errors hide in scheduling language.\n'Take every X' measures gaps, not total doses.\nCount the gaps, not the pills.\nShare this: count gaps instead of posts once today.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Stamp Dozen",
+      "question": "How many 2-cent stamps are in a dozen?",
+      "choices": [
+        "6",
+        "12",
+        "24",
+        "2"
+      ],
+      "correctAnswer": "12",
+      "xpReward": 10,
+      "correctExplanation": "12 — a dozen is 12, regardless of the stamp's denomination. The price is irrelevant to the count.",
+      "incorrectExplanation": "Not quite — the answer is 12. A dozen means twelve. The '2-cent' detail is a distractor trying to redirect you to division or value calculation.",
+      "lessonContent": "A dozen is always twelve — denomination doesn't change count.\nIrrelevant attributes (price, color, size) don't alter quantities.\nStrip the adjective; the noun carries the number.\nDozen is a count, never a value.\nShare this: price a dozen of something silly.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#14",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Named Fragility",
+      "question": "Name it and you destroy it: what fragile state ends the moment you speak its name?",
+      "choices": [
+        "Glass",
+        "A promise",
+        "Silence",
+        "Trust"
+      ],
+      "correctAnswer": "Silence",
+      "xpReward": 10,
+      "correctExplanation": "Silence — speaking ends it. The answer is the phenomenon itself, not an object that can be broken.",
+      "incorrectExplanation": "Not quite — the answer is silence. Saying the word produces sound, which ends silence. Glass breaks when dropped and promises break when betrayed — only silence breaks by being named.",
+      "lessonContent": "Self-referential acts can invert states.\nNaming a state can instantiate its opposite.\nFragility here is logical, not material.\nCheck whether the verb enacts the noun.\nShare this: hold a ten-second quiet contest with a friend.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The River Crossing",
+      "question": "A man must cross a river with a fox, a chicken, and a sack of grain. The boat holds him plus one item. The fox eats the chicken if left alone; the chicken eats the grain if left alone. What is the minimum number of crossings?",
+      "choices": [
+        "5",
+        "7",
+        "9",
+        "3"
+      ],
+      "correctAnswer": "7",
+      "xpReward": 10,
+      "correctExplanation": "7 crossings. The sequence requires shuttling the chicken back and forth as the 'safe' item: (1) chicken over, (2) return, (3) fox over, (4) chicken back, (5) grain over, (6) return, (7) chicken over. The chicken is the only item that can be left with either other.",
+      "incorrectExplanation": "Not quite — the answer is 7. The chicken is the shuttle: it must be ferried back to separate the other pairs. Three items with two conflict pairs need 2N+1 = 7 trips. Fewer crossings leave a fatal pairing alone.",
+      "lessonContent": "Identify the 'safe' item that tolerates both others.\nShuttle the safe item to break conflict pairs.\nN conflicting pairs with one safe item needs 2N+1 crossings.\nDraw the state graph before counting trips.\nShare this: ferry one conflict apart this week.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Calendar Puzzle",
+      "question": "Some months have 30 days, some have 31. How many have 28?",
+      "choices": [
+        "One — February",
+        "None — February has 29 in leap years",
+        "Twelve — all of them",
+        "Six — the short months"
+      ],
+      "correctAnswer": "Twelve — all of them",
+      "xpReward": 10,
+      "correctExplanation": "All twelve months reach day 28 — February stops near there while the rest continue past it. The question asks 'at least 28,' not 'exactly 28.'",
+      "incorrectExplanation": "Actually, the answer is twelve — all of them. Every month reaches day 28. The trap is hearing '28 days' and thinking 'February only,' but 30- and 31-day months also contain days 1 through 28.",
+      "lessonContent": "'How many have X' means 'at least X' unless 'exactly X' is stated.\nThreshold questions include all who clear the bar.\nFebruary is the minimum, not the only one.\nThreshold thinking beats equality thinking.\nShare this: ask how many months have 28 days.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#17",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Penguin Flight",
+      "question": "Penguins are birds. Birds fly. Therefore penguins fly. What is wrong with this argument?",
+      "choices": [
+        "Penguins are not birds",
+        "The premise 'birds fly' is false as a universal",
+        "The conclusion is true for most birds",
+        "Logic does not apply to animals"
+      ],
+      "correctAnswer": "The premise 'birds fly' is false as a universal",
+      "xpReward": 10,
+      "correctExplanation": "The premise 'birds fly' is a generalization with exceptions (penguins, ostriches, kiwis). Universal premises require zero counterexamples; one breaks the chain.",
+      "incorrectExplanation": "Not quite — the answer is the premise 'birds fly' is false as a universal. Logic is valid (if all birds fly, and penguins are birds, then penguins fly), but soundness fails because the first premise is not universally true. Validity ≠ soundness.",
+      "lessonContent": "Validity needs true premises; soundness needs both.\nGeneralisations with exceptions are not universal premises.\nOne counterexample breaks 'all'.\nCheck premises before trusting the chain.\nShare this: test one universal claim for exceptions.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Headless Body",
+      "question": "Heads on one face, tails on the other, and no torso anywhere. What pocket object fits this anatomy?",
+      "choices": [
+        "A snake",
+        "A hammer",
+        "A river",
+        "A coin"
+      ],
+      "correctAnswer": "A coin",
+      "xpReward": 10,
+      "correctExplanation": "A coin — heads and tails with no body between. Body-part words name coin faces, not anatomy.",
+      "incorrectExplanation": "Not quite — the answer is a coin. Heads and tails are the two faces; 'body' has no referent at all. Snakes, hammers, and rivers each own real bodies or flows — only the coin fits all three clues.",
+      "lessonContent": "Body-part words often name faces, not anatomy.\nHeads and tails are a small disc's entire vocabulary.\n'No body' eliminates every living candidate.\nMatch all three clues before committing.\nShare this: ask what has a head and tail tonight.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Family Photo",
+      "question": "A man looks at a photo and says, 'Brothers and sisters I have none, but this man's father is my father's son.' Who is in the photo?",
+      "choices": [
+        "His father",
+        "His son",
+        "His grandfather",
+        "Himself"
+      ],
+      "correctAnswer": "His son",
+      "xpReward": 10,
+      "correctExplanation": "His son. 'My father's son' with no brothers = me. So 'this man's father is me' → the man in the photo is my son.",
+      "incorrectExplanation": "Actually, the answer is his son: with no brothers, 'my father's son' means me, so the photo-man's father is me. Substitute inward and the chain resolves.",
+      "lessonContent": "Substitute known equals step by step.\n'No brothers' collapses 'my father's son' to 'me'.\nChain relations by replacing each link.\nWork inside-out on nested kinship phrases.\nShare this: solve one kinship chain inside-out.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Lift Button",
+      "question": "A man lives on the 10th floor. Every morning he takes the elevator to the ground floor. Returning, if it's raining or others are in the lift, he goes to 10; otherwise he goes to 7 and walks up three flights. Why?",
+      "choices": [
+        "He likes exercise on clear days",
+        "He is too short to reach the 10 button",
+        "The 10 button is broken on sunny days",
+        "He fears heights above floor 7"
+      ],
+      "correctAnswer": "He is too short to reach the 10 button",
+      "xpReward": 10,
+      "correctExplanation": "He's too short to reach the 10 button. Rain brings an umbrella (extends reach) or other passengers (press for him). On clear solo days, 7 is the highest he can reach.",
+      "incorrectExplanation": "Actually, the answer is he is too short to reach the 10 button. The umbrella or other riders solve the reach problem; alone on dry days, he maxes at 7. The behavior is a practical workaround, not a preference or phobia.",
+      "lessonContent": "Physical constraints explain behavioral patterns.\nTools (umbrella) and social help (others) extend reach.\n'Always' vs 'sometimes' reveals the condition.\nWork backward from the exception to the constraint.\nShare this: work backward from one odd habit.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Weighty Feathers",
+      "question": "Which is heavier: a kilogram of lead or a kilogram of feathers?",
+      "choices": [
+        "Lead — it's denser",
+        "Feathers — they take more space",
+        "They are equal — both are one kilogram",
+        "Depends on the scale"
+      ],
+      "correctAnswer": "They are equal — both are one kilogram",
+      "xpReward": 10,
+      "correctExplanation": "Equal — a kilogram is a kilogram. Density differs, volume differs, mass is identical by definition.",
+      "incorrectExplanation": "Not quite — they are equal. The question fixes the mass (1 kg) for both; density and volume vary, but weight (mass × gravity) is the same. The intuition 'lead feels heavier' confuses density with mass.",
+      "lessonContent": "Equal mass means equal weight — density is a different property.\nDefinitions fix the compared quantity; intuition switches it.\n'Heavier' in daily speech often means denser.\nLock the variable before comparing.\nShare this: weigh one intuition against its definition.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#22",
+      "forgeScore": 76
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Sibling Count",
+      "question": "A girl has as many brothers as sisters. Each brother has twice as many sisters as brothers. How many brothers and sisters are in the family?",
+      "choices": [
+        "3 brothers, 4 sisters",
+        "4 brothers, 3 sisters",
+        "2 brothers, 3 sisters",
+        "3 brothers, 3 sisters"
+      ],
+      "correctAnswer": "3 brothers, 4 sisters",
+      "xpReward": 10,
+      "correctExplanation": "4 sisters, 3 brothers: the girl sees 3-and-3 excluding herself, while each boy sees 4 sisters and 2 brothers. Two viewpoints, two equations, one family.",
+      "incorrectExplanation": "Actually, the answer is 3 brothers, 4 sisters. Girl sees 3 brothers, 3 sisters (excluding herself) → equal. Boy sees 4 sisters, 2 brothers (excluding himself) → sisters are twice brothers. The two perspectives give two equations.",
+      "lessonContent": "Perspective shifts the counts (exclude self each time).\nWrite equations from each role's viewpoint.\nSisters = brothers from girl → S−1 = B.\nSisters = 2×brothers from boy → S = 2(B−1).\nShare this: solve one family puzzle per viewpoint.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Clock Strike",
+      "question": "A clock strikes 6 times in 5 seconds. How long does it take to strike 12 at the same rate?",
+      "choices": [
+        "10 seconds",
+        "11 seconds",
+        "12 seconds",
+        "5 seconds"
+      ],
+      "correctAnswer": "11 seconds",
+      "xpReward": 10,
+      "correctExplanation": "11 seconds: six strikes make 5 one-second gaps, so twelve strikes make 11 gaps. Count intervals, not strikes.",
+      "incorrectExplanation": "Not quite — the answer is 11 seconds. Strikes are points; seconds live in the gaps between them. Six strikes give 5 gaps of one second, so twelve give 11.",
+      "lessonContent": "N events create N−1 intervals — the fencepost rule.\nStrikes are points; time lives in the gaps.\nRate = interval duration, not event duration.\nCount gaps, not ticks.\nShare this: count gaps, not posts, in one schedule.",
+      "lessonGroup": "Lateral Leaps",
+      "forgeId": "batch-111#24",
+      "forgeScore": 100
+    }
+  ]
+}

@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-053",
+  "generatedAt": "2026-09-17T13:27:42.116Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Silent Universe",
+      "question": "A person demands the universe explain why they suffer; the universe answers with weather. What is this collision of human need and cosmic silence called?",
+      "choices": [
+        "The absurd",
+        "The tragic flaw",
+        "The uncanny",
+        "Original sin"
+      ],
+      "correctAnswer": "The absurd",
+      "xpReward": 50,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. The absurd is not in either party alone — it is the gap between our demand for meaning and a world that never answers.",
+      "incorrectExplanation": "The answer is the absurd. The term names the mismatch, not the universe's cruelty and not our foolishness: both sides of the collision are doing what they do. Camus builds his whole philosophy on mapping this gap honestly.",
+      "lessonContent": "Absurdity names a relationship, not a thing in the world.\nHuman beings ask for ultimate meaning; the cosmos declines to answer.\nThat gap is the philosophical starting point.\nHonesty about the silence precedes any life philosophy worth having.\nShare this: ask someone tonight whether the universe owes anyone an explanation.",
+      "forgeId": "batch-053#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Boulder's Return",
+      "question": "The gods condemn Sisyphus to roll a boulder uphill forever, watching it roll back each time. What makes him the absurd hero rather than a victim?",
+      "choices": [
+        "He accepts the task as his own without false hope",
+        "He learns to enjoy physical exercise eventually",
+        "He discovers a trick to escape the mountain",
+        "He earns the gods' pity and a pardon"
+      ],
+      "correctAnswer": "He accepts the task as his own without false hope",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. His scorn and ownership — not rescue — turn the punishment into his own life. The struggle fills his heart, and that is enough.",
+      "incorrectExplanation": "The answer is: he accepts the task as his own without false hope. No escape or divine apology arrives; the victory is internal. Camus insists the moment of descent, when Sisyphus owns his fate, is stronger than the rock.",
+      "lessonContent": "Ownership of a fate can transform it without changing a single fact.\nScorn for a punishment is a form of victory over it.\nThe mountain stays; the relationship to the mountain flips.\nNo rescue is required for dignity.\nShare this: name one unavoidable task you could adopt rather than merely endure.",
+      "forgeId": "batch-053#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Living the Answer",
+      "question": "Confronted with the silent universe, what response does Camus's absurd person choose?",
+      "choices": [
+        "Live fully without demanding cosmic justification",
+        "Retreat into a monastery and await revelation",
+        "Declare nothing matters and stop moving",
+        "File complaints until the universe responds"
+      ],
+      "correctAnswer": "Live fully without demanding cosmic justification",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Neither despair nor fake comfort: keep living, keep feeling, keep the question open.",
+      "incorrectExplanation": "The answer is: live fully without demanding cosmic justification. The absurd person refuses both exits — giving up and pretending an answer exists. The lack of cosmic meaning does not cancel personal intensity; it frees it.",
+      "lessonContent": "Between despair and false comfort lies a third road: lucid living.\nRefusing both exits is a discipline, not a mood.\nUnanswered questions can coexist with full days.\nThe open question itself becomes a way of life.\nShare this: hold one unanswerable question tonight while still enjoying dinner.",
+      "forgeId": "batch-053#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Premature Leap",
+      "question": "A friend cannot bear the silence of the universe, so he adopts a rigid doctrine overnight and stops questioning. Cames calls this move what?",
+      "choices": [
+        "Philosophical suicide",
+        "Rational conversion",
+        "Healthy coping",
+        "Intellectual maturity"
+      ],
+      "correctAnswer": "Philosophical suicide",
+      "xpReward": 50,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. The tension is not resolved but buried — the questioning self is killed to purchase comfort.",
+      "incorrectExplanation": "The answer is philosophical suicide. The leap to false certainty does not answer the absurd; it amputates the part of you that noticed it. Comfort purchased by ending inquiry is what the phrase names.",
+      "lessonContent": "Adopting certainty to escape discomfort ends the conversation inside you.\nUnresolved tension can be carried honestly.\nBelief chosen for relief differs from belief earned by inquiry.\nWatch for the moment questioning starts feeling dangerous.\nShare this: notice tonight when you or a friend closes a question for comfort's sake.",
+      "forgeId": "batch-053#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Revolt Within",
+      "question": "What does revolt mean in the absurd life — its first consequence?",
+      "choices": [
+        "Daily defiance of the absurd by refusing false exits",
+        "Political rebellion against every government",
+        "Angry denial that the silence exists",
+        "Quiet resignation to whatever happens"
+      ],
+      "correctAnswer": "Daily defiance of the absurd by refusing false exits",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Revolt is the sustained refusal to lie about the human condition — no hope crutches, no surrender.",
+      "incorrectExplanation": "The answer is: daily defiance of the absurd by refusing false exits. It is a standing posture, not a single uprising. Every morning the absurd person declines both despair and illusion, and that repetition is the revolt.",
+      "lessonContent": "Revolt can be a private, repeated stance rather than a public event.\nRefusing to lie about your condition is a daily act.\nConsistency matters more than intensity.\nDefiance without an audience still counts.\nShare this: practice one honest refusal of a comfortable illusion today.",
+      "forgeId": "batch-053#4",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Freedom From Hope",
+      "question": "What kind of freedom does accepting the absurd unlock, according to Camus's second consequence?",
+      "choices": [
+        "Freedom from living for a later, better life",
+        "Freedom from all work and obligation",
+        "Freedom from ever feeling pain again",
+        "Freedom to break every moral rule"
+      ],
+      "correctAnswer": "Freedom from living for a later, better life",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. With no promised beyond, nothing is deferred: the present stops being a waiting room.",
+      "incorrectExplanation": "The answer is: freedom from living for a later, better life. Letting go of ultimate purposes releases you from postponement. The absurd person is free precisely because nothing is owed to a future that has not been promised.",
+      "lessonContent": "Living for later quietly taxes the present.\nRelease from deferred living is a real, usable freedom.\nWaiting rooms are places we build and then inhabit.\nThe present is the only currency actually issued.\nShare this: catch yourself postponing joy today and spend one hour instead.",
+      "forgeId": "batch-053#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Third Consequence",
+      "question": "Revolt, freedom, and passion are Camus's three consequences of the absurd. What does passion demand here?",
+      "choices": [
+        "Maximum intensity packed into this one life",
+        "Romantic obsession with one person forever",
+        "Feverish travel until money runs out",
+        "Emotional storms displayed to everyone"
+      ],
+      "correctAnswer": "Maximum intensity packed into this one life",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. If no eternity balances the books, then quantity and vividness of experience become the wealth worth chasing.",
+      "incorrectExplanation": "The answer is: maximum intensity packed into this one life. Passion here means quantity of lived experience — more seeing, more feeling, more encounters — not theatrical emotion. One life, no refunds, so burn it wide awake.",
+      "lessonContent": "Passion as a philosophical term means appetite for experience itself.\nFinite lives raise the stakes on attention.\nIntensity is a choice available on ordinary Tuesdays.\nWealth can be measured in vivid days.\nShare this: rate yesterday on vividness, then plan one brighter hour today.",
+      "forgeId": "batch-053#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Imagining Him Happy",
+      "question": "Camus closes his essay: one must imagine Sisyphus happy. What is the reader being asked to accept?",
+      "choices": [
+        "Happiness is possible inside the struggle, not after it",
+        "Happiness arrives once the gods apologize",
+        "Happiness is a myth told to calm the punished",
+        "Happiness belongs only to those with lighter boulders"
+      ],
+      "correctAnswer": "Happiness is possible inside the struggle, not after it",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. The happiness is not a reward at the summit — it belongs to the climb and the man who owns it.",
+      "incorrectExplanation": "The answer is: happiness is possible inside the struggle, not after it. The sentence refuses every deferred-happiness scheme. If joy requires the boulder to stop rolling, it will never come; if it can live in the pushing, it is always available.",
+      "lessonContent": "Deferred happiness schemes postpone joy to summits that keep moving.\nHappiness located inside effort cannot be confiscated by outcomes.\nImagination is doing philosophical work, not fantasizing.\nThe struggle toward the heights is enough to fill a heart.\nShare this: find one happiness today that requires no result.",
+      "forgeId": "batch-053#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Office Boulder",
+      "question": "A clerk performs the same tasks daily for decades, feeling the repetition like a stone. What is the absurd response to this grind?",
+      "choices": [
+        "Adopt the routine as chosen rather than hope it transforms",
+        "Believe a promotion will end repetition forever",
+        "Numb himself until retirement arrives",
+        "Resent every colleague who seems content"
+      ],
+      "correctAnswer": "Adopt the routine as chosen rather than hope it transforms",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. The boulder does not shrink — the pusher's relationship to it changes, and that is where freedom lives.",
+      "incorrectExplanation": "The answer is: adopt the routine as chosen rather than hope it transforms. Waiting for the routine to become meaningful through external rescue is the trap. Choosing it — eyes open — converts sentence into practice.",
+      "lessonContent": "Repetition is the raw material of most lives.\nThe lever that changes is ownership, not circumstance.\nHoping for rescue keeps the days mortgaged.\nAdoption converts routine from sentence to sculpture.\nShare this: choose one routine task today as if you had picked it freely.",
+      "forgeId": "batch-053#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Serious Question",
+      "question": "Camus opens his essay calling life's worth the one truly serious philosophical problem. What is his eventual position?",
+      "choices": [
+        "Life is worth living fully, even without cosmic guarantees",
+        "Life's worth is objectively proven by logic",
+        "The question is unanswerable and should be dropped",
+        "Worth depends entirely on circumstances"
+      ],
+      "correctAnswer": "Life is worth living fully, even without cosmic guarantees",
+      "xpReward": 50,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. He answers yes — not by proving meaning exists, but by showing the unproven life can still be lived magnificently.",
+      "incorrectExplanation": "The answer is: life is worth living fully, even without cosmic guarantees. The yes is wagered on lucidity, intensity, and revolt rather than on a metaphysical receipt. Living becomes the argument.",
+      "lessonContent": "Some questions are answered by living rather than proving.\nA wager on intensity is still a serious answer.\nThe absence of guarantees does not settle the verdict.\nHow one lives can be the reply to why.\nShare this: write one sentence tonight on what keeps your yes standing.",
+      "forgeId": "batch-053#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Counting Differently",
+      "question": "How does the absurd person measure the value of experience, according to Camus?",
+      "choices": [
+        "By the number and vividness of fully lived moments",
+        "By moral purity accumulated over decades",
+        "By wealth gathered and bequeathed",
+        "By suffering endured without complaint"
+      ],
+      "correctAnswer": "By the number and vividness of fully lived moments",
+      "xpReward": 50,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. With eternity off the table, quality of consciousness becomes the honest ledger.",
+      "incorrectExplanation": "The answer is: by the number and vividness of fully lived moments. Camus explicitly says the absurd does not divide quality from quantity — one intense hour counts more than a dulled year. Attention is the unit of wealth.",
+      "lessonContent": "Without eternity, the ledger of a life changes currency.\nMoments of vivid presence become countable wealth.\nQuantity of experience and quality collapse into one measure.\nAttention is the mint that issues these coins.\nShare this: mint one fully attended moment today and mark it.",
+      "forgeId": "batch-053#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Serial Lover",
+      "question": "Why does Camus defend Don Juan, the serial seducer, as an absurd figure rather than a hollow one?",
+      "choices": [
+        "He lives his passion fully, free of illusions about forever",
+        "He secretly plans to settle down at the end",
+        "He suffers more deeply than faithful lovers do",
+        "He proves romance is meaningless for everyone"
+      ],
+      "correctAnswer": "He lives his passion fully, free of illusions about forever",
+      "xpReward": 50,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Knowing every love is finite, he burns each one completely — lucid, not cynical.",
+      "incorrectExplanation": "The answer is: he lives his passion fully, free of illusions about forever. The absurd reading rejects both the moral scolding and the romantic rescue. Don Juan is a case study in loving without the anesthesia of forever.",
+      "lessonContent": "Finitude can intensify rather than cheapen experience.\nLoving without guarantees is a discipline of presence.\nLucidity and passion can share one heart.\nLiterary villains sometimes carry serious philosophy.\nShare this: love one person or pursuit today without asking it to be eternal.",
+      "forgeId": "batch-053#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Actor's Hours",
+      "question": "Camus lists the stage actor among absurd heroes. What earns the actor that title?",
+      "choices": [
+        "Crowding whole lifetimes into hours, knowing it is play",
+        "Becoming psychologically unable to leave roles",
+        "Earning applause that outlives death",
+        "Proving performance equals real life exactly"
+      ],
+      "correctAnswer": "Crowding whole lifetimes into hours, knowing it is play",
+      "xpReward": 50,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. The actor lives many fates at full volume while never forgetting the curtain — maximum experience, zero illusion.",
+      "incorrectExplanation": "The answer is: crowding whole lifetimes into hours, knowing it is play. The actor's genius is lucid commitment: everything felt, nothing believed permanent. That double stance is the absurd life compressed into an evening.",
+      "lessonContent": "Commitment and lucidity can coexist — that is the actor's secret.\nPlaying wholeheartedly while knowing it is play is a skill.\nMultiple fates can be lived inside one life.\nThe curtain's existence does not spoil the performance.\nShare this: enter one activity today fully, while smiling at its impermanence.",
+      "forgeId": "batch-053#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Conqueror's Smile",
+      "question": "Camus's conqueror throws himself into history, knowing glory fades. What makes his stance absurd rather than merely ambitious?",
+      "choices": [
+        "He seizes the game while fully aware it ends in dust",
+        "He believes conquest will last a thousand years",
+        "He fights only when victory is guaranteed",
+        "He abandons action for endless contemplation"
+      ],
+      "correctAnswer": "He seizes the game while fully aware it ends in dust",
+      "xpReward": 50,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Total engagement plus total lucidity — no illusion softening the end, no paralysis from it.",
+      "incorrectExplanation": "The answer is: he seizes the game while fully aware it ends in dust. The conqueror fails as an absurd figure only when he starts believing in permanence. Engagement without the anesthesia of legacy is the posture being described.",
+      "lessonContent": "Engagement and impermanence are not enemies.\nActing wholeheartedly inside a losing game is a stance.\nLegacy-hunger quietly corrupts present action.\nLucidity about endings can sharpen rather than dull the game.\nShare this: pursue one goal today for the playing, not the plaque.",
+      "forgeId": "batch-053#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Creating Anyway",
+      "question": "Why does Camus call creating art the finest absurd activity?",
+      "choices": [
+        "It imposes human form on a world that supplies none",
+        "It guarantees the artist's name survives",
+        "It reveals the universe's hidden blueprint",
+        "It distracts from the pain of thinking"
+      ],
+      "correctAnswer": "It imposes human form on a world that supplies none",
+      "xpReward": 50,
+      "lessonGroup": "Poet's Corner",
+      "correctExplanation": "Exactly. The absurd creator builds shape and shout while knowing nothing is ultimately preserved — form as revolt.",
+      "incorrectExplanation": "The answer is: it imposes human form on a world that supplies none. Creation is the clearest instance of revolt: the maker knows the silence, and answers with a made thing anyway. The work is the argument, not a monument.",
+      "lessonContent": "Making things is an answer that needs no cosmic approval.\nForm imposed on formlessness is a primal human revolt.\nThe value of creating sits in the act, not the archive.\nArt can hold lucidity and joy simultaneously.\nShare this: make one small thing today and release its outcome.",
+      "forgeId": "batch-053#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Hope's Steep Price",
+      "question": "Camus warns against hope for another life. What does such hope quietly do, in his account?",
+      "choices": [
+        "Drains investment from the life actually being lived",
+        "Strengthens every present commitment immeasurably",
+        "Has no effect on daily behavior whatsoever",
+        "Only harms people who think about it too much"
+      ],
+      "correctAnswer": "Drains investment from the life actually being lived",
+      "xpReward": 50,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Hope for elsewhere functions as an exit — and every exit is a small betrayal of the present.",
+      "incorrectExplanation": "The answer is: drains investment from the life actually being lived. The critique is not aimed at hope's kindness but at its deferral: living as rehearsal for a later show means the real performance never starts.",
+      "lessonContent": "Hope aimed elsewhere can quietly underfund today.\nRehearsal-living postpones the only show currently running.\nExits, however sweet, are still exits.\nAuditing where hope points is a practical exercise.\nShare this: check tonight which of your hopes point at this life.",
+      "forgeId": "batch-053#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Two Sons of Earth",
+      "question": "Camus writes that happiness and the absurd are two sons of the same earth. What does the pairing mean?",
+      "choices": [
+        "Refusing false hopes returns intensity to ordinary joys",
+        "Misery is mandatory before joy becomes legal",
+        "Happiness proves the universe secretly cares",
+        "The absurd and happiness cancel each other out"
+      ],
+      "correctAnswer": "Refusing false hopes returns intensity to ordinary joys",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. The same lucidity that faces the silence also undilutes the morning, the sea, the friend at the table.",
+      "incorrectExplanation": "The answer is: refusing false hopes returns intensity to ordinary joys. The brothers share one parent: clear sight. Seeing that nothing is guaranteed makes the guaranteed nothing of a summer evening enormous.",
+      "lessonContent": "Lucidity about limits and capacity for joy grow from the same root.\nClear sight concentrates rather than spoils delight.\nOrdinary pleasures are the absurd person's treasury.\nJoy needs no metaphysical receipt to be real.\nShare this: enjoy one ordinary pleasure tonight as if it were the last of its kind.",
+      "forgeId": "batch-053#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Limit That Urges",
+      "question": "What role does death play in the absurd life, according to Camus?",
+      "choices": [
+        "It sets the limit that makes living urgent and precious",
+        "It is a doorway to be prepared for eagerly",
+        "It renders all effort meaningless retroactively",
+        "It should never be thought about at all"
+      ],
+      "correctAnswer": "It sets the limit that makes living urgent and precious",
+      "xpReward": 50,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Death is the final absurd fact — and precisely the deadline that concentrates rather than erases value.",
+      "incorrectExplanation": "The answer is: it sets the limit that makes living urgent and precious. Camus refuses both terror and longing about death. The frame's hard edge is what makes the picture inside matter; a canvas without edges holds no image.",
+      "lessonContent": "Limits create value the way frames create paintings.\nUrgency and gratitude grow from the same boundary.\nRefusing both terror and fantasy about death is possible.\nA finite day is a sharpened day.\nShare this: let one deadline today sharpen rather than frighten you.",
+      "forgeId": "batch-053#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Stranger's Tears",
+      "question": "In The Stranger, Meursault refuses to perform grief at his mother's funeral because he does not feel it. What does Camus highlight through him?",
+      "choices": [
+        "Authenticity that refuses to counterfeit feeling",
+        "Cruelty that deserves society's punishment",
+        "Sadness that finally arrives too late",
+        "A hero who learns to weep properly at the end"
+      ],
+      "correctAnswer": "Authenticity that refuses to counterfeit feeling",
+      "xpReward": 50,
+      "lessonGroup": "Poet's Corner",
+      "correctExplanation": "Exactly. Society condemns the man who will not lie about his inner weather — the honesty is the scandal.",
+      "incorrectExplanation": "The answer is: authenticity that refuses to counterfeit feeling. Meursault's crime in the court's eyes is refusing the script of mourning. Camus makes the mismatch between social ritual and honest sensation the whole novel's engine.",
+      "lessonContent": "Social scripts often demand feelings on schedule.\nRefusing to counterfeit inner weather has real costs.\nAuthenticity and convention frequently collide at funerals and weddings.\nLiterature can put honesty itself on trial.\nShare this: notice one moment today when a script asks for feelings you lack.",
+      "forgeId": "batch-053#18",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Emperor's Chase",
+      "question": "In Camus's play, Caligula seizes absolute power and chases the impossible to escape the human condition. What is his fatal error?",
+      "choices": [
+        "Mistaking limitless will for a cure for mortality",
+        "Trusting the wrong senators for too long",
+        "Failing to conquer enough neighboring empires",
+        "Loving too sincerely for politics"
+      ],
+      "correctAnswer": "Mistaking limitless will for a cure for mortality",
+      "xpReward": 50,
+      "lessonGroup": "Poet's Corner",
+      "correctExplanation": "Right. Power without limit still meets the one limit — death — and madness follows the collision.",
+      "incorrectExplanation": "The answer is: mistaking limitless will for a cure for mortality. Caligula discovers the sky's silence and tries to command the moon. The play charts what happens when the absurd is answered with tyranny instead of lucidity.",
+      "lessonContent": "Total power still meets the boundary all humans meet.\nTrying to outrun the human condition corrupts absolutely.\nThe impossible pursued as policy becomes cruelty.\nWisdom begins where command over existence ends.\nShare this: name one boundary today that no effort of yours will move.",
+      "forgeId": "batch-053#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Plague's Lesson",
+      "question": "When plague quarantines Oran in Camus's novel, what response does the book ultimately honor?",
+      "choices": [
+        "Common decency practiced together in the dark",
+        "Prayer alone, since medicine is helpless",
+        "Escape by any means available",
+        "Waiting passively for the sickness to pass"
+      ],
+      "correctAnswer": "Common decency practiced together in the dark",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Not heroics, not sermons — doctors and volunteers doing unglamorous care work side by side.",
+      "incorrectExplanation": "The answer is: common decency practiced together in the dark. The novel locates meaning in shared, stubborn effort against a common suffering. Decency, repeated daily, becomes the whole philosophy in miniature.",
+      "lessonContent": "Crises reveal which values were load-bearing all along.\nDecency practiced in company outlasts sermons and heroics.\nMeaning can be manufactured collectively, elbow to elbow.\nShared struggle is a kind of answer to silence.\nShare this: join one unglamorous collective effort this week.",
+      "forgeId": "batch-053#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "From I to We",
+      "question": "Camus's thought moves from solitary revolt toward human solidarity. What drives that evolution?",
+      "choices": [
+        "Recognizing that others share the same condition",
+        "Growing tired of thinking for himself",
+        "Discovering a proof of universal meaning",
+        "Political pressure from his publishers"
+      ],
+      "correctAnswer": "Recognizing that others share the same condition",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. The absurd is a shared address — once noticed, others' suffering becomes impossible to fence off.",
+      "incorrectExplanation": "The answer is: recognizing that others share the same condition. What begins as one person's clear sight widens: everyone lives under the same silence. Solidarity is the social form of lucidity.",
+      "lessonContent": "Private insight, followed honestly, tends to widen toward others.\nShared conditions are the ground of solidarity.\nRevolt matures when it notices company.\nEmpathy can grow from philosophy, not against it.\nShare this: name one stranger today who shares a silent struggle of yours.",
+      "forgeId": "batch-053#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Present Fortress",
+      "question": "For the absurd person, what is the relationship to time?",
+      "choices": [
+        "The present is the only real estate owned",
+        "The past is the only trustworthy teacher",
+        "The future deserves most of today's energy",
+        "Time is an illusion to be transcended"
+      ],
+      "correctAnswer": "The present is the only real estate owned",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Nostalgia and expectation are rentals; the absurd person builds only where they stand.",
+      "incorrectExplanation": "The answer is: the present is the only real estate owned. The absurd life is an economy of now: the past is inventory, the future is speculation, and attention spent elsewhere is spent nowhere.",
+      "lessonContent": "Present-focus can be an economic decision, not escapism.\nNostalgia and fantasy both charge rent for empty rooms.\nAttention is the currency of ownership.\nBuilding where you stand beats waiting for better ground.\nShare this: invest one full hour of attention in the current hour.",
+      "forgeId": "batch-053#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Sun Over Doctrine",
+      "question": "Meursault's deepest joys are physical — the sea, sunlight, the feel of evening air. What does Camus signal through these moments?",
+      "choices": [
+        "Meaning is found in sensation before any doctrine",
+        "Nature secretly encodes moral instructions",
+        "The body is a distraction from higher truths",
+        "Weather determines human fate mechanically"
+      ],
+      "correctAnswer": "Meaning is found in sensation before any doctrine",
+      "xpReward": 50,
+      "lessonGroup": "Poet's Corner",
+      "correctExplanation": "Right. The novel's theology is solar and marine: the felt world delivers what sermons cannot.",
+      "incorrectExplanation": "The answer is: meaning is found in sensation before any doctrine. Meursault's honest religion is the afternoon. Camus places revelation in salt water and light — experience first, theory a distant second.",
+      "lessonContent": "The senses deliver a primary kind of meaning.\nBodies know things before doctrines approve them.\nSunlight and water are legitimate philosophical evidence.\nExperience-first thinking grounds abstract ideas.\nShare this: let one purely physical pleasure argue its case today.",
+      "forgeId": "batch-053#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Happy Defiance",
+      "question": "What does the famous closing demand actually ask of a reader — that we imagine Sisyphus happy?",
+      "choices": [
+        "That happiness be treated as possible inside, not despite, struggle",
+        "That readers pity Sisyphus from a safe distance",
+        "That suffering be redefined as entertainment",
+        "That readers await a sequel where he escapes"
+      ],
+      "correctAnswer": "That happiness be treated as possible inside, not despite, struggle",
+      "xpReward": 50,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. The sentence is a discipline: picture joy coexisting with the rock, and your own burdens become habitable.",
+      "incorrectExplanation": "The answer is: that happiness be treated as possible inside, not despite, struggle. The imagination exercise reprograms what the reader believes joy requires. Once you can see him happy, fewer excuses remain for your own postponed life.",
+      "lessonContent": "Imagination exercises can revise what happiness requires.\nEnvy and pity both keep the struggling at a distance.\nPicturing joy inside hardship is a practice, not a theory.\nYour own boulder becomes lighter when his becomes thinkable.\nShare this: picture one struggling person happy today — then reread your own morning.",
+      "forgeId": "batch-053#24",
+      "forgeScore": 100
+    }
+  ]
+}

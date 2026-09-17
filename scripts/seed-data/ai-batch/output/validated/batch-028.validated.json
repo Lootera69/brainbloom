@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-028",
+  "generatedAt": "2026-09-17T13:27:41.681Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Small Payment",
+      "question": "Two employees privately dislike a dull task but must tell a new hire it was enjoyable. One receives $5, the other $500. If both comply freely, dissonance theory predicts the $5 employee is more likely to later report genuinely liking the task.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. The small payment supplies weak external justification, leaving more pressure to align private attitude with the voluntary statement.",
+      "incorrectExplanation": "It is True. A large payment explains the lie without requiring inner change; a small payment leaves 'I chose to say it' in conflict with 'I disliked it,' making attitude revision a route to consistency.",
+      "lessonContent": "Counter-attitudinal behaviour creates tension when it feels freely chosen.\nStrong external rewards explain compliance and can reduce the need for internal change.\nWeak external justification leaves the person to supply a reason from within.\nThe key comparison is not reward versus no reward, but sufficient versus insufficient explanation.\nShare this: notice whether your reason for an unwanted action came from outside or was invented afterward.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Brutal Initiation",
+      "question": "A club randomly assigns equally committed applicants to an easy or humiliating initiation, then gives everyone the same mediocre club experience. If the hard-initiation group praises the club more, that result by itself proves the club experience was objectively better for them.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Greater praise can be effort justification: devaluing the club would make the voluntarily endured humiliation feel pointless.",
+      "incorrectExplanation": "It is False. Random assignment and an identical club experience remove objective quality as the likely cause; the extra effort creates pressure to elevate the outcome so the sacrifice feels warranted.",
+      "lessonContent": "Effort justification can increase liking for outcomes that follow costly voluntary entry.\nThe mind protects a sacrifice by upgrading what the sacrifice supposedly purchased.\nRandom assignment helps separate prior enthusiasm from effects of the ordeal itself.\nPraise after hardship is therefore not clean evidence of quality.\nShare this: ask whether one thing you value is excellent or merely expensive in effort.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Forced Speech",
+      "question": "A student is threatened with expulsion unless she publicly defends a policy she opposes. Because her speech contradicts her belief, classic dissonance theory predicts more private attitude change than if she had delivered it voluntarily for a token reward.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. The severe threat fully explains her behaviour; voluntary advocacy with little external justification creates the stronger need for internal reconciliation.",
+      "incorrectExplanation": "It is False. Contradiction alone is not enough: perceived choice matters. Coercion lets the student say, accurately, 'I did it because I had to,' whereas lightly rewarded choice leaves more inconsistency attached to the self.",
+      "lessonContent": "Dissonance depends on personal responsibility, not merely observable inconsistency.\nCoercion supplies an external account that protects the original attitude.\nFreedom of choice makes behaviour more diagnostic of the self.\nMinimal incentives can therefore produce more attitude change than overwhelming pressure.\nShare this: separate what you chose from what circumstances made unavoidable today.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "After the Choice",
+      "question": "After choosing between two equally attractive jobs, Maya later emphasizes the chosen job's strengths and the rejected job's flaws. This pattern can reduce dissonance even if neither employer has changed since her decision.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Spreading the alternatives makes the completed choice feel less conflicted by increasing psychological distance between the options.",
+      "incorrectExplanation": "It is True. A difficult choice preserves attractive rejected features and unattractive chosen ones; re-evaluating both options after commitment reduces that residual conflict without any new external facts.",
+      "lessonContent": "Difficult decisions leave behind the advantages of what was rejected and costs of what was chosen.\nPost-decision revaluation can widen an initially narrow gap between options.\nThis protects confidence but can disguise how close the original choice really was.\nRecords made before choosing preserve preferences before consistency work begins.\nShare this: compare your reasons before and after one recent irreversible choice.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Failed Forecast",
+      "question": "A tightly bonded group publicly predicts a dramatic event. It fails unmistakably, but members can reinterpret the failure together and recruit outsiders. Under Festinger's account, those social conditions can produce stronger commitment rather than straightforward abandonment.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Shared reinterpretation and successful recruitment can provide social validation for a belief threatened by public disconfirmation.",
+      "incorrectExplanation": "It is True. Failed predictions do not always weaken commitment mechanically; when investment is high, failure is clear, and believers can support one another, proselytizing can recruit validation for the revised story.",
+      "lessonContent": "Disconfirming evidence competes with commitment, identity, and social support.\nA public, costly belief is harder to discard than a casual private guess.\nGroups can manufacture validation by agreeing on an explanation together.\nRecruitment turns new supporters into evidence that the movement still makes sense.\nShare this: ask what social rewards would disappear if one of your group beliefs changed.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Easy Exit",
+      "question": "Two buyers choose the same laptop. One can exchange it tomorrow; the other's sale is final. Before receiving new information, dissonance theory predicts the final-sale buyer may become more certain that the laptop is excellent.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Irrevocability raises the cost of ambivalence, encouraging the committed buyer to consolidate the choice psychologically.",
+      "incorrectExplanation": "It is True. An open option permits continued comparison, while a closed option leaves no behavioural escape; confidence and selective attention can rise to make the final choice easier to live with.",
+      "lessonContent": "Irrevocable choices generate more pressure for psychological closure than reversible ones.\nWhen action cannot change, interpretation remains available to change.\nCertainty after commitment may therefore reflect adaptation rather than new evidence.\nCooling-off periods preserve behavioural options before rationalization hardens.\nShare this: delay one irreversible decision until after a planned cooling-off period.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Public Promise",
+      "question": "If Ravi publicly champions a workplace policy and ties his reputation to it, later contrary data should be easier for him to accept than if he had only considered the policy privately, because public scrutiny always improves updating.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Public commitment can make revision threaten consistency and reputation, motivating defensive interpretation despite scrutiny.",
+      "incorrectExplanation": "It is False. Accountability can improve reasoning when it rewards accuracy, but commitment to a declared position can instead raise the cost of reversal and encourage selective defence.",
+      "lessonContent": "Public accountability and public commitment are not psychologically identical.\nAccountability to accuracy can motivate care; accountability to a position can motivate defence.\nReputation makes changing a belief feel like changing the story of the self.\nInstitutions should reward visible correction, not only visible confidence.\nShare this: praise someone openly for revising a public claim when the evidence changed.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Harmless Reminder",
+      "question": "Before confronting evidence that their environmental behaviour contradicts their values, participants write about an unrelated value they live by well. If they become less defensive, that can fit self-affirmation: the broader self no longer depends on winning this one dispute.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Affirming another valued part of the self can reduce identity threat and free people to process unwelcome evidence more openly.",
+      "incorrectExplanation": "It is True. The reminder does not refute the evidence; it reduces the need to protect global self-worth through denial in this particular domain.",
+      "lessonContent": "Threatened beliefs often defend a wider image of being competent or moral.\nSelf-affirmation broadens the identity resources available during criticism.\nWhen global worth feels secure, a local mistake becomes easier to acknowledge.\nThe mechanism is reduced defensiveness, not proof that the criticism is correct.\nShare this: name a stable value before reviewing feedback that threatens your self-image.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Smaller Issue",
+      "question": "Dana keeps behaving against a stated value but decides the value 'was never important anyway.' This is not dissonance reduction because neither her behaviour nor the factual evidence changed.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Trivializing the importance of the inconsistency is itself a way to reduce dissonance without changing action or facts.",
+      "incorrectExplanation": "It is False. A person can reduce tension by changing behaviour, changing beliefs, adding justifications, or shrinking the importance of the conflict; factual revision is only one route.",
+      "lessonContent": "Psychological inconsistency can be managed through several different strategies.\nTrivialization lowers the stakes assigned to the clashing value or action.\nAdding consonant reasons can also outnumber rather than remove the conflict.\nRecognizing the strategy matters because relief does not guarantee truth.\nShare this: notice when 'it doesn't matter' appears only after your actions become hard to defend.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Painful Course",
+      "question": "Students who complete a punishing course rate it highly. To conclude effort justification caused the praise, it is enough to compare them with students who voluntarily chose an easier course.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Self-selection leaves prior motivation, expectations, and preferences confounded with the amount of effort.",
+      "incorrectExplanation": "It is False. People who choose the hard course may already value it more; a stronger test assigns comparable participants to different effort levels while holding the eventual experience constant.",
+      "lessonContent": "Observed sacrifice and later liking can share a prior cause such as motivation.\nSelf-selection makes effort groups different before the effort begins.\nRandom assignment is powerful because it balances those hidden starting differences.\nCausal claims need a credible account of what the comparison would otherwise have experienced.\nShare this: identify one self-selection problem in a comparison you encounter today.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Useful Training",
+      "question": "A demanding apprenticeship produces graduates who value it more and also perform much better because the hard exercises teach real skills. The higher valuation alone cannot tell us how much came from genuine benefit versus effort justification.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Productive effort can improve the outcome itself, so praise may mix real value with consistency-preserving revaluation.",
+      "incorrectExplanation": "It is True. Effort justification is clearest when effort changes cost but not quality; when training improves skill, objective benefits and psychological rationalization are competing contributors.",
+      "lessonContent": "Hard work can both create real value and create pressure to perceive value.\nA clean test separates the burden of effort from the learning it produces.\nOutcome measures help distinguish improved performance from improved storytelling.\nPsychological explanations should not replace ordinary causal benefits without evidence.\nShare this: separate what a difficult experience taught you from what its difficulty made you admire.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "One Contradictory Study",
+      "question": "A well-designed new study is less supportive of a treatment than earlier evidence. Rational belief updating requires abandoning the treatment immediately, regardless of the prior evidence's quantity and quality.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Updating should weight the new study by its diagnostic strength relative to the full prior evidence, not treat either old or new evidence as absolute.",
+      "incorrectExplanation": "It is False. Good updating changes confidence proportionally: one strong result may matter greatly, but it must be integrated with replication, precision, design, and the evidence already accumulated.",
+      "lessonContent": "Belief updating is revision by evidential weight, not automatic reversal.\nPrior confidence should reflect the amount and quality of evidence already available.\nNew evidence matters according to how likely it is under competing explanations.\nBoth stubbornness and whiplash can be failures of proportional updating.\nShare this: revise one confidence estimate by degrees instead of switching from certain to impossible.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Expected Surprise",
+      "question": "A diagnostic test is positive. The result should change your belief more when false positives are rare than when false positives are common, even if the word 'positive' is identical in both cases.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Evidence is informative to the extent that competing explanations differ in how likely they are to produce it.",
+      "incorrectExplanation": "It is True. A result common both with and without the condition distinguishes little; the same label becomes stronger evidence when alternative causes rarely generate it.",
+      "lessonContent": "Evidence strength depends on likelihood under rival hypotheses.\nA surprising observation under one explanation can sharply favour another.\nLabels such as 'positive' hide false-positive rates and base rates.\nUpdating needs comparison, not merely reaction to the observed result.\nShare this: ask how often an alarming signal appears when nothing is wrong.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Moving Standard",
+      "question": "A manager accepts weak evidence when it supports her strategy but demands flawless randomized evidence when it challenges the strategy. Even if every criticism she makes is individually possible, the asymmetric standard signals motivated belief maintenance.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Unequal evidential thresholds let a preferred conclusion survive by design rather than by consistently applied standards.",
+      "incorrectExplanation": "It is True. Any single study may deserve criticism, but accepting friendly evidence cheaply while taxing hostile evidence heavily reveals a directional rule for what gets believed.",
+      "lessonContent": "Motivated reasoning often appears as unequal scrutiny rather than explicit dishonesty.\nA fair evidential standard should be chosen before knowing which side benefits.\nSymmetry tests ask whether the same flaw would matter in favourable evidence.\nConsistent thresholds make belief change answer to method instead of preference.\nShare this: apply your strongest objection to evidence supporting your own side.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Quiet Advocate",
+      "question": "Writing an essay against one's private view should produce the same attitude change whether the writer freely chooses the position or is assigned it without choice, because the text itself is identical.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. The identical essay has different implications for the self when chosen freely than when imposed externally.",
+      "incorrectExplanation": "It is False. Under low choice, assignment explains the advocacy; under high choice, the writer must reconcile voluntary authorship with the prior attitude, making internal change more likely.",
+      "lessonContent": "The meaning of behaviour depends on whether the actor experiences ownership of it.\nIdentical actions can produce different internal pressure under choice and coercion.\nExperimental designs manipulate perceived freedom to test this difference.\nObservable output alone does not reveal the psychological account attached to it.\nShare this: ask whether a statement you heard reflects belief, role, incentive, or compulsion.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Honest Prediction",
+      "question": "A forecaster records probabilities before outcomes and is rewarded for calibration rather than rhetorical certainty. This structure should make genuine belief updating easier to distinguish from post-hoc rationalization.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Timestamped probabilities preserve prior beliefs, while calibration rewards appropriately scaled revision instead of a convincing retrospective story.",
+      "incorrectExplanation": "It is True. Without a prior record, memory can convert uncertainty into 'I knew it'; scored forecasts reveal both the original confidence and how later evidence changed it.",
+      "lessonContent": "Belief updating cannot be measured if the earlier belief is allowed to drift in memory.\nProbabilities preserve uncertainty better than binary declarations.\nCalibration rewards confidence that matches outcome frequencies over time.\nDecision records turn hindsight stories into checkable learning.\nShare this: timestamp three probabilistic forecasts and score them next month.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Sour Source",
+      "question": "When credible evidence threatens a costly belief, attacking the source's character can reduce dissonance without addressing the evidence's logic. Therefore feeling relief after discrediting the source does not show the claim was refuted.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Source derogation can restore consistency psychologically while leaving the argument's evidential content untouched.",
+      "incorrectExplanation": "It is True. Source reliability can legitimately matter, but a character attack that does not change the data or inference may function mainly to remove the messenger from consideration.",
+      "lessonContent": "People can protect beliefs by downgrading whoever delivers unwelcome information.\nSource evaluation is relevant only where credibility affects the evidence.\nAn argument's structure can remain intact even when its advocate is unpleasant.\nRelief is evidence that tension changed, not that a proposition became false.\nShare this: restate one disliked person's argument without mentioning the person.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Effort Trap",
+      "question": "Someone keeps funding a failing project because abandoning it would make years of sacrifice feel wasted. This can involve both a forward-looking sunk-cost error and dissonance reduction through protecting the meaning of past effort.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. The decision rule wrongly counts unrecoverable costs, while continued commitment can also defend a self-story in which the sacrifice was justified.",
+      "incorrectExplanation": "It is True. The concepts overlap but answer different questions: one concerns which costs should guide future action, and the other concerns why admitting waste threatens psychological consistency.",
+      "lessonContent": "One behaviour can reflect both a decision error and a self-protective motive.\nSunk costs are past resources that no future option can recover.\nEffort justification explains why declaring those resources wasted feels threatening.\nA fresh-start test separates future value from the need to honour prior sacrifice.\nShare this: ask of one commitment, 'Would I begin it today with what I now know?'.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Pleasant Update",
+      "question": "A founder rapidly accepts weak good news about her company but demands repeated confirmation of strong bad news. Because she eventually considers both, her belief updating is necessarily unbiased.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. Different acceptance thresholds for desirable and undesirable evidence produce systematically biased updating even when neither side is completely ignored.",
+      "incorrectExplanation": "It is False. Bias can operate through update size and evidential standards: favourable signals receive full weight immediately while threatening signals are discounted pending impossible certainty.",
+      "lessonContent": "Biased updating need not look like total blindness to contrary facts.\nPeople can assign different weights to evidence according to its emotional direction.\nEqual methodological standards matter more than merely seeing both sides.\nTracking numerical confidence exposes asymmetric revisions that prose can conceal.\nShare this: record how far good and bad news move one confidence estimate this week.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Identity Insurance",
+      "question": "If accepting a factual correction would threaten someone's membership in a valued group, supplying stronger evidence alone may fail; reducing the identity cost of revision can sometimes improve updating without weakening evidential standards.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. When a conclusion carries social penalties, people may defend belonging rather than assess evidence; making correction compatible with identity can remove that extra motive.",
+      "incorrectExplanation": "It is True. The evidence should remain rigorous, but the communication can show that changing one factual belief need not require betrayal of the whole group or self.",
+      "lessonContent": "Beliefs can function as badges of loyalty as well as descriptions of reality.\nSocial costs alter the incentives surrounding acknowledgement of evidence.\nIdentity-safe framing separates factual revision from total group rejection.\nBetter communication removes defensive stakes without changing what counts as proof.\nShare this: frame one correction as consistent with a value your listener already holds.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Counterfeit Cause",
+      "question": "After making a difficult choice, participants feel tension. Researchers give half a harmless pill described as calming; that group shows less revaluation of the options. This pattern can support the idea that attributed discomfort helps drive dissonance reduction.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. If discomfort is attributed to an external source, less attitude change may be needed to explain or relieve it.",
+      "incorrectExplanation": "It is True. The pill need not pharmacologically work: an available alternative explanation for arousal can reduce the pressure to reinterpret the choice, linking felt discomfort to the consistency process.",
+      "lessonContent": "People interpret bodily arousal using the explanations available in context.\nMisattribution can redirect discomfort away from a threatening inconsistency.\nIf tension seems externally caused, changing an attitude may feel less necessary.\nPlacebo-style designs can test explanations without requiring an active drug.\nShare this: before defending a decision, check whether fatigue or stress is colouring the discomfort.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Facts After Failure",
+      "question": "When a prediction fails, inventing an untestable auxiliary explanation preserves the original belief but counts as strong updating because the belief now accommodates more facts.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. An explanation that can absorb every outcome without risky predictions protects a belief from evidence rather than updating it responsibly.",
+      "incorrectExplanation": "It is False. Genuine updating should change confidence or generate new tests; adding an escape clause that forbids no future observation makes the theory less vulnerable, not better supported.",
+      "lessonContent": "An explanation earns evidential value by ruling out some possible observations.\nAd hoc additions can save a belief while reducing its testability.\nAccommodation after the fact is weaker than successful prediction in advance.\nA revised theory should state what evidence would now count against it.\nShare this: ask what future result a newly patched explanation would fail to explain.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Rewarded Honesty",
+      "question": "An organization wants employees to admit failed assumptions. Rewarding accurate correction and preserving status after revision should reduce dissonance-driven defence more effectively than punishing anyone whose public view changes.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. Making revision safe lowers the reputational cost of inconsistency and aligns social incentives with accurate updating.",
+      "incorrectExplanation": "It is True. Punishing reversals teaches people to protect prior claims; rewarding documented correction lets consistency attach to being a careful learner rather than never being wrong.",
+      "lessonContent": "Cultures determine whether correction signals competence or humiliation.\nPunishing changed conclusions rewards hidden errors and elaborate defence.\nStatus can be attached to process fidelity rather than unwavering positions.\nVisible revision norms make updating socially compatible with a coherent identity.\nShare this: recognize one person for changing course promptly when evidence shifted.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "The Costly Badge",
+      "question": "Members who buy an expensive symbol of a movement later express stronger belief. This observation alone distinguishes effort justification from the simpler possibility that stronger believers chose to buy the symbol.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 50,
+      "correctExplanation": "False. The correlation is compatible with reverse causation: prior conviction may produce both the costly purchase and later reported strength.",
+      "incorrectExplanation": "It is False. To isolate justification, researchers need prior belief measures or exogenous variation in cost; otherwise sacrifice may be the consequence of commitment rather than its cause.",
+      "lessonContent": "Costly signals can reveal existing commitment as well as deepen commitment.\nCross-sectional correlations cannot establish which variable moved first.\nBaseline measures show whether groups already differed before the sacrifice.\nExogenous cost changes offer stronger evidence about effects of investment itself.\nShare this: ask whether a sacrifice created devotion or merely revealed devotion already present.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "wonders",
+      "difficulty": "hard",
+      "title": "Confidence by Degrees",
+      "question": "After strong evidence lowers a hypothesis from 80% plausible to 35%, continuing to investigate it can be rational; belief updating does not require treating every serious setback as proof of impossibility.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 50,
+      "correctExplanation": "True. A substantial downward update can leave meaningful uncertainty, and further investigation may still have value.",
+      "incorrectExplanation": "It is True. Rational confidence is graded: evidence can sharply weaken a claim without eliminating it, and the decision to investigate also depends on stakes and the value of resolving uncertainty.",
+      "lessonContent": "Uncertainty is continuous even when language tempts us toward yes-or-no conclusions.\nLarge updates need not end at zero or one.\nActions depend on both probability and consequence, not probability alone.\nContinued inquiry can coexist with honest acknowledgement that a claim became less likely.\nShare this: replace one binary opinion with a percentage and name what would move it.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-028#24",
+      "forgeScore": 100
+    }
+  ]
+}

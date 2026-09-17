@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-063",
+  "generatedAt": "2026-09-17T13:27:42.364Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Playing the Waiter",
+      "question": "A café waiter performs his movements so perfectly and with such devotion that he seems less like a person working than like a puppet made to be a waiter. What does this image illustrate?",
+      "choices": [
+        "Pretending a role is one's fixed essence",
+        "The value of professional excellence",
+        "How training removes personal choice",
+        "That service work is inherently shallow"
+      ],
+      "correctAnswer": "Pretending a role is one's fixed essence",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. The performance becomes a kind of self-deception when the role is treated as a nature rather than a chosen activity.",
+      "incorrectExplanation": "The answer is: pretending a role is one's fixed essence. Excellence is not the target of the critique — forgetting that one is choosing the role is. The person is playing at being a thing.",
+      "lessonContent": "Social roles are performed, not inherited.\nTreating a role as an essence hides the choosing behind it.\nSelf-deception operates through such everyday performances.\nAwareness of playing a part is different from becoming the part.\nShare this: name one role you perform today and recall that you chose it.",
+      "forgeId": "batch-063#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Just My Nature",
+      "question": "A man insists he simply is a hot-tempered person by nature, so his outbursts are inevitable and he bears no responsibility for them. Which evasion is at work?",
+      "choices": [
+        "Honest self-knowledge about temperament",
+        "Denying freedom by claiming a fixed nature",
+        "A medical description of impulsivity",
+        "Acceptance of an unchangeable past"
+      ],
+      "correctAnswer": "Denying freedom by claiming a fixed nature",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Presenting a pattern as an essential fact converts choices into a kind of weather that simply happens.",
+      "incorrectExplanation": "The answer is: denying freedom by claiming a fixed nature. Temperament is real, yet describing it as an unchangeable essence lets him skip the moment of choice. The escape hatch is the word nature.",
+      "lessonContent": "Patterns can be genuine while still being changeable.\nEssence talk removes the space where choice lives.\nNaming a trait as nature is often a strategy, not a finding.\nOwning a tendency is different from being owned by it.\nShare this: restate one self-description tonight as a pattern rather than a nature.",
+      "forgeId": "batch-063#1",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "No Choice Excuse",
+      "question": "After choosing to skip a friend's event, a person says flatly, 'I had no choice.' What is this sentence usually doing?",
+      "choices": [
+        "Reporting a genuine physical impossibility",
+        "An excuse that conceals a decision",
+        "Proving that circumstances were untraceable",
+        "Describing an unconscious reflex"
+      ],
+      "correctAnswer": "An excuse that conceals a decision",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. Most everyday talk of having no choice hides a decision the speaker would rather not own.",
+      "incorrectExplanation": "The answer is: an excuse that conceals a decision. Real impossibilities exist, but the phrase usually covers a trade-off made and disowned. Locating the choice restores both honesty and responsibility.",
+      "lessonContent": "Language can hide agency inside passive phrasing.\nMost no-choice claims conceal a priority taken.\nRecovering the decision clarifies what is actually valued.\nHonest trade-off talk is harder and more useful.\nShare this: rewrite one no-choice excuse tonight as a stated priority.",
+      "forgeId": "batch-063#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Weight of Freedom",
+      "question": "In existential thought, anguish is not a mood disorder but a signal. What is it a signal of?",
+      "choices": [
+        "Needing medication and rest",
+        "Awareness of one's own responsibility",
+        "Fear of other people's judgments",
+        "Chemical imbalance in the brain"
+      ],
+      "correctAnswer": "Awareness of one's own responsibility",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Anguish arises when a person recognises that the decision and its authorship belong entirely to them.",
+      "incorrectExplanation": "The answer is: awareness of one's own responsibility. Anxiety about outcomes is ordinary fear; anguish concerns the fact that the choosing is yours. Avoiding it often means avoiding freedom itself.",
+      "lessonContent": "Some discomfort signals responsibility rather than illness.\nDistinguishing the source of unease changes the response.\nAvoidance can be a strategy for escaping authorship.\nSitting with the signal is part of living deliberately.\nShare this: identify one unease tonight that is really about your own authorship.",
+      "forgeId": "batch-063#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Essence After Birth",
+      "question": "The slogan that existence comes before essence means what in practice?",
+      "choices": [
+        "We are born without a fixed purpose and build our nature through choices",
+        "Biology determines character from the moment of conception",
+        "Identity is assigned by society and cannot be altered",
+        "Everybody shares one universal human destiny"
+      ],
+      "correctAnswer": "We are born without a fixed purpose and build our nature through choices",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. For humans, there is no blueprint handed over at the start; the life lived writes the definition.",
+      "incorrectExplanation": "The answer is: we are born without a fixed purpose and build our nature through choices. A manufactured object has its design first and its existence later; a person reverses that order. Responsibility follows immediately from the reversal.",
+      "lessonContent": "Human lives lack a prewritten specification.\nCharacter is the accumulated result of choices.\nResponsibility is the price and privilege of that openness.\nManufactured things and persons differ in ordering.\nShare this: describe tonight one trait you deliberately built rather than inherited.",
+      "forgeId": "batch-063#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Frozen Sincerity",
+      "question": "A woman prides herself on being brutally sincere about being, as she says, an inherently unreliable person. Why can this sincerity itself be a form of self-deception?",
+      "choices": [
+        "Because it freezes her into a fixed identity she then hides behind",
+        "Because honesty is always the wrong policy",
+        "Because unreliable people cannot be sincere",
+        "Because she should deny her past entirely"
+      ],
+      "correctAnswer": "Because it freezes her into a fixed identity she then hides behind",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Claiming to be an essence is not more honest than hiding it — both deny the freedom that remains.",
+      "incorrectExplanation": "The answer is: because it freezes her into a fixed identity she then hides behind. The confession sounds like courage while functioning as an alibi. A truthful description becomes deceptive the moment it is used as a permanent verdict.",
+      "lessonContent": "Confession can function as an escape.\nDescribing a pattern as a verdict freezes it.\nHonesty about the past need not dictate the future.\nWatch for self-descriptions that quietly excuse.\nShare this: reframe one self-critical label tonight as a current pattern.",
+      "forgeId": "batch-063#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Under Another's Gaze",
+      "question": "You are caught doing something embarrassing and feel suddenly reduced to an object of someone else's assessment. What does this experience reveal?",
+      "choices": [
+        "That we exist for others as objects to be judged",
+        "That embarrassment is always irrational",
+        "That other people are unimportant in the end",
+        "That identity never depends on observers"
+      ],
+      "correctAnswer": "That we exist for others as objects to be judged",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. Being seen reveals a dimension of existence we do not control — our being-for-others.",
+      "incorrectExplanation": "The answer is: that we exist for others as objects to be judged. The experience is not a mistake to correct but a structural fact about social life. Managing it well is a skill rather than a denial.",
+      "lessonContent": "We exist both as subjects and as objects for others.\nThe judging gaze reveals a dimension we do not author.\nManaging that exposure is a practical social skill.\nDenying it entirely misses a real part of life.\nShare this: recall one moment of being seen and name what it revealed.",
+      "forgeId": "batch-063#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Shame's Revelation",
+      "question": "Why is shame philosophically interesting as an emotion?",
+      "choices": [
+        "It reveals that we can be objects for others while remaining free choosing beings",
+        "It proves that other people are always correct about us",
+        "It shows that emotion is unrelated to thought",
+        "It demonstrates that freedom does not exist"
+      ],
+      "correctAnswer": "It reveals that we can be objects for others while remaining free choosing beings",
+      "xpReward": 25,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Right. Shame holds two truths at once: I am seen as an object, and I am still the chooser of my response.",
+      "incorrectExplanation": "The answer is: it reveals that we can be objects for others while remaining free choosing beings. Shame is not evidence that others define us, nor that we are not free. It dramatizes the tension between those two facts.",
+      "lessonContent": "Emotions can disclose philosophical truths.\nShame dramatizes the tension between freedom and exposure.\nBeing seen does not cancel one's authorship of the response.\nComplex feelings are worth unpacking rather than obeying.\nShare this: notice tonight what shame is disclosing, beyond the discomfort.",
+      "forgeId": "batch-063#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Given Facts",
+      "question": "In existential analysis, what does the term facticity refer to?",
+      "choices": [
+        "The given facts of one's situation",
+        "The unreliability of memory",
+        "The tendency to invent excuses",
+        "A mathematical account of identity"
+      ],
+      "correctAnswer": "The given facts of one's situation",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. Body, birthplace, era, health, and history are the givens nobody selected.",
+      "incorrectExplanation": "The answer is: the given facts of one's situation. It is the opposite pole from freedom, and healthy reasoning acknowledges both rather than collapsing into either. Ignoring the givens blames oneself; obsessing over them erases choice.",
+      "lessonContent": "Every life has unselected givens.\nAcknowledging them prevents both denial and self-blame.\nFacts and freedom must be held together.\nHealthy reasoning avoids collapsing into either extreme.\nShare this: list tonight three unselected facts of your situation without judgment.",
+      "forgeId": "batch-063#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Beyond the Given",
+      "question": "What does transcendence mean in this philosophical vocabulary?",
+      "choices": [
+        "The capacity to go beyond one's given situation",
+        "A supernatural realm beyond death",
+        "Forgetting the facts of one's situation",
+        "Achieving wealth and status"
+      ],
+      "correctAnswer": "The capacity to go beyond one's given situation",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. It names the way a person can project beyond present circumstances rather than being fully described by them.",
+      "incorrectExplanation": "The answer is: the capacity to go beyond one's given situation. It is a this-worldly capacity, not a religious claim, and it does not require forgetting the facts. The two poles, givens and going beyond, define the human condition together.",
+      "lessonContent": "People can act beyond their starting conditions.\nThe capacity is ordinary and worldly, not supernatural.\nIt complements rather than erases the given facts.\nBoth poles are needed for an accurate picture.\nShare this: identify one plan today that goes beyond your current circumstances.",
+      "forgeId": "batch-063#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Two Denials",
+      "question": "Self-deception in this tradition can take two opposite forms. Which pair captures them?",
+      "choices": [
+        "Denying one's freedom, or denying one's situation",
+        "Denying the past, or denying the future",
+        "Denying emotion, or denying reason",
+        "Denying others, or denying oneself"
+      ],
+      "correctAnswer": "Denying one's freedom, or denying one's situation",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. One escape says I am nothing but my circumstances; the other says I am pure will with no constraints. Both distort.",
+      "incorrectExplanation": "The answer is: denying one's freedom, or denying one's situation. Escaping into circumstances excuses everything; escaping into pure freedom ignores real limits. Accuracy means holding both poles at once.",
+      "lessonContent": "Distortion can err in two opposite directions.\nExcusing everything and ignoring limits are twin failures.\nAccuracy requires holding contradictions together.\nWatch which direction your own reasoning drifts.\nShare this: check tonight whether an excuse denies limits or denies freedom.",
+      "forgeId": "batch-063#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Owning What Remains",
+      "question": "A student from a disadvantaged background says there is no point trying because his starting conditions determine everything. How does a careful analysis respond?",
+      "choices": [
+        "Real constraints exist, but choices still remain within them and must be owned",
+        "Starting conditions truly determine all outcomes",
+        "He should simply ignore his circumstances entirely",
+        "Effort never matters compared with luck"
+      ],
+      "correctAnswer": "Real constraints exist, but choices still remain within them and must be owned",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. Hard circumstances are real, and treating them as total is its own kind of self-deception.",
+      "incorrectExplanation": "The answer is: real constraints exist, but choices still remain within them and must be owned. The error is not noticing difficulty — it is converting difficulty into a closed door. Honest reasoning holds both the limits and the remaining room to move.",
+      "lessonContent": "Constraints are real and rarely total.\nTurning limits into verdicts is a choice of its own.\nHonest reasoning holds both facts simultaneously.\nRoom to move is usually smaller but nonzero.\nShare this: write down tonight one constraint and the two options it leaves open.",
+      "forgeId": "batch-063#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Even Not Choosing",
+      "question": "What uncomfortable implication follows from radical freedom?",
+      "choices": [
+        "Even refusing to choose is itself a choice",
+        "Some people are exempt from responsibility entirely",
+        "Decisions are decided by circumstances alone",
+        "Freedom only applies to major life events"
+      ],
+      "correctAnswer": "Even refusing to choose is itself a choice",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. Inaction is a selection among options, which is why it cannot be used as a hiding place.",
+      "incorrectExplanation": "The answer is: even refusing to choose is itself a choice. The impossibility of standing outside decision is what makes responsibility unavoidable. That is the uncomfortable part, and it is also what makes agency meaningful.",
+      "lessonContent": "Inaction is a form of action.\nThere is no neutral position outside decision.\nUnavoidable responsibility is the flip side of freedom.\nNoticing this removes an easy hiding place.\nShare this: identify one thing you are deciding today by not deciding it.",
+      "forgeId": "batch-063#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Condemned to Choose",
+      "question": "Why is the phrase condemned to be free deliberately paradoxical?",
+      "choices": [
+        "Freedom is unavoidable and carries inescapable responsibility",
+        "Freedom is only available to a lucky few",
+        "Freedom disappears the moment one notices it",
+        "Freedom always produces misery in the end"
+      ],
+      "correctAnswer": "Freedom is unavoidable and carries inescapable responsibility",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. The paradox captures a gift that cannot be refused and whose burden cannot be transferred.",
+      "incorrectExplanation": "The answer is: freedom is unavoidable and carries inescapable responsibility. Condemnation is used lightly, not tragically — the point is that opting out is impossible. Responsibility arrives with the freedom whether or not it is welcomed.",
+      "lessonContent": "Some gifts cannot be returned.\nUnavoidable freedom creates unavoidable responsibility.\nParadox often signals a genuine feature of reality.\nAccepting the burden is more workable than resenting it.\nShare this: name tonight one freedom you would sometimes prefer not to have.",
+      "forgeId": "batch-063#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Conscious Performance",
+      "question": "Two lawyers behave similarly at work. One believes he was born a lawyer; the other knows he is choosing the role. What difference does the analysis claim?",
+      "choices": [
+        "The second remains free while the first has mistaken a choice for a nature",
+        "There is no meaningful difference between them",
+        "The first is more authentic than the second",
+        "The second is less committed to the profession"
+      ],
+      "correctAnswer": "The second remains free while the first has mistaken a choice for a nature",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. Awareness of choosing preserves the possibility of choosing otherwise, which the essence story forecloses.",
+      "incorrectExplanation": "The answer is: the second remains free while the first has mistaken a choice for a nature. Commitment is not at issue — awareness is. The person who knows he is choosing can keep the role honestly rather than hiding inside it.",
+      "lessonContent": "Awareness of choosing preserves future options.\nMistaking a choice for a nature closes the door.\nCommitment and self-awareness are compatible.\nKeeping a role consciously is different from being trapped in it.\nShare this: name one commitment tonight and restate it as a continuing choice.",
+      "forgeId": "batch-063#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Escaping Accountability",
+      "question": "Someone explains a cruel remark by saying that people like him simply tell it straight. How is the essence claim functioning here?",
+      "choices": [
+        "As a way to escape accountability for a choice",
+        "As an accurate description of regional manners",
+        "As a necessary condition for honesty",
+        "As evidence that words cannot harm others"
+      ],
+      "correctAnswer": "As a way to escape accountability for a choice",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Calling cruelty a type converts an act into an identity, which conveniently removes the agent from the scene.",
+      "incorrectExplanation": "The answer is: as a way to escape accountability for a choice. The sentence sounds like plain speaking but functions as a shield. Naming the act instead of a type restores the person to responsibility.",
+      "lessonContent": "Identity claims can launder responsibility.\nDescribing behaviour as a type hides the act.\nAccountability is restored by naming the choice.\nHonesty and cruelty are separable, whatever people claim.\nShare this: translate one identity excuse tonight into the act it really describes.",
+      "forgeId": "batch-063#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Fleeing Responsibility",
+      "question": "What, fundamentally, is a person in self-deception trying to avoid?",
+      "choices": [
+        "The responsibility that freedom brings",
+        "All social contact whatsoever",
+        "Any form of self-knowledge at all",
+        "Physical effort and discomfort"
+      ],
+      "correctAnswer": "The responsibility that freedom brings",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. The escape is not from facts about oneself but from the weight of authorship.",
+      "incorrectExplanation": "The answer is: the responsibility that freedom brings. That is why the evasions involve roles, natures, and inevitabilities. The discomfort being managed is the burden of having chosen and being able to choose again.",
+      "lessonContent": "Avoidance often targets responsibility rather than facts.\nRoles and fates are convenient shelters.\nNaming what is being avoided reduces its power.\nBearing authorship is a skill developed over time.\nShare this: notice tonight which excuse protects you from owning a choice.",
+      "forgeId": "batch-063#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Made Promises",
+      "question": "How do promises function in this philosophy?",
+      "choices": [
+        "As voluntary commitments that create binding obligations",
+        "As meaningless noises with no moral weight",
+        "As natural instincts requiring no choice",
+        "As restrictions other people impose by force"
+      ],
+      "correctAnswer": "As voluntary commitments that create binding obligations",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Right. A promise is freedom exercised to bind the future, which is why breaking one is a distinct kind of failure.",
+      "incorrectExplanation": "The answer is: as voluntary commitments that create binding obligations. The commitment is freely made and therefore genuinely binds. Promising is how free people create stability in an open future.",
+      "lessonContent": "Freedom can be used to create commitments.\nVoluntary obligations are binding because they are chosen.\nPromising stabilizes an uncertain future.\nBreaking a promise is a particular kind of failure.\nShare this: reaffirm one commitment tonight by restating why you chose it.",
+      "forgeId": "batch-063#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Comfortable Determinism",
+      "question": "Why is a belief that everything is determined psychologically attractive to some people?",
+      "choices": [
+        "It offers comfort by excusing inaction and failure",
+        "It is the only scientifically defensible position",
+        "It increases personal responsibility dramatically",
+        "It makes decisions easier to make well"
+      ],
+      "correctAnswer": "It offers comfort by excusing inaction and failure",
+      "xpReward": 25,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly. If nothing could have been otherwise, no one has to feel the weight of having chosen badly.",
+      "incorrectExplanation": "The answer is: it offers comfort by excusing inaction and failure. The evaluation is psychological rather than metaphysical — the idea is examined for what it does for the believer. Comfort is a suspicious motive for believing anything.",
+      "lessonContent": "Beliefs can be held for emotional reasons.\nExcusing inaction is a powerful motivator.\nInterrogate what a belief does for its holder.\nComfort is not evidence of truth.\nShare this: ask tonight what one of your beliefs quietly excuses.",
+      "forgeId": "batch-063#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Ownership of Situation",
+      "question": "What does living authentically require in this tradition?",
+      "choices": [
+        "Owning one's choices without denying one's situation",
+        "Ignoring all social expectations permanently",
+        "Always acting against conventional advice",
+        "Never feeling uncertain about decisions"
+      ],
+      "correctAnswer": "Owning one's choices without denying one's situation",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Authenticity is accuracy about both poles: the facts you did not choose and the freedom you still hold.",
+      "incorrectExplanation": "The answer is: owning one's choices without denying one's situation. It is not contrarianism, and it does not require perpetual confidence. It requires honesty about limits and about authorship at the same time.",
+      "lessonContent": "Authenticity is accuracy, not rebellion.\nBoth givens and freedom must be acknowledged.\nCertainty is not the goal; honesty is.\nConvention can be chosen authentically.\nShare this: describe tonight one conventional choice you made deliberately and willingly.",
+      "forgeId": "batch-063#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Judge Nearby",
+      "question": "Why do other people occupy a central place in this analysis of selfhood?",
+      "choices": [
+        "They reveal us to ourselves as objects and judges",
+        "They are the only source of moral truth",
+        "They have no effect on how we see ourselves",
+        "They determine our biology from birth"
+      ],
+      "correctAnswer": "They reveal us to ourselves as objects and judges",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Exactly. Others make visible a dimension of our existence that solitude conceals.",
+      "incorrectExplanation": "The answer is: they reveal us to ourselves as objects and judges. They are not the source of truth, nor irrelevant. They disclose something real about being seen, which then has to be integrated rather than denied.",
+      "lessonContent": "Other people disclose dimensions of the self.\nBeing seen is a distinct mode of existence.\nIntegration beats both denial and submission.\nSelf-knowledge is partly social work.\nShare this: consider tonight one thing about yourself you learned only through another's eyes.",
+      "forgeId": "batch-063#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "No Natural Coward",
+      "question": "Why does the analysis deny that anyone is a coward by nature?",
+      "choices": [
+        "People act cowardly in moments and can act otherwise",
+        "Courage and cowardice do not exist at all",
+        "Character is fixed before birth entirely",
+        "Behaviour is random and unclassifiable"
+      ],
+      "correctAnswer": "People act cowardly in moments and can act otherwise",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. Actions are real and moral language still applies; what is rejected is the permanent essence behind them.",
+      "incorrectExplanation": "The answer is: people act cowardly in moments and can act otherwise. Rejecting essences does not dissolve morality — it relocates it into choices. The person who acted that way is not sentenced to be that way.",
+      "lessonContent": "Rejecting essences does not dissolve ethics.\nMoral language attaches to acts and choices.\nChangeability is central to accountability.\nPermanent labels misdescribe how character works.\nShare this: reframe one judgement tonight from a type into an act.",
+      "forgeId": "batch-063#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Anguish Not Fear",
+      "question": "What is the standard distinction between fear and anguish?",
+      "choices": [
+        "Fear has a definite object while anguish concerns oneself",
+        "Fear is physical while anguish is imaginary",
+        "Fear affects adults while anguish affects children",
+        "Fear is useful while anguish never is"
+      ],
+      "correctAnswer": "Fear has a definite object while anguish concerns oneself",
+      "xpReward": 25,
+      "lessonGroup": "Mind Mirrors",
+      "correctExplanation": "Exactly. One can point at what frightens you; the source of anguish is your own responsibility for what you will do.",
+      "incorrectExplanation": "The answer is: fear has a definite object while anguish concerns oneself. That is why anguish feels objectless and hard to resolve — there is nothing outside to remove. Understanding the difference clarifies which response actually helps.",
+      "lessonContent": "Distinguishing similar emotions improves responses.\nObjectless unease often concerns the self.\nRemoving an external threat does not address anguish.\nPrecision about feelings guides better action.\nShare this: separate tonight one fear from one unease with no object.",
+      "forgeId": "batch-063#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Open Future",
+      "question": "What does self-deception most often refuse to look at?",
+      "choices": [
+        "The open future that freedom implies",
+        "The details of one's childhood",
+        "The opinions of distant strangers",
+        "Statistical facts about populations"
+      ],
+      "correctAnswer": "The open future that freedom implies",
+      "xpReward": 25,
+      "lessonGroup": "Think Deeper",
+      "correctExplanation": "Right. An undetermined future offers possibilities but also demands responsibility, so people often turn away from it.",
+      "incorrectExplanation": "The answer is: the open future that freedom implies. Past and society are distractions used to avoid that openness. Facing it means accepting both possibility and obligation at once.",
+      "lessonContent": "Openness creates both possibility and burden.\nAvoidance often targets the future, not the past.\nFacing possibility is a practical act.\nSmall decisions train tolerance for openness.\nShare this: name tonight one future possibility you have been refusing to look at.",
+      "forgeId": "batch-063#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Sum of Actions",
+      "question": "What does the claim that a person is the sum of their actions imply?",
+      "choices": [
+        "Character is built through conduct rather than given in advance",
+        "Reputation matters more than inner life",
+        "Actions and intentions are equally meaningless",
+        "Everyone is ultimately unjudgeable"
+      ],
+      "correctAnswer": "Character is built through conduct rather than given in advance",
+      "xpReward": 25,
+      "lessonGroup": "Life Puzzles",
+      "correctExplanation": "Exactly. There is no hidden essence doing the real work — the pattern of conduct is the person.",
+      "incorrectExplanation": "The answer is: character is built through conduct rather than given in advance. Intentions still matter as part of the pattern, but they cannot substitute for it. The claim is demanding rather than dismissive.",
+      "lessonContent": "Conduct, not hidden essence, constitutes character.\nIntentions count within behaviour, not instead of it.\nSelf-definition happens through accumulated actions.\nThe claim raises standards rather than lowering them.\nShare this: choose one small action today that expresses the person you intend to be.",
+      "forgeId": "batch-063#24",
+      "forgeScore": 100
+    }
+  ]
+}

@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-002",
+  "generatedAt": "2026-09-17T13:27:41.343Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Millions Agree",
+      "question": "An advert claims: 'Millions of people use this shampoo, so it must be good.' This appeals to popularity rather than evidence.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Right — that is argumentum ad populum: a head-count is offered where evidence belongs.",
+      "incorrectExplanation": "It is True. The argument swaps user numbers for actual proof of quality — the textbook appeal to popularity. Millions of people can be wrong, misled, or simply copying each other.",
+      "lessonContent": "Argumentum ad populum swaps a head-count for evidence: many believe it, therefore it is true.\nPopularity tracks spread, not truth — rumours and fashions are popular by design.\nThe tell is structural: look for numbers of believers standing where reasons should be.\nHistory's scoreboard is humbling — majorities once backed geocentrism and bloodletting.\nShare this: next time an advert counts its fans, ask what evidence besides the count is on offer.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Dropout Defence",
+      "question": "Dismissing a colleague's budget argument because she failed maths in school commits an ad hominem.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Correct — her school maths marks have no bearing on whether this budget argument holds.",
+      "incorrectExplanation": "It is True. The response targets the person making the argument instead of the argument itself, which is the defining move of an ad hominem. A bad grade decades ago cannot make a valid budget case invalid.",
+      "lessonContent": "Ad hominem answers an argument by attacking its author — credentials, history, habits.\nIts flaw is relevance: the arguer's traits cannot flip a premise from false to true.\nThe two-part test: is the point about the person, and is it doing the argument's work?\nDebate judges watch for exactly this substitution.\nShare this: when a debate turns personal, note whose claim is suddenly not being discussed.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Scarecrow Tactic",
+      "question": "Misrepresenting an opponent's position to make it easier to attack is called a straw man.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Exactly — you build a weaker scarecrow version of their view, then knock it down and claim victory.",
+      "incorrectExplanation": "It is True. The straw man fallacy is precisely this: replace the real position with a distorted, weaker one, then attack that instead. The name comes from fighting a dummy rather than the actual opponent.",
+      "lessonContent": "A straw man works in two steps: quietly replace the real position with a weaker caricature, then defeat the caricature loudly.\nVictory over the copy is presented as victory over the original.\nThe defence is the steel man habit: restate your opponent's view until they would endorse it themselves.\nOnly then attack — and watch how often the urge to attack evaporates.\nShare this: restate one opinion you reject until its holder would say 'yes, that's it'.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Herd Mathematics",
+      "question": "'Everyone in my class is buying this phone, so I should too' is a deductively valid argument.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Right — popularity drives no logical conclusion. The class could all be making the same mistake together.",
+      "incorrectExplanation": "It is False. What the class buys has no logical power over what one should buy — that is the bandwagon fallacy wearing a school uniform. A valid argument needs premises that force the conclusion, not peer pressure.",
+      "lessonContent": "Bandwagon pressure exploits belonging: agreeing with the group feels safe and social.\nAsch's conformity experiments showed people denying their own eyes to match a group.\nKnowing the mechanism is half the defence; the other half is asking 'but is it true?'\nFirst dissenters pay a social price — which is why they deserve attention, not mockery.\nShare this: in your next group decision, be the one who asks what the group hasn't considered.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Name-Dropping Rule",
+      "question": "Mentioning a person at any point during an argument automatically commits an ad hominem.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Correct — the fallacy is replacing argument with attack, not merely naming a human.",
+      "incorrectExplanation": "It is False. An ad hominem occurs only when personal traits are used as the reason to dismiss a claim. Quoting someone, praising them, or discussing their actions is not automatically an attack.",
+      "lessonContent": "Not every mention of a person is an attack on one — the fallacy needs the personal point to replace engagement.\nQuoting, crediting and criticising conduct are all legitimate; substitution is the crime.\nCrying 'ad hominem!' at every name is itself a conversation-stopper.\nThe category boundary matters: about the argument, or instead of it?\nShare this: collect one example today of a name used as evidence and one used innocently.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Weakened Clone",
+      "question": "Refuting a weaker version of an opponent's claim counts as refuting their actual claim.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Right — defeating a distorted copy defeats only the copy. The original claim walks away untouched.",
+      "incorrectExplanation": "It is False. Knocking down a weakened version of a position leaves the real position standing — that is exactly why the straw man is a fallacy. Refutation must engage what the opponent actually asserted.",
+      "lessonContent": "Refutation is target-locked: it defeats exactly what it engages, nothing more.\nDefeating a distortion is a no-op against the original claim.\nThat is why honest debaters quote opponents verbatim before attacking.\nQuote-then-attack is not politeness — it is accuracy.\nShare this: next time you see a quote attacked, check the quote against the original source.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Petrol Car",
+      "question": "'How can you trust Dr. Mehta's climate research? She drives a petrol car.' This attacks the arguer instead of the research.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Yes — her driving habits are irrelevant to the data. The tactic shifts focus from the science to the scientist.",
+      "incorrectExplanation": "It is True. The reply ignores the research entirely and aims at the researcher's lifestyle — a textbook ad hominem. Her car choices cannot alter the measurements or the analysis.",
+      "lessonContent": "The hypocrisy jab feels devastating because hypocrisy is genuinely annoying — but annoyance is not logic.\nA claim's truth is independent of its speaker's consistency.\nTu quoque — 'you too' — is the formal name when the attack is the accuser's own behaviour.\nThe real question survives the gotcha untouched.\nShare this: enjoy one gotcha moment today, then ask what claim it actually disproved.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Bandwagon Twins",
+      "question": "The bandwagon fallacy and the appeal to popularity are essentially the same error.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Correct — both treat 'many people believe it' as if it were 'therefore it is true'.",
+      "incorrectExplanation": "It is True. The bandwagon image (jump on because everyone did) is just the folksy name for argumentum ad populum. The error is identical: crowd size substituting for evidence.",
+      "lessonContent": "The fallacy family has many names for cousin-moves: ad populum, bandwagon, appeal to the masses.\nThey share one core: crowd size offered as proof.\nLearning the aliases sharpens spotting — the same trick wears different name-tags in ads, politics and group chats.\nOnce you see the skeleton, the costumes stop mattering.\nShare this: name the fallacy family next time an ad counts its believers.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Harsh Test",
+      "question": "A straw man fallacy strengthens the original argument by stress-testing a harsher version of it.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Right — the fallacy replaces the argument rather than testing it. Nothing about the original gets stronger.",
+      "incorrectExplanation": "It is False. A straw man does not test anything — it swaps the real claim for a caricature and attacks that. The original argument is simply never engaged, which is the whole deception.",
+      "lessonContent": "A stress-test strengthens an argument by surviving the strongest attack; a straw man dodges by attacking the weakest version.\nThe difference is direction of distortion — one goes harder than reality, the other softer and sillier.\nReal critical thinking seeks the strongest form of an opponent's case.\nSteel-manning is the discipline; straw-manning is the reflex.\nShare this: take one view you reject and ask what its strongest version would say.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Nine Out of Ten",
+      "question": "'Nine out of ten dentists recommend this brand' is, all by itself, conclusive proof that the brand is best.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Correct — an endorsement count is not proof. Which dentists, chosen how, compared to what?",
+      "incorrectExplanation": "It is False. A recommendation tally is weak testimony at best, never conclusive proof — the survey could be cherry-picked, sponsored, or vague. Notice the claim never says best among what alternatives.",
+      "lessonContent": "Endorsement statistics are testimony, and testimony's value depends on who, how many, and chosen how.\nSponsored surveys, cherry-picked panels and vague baselines all hollow the number out.\nThe question 'compared with what?' restores the missing baseline.\nDentist endorsements began as advertising's most successful formula — and remain its most parodied.\nShare this: ask 'nine out of ten of whom?' about the next statistic you see.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Evidence versus Insults",
+      "question": "Criticising the quality of someone's evidence is itself an ad hominem attack.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Right — attacking the evidence is exactly what good argument is supposed to do.",
+      "incorrectExplanation": "It is False. An ad hominem attacks the person; scrutinising their evidence targets the argument itself. 'Your sample was too small' is legitimate criticism, not a personal attack.",
+      "lessonContent": "Legitimate criticism targets premises, inferences and evidence — the three parts of any argument.\nPersonal attacks target a fourth thing that is not part of the argument at all.\nKeeping the map straight is what separates scrutiny from smearing.\nReviewers and referees practise this separation professionally.\nShare this: grade one argument today premise by premise and notice how little the author matters.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Centuries of Belief",
+      "question": "The ad populum fallacy says that a claim's widespread acceptance, on its own, never proves the claim true.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Exactly — popularity is not truth-tracking. Nearly everyone once believed the sun circled the earth.",
+      "incorrectExplanation": "It is True. The fallacy exists precisely because mass belief and truth are different things — continents of people have been confidently wrong for centuries. Acceptance needs evidence behind it to count as proof.",
+      "lessonContent": "Acceptance and truth vary independently: some true claims were long rejected, some falsehoods were long believed.\nContinental drift was ridiculed for decades; geocentrism ruled for millennia.\nThe lesson is not cynicism — it is that belief needs evidence, not duration.\nLong-standing consensus among informed experts earns trust; mere longevity does not.\nShare this: find one thing 'everyone has always known' and check when it was last tested.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Factory Phantom",
+      "question": "Responding to 'we should recycle more' with 'so you want to shut down every factory' builds a straw man.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Yes — the reply inflates a modest proposal into an absurd extreme, then attacks the extreme.",
+      "incorrectExplanation": "It is True. 'Recycle more' never implied shutting down industry — the response invents a ridiculous version of the position and fights that instead. Inflating to an absurd extreme is the most common straw-manning move.",
+      "lessonContent": "The commonest straw-manning move is inflation: stretch 'some' into 'all', 'prefer' into 'obsess', 'regulate' into 'ban'.\nThe inflated version is always easier to mock, which is exactly the point.\nInflation-spotting is a learnable reflex: listen for 'so what you're saying is' and check the stretch.\nThe counter-move is restating the original scale before responding.\nShare this: count the 'so you want to' inflations in one conversation this week.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Truth Condition",
+      "question": "An ad hominem fallacy only occurs when the personal attack is factually false.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Correct — even a true personal fact is irrelevant if it is used to dismiss the argument.",
+      "incorrectExplanation": "It is False. The fallacy is in the irrelevance, not the falsity: 'he really did fail maths' still says nothing about his budget argument. A true fact deployed as a substitute for engagement is still an ad hominem.",
+      "lessonContent": "The ad hominem's flaw is relevance, not accuracy — even a true personal fact proves nothing about the argument.\nA genuine failure decades ago still leaves today's reasoning untouched.\nFallacies are about connections: a true statement in the wrong place is still a wrong move.\nRelevance is the master concept — most informal fallacies are relevance failures in costume.\nShare this: when a true fact is dropped into a debate, ask what it is supposed to prove.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Unpleasant but Right",
+      "question": "An argument can be rejected on solid logical grounds even when its proponent is thoroughly unpleasant.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Right — validity depends on the argument's structure, not the arguer's personality.",
+      "incorrectExplanation": "It is True. A rude person can present a flawless argument, and a saint can present a broken one. Judging the reasoning is separate from judging the person — that separation is what the ad hominem fallacy violates.",
+      "lessonContent": "Two independent judgements: the person (kind, consistent, pleasant?) and the argument (valid, sound?).\nConflating them is how bad arguments from good people slide by, and good arguments from bad people get dismissed.\nCourts understood this long ago: even a criminal's testimony is weighed, not automatically discarded.\nThe separation feels cold and is actually fairness.\nShare this: separate the messenger from the message in one judgement you make today.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Friendship Motive",
+      "question": "'You only support this policy because your friends do' addresses the actual reasoning behind the policy.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Correct — it speculates about motives while saying nothing about the policy's merits.",
+      "incorrectExplanation": "It is False. The reply is about why the person might hold the view, not whether the view is sound — a motive-focused sidestep. Even if the motive were true, the policy's arguments would stand or fall on their own.",
+      "lessonContent": "Explaining why someone holds a view is psychology; evaluating the view is logic.\nBoth can be done — but only one of them settles the argument.\nMotive-talk is a spotlight shift: engaging, vivid, and silent about the actual claim.\nEven a correct motive report leaves the claim's evidence exactly where it was.\nShare this: catch one motive explanation today and re-ask the original question.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "When Crowds Know",
+      "question": "Appealing to what a crowd believes is always fallacious, even when the crowd consists of relevant experts.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Right — expert consensus earned through evidence is testimony with weight, not head-counting.",
+      "incorrectExplanation": "It is False. When specialists converge after examining evidence, citing that consensus is citing informed testimony — categorically different from 'everyone believes it, so true'. The ad populum fallacy targets popularity as proof, not expertise as evidence.",
+      "lessonContent": "Citing expert consensus differs from crowd-counting: the experts' numbers carry the weight of evidence behind them.\nAstronomers agreeing the universe expands is testimony to data, not to popularity.\nThe carve-out has limits: it assumes genuine, independent convergence.\nAsking why the experts agree upgrades the shortcut into understanding.\nShare this: next time you cite a consensus, be ready to name one piece of evidence behind it.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Who Builds It",
+      "question": "The straw man fallacy is committed by the person whose position gets misrepresented.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Correct — the fallacy belongs to the misrepresenter, the one who builds and attacks the scarecrow.",
+      "incorrectExplanation": "It is False. The victim's position is the raw material — the fallacy is committed by whoever distorts it. Being misrepresented makes you the target, not the culprit.",
+      "lessonContent": "Fallacies are committed, not suffered: the misrepresenter owns the straw man, not the misrepresented.\nKeeping the arrow of blame straight matters when both sides accuse each other of the same move.\nAsk 'who changed the claim?' and the culprit reveals itself.\nQuotation is the currency of accountability in argument.\nShare this: in the next dispute you witness, track who quoted and who paraphrased.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Empty but Loud",
+      "question": "An ad populum argument can be emotionally persuasive while remaining logically empty.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Exactly — that gap between persuasive power and logical content is what makes the fallacy dangerous.",
+      "incorrectExplanation": "It is True. 'Everyone knows this' feels reassuring and requires no thinking, which is exactly why it persuades. Emotional pull and logical emptiness happily coexist — the fallacy works because it feels like belonging.",
+      "lessonContent": "Persuasion has many engines — emotion, belonging, repetition, confidence — and logic is only one of them.\nA fallacy can be perfectly engineered persuasion while proving nothing.\nFeeling convinced is data about you, not about the claim.\nAdvertisers and demagogues alike optimize for the feeling, not the proof.\nShare this: notice one moment today when confidence, not evidence, moved you.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Decay Gambit",
+      "question": "'My opponent wants less spending; clearly he wants this city to decay' is closest to a straw man.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Yes — 'less spending' is quietly rewritten as 'wants decay', a much easier target to attack.",
+      "incorrectExplanation": "It is True. Wanting less spending does not mean wanting decay — the speaker substitutes a sinister motive for the actual position. That substitution-and-attack pattern is the straw man signature.",
+      "lessonContent": "Slipping a sinister motive into an opponent's position is straw-manning with a mask.\nThe fake motive is always more attackable than the real policy.\nWatch for motive verbs — wants, hopes, plans — that the opponent never used.\nThe counter is asking them to state their own goal in their own words.\nShare this: replace one assigned motive today with a direct question about intent.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Insult plus Proof",
+      "question": "Calling an argument stupid is technically an ad hominem even when you also completely refute it.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Right — the fallacy is abuse standing in for argument. Here the refutation does the actual work.",
+      "incorrectExplanation": "It is False. Rude packaging around a genuine refutation is bad manners, not a fallacy — the reasoning is still fully engaged. Ad hominem means the personal jab replaces engagement with the argument, not accompanies it.",
+      "lessonContent": "Rudeness alongside a full refutation is a manners problem, not a logic problem.\nThe fallacy label applies only when the jab substitutes for engagement.\nThis is why 'that's ad hominem!' sometimes loses arguments it should win — the refutation stands regardless.\nJudging packaging and content separately is the mature skill.\nShare this: separate one speaker's tone from their reasoning today and grade each on its own.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Latin Label",
+      "question": "The formal Latin name for the appeal-to-popularity fallacy is argumentum ad populum.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Correct — 'argument to the people', the scholarly name for crowd-as-proof.",
+      "incorrectExplanation": "It is True. Argumentum ad populum literally means 'argument to the people' — appealing to the crowd's beliefs as if numbers were evidence. Spotting the Latin label helps you notice the move in polished writing.",
+      "lessonContent": "Latin tags like argumentum ad populum are compression: a whole failure-pattern packed into a name.\nNamed patterns get spotted faster — the label primes the recognition.\nThe same holds for ad hominem ('to the person') and its many cousins.\nTaxonomy is not pedantry; it is a spotting toolkit.\nShare this: teach one fallacy name to someone today and watch them start seeing it everywhere.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Why It Works",
+      "question": "Straw-manning often succeeds because the audience never heard the original position.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Exactly — with no original for comparison, the caricature becomes the position in the audience's mind.",
+      "incorrectExplanation": "It is True. The distortion only fools listeners who lack the original for comparison — once you have heard both, the fake collapses. That is why checking primary sources defuses straw men so reliably.",
+      "lessonContent": "Straw men thrive on audiences that never heard the original — with nothing to compare, the caricature becomes the claim.\nThat is why secondhand summaries are the fallacy's natural habitat.\nThe antidote is primary sources: read the speech, not the tweet about the speech.\nVerification beats eloquence in any serious disagreement.\nShare this: read one primary source behind a summary you consumed today.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "The Spotlight Shift",
+      "question": "An ad hominem turns the spotlight from the claim onto the claimant.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "Right — that redirect is the entire mechanics of the fallacy: judge the person, forget the point.",
+      "incorrectExplanation": "It is True. The move works by changing the subject of the sentence — from 'is this claim true?' to 'what is wrong with this person?' Once the spotlight moves, the original question quietly disappears.",
+      "lessonContent": "An ad hominem changes the sentence's subject: from 'is the claim true?' to 'what is wrong with the claimer?'\nOnce the spotlight moves, the original question quietly exits the stage.\nNoticing the redirect half-defuses it — drag the light back to the claim.\nInterviewers and moderators earn their keep by exactly this move.\nShare this: in one debate today, name the moment the subject changed from claim to person.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "easy",
+      "title": "Experts versus Crowds",
+      "question": "Believing a claim because most qualified experts accept it after reviewing evidence is the ad populum fallacy.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "Correct — that is deferring to informed consensus, which is evidence-based testimony, not head-counting.",
+      "incorrectExplanation": "It is False. Ad populum counts noses regardless of knowledge; expert consensus carries the weight of training and evidence behind it. Trusting qualified consensus is reasonable shorthand, not a fallacy — though checking why experts agree is even better.",
+      "lessonContent": "One question separates healthy deference from the bandwagon: what generated the agreement?\nEvidence-examined convergence earns trust; fashion, fear and follower counts do not.\nIt is also fine to ask both: what do the experts say, and why do they say it?\nThe 'why' is where your own judgment gets trained.\nShare this: next time you defer to consensus, spend thirty seconds on the why.",
+      "lessonGroup": "Fallacy Field Guide",
+      "forgeId": "batch-002#24",
+      "forgeScore": 100
+    }
+  ]
+}

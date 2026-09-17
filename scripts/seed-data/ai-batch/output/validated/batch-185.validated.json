@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-185",
+  "generatedAt": "2026-09-17T13:27:45.620Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "Between 4 and 5",
+      "correctExplanation": "Right — half past pulls the hour hand halfway to five. Halves park between numerals.",
+      "incorrectExplanation": "Not quite — between 4 and 5. The hour hand creeps continuously, parking midway at half past.",
+      "lessonContent": "Hour hands creep continuously, never jump.\nHalves park between numerals exactly.\nRead hours by proximity, minutes by markers.\nShare this: read one analog clock aloud.",
+      "lessonGroup": "Number Crunch",
+      "question": "Where does the hour hand point at 4:30?",
+      "title": "The Halfway Hand",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Exactly on 4",
+        "Between 4 and 5",
+        "Exactly on 5",
+        "Between 5 and 6"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "30 degrees",
+      "correctExplanation": "Correct — twelve hours share 360 degrees, thirty apiece. Hours slice the dial evenly.",
+      "incorrectExplanation": "Actually, 30 degrees. Divide the full circle by twelve hour marks.",
+      "lessonContent": "Hours divide circles into thirty degrees.\nTwelve slices share 360 evenly.\nDial geometry starts with thirty.\nShare this: slice one pizza into twelve.",
+      "lessonGroup": "Number Crunch",
+      "question": "How many degrees does the hour hand move per hour?",
+      "title": "The Hourly Slice",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "15 degrees",
+        "30 degrees",
+        "45 degrees",
+        "60 degrees"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#1",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "6 degrees",
+      "correctExplanation": "Yes — sixty minutes share 360 degrees, six apiece. Minutes march six degrees each.",
+      "incorrectExplanation": "Close! 6 degrees. Full circle divided by sixty minute marks.",
+      "lessonContent": "Minutes march six degrees apiece.\nSixty steps circle every dial.\nSix anchors minute geometry.\nShare this: count six degrees on a watch.",
+      "lessonGroup": "Number Crunch",
+      "question": "Sixty ticks share one circle. How large is each tick's sweep?",
+      "title": "The Minute March",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "1 degree",
+        "6 degrees",
+        "12 degrees",
+        "30 degrees"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "90 degrees",
+      "correctExplanation": "Right — three o'clock spreads hands a quarter circle apart. Quarter dials make right angles.",
+      "incorrectExplanation": "Not quite — 90 degrees. Three hour-marks times thirty degrees.",
+      "lessonContent": "Three o'clock frames right angles.\nQuarters of dials equal ninety.\nClock faces teach geometry free.\nShare this: catch one clock square.",
+      "lessonGroup": "Number Crunch",
+      "question": "What angle sits between the hands at 3:00?",
+      "title": "The Square Clock",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "60 degrees",
+        "90 degrees",
+        "120 degrees",
+        "180 degrees"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "180 degrees",
+      "correctExplanation": "Correct — six o'clock stretches hands into a straight line. Halves of dials oppose fully.",
+      "incorrectExplanation": "Actually, 180 degrees. Six marks times thirty degrees flattens straight.",
+      "lessonContent": "Six o'clock draws straight diameters.\nHalves oppose across centers.\nStraight lines read as 180.\nShare this: spot one six o'clock line.",
+      "lessonGroup": "Number Crunch",
+      "question": "Hands oppose straight across at six. How wide is their spread?",
+      "title": "The Straight Six",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "90 degrees",
+        "120 degrees",
+        "180 degrees",
+        "270 degrees"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "11 meetings",
+      "correctExplanation": "Yes — overlaps space every ~65 minutes, skipping one near eleven. Eleven meetings, never twelve.",
+      "incorrectExplanation": "Close! 11 meetings. The eleventh-hour overlap belongs to the next cycle.",
+      "lessonContent": "Hands meet eleven times per twelve hours.\nSkipped meetings cluster near eleven.\nSixty-five-minute spacing rules meetings.\nShare this: catch the 1:05 overlap.",
+      "lessonGroup": "Number Crunch",
+      "question": "How many times do clock hands overlap in 12 hours?",
+      "title": "The Eleven Meetings",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "12 meetings",
+        "11 meetings",
+        "24 meetings",
+        "6 meetings"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "22 squares",
+      "correctExplanation": "Right — right angles strike twenty-two times per twelve hours, twice hourly minus two skips. Squares outnumber meetings.",
+      "incorrectExplanation": "Not quite — 22 squares. Two per hour, minus skips near two and eight.",
+      "lessonContent": "Squares strike twenty-two times daily-half.\nSkips hide near two and eight.\nRight angles outpace overlaps.\nShare this: catch one unexpected square.",
+      "lessonGroup": "Number Crunch",
+      "question": "How many right angles form in 12 hours?",
+      "title": "The Twenty-Two Squares",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "12 squares",
+        "24 squares",
+        "22 squares",
+        "11 squares"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "One o'clock",
+      "correctExplanation": "Correct — twelve hours times five extra minutes totals an hour gained. Fast clocks run ahead hourly.",
+      "incorrectExplanation": "Actually, one o'clock. Gains accumulate: 12 × 5 minutes = 60 ahead.",
+      "lessonContent": "Fast clocks bank minutes hourly.\nGains multiply across long days.\nReset schedules beat drifting dials.\nShare this: check one clock's drift.",
+      "lessonGroup": "Number Crunch",
+      "question": "A clock gains 5 minutes hourly. Set at noon, what does it show 12 real hours later?",
+      "title": "The Hasty Clock",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Noon exactly",
+        "One o'clock",
+        "Midnight",
+        "Eleven o'clock"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Friday",
+      "correctExplanation": "Yes — ten days shift three weekdays forward from Tuesday. Sevens cycle; remainders walk.",
+      "incorrectExplanation": "Close! Friday. Ten modulo seven leaves three; Tuesday plus three lands Friday.",
+      "lessonContent": "Weekdays cycle every seven days.\nRemainders walk forward from today.\nModular arithmetic dates everything.\nShare this: weekday-shift one birthday.",
+      "lessonGroup": "Number Crunch",
+      "question": "Today is Tuesday. What weekday dawns in 10 days?",
+      "title": "The Ten-Day Leap",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Monday"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#8",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "April, June, September, November",
+      "correctExplanation": "Right — the rhyme's short months exclude February. Four thirties plus February's exception.",
+      "incorrectExplanation": "Not quite — April, June, September, November. Thirty days hath these four.",
+      "lessonContent": "Thirty days hath four named months.\nKnuckle tricks calendarize months.\nFebruary stands alone in brevity.\nShare this: recite the month rhyme.",
+      "lessonGroup": "Number Crunch",
+      "question": "Which months have exactly 30 days?",
+      "title": "The Thirty Club",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "March, May, July, August",
+        "April, June, September, November",
+        "January, March, May, July",
+        "February plus three"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Three maximum",
+      "correctExplanation": "Correct — unlucky calendars max out at three Friday thirteenths yearly. At least one always lurks.",
+      "incorrectExplanation": "Actually, three maximum. Calendar geometry caps the spooky combo at three.",
+      "lessonContent": "Friday thirteenths range one to three.\nCalendars guarantee at least one.\nSuperstition meets combinatorics yearly.\nShare this: count this year's spooky days.",
+      "lessonGroup": "Number Crunch",
+      "question": "At most, how many Friday the 13ths can one year hold?",
+      "title": "The Spooky Maximum",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "One maximum",
+        "Two maximum",
+        "Three maximum",
+        "Thirteen maximum"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Half past two",
+      "correctExplanation": "Yes — fourteen hundred hours reads half past two civilianly. Subtract twelve past noon.",
+      "incorrectExplanation": "Close! Half past two. Twenty-four-hour clocks shed twelve after midday.",
+      "lessonContent": "Military time sheds twelve past noon.\nFourteen hundred lands mid-afternoon.\nConversions ease travel and shifts.\nShare this: convert one timetable entry.",
+      "lessonGroup": "Number Crunch",
+      "question": "What is 14:30 in ordinary 12-hour speech?",
+      "title": "The Civilian Clock",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Four thirty a.m.",
+        "Half past two",
+        "Quarter to three",
+        "Half past four"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#11",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "10 a.m.",
+      "correctExplanation": "Right — New York trails London by five hours. Zones subtract westward.",
+      "incorrectExplanation": "Not quite — 10 a.m. Three p.m. minus five zone hours lands mid-morning.",
+      "lessonContent": "Zones subtract traveling westward.\nLondon leads New York by five.\nWorld clocks stack offsets simply.\nShare this: zone-convert one call time.",
+      "lessonGroup": "Number Crunch",
+      "question": "It's 3 p.m. in London. What time in New York (5 hours behind)?",
+      "title": "The Zone Hop",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "8 p.m.",
+        "10 a.m.",
+        "3 p.m.",
+        "8 a.m."
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#12",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "10,080 minutes",
+      "correctExplanation": "Correct — 7 × 24 × 60 totals 10,080. Weeks pack ten thousand minutes.",
+      "incorrectExplanation": "Actually, 10,080 minutes. Days times hours times sixty.",
+      "lessonContent": "Weeks pack ten thousand minutes.\nNested multiplications reveal totals.\nMinutes accumulate invisibly.\nShare this: budget ten thousand minutes.",
+      "lessonGroup": "Number Crunch",
+      "question": "How many minutes fill one full week?",
+      "title": "The Weekly Minutes",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "1,440 minutes",
+        "10,080 minutes",
+        "100,800 minutes",
+        "7,000 minutes"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 4:22",
+      "correctExplanation": "Yes — overlaps lag hourly marks progressively; the four o'clock meeting lands near twenty-two past. Sixty-five-minute spacing rules.",
+      "incorrectExplanation": "Close! About 4:22. Each overlap falls later than the last hour mark.",
+      "lessonContent": "Overlaps drift later hourly.\nSixty-five-minute beats govern meetings.\nFour o'clock hosts near twenty-two.\nShare this: predict the 7:00 overlap.",
+      "lessonGroup": "Number Crunch",
+      "question": "Between 4 and 5, when do the hands overlap?",
+      "title": "The Four O'Clock Meet",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Exactly 4:20",
+        "About 4:22",
+        "Exactly 4:25",
+        "About 4:15"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#14",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "120 degrees",
+      "correctExplanation": "Right — four marks times thirty degrees spreads 120. Afternoon angles widen hourly.",
+      "incorrectExplanation": "Not quite — 120 degrees. Count four hour-spacings of thirty.",
+      "lessonContent": "Four marks times thirty widen afternoons.\nMarks times thirty never fails.\nAfternoon geometry widens steadily.\nShare this: measure one clock angle.",
+      "lessonGroup": "Number Crunch",
+      "question": "Each mark spans thirty degrees, and four marks separate the hands at 4:00. Total span?",
+      "title": "The Four O'Clock Span",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "90 degrees",
+        "120 degrees",
+        "150 degrees",
+        "60 degrees"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#15",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "60 degrees",
+      "correctExplanation": "Correct — two marks times thirty degrees. Small hours make slim angles.",
+      "incorrectExplanation": "Actually, 60 degrees. Two spacings of thirty.",
+      "lessonContent": "Two marks times thirty slim the morning.\nSlim hours make slim angles.\nThirty-times tables rule dials.\nShare this: eyeball sixty degrees anywhere.",
+      "lessonGroup": "Number Crunch",
+      "question": "Two marks part the hands at two. With thirty degrees per mark, what is their spread?",
+      "title": "The Slim Two",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "30 degrees",
+        "60 degrees",
+        "90 degrees",
+        "45 degrees"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "45 degrees",
+      "correctExplanation": "Yes — the hour hand creeps halfway past seven (225°) while minutes rest at six (180°). Creeping halves the gap.",
+      "incorrectExplanation": "Close! 45 degrees. Half-past drags the hour hand midway, narrowing eight o'clock's span... seven-thirty's span to 45.",
+      "lessonContent": "Half-hours drag hour hands midway.\nCreeping narrows expected spans.\nSeven-thirty spans forty-five.\nShare this: catch one creeping hand.",
+      "lessonGroup": "Number Crunch",
+      "question": "Half past seven drags the hour hand midway between seven and eight. How wide is the resulting spread?",
+      "title": "The Creeping Half",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "90 degrees",
+        "45 degrees",
+        "60 degrees",
+        "30 degrees"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#17",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Sixty seconds",
+      "correctExplanation": "Right — full sweeps equal one minute by definition. Seconds hands define minutes circularly.",
+      "incorrectExplanation": "Not quite — sixty seconds. One revolution, one minute, by design.",
+      "lessonContent": "Revolutions define minutes circularly.\nSixty ticks complete circles.\nDefinitions anchor measurements.\nShare this: race one second hand.",
+      "lessonGroup": "Number Crunch",
+      "question": "How long does the second hand take per full circle?",
+      "title": "The Full Sweep",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Sixty seconds",
+        "Thirty seconds",
+        "Twelve seconds",
+        "One hour"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "104 weekend days",
+      "correctExplanation": "Correct — fifty-two weeks times two weekend days. Years rest a hundred-plus days.",
+      "incorrectExplanation": "Actually, 104 weekend days. Weekly pairs times fifty-two.",
+      "lessonContent": "Years rest a hundred-plus weekend days.\nWeeks pair Saturdays with Sundays.\nCalendars budget leisure generously.\nShare this: count one year's Saturdays.",
+      "lessonGroup": "Number Crunch",
+      "question": "A 365-day year starting Monday holds how many weekend days?",
+      "title": "The Weekend Count",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "100 weekend days",
+        "104 weekend days",
+        "108 weekend days",
+        "96 weekend days"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Same backward",
+      "correctExplanation": "Yes — 12:21 mirrors perfectly. Palindrome times read identically reversed.",
+      "incorrectExplanation": "Close! Same backward. Twelve twenty-one reflects symmetrically.",
+      "lessonContent": "Palindrome times mirror themselves.\nTwelve twenty-one reads both ways.\nSymmetry hides in timetables.\nShare this: catch one palindrome time.",
+      "lessonGroup": "Number Crunch",
+      "question": "Digital 12:21 reads how in a mirror?",
+      "title": "The Mirrored Digits",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "12:12 reversed",
+        "Same backward",
+        "21:12 flipped",
+        "Upside down"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Thirty minutes",
+      "correctExplanation": "Right — six marks half the dial; each mark spans five minutes. Sixes signal halves.",
+      "incorrectExplanation": "Not quite — thirty minutes. Minute marks count fives; six marks thirty.",
+      "lessonContent": "Sixes signal half-hours universally.\nMarks count fives around dials.\nHalves halve every hour.\nShare this: read one half past.",
+      "lessonGroup": "Number Crunch",
+      "question": "The minute hand points at 6. How many minutes past the hour?",
+      "title": "The Pointing Six",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "Six minutes",
+        "Thirty minutes",
+        "Sixty minutes",
+        "Sixteen minutes"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Half a degree",
+      "correctExplanation": "Correct — thirty degrees hourly divided by sixty minutes creeps halves. Hour hands crawl imperceptibly.",
+      "incorrectExplanation": "Actually, half a degree. Hourly thirty split sixty ways.",
+      "lessonContent": "Hour hands crawl half-degrees minutely.\nCrawling escapes casual notice.\nDivision reveals hidden motion.\nShare this: detect one crawling hand.",
+      "lessonGroup": "Number Crunch",
+      "question": "How far does the hour hand move each minute?",
+      "title": "The Crawling Hand",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "One degree",
+        "Half a degree",
+        "Six degrees",
+        "It waits hourly"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Five o'clock",
+      "correctExplanation": "Yes — three plus two lands five. Itineraries add durations simply.",
+      "incorrectExplanation": "Close! Five o'clock. Departure plus duration equals arrival.",
+      "lessonContent": "Flights add durations to departures.\nZones complicate; durations don't.\nArrival math stays elementary.\nShare this: time one trip's landing.",
+      "lessonGroup": "Number Crunch",
+      "question": "A 2-hour flight leaves at 3 p.m. When does it land (same zone)?",
+      "title": "The Short Hop",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "4 o'clock",
+        "Five o'clock",
+        "6 p.m. sharp",
+        "Half past five"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#23",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "29 days",
+      "correctExplanation": "Right — leap Februaries stretch to twenty-nine. Quadrennial days pad the shortest month.",
+      "incorrectExplanation": "Not quite — 29 days. Leap years gift February one extra dawn.",
+      "lessonContent": "Leap Februaries hold twenty-nine days.\nQuadrennial gifts pad calendars.\nShortest months stretch leap years.\nShare this: birthday-hop one leapling.",
+      "lessonGroup": "Number Crunch",
+      "question": "How many days in a leap-year February?",
+      "title": "The Stretched February",
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "choices": [
+        "28 days",
+        "29 days",
+        "30 days",
+        "27 days"
+      ],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-185#24",
+      "forgeScore": 100
+    }
+  ]
+}

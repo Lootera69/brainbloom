@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-003",
+  "generatedAt": "2026-09-17T13:27:41.363Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Missing Frame",
+      "question": "A film cuts from a man waking to him brushing teeth, then to him at work. Audiences never feel the gap — even though hours of his life vanished between shots. What is the storyteller really relying on?",
+      "choices": [
+        "The audience's laziness in checking details",
+        "The mind's automatic stitching of events into cause and flow",
+        "Special effects hidden inside the cut",
+        "The audience never noticing anything at all"
+      ],
+      "correctAnswer": "The mind's automatic stitching of events into cause and flow",
+      "xpReward": 25,
+      "correctExplanation": "Exactly — the cut works because the brain supplies the missing hours. The filmmaker edits; the viewer builds.",
+      "incorrectExplanation": "The answer is: the mind's automatic stitching of events into cause and flow. Film editors call it the Kuleshov insight — meaning is assembled in the spectator's head, not on the screen. The same stitching runs your own life: you experience 'a day', not ten thousand disconnected moments. Memory is your personal editor, and it takes the same liberties.",
+      "lessonContent": "The Kuleshov effect showed that audiences supply meaning between two unrelated shots.\nYour memory performs the same edit nightly — sleep consolidates fragments into continuous narratives.\nConfabulation is the clinical name for confidently filling gaps with invented detail.\nThe storytelling brain explains why eyewitness testimony is shakier than it feels.\nShare this: recall this morning in one sentence and count how many gaps your mind silently bridged.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-003#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Third Act",
+      "question": "A magician shows you an ordinary bird. A moment later, the bird is gone — and finally it returns, transformed, somewhere impossible. Which act of the classic trick structure is doing the real work?",
+      "choices": [
+        "The first — showing something ordinary",
+        "The second — making it vanish",
+        "The third — the impossible return",
+        "None; the work happens before the show"
+      ],
+      "correctAnswer": "The third — the impossible return",
+      "xpReward": 25,
+      "correctExplanation": "Right — the pledge and the turn only set the table. The prestige is where astonishment lives, because it retroactively makes the ordinary seem impossible.",
+      "incorrectExplanation": "The answer is: the third — the impossible return. Magicians name the acts the pledge, the turn and the prestige; the third act is the payoff that reframes the first two. Every great reveal story works this way — the ending reaches back and changes what the beginning meant. The first two acts are interest; the third collects.",
+      "lessonContent": "Stage magic formalizes the reveal: the pledge establishes the ordinary, the turn breaks it, the prestige restores it transformed.\nThe structure reappears in jokes (setup, twist, punchline) and in proofs (premise, surprise, resolution).\nWhat the third act really sells is retroactive meaning — the audience re-reads what they saw.\nAny explanation you ever give inherits its power from where the reveal lands.\nShare this: retell your favourite film ending and notice how it recolours its opening scene.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#1",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Unreliable Camera",
+      "question": "A narrator describes a generous benefactor funding a village school. At the end we learn the narrator owns the land the school occupies. The story never lied once. What happened?",
+      "choices": [
+        "The story deceived by selection, not statement",
+        "The narrator technically lied by omission of feeling",
+        "The school was secretly harmful to villagers",
+        "Nothing; the narrator's stake is irrelevant"
+      ],
+      "correctAnswer": "The story deceived by selection, not statement",
+      "xpReward": 25,
+      "correctExplanation": "Correct — every sentence was true; the frame was the falsehood. What was left out did the misleading.",
+      "incorrectExplanation": "The answer is: the story deceived by selection, not statement. Unreliable narration at its most elegant never utters a falsehood — it curates truths until the picture lies. News feeds, reviews and résumés work the same way: honest sentences, dishonest frame. The defence is asking what a truthful teller would have included that this one didn't.",
+      "lessonContent": "Unreliable narrators mislead by emphasis and omission while every stated fact stays true.\nFrame control is the technique: what you show first becomes the reference point for everything after.\nStudies of selective disclosure show people judge honesty by what was said, rarely by what was absent.\nAsking 'what would the other side include?' is the reader's counter-move.\nShare this: read one news story today and list two facts a different editor would have led with.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-003#2",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Nested Rules",
+      "question": "In a dream inside a dream, falling in the deeper level wakes you one level up — never two. A character wants to escape from the deepest level. What must the plot guarantee before that escape is possible?",
+      "choices": [
+        "Enough time passing in the deepest level",
+        "A wake event in every level above it",
+        "Strong emotion to power the climb",
+        "A rule that deep levels ignore waking"
+      ],
+      "correctAnswer": "A wake event in every level above it",
+      "xpReward": 25,
+      "correctExplanation": "Exactly — nested systems need their escape conditions satisfied at each layer, or the chain stalls.",
+      "incorrectExplanation": "The answer is: a wake event in every level above it. Layered fictions earn their complexity by obeying their own rules per level — the escape cascades. Nested systems in reality behave identically: quitting an app inside a virtual machine still needs the host to cooperate. Rules kept faithfully are what make impossible structures feel real.",
+      "lessonContent": "Layered realities obey their own physics per level — that discipline is what makes them believable.\nNested systems cascade: an exit condition must trigger at every enclosing layer.\nComputer science lives this daily — processes inside virtual machines inside hosts.\nA story's rules are a promise; breaking them cheaply costs more than never making them.\nShare this: next time a plot 'breaks its own rules', name exactly which level's rule got violated.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Wall Rifle",
+      "question": "A playwright introduces a rifle hanging on a wall in scene one. It never fires again for the whole play. What has the writer broken?",
+      "choices": [
+        "Nothing; realism permits furniture",
+        "The audience's trust in meaningful detail",
+        "The rule that weapons must be staged safely",
+        "The requirement that scene one be short"
+      ],
+      "correctAnswer": "The audience's trust in meaningful detail",
+      "xpReward": 25,
+      "correctExplanation": "Right — Chekhov's principle: introduce a rifle and it must matter. The audience's attention is a contract.",
+      "incorrectExplanation": "The answer is: the audience's trust in meaningful detail. Chekhov's gun is the dramatist's economy — whatever you place on stage, the audience will invest meaning in, so it must pay off. Detail that never matters teaches readers to stop attending. The inverse holds too: what's absent from a story can be load-bearing silence.",
+      "lessonContent": "Chekhov's gun: any element placed on stage earns meaning and must eventually matter.\nAudiences treat every highlighted detail as a promise — wasted promises train inattention.\nThe inverse power: deliberate absences can carry more weight than presences.\nGood non-fiction and good design obey the same economy — every element earns its place.\nShare this: scan a webpage or document today and find three details that never pay off.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Honest Liar Scene",
+      "question": "In a classic mystery, the narrator describes every scene truthfully — yet the solution shocks every reader, and rereading reveals the clues were always in plain sight. What craft made this possible?",
+      "choices": [
+        "Hiding clues in the final chapter only",
+        "Fair-play clue placement with misdirected attention",
+        "Making the clues physically tiny in print",
+        "Using a solution nobody could deduce"
+      ],
+      "correctAnswer": "Fair-play clue placement with misdirected attention",
+      "xpReward": 25,
+      "correctExplanation": "Exactly — the golden-age discipline: every clue on the table, attention pointed elsewhere. The reread is the proof of fairness.",
+      "incorrectExplanation": "The answer is: fair-play clue placement with misdirected attention. The locked-room tradition treats the reader as a collaborator: solvable in principle, deceived only by emphasis. Misdirection borrows from stage magic — the eye follows motion, so the writer supplies motion. A puzzle that hides information breaks the contract; one that hides it in view honours it.",
+      "lessonContent": "The fair-play tradition: all clues visible before the reveal, deception only via attention.\nMisdirection works because attention is a spotlight — motion and emotion steer it.\nThe reread test: a good mystery improves when you know the answer.\nPuzzle designers grade themselves by whether the solver says 'it was in front of me'.\nShare this: reread one thing you were fooled by and trace where your attention was steered.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-003#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Two Clocks",
+      "question": "A soldier's one week on land and a civilian boat's single day are cut together, and each hour of the sea story weighs as much as the soldier's whole week. What is the editing really doing?",
+      "choices": [
+        "Making the sea story seem longer by accident",
+        "Weighing time by emotional meaning, not minutes",
+        "Signalling the sea story is fiction",
+        "Punishing viewers who arrived late"
+      ],
+      "correctAnswer": "Weighing time by emotional meaning, not minutes",
+      "xpReward": 25,
+      "correctExplanation": "Right — braided timelines can run at different clock speeds because the currency is meaning, not duration.",
+      "incorrectExplanation": "The answer is: weighing time by emotional meaning, not minutes. Braid-structure storytelling interlaces timelines whose lengths differ wildly, letting each carry equal narrative weight. Your memory edits the same way — an afternoon of crisis outlives a year of routine. The craft move simply makes the mind's native bias visible.",
+      "lessonContent": "Braided narratives run multiple timelines whose clock speeds differ by design.\nThe unit of story time is meaning, not minutes — crisis dilates, routine compresses.\nMemory performs the same trick: emotional salience decides what a 'long' year is.\nTime perception experiments confirm duration judgments track attention and novelty.\nShare this: ask someone which single hour of their last month felt longest, and why.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Turning Word",
+      "question": "A poet ends a piece with 'success in failure' — a phrase that seems to cancel itself. What device is in play, and why does it land?",
+      "choices": [
+        "A typo that readers forgive in context",
+        "Paradox pairing two half-truths into one whole truth",
+        "Sarcasm directed at the reader",
+        "Rhythm covering the lack of sense"
+      ],
+      "correctAnswer": "Paradox pairing two half-truths into one whole truth",
+      "xpReward": 25,
+      "correctExplanation": "Correct — each word is a half-truth; the tension between them is where the full meaning lives.",
+      "incorrectExplanation": "The answer is: paradox pairing two half-truths into one whole truth. Oxymorons and paradoxes work by forcing two valid partial readings into one phrase — the spark is in the collision. 'Cruel kindness' and 'hurry up and wait' both point at real experiences no single word covers. Minds hold the tension, and that holding is the thought.",
+      "lessonContent": "Paradox compression: two partial truths forced into one phrase, each exposing the other's limit.\nOxymorons are its smallest unit — 'sound of silence' names a real experience no plain phrase reaches.\nThe reader's moment of holding both is the meaning; resolve it too fast and it dies.\nGreat aphorisms from Heraclitus to Dickinson run on this engine.\nShare this: coin one oxymoron about your own week and test if it lands on a friend.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "In Medias Res",
+      "question": "The oldest epic in the West begins not with the war's start but years in, a man weeping on a beach, already mid-story. What does starting in the middle buy the teller?",
+      "choices": [
+        "A shorter total running time",
+        "Immediate stakes plus a past the audience must reconstruct",
+        "Freedom from explaining anything later",
+        "Protection from critics of endings"
+      ],
+      "correctAnswer": "Immediate stakes plus a past the audience must reconstruct",
+      "xpReward": 25,
+      "correctExplanation": "Exactly — in medias res opens at maximum pressure and lets the backstory arrive as earned discovery.",
+      "incorrectExplanation": "The answer is: immediate stakes plus a past the audience must reconstruct. The Odyssey drops you into year ten of a ten-year homecoming — curiosity about the missing decade powers the whole poem. Beginning mid-crisis converts exposition into mystery. The audience assembles the past themselves, which makes it theirs.",
+      "lessonContent": "In medias res: begin inside the storm and let the calm be discovered backwards.\nExposition delivered late becomes revelation; delivered early, it becomes homework.\nThe device converts backstory from cost into currency.\nHomer's audiences knew the war's end — the poem's mystery was always the man, not the war.\nShare this: next conversation, start with the most interesting moment and fill in history only when asked.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Dramatic Irony",
+      "question": "An audience watches a character toast their trusted friend — knowing what the character doesn't: the friend has already betrayed them. Where is the story's tension actually located?",
+      "choices": [
+        "In the character's hidden strength",
+        "In the audience, holding knowledge the character lacks",
+        "In the wine, which is poisoned too",
+        "In the playwright's stage directions"
+      ],
+      "correctAnswer": "In the audience, holding knowledge the character lacks",
+      "xpReward": 25,
+      "correctExplanation": "Right — dramatic irony relocates suspense from 'what happens?' to 'when will they find out?'.",
+      "incorrectExplanation": "The answer is: in the audience, holding knowledge the character lacks. Dramatic irony splits the room: the audience knows, the character acts blind, and the gap between those two knowledge states is the tension. Tragedy has used it since ancient Greece — the horror is in the waiting, not the event. Everyday life runs small versions whenever you watch someone walk into a known mistake.",
+      "lessonContent": "Dramatic irony: the audience knows what the character doesn't, and the gap generates suspense.\nIt shifts the question from 'what happens?' to 'how long until they see it?'.\nGreek tragedy built its deepest effects on the audience's helpless foreknowledge.\nThe same gap powers cringe comedy and every 'don't open the door' moment.\nShare this: notice today when you watch someone act on outdated information and feel the gap.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#9",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Rule of Three",
+      "question": "A comedian says: 'I have three hobbies — chess, hiking, and emotional damage.' The joke's engine is best described as what?",
+      "choices": [
+        "The list being exactly three items long",
+        "Two expected patterns establishing, the third subverting",
+        "Chess being an inherently funny word",
+        "The audience mishearing the first two items"
+      ],
+      "correctAnswer": "Two expected patterns establishing, the third subverting",
+      "xpReward": 25,
+      "correctExplanation": "Exactly — two setups buy the pattern, and the third spends it. The laugh is the pivot.",
+      "incorrectExplanation": "The answer is: two expected patterns establishing, the third subverting. The rule of three is rhythm plus betrayal: the first item introduces, the second confirms a pattern, the third breaks it with a switch of frame — from hobbies to self-diagnosis. Humour researchers call the mechanism incongruity resolution. Three is the smallest number that can build a pattern and break it in one breath.",
+      "lessonContent": "The rule of three: establish, confirm, subvert — the smallest complete pattern-break.\nIncongruity resolution is the lab name for the 'aha' inside a joke's pivot.\nThe third item works by switching frames — outer activities to inner states.\nLists, jokes, mottos and fairy tales all default to three because two is a pair, four is a crowd.\nShare this: build one rule-of-three joke about your own week and test it on a friend.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Palindrome Plot",
+      "question": "A film is structured so its second half plays the first half's events in reverse order, meeting its own beginning at the middle. What must the writer plan before writing a single scene?",
+      "choices": [
+        "The ending alone; the middle is free",
+        "Every scene's mirror twin in advance",
+        "A longer runtime than usual",
+        "That audiences will watch it twice"
+      ],
+      "correctAnswer": "Every scene's mirror twin in advance",
+      "xpReward": 25,
+      "correctExplanation": "Correct — a palindrome forecloses improvisation: each half is the other's reflection, so neither can be written alone.",
+      "incorrectExplanation": "The answer is: every scene's mirror twin in advance. Mirror structures are rigid by nature — the second half's existence is fully determined by the first, so architecture precedes drafting. Poets have written palindromic verse for centuries under the same constraint. Formal constraints don't kill creativity; they concentrate it where it still has room to move.",
+      "lessonContent": "Palindrome structures make the second half a reflection of the first — determined, not free.\nFormal constraints concentrate creativity instead of killing it — poets have used mirror verse for centuries.\nSestinas, sonnets and palindromes all trade freedom elsewhere for intensity here.\nKnowing where your structure is fixed tells you where your invention must live.\nShare this: impose one constraint on a task today and notice where your creativity moves.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#11",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Disguise and Home",
+      "question": "A hero returns home after twenty years but enters his own house disguised as a stranger. The story's real question is no longer 'will he survive the journey?' What has it become?",
+      "choices": [
+        "Whether the house still deserves the name home",
+        "Whether his disguise will fool the dog",
+        "Whether the war truly ended",
+        "Whether he can defeat the disguised villain"
+      ],
+      "correctAnswer": "Whether the house still deserves the name home",
+      "xpReward": 25,
+      "correctExplanation": "Right — the survival plot ends at the shore; the identity plot begins at the door. Coming home is the harder test.",
+      "incorrectExplanation": "The answer is: whether the house still deserves the name home. The Odyssey's deep subject is not travel but return — the man who arrives is no longer the man who left, and only the dog recognizes him instantly. Disguise in such stories tests the world: who sees the person beneath the years? The homecoming question is whether continuity survives change.",
+      "lessonContent": "The homecoming story shifts the stakes from survival to identity — the harder test begins at the door.\nDisguise at home is a probe: it measures what recognizes you when nothing obvious does.\nThe Odyssey gives the instant recognition to the dog — loyalty bypasses appearance.\nYour own return to old places runs the same test every time.\nShare this: revisit one place from your past and note what recognizes you and what doesn't.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Chekhov's Absence",
+      "question": "In one play, a character talks constantly about going to a city the audience never sees; the city never appears. What is the unseen city doing to the audience?",
+      "choices": [
+        "Failing the story by breaking the gun rule",
+        "Becoming larger than any staged city could be",
+        "Proving the playwright forgot the plot",
+        "Signalling the story is a dream"
+      ],
+      "correctAnswer": "Becoming larger than any staged city could be",
+      "xpReward": 25,
+      "correctExplanation": "Correct — the never-seen destination grows in the imagination precisely because it is never staged.",
+      "incorrectExplanation": "The answer is: becoming larger than any staged city could be. A stage is a budget; the unseen city is unlimited, and it grows in each viewer's imagination. Horror runs the same law — the glimpse outscares the reveal.",
+      "lessonContent": "Negative space: the never-shown element grows beyond what any production could stage.\nHorror's law — the glimpse beats the reveal — is the same economy pointed at fear.\nLonging stories aim the device at places: the city unseen carries each viewer's own hope.\nRestraint is a budget choice as much as an aesthetic one.\nShare this: name one thing a story left unseen that lives larger in you than any shown thing.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Deadpan Delivery",
+      "question": "A comedian reports absurd events in a completely flat, serious tone, never signalling that anything is funny. Why does the straight face amplify the joke?",
+      "choices": [
+        "The audience must do the noticing themselves",
+        "Serious tones physically sound louder",
+        "The joke only works in a courtroom",
+        "Flat delivery hides the punchline from microphones"
+      ],
+      "correctAnswer": "The audience must do the noticing themselves",
+      "xpReward": 25,
+      "correctExplanation": "Right — the comic refuses to flag the absurdity, so the audience performs the double-take themselves. Discovery beats announcement.",
+      "incorrectExplanation": "The answer is: the audience must do the noticing themselves. Deadpan works by withholding the laugh cue — no wink, no giggle, total commitment to the bit. The viewer then does the frame-switching internally, and self-generated humour lands harder than signalled humour. Dry delivery is a gift wrapped as indifference.",
+      "lessonContent": "Deadpan withholds the laugh cue, forcing the audience to notice the absurdity unassisted.\nSelf-discovered humour lands harder than announced humour — the frame-switch is your own work.\nThe technique demands total commitment: any wink collapses it.\nUnderstatement and dry tone borrow the same engine in everyday speech.\nShare this: deliver one absurd true story today with a perfectly straight face and watch the room.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Scale Mismatch",
+      "question": "A novel spends two full chapters on a family argument, then dispatches a world war in one sentence. The absurd proportion is the point. What effect does this inversion create?",
+      "choices": [
+        "It accidentally reveals the author's politics",
+        "It recasts the war as background to private life",
+        "It proves the family argument caused the war",
+        "It hides the war from careless readers"
+      ],
+      "correctAnswer": "It recasts the war as background to private life",
+      "xpReward": 25,
+      "correctExplanation": "Correct — proportion is meaning. By spending words against convention, the author declares what the story is actually about.",
+      "incorrectExplanation": "The answer is: it recasts the war as background to private life. Narrative scale is an argument: whatever gets the word-count gets the importance. Inverting expected proportions makes history the backdrop of a household — a deliberate reweighting of the world. Readers feel the strangeness before they can name it, and the name is the lesson.",
+      "lessonContent": "Proportion is meaning: what a story spends its words on is what it claims matters.\nInverting expected scale — epic in a sentence, quarrel in chapters — is a silent argument.\nReaders feel scale mismatches before they can articulate them.\nThe same lens reads news: check what got column inches versus what got a line.\nShare this: compare two headlines' lengths today and ask what the scale is arguing.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Long Take",
+      "question": "A director refuses to cut for five full minutes, following one character through a building in real time. No hidden edits, no tricks. What does the audience gain that cutting would remove?",
+      "choices": [
+        "Proof the actors memorized more lines",
+        "Knowledge that the space and time are continuous",
+        "A shorter movie overall",
+        "Freedom to imagine the other rooms"
+      ],
+      "correctAnswer": "Knowledge that the space and time are continuous",
+      "xpReward": 25,
+      "correctExplanation": "Exactly — the unbroken shot is a promise: nothing was stitched, this happened, once, in this order.",
+      "incorrectExplanation": "The answer is: knowledge that the space and time are continuous. A long take functions as an integrity proof — the cut, which normally lets fiction cheat time and space, is removed from the toolbox. The audience's trust shifts from 'trust me' to 'verify for yourself'. Continuous performance is why the trick can't hide: everything must actually work, all at once.",
+      "lessonContent": "The long take removes editing — the storytelling cheat — and stakes everything on continuous performance.\nUncut presentation functions as a proof of work: what you see happened, in this order.\nLive theatre sells the same integrity every night.\nDemos, live streams and unedited records borrow the credibility of the unbroken take.\nShare this: watch one uninterrupted five-minute performance and notice your trust rising.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Suspension Standards",
+      "question": "An audience accepts dragons in a story, then complains when a dragon survives a fall 'unrealistically'. What rule did the storyteller actually break?",
+      "choices": [
+        "Dragons must obey gravity everywhere",
+        "The story's own established rules were contradicted",
+        "Audiences dislike surviving falls in any story",
+        "The dragon should have been the hero"
+      ],
+      "correctAnswer": "The story's own established rules were contradicted",
+      "xpReward": 25,
+      "correctExplanation": "Right — disbelief suspends for the premise, not for everything. Internal consistency is the contract; realism never was.",
+      "incorrectExplanation": "The answer is: the story's own established rules were contradicted. Audiences grant impossible premises but audit everything after against the story's established physics. If dragons elsewhere in that world respect falls, this one must too — the violation reads as cheating, not fantasy. World-building is promise-keeping, world-rule by world-rule.",
+      "lessonContent": "Disbelief suspends at the door for premises, not for contradictions — the audit shifts inside.\nInternal consistency is the real contract; realism was never on the table.\nFantasy worlds are legal systems: their physics binds their authors first.\nAudiences forgive impossible, not inconsistent.\nShare this: catch one inconsistency in a show you love and name which established rule it broke.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Cold Open",
+      "question": "A series begins with a stranger's funeral — a character the audience has never met — before the title card, then jumps back years. Why open on grief for an unknown?",
+      "choices": [
+        "To trick viewers into thinking they missed an episode",
+        "To make every later scene with that person a countdown",
+        "To establish the town's cemetery budget",
+        "To hide the character's true importance"
+      ],
+      "correctAnswer": "To make every later scene with that person a countdown",
+      "xpReward": 25,
+      "correctExplanation": "Correct — the funeral is a promise of ending; from then on, every scene with that person runs on borrowed time.",
+      "incorrectExplanation": "The answer is: to make every later scene with that person a countdown. The cold open buys dramatic irony wholesale: knowledge of the ending installed before the story begins. Every warm moment with that character now carries a shadow the audience holds alone. It's the oldest trick in tragedy, reloaded as a structural flash-forward.",
+      "lessonContent": "The cold open can install the ending first — every subsequent scene inherits its gravity.\nFlash-forwards convert ordinary scenes into countdowns the audience alone can see.\nIt's dramatic irony at structural scale, not just scene scale.\nThe technique trades surprise (spent in minute one) for dread (earned for hours).\nShare this: think of one thing you know will end and notice how it colours the present.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Unreliable Room",
+      "question": "A locked-room mystery: the door bolted from inside, the only window painted shut, no chimney, no secret passages — yet the detective proves no crime occurred at all. What was the actual trick?",
+      "choices": [
+        "A hidden tunnel the detective forgot to mention",
+        "The room was never locked during the events",
+        "The impossibility itself was manufactured",
+        "The victim had escaped earlier"
+      ],
+      "correctAnswer": "The impossibility itself was manufactured",
+      "xpReward": 25,
+      "correctExplanation": "Exactly — the cleanest solution dissolves the puzzle by showing it was staged: the impossible situation was the trick, not a barrier to it.",
+      "incorrectExplanation": "The answer is: the impossibility itself was manufactured. The elegant locked-room solutions rarely fight the constraints — they reveal the constraints were built to mislead: bolts thrown from outside, scenes arranged after the fact. The puzzle was never an obstacle; it was the criminal's performance. Real-world analogues are staged impossibilities in fraud and propaganda — the frame was the crime.",
+      "lessonContent": "The finest locked-room solutions reframe the impossibility as the criminal's construction, not a wall.\nThe constraints were authored by someone — ask who benefits from the framing.\nFraud and propaganda run the same play: manufacture an impossible situation, then sell its explanation.\n'Who built this box?' outperforms 'how did they escape the box?'.\nShare this: next time a situation looks impossible, ask who authored the impossibility.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Echo Endings",
+      "question": "A novel's final sentence repeats its opening sentence word for word, but every reader swears the second one means something different. What changed between them?",
+      "choices": [
+        "The words were secretly redefined mid-book",
+        "The reader did — three hundred pages of experience now sit inside the line",
+        "The punctuation shifted meaning invisibly",
+        "Nothing; readers imagine change that isn't there"
+      ],
+      "correctAnswer": "The reader did — three hundred pages of experience now sit inside the line",
+      "xpReward": 25,
+      "correctExplanation": "Right — identical words, different reader. The book's journey is stored in the audience, and the echo detonates it.",
+      "incorrectExplanation": "The answer is: the reader did — three hundred pages of experience now sit inside the line. Identical words, changed reader: repetition with transformation detonates the journey stored in the audience. Music replays the same trick — a theme after the storm carries the storm.",
+      "lessonContent": "Circular structure returns to its beginning to prove the journey happened — in the audience.\nIdentical words, changed reader: meaning partly lives outside the text.\nMusic exploits the same return — a theme after the storm carries the storm.\nLandmarks in your own life replay this: a childhood street rewalked as an adult.\nShare this: revisit a book's first line after finishing it and feel the distance you travelled.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#20",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Withheld Name",
+      "question": "For a whole novel, the narrator's own name never appears — others are named, the world is detailed, but that one blank stays. What does the withholding achieve?",
+      "choices": [
+        "It saves the author inventing a name",
+        "It makes the blank the loudest detail in the book",
+        "It proves the story is autobiographical",
+        "It hides the narrator's gender for casting"
+      ],
+      "correctAnswer": "It makes the blank the loudest detail in the book",
+      "xpReward": 25,
+      "correctExplanation": "Exactly — a single deliberate absence, held long enough, becomes the story's loudest signal. Silence has a volume knob.",
+      "incorrectExplanation": "The answer is: it makes the blank the loudest detail in the book. Withholding something nameable converts it into the story's central question — readers track the gap, theorize about it, feel it press on every page. The technique is absence-as-presence: what's refused multiplies. Interviews deploy it too; the unanswered question dominates the room.",
+      "lessonContent": "Withholding a nameable thing converts absence into the loudest signal on the page.\nReaders assign weight by attention, and a maintained gap commands attention.\nThe trick has a clock — withheld too long without payoff, trust curdles into gimmick.\nInterviews and negotiations feel the same physics: the dodged question dominates.\nShare this: notice the next question someone dodges and watch it grow louder than any answer.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#21",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Double Audience",
+      "question": "An animated film fills its frames with jokes only adults can catch, flying past the children watching. What is the craft principle at work?",
+      "choices": [
+        "Confusing children builds character",
+        "Layered content lets one work serve two audiences at two depths",
+        "Adults are the only audience that matters",
+        "Children's humor cannot be scripted"
+      ],
+      "correctAnswer": "Layered content lets one work serve two audiences at two depths",
+      "xpReward": 25,
+      "correctExplanation": "Right — one frame, two frequencies. Layering lets a single work carry different complete experiences for different watchers.",
+      "incorrectExplanation": "The answer is: layered content lets one work serve two audiences at two depths. The best family films build two honest tracks — neither audience gets scraps. Shakespeare's groundlings and nobles were served the same way, wordplay over plot for one, spectacle for the other. Layering respects every layer's intelligence, which is why it survives rewatching for decades.",
+      "lessonContent": "Layered writing serves multiple audiences honestly — two complete experiences in one frame.\nShakespeare ran bawdy puns for the groundlings and philosophy for the galleries simultaneously.\nThe test of layering: each audience's track is complete, none gets scraps.\nWorks built this way survive rewatching and rereading — new depths keep paying out.\nShare this: rewatch a childhood favourite and list three jokes you were too young to catch.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "Memory as Editor",
+      "question": "Two siblings recount the same childhood afternoon and produce two contradictory but sincerely believed stories. Both pass lie detectors. What is the least alarming explanation?",
+      "choices": [
+        "One sibling is consciously lying despite the test",
+        "The detector was malfunctioning that day",
+        "Each memory was edited differently at consolidation",
+        "Childhood afternoons objectively differ per viewer"
+      ],
+      "correctAnswer": "Each memory was edited differently at consolidation",
+      "xpReward": 25,
+      "correctExplanation": "Correct — memories are written, not recorded; each sibling's brain cut the footage differently and believes its own cut.",
+      "incorrectExplanation": "The answer is: each memory was edited differently at consolidation. Memory is reconstructive: each recall rewrites the trace, and sleep-night editing trims what fit the self-story. Sincere contradiction is the norm, not the exception — which is why memoir reads true while biography reads checkable. The lie detector tests stress, not truth; the siblings' honesty was never in question.",
+      "lessonContent": "Memory is reconstructive — each recall re-stores the trace, edited by current beliefs.\nSleep consolidation is the nightly cut: what doesn't fit the self-story tends to be trimmed.\nTwo sincere witnesses contradicting each other is the expected case, not the anomaly.\nThis is why memoir reads emotionally true and biography reads checkably true.\nShare this: compare a shared memory with someone who was there and map where the edits diverge.",
+      "lessonGroup": "Mind Mirrors",
+      "forgeId": "batch-003#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "wonders",
+      "difficulty": "medium",
+      "title": "The Second Read",
+      "question": "Certain novels are famous for being better the second time — the plot known, the surprises spent. What is doing the work on reread?",
+      "choices": [
+        "Readers simply forgetting the plot by then",
+        "The pattern-level structure, visible once the plot is out of the way",
+        "The publisher quietly inserting new pages",
+        "Nothing; second reads are always worse"
+      ],
+      "correctAnswer": "The pattern-level structure, visible once the plot is out of the way",
+      "xpReward": 25,
+      "correctExplanation": "Exactly — suspense spends itself on first read; architecture rewards every read after.",
+      "incorrectExplanation": "The answer is: the pattern-level structure, visible once the plot is out of the way. Surprise is single-use; structure compounds. On reread you watch the machinery — foreshadowing, mirrors, the clues you missed.",
+      "lessonContent": "Surprise is single-use; structure pays out on every revisit.\nRereading shifts the eye from 'what happens' to 'how it was built' — machinery becomes visible.\nFair-play mysteries and mirror-structured novels are engineered for second reads by design.\nAnything you make can be graded the same way: does knowing it improve it?\nShare this: rerun a favourite film knowing the twist and watch the craftsmanship instead of the plot.",
+      "lessonGroup": "Poet’s Corner",
+      "forgeId": "batch-003#24",
+      "forgeScore": 100
+    }
+  ]
+}

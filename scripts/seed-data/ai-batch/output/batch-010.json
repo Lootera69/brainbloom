@@ -1,0 +1,477 @@
+[
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Three Doors",
+    "question": "You pick one of three doors hiding one car. The host, who knows all, opens a goat door you didn't choose and offers a switch. What should you do?",
+    "choices": [
+      "Change to the other closed door",
+      "Stay with your first pick",
+      "Walk away from the game entirely",
+      "Ask to open all three doors"
+    ],
+    "correctAnswer": "Change to the other closed door",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — your first pick holds the car 1 time in 3, so the remaining closed door holds it 2 times in 3 after a goat is shown.",
+    "incorrectExplanation": "The answer is: change to the other closed door. The host's reveal concentrates the whole losing probability of the other two doors onto the single unopened one, doubling your win chance. The 'it resets to fifty-fifty' feeling treats the host as random — but the host knew exactly which door to open.",
+    "lessonContent": "Host knowledge is data: whenever new information arrives by selection rather than chance, recompute from scratch.\nMonty can never show the car, so his choice is a filter, not a coin flip.\nCondition on the filter: ask what each world would make the host do.\nMost probability puzzles hinge on who knew what, when.\nShare this: deal three cups and a coin tonight and run ten rounds as two roles."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Birthday Room",
+    "question": "About how many people must gather before a shared birthday among them becomes likelier than not?",
+    "choices": [
+      "About two hundred people",
+      "About twenty-three people",
+      "At least a hundred guests",
+      "Fewer than ten friends"
+    ],
+    "correctAnswer": "About twenty-three people",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — 23 people make 253 pairs, and that many pair-chances tip the odds past half.",
+    "incorrectExplanation": "The answer is: about twenty-three people. Each of the 253 pairs gets its own small shot, and hundreds of small shots compound into a coin flip. The '183 people' guess compares people to days — the real contest is pairs against days.",
+    "lessonContent": "Count the pairs, not the people: every coincidence question is a collision count in disguise.\nCombinatorial growth outruns intuition — 23 people hide 253 pairings.\nHash collisions, shared passwords and matching birthdays obey the same arithmetic.\nWhen something feels 'too coincidental', count the attempts first.\nShare this: count the pairs in your next dinner group and price the surprise."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Linda's Résumé",
+    "question": "Linda is outspoken, bright, and deeply concerned with justice. Which is more likely: she's a bank teller, or a bank teller active in feminist movements?",
+    "choices": [
+      "The detailed portrait — it matches her",
+      "Both descriptions are equal",
+      "The single label, always",
+      "Neither can be judged at all"
+    ],
+    "correctAnswer": "The single label, always",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — every feminist bank teller is a bank teller, so the smaller group can never outrank its container.",
+    "incorrectExplanation": "The answer is: the single label, always. A conjunction adds a requirement, and added requirements only shrink the eligible set — description richness never beats set logic. Stories feel truer when detailed; probability runs the opposite way.",
+    "lessonContent": "Conjunctions shrink: 'X and Y' can never outrank plain 'X', no matter how fitting the detail feels.\nRepresentativeness — how much something looks like a type — is a story sense, not a frequency sense.\nVivid profiles hijack ranking tasks by smuggling fit where only count belongs.\nAsk 'which set contains the other?' before ranking any pair.\nShare this: retell one convincing detailed claim tonight and name its container set."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Heads Again",
+    "question": "A fair coin has landed heads nine times running. What is the chance the tenth flip lands heads?",
+    "choices": [
+      "Far below half — tails is overdue",
+      "Slightly above half — momentum builds",
+      "Well above half — the streak continues",
+      "Exactly one half, as always"
+    ],
+    "correctAnswer": "Exactly one half, as always",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — each flip starts fresh; the coin keeps no ledger of its past.",
+    "incorrectExplanation": "The answer is: exactly one half, as always. Fair flips are independent events, so nine heads leave the tenth untouched. Both 'tails is due' and 'heads is hot' smuggle memory into a memoryless process.",
+    "lessonContent": "Independence means history is spent: each fair trial begins the story again.\nThe gambler's fallacy expects compensation; the hot-hand expects continuation — both deny independence.\nCasinos print money on this single misunderstanding.\nStreaks in fair sequences are normal; their absence would be the real surprise.\nShare this: flip a coin twenty times tonight and count the longest run you see."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Rare Disease",
+    "question": "One person in a thousand carries a virus. A test spots every carrier but also alarms 5% of healthy people. You test positive. Roughly how likely are you actually ill?",
+    "choices": [
+      "About 2 in 100",
+      "About 99 in 100",
+      "About fifty-fifty",
+      "Nearly certainly sick"
+    ],
+    "correctAnswer": "About 2 in 100",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — per thousand people, about 50 false alarms drown the single true carrier, so a positive is ill roughly 1 time in 51.",
+    "incorrectExplanation": "The answer is: about 2 in 100. Count a concrete crowd: 1 true alarm against 50 false ones, so roughly 1 positive in 51 is genuine. Ignoring the crowd size — the base rate — turns a flood of false alarms into false confidence.",
+    "lessonContent": "Base rates dominate rare-event testing: count true alarms against false ones in a fixed crowd.\nBayes' arithmetic is just bookkeeping for the two populations.\nScreening entire healthy populations is how good tests manufacture mostly-false alarms.\nNatural frequencies (per thousand people) beat naked percentages.\nShare this: walk someone through the thousand-person crowd for one alarming headline."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Two Hospitals",
+    "question": "Hospital A beats B overall, yet B beats A in every single department. How is this possible?",
+    "choices": [
+      "The records must be fraudulent",
+      "The case mix differs wildly between them",
+      "Random noise explains everything",
+      "A counts outpatient visits too"
+    ],
+    "correctAnswer": "The case mix differs wildly between them",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — lump different mixtures together and the pooled average can reverse every subgroup result; that is Simpson's reversal.",
+    "incorrectExplanation": "The answer is: the case mix differs wildly between them. If one hospital treats mostly hard cases, its overall rate sinks even while winning each fair comparison. Lumped averages hide cocktail recipes; subgroup tables tell the truth.",
+    "lessonContent": "Simpson's paradox: pooled numbers can reverse every subgroup trend when group mixes differ.\nAlways ask what mixture produced the average before trusting it.\nThe same reversal haunted kidney-stone tables and admissions data.\nCompare like-sized mixtures, or weight by subgroup properly.\nShare this: next time two averages are compared, ask what went into each pot."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Selective Ward",
+    "question": "Among hospital patients, two unrelated conditions appear negatively linked — patients rarely carry both. Yet the conditions are independent in the public. What happened?",
+    "choices": [
+      "One disease must block the other",
+      "Doctors over-diagnose to fill beds",
+      "Only selected admissions were studied",
+      "Negative links are always meaningless"
+    ],
+    "correctAnswer": "Only selected admissions were studied",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — admission itself selects people carrying at least one condition, so inside the ward the two trade off artificially.",
+    "incorrectExplanation": "The answer is: only selected admissions were studied. Conditioning on a shared filter manufactures links the open population never had — Berkson's paradox. The ward is a filtered sample, not a mirror of the world.",
+    "lessonContent": "Berkson's paradox: studying a selected slice can invent correlations whole.\nAny admission rule shared by two traits welds them together in the sample.\nElite colleges and hospital wards both manufacture 'trade-offs' this way.\nAsk who is missing from any dataset before believing its links.\nShare this: find one correlation tonight built on a filtered crowd."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Thirty-Seven",
+    "question": "You must hire the single best of 100 candidates seen once each in a row, deciding on the spot. What is the classic optimal strategy?",
+    "choices": [
+      "Hire the first strong one",
+      "Interview all, then pick",
+      "Hire the last candidate seen",
+      "Reject the first 37, then take the next best"
+    ],
+    "correctAnswer": "Reject the first 37, then take the next best",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — observe roughly the first 37%, then hire the first candidate beating everything seen so far.",
+    "incorrectExplanation": "The answer is: reject the first 37, then take the next best. A calibration sample teaches your eye what 'best' looks like; committing to the first record-breaker after it maximizes your odds near 37%. Intuition either leaps too early or dithers forever.",
+    "lessonContent": "Optimal stopping: in one-pass decisions, spend a fixed calibration phase observing, then commit on a threshold.\nThe 1/e ≈ 37% split balances information against dwindling options.\nHouse-hunting and hiring both fit the one-pass frame.\nDecide your stopping rule before you start, not mid-panic.\nShare this: set a 37% observe-window before your next big one-way search."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Dozen Plus One",
+    "question": "How many people are needed to guarantee that two share a birth month?",
+    "choices": [
+      "Thirteen at minimum",
+      "Twelve exactly",
+      "Twenty-four at most",
+      "Twenty-five for safety"
+    ],
+    "correctAnswer": "Thirteen at minimum",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — twelve people can cover twelve distinct months, but the thirteenth has no fresh month left.",
+    "incorrectExplanation": "The answer is: thirteen at minimum. Twelve slots, thirteen occupants — the thirteenth must repeat a month. The pigeonhole principle turns pure counting into an iron guarantee.",
+    "lessonContent": "The pigeonhole principle: more items than slots forces a repeat — no probability, pure guarantee.\nIts power is turning 'must happen' conclusions from arithmetic alone.\nHash collisions and birthday guarantees both live here.\nAsk 'how many holes?' whenever a repeat is suspected.\nShare this: bet a friend that among 13 people, two share a birth month — you cannot lose."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Handshake Count",
+    "question": "8 colleagues each shake hands once with everyone else. How many handshakes happen in total?",
+    "choices": [
+      "Sixteen",
+      "Twenty-eight",
+      "Fifty-six",
+      "Sixty-four"
+    ],
+    "correctAnswer": "Twenty-eight",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Right — each of 8 people shakes 7 hands, giving 56 endpoints; every handshake owns exactly 2, so 56 ÷ 2.",
+    "incorrectExplanation": "The answer is: twenty-eight. Count endpoints (8 × 7 = 56) and halve for double-counted pairs, or simply add 7 + 6 + 5 + … + 1. Answering 56 forgets that every shake was tallied twice.",
+    "lessonContent": "Pair-counting: n objects create n(n−1)/2 unordered pairs — halve the endpoint count.\nDouble counting is both the trap and the tool: count twice, divide once.\nThe same arithmetic prices tournaments and network links.\nWhenever relations are mutual, suspect the halving step.\nShare this: compute the handshake total for your own dinner party before it meets."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Sock Drawer",
+    "question": "A drawer holds two red and two blue socks in the dark. You pull two at random. What is the chance they match?",
+    "choices": [
+      "One half",
+      "Two thirds",
+      "One third",
+      "One quarter"
+    ],
+    "correctAnswer": "One third",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — after the first sock, three remain and only one matches it.",
+    "incorrectExplanation": "The answer is: one third. Fix the first sock pulled; among the three left behind, exactly one shares its colour. The 'half' instinct treats the second draw as a fresh coin flip — but the drawer changed when the first sock left it.",
+    "lessonContent": "Without-replacement draws shrink the pool: recompute after every pull.\nSequential conditioning beats formulas: fix the first outcome, price the second.\nCard hands, lotteries and quality sampling all run this way.\nThe first draw silently edits the second's odds.\nShare this: try the drawer trick with four real socks and count the matches."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Prosecutor's Error",
+    "question": "One person in a million carries a rare trait; the suspect matches it. The prosecutor says this makes him 'a million to one' guilty. What is the flaw?",
+    "choices": [
+      "The trait might be planted evidence",
+      "Million-to-one odds always lie",
+      "Some traits correlate with guilt",
+      "It swaps 'trait if innocent' with 'innocent if trait'"
+    ],
+    "correctAnswer": "It swaps 'trait if innocent' with 'innocent if trait'",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — the million scales how often innocents match; it says nothing directly about this suspect without the base rate of suspects.",
+    "incorrectExplanation": "The answer is: it swaps 'trait if innocent' with 'innocent if trait'. The one-in-a-million prices the match among innocents; the courtroom needs the reverse conditional. With enough suspects tested, matching innocents abound — the transposed-conditional trap.",
+    "lessonContent": "Conditionals do not commute: P(E|I) and P(I|E) are different quantities.\nThe prosecutor's fallacy reads the first as the second.\nBase rates decide how far apart the two sit.\nScreening tests and DNA dragnets stumble here most.\nShare this: next 'one in a million' court headline, ask which direction the conditional runs."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Instructor's Curse",
+    "question": "Flight instructors praised great landings and got worse ones next; scolded poor ones and got better ones. They concluded feedback backfires. What did they miss?",
+    "choices": [
+      "Extreme performances simply regress",
+      "Nothing — the pattern proves it",
+      "Pilots resent all feedback",
+      "Grading standards drift silently"
+    ],
+    "correctAnswer": "Extreme performances simply regress",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — spectacular and terrible landings both drift toward the pilot's average next time; feedback merely rode the wave.",
+    "incorrectExplanation": "The answer is: extreme performances simply regress. An unusually great landing sits high partly by luck, so the next falls back — and punishment after bad ones 'works' the same illusory way. Kahneman told the instructors this and they refused to believe it.",
+    "lessonContent": "Regression to the mean: extremes contain luck, and luck evaporates — the next reading drifts inward.\nAny feedback given at extremes inherits this illusion of causation.\nSports slumps, sick-day recoveries and fund years all regress.\nControl groups exist precisely to separate drift from treatment.\nShare this: before crediting a turnaround plan, ask what baseline drift predicted."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Hot Streak",
+    "question": "A fair coin flipped five times can land HHTHT or HHHHH. Which outcome is more likely?",
+    "choices": [
+      "HHTHT — it looks properly random",
+      "They are exactly equal",
+      "HHHHH — hot streaks dominate",
+      "Depends on the tosser"
+    ],
+    "correctAnswer": "They are exactly equal",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — each ordered sequence of five flips carries probability 1/32; order has no favourites.",
+    "incorrectExplanation": "The answer is: they are exactly equal. Every named five-flip sequence has probability (1/2)⁵ — 'random-looking' orders are just as rare individually as streaks. Representativeness makes streakless runs feel likely, but equality is numerical, not aesthetic.",
+    "lessonContent": "Equiprobable sequences: any exact ordered run carries the same tiny probability.\nRandomness clumps — streaks and patterns are its texture, not its violation.\nThe representativeness bias judges sequences by looks instead of counts.\nNamed outcomes are individuals; frequency classes are the crowd.\nShare this: ask someone to invent twenty 'random' flips and count the missing streaks."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Waiting Wheel",
+    "question": "On average, how many rolls of a fair die pass before the first six appears?",
+    "choices": [
+      "Three rolls",
+      "Twelve rolls",
+      "Six rolls",
+      "Thirty-six rolls"
+    ],
+    "correctAnswer": "Six rolls",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Yes — a 1-in-6 event averages six trials; probability reciprocals set waiting times.",
+    "incorrectExplanation": "The answer is: six rolls. For a repeatable event with chance p, the expected wait is 1/p — here 1/(1/6). Feeling 'three, because it's half of six' has no arithmetic behind it.",
+    "lessonContent": "Waiting times: a repeatable event with chance p averages 1/p trials before first success.\nHalf the time you'll wait longer than the average — expectation hides skew.\nRare events (p small) mean long waits: 1/p explodes.\nThe rule prices everything from bus arrivals to radioactive decay.\nShare this: predict how many cards until an ace, then check against 1/(4/52)."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Small Schools",
+    "question": "Both the best and the worst test scores in a district cluster among its smallest schools. What explains this?",
+    "choices": [
+      "Small classes personalize both success and failure",
+      "Big schools quietly inflate their middling scores",
+      "Small schools attract both extremes of families",
+      "Small samples produce wilder averages by chance"
+    ],
+    "correctAnswer": "Small samples produce wilder averages by chance",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — a 20-student school's average swings hugely with each pupil; a 2,000-student average barely moves. Both extremes are small-sample noise.",
+    "incorrectExplanation": "The answer is: small samples produce wilder averages by chance. Averaging few observations leaves enormous room for fluke — one brilliant or disastrous cohort can carry a whole tiny school's average. Education policy was genuinely distorted by celebrating the 'small-school excellence' that was pure noise.",
+    "lessonContent": "Small samples fluctuate: averaging fewer observations means wilder swings in both directions.\nBoth tails of district score tables are over-populated by small schools — the Wainer effect.\nPolicy built on extreme small groups is policy built on noise.\nAlways check the sample size behind any celebrated extreme.\nShare this: find one 'best small X' ranking today and ask how many customers it averages."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Rocket Clusters",
+    "question": "Wartime Londoners saw clusters in where bombs fell and mapped German targeting theories onto them. Statistical analysis later showed what?",
+    "choices": [
+      "Bomb locations were indistinguishable from random scatter",
+      "The clusters were real aiming patterns",
+      "The Germans avoided specific suburbs deliberately",
+      "Londoners had mapped the bombs accurately"
+    ],
+    "correctAnswer": "Bomb locations were indistinguishable from random scatter",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Right — pure randomness clumps; the clusters needed no aiming system to exist.",
+    "incorrectExplanation": "The answer is: bomb locations were indistinguishable from random scatter. Poisson randomness naturally produces apparent clusters — the mind, a relentless pattern-finder, then reads intention into the grouping. Clustering illusion: randomness looks like design to a species built for spotting design.",
+    "lessonContent": "Clustering illusion: random scatter clumps, and pattern-hungry minds read the clumps as intention.\nWartime London even evacuated districts over imagined targeting logic.\nClassic experiment: humans consistently judge truly random sequences as 'too clumpy' and arranged ones as random.\nDemand the statistical baseline before accepting any map of meaning.\nShare this: drop 50 rice grains on a tray and hunt the 'deliberate' clusters."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Affirming the Rain",
+    "question": "If the sprinklers ran, the lawn is damp. The lawn is damp. Can you conclude the sprinklers ran?",
+    "choices": [
+      "Yes — dampness proves sprinklers",
+      "No — rain or dew do it too",
+      "Only after checking the forecast",
+      "Yes — dampness has one cause"
+    ],
+    "correctAnswer": "No — rain or dew do it too",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Right — affirming the consequent: the rule gives P→Q, but Q alone never proves P.",
+    "incorrectExplanation": "The answer is: no — rain or dew do it too. 'If P then Q' plus 'Q' leaves P undecided; other causes reach the same effect. The invalid twin of modus ponens fools even careful reasoners daily.",
+    "lessonContent": "Affirming the consequent: from P→Q and Q, nothing about P follows.\nThe invalid twin of modus ponens — same shape, hollow center.\nDiagnosis, debugging and detective work trip here constantly.\nList rival causes before accepting the obvious one.\nShare this: catch one 'symptom proves cause' claim today and name its rivals."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Green Lamp",
+    "question": "If the vault is sealed, the lamp glows red. The lamp glows green. What follows?",
+    "choices": [
+      "Nobody ever sealed the vault",
+      "The manual must be reread",
+      "The vault is disarmed",
+      "The seals all worked perfectly"
+    ],
+    "correctAnswer": "The vault is disarmed",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — modus tollens: the predicted glow's absence denies the sealing.",
+    "incorrectExplanation": "The answer is: the vault is disarmed. 'If P then Q' plus 'not Q' yields 'not P' — the only valid backward move in conditional logic. The manual-reread option adds machinery the puzzle never granted.",
+    "lessonContent": "Modus tollens: from P→Q and the absence of Q, infer the absence of P — the valid backward inference.\nScience runs on it: failed predictions falsify the hypothesis.\nThe invalid backward moves are affirming the consequent and denying the antecedent.\nCheck direction before trusting any conditional conclusion.\nShare this: falsify one small belief tonight with a missing predicted glow."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Necessary Keys",
+    "question": "A vault opens only for key-holders. Priya opens the vault. What must be true of Priya?",
+    "choices": [
+      "She owns the whole bank",
+      "She forced it with a spare key",
+      "She visited yesterday too",
+      "She is definitely a key-holder"
+    ],
+    "correctAnswer": "She is definitely a key-holder",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — 'only key-holders open it' makes holding a key necessary for opening, and Priya opened it.",
+    "incorrectExplanation": "The answer is: she is definitely a key-holder. Necessary conditions run one way: opening requires the key, though the key alone might not suffice. Reversing to 'all key-holders have opened it' would overclaim.",
+    "lessonContent": "Necessary versus sufficient: a requirement for X need not guarantee X.\n'Only members may enter' makes membership necessary, not sufficient, for entry.\nSufficiency runs the other direction: a sufficient badge always opens the door.\nTest-makers and contracts live and die on this distinction.\nShare this: find one 'only' sentence today and state exactly which direction it points."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "All That Glitters",
+    "question": "'All drones are machines.' Which conclusion is guaranteed?",
+    "choices": [
+      "Some machines are drones",
+      "All machines are drones",
+      "Some drones are expensive",
+      "No machines fly at night"
+    ],
+    "correctAnswer": "Some machines are drones",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — if every drone sits inside the machine set, then some machine must be a drone.",
+    "incorrectExplanation": "The answer is: some machines are drones. 'All A are B' guarantees 'some B are A' (given drones exist), but never the flipped universal — illicit conversion. The tempting 'all machines are drones' reverses container and contained.",
+    "lessonContent": "Universal statements convert only weakly: 'All A are B' yields 'some B are A', never 'all B are A'.\nIllicit conversion — flipping container into contained — is the classic quantifier trap.\n'All roses are flowers' never promised all flowers are roses.\nExistential import quietly assumes the subject class is non-empty.\nShare this: flip one 'all' sentence you hear today and check whether it survives."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "De Morgan Doors",
+    "question": "It is false that it is both raining and cold. What must be true?",
+    "choices": [
+      "It is neither raining nor cold",
+      "It is not raining or not cold",
+      "It is sunny and warm",
+      "The forecast was wrong again"
+    ],
+    "correctAnswer": "It is not raining or not cold",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — denying a conjunction yields a disjunction of denials: not raining, or not cold, or both.",
+    "incorrectExplanation": "The answer is: it is not raining or not cold. De Morgan's law: NOT(A AND B) equals (NOT A) OR (NOT B). Denying half a conjunction leaves the other half live — which is why 'neither' overclaims.",
+    "lessonContent": "De Morgan's laws: 'not both' means 'at least one not'; 'not either' means 'both not'.\nNegation distributes by flipping AND to OR and vice versa.\nCode conditions, contracts and alibis all turn on these flips.\nMis-negation is the bug behind countless 'all exceptions' clauses.\nShare this: negate one 'both' claim tonight using the OR-flip."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Valid Swap",
+    "question": "'Some athletes are students.' What follows with certainty?",
+    "choices": [
+      "All athletes are students",
+      "All students are athletes",
+      "Some students are athletes",
+      "No athletes study hard"
+    ],
+    "correctAnswer": "Some students are athletes",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — 'some A are B' converts cleanly to 'some B are A'; the overlap reads both ways.",
+    "incorrectExplanation": "The answer is: some students are athletes. Particular statements convert symmetrically — the overlap of the two groups is the same crowd either way round. Only the universals resist flipping.",
+    "lessonContent": "Particular statements swap safely: 'some A are B' always gives 'some B are A'.\nThe overlap is one crowd viewed from either side.\nUniversals ('all') convert only to particulars, never to universals.\nSyllogism checkers live on exactly these conversion tables.\nShare this: convert one 'some' sentence you read today and verify the overlap."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "Denying the Antecedent",
+    "question": "If the power fails, the freezer thaws. The power is fine. Can you conclude the freezer is frozen?",
+    "choices": [
+      "Yes — steady power means frozen",
+      "Yes — freezers never thaw otherwise",
+      "No — the door may hang open",
+      "It might still thaw for other reasons"
+    ],
+    "correctAnswer": "It might still thaw for other reasons",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — steady power doesn't prove frozen contents; an open door thaws regardless.",
+    "incorrectExplanation": "The answer is: it might still thaw for other reasons. 'If P then Q' plus 'not P' leaves Q open — the invalid mirror of modus tollens. Power suffices for freezing; it was never necessary.",
+    "lessonContent": "Denying the antecedent: from P→Q and not-P, nothing about Q follows.\nThe invalid mirror of modus tollens — same shape, hollow center.\nSufficiency is not necessity: rain could cancel the match without being its only canceller.\nCheck direction before trusting any conditional conclusion.\nShare this: catch one 'no cause, so no effect' claim today and name its rivals."
+  },
+  {
+    "type": "multiple-choice",
+    "category": "logic",
+    "difficulty": "hard",
+    "title": "The Sunk Ticket",
+    "question": "You paid for a concert ticket but now feel ill and would rather rest. A friend offers an identical spare ticket free. Should the money already spent affect your choice?",
+    "choices": [
+      "No — ignore the sunk costs",
+      "Yes — waste nothing you paid for",
+      "Only if the ticket was expensive",
+      "Yes — quitting wastes the evening"
+    ],
+    "correctAnswer": "No — ignore the sunk costs",
+    "xpReward": 50,
+    "lessonGroup": "Mind the Odds",
+    "correctExplanation": "Exactly — the money is gone either way; only tonight's comfort versus tonight's concert should decide.",
+    "incorrectExplanation": "The answer is: no — ignore the sunk costs. Spent money is identical in every future, so it cancels out of rational choice. Honouring it anyway is how bad evenings, bad projects and bad wars continue.",
+    "lessonContent": "Sunk costs are unrecoverable and identical in every future — so they deserve zero weight.\nThe feeling of waste is real but points backwards, where decisions cannot go.\nThe Concorde fallacy names the plane nobody could stop funding.\nAsk 'starting fresh today, would I choose this?' to cut the anchor.\nShare this: audit one ongoing commitment tonight with the fresh-start question."
+  }
+]

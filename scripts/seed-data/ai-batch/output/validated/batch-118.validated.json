@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-118",
+  "generatedAt": "2026-09-17T13:27:43.611Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The False Net",
+      "question": "Four paper shapes: a cross of five squares plus one attached to an arm; a staircase of two offset rows of three; a row of four with one square above the second and one below the third; a solid 2×3 rectangle. Which CANNOT fold into a closed cube?",
+      "choices": [
+        "The cross shape",
+        "The staircase shape",
+        "The solid 2×3 rectangle",
+        "The mixed row-of-four"
+      ],
+      "correctAnswer": "The solid 2×3 rectangle",
+      "xpReward": 50,
+      "correctExplanation": "The 2×3 rectangle — it lacks the spine-of-four every cube net needs, so faces collide instead of closing. The other three are classic valid nets (cross, 3-3 staircase, 1-4-1).",
+      "incorrectExplanation": "Not quite — the answer is the solid 2×3 rectangle. Cube nets need four squares in a wraparound band; the rectangle's 2+2+2 stacking leaves two faces missing and two doubled. Cross, staircase, and mixed-row all contain valid folding spines.",
+      "lessonContent": "Nets need a wraparound spine of four.\nCount the band before trusting the shape.\nRectangles stack; cubes wrap — different topologies.\nInvalid nets collide faces instead of closing.\nShare this: cut one net and fold it tonight.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#0",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Southern Pip",
+      "question": "A standard die (opposite faces sum to 7) shows 5 on top and 3 facing north. Which number faces south?",
+      "choices": [
+        "4",
+        "2",
+        "5",
+        "3"
+      ],
+      "correctAnswer": "4",
+      "xpReward": 50,
+      "correctExplanation": "4 — north-south are opposites, so south is 7 minus 3. Top-bottom (5-2) never enters the calculation.",
+      "incorrectExplanation": "Actually, the answer is 4. Opposite pairs sum to 7: north 3 forces south 4, whatever sits on top. Top-bottom information is pure distractor here.",
+      "lessonContent": "Opposite pairs sum to seven, always.\nNorth-south ignores top-bottom entirely.\nDistractor faces test focus, not knowledge.\nPair before placing on every die question.\nShare this: orient one die three ways fast.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Rolling Census",
+      "question": "A die shows 1 on top, 2 north, 3 east. It rolls east, then north, then east (tipping over each edge in turn). What number ends on top?",
+      "choices": [
+        "1",
+        "3",
+        "4",
+        "6"
+      ],
+      "correctAnswer": "6",
+      "xpReward": 50,
+      "correctExplanation": "6 — track faces through three tips: east puts 4 up... precisely east (top 4), north (top 5), east (top 6). Rolling permutations compose exactly.",
+      "incorrectExplanation": "Not quite — the answer is 6. Trace it: roll east (west face 4 rises to top), roll north (south face 5 rises), roll east (west face 6 rises). Each tip swaps four faces; composition does the rest.",
+      "lessonContent": "Tips permute four faces and fix two.\nTrack tops through each roll stepwise.\nComposition replaces visualization reliably.\nEast-then-north-then-east has one answer.\nShare this: roll one die through three tips.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Punched Layers",
+      "question": "A sheet is folded in half, then in half again (four layers), and a hole is punched through all layers near the folded corner. Unfolded, how many holes show?",
+      "choices": [
+        "2",
+        "4",
+        "6",
+        "8"
+      ],
+      "correctAnswer": "4",
+      "xpReward": 50,
+      "correctExplanation": "4 — one punch through four layers makes four holes, mirrored across both fold lines. Layers multiply punctures exactly.",
+      "incorrectExplanation": "Actually, the answer is 4. Each fold doubles the layers (2, then 4), and one punch marks every layer once. Unfolding mirrors the single hole across both creases into four.",
+      "lessonContent": "Folds multiply layers; punches multiply holes.\nDoubling twice quarters the paper into four.\nMirror across every crease to count.\nLayers-times-punches is the whole formula.\nShare this: punch one twice-folded sheet.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Right-Angle Count",
+      "question": "Between 12:00 and 12:00 (twelve hours), how many times do a clock's hands form an exact right angle?",
+      "choices": [
+        "22",
+        "11",
+        "24",
+        "12"
+      ],
+      "correctAnswer": "22",
+      "xpReward": 50,
+      "correctExplanation": "22 — right angles occur every ~65.45 minutes, twice per hour except the 2–4 stretch merges... precisely 22 in twelve hours (the 11th hour contributes none separately).",
+      "incorrectExplanation": "Not quite — the answer is 22. Twice hourly suggests 24, but the 2–3 and 3–4 right angles... the relative hand laps 11 times per 12 hours, yielding 22 perpendiculars. Overlapping cycles steal two from naive counting.",
+      "lessonContent": "Naive doubling overcounts cyclic events.\nRelative laps (11 per 12h) set the true count.\nPerpendiculars come in pairs per lap.\nCount cycles, not hours, for hand puzzles.\nShare this: catch the missing right angles tonight.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Surface Shortcut",
+      "question": "An ant walks on the surface of a unit cube from one corner to the farthest opposite corner. What is the shortest surface distance?",
+      "choices": [
+        "2 units",
+        "3 units",
+        "√6 units",
+        "√5 units"
+      ],
+      "correctAnswer": "√5 units",
+      "xpReward": 50,
+      "correctExplanation": "√5 — unfold two adjacent faces into a 1×2 rectangle; the straight diagonal spans √(1+4). Surfaces flatten before measuring.",
+      "incorrectExplanation": "Actually, the answer is √5 units. Through-space (√3) is forbidden; unfold two faces flat and the corner-to-corner straight line crosses a 1-by-2 rectangle. Flatten, then measure — never before.",
+      "lessonContent": "Unfold surfaces before measuring shortcuts.\nRectangles replace cubes for path problems.\nStraight lines on unfoldings are shortest paths.\nThrough-space answers betray surface rules.\nShare this: unfold one box and draw the diagonal.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Dawn Polygon",
+      "question": "At sunrise, with light aimed along a cube's body diagonal, what shape is the cube's shadow on flat ground?",
+      "choices": [
+        "A square",
+        "A hexagon",
+        "A triangle",
+        "A circle"
+      ],
+      "correctAnswer": "A hexagon",
+      "xpReward": 50,
+      "correctExplanation": "A regular hexagon — all six faces project equally around the diagonal axis. Symmetry of viewpoint dictates symmetry of shadow.",
+      "incorrectExplanation": "Not quite — the answer is a hexagon. Face-on light gives squares, but diagonal light balances all six faces into six equal projected edges. Viewpoint symmetry transfers to shadow shape.",
+      "lessonContent": "Viewpoint symmetry dictates shadow symmetry.\nDiagonal views balance all six faces equally.\nSix edges project where four stood.\nRotate the light, reshape the shadow.\nShare this: shine one diagonal shadow tonight.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Orbiting Coin",
+      "question": "A coin rolls without slipping once around an identical stationary coin. How many full rotations does the rolling coin complete?",
+      "choices": [
+        "1 rotation",
+        "1.5 rotations",
+        "2 rotations",
+        "3 rotations"
+      ],
+      "correctAnswer": "2 rotations",
+      "xpReward": 50,
+      "correctExplanation": "2 — the center travels a circle of twice the radius (4πr path over 2πr circumference). Revolution adds to rotation: one for rolling, one for orbiting.",
+      "incorrectExplanation": "Actually, the answer is 2 rotations. Equal circumferences suggest one, but the center's orbit contributes a second full turn. Rolling-plus-revolving sums where pure rolling stands alone.",
+      "lessonContent": "Orbits contribute rotations beyond rolling.\nCenter-path length divided by circumference counts.\nEqual coins double, never single.\nRevolution plus rotation always sums.\nShare this: roll one coin around another.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Inner Orbit",
+      "question": "A coin rolls without slipping inside a ring of twice its diameter. How many rotations before returning to start?",
+      "choices": [
+        "1 rotation",
+        "2 rotations",
+        "0 rotations",
+        "4 rotations"
+      ],
+      "correctAnswer": "1 rotation",
+      "xpReward": 50,
+      "correctExplanation": "1 — inside, the orbit subtracts: center path πd over circumference πd... precisely (R−r)/r = 1. Interior rolling halves the exterior count.",
+      "incorrectExplanation": "Not quite — the answer is 1 rotation. Inside the ring, revolution opposes rolling instead of adding: the hypocycloid of ratio 2:1 is a straight diameter, and the coin spins once. Outside doubles, inside singles.",
+      "lessonContent": "Interior orbits subtract where exterior add.\nHypocycloids encode the subtraction exactly.\nRatio 2:1 draws diameters, not loops.\nInside-versus-outside flips the count.\nShare this: roll one coin inside a ring.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Lifted Rope",
+      "question": "A rope hugging Earth's equator is lengthened by exactly 1 meter, then lifted uniformly all around. How high does it hover?",
+      "choices": [
+        "About 1 millimeter",
+        "About 16 meters",
+        "About 1 kilometer",
+        "About 16 centimeters"
+      ],
+      "correctAnswer": "About 16 centimeters",
+      "xpReward": 50,
+      "correctExplanation": "About 16 centimeters — gap equals extra length over 2π regardless of planet size (1/2π m). Earth's radius cancels completely out.",
+      "incorrectExplanation": "Actually, the answer is about 16 centimeters. Circumference grows 2π per unit radius, so 1 meter buys 1/2π ≈ 0.16 m — on any sphere from marble to Jupiter. Bigness cancels; only the extra meter matters.",
+      "lessonContent": "Radius cancels out of gap problems entirely.\nExtra-over-2π is the universal hover formula.\nPlanet size never enters the answer.\nLinearization defeats astronomical intuition.\nShare this: lift one rope around one ball.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Moon Fold",
+      "question": "Standard paper (0.1 mm thick) folded repeatedly doubles each time. How many folds reach past the Moon (~384,400 km)?",
+      "choices": [
+        "21",
+        "42",
+        "84",
+        "100"
+      ],
+      "correctAnswer": "42",
+      "xpReward": 50,
+      "correctExplanation": "42 — 0.1mm × 2⁴² ≈ 440,000 km clears the Moon; 41 folds fall short at ~220,000 km. Exponentials humble linear intuition.",
+      "incorrectExplanation": "Not quite — the answer is 42. Doubling 42 times multiplies thickness by four trillion; 41 folds reach only halfway to the Moon. Each fold is a doubling, and doublings compound violently.",
+      "lessonContent": "Doublings compound beyond all intuition.\nForty-two doublings bridge Earth to Moon.\nLinear guesses fail exponential questions.\nCount doublings, never thickness, first.\nShare this: fold one paper seven times max.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Caged Sphere",
+      "question": "What is the edge length of the largest cube that fits inside a unit sphere (diameter 2)?",
+      "choices": [
+        "One unit",
+        "The square root of two units",
+        "Two over root three units",
+        "Two full units"
+      ],
+      "correctAnswer": "Two over root three units",
+      "xpReward": 50,
+      "correctExplanation": "Two over root three — the cube's space diagonal must equal the diameter: edge times root three equals 2. Corners touch sphere exactly at maximum fit.",
+      "incorrectExplanation": "Actually, the answer is two over root three units. The limiting constraint is the body diagonal spanning the full diameter; edges follow by division. Inscribed means corners-kissing, and kissing sets the equation.",
+      "lessonContent": "Diagonals, not edges, meet container walls.\nBody-diagonal-equals-diameter constrains cubes.\nCorners-kissing sets every fit equation.\nDivide diagonals to recover edges.\nShare this: cage one cube in one sphere.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#11",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Painted Edges",
+      "question": "A cube is painted red, then sliced into 27 equal small cubes. How many small cubes have exactly two painted faces?",
+      "choices": [
+        "12",
+        "8",
+        "6",
+        "4"
+      ],
+      "correctAnswer": "12",
+      "xpReward": 50,
+      "correctExplanation": "12 — the edge-centers excluding corners: 12 edges × 1 middle cube each. Two-face cubes live strictly mid-edge.",
+      "incorrectExplanation": "Not quite — the answer is 12. Corners take three faces (8), face-centers take one (6), leaving edge-middles with exactly two: one per edge, twelve edges. Position classifies paint counts completely.",
+      "lessonContent": "Position classifies paint counts completely.\nCorners three, edges two, faces one, core zero.\nCount by location class, never by guessing.\nTwelve edges means twelve two-facers.\nShare this: dice one painted cube mentally.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#12",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Single Twist",
+      "question": "A paper Möbius band is cut along its center line all the way around. What results?",
+      "choices": [
+        "Two separate loops",
+        "Two linked loops",
+        "A knot",
+        "One longer loop"
+      ],
+      "correctAnswer": "One longer loop",
+      "xpReward": 50,
+      "correctExplanation": "One loop twice as long (with two full twists) — the center line never meets an edge to separate. Half-twist topology refuses division.",
+      "incorrectExplanation": "Actually, the answer is one longer loop. The cut rides the band's single surface without ever crossing an edge, so nothing separates — the band survives doubled in length, doubly twisted. One-sidedness preserves unity.",
+      "lessonContent": "Center cuts ride surfaces without separating.\nOne-sided bands refuse to become two.\nLength doubles where division was expected.\nTopology overrides scissor intuition.\nShare this: cut one Möbius band tonight.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#13",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Utility Tangle",
+      "question": "Three houses must each connect to water, gas, and electricity with lines that never cross. On flat ground, is this possible?",
+      "choices": [
+        "Yes, easily",
+        "No — the graph is nonplanar",
+        "Only on a torus",
+        "Yes, with curved lines"
+      ],
+      "correctAnswer": "No — the graph is nonplanar",
+      "xpReward": 50,
+      "correctExplanation": "No — K3,3 is provably nonplanar (Kuratowski): no crossing-free drawing exists on a plane. Curves don't help; only a handle (torus) would.",
+      "incorrectExplanation": "Not quite — the answer is no, the graph is nonplanar. K3,3 defeats every layout trick — straight, curved, clever — on flat ground. Impossibility here is theorem, not lack of trying.",
+      "lessonContent": "Impossibility can be theorem, not effort shortage.\nK3,3 defeats all planar layouts provably.\nCurves never rescue nonplanar graphs.\nHandles (torus) change the game entirely.\nShare this: tangle three houses on paper.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Tower Move",
+      "question": "The Tower of Hanoi with 6 disks must move as a stack between pegs, never placing larger on smaller. What is the minimum move count?",
+      "choices": [
+        "31",
+        "32",
+        "63",
+        "64"
+      ],
+      "correctAnswer": "63",
+      "xpReward": 50,
+      "correctExplanation": "63 — 2⁶−1 by the recursive optimum: move 5 (31), shift the largest (1), rebuild 5 (31). Doubling-plus-one governs every disk added.",
+      "incorrectExplanation": "Not quite — the answer is 63. The recurrence M(n) = 2M(n−1)+1 with M(1)=1 yields 63 for six disks. Off-by-one answers (64, 32) forget the largest disk's single move or miscount the base.",
+      "lessonContent": "Recurrence M(n)=2M(n−1)+1 governs towers.\nMove n−1, shift largest, rebuild n−1.\nDoubling-plus-one punishes every added disk.\nMinimums prove by recursion, not experiment.\nShare this: move three disks in seven tonight.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Cornerless Board",
+      "question": "Opposite corners are removed from a chessboard, leaving 62 squares. Can dominoes (each covering two adjacent squares) tile it exactly?",
+      "choices": [
+        "Impossible — color imbalance",
+        "Possible with care",
+        "Possible by rotating pieces",
+        "Possible using corners"
+      ],
+      "correctAnswer": "Impossible — color imbalance",
+      "xpReward": 50,
+      "correctExplanation": "Impossible — removed corners share a color, leaving 32 of one and 30 of the other; each domino needs one of each. Color counts veto the tiling absolutely.",
+      "incorrectExplanation": "Actually, the answer is impossible by color imbalance. Opposite corners match colors, so 62 squares split 32-30 while dominoes demand equality. Invariants beat attempts: no arrangement overcomes arithmetic.",
+      "lessonContent": "Invariants veto constructions absolutely.\nColor counts check tilings before attempts.\nDominoes demand equality square by square.\nRemoved corners unbalance the whole board.\nShare this: color one mutilated board tonight.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#16",
+      "forgeScore": 84
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Block Tower",
+      "question": "Cubes stack: a full 3×3 bottom layer, a centered 2×2 middle layer, and one cube centered on top. How many cubes total?",
+      "choices": [
+        "11",
+        "13",
+        "15",
+        "14"
+      ],
+      "correctAnswer": "14",
+      "xpReward": 50,
+      "correctExplanation": "14 — 9 + 4 + 1, every cube visible or supporting. Layer sums replace 3D visualization.",
+      "incorrectExplanation": "Not quite — the answer is 14. Count by layers: 9 below, 4 mid, 1 crown. Centered stacking hides nothing here — all support is visible in the layer below.",
+      "lessonContent": "Layer sums replace 3D visualization.\nCount strata, never guess wholes.\nCentered stacks hide nothing structural.\nNine-four-one is the classic pyramid.\nShare this: stack one pyramid and count aloud.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Spun Word",
+      "question": "The word HOW is rotated 180° in the plane (each letter turns, and their order reverses). What do you read?",
+      "choices": [
+        "WOH",
+        "MOH",
+        "HOW",
+        "MOW"
+      ],
+      "correctAnswer": "MOH",
+      "xpReward": 50,
+      "correctExplanation": "MOH — W becomes M, O stays O, H stays H, and reversed order gives M-O-H. Rotation transforms letters and positions together.",
+      "incorrectExplanation": "Not quite — the answer is MOH. Rotate each glyph (W→M, O→O, H→H) and reverse their order: W-O-H becomes M-O-H. Letter rotation plus position reversal compose the reading.",
+      "lessonContent": "Rotations transform glyphs and orders together.\nW→M while H,O survive the half-turn.\nReverse positions after turning letters.\nCompose both moves before reading.\nShare this: spin one word 180 degrees.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Inside Glove",
+      "question": "A right-hand glove is turned completely inside out. Which hand does it now fit?",
+      "choices": [
+        "The right hand",
+        "Neither hand",
+        "The left hand",
+        "Both hands"
+      ],
+      "correctAnswer": "The left hand",
+      "xpReward": 50,
+      "correctExplanation": "The left hand — inside-out reverses chirality like a mirror. Thumb switches sides with the flip.",
+      "incorrectExplanation": "Actually, the answer is the left hand. Eversion mirrors handedness: the thumb that pointed left now points right. Inside-out is a reflection, and reflections swap chirality.",
+      "lessonContent": "Eversion mirrors handedness exactly.\nInside-out acts as a reflection operator.\nThumbs switch sides with the flip.\nChirality swaps under mirror operations.\nShare this: flip one glove tonight.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Polyhedron Census",
+      "question": "A convex polyhedron has 12 vertices and 20 faces. By Euler's formula (V − E + F = 2), how many edges?",
+      "choices": [
+        "30",
+        "28",
+        "32",
+        "26"
+      ],
+      "correctAnswer": "30",
+      "xpReward": 50,
+      "correctExplanation": "30 — 12 − E + 20 = 2 gives E = 30. Euler counts what eyes cannot.",
+      "incorrectExplanation": "Not quite — the answer is 30. Plug into V − E + F = 2: 12 − E + 20 = 2, so E = 30. The dodecahedron-icosahedron family lives at these numbers.",
+      "lessonContent": "Euler's formula counts the uncountable.\nPlug vertices and faces; edges emerge.\nV−E+F=2 governs all convex solids.\nArithmetic replaces visualization here.\nShare this: census one die by Euler.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Mirror Planes",
+      "question": "How many planes of mirror symmetry does a perfect cube have?",
+      "choices": [
+        "6",
+        "12",
+        "3",
+        "9"
+      ],
+      "correctAnswer": "9",
+      "xpReward": 50,
+      "correctExplanation": "9 — three through opposite face-centers plus six diagonal planes through opposite edges. Symmetry exceeds the obvious three.",
+      "incorrectExplanation": "Actually, the answer is 9. Beyond the three axis-aligned midplanes hide six diagonal ones, each slicing through opposite edges. Cubes out-symmetricize intuition by exactly six.",
+      "lessonContent": "Cubes hide six diagonal symmetries.\nAxis planes are only the obvious three.\nOpposite edges define the secret six.\nCount all mirrors, not just straight ones.\nShare this: slice one cube diagonally in mind.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Inner Diagonal",
+      "question": "What is the length of the space diagonal of a unit cube (corner to farthest corner through the interior)?",
+      "choices": [
+        "Two full units",
+        "The square root of three units",
+        "The square root of two units",
+        "One single unit"
+      ],
+      "correctAnswer": "The square root of three units",
+      "xpReward": 50,
+      "correctExplanation": "The square root of three — face diagonal root two plus unit edge, by Pythagoras twice. Interiors exceed faces exactly so.",
+      "incorrectExplanation": "Not quite — the answer is the square root of three units. Pythagoras applied twice: face diagonal root two, then root-three through the body. Face diagonals undercount interiors; go one dimension deeper.",
+      "lessonContent": "Pythagoras applies twice for body diagonals.\nFaces undercount interiors systematically.\n√2 then √3 climbs dimensions stepwise.\nDepth adds its own square every time.\nShare this: thread one diagonal through a box.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#22",
+      "forgeScore": 92
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Locked Loop",
+      "question": "Seven gears are meshed in a closed loop, each driving the next. Can they all rotate together?",
+      "choices": [
+        "Yes, smoothly",
+        "Only counterclockwise",
+        "No — odd loops lock",
+        "Only if oiled"
+      ],
+      "correctAnswer": "No — odd loops lock",
+      "xpReward": 50,
+      "correctExplanation": "No — each mesh reverses direction, so seven reversals demand a gear spin both ways at once. Odd loops contradict; even loops turn.",
+      "incorrectExplanation": "Actually, the answer is no, odd loops lock. Meshing flips rotation each step; after seven flips the last gear must match the first yet oppose it. Parity vetoes the motion before friction matters.",
+      "lessonContent": "Meshing flips direction at every joint.\nOdd counts demand impossible self-opposition.\nParity vetoes motions friction never sees.\nEven loops turn; odd loops testify.\nShare this: loop five coins and watch them jam.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "puzzles",
+      "difficulty": "hard",
+      "title": "The Circle Division",
+      "question": "Points on a circle are all joined: 1 point gives 1 region, 2 give 2, 3 give 4, 4 give 8, 5 give 16. Six points give how many?",
+      "choices": [
+        "31",
+        "32",
+        "16",
+        "30"
+      ],
+      "correctAnswer": "31",
+      "xpReward": 50,
+      "correctExplanation": "31 — the doubling breaks: interior intersections coincide, stealing one region from 32. Pattern 1-2-4-8-16 tempts powers of two; geometry answers 31.",
+      "incorrectExplanation": "Not quite — the answer is 31. Five points yield 16, but the sixth forces interior triple-concurrency... precisely, intersections stop being generic and one region vanishes. Famous sequences break where intuition naps.",
+      "lessonContent": "Famous sequences break at the sixth term.\nDoubling tempts; geometry corrects.\nInterior coincidences steal whole regions.\nTest the next term before trusting patterns.\nShare this: draw six joined points tonight.",
+      "lessonGroup": "Think Different",
+      "forgeId": "batch-118#24",
+      "forgeScore": 100
+    }
+  ]
+}

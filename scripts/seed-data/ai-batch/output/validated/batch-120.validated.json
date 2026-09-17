@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-120",
+  "generatedAt": "2026-09-17T13:27:43.663Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Remembering Hands",
+      "question": "Patient HM lost the ability to form new conscious memories, yet he steadily improved at mirror-tracing tasks he never remembered practicing.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. HM's hippocampal loss blocked declarative memory while procedural learning survived — hands remembered what minds could not. Memory is plural, not singular.",
+      "incorrectExplanation": "It is true. HM denied ever seeing the tracing task yet improved daily: skill learning runs on separate machinery from conscious recall. One patient's split proved memory comes in kinds.",
+      "lessonContent": "Memory comes in kinds, not one faculty.\nSkills learn without conscious recall.\nSeparate machinery serves knowing-how versus knowing-that.\nSingle cases can split whole theories.\nShare this: practice one skill mindlessly well.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Tamping Iron",
+      "question": "Phineas Gage's 1848 accident drove an iron rod through his frontal lobe, yet historical records show his personality stayed completely unchanged afterward.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False. Gage survived physically but changed profoundly — impulsive and erratic where he had been steady. Frontal lobes shape personality itself.",
+      "incorrectExplanation": "Not quite — it is false. Friends said Gage was 'no longer Gage': planning and restraint evaporated with frontal tissue. Survival plus transformation proved the forebrain's role in character.",
+      "lessonContent": "Forebrains shape character, not just calculation.\nInjury can rewrite personality wholesale.\n'No longer himself' is neurological data.\nSingle accidents founded whole disciplines.\nShare this: thank your frontal lobes once today.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Divided House",
+      "question": "In split-brain patients (corpus callosum severed), each hemisphere can perceive and respond semi-independently — one hand may literally not know what the other does.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Severing the bridge leaves two semi-independent observers: left speaks, right acts, neither fully consults the other. Unity is connection, not essence.",
+      "incorrectExplanation": "It is true. Split-brain experiments show right hemispheres following instructions the speaking left denies receiving. Conscious unity turns out to be wired, not given.",
+      "lessonContent": "Unity is wired, never simply given.\nBridges cut leave semi-independent observers.\nSpeaking halves don't know acting halves.\nConnection creates the single self.\nShare this: ask your hands what they conspired.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Denied Sight",
+      "question": "Some cortically blind patients insist they see nothing, yet they navigate obstacles and guess shapes well above chance. This blindsight is well documented.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False as stated — blindsight is real, but the claim above overreaches: patients guess above chance on forced choice, they don't reliably 'navigate obstacles.' Residual pathways aid guessing, not full vision.",
+      "incorrectExplanation": "Not quite — it is false. Blindsight shows above-chance forced-choice guessing via surviving subcortical routes — remarkable, but not obstacle-course navigation. Partial sparing aids hunches, never replaces sight.",
+      "lessonContent": "Partial sparing aids hunches, never sight.\nAbove-chance guessing differs from seeing.\nSubcortical routes carry crude signals onward.\nHype outruns residual pathways fast.\nShare this: guess one unseen thing humbly.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Clicking Path",
+      "question": "Human echolocation always requires surgically implanted sonar devices; no unaided blind person can navigate by mouth clicks.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False. Skilled blind navigators click unaided and read echoes fluently — no implants involved. Brains learn sonar from tongue and ears alone.",
+      "incorrectExplanation": "Not quite — it is false. Expert echolocators (Daniel Kish and others) navigate trails and buildings on self-made clicks. Auditory cortex repurposed for space proves substitution needs no hardware.",
+      "lessonContent": "Tongues plus ears can substitute for eyes.\nClicks become canes with enough practice.\nSubstitution needs training, never implants.\nCortex repurposes willingly for space.\nShare this: click once and listen back.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Tongue Display",
+      "question": "Experimental tongue displays translate camera images into electrical patterns on the tongue, letting blind users perceive shapes and motion.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. BrainPort-style devices route vision through touch: tongues learn to 'see' doorways and balls. Senses are interchangeable at the cortical loading dock.",
+      "incorrectExplanation": "It is true. Bach-y-Rita's substitution work shows cortex cares about patterns, not ports — tongue tingles become spatial perception with training. Seeing is pattern-processing, whatever the inlet.",
+      "lessonContent": "Cortex cares about patterns, never ports.\nTongues can load visual cargo with training.\nSubstitution proves senses interchangeable centrally.\nInlets differ; perception converges.\nShare this: feel one shape with closed eyes.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Unchanged Monk",
+      "question": "Eight weeks of mindfulness practice produce zero measurable change in brain structure — meditation's benefits are purely psychological with no neural trace.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False. MRI studies (Hölzel and others) show gray-matter shifts after eight-week courses — attention regions thicken, amygdala reactivity drops. Practice sculpts tissue measurably.",
+      "incorrectExplanation": "Not quite — it is false. Two months of daily mindfulness measurably remodels cortex and calms threat circuitry. 'Purely psychological' ignores that psychology is neural activity with a history.",
+      "lessonContent": "Weeks of practice sculpt measurable tissue.\nAttention regions thicken with use.\nThreat circuits calm under training.\nPsychology always leaves neural traces.\nShare this: sit eight minutes mindfully once.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Pain Map",
+      "question": "Chronic pain can reorganize the brain's body maps, with the affected region's cortical territory expanding and distorting over time.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False as framed — evidence links chronic pain to map changes, but 'territory expanding' overstates: findings show distortion and blur, with direction varying by condition. Maps warp; they don't simply grow.",
+      "incorrectExplanation": "Not quite — it is false. Chronic pain does remodel somatosensory maps, but as smudging and distortion rather than clean expansion. Plasticity cuts both ways, and precision matters more than slogans.",
+      "lessonContent": "Maps warp under chronic signals; slogans overshoot.\nDistortion differs from simple expansion.\nPlasticity cuts toward dysfunction too.\nPrecision beats catchphrases in brain claims.\nShare this: doubt one 'grows your brain' slogan.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Ringing Rewire",
+      "question": "Many researchers link subjective tinnitus to maladaptive cortical reorganization after hearing loss — the brain's gain control turned up too far.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Deprived auditory zones get colonized by neighbors while central gain rises — phantom ringing as reorganization's price. Plasticity's invoice arrives as sound.",
+      "incorrectExplanation": "It is true. Hearing loss starves cortical zones; neighbors invade and amplifiers overcompensate, generating sound from silence. Tinnitus is maladaptive plasticity made audible.",
+      "lessonContent": "Deprivation invites neural colonization fast.\nGain controls overshoot into phantom sound.\nReorganization invoices arrive as symptoms.\nPlasticity's price is sometimes audible.\nShare this: protect one ear with one habit.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Practice Paradox",
+      "question": "Focal dystonia in musicians — painless loss of fine control — can arise when thousands of practice hours smudge finger maps together.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False as a certainty — map smudging is the leading hypothesis for musician's dystonia, but causation remains debated with genetics and technique implicated. Leading theory is not settled fact.",
+      "incorrectExplanation": "Not quite — it is false. Repetitive practice correlates with dystonia and maps look fused, yet proof of mechanism stays incomplete. Plasticity-gone-wrong is plausible, prominent, and still unproven.",
+      "lessonContent": "Leading hypotheses are not settled facts.\nCorrelation plus mechanism still needs proof.\nPractice usually helps; sometimes it harms.\nDebate marks science working, not failing.\nShare this: rest one overtrained hand today.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Schooled Reserve",
+      "question": "More years of formal education correlate with greater resilience against Alzheimer's symptoms at equal levels of brain pathology.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Cognitive reserve: educated brains tolerate more plaques before showing decline — alternate routes compensate. Schooling banks detour capacity.",
+      "incorrectExplanation": "It is true. Autopsies reveal pathology without dementia in the well-schooled: reserve networks route around damage. Education doesn't prevent plaques; it outlasts them functionally.",
+      "lessonContent": "Reserve routes around damage functionally.\nSchooling banks detour capacity for later.\nPathology without symptoms is reserve at work.\nDetours matter as much as destinations.\nShare this: bank one detour by learning.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Reading Heist",
+      "question": "Literacy repurposes part of the brain's face-recognition machinery for letter recognition — learning to read measurably competes with face processing.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False as phrased — reading does recruit the visual word form area, but 'competes with face processing' overstates: literates recognize faces fine. Recycling adds function without robbing neighbors.",
+      "incorrectExplanation": "Not quite — it is false. Dehaene's recycling shows letter territory carved from object cortex with mild trade-offs, not theft from faces. Brains timeshare efficiently; heist narratives oversell.",
+      "lessonContent": "Recycling adds without robbing neighbors.\nTimesharing beats theft in cortex economics.\nMild trade-offs differ from heists.\nHeist narratives oversell tidy findings.\nShare this: read one face and one word.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Interpreter Growth",
+      "question": "Intensive language-interpreter students show measurable hippocampal growth over months of training compared with control students.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False in the strong form — Mårtensson found hippocampal and cortical changes in interpreters, but samples were small and effects specific. Promising, preliminary, and often overstated in retelling.",
+      "incorrectExplanation": "Not quite — it is false. One small study's structural shifts became 'languages grow your hippocampus' headlines; replication and scale remain thin. Demand cohorts before converting curricula.",
+      "lessonContent": "Small studies seed big headlines prematurely.\nStructural hints need cohorts to confirm.\nPreliminary differs from proven entirely.\nDemand replication before life changes.\nShare this: learn one language anyway.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Smell Gym",
+      "question": "Structured smell training — sniffing fixed odor sets daily for months — can measurably improve olfaction after post-viral smell loss.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Olfactory training shows real gains in trials: repeated exposure re-tunes smell pathways. Noses, like muscles, respond to reps.",
+      "incorrectExplanation": "It is true. Randomized trials support sniff-training after viral anosmia — modest but genuine recovery beyond spontaneous healing. Repetition re-tunes even ancient senses.",
+      "lessonContent": "Repetition re-tunes even ancient senses.\nNoses respond to reps like muscles.\nTraining beats waiting for lost smells.\nAncient pathways stay trainable late.\nShare this: sniff four things mindfully.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Late Forebrain",
+      "question": "Human prefrontal cortex — seat of planning and impulse control — keeps maturing structurally into the mid-twenties.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Frontal myelination and pruning run into the third decade: the brakes finish last. Adolescence is partly a construction schedule.",
+      "incorrectExplanation": "It is true. Imaging shows prefrontal gray matter thinning (pruning) and white matter growing (myelination) well past eighteen. Late hardware explains early impulsivity better than character does.",
+      "lessonContent": "Brakes finish building last of all.\nConstruction schedules explain impulsivity kindly.\nTwenties still count as development.\nHardware timelines beat character judgments.\nShare this: forgive one young forebrain.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Nightly Wash",
+      "question": "Sleep appears to accelerate clearance of metabolic waste from the brain via glymphatic flow — the sleeping brain literally washes itself.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Mouse studies (Nedergaard) show interstitial space expanding in sleep, flushing waste including amyloid. Wash cycles run nightly.",
+      "incorrectExplanation": "It is true. Glymphatic plumbing opens during sleep, clearing the day's neural garbage far faster than waking drip. Skipping sleep skips the wash — debris compounds.",
+      "lessonContent": "Sleep opens the brain's wash cycle nightly.\nWaste clearance runs on circadian plumbing.\nSkipped washes compound neural garbage.\nRest is maintenance, never idleness.\nShare this: run one full wash cycle tonight.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Shrunken Memory",
+      "question": "Untreated major depression shows no reliable association with hippocampal volume — mood disorders leave memory structures untouched.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False. Meta-analyses link recurrent depression to smaller hippocampi, with treatment partly restoring volume. Mood sculpts memory hardware measurably.",
+      "incorrectExplanation": "Not quite — it is false. Chronic depression correlates with hippocampal shrinkage, likely via stress hormones suppressing neurogenesis. Mind states leave structural footprints; treatment can refill them.",
+      "lessonContent": "Moods sculpt memory hardware measurably.\nShrinkage tracks untreated episodes.\nTreatment refills what stress drained.\nFootprints prove mind-body continuity.\nShare this: treat low mood as physical too.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Born Champions",
+      "question": "Memory champions are born with structurally exceptional brains that explain their feats without special techniques.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False. Imaging finds no gross exceptional anatomy — champions use trained strategies (memory palaces) on ordinary hardware. Technique, not tissue, wins.",
+      "incorrectExplanation": "Not quite — it is false. Maguire's champion studies show strategy differences, not structural gifts: method-of-loci training, not born brains. Ordinary hardware runs extraordinary software.",
+      "lessonContent": "Technique beats tissue in memory sports.\nOrdinary hardware runs extraordinary software.\nPalaces, not gifts, hold the records.\nTrain methods before envying brains.\nShare this: palace one grocery list today.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Mother Rewire",
+      "question": "Pregnancy measurably remodels the maternal brain, with gray-matter reductions thought to specialize social cognition for caregiving.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Hoekzema's scans show pregnancy pruning that predicts maternal bonding — refinement, not loss. Motherhood sculpts by subtraction.",
+      "incorrectExplanation": "It is true. Gray-matter reductions concentrate in social-cognition networks and forecast attachment strength. Less tissue, more attunement: sculpting beats swelling here.",
+      "lessonContent": "Sculpting refines what swelling cannot.\nLess tissue can mean more attunement.\nMotherhood prunes toward bonding.\nSubtraction is a sculptor's tool too.\nShare this: honor one remodeled mother.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Balance Sculpt",
+      "question": "Weeks of balance-board training produce measurable gray-matter changes in trainees versus controls.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Taubert's studies show structural shifts from balance learning specifically — wobbling rewires. Any demanding skill sculpts, not just famous ones.",
+      "incorrectExplanation": "It is true. Balance training grows and trims cortex measurably within weeks. Plasticity needs no prestige: humble wobbling reshapes brains like concertos do.",
+      "lessonContent": "Humble skills sculpt like prestigious ones.\nWobbling rewires as surely as concertos.\nWeeks suffice for measurable change.\nPrestige never gates plasticity.\nShare this: wobble deliberately for ten minutes.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Dimming Gamer",
+      "question": "As players master Tetris, their brains show decreasing activation for the same performance — the neural efficiency effect.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Haier's imaging shows experts doing more with less glucose: practice prunes effort, not just errors. Mastery dims the metabolic bill.",
+      "incorrectExplanation": "It is true. Learning shifts Tetris from effortful networks to efficient ones — activation falls as skill rises. Brains economize relentlessly; expertise is energetic thrift.",
+      "lessonContent": "Mastery dims metabolic bills steadily.\nExpertise is energetic thrift, not fireworks.\nEffortful networks yield to efficient ones.\nLess glow can mean more skill.\nShare this: notice one skill gone effortless.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Half-Brain Child",
+      "question": "Children who lose an entire hemisphere to severe epilepsy surgery can still develop language, with the remaining half reorganizing dramatically.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Pediatric hemispherectomy cases show striking reorganization — language relocates, childhood adapts. Young brains reassign whole functions across halves.",
+      "incorrectExplanation": "It is true. With half a brain removed early, remaining tissue recruits for language and more. Plasticity peaks young: halves do wholes' work when they must.",
+      "lessonContent": "Halves do wholes' work when they must.\nYouth reassigns functions across hemispheres.\nLanguage relocates under early pressure.\nPeak plasticity redeploys entire regions.\nShare this: marvel at one reorganized child.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Growing Lexicon",
+      "question": "Vocabulary and general knowledge typically keep improving into middle and old age, even as processing speed declines.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Crystallized abilities (vocabulary, knowledge) rise for decades while fluid speed falls. Aging trades quickness for depth measurably.",
+      "incorrectExplanation": "It is true. Salthouse's curves diverge: word power climbs past sixty while reaction times sag from twenty. Decline is selective, never wholesale — depth compounds as speed fades.",
+      "lessonContent": "Depth compounds while speed fades.\nCrystallized rises as fluid falls.\nDecline is selective, never wholesale.\nWord power peaks decades after quickness.\nShare this: learn one word at any age.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Borrowed Half",
+      "question": "Older adults often recruit both brain hemispheres for tasks younger brains handle with one — the HAROLD pattern of compensatory bilateralization.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 10,
+      "correctExplanation": "True. Cabeza's HAROLD model: aging brains draft the opposite hemisphere to sustain performance. Bilateralization compensates, keeping scores level.",
+      "incorrectExplanation": "It is true. When one hemisphere's efficiency wanes, elders recruit both — performance preserved by teamwork. Compensation, not failure, defines the aging brain's strategy.",
+      "lessonContent": "Teamwork compensates for waning efficiency.\nBoth hemispheres cover what one did.\nScores preserved by recruitment, not luck.\nAging strategizes; it never merely fades.\nShare this: recruit both halves for one task.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "science",
+      "difficulty": "easy",
+      "title": "The Fading Map",
+      "question": "Cortical skill maps built by practice persist forever at full strength even if the skill is abandoned for years.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 10,
+      "correctExplanation": "False. Use maintains maps; disuse lets them fade — juggling gains partially recede after stopping. Plasticity giveth and idleness taketh.",
+      "incorrectExplanation": "Not quite — it is false. Follow-ups show practice-built expansions shrinking back without use. Brains budget tissue economically: unrehearsed maps get repossessed.",
+      "lessonContent": "Unrehearsed maps get repossessed eventually.\nBudgets reallocate idle cortical tissue.\nFading is economics, never betrayal.\nMaintain maps or watch them lease out.\nShare this: rehearse one fading skill today.",
+      "lessonGroup": "Mind Machinery",
+      "forgeId": "batch-120#24",
+      "forgeScore": 100
+    }
+  ]
+}

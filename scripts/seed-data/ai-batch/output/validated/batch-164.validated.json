@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-164",
+  "generatedAt": "2026-09-17T13:27:44.914Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "Switch — it wins two-thirds",
+      "correctExplanation": "Yes — your first pick holds the car one-third of the time, so the other closed door carries two-thirds. Switching doubles your odds.",
+      "incorrectExplanation": "Not quite — switch: it wins two-thirds. Your door keeps its original one-third; the host's reveal concentrates the rest onto the other door.",
+      "lessonContent": "The host's forced reveal moves probability — it never splits it evenly.\nYour first pick freezes at one-third the moment you choose.\nInformation with rules behind it is worth real money.\nShare this: run ten penny-cup trials and watch switchers win.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Three doors, one car. You pick door 1; the host, who knows all, opens door 3 showing a goat. Switch or stay?",
+      "title": "The Classic Switch",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Switch — it wins two-thirds",
+        "Stay — your door improved too",
+        "Switch — it wins one-half",
+        "Stay — loyalty beats math"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Switch — 99% wins",
+      "correctExplanation": "Right — your door keeps its 1% while the host's 98 reveals pile 99% onto the survivor. Scale makes the logic undeniable.",
+      "incorrectExplanation": "Actually, switch: 99% wins. Your first pick is almost surely wrong, and the host just eliminated every alternative but one.",
+      "lessonContent": "Scaling a puzzle to a hundred doors exposes the mechanism.\nYour pick stays 1-in-100 no matter what opens elsewhere.\nWhen intuition rebels, scale the numbers until it surrenders.\nShare this: explain the hundred-door version to a skeptic.",
+      "lessonGroup": "Mind the Odds",
+      "question": "One hundred doors, one car. You pick one; the host opens 98 goat doors. Switch to the survivor?",
+      "title": "The Ninety-Eight Goats",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Stay — your door is special",
+        "Switch — it wins one-half",
+        "Switch — 99% wins",
+        "Stay — ninety-eight proves nothing"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#1",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Switch — 90% wins",
+      "correctExplanation": "Correct — ten doors mean your pick is 10% and the nine others share 90%, all landing on the survivor. Switching wins nine times in ten.",
+      "incorrectExplanation": "Close! Switch: 90% wins. Your door's 10% never grew; the host funneled the other 90% onto a single door.",
+      "lessonContent": "Reveals concentrate probability the way lenses focus light.\nCount what your door held at the start — that never changes.\nForecasting who gains from news is a tradeable skill.\nShare this: deal ten cards and play host for a friend.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Ten chests, one treasure. You choose one; the host opens 8 empty chests. Switch to the last closed chest?",
+      "title": "The Ten Chests",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Stay — ten means fifty-fifty",
+        "Switch — it wins one-third",
+        "Switch — 90% wins",
+        "Stay — chests differ from doors"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Switch — 37.5% beats 25%",
+      "correctExplanation": "Yes — staying holds 25% while the 75% remainder splits across two doors at 37.5% each. Switching to either still beats staying.",
+      "incorrectExplanation": "Not quite — switch: 37.5% beats 25%. One reveal can't carry the whole remainder onto one door when two remain.",
+      "lessonContent": "Leftover probability splits among ALL survivors, not your favorite.\nCount the survivors before crowning a winner.\nPartial reveals give partial edges — take them anyway.\nShare this: split a remainder fairly across survivors once today.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Four doors, one car. You pick one; the host opens one goat door. Two others remain. Your best move?",
+      "title": "The Fourth Door",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Stay — it is fifty-fifty now",
+        "Switch — either wins for sure",
+        "Stay — reveals mean nothing",
+        "Switch — 37.5% beats 25%"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "No gain — genuinely fifty-fifty",
+      "correctExplanation": "Exactly — a clueless host reveals nothing, so the two doors stand truly equal. Knowledge, not ceremony, moves the odds.",
+      "incorrectExplanation": "Not quite — no gain: genuinely fifty-fifty. The host stumbled onto a goat blindly, so no information entered the game.",
+      "lessonContent": "Only informed reveals move probability; accidents move nothing.\nAsk what the revealer knew before updating your odds.\nLuck that looks like news is still just luck.\nShare this: separate one informed signal from one lucky accident.",
+      "lessonGroup": "Mind the Odds",
+      "question": "The host forgot where the car is, opened a random door, and luckily showed a goat. Switch or stay?",
+      "title": "The Forgetful Host",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "No gain — genuinely fifty-fifty",
+        "Switch — reveals always help",
+        "Stay — luck favors loyalty",
+        "Switch — goats attract cars"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "No advantage — one in three anywhere",
+      "correctExplanation": "Right — a reveal before your pick informs nobody. All three doors still hold one-third each, including the opened... the two closed ones.",
+      "incorrectExplanation": "Actually, no advantage: one in three anywhere. Information must arrive after your commitment to favor anyone.",
+      "lessonContent": "Timing decides whether news is useful or decoration.\nEarly reveals help everyone equally, which means no one.\nCommit first, then let information work for you.\nShare this: notice one decision where order decided everything.",
+      "lessonGroup": "Mind the Odds",
+      "question": "The host opens a goat door BEFORE you choose. Does any door now beat the others?",
+      "title": "The Premature Peek",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "The unopened pair beats all",
+        "Switch to the middle door",
+        "No advantage — one in three anywhere",
+        "Stay with door one"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#5",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Indifferent — still one in three",
+      "correctExplanation": "Correct — with no reveal, switching just trades one one-third door for another. Ceremony without information changes nothing.",
+      "incorrectExplanation": "Close! Indifferent: still one in three. Nobody learned anything, so the swap is pure theater.",
+      "lessonContent": "No news means no edge — demand the reveal before moving.\nRituals feel strategic while changing zero odds.\nPatience beats motion when information is missing.\nShare this: skip one purposeless switch today and smile.",
+      "lessonGroup": "Mind the Odds",
+      "question": "You pick a door; the host opens nothing but offers a swap. Should you?",
+      "title": "The Empty Offer",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Switch — motion brings luck",
+        "Stay — first picks win",
+        "Refuse — doors remember",
+        "Indifferent — still one in three"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#6",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Stay — the game is rigged",
+      "correctExplanation": "Yes — an adversary who places the prize to punish switchers flips the math. Assumptions about the host ARE the math.",
+      "incorrectExplanation": "Not quite — stay: the game is rigged. If placement reacts to your strategy, the classic numbers no longer apply.",
+      "lessonContent": "Every probability answer sits on assumptions — audit them first.\n'Random placement' is a load-bearing claim, not décor.\nRigged games punish textbook play on purpose.\nShare this: name one hidden assumption behind a famous answer.",
+      "lessonGroup": "Mind the Odds",
+      "question": "The host watches your pick, then slides the car behind a door to defeat switchers. Now what?",
+      "title": "The Rigged Stage",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Switch — math is math",
+        "Stay — the game is rigged",
+        "Switch — rigging helps movers",
+        "Stay — hosts are honest"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#7",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Fifty-fifty for the newcomer",
+      "correctExplanation": "Exactly — the newcomer shares no history with either door. Information is personal: yours moved your odds, not theirs.",
+      "incorrectExplanation": "Not quite — fifty-fifty for the newcomer. They never made a first pick, so the reveal concentrated nothing for them.",
+      "lessonContent": "Probability follows the observer, not the furniture.\nTwo people can rationally hold different odds about one door.\nAsk whose history a number belongs to before borrowing it.\nShare this: explain why latecomers face fresh odds.",
+      "lessonGroup": "Mind the Odds",
+      "question": "After the classic reveal, a newcomer who saw nothing picks between the two closed doors. Their odds?",
+      "title": "The Late Arrival",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Two-thirds either door",
+        "Fifty-fifty for the newcomer",
+        "One-third either door",
+        "Certain loss either way"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#8",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Switch — the watcher knows",
+      "correctExplanation": "Right — having watched your pick and the reveal, the friend inherits the full situation. Knowledge transfers by watching, not by touching.",
+      "incorrectExplanation": "Actually, switch: the watcher knows. They saw the original pick and the forced reveal, so the two-thirds sits on the same door for them.",
+      "lessonContent": "Watching a random process can grant the player's edge.\nInformation travels with attention, not participation.\nSpectators with full history bet like insiders.\nShare this: learn one game fully by watching before playing.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Your friend watched your pick and the host's reveal, then takes over your choice. What should they do?",
+      "title": "The Watching Friend",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Stay — picks are personal",
+        "Switch — the watcher knows",
+        "Stay — luck resets hourly",
+        "Switch — friends bring luck"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "A stays one-third; C rises to two-thirds",
+      "correctExplanation": "Correct — naming B sacrifices B's third to C, never to A. A's pardon chance never moved; C inherits the freed probability.",
+      "incorrectExplanation": "Close! A stays one-third while C rises to two-thirds. The warden's news spends B's share entirely on C.",
+      "lessonContent": "News about others reallocates their share, never yours.\nPrisoners, doors, and envelopes all obey this conservation.\nTrack whose slice the news spends before celebrating.\nShare this: retell the three-prisoners twist at dinner.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Prisoners A, B, C await fate; one is pardoned. The warden tells A that B will die. What are A's vs C's chances now?",
+      "title": "The Warden's Whisper",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Both now fifty-fifty",
+        "A stays one-third; C rises to two-thirds",
+        "A rises to two-thirds instead",
+        "Both fall to one-quarter"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#10",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Two-thirds — the other drawer is gold",
+      "correctExplanation": "Yes — three gold drawers against three silver mean a gold draw points to the double-gold box two-thirds of the time. Draws sample drawers, not boxes.",
+      "incorrectExplanation": "Not quite — two-thirds: the other drawer is gold. Gold drawers cluster in the double-gold box, weighting the odds.",
+      "lessonContent": "Samples come from drawers, and rich boxes hold more of them.\nCounting containers instead of contents is the classic slip.\nWeight every hypothesis by how many draws it supplies.\nShare this: demo the three-box paradox with coins.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Boxes hold gold-gold, silver-silver, gold-silver. A drawn drawer shows gold. How likely is the other drawer gold?",
+      "title": "The Golden Drawer",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "One-half — two boxes remain",
+        "One-third — boxes are equal",
+        "Two-thirds — the other drawer is gold",
+        "Certain — gold calls gold"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#11",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Switch — 40% beats 20%",
+      "correctExplanation": "Right — staying keeps 20% while the 80% remainder splits over two survivors at 40% each. Either switch doubles your fate.",
+      "incorrectExplanation": "Actually, switch: 40% beats 20%. Two reveals leave two doors sharing the 80% your pick never held.",
+      "lessonContent": "Multiple reveals still obey one conservation law.\nYour pick's share never grows; survivors divide the rest.\nBigger casts shrink individual shares but keep the rule.\nShare this: compute one five-door split by hand.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Five sealed envelopes hold one prize ticket. Yours is marked; the host tears open two losing envelopes. Move your claim to a survivor?",
+      "title": "The Five Doors",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Switch — 40% beats 20%",
+        "Stay — five means fifty-fifty",
+        "Switch — certainty awaits",
+        "Stay — survivors share nothing"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#12",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Switch — 75% wins",
+      "correctExplanation": "Exactly — one pick holds 25% and two reveals pile the other 75% onto the last door. Two reveals, one jackpot door.",
+      "incorrectExplanation": "Close! Switch: 75% wins. Your quarter never budged while the host swept three-quarters onto a single door.",
+      "lessonContent": "Each reveal sweeps more of the field onto the survivor.\nLate survivors carry the weight of every opened door.\nLet the host's labor work for you — then take it.\nShare this: feel 75% land on one door and grin.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Four caskets hide one gem. After your claim, the host lifts two empty lids, leaving a single rival casket. Take it?",
+      "title": "The Double Reveal",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Stay — two reveals reset odds",
+        "Switch — it wins one-half",
+        "Stay — last doors are cold",
+        "Switch — 75% wins"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#13",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "No difference — symmetry protects you",
+      "correctExplanation": "Correct — every door starts equal, so door 1 and a dice-picked door both hold one-third. Rituals can't bend symmetry.",
+      "incorrectExplanation": "Not quite — no difference: symmetry protects you. No door outranks another before the reveal, however chosen.",
+      "lessonContent": "Symmetric choices are interchangeable — pick fast and move on.\nSuperstition taxes the indecisive with wasted rituals.\nSave deliberation for asymmetric decisions.\nShare this: pick one trivial choice by dice today.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Does always picking door 1 beat picking randomly each show?",
+      "title": "The Lucky Number",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Random wins — dice are wise",
+        "No difference — symmetry protects you",
+        "Door 1 wins — edges attract cars",
+        "Random loses — chaos repels cars"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#14",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Stay — opening confesses your win",
+      "correctExplanation": "Yes — a host who opens only for winners just announced your victory. The reveal itself is the message; read it.",
+      "incorrectExplanation": "Not quite — stay: opening confesses your win. This host's policy turns every reveal into a winner's certificate.",
+      "lessonContent": "Policies leak through actions — decode the policy, not the move.\nA reveal conditioned on your success announces it.\nAsk why THIS move happened now before reacting.\nShare this: read one policy hidden inside one action.",
+      "lessonGroup": "Mind the Odds",
+      "question": "This host opens a door ONLY when you first picked the car. A door opens. Now what?",
+      "title": "The Strange Host",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Switch — reveals always favor movers",
+        "Stay — opening confesses your win",
+        "Switch — hosts bluff constantly",
+        "Stay — winners never switch"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#15",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Switch — opening confesses your loss",
+      "correctExplanation": "Right — a host who opens only for losers just announced your defeat. Flee the losing door while flight is offered.",
+      "incorrectExplanation": "Actually, switch: opening confesses your loss. The policy guarantees your pick is wrong whenever a reveal occurs.",
+      "lessonContent": "Conditioned reveals are confessions wearing stage makeup.\nLosers get curtains; winners get silence — learn the grammar.\nMeta-rules about behavior outrank the behavior itself.\nShare this: spot one rule that flips the obvious move.",
+      "lessonGroup": "Mind the Odds",
+      "question": "At this table the curtain rises only to mock a losing first pick. Tonight it rises. Where is the car?",
+      "title": "The Cruel Host",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Stay — courage beats math",
+        "Switch — ceremonies mislead",
+        "Stay — goats cluster kindly",
+        "Switch — opening confesses your loss"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#16",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Wrong — history concentrates the odds",
+      "correctExplanation": "Correct — 'two doors left' ignores HOW one left. The forced reveal funneled two-thirds onto the survivor; counting doors erases that history.",
+      "incorrectExplanation": "Close! Wrong: history concentrates the odds. Two survivors are not two equals when one inherited the opened door's share.",
+      "lessonContent": "'Two options' never implies 'fifty-fifty' — ask about their pasts.\nEqual counts with unequal histories deceive everywhere.\nResumes matter more than headcounts in odds and hiring.\nShare this: kill one fifty-fifty myth with its backstory.",
+      "lessonGroup": "Mind the Odds",
+      "question": "'Two doors remain, so it must be fifty-fifty.' What is wrong with that?",
+      "title": "The Fifty Fallacy",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Nothing — two means half",
+        "Wrong — history concentrates the odds",
+        "Right — doors forget",
+        "Wrong — goats vote twice"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#17",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "About 667 switcher wins",
+      "correctExplanation": "Yes — simulation sides with switching about two times in three. Frequencies confirm the fractions; run it yourself.",
+      "incorrectExplanation": "Not quite — about 667 switcher wins. A thousand simulated shows let the two-thirds emerge from noise.",
+      "lessonContent": "Simulations settle bar bets that algebra cannot.\nCode ten lines and watch theory become frequency.\nEmpiricism is the friend logic deserves.\nShare this: simulate one paradox and show a skeptic.",
+      "lessonGroup": "Mind the Odds",
+      "question": "A computer simulates 1,000 classic shows with always-switch. About how many wins?",
+      "title": "The Thousand Shows",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "About 500 switcher wins",
+        "About 333 switcher wins",
+        "About 667 switcher wins",
+        "About 900 switcher wins"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#18",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Players stay too often",
+      "correctExplanation": "Exactly — switch-losses sting more, so players cling to their doors. Anticipated regret, not math, picks the strategy.",
+      "incorrectExplanation": "Close! Players stay too often. The extra sting of a failed switch scares contestants into the worse strategy.",
+      "lessonContent": "Feelings tax rationality — regret aversion costs real money.\nDesign choices that forgive the better strategy.\nNotice when comfort, not calculation, steers you.\nShare this: take one right-but-scary switch this week.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Losing after switching feels worse than losing after staying. What does that predict?",
+      "title": "The Sting Study",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Players switch too often",
+        "Players stay too often",
+        "Players quit the show",
+        "Players bribe the host"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#19",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Switch — now 80%",
+      "correctExplanation": "Right — with door 1 doubly likely, a reveal elsewhere concentrates even harder: switching to door 1 wins four times in five. Priors amplify the edge.",
+      "incorrectExplanation": "Actually, switch: now 80%. The loaded prior plus the reveal stack together, pushing the survivor past the classic two-thirds.",
+      "lessonContent": "Unequal priors stack with reveals instead of canceling.\nUpdate in order: prior first, evidence second.\nLoaded dice and loaded doors obey one update rule.\nShare this: update one belief twice — prior, then news.",
+      "lessonGroup": "Mind the Odds",
+      "question": "The car sits behind door 1 twice as often as elsewhere. You pick door 2; the host opens door 3 (goat). Switch to door 1?",
+      "title": "The Loaded Stage",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Stay — priors protect picks",
+        "Switch — now 80%",
+        "Stay — eighty is a myth",
+        "Switch — barely, at 51%"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#20",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Refuse — switching beats the cash",
+      "correctExplanation": "Correct — switching wins a $10,000 car two-thirds of the time: about $6,667 of expectation against $4,000 cash. The math declines politely.",
+      "incorrectExplanation": "Close! Refuse: switching beats the cash. Two-thirds of ten thousand outweighs four thousand certain — take the odds, not the bribe.",
+      "lessonContent": "Price every offer against expectation, not excitement.\nCertainty seduces; arithmetic decides.\nGame shows monetize your fear of variance.\nShare this: compute one expectation before accepting one offer.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Car worth $10,000. After the reveal, the host offers $4,000 cash to walk away. Take it?",
+      "title": "The Cash Temptation",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Take it — cash is certain",
+        "Refuse — switching beats the cash",
+        "Take it — cars depreciate",
+        "Refuse — hosts always lie"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#21",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Fifty-fifty — shuffling erases history",
+      "correctExplanation": "Yes — shuffling re-randomizes the car between the two doors. Information destroyed is probability reset.",
+      "incorrectExplanation": "Not quite — fifty-fifty: shuffling erases history. The car now sits randomly behind either door, and the reveal's work is undone.",
+      "lessonContent": "Randomization destroys information as surely as fire destroys paper.\nShuffles, redraws, and resets return odds to flat.\nGuard information — it evaporates on disturbance.\nShare this: name one shuffle that reset somebody's edge.",
+      "lessonGroup": "Mind the Odds",
+      "question": "After the classic reveal, the host shuffles the car randomly behind the two closed doors. Now what?",
+      "title": "The Great Shuffle",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Switch — history survives",
+        "Fifty-fifty — shuffling erases history",
+        "Stay — shuffles favor loyalty",
+        "Switch — motion confuses cars"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#22",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "Decline — switching back is staying",
+      "correctExplanation": "Right — switch then switch-back equals never moving: one-third. The extra ceremony can't launder the odds.",
+      "incorrectExplanation": "Actually, decline: switching back is staying. Two swaps return you to the original one-third door, not to safety.",
+      "lessonContent": "Round trips return you to the original odds, not better ones.\nMotion feels like progress while arithmetic naps.\nCount net movement, not total movement.\nShare this: catch one double-move that returns to start.",
+      "lessonGroup": "Mind the Odds",
+      "question": "You switched to the survivor. The host offers to switch you BACK for $100. Accept?",
+      "title": "The Return Ticket",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "Accept — two switches win",
+        "Decline — switching back is staying",
+        "Accept — insurance is wise",
+        "Decline — hosts hate profit"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#23",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "One in three — others change nothing",
+      "correctExplanation": "Exactly — rivals' picks are decoration on your one-third. Only reveals move odds; company merely watches.",
+      "incorrectExplanation": "Close! One in three: others change nothing. Their doors hold their own thirds, and no reveal has moved a single point.",
+      "lessonContent": "Crowds don't dilute your share without new information.\nIndependence means neighbors' picks never touch yours.\nEnvy of others' doors is probability illiteracy.\nShare this: hold your door calmly in a crowded game.",
+      "lessonGroup": "Mind the Odds",
+      "question": "Three contestants each pick a different door; no reveal happens. What are your winning odds?",
+      "title": "The Crowded Stage",
+      "type": "multiple-choice",
+      "category": "logic",
+      "choices": [
+        "One in nine — crowds dilute",
+        "One in three — others change nothing",
+        "Fifty-fifty — rivals double you",
+        "Zero — sharing voids wins"
+      ],
+      "difficulty": "medium",
+      "xpReward": 25,
+      "forgeId": "batch-164#24",
+      "forgeScore": 92
+    }
+  ]
+}

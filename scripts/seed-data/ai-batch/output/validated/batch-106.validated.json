@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "batchId": "batch-106",
+  "generatedAt": "2026-09-17T13:27:43.263Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Two-Thirds Switch",
+      "question": "Three doors hide one car and two goats. You pick a door, the knowing host opens a different door revealing a goat, and you switch. Your winning chance is 2/3.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Your first pick is right 1/3 of the time; in the other 2/3 the host's forced reveal leaves the car behind the remaining door. Switching collects all of that 2/3.",
+      "incorrectExplanation": "Actually, it is true. Count the three equally likely car positions: switching wins in two of them and loses in one. The reveal doesn't split 1/3–1/3 into 1/2–1/2 — it concentrates the 2/3 onto the door you can switch to.",
+      "lessonContent": "Count positions, not doors standing open.\nThe host's forced move transfers probability to one door.\n'Feels fifty-fifty' is the famous illusion here.\nEnumerate all cases before trusting symmetry.\nShare this: deal three cards and play ten rounds of switch.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Loyal Door",
+      "question": "In the classic setup, refusing to switch and staying with your first pick wins with probability 1/3.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Staying wins exactly when the first pick was right, which happens 1/3 of the time. Loyalty to a guess is never rewarded by the math.",
+      "incorrectExplanation": "It is true. Staying can only win if the original guess hit the car — a 1-in-3 event the reveal cannot improve. Everything the host does afterward is irrelevant to the staying player.",
+      "lessonContent": "Staying freezes your odds at the first guess.\nLater information helps only players who use it.\nLoyalty to a pick is sunk-cost in disguise.\nSeparate the decision's two branches and score each.\nShare this: ask a friend what staying wins before revealing the answer.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Even Split",
+      "question": "Once the host reveals a goat, two doors remain, so each must now hold the car with probability 1/2.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False — the classic trap. The two survivors are not symmetric: your door was picked blind (1/3) while the other survived a knowledgeable filter (2/3). Counting doors is not counting probability.",
+      "incorrectExplanation": "Not quite — it is false. Two doors remaining does not mean two equal chances. Your door keeps its original 1/3; the host's filtering loads the other with 2/3. Symmetry must be earned by the process, never assumed from the scenery.",
+      "lessonContent": "Equal counts of options never imply equal odds.\nAsk how each survivor reached the final two.\nFiltering processes load probability unevenly.\nScenery symmetry is the oldest trap in probability.\nShare this: catch one 'two options so fifty-fifty' error this week.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Hundred Doors",
+      "question": "With 100 doors, you pick one, the knowing host opens 98 goats, and you switch to the last door. Your winning chance is 99/100.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Your pick is right 1/100; the host's 98 forced reveals funnel the other 99/100 onto the survivor. Bigger stages make the mechanism obvious.",
+      "incorrectExplanation": "It is true. Scale is the intuition pump: nobody believes their blind 1-in-100 guess beats the door that survived 98 deliberate reveals. The 3-door game runs the identical logic at smaller scale.",
+      "lessonContent": "Scale up thought experiments until intuition surrenders.\nNinety-eight forced reveals visualize the filtering.\nSmall cases hide mechanisms that large ones expose.\nTrust the scaled version, then port the logic back.\nShare this: explain the 100-door version to end a debate.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Knowing Host",
+      "question": "The 2/3 switching advantage depends on the host knowing where the car is and deliberately avoiding it.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Knowledge plus the rule 'never reveal the car' is what filters probability onto one door. An ignorant host breaks the machine entirely.",
+      "incorrectExplanation": "It is true. The host's knowledge is the engine: deliberate avoidance of the car concentrates the odds. Remove the knowledge and the famous result evaporates — the ritual looks identical but the math differs.",
+      "lessonContent": "Assumptions about knowledge carry the whole result.\nRituals can look identical while the math differs.\n'Knowing' versus 'random' is the load-bearing distinction.\nState the host's knowledge before computing anything.\nShare this: replay the game with an ignorant host and compare.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Random Reveal",
+      "question": "If the host opens a remaining door at random (knowing nothing) and happens to reveal a goat, switching still wins with probability 2/3.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. A random reveal that happens to show a goat leaves two symmetric doors — 1/2 each. Information content, not ceremony, sets the odds.",
+      "incorrectExplanation": "Not quite — it is false. Randomness cannot filter: the surviving doors are symmetric given a lucky random goat, so switching gains nothing. Same stage, same goat, different knowledge — different answer.",
+      "lessonContent": "Knowledge filters; randomness merely samples.\nCondition on the process, not just the outcome.\nLucky random goats carry no information.\nTwin scenarios with different knowledge deserve different odds.\nShare this: stage both host versions and feel the difference.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Forced Goat",
+      "question": "Whenever your first pick is a goat (2/3 of the time), the knowing host is forced to reveal the only other goat, so switching necessarily wins.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. With the car behind one of the two unpicked doors and one revealed as goat, the survivor must hide the car. The host's lack of choice is your gain.",
+      "incorrectExplanation": "It is true. Trace the 2/3 branch: first pick wrong, host has exactly one allowable reveal, the remaining door must hold the car. Forced moves transfer certainty — follow the constraint to the win.",
+      "lessonContent": "Follow forced moves to their certain conclusions.\nThe 2/3 branch decides the whole game.\nConstraints on others are information for you.\n'No choice' for the host means a gift for the switcher.\nShare this: trace the goat-first branch on paper once.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Adversarial Host",
+      "question": "Suppose the host offers the switch only when your first pick already hides the car. Then switching always loses.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. A host who cherry-picks when to offer the deal reverses the advice: the offer itself signals your pick was right. Rules about the offer are part of the game.",
+      "incorrectExplanation": "It is true. Selective offers leak information in reverse — being invited to switch means you already won. Real-world 'deals' work like this: ask why the offer exists before accepting it.",
+      "lessonContent": "Offers are evidence about the offerer.\nAsk why this deal exists before taking it.\nSelective invitations reverse naive advice.\nGame rules include when choices are offered.\nShare this: spot one real offer that signals its own trap.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Coin Decider",
+      "question": "You pick a door, the knowing host reveals a goat, and then you flip a fair coin to decide whether to switch. This strategy wins with probability 1/2.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Half the time you switch (winning 2/3 of those) and half you stay (winning 1/3) — averaging to 1/2. Randomizing between good and bad advice dilutes to mediocrity.",
+      "incorrectExplanation": "It is true. Compute: 0.5 × 2/3 + 0.5 × 1/3 = 1/2. Coin-flipping between strategies averages their odds — decisiveness for the better branch beats dithering exactly.",
+      "lessonContent": "Mixed strategies average their branches' odds.\nRandomizing between good and bad dilutes to mediocre.\nCommit to the better branch, don't hedge it.\nWeighted averages settle strategy debates fast.\nShare this: compute one mixed strategy's average aloud.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#8",
+      "forgeScore": 92
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Doubled Chance",
+      "question": "Switching exactly doubles your winning chances compared with staying (from 1/3 to 2/3).",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Staying holds the original 1/3; switching captures the complementary 2/3 — precisely double. Few real decisions offer a free doubling, which is why the result startles.",
+      "incorrectExplanation": "It is true. The arithmetic is exact: 2/3 is twice 1/3. 'Doubling' sounds like hype until the case count confirms it — two winning positions for switching versus one for staying.",
+      "lessonContent": "Complementary probabilities sum to the whole.\n'Exactly double' claims deserve exact verification.\nFree doublings are rare — notice this one.\nFractions beat feelings for comparing strategies.\nShare this: show someone the 1/3 versus 2/3 split visually.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Improved Original",
+      "question": "After the host reveals a goat, your originally picked door becomes more likely to hide the car than it was at first.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Your door never gets touched by the process — it keeps its original 1/3 exactly. All the revealed information concentrates on the other unopened door.",
+      "incorrectExplanation": "Not quite — it is false. Nothing happened to your door: no reveal, no filter, no new evidence about it. Information flows only where the host acted. Untouched options keep untouched odds.",
+      "lessonContent": "Information lands where actions happened.\nUntouched options keep their original odds.\nReveals elsewhere don't bless your pick.\nTrack the flow, not the furniture.\nShare this: point at your door and ask what changed about it.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Three Prisoners",
+      "question": "Three prisoners await pardon for one; the warden names one of the other two as doomed. The classic 'three prisoners' puzzle is mathematically the same situation as Monty Hall.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. One winner among three, a knowledgeable revealer naming a loser, and the question of switching — the structure is identical with robes instead of doors. Isomorphic problems share solutions.",
+      "incorrectExplanation": "It is true. Map prisoner to door, pardon to car, warden to host: same numbers, same knowledge, same 2/3. Recognizing isomorphisms lets one solution pay rent across many puzzles.",
+      "lessonContent": "Isomorphic problems share one solution.\nStrip stories to structure: choosers, hiders, revealers.\nRobes or doors — the math can't tell.\nOne mastered puzzle can pay across dozens.\nShare this: retell Monty Hall as the three prisoners.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Final Briefcase",
+      "question": "A TV game with 26 briefcases, no knowledgeable host, and a final swap offer is mathematically identical to Monty Hall, so swapping must be favored.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. With cases eliminated by the player's own random picks and no filtering host, the final two are symmetric — swapping gains nothing. No knowledgeable filter, no advantage.",
+      "incorrectExplanation": "Not quite — it is false. Deal-style games lack the engine: nobody with knowledge sculpted the survivors. Random elimination preserves symmetry, so the swap is exactly even. Lookalike rituals need engine checks.",
+      "lessonContent": "Lookalike games need engine checks.\nRandom elimination preserves symmetry.\nNo filter, no advantage — demand the mechanism.\nFamous fallacies travel under similar costumes.\nShare this: explain why the briefcase swap is exactly even.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Ten-Door Stretch",
+      "question": "With 10 doors, you pick one and the knowing host opens 8 goats. Switching to the last door wins with probability 9/10.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Your blind pick holds 1/10; eight forced reveals funnel 9/10 onto the survivor. The pattern generalizes: N doors give (N−1)/N to switching.",
+      "incorrectExplanation": "It is true. Generalize the mechanism: initial pick keeps 1/N while the survivor collects (N−1)/N. Ten doors make the funneling vivid — eight deliberate reveals can't be meaningless.",
+      "lessonContent": "Generalize: N doors give (N−1)/N to the switch.\nPatterns across sizes confirm mechanisms.\nFunneling scales with every forced reveal.\nTest rules at N = 10 before trusting N = 3.\nShare this: run the 10-door version with cards.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Dependent Choice",
+      "question": "Monty Hall surprises people because the host's choice of which door to open depends on the contestant's first pick.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. When you pick a goat, the host has no freedom; when you pick the car, he chooses between goats. That dependence — his move reacting to yours — is the information channel.",
+      "incorrectExplanation": "It is true. Dependence is the engine: the host's allowable moves change with your pick, so his reveal reports on your pick's quality. Independence would mean no information; dependence means the reveal testifies.",
+      "lessonContent": "Dependence is an information channel.\n'His move reacts to mine' is the sentence that dissolves the paradox.\nIndependence means no news; dependence means testimony.\nFind the dependency and the mystery converts to arithmetic.\nShare this: state the dependence in one sentence to a friend.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Three-Hundred Nights",
+      "question": "A contestant plays the classic game 300 times always switching. She should expect to win roughly 200 cars.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. Frequencies make probabilities tangible: 2/3 of 300 is 200. Long-run counts are what single-case odds mean.",
+      "incorrectExplanation": "It is true. Multiply: 300 plays at 2/3 each gives about 200 wins, give or take luck's wobble. Frequency framing ('200 of 300 nights') is the cure for single-case blindness.",
+      "lessonContent": "Frequencies cure single-case blindness.\n'200 of 300' persuades where '2/3' puzzles.\nLong runs reveal what single nights hide.\nTranslate odds into imagined repetitions.\nShare this: convert one abstract odd into a 300-night story.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Staying Harvest",
+      "question": "Playing 300 times and always staying should also yield roughly 200 cars, since persistence pays.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Staying wins 1/3, so 300 loyal nights yield about 100 cars — persistence pays the revealer's tax. Loyalty feels virtuous and costs exactly 100 cars here.",
+      "incorrectExplanation": "Not quite — it is false. Staying locks in the 1/3 first-guess rate: roughly 100 wins per 300 plays. Persistence is a virtue everywhere except where the math charges it double.",
+      "lessonContent": "Persistence has a price where odds oppose it.\nVirtues don't override arithmetic.\nScore loyalty in wins, not in feelings.\n100 versus 200 settles the romance of staying.\nShare this: price one loyalty of yours in expected wins.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Early Reveal",
+      "question": "Picture the ceremony reversed: the host first opens one goat door, and only then do you pick between the two survivors. Your winning chance is 1/2.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. A reveal before the choice filters nothing about your pick — the two survivors are symmetric at decision time. Order of operations decides whether information exists.",
+      "incorrectExplanation": "It is true. Timing is everything: filtering only helps players who chose before it happened. Pick after the reveal and you face a genuinely even pair — no door carries the concentrated 2/3.",
+      "lessonContent": "Order of operations decides what information exists.\nFiltering helps only those who chose before it.\nReversed ceremonies deserve fresh computation.\n'Then you pick' resets every asymmetry.\nShare this: stage the reversed ceremony with cards once.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Informed Door",
+      "question": "After the classic reveal, all the new information belongs to the unpicked unopened door, and none belongs to your original pick.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. The host's actions never touched your door, so its 1/3 is pristine; every bit of filtering evidence landed on the survivor. Information has an address — check where it was delivered.",
+      "incorrectExplanation": "It is true. Your door received zero host attention, so zero updating applies to it. The survivor absorbed the full reveal. Ask of any evidence: which options did the process actually discriminate among?",
+      "lessonContent": "Evidence has an address — find its delivery.\nUndiscriminated options keep prior odds.\nUpdating applies where filtering happened.\n'Who was tested?' beats 'what remains?'.\nShare this: trace one reveal to its addressed door.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Equal Ceremony",
+      "question": "Because the host always opens exactly one goat door before offering the switch, the ceremony guarantees both final doors are equal.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Fixed ceremony does not mean symmetric information — the rule 'never open the car' loads the procedure. Equal rituals with unequal rules produce unequal odds.",
+      "incorrectExplanation": "Not quite — it is false. 'Always opens one goat' sounds symmetric but hides the constraint that manufactures asymmetry. Ceremony is theater; rules are mathematics. Read the rules, not the staging.",
+      "lessonContent": "Ceremony is theater; rules are mathematics.\nFixed rituals can hide loaded constraints.\n'Always does X' still needs the why.\nRead procedures for asymmetries, not pageantry.\nShare this: find one fair-looking ritual with loaded rules.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Lucky Guess Boost",
+      "question": "A contestant with a genuine psychic hunch about the car's door should still switch, because hunches cannot beat 2/3.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False — a real edge changes the priors. If the hunch is genuinely better than chance, the first pick exceeds 1/3 and staying can win. The 2/3 result assumes a blind first pick.",
+      "incorrectExplanation": "Not quite — it is false. Monty Hall's numbers assume random first picks; genuine information (even a calibrated hunch) updates the priors. Assumptions bound every result — change the input blindness and the answer moves.",
+      "lessonContent": "Results inherit their assumptions' limits.\nBlind-pick math needs blind picks.\nGenuine edges update priors legitimately.\nState inputs before quoting outputs.\nShare this: name one assumption behind a famous result.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Host Must Choose",
+      "question": "When your first pick hides the car, the knowing host chooses freely which goat door to reveal.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False — that case is reversed. Car-first gives the host two goats to choose between; goat-first leaves him exactly one legal reveal. Freedom lives on the 1/3 branch, force on the 2/3 branch.",
+      "incorrectExplanation": "Not quite — it is false. Check: pick the car (1/3) and the host selects between two goats; pick a goat (2/3) and only one reveal is legal. The asymmetry of his freedom is precisely what loads the survivor.",
+      "lessonContent": "Freedom and force swap across branches.\nThe 1/3 branch grants choice; the 2/3 imposes it.\nHost freedom is itself evidence about your pick.\nBranch-by-branch analysis beats blanket claims.\nShare this: act out both branches with a friend hosting.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Revealed Goat News",
+      "question": "The host revealing a goat tells you nothing new, because everyone already knew at least one unpicked door hid a goat.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. Everyone knew some goat existed, but which door the host selected — forced or free — reports on your pick. Existence was known; the selection is the news.",
+      "incorrectExplanation": "Not quite — it is false. 'A goat exists somewhere' was indeed old news; 'the host opened this one' is fresh. Selection among knowns carries information — that is the whole paradox in one sentence.",
+      "lessonContent": "Selections report; existences merely sit.\n'Which one' is news even when 'some one' isn't.\nOld facts plus new choices equal updates.\nSeparate background knowledge from fresh signals.\nShare this: explain the selection-is-news idea in one line.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Numbered Survivor",
+      "question": "Suppose you pick door 1 and the host opens door 3. The chance the car is behind door 2 is still 2/3, regardless of which specific door he opened.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "True",
+      "xpReward": 25,
+      "correctExplanation": "True. By symmetry between the two unpicked doors, the specific number carries no extra weight — the 2/3 attaches to 'the survivor,' whichever it is. Labels don't leak information here.",
+      "incorrectExplanation": "It is true. Doors 2 and 3 were symmetric before the reveal, so conditioning on 'he opened 3' leaves door 2 at 2/3. Specifics matter only when the rules treat doors differently — here they don't.",
+      "lessonContent": "Symmetric doors stay symmetric after symmetric rules.\nLabels carry no weight without rule differences.\nCondition on processes, not on names.\n'Whichever survives' inherits the full 2/3.\nShare this: swap door numbers mid-game and watch nothing change.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "true-false",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "The Single Loss",
+      "question": "A player switches and loses one game. This single loss is evidence that the 2/3 switching claim is false.",
+      "choices": [
+        "True",
+        "False"
+      ],
+      "correctAnswer": "False",
+      "xpReward": 25,
+      "correctExplanation": "False. A 2/3 strategy loses 1/3 of the time by design — single outcomes cannot falsify a rate. Evidence lives in long runs, not anecdotes.",
+      "incorrectExplanation": "Not quite — it is false. Losing once is exactly what 2/3 predicts for a third of games. Probabilistic claims are tested by frequencies across many trials, never by one vivid loss.",
+      "lessonContent": "Rates are tested by runs, never by anecdotes.\nOne loss is predicted, not disproof, at 2/3.\nVivid singles overweight against dull frequencies.\nDemand samples before surrendering strategies.\nShare this: defend a good strategy after one bad beat.",
+      "lessonGroup": "Mind the Odds",
+      "forgeId": "batch-106#24",
+      "forgeScore": 100
+    }
+  ]
+}

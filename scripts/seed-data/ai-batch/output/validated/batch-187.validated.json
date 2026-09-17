@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-187",
+  "generatedAt": "2026-09-17T13:27:45.689Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "correctAnswer": "32",
+      "acceptedAnswers": [
+        "32",
+        "thirty two",
+        "the number 32"
+      ],
+      "correctExplanation": "Right — doubling each time: 2, 4, 8, 16, 32. Powers of two grow fast.",
+      "incorrectExplanation": "The answer is 32. Each term doubles: sixteen times two is thirty-two.",
+      "lessonContent": "Doubling builds powers of two swiftly.\nRepeated multiplication explodes quietly.\nComputers count in these powers.\nShare this: double one penny thirty days.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "Continue the pattern: 2, 4, 8, 16, ?",
+      "title": "The Doubling Chain",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#0",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "8",
+      "acceptedAnswers": [
+        "8",
+        "eight",
+        "the number 8"
+      ],
+      "correctExplanation": "Correct — each term sums the previous two: 3+5=8. Fibonacci's rabbits multiply.",
+      "incorrectExplanation": "The answer is 8. Add the last two terms: three plus five.",
+      "lessonContent": "Fibonacci sums neighbors into futures.\nRabbits, petals, and shells obey.\nAddition rules generate complexity.\nShare this: grow Fibonacci to 100.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "What follows 1, 1, 2, 3, 5?",
+      "title": "The Rabbit Sum",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#1",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "25",
+      "acceptedAnswers": [
+        "25",
+        "twenty five",
+        "the number 25"
+      ],
+      "correctExplanation": "Yes — perfect squares: 1, 4, 9, 16, 25. Position squared rules all.",
+      "incorrectExplanation": "The answer is 25. Five squared completes the square run.",
+      "lessonContent": "Squares grow as positions squared.\nOdd gaps separate consecutive squares.\nTiles pave square numbers visibly.\nShare this: stack squares to 100.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "Name the next perfect square: 1, 4, 9, 16, ?",
+      "title": "The Square Run",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#2",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "13",
+      "acceptedAnswers": [
+        "13",
+        "thirteen",
+        "the number 13"
+      ],
+      "correctExplanation": "Right — primes in order: 2, 3, 5, 7, 11, 13. Divisibility by none smaller defines them.",
+      "incorrectExplanation": "The answer is 13. The next prime after eleven is thirteen.",
+      "lessonContent": "Primes admit no smaller divisors.\nOrder them and gaps intrigue.\nCryptography banks on giant primes.\nShare this: sieve primes to fifty.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "Which prime follows 2, 3, 5, 7, 11?",
+      "title": "The Prime Parade",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#3",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "21",
+      "acceptedAnswers": [
+        "21",
+        "twenty one",
+        "the number 21"
+      ],
+      "correctExplanation": "Correct — triangular numbers: gaps grow 2,3,4,5,6. Fifteen plus six is twenty-one.",
+      "incorrectExplanation": "The answer is 21. Bowl pins stack triangularly: add six to fifteen.",
+      "lessonContent": "Triangular numbers stack bowling pins.\nGaps grow by one each step.\nDots arrange into triangles.\nShare this: stack pennies triangularly.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "Bowl-pin numbers run 1, 3, 6, 10, 15. Next?",
+      "title": "The Pin Stack",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#4",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "31",
+      "acceptedAnswers": [
+        "31",
+        "thirty one",
+        "the number 31"
+      ],
+      "correctExplanation": "Yes — month lengths: January 31, February 28, March 31, April 30, May 31. Calendars hide sequences.",
+      "incorrectExplanation": "The answer is 31. May follows April's thirty with thirty-one.",
+      "lessonContent": "Calendars hide numerical sequences.\nMonth lengths cycle memorizably.\nKnuckles encode the pattern.\nShare this: recite months as numbers.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "31, 28, 31, 30, ? Hint: think calendar.",
+      "title": "The Calendar Code",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#5",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "111221",
+      "acceptedAnswers": [
+        "111221",
+        "one hundred eleven thousand two hundred twenty one",
+        "the number 111221"
+      ],
+      "correctExplanation": "Right — read aloud: 'one 1, one 2, two 1s' becomes 111221. Descriptions breed descriptions.",
+      "incorrectExplanation": "The answer is 111221. Say '1211' aloud: one one, one two, two ones.",
+      "lessonContent": "Look-and-say breeds self-descriptions.\nReading aloud reveals the rule.\nSequences can describe themselves.\nShare this: grow one look-and-say line.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "1, 11, 21, 1211, ? (Say each term aloud.)",
+      "title": "The Talking Digits",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#6",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "S",
+      "acceptedAnswers": [
+        "S",
+        "ess",
+        "the letter S"
+      ],
+      "correctExplanation": "Correct — initials of One, Two, Three, Four, Five, Six. Counting spells the answer.",
+      "incorrectExplanation": "The answer is S. One Two Three Four Five: S starts Six.",
+      "lessonContent": "Initials of counting hide letters.\nWords behind numbers spell answers.\nSpelling counts as arithmetic here.\nShare this: initial one week of days.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "O, T, T, F, F, ? Hint: counting spells it.",
+      "title": "The Counting Initials",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#7",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "50",
+      "acceptedAnswers": [
+        "50",
+        "fifty",
+        "the number 50"
+      ],
+      "correctExplanation": "Yes — double then drop one: 7→14→13→26→25→50. Two-step dances repeat.",
+      "incorrectExplanation": "The answer is 50. Twenty-five doubled completes the dance.",
+      "lessonContent": "Two-step rules alternate operations.\nDouble-drop dances repeat reliably.\nTrack pairs of moves together.\nShare this: dance one alternating rule.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "7, 14, 13, 26, 25, ? (Two moves alternate.)",
+      "title": "The Double Drop",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#8",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "3",
+      "acceptedAnswers": [
+        "3",
+        "three",
+        "the number 3"
+      ],
+      "correctExplanation": "Right — halving each time: 48, 24, 12, 6, 3. Division descends geometrically.",
+      "incorrectExplanation": "The answer is 3. Six halved completes the descent.",
+      "lessonContent": "Halving descends geometrically fast.\nCakes halve into crumbs quickly.\nDivision reverses multiplication's climb.\nShare this: halve one cake repeatedly.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "48, 24, 12, 6, ?",
+      "title": "The Halving Cake",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#9",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "1",
+      "acceptedAnswers": [
+        "1",
+        "one",
+        "the number 1"
+      ],
+      "correctExplanation": "Correct — dividing by three each step: 81, 27, 9, 3, 1. Thirds shrink to unity.",
+      "incorrectExplanation": "The answer is 1. Three divided by three bottoms the run.",
+      "lessonContent": "Thirds shrink geometrically to one.\nDivision chains end at unity.\nPowers of three descend steeply.\nShare this: third one pile to crumbs.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "81, 27, 9, 3, ?",
+      "title": "The Shrinking Thirds",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#10",
+      "forgeScore": 100
+    },
+    {
+      "correctAnswer": "42",
+      "acceptedAnswers": [
+        "42",
+        "forty two",
+        "the number 42"
+      ],
+      "correctExplanation": "Yes — each term multiplies consecutive integers: 6×7=42. Products of neighbors climb.",
+      "incorrectExplanation": "The answer is 42. Five times six ended the last; six times seven follows.",
+      "lessonContent": "Neighbor products build n-times-n-plus-one.\nRectangles count these numbers.\nConsecutive multiplication climbs fast.\nShare this: rectangle-check 42 dots.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "2, 6, 12, 20, 30, ? (Each is n×(n+1).)",
+      "title": "The Neighbor Products",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#11",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "120",
+      "acceptedAnswers": [
+        "120",
+        "one hundred twenty",
+        "the number 120"
+      ],
+      "correctExplanation": "Right — factorials multiply growing integers: 4! = 24, 5! = 120. Exclamation marks explode.",
+      "incorrectExplanation": "The answer is 120. One through five multiplied totals one-twenty.",
+      "lessonContent": "Factorials multiply one-through-n.\nArrangements count factorially.\nGrowth outruns exponentials eventually.\nShare this: arrange five books factorially.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "1, 2, 6, 24, ? (Factorials grow here.)",
+      "title": "The Exploding Bang",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#12",
+      "forgeScore": 84
+    },
+    {
+      "correctAnswer": "63",
+      "acceptedAnswers": [
+        "63",
+        "sixty three",
+        "the number 63"
+      ],
+      "correctExplanation": "Correct — double and add one: 31×2+1=63. Plus-one chains climb steeply.",
+      "incorrectExplanation": "The answer is 63. Thirty-one doubled plus one.",
+      "lessonContent": "Double-plus-one chains climb steeply.\nChessboard rice follows this hunger.\nPlus-ones compound doublings.\nShare this: rice-double one chessboard row.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "3, 7, 15, 31, ? (Double, then add one.)",
+      "title": "The Plus-One Climb",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#13",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "66",
+      "acceptedAnswers": [
+        "66",
+        "sixty six",
+        "the number 66"
+      ],
+      "correctExplanation": "Yes — drops shrink 10, 9, 8, then 7: 73−7=66. Fading brakes slow descents.",
+      "incorrectExplanation": "The answer is 66. Subtract seven after subtracting eight.",
+      "lessonContent": "Shrinking gaps slow every descent.\nBrakes fade step by step.\nDifferences-of-differences guide.\nShare this: brake one countdown gradually.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "100, 90, 81, 73, ? (Drops shrink each step.)",
+      "title": "The Fading Brakes",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#14",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "12",
+      "acceptedAnswers": [
+        "12",
+        "twelve",
+        "the number 12"
+      ],
+      "correctExplanation": "Right — triple then halve: 4×3=12. Alternating giants and halves seesaw.",
+      "incorrectExplanation": "The answer is 12. Four tripled after nine halved.",
+      "lessonContent": "Triple-halve seesaws alternate extremes.\nOperations pair into rhythms.\nSeesaws balance across terms.\nShare this: seesaw one rule pair.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "2, 6, 3, 9, 4, ? (Triple, halve, repeat.)",
+      "title": "The Triple Seesaw",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#15",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "2",
+      "acceptedAnswers": [
+        "2",
+        "two",
+        "the number 2"
+      ],
+      "correctExplanation": "Correct — sum the digits repeatedly: 2+9=11, 1+1=2, and 2 stays 2. Collapses end single.",
+      "incorrectExplanation": "The answer is 2. Eleven collapses to two; two collapses to itself.",
+      "lessonContent": "Digit sums collapse numbers repeatedly.\nDigital roots end single always.\nNine-checks guard arithmetic.\nShare this: root-collapse one phone number.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "29, 11, 2, ? (Sum the digits each step.)",
+      "title": "The Digit Collapse",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#16",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "C",
+      "acceptedAnswers": [
+        "C",
+        "cee",
+        "the letter C"
+      ],
+      "correctExplanation": "Yes — Roman numerals in order: I, V, X, L, C. Rome counts 1, 5, 10, 50, 100.",
+      "incorrectExplanation": "The answer is C. Roman hundreds follow fifties.",
+      "lessonContent": "Rome numerals ascend I-V-X-L-C.\nAncient counting survives on clocks.\nSymbols order values strictly.\nShare this: read one clock's four as IIII.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "I, V, X, L, ? (Rome counts upward.)",
+      "title": "The Roman Climb",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#17",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Jupiter",
+      "acceptedAnswers": [
+        "Jupiter",
+        "planet Jupiter",
+        "the planet Jupiter"
+      ],
+      "correctExplanation": "Right — planets outward: Mercury, Venus, Earth, Mars, Jupiter. Orbits order the parade.",
+      "incorrectExplanation": "The answer is Jupiter. Mars's outer neighbor is the giant.",
+      "lessonContent": "Orbits order planets outward memorably.\nMy Very Educated Mother recites.\nGiants guard the outer lanes.\nShare this: walk one solar-system scale.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "Mercury, Venus, Earth, Mars, ? (Outward bound.)",
+      "title": "The Outward Parade",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#18",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Blue",
+      "acceptedAnswers": [
+        "Blue",
+        "color blue",
+        "the color blue"
+      ],
+      "correctExplanation": "Correct — rainbow order: red, orange, yellow, green, blue. Skies sort sunlight spectrally.",
+      "incorrectExplanation": "The answer is blue. Green yields to blue in spectral order.",
+      "lessonContent": "Rainbows sort sunlight by wavelength.\nRoy G. Biv recites the spectrum.\nBlue follows green spectrally.\nShare this: name one rainbow backwards.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "Red, orange, yellow, green, ? (Rainbow order.)",
+      "title": "The Spectral Stroll",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#19",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "Sol",
+      "acceptedAnswers": [
+        "Sol",
+        "fifth degree",
+        "scale degree five"
+      ],
+      "correctExplanation": "Yes — the major scale climbs Do Re Mi Fa Sol. Singers ascend stepwise.",
+      "incorrectExplanation": "The answer is Sol. Do Re Mi Fa resolves upward to Sol.",
+      "lessonContent": "Scales ascend stepwise predictably.\nSolfège syllables order pitches.\nSingers memorize ladders of sound.\nShare this: sing one scale ascending.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "Do, Re, Mi, Fa, ? (Sing the scale.)",
+      "title": "The Sung Scale",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#20",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "O",
+      "acceptedAnswers": [
+        "O",
+        "oh",
+        "the letter O"
+      ],
+      "correctExplanation": "Right — gaps widen 2,3,4, then 5: J plus 5 is O. Alphabet gaps grow steadily.",
+      "incorrectExplanation": "The answer is O. Skip two, three, four, then five letters.",
+      "lessonContent": "Widening gaps stride alphabets.\nSkip-counts grow step by step.\nLetters march arithmetically too.\nShare this: gap-walk one alphabet.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "A, C, F, J, ? (Skips grow: 2, 3, 4, ?)",
+      "title": "The Widening Skips",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#21",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "125",
+      "acceptedAnswers": [
+        "125",
+        "one hundred twenty five",
+        "the number 125"
+      ],
+      "correctExplanation": "Correct — perfect cubes: 1, 8, 27, 64, 125. Five cubed crowns the run.",
+      "incorrectExplanation": "The answer is 125. Five times five times five.",
+      "lessonContent": "Cubes stack in three dimensions.\nVolumes grow cubically fast.\nOne through five cubed runs classic.\nShare this: cube-stack sugar cubes.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "1, 8, 27, 64, ? (Cubes rise here.)",
+      "title": "The Cubic Tower",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#22",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "26",
+      "acceptedAnswers": [
+        "26",
+        "twenty six",
+        "the number 26"
+      ],
+      "correctExplanation": "Yes — each term is a square plus one: 1+1, 4+1, 9+1, 16+1, 25+1. Twenty-six.",
+      "incorrectExplanation": "The answer is 26. Twenty-five plus one completes the plus-one squares.",
+      "lessonContent": "Plus-one rules decorate perfect powers.\nSquares-plus-one climb quietly.\nOffsets create fresh sequences.\nShare this: offset one square run.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "2, 5, 10, 17, ? (Squares plus one.)",
+      "title": "The Offset Squares",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#23",
+      "forgeScore": 92
+    },
+    {
+      "correctAnswer": "11",
+      "acceptedAnswers": [
+        "11",
+        "eleven",
+        "the number 11"
+      ],
+      "correctExplanation": "Right — evenly spaced trios center on averages: (5+17)/2=11. Middles split differences.",
+      "incorrectExplanation": "The answer is 11. Five and seventeen average to eleven.",
+      "lessonContent": "Even spacing centers on means.\nMiddles split endpoint differences.\nAverages interpolate missing terms.\nShare this: average one missing middle.",
+      "lessonGroup": "Sequence Secrets",
+      "question": "5, ?, 17 — the trio steps evenly. Fill the middle.",
+      "title": "The Missing Middle",
+      "type": "type-answer",
+      "category": "puzzles",
+      "choices": [],
+      "difficulty": "easy",
+      "xpReward": 10,
+      "forgeId": "batch-187#24",
+      "forgeScore": 92
+    }
+  ]
+}

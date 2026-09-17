@@ -1,0 +1,538 @@
+{
+  "version": 1,
+  "batchId": "batch-015",
+  "generatedAt": "2026-09-17T13:27:41.506Z",
+  "source": "ai-batch",
+  "intendedImport": {
+    "createdBy": "ai-forge",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Slow Clock",
+      "question": "Two identical clocks start together. One stays on Earth, the other flies around the world and returns. When reunited, what do they read?",
+      "choices": [
+        "The travelled clock lags behind",
+        "Both read exactly the same",
+        "The travelled clock runs ahead",
+        "Each stops during the flight"
+      ],
+      "correctAnswer": "The travelled clock lags behind",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — moving clocks tick slower, so the journeying timepiece returns younger.",
+      "incorrectExplanation": "The answer is: the travelled clock lags behind. Velocity dilates time, so the flying clock accumulates fewer seconds. Hafele and Keating proved it with atomic clocks on airliners.",
+      "lessonContent": "Velocity dilates time: the faster you move, the slower your clock ticks relative to home.\nAirplane atomic clocks landed measurably younger than their twins.\nGPS satellites must correct for this daily or drift kilometres off.\nThe effect is tiny at human speeds and enormous near light speed.\nShare this: explain tonight why frequent flyers age — very slightly — slower.",
+      "forgeId": "batch-015#0",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Twins Reunited",
+      "question": "One twin rockets away near light speed and returns. Which twin is older at reunion?",
+      "choices": [
+        "The stay-at-home twin is younger",
+        "The travelling twin is younger",
+        "They age identically",
+        "Age becomes meaningless"
+      ],
+      "correctAnswer": "The travelling twin is younger",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — the travelling twin accelerated and turned, breaking the symmetry; less time passes for them.",
+      "incorrectExplanation": "The answer is: the travelling twin is younger. Only one twin turns around, so only one changes inertial frames — that asymmetry resolves the paradox. Cruise-phase symmetry fools intuition; the turnaround decides it.",
+      "lessonContent": "Acceleration breaks the symmetry: only one twin turns around.\nEach sees the other's clock slow during cruise — both views are valid.\nThe turnaround is what makes their histories genuinely different.\nNo paradox survives careful bookkeeping of who accelerated.\nShare this: ask someone which twin ages less, then name the turnaround.",
+      "forgeId": "batch-015#1",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Cosmic Limit",
+      "question": "No matter how hard you push a spaceship, what can it never reach?",
+      "choices": [
+        "The edge of the universe",
+        "Perpetual motion",
+        "Light speed with mass aboard",
+        "A perfect vacuum"
+      ],
+      "correctAnswer": "Light speed with mass aboard",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — adding energy near light speed adds momentum more than velocity; massive objects asymptote below it.",
+      "incorrectExplanation": "The answer is: light speed with mass aboard. Each push buys less speed and more momentum as the limit nears. Only massless things ride exactly at the limit; everything else approaches it forever.",
+      "lessonContent": "Adding energy near light speed adds momentum more than velocity.\nMassive objects asymptote: ever closer, never arriving.\nOnly massless things ride exactly at the limit.\nThe limit is really about causality, not engines.\nShare this: explain tonight why the limit is a speed, not a place.",
+      "forgeId": "batch-015#2",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Valley Clocks",
+      "question": "Two perfect clocks start synced. One descends to a deep valley, the other stays on the peak. A year later, which lags?",
+      "choices": [
+        "The peak clock, worn by weather",
+        "They stay perfectly synced",
+        "Nothing compares across heights",
+        "The lower clock runs slower"
+      ],
+      "correctAnswer": "The lower clock runs slower",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — gravity dilates time: deeper in a gravitational well, slower the ticking.",
+      "incorrectExplanation": "The answer is: the lower clock runs slower. Pound and Rebka measured the effect across a mere building. Your head ages faster than your feet — by billionths of a second. GPS must subtract this daily or drift.",
+      "lessonContent": "Gravity dilates time: deeper in a well, slower the ticking.\nPound and Rebka measured the effect across a mere building.\nYour head ages faster than your feet — by billionths of a second.\nGPS must subtract this daily or drift.\nShare this: tell someone their head is older than their feet, technically.",
+      "forgeId": "batch-015#3",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Every Observer Agrees",
+      "question": "What does every observer measure for the speed of light in vacuum, regardless of their own motion?",
+      "choices": [
+        "The same for everyone",
+        "Faster when chasing it",
+        "Slower when running away",
+        "It depends on the source"
+      ],
+      "correctAnswer": "The same for everyone",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — light's speed never adds to yours; invariance anchors all of relativity.",
+      "incorrectExplanation": "The answer is: the same for everyone. Chasing a beam at half light speed, you still clock it full. Everything strange — dilation, contraction — flows from this one fact. Michelson and Morley found it hunting something else entirely.",
+      "lessonContent": "Invariance anchors relativity: light's speed never adds to yours.\nChasing a beam at half light speed, you still clock it full.\nEverything strange — dilation, contraction — flows from this one fact.\nMichelson and Morley found it by accident, hunting something else.\nShare this: ask someone what happens when you chase light at near its pace.",
+      "forgeId": "batch-015#4",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Whose Now?",
+      "question": "Two lightning strikes hit opposite ends of a moving train. Ground observers call them simultaneous. What do passengers say?",
+      "choices": [
+        "They agree completely",
+        "They disagree about simultaneity",
+        "They see only one flash",
+        "Time stops aboard"
+      ],
+      "correctAnswer": "They disagree about simultaneity",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — simultaneity is frame-bound: 'at the same time' needs a stated viewpoint.",
+      "incorrectExplanation": "The answer is: they disagree about simultaneity. Einstein's train made the point with two lightning bolts. No view is privileged; each is fully consistent. Distant 'nows' are conventions, not facts.",
+      "lessonContent": "Simultaneity is frame-bound: 'at the same time' needs a stated viewpoint.\nEinstein's train made the point with two lightning bolts.\nNo view is privileged; each is fully consistent.\nDistant 'nows' are conventions, not facts.\nShare this: ask whether aliens are acting 'now' — then dismantle the question.",
+      "forgeId": "batch-015#5",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Bent Stage",
+      "question": "In general relativity, what is gravity?",
+      "choices": [
+        "An invisible pulling rope",
+        "Magnetism at large scale",
+        "Curved spacetime",
+        "Dark matter's shadow"
+      ],
+      "correctAnswer": "Curved spacetime",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — mass tells the stage how to bend; the bent stage tells matter how to move.",
+      "incorrectExplanation": "The answer is: curved spacetime. Orbits are straight lines drawn on a curved surface. The image replaces invisible ropes with pure geometry. Apples and moons obey the same curvature.",
+      "lessonContent": "Mass tells the stage how to bend; the bent stage tells matter how to move.\nOrbits are straight lines drawn on a curved surface.\nThe image replaces invisible ropes with pure geometry.\nApples and moons obey the same curvature.\nShare this: roll a marble across a stretched sheet with a weight in the middle.",
+      "forgeId": "batch-015#6",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Restless Orbit",
+      "question": "Which planet's orbit famously refused to fit Newton's predictions until relativity explained it?",
+      "choices": [
+        "Venus, the clouded world",
+        "Mars, the red wanderer",
+        "Jupiter, the giant",
+        "Mercury, the swift messenger"
+      ],
+      "correctAnswer": "Mercury, the swift messenger",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — Newton missed a tiny extra swivel in Mercury's orbit; curved geometry predicted it exactly.",
+      "incorrectExplanation": "The answer is: Mercury, the swift messenger. Astronomers hunted a hidden planet, Vulcan, in vain. Einstein's curved geometry predicted the swivel exactly. The 1919 eclipse sealed the new picture.",
+      "lessonContent": "Newton's math missed a tiny extra swivel — arcseconds per century.\nAstronomers hunted a hidden planet, Vulcan, in vain.\nEinstein's curved geometry predicted the swivel exactly.\nThe 1919 eclipse sealed the new picture.\nShare this: explain tonight how a wobble smaller than a coin at arm's length rewrote physics.",
+      "forgeId": "batch-015#7",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Frozen Energy",
+      "question": "What does E = mc² fundamentally claim?",
+      "choices": [
+        "Mass is frozen energy",
+        "Energy creates mass from nothing",
+        "Light outweighs matter",
+        "Speed has a square root"
+      ],
+      "correctAnswer": "Mass is frozen energy",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — a little mass converts to enormous energy because c² is huge.",
+      "incorrectExplanation": "The answer is: mass is frozen energy. The Sun spends mass like income to shine. Nuclear reactions audit the books: the missing mass left as energy. Matter is not stuff plus energy — it is energy, bound.",
+      "lessonContent": "A little mass converts to enormous energy because c² is huge.\nThe Sun spends mass like income to shine.\nNuclear reactions audit the books: the missing mass left as energy.\nMatter is not stuff plus energy — it is energy, bound.\nShare this: compute the energy hiding in one paperclip tonight.",
+      "forgeId": "batch-015#8",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Long-Lived Muon",
+      "question": "Muons created high in the atmosphere decay in microseconds, yet reach the ground. What saves them?",
+      "choices": [
+        "They surf on solar wind",
+        "Time-stretched lifespans",
+        "They dodge air molecules",
+        "Gravity pulls them faster"
+      ],
+      "correctAnswer": "Time-stretched lifespans",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — fast motion stretches internal clocks: the traveler's own seconds last longer at home.",
+      "incorrectExplanation": "The answer is: time-stretched lifespans. From our view the particles live extended lives and complete the trip. From theirs, the atmosphere contracts to a thin sheet. Both accounts agree on the detector clicks.",
+      "lessonContent": "Fast motion stretches internal clocks: the traveler's own seconds last longer at home.\nFrom our view the particles live extended lives and complete the trip.\nFrom theirs, the atmosphere contracts to a thin sheet.\nBoth accounts agree on the detector clicks.\nShare this: explain tonight why fast things get extra time — from our side.",
+      "forgeId": "batch-015#9",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Satellite Seconds",
+      "question": "Why must GPS satellites correct their clocks daily?",
+      "choices": [
+        "Solar wind resets them",
+        "Batteries drift with heat",
+        "Speed slows them, low gravity quickens them",
+        "Ground stations demand it"
+      ],
+      "correctAnswer": "Speed slows them, low gravity quickens them",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — velocity dilates while weaker gravity undoes more; the net gain is microseconds a day.",
+      "incorrectExplanation": "The answer is: speed slows them, low gravity quickens them. Two effects tug satellite time opposite ways. The net gain is microseconds a day — kilometres of error uncorrected. Every phone quietly runs relativity to find itself.",
+      "lessonContent": "Two effects tug satellite time opposite ways.\nSpeed dilates; weaker gravity undoes more.\nThe net gain is microseconds a day — kilometres of error uncorrected.\nEvery phone quietly runs relativity to find itself.\nShare this: tell someone their map app audits Einstein before breakfast.",
+      "forgeId": "batch-015#10",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Whose Moment?",
+      "question": "Can two distant events share one single moment?",
+      "choices": [
+        "Yes, with synced clocks",
+        "Yes, astronomers do it",
+        "Only for nearby events",
+        "No absolute simultaneity exists"
+      ],
+      "correctAnswer": "No absolute simultaneity exists",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — distant simultaneity is a convention, not a discovery; physics keeps causality strict while letting 'now' dissolve.",
+      "incorrectExplanation": "The answer is: no absolute simultaneity exists. Andromeda's 'now' shifts by days depending on whether you stroll toward it. The block universe pictures all moments equally real. Physics keeps causality strict while letting 'now' dissolve.",
+      "lessonContent": "Distant simultaneity is a convention, not a discovery.\nAndromeda's 'now' shifts by days depending on whether you stroll toward it.\nThe block universe pictures all moments equally real.\nPhysics keeps causality strict while letting 'now' dissolve.\nShare this: ask whether aliens are acting 'now' — then dismantle the question.",
+      "forgeId": "batch-015#11",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Squeezed Ruler",
+      "question": "What happens to a fast-moving object's length along its direction of motion?",
+      "choices": [
+        "It contracts",
+        "It stretches",
+        "It stays identical",
+        "It oscillates"
+      ],
+      "correctAnswer": "It contracts",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — motion squeezes length along the travel direction only.",
+      "incorrectExplanation": "The answer is: it contracts. Transverse dimensions never notice the speed. At everyday paces the squeezing is absurdly below detection. Only near light speed does the ruler visibly shorten.",
+      "lessonContent": "Motion squeezes length along the travel direction only.\nTransverse dimensions never notice the speed.\nAt everyday paces the squeezing is absurdly below detection.\nOnly near light speed does the ruler visibly shorten.\nShare this: explain tonight why a near-light spaceship looks like a pancake.",
+      "forgeId": "batch-015#12",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "No Return Address",
+      "question": "Why can nothing ever leave a black hole — not even the fastest signal?",
+      "choices": [
+        "Its gravity pulls too hard to climb",
+        "Leaving would need exceeding light speed",
+        "Space ends at the rim",
+        "Time runs backward inside"
+      ],
+      "correctAnswer": "Leaving would need exceeding light speed",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — at the horizon that speed passes light's — and nothing outruns light.",
+      "incorrectExplanation": "The answer is: leaving would need exceeding light speed. Escape velocity is the speed a projectile needs to leave forever. Inside, all futures point inward; outward is the past. The boundary is one-way by geometry, not by force.",
+      "lessonContent": "Escape velocity is the speed a projectile needs to leave forever.\nAt the horizon that speed passes light's — and nothing outruns light.\nInside, all futures point inward; outward is the past.\nThe boundary is one-way by geometry, not by force.\nShare this: explain tonight why 'too strong a pull' is the wrong picture.",
+      "forgeId": "batch-015#13",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The One-Way Boundary",
+      "question": "What marks the edge of a black hole?",
+      "choices": [
+        "The photon sphere",
+        "The accretion disk",
+        "The event horizon",
+        "The singularity"
+      ],
+      "correctAnswer": "The event horizon",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — cross it and every path leads inward; return needs a time machine.",
+      "incorrectExplanation": "The answer is: the event horizon. Outside observers never see the crossing; time appears to freeze at the edge. The boundary's size scales directly with mass. Inside, the singularity is less a place than a future moment.",
+      "lessonContent": "Cross it and every path leads inward — return needs a time machine.\nOutside observers never see the crossing; time appears to freeze at the edge.\nThe boundary's size scales directly with mass.\nInside, the singularity is less a place than a future moment.\nShare this: tell someone the edge is defined by geometry, not by a wall.",
+      "forgeId": "batch-015#14",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Ripples in Reality",
+      "question": "What did LIGO detect in 2015?",
+      "choices": [
+        "Dark matter particles",
+        "Solar neutrinos",
+        "Fast radio bursts",
+        "Merging black holes"
+      ],
+      "correctAnswer": "Merging black holes",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — two dead stars spiraled together, shaking spacetime itself.",
+      "incorrectExplanation": "The answer is: merging black holes. The ripple squeezed Earth by less than a proton's width — and we heard it. A century after prediction, the wave arrived on schedule. Astronomy gained ears to match its eyes.",
+      "lessonContent": "Two dead stars spiraled together, shaking spacetime itself.\nThe ripple squeezed Earth by less than a proton's width — and we heard it.\nA century after prediction, the wave arrived on schedule.\nAstronomy gained ears to match its eyes.\nShare this: explain tonight that we now listen to the universe, not just look.",
+      "forgeId": "batch-015#15",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Eclipse Proof",
+      "question": "During the 1919 eclipse, starlight near the Sun appeared in the wrong place. What did that prove?",
+      "choices": [
+        "Mass bends light",
+        "The Sun emits mirages",
+        "Telescopes distort edges",
+        "Stars wobble yearly"
+      ],
+      "correctAnswer": "Mass bends light",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — starlight grazing the Sun arrived displaced; the sky itself was lensed.",
+      "incorrectExplanation": "The answer is: mass bends light. Eddington's teams measured the shift on photographic plates. Headlines made Einstein a celebrity overnight. The bending matched curved geometry to the arcsecond.",
+      "lessonContent": "Starlight grazing the Sun arrived displaced — the sky itself was lensed.\nEddington's teams measured the shift on photographic plates.\nHeadlines made Einstein a celebrity overnight.\nThe bending matched curved geometry to the arcsecond.\nShare this: tell someone the most famous photo in physics was a misplaced star.",
+      "forgeId": "batch-015#16",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Falling Lift",
+      "question": "You float inside a freely falling lift. Which experiment could reveal you're falling, not drifting in deep space?",
+      "choices": [
+        "Dropping two balls together",
+        "None — free fall feels weightless",
+        "Shouting for an echo",
+        "Watching dust settle"
+      ],
+      "correctAnswer": "None — free fall feels weightless",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — Einstein's happiest thought: gravity vanishes inside a falling room.",
+      "incorrectExplanation": "The answer is: none — free fall feels weightless. No local test separates free fall from deep-space drift. The principle extends: acceleration mimics gravity everywhere. Elevators, rockets and orbits all trade on the confusion.",
+      "lessonContent": "Einstein's happiest thought: gravity vanishes inside a falling room.\nNo local test separates free fall from deep-space drift.\nThe principle extends: acceleration mimics gravity everywhere.\nElevators, rockets and orbits all trade on the confusion.\nShare this: explain tonight why astronauts float though gravity still grips them.",
+      "forgeId": "batch-015#17",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Climbing Light",
+      "question": "Light escaping a massive star shifts toward which end of the spectrum?",
+      "choices": [
+        "Blue — it gains energy",
+        "It stays perfectly fixed",
+        "Red — it loses energy climbing",
+        "It vanishes entirely"
+      ],
+      "correctAnswer": "Red — it loses energy climbing",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — photons pay for altitude with energy, arriving redder than they left.",
+      "incorrectExplanation": "The answer is: red — it loses energy climbing. Pound and Rebka measured the shift across a mere building. GPS and cosmology both correct for the climb daily. Downhill light gains the same energy back, bluer.",
+      "lessonContent": "Photons pay for altitude with energy — redder means poorer.\nPound and Rebka measured the shift across a mere building.\nGPS and cosmology both correct for the climb daily.\nDownhill light gains the same energy back, bluer.\nShare this: tell someone starlight arrives tired.",
+      "forgeId": "batch-015#18",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Bent Starlight",
+      "question": "Massive galaxy clusters smear background galaxies into glowing arcs. What bends that light?",
+      "choices": [
+        "Dark energy winds",
+        "Telescope artifacts",
+        "Interstellar dust",
+        "The cluster's gravity"
+      ],
+      "correctAnswer": "The cluster's gravity",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — massive foregrounds warp the space behind them into lenses.",
+      "incorrectExplanation": "The answer is: the cluster's gravity. Mass warps nearby spacetime, and light follows the warp into arcs and rings. Lensing weighs invisible dark matter by its bending. Astronomy now maps the unseen with borrowed light.",
+      "lessonContent": "Massive foregrounds warp the space behind them into lenses.\nEinstein rings are the perfect-alignment special case.\nLensing weighs invisible dark matter by its bending.\nAstronomy now maps the unseen with borrowed light.\nShare this: look through a wine glass base tonight for a tabletop lens.",
+      "forgeId": "batch-015#19",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Plane Clocks",
+      "question": "Hafele and Keating flew atomic clocks around the world in 1971. What did the reunited clocks show?",
+      "choices": [
+        "The flying clocks aged less",
+        "All clocks agreed exactly",
+        "The ground clocks aged less",
+        "The clocks stopped mid-flight"
+      ],
+      "correctAnswer": "The flying clocks aged less",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — eastbound lost time, westbound gained; motion and altitude pulling opposite ways, motion winning overall.",
+      "incorrectExplanation": "The answer is: the flying clocks aged less. Two airliners carried cesium hearts east and west. Eastbound lost time, westbound gained — motion and altitude pulling opposite ways. The measured offsets matched relativity's ledger.",
+      "lessonContent": "Two airliners carried cesium hearts east and west.\nEastbound lost time, westbound gained — motion and altitude pulling opposite ways.\nThe measured offsets matched relativity's ledger.\nAviation-grade proof you can board.\nShare this: explain tonight that frequent flyers are microseconds younger.",
+      "forgeId": "batch-015#20",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Timeless Photons",
+      "question": "From light's own 'perspective', how much time passes on its journey?",
+      "choices": [
+        "Billions of years",
+        "None at all",
+        "One second per mile",
+        "It depends on color"
+      ],
+      "correctAnswer": "None at all",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — push the equations to light speed and proper time collapses to zero.",
+      "incorrectExplanation": "The answer is: none at all. Photons do not age; emission and absorption touch with nothing between. Only massless things ride this edge — everything else pays in time. 'Perspective' is metaphor: no frame exists at light speed.",
+      "lessonContent": "Push the equations to light speed and proper time collapses to zero.\nPhotons do not age; emission and absorption touch with nothing between.\nOnly massless things ride this edge — everything else pays in time.\n'Perspective' is metaphor: no frame exists at light speed.\nShare this: tell someone starlight arrives newborn no matter the distance.",
+      "forgeId": "batch-015#21",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Stretched Travelers",
+      "question": "What happens to astronauts falling feet-first into a stellar black hole?",
+      "choices": [
+        "They freeze instantly",
+        "They bounce at the horizon",
+        "Tidal forces stretch them thin",
+        "Nothing unusual at all"
+      ],
+      "correctAnswer": "Tidal forces stretch them thin",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — gravity gradients pull feet harder than head; the difference grows lethal.",
+      "incorrectExplanation": "The answer is: tidal forces stretch them thin. Popular accounts call the fate spaghettification. Small holes kill before the horizon; giant ones defer it. Inside, the singularity waits in every future.",
+      "lessonContent": "Gravity gradients pull feet harder than head — the difference grows lethal.\nPopular accounts call the fate by a pasta name.\nSmall holes kill before the horizon; giant ones defer it.\nInside, the singularity waits in every future.\nShare this: explain tonight why falling feet-first is the worst orientation.",
+      "forgeId": "batch-015#22",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "The Fitting Ladder",
+      "question": "A ladder moving near light speed fits inside a shorter barn — yet riders aboard insist it cannot. Who is right?",
+      "choices": [
+        "The barn crew is right",
+        "The riders aboard are right",
+        "Neither — paradoxes break physics",
+        "Both — simultaneity splits the verdict"
+      ],
+      "correctAnswer": "Both — simultaneity splits the verdict",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Right — length contraction squeezes the moving ladder in the barn's books, while simultaneity of the doors differs aboard.",
+      "incorrectExplanation": "The answer is: both — simultaneity splits the verdict. Whether both doors ever shut together depends on the frame's simultaneity. No contradiction survives once 'at the same time' is indexed. Length contraction and door-timing conspire consistently.",
+      "lessonContent": "Length contraction squeezes the moving ladder in the barn's books.\nAboard, the barn squeezes instead — motion is mutual.\nWhether both doors ever shut together depends on the frame's simultaneity.\nNo contradiction survives once 'at the same time' is indexed.\nShare this: ask someone if a fast ladder fits a short barn — then ask 'says who?'.",
+      "forgeId": "batch-015#23",
+      "forgeScore": 100
+    },
+    {
+      "type": "multiple-choice",
+      "category": "science",
+      "difficulty": "medium",
+      "title": "Snapping String",
+      "question": "Two rockets tied by a string accelerate identically side by side. What happens to the string?",
+      "choices": [
+        "It stretches then snaps",
+        "It rides along unchanged",
+        "It contracts safely",
+        "It pushes the rockets apart"
+      ],
+      "correctAnswer": "It stretches then snaps",
+      "xpReward": 25,
+      "lessonGroup": "Relativity Road",
+      "correctExplanation": "Exactly — identical acceleration preserves separation in the launch frame only; rigidity fails across frames.",
+      "incorrectExplanation": "The answer is: it stretches then snaps. Each rocket's own rulers shrink the gap's measure differently — rigidity fails. Bell designed it to break intuition about 'moving together'. Born-rigid motion is far stricter than matched throttles.",
+      "lessonContent": "Identical acceleration preserves separation in the launch frame only.\nEach rocket's own rulers shrink the gap's measure differently — rigidity fails.\nBell designed it to break intuition about 'moving together'.\nBorn-rigid motion is far stricter than matched throttles.\nShare this: ask tonight why two matched rockets can't share a tow rope.",
+      "forgeId": "batch-015#24",
+      "forgeScore": 100
+    }
+  ]
+}
