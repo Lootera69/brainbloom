@@ -30,12 +30,19 @@ interface LessonGroup {
   puzzles: Puzzle[];
 }
 
+// Sub-lessons rendered per expanded group before "Show all".
+const GROUP_PAGE = 30;
+
 export function CurriculumPath({ category, onStartPuzzle }: Props) {
   const [puzzles, setPuzzles] = useState<Puzzle[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasLessons, setHasLessons] = useState(false);
   const [showAll, setShowAll] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
+  // Expanded groups render only the first page of sub-lessons; the rest
+  // load on demand. Groups now hold hundreds of puzzles, and mounting them
+  // all at once (each animated) janks low-end devices.
+  const [uncappedGroups, setUncappedGroups] = useState<Set<string>>(new Set());
   const completedPuzzleIds = useUserStore((s) => s.completedPuzzleIds);
   const experiencedWonderIds = useUserStore((s) => s.experiencedWonderIds);
 
@@ -166,6 +173,8 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
             const groupUnlocked = isGroupUnlocked(gi);
             const groupDone = isGroupCompleted(group);
             const isExpanded = expandedGroups.has(group.name);
+            const uncapped = uncappedGroups.has(group.name);
+            const visiblePuzzles = uncapped ? group.puzzles : group.puzzles.slice(0, GROUP_PAGE);
             return (
               <div key={gi} className="space-y-1.5">
                 {/* Group header */}
@@ -231,7 +240,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
                 {/* Sub-lessons */}
                 {isExpanded && (
                   <div className="ml-5 space-y-1 border-l-2 border-muted pl-4">
-                    {group.puzzles.map((puzzle, si) => {
+                    {visiblePuzzles.map((puzzle, si) => {
                       const state = getSubLessonState(puzzle, si, gi);
                       const isFirstUnlocked = state === "available";
                       return (
@@ -239,7 +248,7 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
                           key={puzzle.id}
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: si * 0.04 }}
+                          transition={{ delay: Math.min(si, 12) * 0.04 }}
                         >
                           <button
                             onClick={() => state !== "locked" && onStartPuzzle(puzzle, {
@@ -309,6 +318,17 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
                         </motion.div>
                       );
                     })}
+                    {!uncapped && group.puzzles.length > GROUP_PAGE && (
+                      <button
+                        onClick={() =>
+                          setUncappedGroups((prev) => new Set(prev).add(group.name))
+                        }
+                        className="flex items-center gap-1.5 pl-1 pt-1 text-xs font-medium text-muted-foreground hover:text-foreground"
+                      >
+                        <ChevronDown className="size-3.5" />
+                        Show all {group.puzzles.length} sub-lessons
+                      </button>
+                    )}
                   </div>
                 )}
               </div>

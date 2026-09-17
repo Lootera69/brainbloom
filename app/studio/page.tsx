@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
-import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ArrowUpDown, Database, Eye, Zap, LayoutGrid, Megaphone } from "lucide-react";
+import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ArrowUpDown, Database, Eye, Zap, LayoutGrid, Megaphone, ChevronLeft, ChevronRight } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { useRouter } from "next/navigation";
 import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
@@ -71,6 +71,7 @@ const TYPE_FILTER_OPTIONS = [
   { value: "riddle", label: "Riddle" },
   { value: "wonder", label: "Wonder" },
   { value: "cipher", label: "Cipher" },
+  { value: "story", label: "Story" },
 ];
 
 const SORT_OPTIONS = [
@@ -80,6 +81,9 @@ const SORT_OPTIONS = [
   { value: "xpReward", label: "XP" },
   { value: "completedBy", label: "Plays" },
 ];
+
+// Rows rendered per dashboard page (filters/sort run over the full set).
+const PAGE_SIZE = 50;
 
 function Clock(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -103,6 +107,19 @@ function AnimatedNumber({ value, className }: { value: number; className?: strin
   return <motion.span className={className}>{display}</motion.span>;
 }
 
+/** Compact page-number window: 1 … c-1 c c+1 … last. */
+function pageNumbers(current: number, total: number): (number | "…")[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const pages = new Set<number>([1, 2, current - 1, current, current + 1, total - 1, total]);
+  const sorted = [...pages].filter((n) => n >= 1 && n <= total).sort((a, b) => a - b);
+  const out: (number | "…")[] = [];
+  sorted.forEach((n, i) => {
+    if (i > 0 && n - sorted[i - 1] > 1) out.push("…");
+    out.push(n);
+  });
+  return out;
+}
+
 function fmtDate(ts: number) {
   const d = new Date(ts);
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric" }) +
@@ -117,6 +134,7 @@ function typeLabel(type: string, crosswordSize?: number) {
   if (type === "sudoku") return "Sudoku";
   if (type === "wonder") return "Wonder";
   if (type === "cipher") return "Cipher";
+  if (type === "story") return "Story";
   return "Multiple Choice";
 }
 
@@ -129,6 +147,7 @@ const TYPE_ICONS: Record<string, string> = {
   "riddle": "🤔",
   "wonder": "💡",
   "cipher": "🔐",
+  "story": "📖",
 };
 
 export default function StudioPage() {
@@ -150,6 +169,7 @@ export default function StudioPage() {
   const [sortAsc, setSortAsc] = useState(false);
   const [dailyPuzzleId, setDailyPuzzleId] = useState<string | null>(null);
   const [settingDaily, setSettingDaily] = useState(false);
+  const [page, setPage] = useState(1);
   const [reviewingId, setReviewingId] = useState<string | null>(null);
   const [submittingId, setSubmittingId] = useState<string | null>(null);
   const admin = isAdmin();
@@ -159,7 +179,7 @@ export default function StudioPage() {
   const [bcastUrl, setBcastUrl] = useState("/");
   const [bcastPassword, setBcastPassword] = useState("");
   const [sending, setSending] = useState(false);
-  const { timedOut: loadTimedOut, reset: resetLoadTimeout } = useLoadingTimeout(6000);
+  const { timedOut: loadTimedOut, reset: resetLoadTimeout } = useLoadingTimeout(20000);
 
   const load = async () => {
     setLoading(true);
@@ -210,6 +230,15 @@ export default function StudioPage() {
       if (sortBy === "updatedAt") return dir * ((a.updatedAt ?? a.createdAt ?? 0) - (b.updatedAt ?? b.createdAt ?? 0));
       return dir * ((a.createdAt ?? 0) - (b.createdAt ?? 0));
     }), [puzzles, filterTab, typeFilter, searchQuery, sortBy, sortAsc]);
+
+  // Filters/sort shrink the list — always jump back to page 1.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { setPage(1); }, [filterTab, typeFilter, searchQuery, sortBy, sortAsc]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+  const paged = useMemo(() => filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE),
+    [filtered, safePage]);
 
   const handleSetDaily = async (puzzleId: string) => {
     setSettingDaily(true);
@@ -525,7 +554,7 @@ export default function StudioPage() {
         </motion.div>
       ) : (
         <div className="space-y-2">
-          {filtered.map((puzzle, i) => {
+          {paged.map((puzzle, i) => {
             const statusKey = puzzle.published ? "live" : puzzle.reviewStatus ?? "draft";
             return (
             <motion.div key={puzzle.id}
@@ -735,6 +764,42 @@ export default function StudioPage() {
             </motion.div>
             );
           })}
+        </div>
+      )}
+
+      {/* Pagination — filters/sort apply to the full set, pages slice it */}
+      {!loading && filtered.length > 0 && (
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/50 bg-white/60 px-4 py-3 backdrop-blur-xl dark:border-white/[0.06] dark:bg-white/[0.03]">
+          <p className="text-xs text-muted-foreground">
+            Showing {filtered.length === 0 ? 0 : (safePage - 1) * PAGE_SIZE + 1}–{Math.min(safePage * PAGE_SIZE, filtered.length)} of {filtered.length.toLocaleString()} puzzles
+          </p>
+          <div className="flex items-center gap-1">
+            <button onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={safePage <= 1}
+              className="flex size-8 items-center justify-center rounded-xl text-muted-foreground transition-all hover:bg-muted/50 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-30"
+              title="Previous page" aria-label="Previous page">
+              <ChevronLeft className="size-4" />
+            </button>
+            {pageNumbers(safePage, totalPages).map((n, idx) =>
+              n === "…" ? (
+                <span key={`gap-${idx}`} className="px-1 text-xs text-muted-foreground/50">…</span>
+              ) : (
+                <button key={n} onClick={() => setPage(n)}
+                  className={cn(
+                    "flex h-8 min-w-8 items-center justify-center rounded-xl px-2 text-xs font-medium transition-all",
+                    n === safePage ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                  )}>
+                  {n}
+                </button>
+              )
+            )}
+            <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={safePage >= totalPages}
+              className="flex size-8 items-center justify-center rounded-xl text-muted-foreground transition-all hover:bg-muted/50 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-30"
+              title="Next page" aria-label="Next page">
+              <ChevronRight className="size-4" />
+            </button>
+          </div>
         </div>
       )}
 

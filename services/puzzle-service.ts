@@ -148,7 +148,10 @@ function isFirestoreAvailable() {
 
 let puzzlesCache: { data: Puzzle[]; ts: number } | null = null;
 const puzzleByIdCache: Map<string, { data: Puzzle | null; ts: number }> = new Map();
-const CACHE_TTL = 120_000; // 2 minutes — puzzle data changes infrequently
+const CACHE_TTL = 1_800_000;
+// 30 minutes — players never mutate puzzles, and every Studio mutation calls
+// clearPuzzlesCache(), so longer TTL only cuts full-collection refetches.
+// At ~5k docs per fetch this is the single biggest free-tier lever.
 
 async function getFirestorePuzzles(): Promise<Puzzle[]> {
   const { db } = getFirebase();
