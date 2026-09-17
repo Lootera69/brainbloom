@@ -277,8 +277,10 @@ export default function SeedPage() {
             {/* Progress steps */}
             <div className="space-y-2">
               {STEPS.filter((s) => s.key !== "idle").map((s) => {
-                const isActive = step === s.key;
-                const isDone = STEPS.findIndex((x) => x.key === step) > STEPS.findIndex((x) => x.key === s.key);
+                const stepIdx = STEPS.findIndex((x) => x.key === step);
+                const sIdx = STEPS.findIndex((x) => x.key === s.key);
+                const isDone = stepIdx > sIdx || step === "done";
+                const isActive = step === s.key && step !== "done";
                 return (
                   <div
                     key={s.key}
