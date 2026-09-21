@@ -9,6 +9,8 @@ import {
   addDoc,
   deleteDoc,
   writeBatch,
+  query,
+  where,
   Timestamp,
 } from "firebase/firestore";
 import { addLessonGroup, type LessonGroupEntry } from "@/services/lesson-service";
@@ -353,4 +355,172 @@ export async function runSeed(data: SeedData, onProgress?: (message: string) => 
 
 export async function resetAndSeed(data: SeedData, onProgress?: (message: string) => void): Promise<void> {
   await runSeed(data, onProgress);
+}
+
+// ============================================================================
+// Additive cipher loader
+// ============================================================================
+// Unlike resetAndSeed (which wipes the whole bank), this upserts each cipher by
+// a STABLE document id. Re-running it updates the existing cipher docs in place
+// and never touches the ~5k Forge puzzles. Safe to run repeatedly.
+
+/** A seed puzzle that carries its own stable Firestore document id. */
+export interface IdentifiedSeedPuzzle extends SeedPuzzleInput {
+  id: string;
+}
+
+/** Flatten an identified seed puzzle into its Firestore document shape. */
+function seedInputToFirestoreData(input: IdentifiedSeedPuzzle): Record<string, unknown> {
+  const now = Date.now();
+  return {
+    type: input.type,
+    category: input.category,
+    difficulty: input.difficulty,
+    title: input.title,
+    question: input.question,
+    choices: input.choices ?? [],
+    correctAnswer: input.correctAnswer ?? "",
+    acceptedAnswers: input.acceptedAnswers ?? null,
+    xpReward: input.xpReward,
+    published: true,
+    reviewStatus: "approved",
+    reviewedBy: null,
+    reviewNote: null,
+    completedBy: 0,
+    correctExplanation: input.correctExplanation ?? null,
+    incorrectExplanation: input.incorrectExplanation ?? null,
+    imageUrl: input.imageUrl ?? null,
+    lessonImageUrl: input.lessonImageUrl ?? null,
+    lessonContent: input.lessonContent ?? null,
+    lessonOrder: input.lessonOrder ?? null,
+    lessonGroup: input.lessonGroup ?? null,
+    lessonGroupOrder: input.lessonGroupOrder ?? null,
+    hintText: input.hintText ?? null,
+    sharePrompt: input.sharePrompt ?? null,
+    cipherData: input.cipherData ?? null,
+    storyData: input.storyData ?? null,
+    createdBy: "cipher-loader",
+    createdAt: Timestamp.fromMillis(now),
+    lastModifiedBy: "cipher-loader",
+    updatedAt: Timestamp.fromMillis(now),
+  };
+}
+
+/** Build the local-cache Puzzle mirror for an identified seed puzzle. */
+function seedInputToLocalPuzzle(input: IdentifiedSeedPuzzle): Puzzle {
+  const now = Date.now();
+  return {
+    id: input.id,
+    type: input.type,
+    category: input.category,
+    difficulty: input.difficulty,
+    title: input.title,
+    question: input.question,
+    choices: input.choices ?? [],
+    correctAnswer: input.correctAnswer ?? "",
+    acceptedAnswers: input.acceptedAnswers,
+    xpReward: input.xpReward,
+    published: true,
+    reviewStatus: "approved",
+    completedBy: 0,
+    correctExplanation: input.correctExplanation,
+    incorrectExplanation: input.incorrectExplanation,
+    cipherData: input.cipherData,
+    createdBy: "cipher-loader",
+    createdAt: now,
+    lastModifiedBy: "cipher-loader",
+    updatedAt: now,
+  };
+}
+
+export interface CipherLoadResult {
+  upserted: number;
+  strays: string[]; // ids of cipher docs NOT in the managed set
+}
+
+/**
+ * Upsert cipher puzzles into Firestore by their stable ids (additive).
+ * Optionally reports any pre-existing cipher docs whose ids are not in the
+ * managed set, so the caller can offer cleanup without wiping anything.
+ */
+export async function upsertCiphers(
+  ciphers: IdentifiedSeedPuzzle[],
+  onProgress?: (message: string) => void,
+): Promise<CipherLoadResult> {
+  const log = onProgress ?? (() => {});
+  const managedIds = new Set(ciphers.map((c) => c.id));
+  const strays: string[] = [];
+
+  if (isFirestoreAvailable()) {
+    const { db } = getFirebase();
+    if (db) {
+      // Detect stray ciphers already in the bank (e.g. from an old wipe-seed).
+      try {
+        const existing = await getDocs(
+          query(collection(db, "puzzles"), where("type", "==", "cipher")),
+        );
+        existing.forEach((d) => {
+          if (!managedIds.has(d.id)) strays.push(d.id);
+        });
+        log(
+          `Found ${existing.size} existing cipher docs (${strays.length} outside the managed set).`,
+        );
+      } catch (e) {
+        // A missing composite index or rules issue should not abort the upsert.
+        log(`Could not scan existing ciphers (continuing): ${e instanceof Error ? e.message : e}`);
+      }
+
+      // Upsert in batches, using set() on a fixed doc id (create-or-overwrite).
+      const chunks = splitIntoChunks(ciphers, FIRESTORE_BATCH_LIMIT);
+      let done = 0;
+      for (const chunk of chunks) {
+        const batch = writeBatch(db);
+        chunk.forEach((c) =>
+          batch.set(doc(db, "puzzles", c.id), seedInputToFirestoreData(c)),
+        );
+        await batch.commit();
+        done += chunk.length;
+        log(`Loaded ${done}/${ciphers.length} ciphers...`);
+      }
+    }
+  } else {
+    log("Firestore unavailable — writing ciphers to local cache only.");
+  }
+
+  // Mirror into the local cache so the change shows without a full refetch.
+  const local = getLocalPuzzles();
+  for (const c of ciphers) {
+    const mirror = seedInputToLocalPuzzle(c);
+    const idx = local.findIndex((p) => p.id === c.id);
+    if (idx >= 0) local[idx] = mirror;
+    else local.push(mirror);
+  }
+  saveLocalPuzzles(local);
+
+  return { upserted: ciphers.length, strays };
+}
+
+/**
+ * Delete cipher docs by id (used to clear strays reported by upsertCiphers).
+ * Only ever call with ids the caller confirmed are ciphers — never bulk.
+ */
+export async function deleteCiphersByIds(ids: string[]): Promise<number> {
+  if (ids.length === 0) return 0;
+
+  // Drop from local cache first.
+  const local = getLocalPuzzles();
+  const remaining = local.filter((p) => !ids.includes(p.id));
+  saveLocalPuzzles(remaining);
+
+  if (isFirestoreAvailable()) {
+    const { db } = getFirebase();
+    if (db) {
+      for (const chunk of splitIntoChunks(ids, FIRESTORE_BATCH_LIMIT)) {
+        const batch = writeBatch(db);
+        chunk.forEach((id) => batch.delete(doc(db, "puzzles", id)));
+        await batch.commit();
+      }
+    }
+  }
+  return ids.length;
 }
