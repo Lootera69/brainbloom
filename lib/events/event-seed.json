@@ -1,0 +1,2324 @@
+[
+  {
+    "id": "new_year",
+    "title": "New Year's Day",
+    "short": "New Year",
+    "emoji": "🎉",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 1,
+      "day": 1,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605960842,
+      "orb2": 620023402,
+      "orb3": 610313722,
+      "accent": 4291271227,
+      "onAccent": 4294967295,
+      "bannerFrom": 4291271227,
+      "bannerTo": 4292917077
+    },
+    "darkPalette": {
+      "orb1": 438188682,
+      "orb2": 452251242,
+      "orb3": 442541562,
+      "accent": 4294233706,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294233706,
+      "bannerTo": 4294233706
+    },
+    "bannerCopy": "Happy New Year! 🎉",
+    "bannerSubtitle": "A fresh year, a fresh streak — begin it with today’s puzzle.",
+    "particle": "confetti",
+    "priority": 10
+  },
+  {
+    "id": "world_logic_day",
+    "title": "World Logic Day",
+    "short": "Logic Day",
+    "emoji": "🧠",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 1,
+      "day": 14,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 609175269,
+      "orb2": 604419796,
+      "orb3": 606262254,
+      "accent": 4283385573,
+      "onAccent": 4294967295,
+      "bannerFrom": 4283385573,
+      "bannerTo": 4280779996
+    },
+    "darkPalette": {
+      "orb1": 441403109,
+      "orb2": 436647636,
+      "orb3": 438490094,
+      "accent": 4287338495,
+      "onAccent": 4294967295,
+      "bannerFrom": 4287338495,
+      "bannerTo": 4282558695
+    },
+    "bannerCopy": "World Logic Day — sharpen up! 🧠",
+    "bannerSubtitle": "Put your reasoning to the test with today’s logic puzzle.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "education_day",
+    "title": "Int'l Day of Education",
+    "short": "Education Day",
+    "emoji": "📚",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 1,
+      "day": 24,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 620076555,
+      "orb2": 604927120,
+      "orb3": 605337766,
+      "accent": 4279137424,
+      "onAccent": 4294967295,
+      "bannerFrom": 4279137424,
+      "bannerTo": 4279137424
+    },
+    "darkPalette": {
+      "orb1": 452304395,
+      "orb2": 437154960,
+      "orb3": 437565606,
+      "accent": 4283941375,
+      "onAccent": 4294967295,
+      "bannerFrom": 4283941375,
+      "bannerTo": 4281309122
+    },
+    "bannerCopy": "Int'l Day of Education",
+    "bannerSubtitle": "Every day is a school day — learn something new.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "puzzle_day",
+    "title": "National Puzzle Day",
+    "short": "Puzzle Day",
+    "emoji": "🧩",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 1,
+      "day": 29,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 612121325,
+      "orb2": 619464857,
+      "orb3": 606262254,
+      "accent": 4286331629,
+      "onAccent": 4294967295,
+      "bannerFrom": 4286331629,
+      "bannerTo": 4290396863
+    },
+    "darkPalette": {
+      "orb1": 444349165,
+      "orb2": 451692697,
+      "orb3": 438490094,
+      "accent": 4289170426,
+      "onAccent": 4294967295,
+      "bannerFrom": 4289170426,
+      "bannerTo": 4291651269
+    },
+    "bannerCopy": "It's National Puzzle Day! 🧩",
+    "bannerSubtitle": "The whole app is a puzzle today — start with the featured one.",
+    "particle": "jigsaw",
+    "priority": 0
+  },
+  {
+    "id": "lunar_new_year",
+    "title": "Lunar New Year",
+    "short": "Lunar New Year",
+    "emoji": "🏮",
+    "tier": "accent",
+    "schedule": {
+      "type": "perYearDates",
+      "ranges": {
+        "2026": {
+          "start": {
+            "y": 2026,
+            "m": 2,
+            "d": 17
+          },
+          "end": {
+            "y": 2026,
+            "m": 2,
+            "d": 17
+          }
+        },
+        "2027": {
+          "start": {
+            "y": 2027,
+            "m": 2,
+            "d": 6
+          },
+          "end": {
+            "y": 2027,
+            "m": 2,
+            "d": 6
+          }
+        },
+        "2028": {
+          "start": {
+            "y": 2028,
+            "m": 1,
+            "d": 26
+          },
+          "end": {
+            "y": 2028,
+            "m": 1,
+            "d": 26
+          }
+        }
+      }
+    },
+    "lightPalette": {
+      "orb1": 616111132,
+      "orb2": 620076555,
+      "orb3": 620023402,
+      "accent": 4290321436,
+      "onAccent": 4294967295,
+      "bannerFrom": 4290321436,
+      "bannerTo": 4292502547
+    },
+    "darkPalette": {
+      "orb1": 448338972,
+      "orb2": 452304395,
+      "orb3": 452251242,
+      "accent": 4294472049,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294472049,
+      "bannerTo": 4294347321
+    },
+    "bannerCopy": "Happy Lunar New Year! 🏮",
+    "bannerSubtitle": "Ring in the new year with a lucky puzzle.",
+    "particle": "confetti",
+    "priority": 0
+  },
+  {
+    "id": "women_in_science",
+    "title": "Women & Girls in Science",
+    "short": "Women in Science",
+    "emoji": "🔬",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 2,
+      "day": 11,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 612121325,
+      "orb2": 605337766,
+      "orb3": 604419796,
+      "accent": 4286331629,
+      "onAccent": 4294967295,
+      "bannerFrom": 4286331629,
+      "bannerTo": 4282613702
+    },
+    "darkPalette": {
+      "orb1": 444349165,
+      "orb2": 437565606,
+      "orb3": 436647636,
+      "accent": 4289170426,
+      "onAccent": 4294967295,
+      "bannerFrom": 4289170426,
+      "bannerTo": 4283868364
+    },
+    "bannerCopy": "Women & Girls in Science",
+    "bannerSubtitle": "Celebrate the minds who reshaped science.",
+    "particle": "stars",
+    "priority": 0
+  },
+  {
+    "id": "world_radio_day",
+    "title": "World Radio Day",
+    "short": "Radio Day",
+    "emoji": "📻",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 2,
+      "day": 13,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 616710412,
+      "orb2": 604927120,
+      "orb3": 620416021,
+      "accent": 4290920716,
+      "onAccent": 4294967295,
+      "bannerFrom": 4290920716,
+      "bannerTo": 4284439893
+    },
+    "darkPalette": {
+      "orb1": 448938252,
+      "orb2": 437154960,
+      "orb3": 452643861,
+      "accent": 4294677052,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294677052,
+      "bannerTo": 4286153322
+    },
+    "bannerCopy": "World Radio Day",
+    "bannerSubtitle": "Tune in and solve along with the signal.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "valentines",
+    "title": "Valentine's Day",
+    "short": "Valentine's",
+    "emoji": "💝",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 2,
+      "day": 14,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 618732872,
+      "orb2": 620341460,
+      "orb3": 620458373,
+      "accent": 4292943176,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292943176,
+      "bannerTo": 4293814677
+    },
+    "darkPalette": {
+      "orb1": 450960712,
+      "orb2": 452569300,
+      "orb3": 452686213,
+      "accent": 4294668677,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294668677,
+      "bannerTo": 4294610864
+    },
+    "bannerCopy": "Happy Valentine's Day! 💝",
+    "bannerSubtitle": "Show your brain a little love with a themed puzzle.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "kindness_acts",
+    "title": "Random Acts of Kindness",
+    "short": "Kindness Day",
+    "emoji": "🤝",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 2,
+      "day": 17,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 620458373,
+      "orb2": 614960122,
+      "orb3": 620478244,
+      "accent": 4292943176,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292943176,
+      "bannerTo": 4290861738
+    },
+    "darkPalette": {
+      "orb1": 452686213,
+      "orb2": 447187962,
+      "orb3": 452706084,
+      "accent": 4294812847,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294812847,
+      "bannerTo": 4291729112
+    },
+    "bannerCopy": "Random Acts of Kindness",
+    "bannerSubtitle": "A little kindness, and a little brain work, today.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "mother_language_day",
+    "title": "Int'l Mother Language Day",
+    "short": "Language Day",
+    "emoji": "🗣️",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 2,
+      "day": 21,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 604993134,
+      "orb2": 620076555,
+      "orb3": 605337766,
+      "accent": 4279203438,
+      "onAccent": 4294967295,
+      "bannerFrom": 4279203438,
+      "bannerTo": 4287532088
+    },
+    "darkPalette": {
+      "orb1": 437220974,
+      "orb2": 452304395,
+      "orb3": 437565606,
+      "accent": 4281193663,
+      "onAccent": 4294967295,
+      "bannerFrom": 4281193663,
+      "bannerTo": 4288394844
+    },
+    "bannerCopy": "Int'l Mother Language Day",
+    "bannerSubtitle": "Celebrate every language with a word puzzle.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "womens_day",
+    "title": "International Women's Day",
+    "short": "Women's Day",
+    "emoji": "💜",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 3,
+      "day": 8,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 613626858,
+      "orb2": 619464857,
+      "orb3": 614960122,
+      "accent": 4287837162,
+      "onAccent": 4294967295,
+      "bannerFrom": 4287837162,
+      "bannerTo": 4291051453
+    },
+    "darkPalette": {
+      "orb1": 445854698,
+      "orb2": 451692697,
+      "orb3": 447187962,
+      "accent": 4290807036,
+      "onAccent": 4294967295,
+      "bannerFrom": 4290807036,
+      "bannerTo": 4292371398
+    },
+    "bannerCopy": "International Women's Day",
+    "bannerSubtitle": "Honour the women who inspire — with a puzzle.",
+    "particle": "petals",
+    "priority": 0
+  },
+  {
+    "id": "kidney_day",
+    "title": "World Kidney Day",
+    "short": "Kidney Day",
+    "emoji": "🩺",
+    "tier": "accent",
+    "schedule": {
+      "type": "nthWeekday",
+      "month": 3,
+      "weekday": 4,
+      "ordinal": 2
+    },
+    "lightPalette": {
+      "orb1": 614013723,
+      "orb2": 604939753,
+      "orb3": 619660356,
+      "accent": 4290321436,
+      "onAccent": 4294967295,
+      "bannerFrom": 4290321436,
+      "bannerTo": 4284180365
+    },
+    "darkPalette": {
+      "orb1": 446241563,
+      "orb2": 437167593,
+      "orb3": 451888196,
+      "accent": 4294472049,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294472049,
+      "bannerTo": 4286025395
+    },
+    "bannerCopy": "World Kidney Day",
+    "bannerSubtitle": "A healthy body, a healthy mind — keep both sharp.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "pi_day",
+    "title": "Pi Day / Day of Mathematics",
+    "short": "Pi Day",
+    "emoji": "🥧",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 3,
+      "day": 14,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 607338837,
+      "orb2": 606258526,
+      "orb3": 605337766,
+      "accent": 4279599165,
+      "onAccent": 4294967295,
+      "bannerFrom": 4279599165,
+      "bannerTo": 4280067663
+    },
+    "darkPalette": {
+      "orb1": 439566677,
+      "orb2": 438486366,
+      "orb3": 437565606,
+      "accent": 4283096704,
+      "onAccent": 4294967295,
+      "bannerFrom": 4283096704,
+      "bannerTo": 4281651309
+    },
+    "bannerCopy": "Happy Pi Day! 3.14159… 🥧",
+    "bannerSubtitle": "Celebrate 3.14 with a slice of number play.",
+    "particle": "piDigits",
+    "priority": 0
+  },
+  {
+    "id": "happiness_day",
+    "title": "Int'l Day of Happiness",
+    "short": "Happiness Day",
+    "emoji": "😊",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 3,
+      "day": 20,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 620478244,
+      "orb2": 607698424,
+      "orb3": 620548941,
+      "accent": 4292441862,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292441862,
+      "bannerTo": 4286619275
+    },
+    "darkPalette": {
+      "orb1": 452706084,
+      "orb2": 439926264,
+      "orb3": 452776781,
+      "accent": 4294759245,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294759245,
+      "bannerTo": 4287678379
+    },
+    "bannerCopy": "Int'l Day of Happiness",
+    "bannerSubtitle": "Solve something today — happiness loves a win.",
+    "particle": "confetti",
+    "priority": 0
+  },
+  {
+    "id": "holi",
+    "title": "Holi",
+    "short": "Holi",
+    "emoji": "🌈",
+    "tier": "accent",
+    "schedule": {
+      "type": "perYearDates",
+      "ranges": {
+        "2026": {
+          "start": {
+            "y": 2026,
+            "m": 3,
+            "d": 3
+          },
+          "end": {
+            "y": 2026,
+            "m": 3,
+            "d": 4
+          }
+        },
+        "2027": {
+          "start": {
+            "y": 2027,
+            "m": 3,
+            "d": 22
+          },
+          "end": {
+            "y": 2027,
+            "m": 3,
+            "d": 22
+          }
+        },
+        "2028": {
+          "start": {
+            "y": 2028,
+            "m": 3,
+            "d": 11
+          },
+          "end": {
+            "y": 2028,
+            "m": 3,
+            "d": 11
+          }
+        }
+      }
+    },
+    "lightPalette": {
+      "orb1": 619464857,
+      "orb2": 606258526,
+      "orb3": 604419796,
+      "accent": 4292552567,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292552567,
+      "bannerTo": 4285890153
+    },
+    "darkPalette": {
+      "orb1": 451692697,
+      "orb2": 438486366,
+      "orb3": 436647636,
+      "accent": 4294210230,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294210230,
+      "bannerTo": 4286685318
+    },
+    "bannerCopy": "Happy Holi! 🌈",
+    "bannerSubtitle": "Splash some colour into your day with a puzzle.",
+    "particle": "confetti",
+    "priority": 0
+  },
+  {
+    "id": "world_health_day",
+    "title": "World Health Day",
+    "short": "Health Day",
+    "emoji": "❤️‍🩹",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 4,
+      "day": 7,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 618407462,
+      "orb2": 604345961,
+      "orb3": 607698424,
+      "accent": 4278556265,
+      "onAccent": 4294967295,
+      "bannerFrom": 4278556265,
+      "bannerTo": 4278556265
+    },
+    "darkPalette": {
+      "orb1": 450635302,
+      "orb2": 436573801,
+      "orb3": 439926264,
+      "accent": 4281652121,
+      "onAccent": 4294967295,
+      "bannerFrom": 4281652121,
+      "bannerTo": 4279939455
+    },
+    "bannerCopy": "World Health Day",
+    "bannerSubtitle": "A sharp mind is a healthy mind — keep it moving.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "creativity_day",
+    "title": "Creativity & Innovation Day",
+    "short": "Creativity Day",
+    "emoji": "💡",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 4,
+      "day": 21,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 619337740,
+      "orb2": 612121325,
+      "orb3": 620076555,
+      "accent": 4293548044,
+      "onAccent": 4294967295,
+      "bannerFrom": 4293548044,
+      "bannerTo": 4289611912
+    },
+    "darkPalette": {
+      "orb1": 451565580,
+      "orb2": 444349165,
+      "orb3": 452304395,
+      "accent": 4294677052,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294677052,
+      "bannerTo": 4290077341
+    },
+    "bannerCopy": "Creativity & Innovation Day",
+    "bannerSubtitle": "Think sideways — today rewards a creative mind.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "earth_day",
+    "title": "Earth Day",
+    "short": "Earth Day",
+    "emoji": "🌍",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 4,
+      "day": 22,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605388861,
+      "orb2": 604144839,
+      "orb3": 605337766,
+      "accent": 4279599165,
+      "onAccent": 4294967295,
+      "bannerFrom": 4279599165,
+      "bannerTo": 4278944393
+    },
+    "darkPalette": {
+      "orb1": 437616701,
+      "orb2": 436372679,
+      "orb3": 437565606,
+      "accent": 4283096704,
+      "onAccent": 4294967295,
+      "bannerFrom": 4283096704,
+      "bannerTo": 4280462759
+    },
+    "bannerCopy": "Happy Earth Day! 🌍",
+    "bannerSubtitle": "Solve for the planet with today’s green puzzle.",
+    "particle": "leaves",
+    "priority": 0
+  },
+  {
+    "id": "book_day",
+    "title": "World Book Day",
+    "short": "Book Day",
+    "emoji": "📖",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 4,
+      "day": 23,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 612117778,
+      "orb2": 604927120,
+      "orb3": 620095176,
+      "accent": 4288295954,
+      "onAccent": 4294967295,
+      "bannerFrom": 4288295954,
+      "bannerTo": 4283258711
+    },
+    "darkPalette": {
+      "orb1": 444345618,
+      "orb2": 437154960,
+      "orb3": 452323016,
+      "accent": 4294677052,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294677052,
+      "bannerTo": 4286153322
+    },
+    "bannerCopy": "World Book Day",
+    "bannerSubtitle": "Turn the page to a fresh word puzzle.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "easter",
+    "title": "Easter",
+    "short": "Easter",
+    "emoji": "🐣",
+    "tier": "accent",
+    "schedule": {
+      "type": "perYearDates",
+      "ranges": {
+        "2026": {
+          "start": {
+            "y": 2026,
+            "m": 4,
+            "d": 5
+          },
+          "end": {
+            "y": 2026,
+            "m": 4,
+            "d": 5
+          }
+        },
+        "2027": {
+          "start": {
+            "y": 2027,
+            "m": 3,
+            "d": 28
+          },
+          "end": {
+            "y": 2027,
+            "m": 3,
+            "d": 28
+          }
+        },
+        "2028": {
+          "start": {
+            "y": 2028,
+            "m": 4,
+            "d": 16
+          },
+          "end": {
+            "y": 2028,
+            "m": 4,
+            "d": 16
+          }
+        }
+      }
+    },
+    "lightPalette": {
+      "orb1": 616871421,
+      "orb2": 620548941,
+      "orb3": 612226044,
+      "accent": 4286331629,
+      "onAccent": 4294967295,
+      "bannerFrom": 4286331629,
+      "bannerTo": 4290940565
+    },
+    "darkPalette": {
+      "orb1": 449099261,
+      "orb2": 452776781,
+      "orb3": 444453884,
+      "accent": 4291081725,
+      "onAccent": 4294967295,
+      "bannerFrom": 4291081725,
+      "bannerTo": 4293117340
+    },
+    "bannerCopy": "Happy Easter! 🐣",
+    "bannerSubtitle": "Hunt down today’s puzzle like a hidden egg.",
+    "particle": "petals",
+    "priority": 0
+  },
+  {
+    "id": "star_wars_day",
+    "title": "Star Wars Day",
+    "short": "May the 4th",
+    "emoji": "🚀",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 5,
+      "day": 4,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 604704806,
+      "orb2": 606258526,
+      "orb3": 610313722,
+      "accent": 4280640491,
+      "onAccent": 4294967295,
+      "bannerFrom": 4280640491,
+      "bannerTo": 4280523165
+    },
+    "darkPalette": {
+      "orb1": 436932646,
+      "orb2": 438486366,
+      "orb3": 442541562,
+      "accent": 4284524026,
+      "onAccent": 4294967295,
+      "bannerFrom": 4284524026,
+      "bannerTo": 4282300324
+    },
+    "bannerCopy": "May the 4th be with you! 🚀",
+    "bannerSubtitle": "The Force is strong with today’s puzzle.",
+    "particle": "stars",
+    "priority": 0
+  },
+  {
+    "id": "light_day",
+    "title": "Int'l Day of Light",
+    "short": "Day of Light",
+    "emoji": "🔦",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 5,
+      "day": 16,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 619999926,
+      "orb2": 610313722,
+      "orb3": 620548941,
+      "accent": 4278751666,
+      "onAccent": 4294967295,
+      "bannerFrom": 4278751666,
+      "bannerTo": 4281900250
+    },
+    "darkPalette": {
+      "orb1": 452227766,
+      "orb2": 442541562,
+      "orb3": 452776781,
+      "accent": 4284999929,
+      "onAccent": 4294967295,
+      "bannerFrom": 4284999929,
+      "bannerTo": 4284728314
+    },
+    "bannerCopy": "Int'l Day of Light",
+    "bannerSubtitle": "Let a bright idea light up your day.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "bee_day",
+    "title": "World Bee Day",
+    "short": "Bee Day",
+    "emoji": "🐝",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 5,
+      "day": 20,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 620076555,
+      "orb2": 606021943,
+      "orb3": 620548941,
+      "accent": 4290007817,
+      "onAccent": 4294967295,
+      "bannerFrom": 4290007817,
+      "bannerTo": 4284628002
+    },
+    "darkPalette": {
+      "orb1": 452304395,
+      "orb2": 438249783,
+      "orb3": 452776781,
+      "accent": 4294759245,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294759245,
+      "bannerTo": 4286740033
+    },
+    "bannerCopy": "World Bee Day",
+    "bannerSubtitle": "Bee brilliant — buzz through a puzzle today.",
+    "particle": "petals",
+    "priority": 0
+  },
+  {
+    "id": "geek_pride",
+    "title": "Geek Pride Day",
+    "short": "Geek Pride",
+    "emoji": "🤓",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 5,
+      "day": 25,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 618407462,
+      "orb2": 606430187,
+      "orb3": 620416021,
+      "accent": 4292617766,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292617766,
+      "bannerTo": 4286007442
+    },
+    "darkPalette": {
+      "orb1": 450635302,
+      "orb2": 438658027,
+      "orb3": 452643861,
+      "accent": 4284524026,
+      "onAccent": 4294967295,
+      "bannerFrom": 4284524026,
+      "bannerTo": 4282417650
+    },
+    "bannerCopy": "Geek Pride Day",
+    "bannerSubtitle": "Wear your geek with pride — and a puzzle.",
+    "particle": "stars",
+    "priority": 0
+  },
+  {
+    "id": "mothers_day",
+    "title": "Mother's Day",
+    "short": "Mother's Day",
+    "emoji": "💐",
+    "tier": "accent",
+    "schedule": {
+      "type": "nthWeekday",
+      "month": 5,
+      "weekday": 7,
+      "ordinal": 2
+    },
+    "lightPalette": {
+      "orb1": 619999926,
+      "orb2": 620478244,
+      "orb3": 620619402,
+      "accent": 4292552567,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292552567,
+      "bannerTo": 4293753673
+    },
+    "darkPalette": {
+      "orb1": 452227766,
+      "orb2": 452706084,
+      "orb3": 452847242,
+      "accent": 4294551764,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294551764,
+      "bannerTo": 4294620531
+    },
+    "bannerCopy": "Happy Mother's Day! 💐",
+    "bannerSubtitle": "Give mum a smile — and your brain a puzzle.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "environment_day",
+    "title": "World Environment Day",
+    "short": "Environment Day",
+    "emoji": "🌱",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 6,
+      "day": 5,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605463370,
+      "orb2": 613564430,
+      "orb3": 605337766,
+      "accent": 4279673674,
+      "onAccent": 4294967295,
+      "bannerFrom": 4279673674,
+      "bannerTo": 4284116265
+    },
+    "darkPalette": {
+      "orb1": 437691210,
+      "orb2": 445792270,
+      "orb3": 437565606,
+      "accent": 4283096704,
+      "onAccent": 4294967295,
+      "bannerFrom": 4283096704,
+      "bannerTo": 4285695809
+    },
+    "bannerCopy": "World Environment Day",
+    "bannerSubtitle": "A greener world starts with a sharper mind.",
+    "particle": "leaves",
+    "priority": 0
+  },
+  {
+    "id": "oceans_day",
+    "title": "World Oceans Day",
+    "short": "Oceans Day",
+    "emoji": "🌊",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 6,
+      "day": 8,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 604785262,
+      "orb2": 604419796,
+      "orb3": 617609982,
+      "accent": 4278413729,
+      "onAccent": 4294967295,
+      "bannerFrom": 4278413729,
+      "bannerTo": 4278555581
+    },
+    "darkPalette": {
+      "orb1": 437013102,
+      "orb2": 436647636,
+      "orb3": 449837822,
+      "accent": 4281908728,
+      "onAccent": 4294967295,
+      "bannerFrom": 4281908728,
+      "bannerTo": 4280072676
+    },
+    "bannerCopy": "World Oceans Day",
+    "bannerSubtitle": "Dive into a puzzle as deep as the sea.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "yoga_day",
+    "title": "International Yoga Day",
+    "short": "Yoga Day",
+    "emoji": "🧘",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 6,
+      "day": 21,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 604869768,
+      "orb2": 619361032,
+      "orb3": 605337766,
+      "accent": 4279080072,
+      "onAccent": 4294967295,
+      "bannerFrom": 4279080072,
+      "bannerTo": 4287079746
+    },
+    "darkPalette": {
+      "orb1": 437097608,
+      "orb2": 451588872,
+      "orb3": 437565606,
+      "accent": 4284410580,
+      "onAccent": 4294967295,
+      "bannerFrom": 4284410580,
+      "bannerTo": 4289449060
+    },
+    "bannerCopy": "Breathe in. Happy Yoga Day 🧘",
+    "bannerSubtitle": "Center your mind, then stretch it with a puzzle.",
+    "particle": "sparkles",
+    "priority": 5
+  },
+  {
+    "id": "music_day",
+    "title": "World Music Day",
+    "short": "Music Day",
+    "emoji": "🎵",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 6,
+      "day": 21,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 619464857,
+      "orb2": 620076555,
+      "orb3": 614960122,
+      "accent": 4290648157,
+      "onAccent": 4294967295,
+      "bannerFrom": 4290648157,
+      "bannerTo": 4292633136
+    },
+    "darkPalette": {
+      "orb1": 451692697,
+      "orb2": 452304395,
+      "orb3": 447187962,
+      "accent": 4294210230,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294210230,
+      "bannerTo": 4294281816
+    },
+    "bannerCopy": "World Music Day",
+    "bannerSubtitle": "Find the rhythm in today’s puzzle.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "fathers_day",
+    "title": "Father's Day",
+    "short": "Father's Day",
+    "emoji": "👔",
+    "tier": "accent",
+    "schedule": {
+      "type": "nthWeekday",
+      "month": 6,
+      "weekday": 7,
+      "ordinal": 3
+    },
+    "lightPalette": {
+      "orb1": 605960842,
+      "orb2": 615797513,
+      "orb3": 607698424,
+      "accent": 4280172719,
+      "onAccent": 4294967295,
+      "bannerFrom": 4280172719,
+      "bannerTo": 4285614676
+    },
+    "darkPalette": {
+      "orb1": 438188682,
+      "orb2": 448025353,
+      "orb3": 439926264,
+      "accent": 4284524026,
+      "onAccent": 4294967295,
+      "bannerFrom": 4284524026,
+      "bannerTo": 4287527029
+    },
+    "bannerCopy": "Happy Father's Day! 👔",
+    "bannerSubtitle": "Cheers to dad — and to a puzzle well solved.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "chocolate_day",
+    "title": "World Chocolate Day",
+    "short": "Chocolate Day",
+    "emoji": "🍫",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 7,
+      "day": 7,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 608838929,
+      "orb2": 615797513,
+      "orb3": 620089541,
+      "accent": 4286067983,
+      "onAccent": 4294967295,
+      "bannerFrom": 4286067983,
+      "bannerTo": 4288235020
+    },
+    "darkPalette": {
+      "orb1": 441066769,
+      "orb2": 448025353,
+      "orb3": 452317381,
+      "accent": 4292256094,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292256094,
+      "bannerTo": 4290999855
+    },
+    "bannerCopy": "World Chocolate Day",
+    "bannerSubtitle": "Treat your brain to something sweet today.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "emoji_day",
+    "title": "World Emoji Day",
+    "short": "Emoji Day",
+    "emoji": "😄",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 7,
+      "day": 17,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 620416021,
+      "orb2": 619464857,
+      "orb3": 606262254,
+      "accent": 4291463684,
+      "onAccent": 4294967295,
+      "bannerFrom": 4291463684,
+      "bannerTo": 4292699734
+    },
+    "darkPalette": {
+      "orb1": 452643861,
+      "orb2": 451692697,
+      "orb3": 438490094,
+      "accent": 4294626325,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294626325,
+      "bannerTo": 4294083422
+    },
+    "bannerCopy": "World Emoji Day! 😄🎉",
+    "bannerSubtitle": "Say it with emoji — then solve today’s playful puzzle.",
+    "particle": "confetti",
+    "priority": 0
+  },
+  {
+    "id": "moon_day",
+    "title": "Moon Day",
+    "short": "Moon Day",
+    "emoji": "🌕",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 7,
+      "day": 20,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605956411,
+      "orb2": 608385226,
+      "orb3": 618850544,
+      "accent": 4282865001,
+      "onAccent": 4294967295,
+      "bannerFrom": 4282865001,
+      "bannerTo": 4282729886
+    },
+    "darkPalette": {
+      "orb1": 438184251,
+      "orb2": 440613066,
+      "orb3": 451078384,
+      "accent": 4291548641,
+      "onAccent": 4294967295,
+      "bannerFrom": 4291548641,
+      "bannerTo": 4286611412
+    },
+    "bannerCopy": "Moon Day",
+    "bannerSubtitle": "Aim for the moon with today’s puzzle.",
+    "particle": "stars",
+    "priority": 0
+  },
+  {
+    "id": "friendship_day",
+    "title": "Int'l Day of Friendship",
+    "short": "Friendship Day",
+    "emoji": "🤗",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 7,
+      "day": 30,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 619337740,
+      "orb2": 605337766,
+      "orb3": 620076555,
+      "accent": 4293548044,
+      "onAccent": 4294967295,
+      "bannerFrom": 4293548044,
+      "bannerTo": 4285828449
+    },
+    "darkPalette": {
+      "orb1": 451565580,
+      "orb2": 437565606,
+      "orb3": 452304395,
+      "accent": 4294677052,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294677052,
+      "bannerTo": 4286359414
+    },
+    "bannerCopy": "Int'l Day of Friendship",
+    "bannerSubtitle": "Solve together — tag a friend to today’s puzzle.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "sunflower_day",
+    "title": "Sunflower Day",
+    "short": "Sunflower Day",
+    "emoji": "🌻",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 7,
+      "day": 12,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 620416021,
+      "orb2": 605463370,
+      "orb3": 607698424,
+      "accent": 4291463684,
+      "onAccent": 4294967295,
+      "bannerFrom": 4291463684,
+      "bannerTo": 4284979243
+    },
+    "darkPalette": {
+      "orb1": 452643861,
+      "orb2": 437691210,
+      "orb3": 439926264,
+      "accent": 4294626325,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294626325,
+      "bannerTo": 4286428466
+    },
+    "bannerCopy": "Sunflower Day",
+    "bannerSubtitle": "Turn toward the bright side — and a puzzle.",
+    "particle": "petals",
+    "priority": 0
+  },
+  {
+    "id": "cat_day",
+    "title": "International Cat Day",
+    "short": "Cat Day",
+    "emoji": "🐱",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 8,
+      "day": 8,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 613626858,
+      "orb2": 620466748,
+      "orb3": 620341460,
+      "accent": 4287837162,
+      "onAccent": 4294967295,
+      "bannerFrom": 4287837162,
+      "bannerTo": 4291585930
+    },
+    "darkPalette": {
+      "orb1": 445854698,
+      "orb2": 452694588,
+      "orb3": 452569300,
+      "accent": 4290807036,
+      "onAccent": 4294967295,
+      "bannerFrom": 4290807036,
+      "bannerTo": 4292906130
+    },
+    "bannerCopy": "International Cat Day",
+    "bannerSubtitle": "Curiosity solved the puzzle. Go on, then.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "book_lovers_day",
+    "title": "Book Lovers Day",
+    "short": "Book Lovers",
+    "emoji": "📚",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 8,
+      "day": 9,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605960842,
+      "orb2": 614085650,
+      "orb3": 610313722,
+      "accent": 4280171146,
+      "onAccent": 4294967295,
+      "bannerFrom": 4280171146,
+      "bannerTo": 4284626760
+    },
+    "darkPalette": {
+      "orb1": 438188682,
+      "orb2": 446313490,
+      "orb3": 442541562,
+      "accent": 4287874557,
+      "onAccent": 4294967295,
+      "bannerFrom": 4287874557,
+      "bannerTo": 4288116092
+    },
+    "bannerCopy": "Book Lovers Day",
+    "bannerSubtitle": "Curl up with a word puzzle today.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "youth_day",
+    "title": "Int'l Youth Day",
+    "short": "Youth Day",
+    "emoji": "✨",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 8,
+      "day": 12,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 604419796,
+      "orb2": 619999926,
+      "orb3": 620416021,
+      "accent": 4278751666,
+      "onAccent": 4294967295,
+      "bannerFrom": 4278751666,
+      "bannerTo": 4287266996
+    },
+    "darkPalette": {
+      "orb1": 436647636,
+      "orb2": 452227766,
+      "orb3": 452643861,
+      "accent": 4280472558,
+      "onAccent": 4294967295,
+      "bannerFrom": 4280472558,
+      "bannerTo": 4288061135
+    },
+    "bannerCopy": "Int'l Youth Day",
+    "bannerSubtitle": "Keep that young mind sharp with a puzzle.",
+    "particle": "confetti",
+    "priority": 0
+  },
+  {
+    "id": "photography_day",
+    "title": "World Photography Day",
+    "short": "Photography Day",
+    "emoji": "📷",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 8,
+      "day": 19,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605100071,
+      "orb2": 620076555,
+      "orb3": 610563211,
+      "accent": 4281549141,
+      "onAccent": 4294967295,
+      "bannerFrom": 4281549141,
+      "bannerTo": 4288574508
+    },
+    "darkPalette": {
+      "orb1": 437327911,
+      "orb2": 452304395,
+      "orb3": 442791051,
+      "accent": 4293060848,
+      "onAccent": 4294967295,
+      "bannerFrom": 4293060848,
+      "bannerTo": 4293705586
+    },
+    "bannerCopy": "World Photography Day",
+    "bannerSubtitle": "Capture the answer in today’s puzzle.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "elephant_day",
+    "title": "World Elephant Day",
+    "short": "Elephant Day",
+    "emoji": "🐘",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 8,
+      "day": 22,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 609702734,
+      "orb2": 612682774,
+      "orb3": 615031454,
+      "accent": 4283913038,
+      "onAccent": 4294967295,
+      "bannerFrom": 4283913038,
+      "bannerTo": 4285568559
+    },
+    "darkPalette": {
+      "orb1": 441930574,
+      "orb2": 444910614,
+      "orb3": 447259294,
+      "accent": 4292269009,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292269009,
+      "bannerTo": 4289318762
+    },
+    "bannerCopy": "World Elephant Day",
+    "bannerSubtitle": "An elephant never forgets — test your memory.",
+    "particle": "leaves",
+    "priority": 0
+  },
+  {
+    "id": "literacy_day",
+    "title": "Int'l Literacy Day",
+    "short": "Literacy Day",
+    "emoji": "📝",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 9,
+      "day": 8,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605960842,
+      "orb2": 620076555,
+      "orb3": 612226044,
+      "accent": 4280110808,
+      "onAccent": 4294967295,
+      "bannerFrom": 4280110808,
+      "bannerTo": 4287920743
+    },
+    "darkPalette": {
+      "orb1": 438188682,
+      "orb2": 452304395,
+      "orb3": 444453884,
+      "accent": 4284524026,
+      "onAccent": 4294967295,
+      "bannerFrom": 4284524026,
+      "bannerTo": 4289896823
+    },
+    "bannerCopy": "Int'l Literacy Day",
+    "bannerSubtitle": "Words are power — flex them on a puzzle.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "batman_day",
+    "title": "Batman Day",
+    "short": "Batman Day",
+    "emoji": "🦇",
+    "tier": "hero",
+    "schedule": {
+      "type": "nthWeekday",
+      "month": 9,
+      "weekday": 6,
+      "ordinal": 3
+    },
+    "lightPalette": {
+      "orb1": 606021943,
+      "orb2": 620416021,
+      "orb3": 607338837,
+      "accent": 4291463684,
+      "onAccent": 4280232247,
+      "bannerFrom": 4291463684,
+      "bannerTo": 4293176845
+    },
+    "darkPalette": {
+      "orb1": 438249783,
+      "orb2": 452643861,
+      "orb3": 439566677,
+      "accent": 4294626325,
+      "onAccent": 4280232247,
+      "bannerFrom": 4294626325,
+      "bannerTo": 4294626325
+    },
+    "bannerCopy": "It's Batman Day 🦇",
+    "bannerSubtitle": "Gotham needs a sharp mind — take on tonight’s puzzle.",
+    "particle": "bats",
+    "priority": 5
+  },
+  {
+    "id": "pirate_day",
+    "title": "Talk Like a Pirate Day",
+    "short": "Pirate Day",
+    "emoji": "🏴‍☠️",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 9,
+      "day": 19,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605960842,
+      "orb2": 617253380,
+      "orb3": 604927120,
+      "accent": 4280171146,
+      "onAccent": 4294967295,
+      "bannerFrom": 4280171146,
+      "bannerTo": 4286408256
+    },
+    "darkPalette": {
+      "orb1": 438188682,
+      "orb2": 449481220,
+      "orb3": 437154960,
+      "accent": 4291463684,
+      "onAccent": 4294967295,
+      "bannerFrom": 4291463684,
+      "bannerTo": 4291463684
+    },
+    "bannerCopy": "Talk Like a Pirate Day",
+    "bannerSubtitle": "Arr! Hunt today’s puzzle like buried treasure.",
+    "particle": "confetti",
+    "priority": 0
+  },
+  {
+    "id": "peace_day",
+    "title": "Int'l Day of Peace",
+    "short": "Peace Day",
+    "emoji": "🕊️",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 9,
+      "day": 21,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 607698424,
+      "orb2": 614986704,
+      "orb3": 619836921,
+      "accent": 4278355143,
+      "onAccent": 4294967295,
+      "bannerFrom": 4278355143,
+      "bannerTo": 4284334540
+    },
+    "darkPalette": {
+      "orb1": 439926264,
+      "orb2": 447214544,
+      "orb3": 452064761,
+      "accent": 4286436348,
+      "onAccent": 4294967295,
+      "bannerFrom": 4286436348,
+      "bannerTo": 4287948260
+    },
+    "bannerCopy": "Int'l Day of Peace",
+    "bannerSubtitle": "Find a quiet moment and a calming puzzle.",
+    "particle": "petals",
+    "priority": 0
+  },
+  {
+    "id": "heart_day",
+    "title": "World Heart Day",
+    "short": "Heart Day",
+    "emoji": "❤️",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 9,
+      "day": 29,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 618407462,
+      "orb2": 619999926,
+      "orb3": 619660356,
+      "accent": 4292617766,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292617766,
+      "bannerTo": 4293480565
+    },
+    "darkPalette": {
+      "orb1": 450635302,
+      "orb2": 452227766,
+      "orb3": 451888196,
+      "accent": 4294472049,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294472049,
+      "bannerTo": 4294341271
+    },
+    "bannerCopy": "World Heart Day",
+    "bannerSubtitle": "Keep your heart — and your head — in great shape.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "coffee_day",
+    "title": "Int'l Coffee Day",
+    "short": "Coffee Day",
+    "emoji": "☕",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 10,
+      "day": 1,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 607855639,
+      "orb2": 613564430,
+      "orb3": 619170208,
+      "accent": 4286067983,
+      "onAccent": 4294967295,
+      "bannerFrom": 4286067983,
+      "bannerTo": 4286987022
+    },
+    "darkPalette": {
+      "orb1": 440083479,
+      "orb2": 445792270,
+      "orb3": 451398048,
+      "accent": 4292256094,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292256094,
+      "bannerTo": 4289817650
+    },
+    "bannerCopy": "Int'l Coffee Day",
+    "bannerSubtitle": "Grab a coffee and warm up with a puzzle.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "teachers_day",
+    "title": "World Teachers' Day",
+    "short": "Teachers' Day",
+    "emoji": "🍎",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 10,
+      "day": 5,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605388861,
+      "orb2": 618407462,
+      "orb3": 620076555,
+      "accent": 4279599165,
+      "onAccent": 4294967295,
+      "bannerFrom": 4279599165,
+      "bannerTo": 4286730032
+    },
+    "darkPalette": {
+      "orb1": 437616701,
+      "orb2": 450635302,
+      "orb3": 452304395,
+      "accent": 4283096704,
+      "onAccent": 4294967295,
+      "bannerFrom": 4283096704,
+      "bannerTo": 4288313679
+    },
+    "bannerCopy": "World Teachers' Day",
+    "bannerSubtitle": "Thank a teacher — then teach your brain something.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "mental_health_day",
+    "title": "World Mental Health Day",
+    "short": "Mental Health",
+    "emoji": "💚",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 10,
+      "day": 10,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 604869768,
+      "orb2": 614960122,
+      "orb3": 612822956,
+      "accent": 4279080072,
+      "onAccent": 4294967295,
+      "bannerFrom": 4279080072,
+      "bannerTo": 4284649415
+    },
+    "darkPalette": {
+      "orb1": 437097608,
+      "orb2": 447187962,
+      "orb3": 445050796,
+      "accent": 4284410580,
+      "onAccent": 4294967295,
+      "bannerFrom": 4284410580,
+      "bannerTo": 4287018729
+    },
+    "bannerCopy": "World Mental Health Day",
+    "bannerSubtitle": "A few mindful minutes with a puzzle can help.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "diwali",
+    "title": "Diwali",
+    "short": "Diwali",
+    "emoji": "🪔",
+    "tier": "hero",
+    "schedule": {
+      "type": "perYearDates",
+      "ranges": {
+        "2026": {
+          "start": {
+            "y": 2026,
+            "m": 11,
+            "d": 8
+          },
+          "end": {
+            "y": 2026,
+            "m": 11,
+            "d": 8
+          }
+        },
+        "2027": {
+          "start": {
+            "y": 2027,
+            "m": 10,
+            "d": 29
+          },
+          "end": {
+            "y": 2027,
+            "m": 10,
+            "d": 29
+          }
+        },
+        "2028": {
+          "start": {
+            "y": 2028,
+            "m": 10,
+            "d": 17
+          },
+          "end": {
+            "y": 2028,
+            "m": 10,
+            "d": 17
+          }
+        }
+      }
+    },
+    "lightPalette": {
+      "orb1": 607848292,
+      "orb2": 620478244,
+      "orb3": 620327702,
+      "accent": 4290007817,
+      "onAccent": 4294967295,
+      "bannerFrom": 4290007817,
+      "bannerTo": 4292578840
+    },
+    "darkPalette": {
+      "orb1": 440076132,
+      "orb2": 452706084,
+      "orb3": 452555542,
+      "accent": 4294688548,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294688548,
+      "bannerTo": 4294688548
+    },
+    "bannerCopy": "Happy Diwali! ✨🪔",
+    "bannerSubtitle": "Light up your streak with a festival puzzle.",
+    "particle": "diyas",
+    "priority": 8
+  },
+  {
+    "id": "halloween",
+    "title": "Halloween",
+    "short": "Halloween",
+    "emoji": "🎃",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 10,
+      "day": 31,
+      "leadDays": 2,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 611000744,
+      "orb2": 619337740,
+      "orb3": 606021943,
+      "accent": 4293548044,
+      "onAccent": 4294967295,
+      "bannerFrom": 4293548044,
+      "bannerTo": 4293548044
+    },
+    "darkPalette": {
+      "orb1": 443228584,
+      "orb2": 451565580,
+      "orb3": 438249783,
+      "accent": 4294677052,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294677052,
+      "bannerTo": 4294079010
+    },
+    "bannerCopy": "Happy Halloween! 🎃🦇",
+    "bannerSubtitle": "Spooky puzzles are lurking — dare to solve one?",
+    "particle": "bats",
+    "priority": 10
+  },
+  {
+    "id": "science_day",
+    "title": "World Science Day",
+    "short": "Science Day",
+    "emoji": "🔬",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 11,
+      "day": 10,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605900504,
+      "orb2": 605463370,
+      "orb3": 604419796,
+      "accent": 4280110808,
+      "onAccent": 4294967295,
+      "bannerFrom": 4280110808,
+      "bannerTo": 4279860618
+    },
+    "darkPalette": {
+      "orb1": 438128344,
+      "orb2": 437691210,
+      "orb3": 436647636,
+      "accent": 4284524026,
+      "onAccent": 4294967295,
+      "bannerFrom": 4284524026,
+      "bannerTo": 4281836697
+    },
+    "bannerCopy": "World Science Day",
+    "bannerSubtitle": "Experiment with today’s brain-teaser.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "kindness_day",
+    "title": "World Kindness Day",
+    "short": "Kindness Day",
+    "emoji": "💗",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 11,
+      "day": 13,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 619464857,
+      "orb2": 607441817,
+      "orb3": 620619402,
+      "accent": 4292552567,
+      "onAccent": 4294967295,
+      "bannerFrom": 4292552567,
+      "bannerTo": 4286547594
+    },
+    "darkPalette": {
+      "orb1": 451692697,
+      "orb2": 439669657,
+      "orb3": 452847242,
+      "accent": 4294682830,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294682830,
+      "bannerTo": 4287545521
+    },
+    "bannerCopy": "World Kindness Day",
+    "bannerSubtitle": "Be kind to your mind — give it a puzzle.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "friday_13th",
+    "title": "Friday the 13th",
+    "short": "Friday 13th",
+    "emoji": "🧛",
+    "tier": "accent",
+    "schedule": {
+      "type": "computed",
+      "kind": "fridayThe13th"
+    },
+    "lightPalette": {
+      "orb1": 612310301,
+      "orb2": 605100071,
+      "orb3": 614013723,
+      "accent": 4288224027,
+      "onAccent": 4294967295,
+      "bannerFrom": 4288224027,
+      "bannerTo": 4283308322
+    },
+    "darkPalette": {
+      "orb1": 444538141,
+      "orb2": 437327911,
+      "orb3": 446241563,
+      "accent": 4293870660,
+      "onAccent": 4294967295,
+      "bannerFrom": 4293870660,
+      "bannerTo": 4285869108
+    },
+    "bannerCopy": "Friday the 13th… 🧛",
+    "bannerSubtitle": "Feeling lucky? Take on today’s puzzle.",
+    "particle": "bats",
+    "priority": 0
+  },
+  {
+    "id": "childrens_day",
+    "title": "Universal Children's Day",
+    "short": "Children's Day",
+    "emoji": "🧸",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 11,
+      "day": 20,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 606430187,
+      "orb2": 620416021,
+      "orb3": 619660356,
+      "accent": 4280640491,
+      "onAccent": 4294967295,
+      "bannerFrom": 4280640491,
+      "bannerTo": 4288322933
+    },
+    "darkPalette": {
+      "orb1": 438658027,
+      "orb2": 452643861,
+      "orb3": 451888196,
+      "accent": 4284524026,
+      "onAccent": 4294967295,
+      "bannerFrom": 4284524026,
+      "bannerTo": 4290099836
+    },
+    "bannerCopy": "Universal Children's Day",
+    "bannerSubtitle": "Play, wonder, and puzzle like a kid today.",
+    "particle": "confetti",
+    "priority": 0
+  },
+  {
+    "id": "thanksgiving",
+    "title": "Thanksgiving",
+    "short": "Thanksgiving",
+    "emoji": "🦃",
+    "tier": "accent",
+    "schedule": {
+      "type": "nthWeekday",
+      "month": 11,
+      "weekday": 4,
+      "ordinal": 4
+    },
+    "lightPalette": {
+      "orb1": 612117778,
+      "orb2": 619337740,
+      "orb3": 619361032,
+      "accent": 4290007817,
+      "onAccent": 4294967295,
+      "bannerFrom": 4290007817,
+      "bannerTo": 4291974667
+    },
+    "darkPalette": {
+      "orb1": 444345618,
+      "orb2": 451565580,
+      "orb3": 451588872,
+      "accent": 4294688548,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294688548,
+      "bannerTo": 4294084119
+    },
+    "bannerCopy": "Happy Thanksgiving! 🦃",
+    "bannerSubtitle": "Grateful for a good puzzle? Dig in.",
+    "particle": "leaves",
+    "priority": 0
+  },
+  {
+    "id": "human_rights_day",
+    "title": "Human Rights Day",
+    "short": "Human Rights",
+    "emoji": "🕊️",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 12,
+      "day": 10,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605960842,
+      "orb2": 620548941,
+      "orb3": 614839548,
+      "accent": 4280640491,
+      "onAccent": 4294967295,
+      "bannerFrom": 4280640491,
+      "bannerTo": 4288389524
+    },
+    "darkPalette": {
+      "orb1": 438188682,
+      "orb2": 452776781,
+      "orb3": 447067388,
+      "accent": 4287874557,
+      "onAccent": 4294967295,
+      "bannerFrom": 4287874557,
+      "bannerTo": 4291677596
+    },
+    "bannerCopy": "Human Rights Day",
+    "bannerSubtitle": "Every mind matters — grow yours today.",
+    "particle": "hearts",
+    "priority": 0
+  },
+  {
+    "id": "winter_solstice",
+    "title": "Winter Solstice",
+    "short": "Winter Solstice",
+    "emoji": "❄️",
+    "tier": "accent",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 12,
+      "day": 21,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605956411,
+      "orb2": 607698424,
+      "orb3": 618722046,
+      "accent": 4278413729,
+      "onAccent": 4294967295,
+      "bannerFrom": 4278413729,
+      "bannerTo": 4280326097
+    },
+    "darkPalette": {
+      "orb1": 438184251,
+      "orb2": 439926264,
+      "orb3": 450949886,
+      "accent": 4286436348,
+      "onAccent": 4294967295,
+      "bannerFrom": 4286436348,
+      "bannerTo": 4283942906
+    },
+    "bannerCopy": "Winter Solstice",
+    "bannerSubtitle": "The longest night calls for a cozy puzzle.",
+    "particle": "snow",
+    "priority": 0
+  },
+  {
+    "id": "christmas",
+    "title": "Christmas",
+    "short": "Christmas",
+    "emoji": "🎄",
+    "tier": "hero",
+    "schedule": {
+      "type": "dateWindow",
+      "startMonth": 12,
+      "startDay": 20,
+      "endMonth": 12,
+      "endDay": 26
+    },
+    "lightPalette": {
+      "orb1": 605311789,
+      "orb2": 618407462,
+      "orb3": 618850544,
+      "accent": 4279599165,
+      "onAccent": 4294967295,
+      "bannerFrom": 4279599165,
+      "bannerTo": 4286730032
+    },
+    "darkPalette": {
+      "orb1": 437539629,
+      "orb2": 450635302,
+      "orb3": 451078384,
+      "accent": 4283096704,
+      "onAccent": 4294967295,
+      "bannerFrom": 4283096704,
+      "bannerTo": 4288313679
+    },
+    "bannerCopy": "Merry Christmas! 🎄",
+    "bannerSubtitle": "Unwrap today’s festive puzzle.",
+    "particle": "snow",
+    "priority": 10
+  },
+  {
+    "id": "hanukkah",
+    "title": "Hanukkah",
+    "short": "Hanukkah",
+    "emoji": "🕎",
+    "tier": "accent",
+    "schedule": {
+      "type": "perYearDates",
+      "ranges": {
+        "2026": {
+          "start": {
+            "y": 2026,
+            "m": 12,
+            "d": 4
+          },
+          "end": {
+            "y": 2026,
+            "m": 12,
+            "d": 12
+          }
+        },
+        "2027": {
+          "start": {
+            "y": 2027,
+            "m": 12,
+            "d": 24
+          },
+          "end": {
+            "y": 2027,
+            "m": 12,
+            "d": 31
+          }
+        },
+        "2028": {
+          "start": {
+            "y": 2028,
+            "m": 12,
+            "d": 12
+          },
+          "end": {
+            "y": 2028,
+            "m": 12,
+            "d": 20
+          }
+        }
+      }
+    },
+    "lightPalette": {
+      "orb1": 605900504,
+      "orb2": 618850544,
+      "orb3": 610313722,
+      "accent": 4280110808,
+      "onAccent": 4294967295,
+      "bannerFrom": 4280110808,
+      "bannerTo": 4287210469
+    },
+    "darkPalette": {
+      "orb1": 438128344,
+      "orb2": 451078384,
+      "orb3": 442541562,
+      "accent": 4287874557,
+      "onAccent": 4294967295,
+      "bannerFrom": 4287874557,
+      "bannerTo": 4290697462
+    },
+    "bannerCopy": "Happy Hanukkah! 🕎",
+    "bannerSubtitle": "Light a candle and a spark of insight.",
+    "particle": "sparkles",
+    "priority": 0
+  },
+  {
+    "id": "new_years_eve",
+    "title": "New Year's Eve",
+    "short": "New Year's Eve",
+    "emoji": "🎆",
+    "tier": "hero",
+    "schedule": {
+      "type": "fixedDate",
+      "month": 12,
+      "day": 31,
+      "leadDays": 0,
+      "trailDays": 0
+    },
+    "lightPalette": {
+      "orb1": 605960842,
+      "orb2": 620023402,
+      "orb3": 619464857,
+      "accent": 4291271227,
+      "onAccent": 4294967295,
+      "bannerFrom": 4291271227,
+      "bannerTo": 4292917077
+    },
+    "darkPalette": {
+      "orb1": 438188682,
+      "orb2": 452251242,
+      "orb3": 451692697,
+      "accent": 4294233706,
+      "onAccent": 4294967295,
+      "bannerFrom": 4294233706,
+      "bannerTo": 4294233706
+    },
+    "bannerCopy": "New Year's Eve — one more sleep! 🎆",
+    "bannerSubtitle": "One more night — end the year on a solved note.",
+    "particle": "fireworks",
+    "priority": 10
+  }
+]
