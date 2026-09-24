@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
-  Sparkles, CalendarDays, Search, Pencil, CheckCircle2, AlertTriangle,
+  CalendarDays, Search, Pencil, CheckCircle2, AlertTriangle,
   Cloud, HardDrive, Loader2, Star, Circle, HelpCircle, Zap,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -41,11 +41,16 @@ function relLabel(d: Date | null): string {
   const months = Math.round(n / 30);
   return `in ~${months} mo`;
 }
+function accentRgba(argb: number, alpha: number): string {
+  const r = (argb >>> 16) & 0xff;
+  const g = (argb >>> 8) & 0xff;
+  const b = argb & 0xff;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
 
 /** Events that need a person's attention before they'll fire correctly. */
 function needsAttention(e: EventTheme, year: number): boolean {
-  if (perYearMissing(e.schedule, year) || perYearMissing(e.schedule, year + 1)) return true;
-  return false;
+  return perYearMissing(e.schedule, year) || perYearMissing(e.schedule, year + 1);
 }
 
 export default function StudioEventsPage() {
@@ -53,7 +58,6 @@ export default function StudioEventsPage() {
   const isAdmin = role === "admin";
 
   const [events, setEvents] = useState<EventTheme[]>([]);
-  const [seasonal, setSeasonal] = useState(true);
   const [initial, setInitial] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [published, setPublished] = useState(false);
@@ -74,18 +78,17 @@ export default function StudioEventsPage() {
       const [cfg, pub] = await Promise.all([getEventConfig(), isPublished()]);
       if (!alive) return;
       setEvents(cfg.events);
-      setSeasonal(cfg.seasonalThemesEnabled);
       setUpdatedAt(cfg.updatedAt);
       setPublished(pub);
-      setInitial(JSON.stringify({ e: cfg.events, s: cfg.seasonalThemesEnabled }));
+      setInitial(JSON.stringify(cfg.events));
       setLoading(false);
     })();
     return () => { alive = false; };
   }, []);
 
   const dirty = useMemo(
-    () => !loading && JSON.stringify({ e: events, s: seasonal }) !== initial,
-    [events, seasonal, initial, loading],
+    () => !loading && JSON.stringify(events) !== initial,
+    [events, initial, loading],
   );
 
   const sorted = useMemo(() => {
@@ -122,11 +125,11 @@ export default function StudioEventsPage() {
 
   const doPublish = async () => {
     setSaving(true);
-    const res = await saveEventConfig(events, seasonal);
+    const res = await saveEventConfig(events, true);
     setSaving(false);
     setConfirmOpen(false);
     if (res.ok) {
-      setInitial(JSON.stringify({ e: events, s: seasonal }));
+      setInitial(JSON.stringify(events));
       setPublished(true);
       setUpdatedAt(Date.now());
       toast.success("Published to all devices.");
@@ -139,13 +142,13 @@ export default function StudioEventsPage() {
     { id: "all", label: "All", count: events.length },
     { id: "hero", label: "Hero", count: heroCount },
     { id: "accent", label: "Accent", count: events.length - heroCount },
-    { id: "attention", label: "Needs attention", count: attentionCount },
+    { id: "attention", label: "Needs dates", count: attentionCount },
   ];
 
   return (
-    <div className="mx-auto w-full max-w-5xl p-4 pb-24 sm:p-6">
+    <div className="mx-auto w-full max-w-6xl p-4 pb-24 sm:p-6">
       {/* Header */}
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
           <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-[#8b5cf6]">
             <CalendarDays className="size-5 text-white" />
@@ -157,7 +160,12 @@ export default function StudioEventsPage() {
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <Pill icon={<Star className="size-3 text-amber-500" />} label="Hero" value={heroCount} />
+          <Pill icon={<HelpCircle className="size-3 text-primary" />} label="Questions" value={questionCount} />
+          {attentionCount > 0 && (
+            <Pill icon={<AlertTriangle className="size-3 text-destructive" />} label="Need dates" value={attentionCount} />
+          )}
           <span className={cn(
             "flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium",
             published ? "bg-success/10 text-success" : "bg-muted text-muted-foreground",
@@ -165,42 +173,8 @@ export default function StudioEventsPage() {
             {published ? <Cloud className="size-3" /> : <HardDrive className="size-3" />}
             {published
               ? `Published${updatedAt ? " · " + new Date(updatedAt).toLocaleDateString() : ""}`
-              : "Seed (not yet published)"}
+              : "Not published"}
           </span>
-        </div>
-      </div>
-
-      {/* Master toggle + stats */}
-      <div className="mb-5 grid gap-3 sm:grid-cols-[1fr_auto]">
-        <div className="flex items-center justify-between rounded-2xl border bg-card/60 p-4">
-          <div>
-            <p className="flex items-center gap-1.5 text-sm font-semibold">
-              <Sparkles className="size-4 text-primary" /> Seasonal theming
-            </p>
-            <p className="text-xs text-muted-foreground">
-              Master switch. Off = the app stays on its normal theme every day.
-            </p>
-          </div>
-          <button
-            role="switch"
-            aria-checked={seasonal}
-            disabled={!isAdmin}
-            onClick={() => setSeasonal((v) => !v)}
-            className={cn(
-              "relative h-7 w-12 shrink-0 rounded-full transition-colors disabled:opacity-50",
-              seasonal ? "bg-success" : "bg-muted-foreground/30",
-            )}
-          >
-            <span
-              className="absolute top-1 size-5 rounded-full bg-white shadow transition-all"
-              style={{ marginLeft: seasonal ? 26 : 2 }}
-            />
-          </button>
-        </div>
-        <div className="flex items-center gap-4 rounded-2xl border bg-card/60 px-5 py-4">
-          <Stat icon={<Star className="size-4 text-amber-500" />} label="Hero" value={heroCount} />
-          <Stat icon={<HelpCircle className="size-4 text-primary" />} label="Questions" value={questionCount} />
-          <Stat icon={<AlertTriangle className="size-4 text-destructive" />} label="Attention" value={attentionCount} />
         </div>
       </div>
 
@@ -236,69 +210,95 @@ export default function StudioEventsPage() {
         </div>
       </div>
 
-      {/* List */}
+      {/* Grid */}
       {loading ? (
-        <div className="space-y-2">{Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)}</div>
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {Array.from({ length: 9 }).map((_, i) => <SkeletonCard key={i} />)}
+        </div>
       ) : visible.length === 0 ? (
         <p className="rounded-2xl border border-dashed py-12 text-center text-sm text-muted-foreground">
           No moments match.
         </p>
       ) : (
-        <div className="space-y-2">
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {visible.map(({ e, next, active }) => {
             const attention = needsAttention(e, year);
+            const accent = e.lightPalette.accent;
             return (
               <motion.button
                 key={e.id}
                 layout
                 onClick={() => setEditing(e)}
                 className={cn(
-                  "flex w-full items-center gap-3 rounded-2xl border bg-card/60 p-3 text-left transition-colors hover:bg-muted/40",
-                  active && "border-primary/50 bg-primary/5",
+                  "group relative flex flex-col overflow-hidden rounded-2xl border bg-card/60 p-3.5 text-left transition-all hover:-translate-y-0.5 hover:shadow-lg",
+                  active && "ring-2 ring-primary/40",
                 )}
+                style={{ borderColor: accentRgba(accent, active ? 0.6 : 0.18) }}
               >
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-muted/50 text-2xl">
-                  {e.emoji}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <p className="truncate text-sm font-semibold">{e.title}</p>
-                    {e.tier === "hero" ? (
-                      <span className="flex items-center gap-0.5 rounded-full bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium text-amber-600 dark:text-amber-400">
-                        <Star className="size-2.5" /> Hero
-                      </span>
-                    ) : (
-                      <span className="flex items-center gap-0.5 rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-                        <Circle className="size-2.5" /> Accent
-                      </span>
-                    )}
-                    {e.question && <HelpCircle className="size-3.5 text-primary" aria-label="Has question" />}
-                    {e.particle !== "none" && (
-                      <span className="hidden rounded-full bg-muted/60 px-1.5 py-0.5 text-[10px] text-muted-foreground sm:inline">
-                        {e.particle}
-                      </span>
-                    )}
+                {/* Accent wash */}
+                <span
+                  className="pointer-events-none absolute inset-x-0 top-0 h-16 opacity-60"
+                  style={{ background: `linear-gradient(to bottom, ${accentRgba(accent, 0.14)}, transparent)` }}
+                />
+
+                <div className="relative flex items-start gap-3">
+                  <span
+                    className="flex size-11 shrink-0 items-center justify-center rounded-xl text-2xl"
+                    style={{
+                      background: accentRgba(accent, 0.16),
+                      border: `1px solid ${accentRgba(accent, 0.32)}`,
+                    }}
+                  >
+                    {e.emoji}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-semibold leading-tight">{e.title}</p>
+                    <p className="mt-0.5 truncate text-[11px] text-muted-foreground">{scheduleSummary(e.schedule)}</p>
                   </div>
-                  <p className="truncate text-xs text-muted-foreground">{scheduleSummary(e.schedule)}</p>
+                  <Pencil className="size-3.5 shrink-0 text-muted-foreground/30 transition-colors group-hover:text-muted-foreground" />
                 </div>
-                <div className="shrink-0 text-right">
+
+                {/* Badges */}
+                <div className="relative mt-3 flex flex-wrap items-center gap-1.5">
+                  {e.tier === "hero" ? (
+                    <span className="flex items-center gap-0.5 rounded-full bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium text-amber-600 dark:text-amber-400">
+                      <Star className="size-2.5" /> Hero
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-0.5 rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+                      <Circle className="size-2.5" /> Accent
+                    </span>
+                  )}
+                  {e.question ? (
+                    <span className="flex items-center gap-0.5 rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-primary">
+                      <HelpCircle className="size-2.5" /> Question
+                    </span>
+                  ) : (
+                    <span className="rounded-full bg-muted/60 px-1.5 py-0.5 text-[10px] text-muted-foreground/70">
+                      No question
+                    </span>
+                  )}
+                  {attention && (
+                    <span className="flex items-center gap-0.5 rounded-full bg-destructive/10 px-1.5 py-0.5 text-[10px] font-medium text-destructive">
+                      <AlertTriangle className="size-2.5" /> set dates
+                    </span>
+                  )}
+                </div>
+
+                {/* Footer date */}
+                <div className="relative mt-3 flex items-center justify-between border-t pt-2.5">
                   {active ? (
                     <span className="flex items-center gap-1 text-xs font-semibold text-primary">
                       <Zap className="size-3" /> Live now
                     </span>
                   ) : (
-                    <>
-                      <p className="text-xs font-medium">{fmtDate(next)}</p>
-                      <p className="text-[11px] text-muted-foreground">{relLabel(next)}</p>
-                    </>
-                  )}
-                  {attention && (
-                    <span className="mt-0.5 flex items-center justify-end gap-1 text-[10px] text-destructive">
-                      <AlertTriangle className="size-2.5" /> set dates
+                    <span className="flex items-center gap-1.5 text-xs font-medium">
+                      <CalendarDays className="size-3 text-muted-foreground/50" />
+                      {fmtDate(next)}
                     </span>
                   )}
+                  {!active && <span className="text-[11px] text-muted-foreground">{relLabel(next)}</span>}
                 </div>
-                <Pencil className="size-4 shrink-0 text-muted-foreground/40" />
               </motion.button>
             );
           })}
@@ -312,17 +312,13 @@ export default function StudioEventsPage() {
           animate={{ y: 0, opacity: 1 }}
           className="fixed inset-x-0 bottom-0 z-40 border-t bg-card/95 backdrop-blur-xl md:left-72"
         >
-          <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 p-3">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 p-3">
             <p className="text-xs text-muted-foreground">
               Unpublished changes — the app won&apos;t see them until you publish.
             </p>
             <div className="flex gap-2">
               <button
-                onClick={() => {
-                  const parsed = JSON.parse(initial) as { e: EventTheme[]; s: boolean };
-                  setEvents(parsed.e);
-                  setSeasonal(parsed.s);
-                }}
+                onClick={() => setEvents(JSON.parse(initial) as EventTheme[])}
                 className="rounded-xl border px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
               >
                 Discard
@@ -359,7 +355,7 @@ export default function StudioEventsPage() {
         onClose={() => setConfirmOpen(false)}
         onConfirm={doPublish}
         title="Publish moments?"
-        description={`This writes all ${events.length} moments and the seasonal switch to every device. The app replaces its built-in calendar with this one.`}
+        description={`This writes all ${events.length} moments (and their questions) to every device. The app replaces its built-in calendar with this one.`}
         confirmLabel="Publish"
         confirmVariant="success"
         loading={saving}
@@ -368,11 +364,12 @@ export default function StudioEventsPage() {
   );
 }
 
-function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; value: number }) {
+function Pill({ icon, label, value }: { icon: React.ReactNode; label: string; value: number }) {
   return (
-    <div className="flex flex-col items-center gap-0.5">
-      <span className="flex items-center gap-1 text-sm font-bold">{icon}{value}</span>
-      <span className="text-[10px] uppercase tracking-wide text-muted-foreground">{label}</span>
-    </div>
+    <span className="flex items-center gap-1 rounded-full bg-muted/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+      {icon}
+      <span className="font-bold text-foreground">{value}</span>
+      {label}
+    </span>
   );
 }

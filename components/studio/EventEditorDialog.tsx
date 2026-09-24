@@ -9,12 +9,9 @@ import {
   argbToCss,
   scheduleSummary,
   type EventDay,
-  type EventParticle,
   type EventQuestion,
   type EventSchedule,
   type EventTheme,
-  type EventTier,
-  EVENT_PARTICLES,
 } from "@/lib/events/event-theme";
 
 interface Props {
@@ -40,11 +37,6 @@ const ORDINAL_OPTS = [
   { value: "1", label: "1st" }, { value: "2", label: "2nd" }, { value: "3", label: "3rd" },
   { value: "4", label: "4th" }, { value: "5", label: "5th" }, { value: "-1", label: "Last" },
 ];
-const TIER_OPTS = [
-  { value: "hero", label: "Hero (full treatment)" },
-  { value: "accent", label: "Accent (light touch)" },
-];
-const PARTICLE_OPTS = EVENT_PARTICLES.map((p) => ({ value: p, label: p }));
 
 function isoFromDay(d: EventDay): string {
   return `${d.y}-${String(d.m).padStart(2, "0")}-${String(d.d).padStart(2, "0")}`;
@@ -154,23 +146,6 @@ export function EventEditorDialog({ open, event, canEdit, onClose, onSave }: Pro
                   {field("Title", textInput(draft.title, (v) => patch({ title: v })))}
                   {field("Short label", textInput(draft.short, (v) => patch({ short: v })))}
                   {field("Emoji", textInput(draft.emoji, (v) => patch({ emoji: v })))}
-                  {field("Priority", numInput(draft.priority, (v) => patch({ priority: v })))}
-                  {field("Tier", (
-                    <SelectDropdown
-                      value={draft.tier}
-                      onChange={(v) => patch({ tier: v as EventTier })}
-                      options={TIER_OPTS}
-                      ariaLabel="Tier"
-                    />
-                  ))}
-                  {field("Particle", (
-                    <SelectDropdown
-                      value={draft.particle}
-                      onChange={(v) => patch({ particle: v as EventParticle })}
-                      options={PARTICLE_OPTS}
-                      ariaLabel="Particle"
-                    />
-                  ))}
                 </div>
                 {field("Banner greeting", textInput(draft.bannerCopy, (v) => patch({ bannerCopy: v })))}
                 {field("Banner subtitle", textInput(draft.bannerSubtitle ?? "", (v) => patch({ bannerSubtitle: v || undefined })))}
@@ -203,9 +178,6 @@ export function EventEditorDialog({ open, event, canEdit, onClose, onSave }: Pro
                     );
                   })}
                 </div>
-                <p className="mt-1.5 text-[11px] text-muted-foreground/70">
-                  Colour editing is coming in a later pass — dates &amp; questions are editable now.
-                </p>
               </section>
 
               {/* Schedule */}
@@ -220,8 +192,6 @@ export function EventEditorDialog({ open, event, canEdit, onClose, onSave }: Pro
                       <SelectDropdown value={String(s.month)} onChange={(v) => patchSchedule({ ...s, month: Number(v) })} options={MONTH_OPTS} ariaLabel="Month" />
                     ))}
                     {field("Day", numInput(s.day, (v) => patchSchedule({ ...s, day: v }), 1, 31))}
-                    {field("Lead days (before)", numInput(s.leadDays, (v) => patchSchedule({ ...s, leadDays: v }), 0))}
-                    {field("Trail days (after)", numInput(s.trailDays, (v) => patchSchedule({ ...s, trailDays: v }), 0))}
                   </div>
                 )}
 
