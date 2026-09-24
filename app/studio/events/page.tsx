@@ -91,6 +91,10 @@ export default function StudioEventsPage() {
     [events, initial, loading],
   );
 
+  // Admins can publish when there are edits to push, or when the calendar has
+  // never been published yet (so the seeded 60 can go live without any edit).
+  const canPublish = isAdmin && !loading && (dirty || !published);
+
   const sorted = useMemo(() => {
     const withNext = events.map((e) => ({ e, next: nextOccurrence(e), active: isActiveToday(e) }));
     withNext.sort((a, b) => {
@@ -306,7 +310,7 @@ export default function StudioEventsPage() {
       )}
 
       {/* Publish bar */}
-      {isAdmin && dirty && (
+      {canPublish && (
         <motion.div
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -314,22 +318,26 @@ export default function StudioEventsPage() {
         >
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 p-3">
             <p className="text-xs text-muted-foreground">
-              Unpublished changes — the app won&apos;t see them until you publish.
+              {dirty
+                ? "Unpublished changes — the app won't see them until you publish."
+                : `Not published yet — publish to send all ${events.length} moments (and their questions) to every device.`}
             </p>
             <div className="flex gap-2">
-              <button
-                onClick={() => setEvents(JSON.parse(initial) as EventTheme[])}
-                className="rounded-xl border px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
-              >
-                Discard
-              </button>
+              {dirty && (
+                <button
+                  onClick={() => setEvents(JSON.parse(initial) as EventTheme[])}
+                  className="rounded-xl border px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                >
+                  Discard
+                </button>
+              )}
               <button
                 onClick={() => setConfirmOpen(true)}
                 disabled={saving}
                 className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-[#8b5cf6] px-5 py-2 text-sm font-semibold text-white transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-60"
               >
                 {saving ? <Loader2 className="size-4 animate-spin" /> : <CheckCircle2 className="size-4" />}
-                Publish
+                {dirty ? "Publish changes" : "Publish moments"}
               </button>
             </div>
           </div>
