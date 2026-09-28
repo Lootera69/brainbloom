@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist, type PersistStorage } from "zustand/middleware";
 import { questTemplates } from "@/constants/quests";
 import { achievementsList } from "@/constants/achievements";
-import { ADS_MAX_PER_DAY } from "@/lib/subscription";
+import { ADS_MAX_PER_DAY, DAILY_SET_SIZE, DAILY_SET_PERFECT_XP_BONUS, DAILY_SET_PERFECT_GEM_BONUS } from "@/lib/subscription";
 import { mergeGuestProgress, type GuestMergeData } from "@/lib/user-merge";
 import { remainingFreePlays, canPlayPuzzleFree, isPremiumActive } from "@/lib/daily-limit";
 
@@ -82,6 +82,9 @@ interface UserState {
   dailyPuzzleCompletedDate: string | null;
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
+  dailySetDate: string | null;
+  dailySetCompletedIds: string[];
+  dailySetHeartLost: boolean;
   soundEnabled: boolean;
   hapticsEnabled: boolean;
   pushPromptedDate: string | null;
@@ -135,6 +138,14 @@ interface UserState {
   getHeartTimer: () => number;
   completeDailyPuzzle: () => void;
   hasCompletedDailyPuzzle: () => boolean;
+  completeDailySet: () => void;
+  recordDailySetProgress: (puzzleId: string) => boolean;
+  noteDailySetHeartLost: () => void;
+  dailySetCompletedIdsToday: () => string[];
+  dailySetProgress: () => number;
+  isDailySetComplete: () => boolean;
+  dailySetRemaining: () => number;
+  hasPlayedDailySetPuzzle: (id: string) => boolean;
   setSoundEnabled: (v: boolean) => void;
   setHapticsEnabled: (v: boolean) => void;
   markPushPrompted: () => void;
@@ -268,6 +279,9 @@ export const useUserStore = create<UserState>()(
       dailyPuzzleCompletedDate: null,
       dailyPuzzleStreak: 0,
       dailyPuzzleLastDate: null,
+      dailySetDate: null,
+      dailySetCompletedIds: [],
+      dailySetHeartLost: false,
       soundEnabled: true,
       hapticsEnabled: true,
       pushPromptedDate: null,
@@ -345,6 +359,9 @@ export const useUserStore = create<UserState>()(
             dailyPuzzleCompletedDate: (cd.dailyPuzzleCompletedDate as string | null) ?? null,
             dailyPuzzleStreak: (cd.dailyPuzzleStreak as number) ?? 0,
             dailyPuzzleLastDate: (cd.dailyPuzzleLastDate as string | null) ?? null,
+            dailySetDate: (cd.dailySetDate as string | null) ?? null,
+            dailySetCompletedIds: (cd.dailySetCompletedIds as string[]) ?? [],
+            dailySetHeartLost: (cd.dailySetHeartLost as boolean) ?? false,
             soundEnabled: (cd.soundEnabled as boolean) ?? true,
             hapticsEnabled: (cd.hapticsEnabled as boolean) ?? true,
             theme: (cd.theme as "light" | "dark" | "system") ?? "system",
@@ -411,6 +428,9 @@ export const useUserStore = create<UserState>()(
                   dailyPuzzleCompletedDate: null,
                   dailyPuzzleStreak: 0,
                   dailyPuzzleLastDate: null,
+                  dailySetDate: null,
+                  dailySetCompletedIds: [],
+                  dailySetHeartLost: false,
                   weeklyXp: 0,
                   weeklyStartDate: Date.now(),
                   frozenDays: [],
@@ -498,6 +518,9 @@ export const useUserStore = create<UserState>()(
             dailyPuzzleCompletedDate: s.dailyPuzzleCompletedDate,
             dailyPuzzleStreak: s.dailyPuzzleStreak,
             dailyPuzzleLastDate: s.dailyPuzzleLastDate,
+            dailySetDate: s.dailySetDate,
+            dailySetCompletedIds: s.dailySetCompletedIds,
+            dailySetHeartLost: s.dailySetHeartLost,
             soundEnabled: s.soundEnabled,
             hapticsEnabled: s.hapticsEnabled,
             theme: s.theme,
@@ -566,6 +589,9 @@ export const useUserStore = create<UserState>()(
                 dailyPuzzleCompletedDate: data.dailyPuzzleCompletedDate ?? s.dailyPuzzleCompletedDate,
                 dailyPuzzleStreak: data.dailyPuzzleStreak ?? s.dailyPuzzleStreak,
                 dailyPuzzleLastDate: data.dailyPuzzleLastDate ?? s.dailyPuzzleLastDate,
+                dailySetDate: data.dailySetDate ?? s.dailySetDate,
+                dailySetCompletedIds: data.dailySetCompletedIds ?? s.dailySetCompletedIds,
+                dailySetHeartLost: data.dailySetHeartLost ?? s.dailySetHeartLost,
                 soundEnabled: data.soundEnabled ?? s.soundEnabled,
                 hapticsEnabled: data.hapticsEnabled ?? s.hapticsEnabled,
                 theme: data.theme ?? s.theme,
@@ -639,6 +665,9 @@ export const useUserStore = create<UserState>()(
           dailyPuzzleCompletedDate: null,
           dailyPuzzleStreak: 0,
           dailyPuzzleLastDate: null,
+          dailySetDate: null,
+          dailySetCompletedIds: [],
+          dailySetHeartLost: false,
           soundEnabled: true,
           hapticsEnabled: true,
           weeklyXp: 0,
@@ -992,30 +1021,110 @@ export const useUserStore = create<UserState>()(
         return get().completedPuzzleIds.includes(id);
       },
 
-      completeDailyPuzzle: () => {
+      // Marks the whole Daily Set done for today and grows the daily streak
+      // when yesterday was also completed. A gap is bridged by spending streak
+      // freezes (one per missed day) when the player has enough banked;
+      // otherwise the streak resets to 1. Same-day calls are a no-op. Fires the
+      // perfect-set bonus when no heart was lost across the set. Completion is
+      // keyed on the LOCAL day (toDateString), while set SELECTION rolls on the
+      // UTC day — the split is intentional.
+      completeDailySet: () => {
+        const s = get();
         const today = new Date().toDateString();
-        const yesterday = new Date(Date.now() - 86400000).toDateString();
-        const { dailyPuzzleCompletedDate, dailyPuzzleStreak, dailyPuzzleLastDate } = get();
+        if (s.dailyPuzzleCompletedDate === today) return;
 
-        if (dailyPuzzleCompletedDate === today) return;
+        // Missed days since the last completion (0 when yesterday was hit). A
+        // null diff (never played, or an unparseable date) is a fresh start.
+        const diff = s.dailyPuzzleLastDate == null
+          ? null
+          : Math.round((new Date(today).getTime() - new Date(s.dailyPuzzleLastDate).getTime()) / 86400000);
+        const missed = (diff == null || diff <= 0) ? -1 : diff - 1;
 
-        let newStreak = dailyPuzzleStreak;
-        if (dailyPuzzleLastDate === yesterday) {
-          newStreak += 1;
+        let newStreak: number;
+        let freezesLeft = s.streakFreezes;
+        if (missed === 0) {
+          newStreak = s.dailyPuzzleStreak + 1;
+        } else if (missed > 0 && s.streakFreezes >= missed) {
+          newStreak = s.dailyPuzzleStreak + 1;
+          freezesLeft = s.streakFreezes - missed;
         } else {
           newStreak = 1;
         }
 
+        const perfect = s.dailySetDate === today && !s.dailySetHeartLost;
+        // The perfect bonus is granted directly (not through addXp) so it stays
+        // a clean flat reward and does not re-advance quests or the daily goal.
         set({
           dailyPuzzleCompletedDate: today,
           dailyPuzzleStreak: newStreak,
           dailyPuzzleLastDate: today,
+          streakFreezes: freezesLeft,
+          gems: perfect ? s.gems + DAILY_SET_PERFECT_GEM_BONUS : s.gems,
+          xp: perfect ? s.xp + DAILY_SET_PERFECT_XP_BONUS : s.xp,
+          xpToday: perfect ? s.xpToday + DAILY_SET_PERFECT_XP_BONUS : s.xpToday,
+          weeklyXp: perfect ? s.weeklyXp + DAILY_SET_PERFECT_XP_BONUS : s.weeklyXp,
         });
       },
+
+      // Alias retained for any single-daily caller — the daily flow is now a set.
+      completeDailyPuzzle: () => get().completeDailySet(),
 
       hasCompletedDailyPuzzle: () => {
         const today = new Date().toDateString();
         return get().dailyPuzzleCompletedDate === today;
+      },
+
+      // Set puzzles finished today, with a clean slate once the LOCAL day rolls.
+      dailySetCompletedIdsToday: () => {
+        const s = get();
+        return s.dailySetDate === new Date().toDateString() ? s.dailySetCompletedIds : [];
+      },
+
+      dailySetProgress: () => get().dailySetCompletedIdsToday().length,
+
+      isDailySetComplete: () => get().dailySetProgress() >= DAILY_SET_SIZE,
+
+      dailySetRemaining: () => Math.max(0, DAILY_SET_SIZE - get().dailySetProgress()),
+
+      // True when `id` already counted toward today's set (dedup so a replay
+      // cannot re-grant the daily reward or double-count progress).
+      hasPlayedDailySetPuzzle: (id) => get().dailySetCompletedIdsToday().includes(id),
+
+      // Records one Daily Set puzzle complete for today. Handles the day
+      // rollover (progress and the perfect flag reset on a new day) and fires
+      // completeDailySet when the final puzzle lands. Returns true when this
+      // call completed the whole set. A puzzle already counted today is a no-op.
+      recordDailySetProgress: (puzzleId) => {
+        const s = get();
+        const today = new Date().toDateString();
+        const rolled = s.dailySetDate !== today;
+        const done = rolled ? [] : [...s.dailySetCompletedIds];
+        if (!rolled && done.includes(puzzleId)) return false;
+        done.push(puzzleId);
+        set({
+          dailySetDate: today,
+          dailySetCompletedIds: done,
+          dailySetHeartLost: rolled ? false : s.dailySetHeartLost,
+        });
+        if (done.length >= DAILY_SET_SIZE) {
+          get().completeDailySet();
+          return true;
+        }
+        return false;
+      },
+
+      // Notes that a heart was lost while working through today's Daily Set,
+      // which forfeits the perfect-set bonus. Rolls the day over first so a
+      // heart lost before any set puzzle today still counts against a fresh set.
+      noteDailySetHeartLost: () => {
+        const s = get();
+        const today = new Date().toDateString();
+        if (s.dailySetDate === today && s.dailySetHeartLost) return;
+        set({
+          dailySetDate: today,
+          dailySetCompletedIds: s.dailySetDate === today ? s.dailySetCompletedIds : [],
+          dailySetHeartLost: true,
+        });
       },
 
       processHeartRefill: () => {
@@ -1289,6 +1398,9 @@ export const useUserStore = create<UserState>()(
         dailyPuzzleCompletedDate: state.dailyPuzzleCompletedDate,
         dailyPuzzleStreak: state.dailyPuzzleStreak,
         dailyPuzzleLastDate: state.dailyPuzzleLastDate,
+        dailySetDate: state.dailySetDate,
+        dailySetCompletedIds: state.dailySetCompletedIds,
+        dailySetHeartLost: state.dailySetHeartLost,
         soundEnabled: state.soundEnabled,
         hapticsEnabled: state.hapticsEnabled,
         pushPromptedDate: state.pushPromptedDate,

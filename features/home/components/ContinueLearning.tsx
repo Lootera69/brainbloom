@@ -1,56 +1,148 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import {
+  ArrowRight,
+  PlayCircle,
+  Brain,
+  Lightbulb,
+  Atom,
+  Grid2x2,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { categories } from "@/constants/home";
+import { getPublishedByCategory } from "@/services/puzzle-service";
+
+const iconByKey: Record<string, LucideIcon> = {
+  brain: Brain,
+  lightbulb: Lightbulb,
+  atom: Atom,
+  grid: Grid2x2,
+  sparkles: Sparkles,
+};
+
+// 42×42 ring: neutral track + accent progress arc, category icon centered.
+function ProgressRing({
+  progress,
+  color,
+  children,
+}: {
+  progress: number;
+  color: string;
+  children: React.ReactNode;
+}) {
+  const size = 42;
+  const stroke = 3;
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  return (
+    <span className="relative flex shrink-0 items-center justify-center" style={{ width: size, height: size }}>
+      <svg width={size} height={size} className="absolute inset-0 -rotate-90" aria-hidden>
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          fill="none"
+          stroke="var(--border)"
+          strokeWidth={stroke}
+        />
+        {progress > 0 && (
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={r}
+            fill="none"
+            stroke={color}
+            strokeWidth={stroke}
+            strokeLinecap="round"
+            strokeDasharray={c}
+            strokeDashoffset={c * (1 - Math.min(1, progress))}
+          />
+        )}
+      </svg>
+      {children}
+    </span>
+  );
+}
 
 export function ContinueLearning() {
   const lastPlayedCategory = useUserStore((s) => s.lastPlayedCategory);
+  const completedPuzzleIds = useUserStore((s) => s.completedPuzzleIds);
+  const experiencedWonderIds = useUserStore((s) => s.experiencedWonderIds);
+
+  const [total, setTotal] = useState(0);
+  const [done, setDone] = useState(0);
+
+  useEffect(() => {
+    if (!lastPlayedCategory) return;
+    let cancelled = false;
+    (async () => {
+      const puzzles = await getPublishedByCategory(lastPlayedCategory);
+      if (cancelled) return;
+      const completed = new Set([...completedPuzzleIds, ...experiencedWonderIds]);
+      setTotal(puzzles.length);
+      setDone(puzzles.filter((p) => completed.has(p.id)).length);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [lastPlayedCategory, completedPuzzleIds, experiencedWonderIds]);
 
   if (!lastPlayedCategory) return null;
 
   const category = categories.find((c) => c.id === lastPlayedCategory);
   if (!category) return null;
 
+  const Icon = iconByKey[category.icon] ?? Brain;
+  const hasProgress = total > 0;
+  const progress = hasProgress ? done / total : 0;
+  const pct = Math.round(progress * 100);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1, type: "spring", stiffness: 120, damping: 18 }}
     >
-      <div
-        className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/60 dark:border-white/[0.06] bg-white/70 dark:bg-white/[0.03] shadow-lg shadow-black/[0.04] dark:shadow-black/20 backdrop-blur-xl transition-all duration-500 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/[0.06] dark:hover:shadow-black/30"
-      >
-        {/* Ambient glow */}
-        <div
-          className="pointer-events-none absolute -inset-10 opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-30"
-          style={{
-            background: `radial-gradient(circle at 30% 50%, ${category.color}30, transparent 60%)`,
-          }}
-        />
+      <Link href={`/learn?category=${category.id}`}>
+        <div className="group relative flex items-center gap-3 overflow-hidden rounded-[18px] border border-primary/25 bg-gradient-to-r from-primary/[0.14] to-primary/[0.03] px-3 py-2.5 transition-all duration-300 hover:border-primary/40">
+          <ProgressRing progress={progress} color="var(--primary)">
+            <Icon className="size-5" style={{ color: category.color }} />
+          </ProgressRing>
 
-        <div className="relative z-10 flex items-center justify-between p-5 sm:p-6">
-          <div className="flex items-center gap-4">
-            <span
-              className="flex size-13 items-center justify-center rounded-2xl shadow-lg sm:size-14"
-              style={{ 
-                backgroundColor: `${category.color}12`,
-                boxShadow: `0 4px 20px ${category.color}15, inset 0 1px 0 rgba(255,255,255,0.6)`,
-              }}
-            >
-              <Play className="size-6 sm:size-7" style={{ color: category.color }} />
-            </span>
-            <div>
-              <p className="text-[11px] font-medium text-muted-foreground/60 uppercase tracking-wider">Continue Learning</p>
-              <p className="font-heading text-lg font-bold text-foreground sm:text-xl">
-                {category.title}
+          <div className="min-w-0 flex-1">
+            <p className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.06em] text-muted-foreground">
+              <PlayCircle className="size-3 text-primary" />
+              Continue Learning
+            </p>
+            <p className="truncate font-heading text-base font-extrabold leading-tight text-foreground">
+              {category.title}
+            </p>
+            {hasProgress && (
+              <p className="mt-0.5 text-[11px] text-muted-foreground">
+                {done}/{total} solved &nbsp;·&nbsp; {pct}%
               </p>
-            </div>
+            )}
           </div>
-          <ArrowRight className="size-5 text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-foreground" />
+
+          <motion.span
+            animate={{
+              boxShadow: [
+                "0 0 8px rgba(99,102,241,0.25)",
+                "0 0 18px rgba(99,102,241,0.6)",
+              ],
+            }}
+            transition={{ duration: 1.8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+            className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover:scale-105"
+          >
+            <ArrowRight className="size-5" />
+          </motion.span>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 }

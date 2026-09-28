@@ -45,6 +45,9 @@ export interface UserDocument {
   dailyPuzzleCompletedDate: string | null;
   dailyPuzzleStreak: number;
   dailyPuzzleLastDate: string | null;
+  dailySetDate: string | null;
+  dailySetCompletedIds: string[];
+  dailySetHeartLost: boolean;
   soundEnabled: boolean;
   hapticsEnabled: boolean;
   theme: "light" | "dark" | "system";
@@ -118,6 +121,9 @@ export async function loadUserData(uid: string): Promise<Partial<UserDocument> |
       dailyPuzzleCompletedDate: d.dailyPuzzleCompletedDate as string | null ?? null,
       dailyPuzzleStreak: (d.dailyPuzzleStreak as number) ?? 0,
       dailyPuzzleLastDate: d.dailyPuzzleLastDate as string | null ?? null,
+      dailySetDate: d.dailySetDate as string | null ?? null,
+      dailySetCompletedIds: (d.dailySetCompletedIds as string[]) ?? [],
+      dailySetHeartLost: (d.dailySetHeartLost as boolean) ?? false,
       soundEnabled: (d.soundEnabled as boolean) ?? true,
       theme: (d.theme as "light" | "dark" | "system") ?? "system",
       streakStartDate: d.streakStartDate as string | null ?? null,

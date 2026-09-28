@@ -47,6 +47,7 @@ import { Habitat } from "@/components/crayon/Habitat";
 import { hasPremiumAccess, formatExpiry } from "@/services/entitlement-service";
 import { AvatarSelector } from "@/components/avatars/AvatarSelector";
 import { ProfileShopModal } from "@/components/shop/ProfileShopModal";
+import { XpProgressBar } from "@/features/profile/components/XpProgressBar";
 import { AdBanner } from "@/components/ads/AdBanner";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -375,29 +376,7 @@ export default function ProfilePage() {
               transition={{ delay: 0.25 }}
               className="mt-5 w-full max-w-xs"
             >
-              <div className="mb-2 flex items-center justify-between">
-                <div className={`flex items-center gap-1.5 rounded-lg px-3 py-1 ${
-                  isPremium ? "bg-amber-500/15" : "bg-primary/10"
-                }`}>
-                  <Sparkles className={`size-3.5 ${isPremium ? "text-amber-400" : "text-primary"}`} />
-                  <span className={`text-xs font-bold ${isPremium ? "text-amber-400" : "text-primary"}`}>Level {level}</span>
-                </div>
-                <span className="text-[11px] text-muted-foreground">
-                  {xpToNext} XP to next level
-                </span>
-              </div>
-              <div className="h-2 overflow-hidden rounded-full bg-muted">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progress * 100}%` }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className={`h-full rounded-full ${
-                    isPremium
-                      ? "bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500"
-                      : "bg-gradient-to-r from-primary to-secondary"
-                  }`}
-                />
-              </div>
+              <XpProgressBar level={level} progress={progress} xpToNext={xpToNext} premium={isPremium} />
             </motion.div>
 
             {/* Total XP display */}

@@ -175,6 +175,34 @@
   50% { box-shadow: 0 0 22px rgba(129,140,248,0.45), 0 0 60px rgba(129,140,248,0.15); }
 }
 
+/* Drive-world backdrop: twinkling stars + drifting clouds */
+.dw-star {
+  animation-name: dw-twinkle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes dw-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+.dw-cloud {
+  animation-name: dw-drift;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  will-change: transform;
+}
+
+@keyframes dw-drift {
+  0%, 100% { transform: translateX(-16px); }
+  50% { transform: translateX(16px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dw-star, .dw-cloud { animation: none; }
+}
+
 html,
 body {
   height: 100%;

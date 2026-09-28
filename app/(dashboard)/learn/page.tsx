@@ -8,14 +8,14 @@ import {
 } from "lucide-react";
 import { useUserStore, resetHeartsLostFlag, setPuzzleHasLesson } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
-import { CurriculumPath, type LessonProgress } from "@/features/puzzle/components/CurriculumPath";
+import { DriveWorld, type LessonProgress } from "@/features/puzzle/components/drive-world";
 import { LessonView } from "@/features/puzzle/components/LessonView";
 import { PuzzlePlay } from "@/features/puzzle/components/PuzzlePlay";
 import { SectionHeader } from "@/features/home/components/SectionHeader";
 import { GlassCard } from "@/components/ui/glass-card";
 import { type Puzzle } from "@/types/puzzle";
 import { toast } from "sonner";
-import { getDailyPuzzle } from "@/services/daily-puzzle";
+import { getDailySet, isDailyEligibleType, isDailySetEligible } from "@/services/daily-set";
 import { getPublishedByCategory, getPuzzle } from "@/services/puzzle-service";
 import { getWeekStart, getCipherPhase } from "@/services/weekly-cipher";
 import { ErrorBoundary } from "@/components/error-boundary";
@@ -77,7 +77,7 @@ function LearnPage() {
   const checkStreak = useUserStore((s) => s.checkStreak);
   const markPuzzleCompleted = useUserStore((s) => s.markPuzzleCompleted);
   const hasCompletedPuzzle = useUserStore((s) => s.hasCompletedPuzzle);
-  const completeDailyPuzzle = useUserStore((s) => s.completeDailyPuzzle);
+  const recordDailySetProgress = useUserStore((s) => s.recordDailySetProgress);
   const setLastPlayedCategory = useUserStore((s) => s.setLastPlayedCategory);
   const checkAchievements = useUserStore((s) => s.checkAchievements);
   const incrementPuzzlePlayed = useUserStore((s) => s.incrementPuzzlePlayed);
@@ -132,7 +132,7 @@ function LearnPage() {
       const daily = searchParams.get("daily");
       const cipherId = searchParams.get("cipher");
       // Read latest values directly from store to avoid stale closure
-      const { hearts: h, hasCompletedDailyPuzzle: checkDaily } = useUserStore.getState();
+      const { hearts: h } = useUserStore.getState();
 
       if (cipherId) {
         // Cipher is closed for solving on Saturday, and once already solved this
@@ -153,19 +153,48 @@ function LearnPage() {
       }
 
       if (daily === "true") {
-        const puzzle = await getDailyPuzzle();
-        if (puzzle && h > 0 && !checkDaily()) {
-          // The daily puzzle counts toward the free-tier daily limit (strict 3/day)
-          if (!useUserStore.getState().canPlayPuzzle()) {
-            setPaywallType("limit");
-            return;
-          }
-          useUserStore.getState().incrementPuzzlePlayed();
-          setCurrentPuzzle(puzzle);
-          setIsDaily(true);
-          setView("play");
-          setFocusMode(true);
+        const store = useUserStore.getState();
+        // Whole set already done for today — send the player home.
+        if (store.isDailySetComplete()) {
+          router.push("/");
+          return;
         }
+        const puzzleId = searchParams.get("puzzle");
+        let puzzle: Puzzle | null = null;
+        if (puzzleId) {
+          puzzle = await getPuzzle(puzzleId);
+        } else {
+          // Deep link without an id — play the first still-unfinished set puzzle.
+          const set = await getDailySet();
+          const doneIds = store.dailySetCompletedIdsToday();
+          puzzle = set.find((p) => !doneIds.includes(p.id)) ?? set[0] ?? null;
+        }
+        if (!puzzle) {
+          router.push("/");
+          return;
+        }
+        // A puzzle already counted toward today's set never replays for reward.
+        if (store.hasPlayedDailySetPuzzle(puzzle.id)) {
+          router.push("/");
+          return;
+        }
+        const premium = hasPremiumAccess(store.tier, store.subscriptionExpiry);
+        if (!premium && h <= 0) {
+          setPaywallType("hearts");
+          return;
+        }
+        // Daily set puzzles count toward the free-tier daily limit (strict 3/day).
+        if (!store.canPlayPuzzle()) {
+          setPaywallType("limit");
+          return;
+        }
+        store.incrementPuzzlePlayed();
+        resetHeartsLostFlag();
+        setPuzzleHasLesson(false); // daily skips the lesson view
+        setCurrentPuzzle(puzzle);
+        setIsDaily(true);
+        setView("play");
+        setFocusMode(true);
         return;
       }
 
@@ -410,21 +439,44 @@ function LearnPage() {
       const firstTime = markPuzzleCompleted(currentPuzzle.id);
 
       if (isDaily) {
-        const bonusXp = currentPuzzle.xpReward;
-        const totalXp = bonusXp * 2;
-        addXp(totalXp);
-        addGems(5);
-        completeDailyPuzzle();
-        toast.success(`Daily Puzzle completed! +${totalXp} XP (2x bonus) +5 gems`, { position: "top-center" });
-        import("@/services/sound-service").then(({ playDailyComplete, playXp, playGem }) => {
-          playDailyComplete();
-          setTimeout(playXp, 300);
-          setTimeout(playGem, 600);
-        });
-        if (firstTime) {
-          import("@/services/puzzle-service").then(({ incrementCompleted }) =>
-            incrementCompleted(currentPuzzle.id),
-          );
+        const store = useUserStore.getState();
+        const eligible = isDailyEligibleType(currentPuzzle.type);
+        // Guard: a forged ?daily=true, an already-complete set, or a puzzle
+        // already counted today never grants the daily reward.
+        const effectiveDaily =
+          eligible && !store.hasCompletedDailyPuzzle() && !store.hasPlayedDailySetPuzzle(currentPuzzle.id);
+        if (effectiveDaily) {
+          const totalXp = currentPuzzle.xpReward * 2;
+          addXp(totalXp);
+          addGems(5);
+          // Advances set progress; when the final puzzle lands it fires the
+          // streak + perfect-set bonus (applied directly inside the store).
+          const setComplete = recordDailySetProgress(currentPuzzle.id);
+          if (setComplete) {
+            const perfect = !useUserStore.getState().dailySetHeartLost;
+            toast.success(
+              perfect
+                ? `Daily set complete! +${totalXp} XP +5 gems · Perfect bonus +25 XP +10 gems 🎉`
+                : `Daily set complete! +${totalXp} XP +5 gems`,
+              { position: "top-center" },
+            );
+          } else {
+            const remaining = useUserStore.getState().dailySetRemaining();
+            toast.success(
+              `+${totalXp} XP (2x bonus) +5 gems · ${remaining} left in today's set`,
+              { position: "top-center" },
+            );
+          }
+          import("@/services/sound-service").then(({ playDailyComplete, playXp, playGem }) => {
+            playDailyComplete();
+            setTimeout(playXp, 300);
+            setTimeout(playGem, 600);
+          });
+          if (firstTime) {
+            import("@/services/puzzle-service").then(({ incrementCompleted }) =>
+              incrementCompleted(currentPuzzle.id),
+            );
+          }
         }
       } else if (firstTime) {
         addXp(xpEarned);
@@ -479,7 +531,7 @@ function LearnPage() {
     }
 
     setView("browse");
-  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, completeDailyPuzzle, currentPuzzle, isDaily, setFocusMode, lessonProgress, catPuzzles, router, advanceToNextPuzzle]);
+  }, [addXp, addGems, checkStreak, logActivity, markPuzzleCompleted, recordDailySetProgress, currentPuzzle, isDaily, setFocusMode, lessonProgress, catPuzzles, router, advanceToNextPuzzle]);
 
   const handleBack = () => {
     setView("browse");
@@ -815,8 +867,8 @@ function LearnPage() {
                   </div>
                 )}
 
-                {/* Curriculum */}
-                <CurriculumPath category={selectedCat!} onStartPuzzle={handleStartPuzzle} />
+                {/* Curriculum — DriveWorld road */}
+                <DriveWorld category={selectedCat!} onStartPuzzle={handleStartPuzzle} />
               </>
             )}
           </motion.div>
@@ -947,7 +999,7 @@ function PuzzlePlayView({
             className="mb-4 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary/10 to-purple-500/10 px-4 py-2.5 text-sm font-semibold"
           >
             <Sparkles className="size-4 text-primary" />
-            Daily Puzzle &middot; 2x XP &middot; +5 gems
+            Daily Set &middot; 2x XP &middot; +5 gems
           </motion.div>
         )}
 
@@ -980,6 +1032,13 @@ function PuzzlePlayView({
               const st = useUserStore.getState().tier;
               const sExp = useUserStore.getState().subscriptionExpiry;
               const premium = hasPremiumAccess(st, sExp);
+              // A heart is lost exactly when a non-premium player gets it wrong
+              // with hearts in hand. A heart lost while working a Daily Set
+              // puzzle forfeits the perfect-set bonus.
+              const heartLost = !premium && useUserStore.getState().hearts > 0;
+              if (isDaily && heartLost && currentPuzzle && isDailySetEligible(currentPuzzle)) {
+                useUserStore.getState().noteDailySetHeartLost();
+              }
               // eslint-disable-next-line react-hooks/rules-of-hooks
               useHeart();
               if (!premium && useUserStore.getState().hearts <= 0) {

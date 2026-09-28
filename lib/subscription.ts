@@ -4,6 +4,15 @@ export type PremiumFeature = (typeof PREMIUM_FEATURES)[number];
 export const ADS_MAX_PER_DAY = 3;
 export const REWARDED_AD_HEART_AMOUNT = 1;
 
+// Daily Set (3-a-day) — a shared, deterministic set of fast puzzles that rolls
+// each UTC day. Completing the whole set grants a perfect-set bonus (unless a
+// heart was lost that day). Premium users can mix the set from up to
+// DAILY_SET_CATEGORY_LIMIT categories.
+export const DAILY_SET_SIZE = 3;
+export const DAILY_SET_PERFECT_XP_BONUS = 25;
+export const DAILY_SET_PERFECT_GEM_BONUS = 10;
+export const DAILY_SET_CATEGORY_LIMIT = 3;
+
 export type Tier = "free" | "premium";
 
 export interface ShopProduct {

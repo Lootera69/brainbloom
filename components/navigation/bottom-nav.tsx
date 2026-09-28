@@ -6,6 +6,7 @@ import { motion, useMotionValue, animate } from "framer-motion";
 import { House, Brain, Trophy, User } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { EventHangingBats } from "@/features/home/components/EventHangingBats";
 
 const navItems = [
   { href: "/", label: "Home", icon: House },
@@ -98,7 +99,7 @@ export function BottomNav() {
       }}
     >
       <div ref={containerRef} className="relative flex h-full items-center px-2">
-        {navItems.map(({ href, label, icon: Icon }, i) => {
+        <EventHangingBats />        {navItems.map(({ href, label, icon: Icon }, i) => {
           const isTarget = onNav && i === displayIndex;
           return (
             <Link

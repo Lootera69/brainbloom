@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Gift, Zap, Gem, Snowflake } from "lucide-react";
+import { Gift, Zap, Gem, Snowflake, Sparkles } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
 import { cn } from "@/lib/utils";
@@ -167,87 +167,157 @@ function CountUpNumber({ target, rewardType, gradient, delay = 0 }: { target: nu
   );
 }
 
-function GiftBox({ phase, fadingOut }: { phase: "idle" | "shaking" | "opening"; fadingOut: boolean }) {
+function RadialFlash() {
+  return (
+    <motion.div
+      initial={{ scale: 0.3, opacity: 0.9 }}
+      animate={{ scale: 2.4, opacity: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="pointer-events-none absolute size-32 rounded-full"
+      style={{ background: "radial-gradient(circle, rgba(255,255,255,0.9), rgba(245,158,11,0.5) 40%, transparent 70%)" }}
+    />
+  );
+}
+
+function ShockwaveRing() {
+  return (
+    <motion.div
+      initial={{ width: 40, height: 40, opacity: 0.7 }}
+      animate={{ width: 240, height: 240, opacity: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className="pointer-events-none absolute rounded-full border-2"
+      style={{ borderColor: "rgba(245,158,11,0.6)" }}
+    />
+  );
+}
+
+function OrbBeams() {
+  return (
+    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+      {[0, 1, 2, 3, 4, 5].map((i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: [0, 0.7, 0], scaleX: [0, 1.2, 0.3] }}
+          transition={{ duration: 0.9, delay: i * 0.05, ease: "easeOut" }}
+          className="absolute h-1 origin-center"
+          style={{
+            width: 120 + i * 20,
+            background: "linear-gradient(90deg, transparent, rgba(251,191,36,0.7), transparent)",
+            transform: `rotate(${i * 60}deg)`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function OrbitingSparkles() {
+  return (
+    <motion.div
+      animate={{ rotate: 360 }}
+      transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+      className="pointer-events-none absolute inset-0"
+    >
+      {[0, 1, 2, 3, 4, 5].map((i) => {
+        const angle = (i / 6) * Math.PI * 2;
+        const x = Math.cos(angle) * 62;
+        const y = Math.sin(angle) * 62;
+        return (
+          <motion.span
+            key={i}
+            animate={{ opacity: [0.2, 1, 0.2], scale: [0.7, 1.2, 0.7] }}
+            transition={{ duration: 1.8, delay: i * 0.25, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute left-1/2 top-1/2 size-1.5 rounded-full bg-amber-200"
+            style={{
+              transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+              boxShadow: "0 0 6px rgba(251,191,36,0.9)",
+            }}
+          />
+        );
+      })}
+    </motion.div>
+  );
+}
+
+function EnergyOrb({ phase, fadingOut }: { phase: "idle" | "shaking" | "opening"; fadingOut: boolean }) {
   const isOpen = phase === "opening";
-  const lidColor = "#f59e0b";
-  const baseColor = "#d97706";
-  const ribbonColor = "#ef4444";
 
   return (
-    <div className="relative flex items-center justify-center">
+    <div className="relative flex items-center justify-center" style={{ width: 160, height: 160 }}>
+      {/* Rotating aura ring behind the orb */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        className="absolute rounded-full"
+        style={{
+          width: 150,
+          height: 150,
+          background:
+            "conic-gradient(from 0deg, transparent, rgba(245,158,11,0.35), transparent, rgba(129,140,248,0.3), transparent)",
+          filter: "blur(6px)",
+          opacity: 0.7,
+        }}
+      />
+
+      {isOpen && <RadialFlash />}
+      {isOpen && <ShockwaveRing />}
+      {isOpen && <OrbBeams />}
+
+      {/* The orb */}
       <motion.div
         animate={
-          phase === "idle"
-            ? { y: [0, -3, 0] }
-            : phase === "shaking"
-              ? { rotate: [0, -8, 8, -6, 6, 0], x: [0, 3, -3, 2, -2, 0] }
-              : { scale: 0.85 }
+          fadingOut
+            ? { opacity: 0, scale: 0.7 }
+            : isOpen
+              ? { scale: 1.35 }
+              : { scale: [1, 1.06, 1] }
         }
         transition={
-          phase === "idle"
-            ? { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
-            : phase === "shaking"
-              ? { duration: 0.5, ease: "easeInOut" }
-              : { duration: 0.4 }
+          fadingOut
+            ? { duration: 0.6, ease: "easeOut" }
+            : isOpen
+              ? { duration: 0.5, ease: "easeOut" }
+              : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }
         }
         className="relative"
+        style={{ width: 132, height: 132 }}
       >
-        <motion.svg
-          width="100" height="112" viewBox="0 0 80 90"
-          initial={{ opacity: 1, scale: 1, y: 0 }}
-          animate={fadingOut ? { opacity: 0, scale: 0.7, y: 20 } : { opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+        {/* Outer soft bloom */}
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{ boxShadow: "0 0 60px 12px rgba(245,158,11,0.4)" }}
+        />
+        {/* Rotating conic halo */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: "conic-gradient(from 0deg, #fbbf24, #f59e0b, #818cf8, #22d3ee, #fbbf24)",
+          }}
+        />
+        {/* Thin white rim */}
+        <div
+          className="absolute inset-[3px] rounded-full"
+          style={{ border: "1.5px solid rgba(255,255,255,0.7)" }}
+        />
+        {/* Radial glass core */}
+        <div
+          className="absolute inset-[6px] flex items-center justify-center rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at 35% 30%, rgba(255,255,255,0.92), rgba(255,255,255,0.15) 45%, rgba(245,158,11,0.28) 100%)",
+          }}
         >
-          {/* Lid */}
-          <motion.g
-            initial={{ y: 0, rotate: 0, opacity: 1 }}
-            animate={isOpen ? { y: -45, rotate: -20, opacity: 0 } : { y: 0, rotate: 0, opacity: 1 }}
-            transition={isOpen ? { duration: 0.6, ease: "easeOut" } : { duration: 0.3 }}
-          >
-            <rect x="8" y="10" width="64" height="22" rx="4" fill={lidColor} />
-            <rect x="8" y="10" width="64" height="22" rx="4" fill="url(#lidGrad)" />
-            <rect x="30" y="10" width="20" height="22" rx="2" fill={ribbonColor} opacity="0.85" />
-            <rect x="36" y="4" width="8" height="34" rx="4" fill={ribbonColor} opacity="0.9" />
-            <motion.ellipse cx="30" cy="6" rx="10" ry="5" fill={ribbonColor}
-              animate={phase === "shaking" ? { rx: [10, 8, 10] } : {}} transition={{ duration: 0.2 }} opacity="0.85" />
-            <motion.ellipse cx="50" cy="6" rx="10" ry="5" fill={ribbonColor}
-              animate={phase === "shaking" ? { rx: [10, 8, 10] } : {}} transition={{ duration: 0.2, delay: 0.1 }} opacity="0.85" />
-            <circle cx="40" cy="6" r="4" fill="#dc2626" />
-            <rect x="12" y="13" width="20" height="4" rx="2" fill="white" opacity="0.2" />
-            <rect x="12" y="20" width="14" height="3" rx="1.5" fill="white" opacity="0.12" />
-          </motion.g>
-
-          {/* Base */}
-          <motion.g animate={isOpen ? { y: 5 } : { y: 0 }} transition={{ duration: 0.3 }}>
-            <rect x="6" y="34" width="68" height="50" rx="4" fill={baseColor} />
-            <rect x="6" y="34" width="68" height="50" rx="4" fill="url(#baseGrad)" />
-            <rect x="30" y="34" width="20" height="50" rx="2" fill={ribbonColor} opacity="0.85" />
-            <rect x="6" y="52" width="68" height="14" rx="2" fill={ribbonColor} opacity="0.9" />
-            <rect x="10" y="38" width="18" height="4" rx="2" fill="white" opacity="0.15" />
-            <line x1="6" y1="34" x2="74" y2="34" stroke="#92400e" strokeWidth="1.5" opacity="0.3" />
-          </motion.g>
-
-          <defs>
-            <linearGradient id="lidGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#fbbf24" />
-              <stop offset="100%" stopColor="#f59e0b" />
-            </linearGradient>
-            <linearGradient id="baseGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#f59e0b" />
-              <stop offset="100%" stopColor="#d97706" />
-            </linearGradient>
-          </defs>
-        </motion.svg>
+          <Sparkles
+            className="size-10 text-white"
+            style={{ filter: "drop-shadow(0 0 6px rgba(255,255,255,0.85))" }}
+          />
+        </div>
       </motion.div>
 
-      {phase === "idle" && (
-        <motion.div
-          animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -inset-4 rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%)" }}
-        />
-      )}
+      <OrbitingSparkles />
     </div>
   );
 }
@@ -260,6 +330,15 @@ function RewardReveal({ reward }: { reward: Reward }) {
   return (
     <div className="relative flex flex-col items-center py-2">
       <SonarRipple color={color} />
+
+      <motion.p
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="mb-3 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground"
+      >
+        Your Reward
+      </motion.p>
 
       <motion.div
         initial={{ scale: 0, rotate: -180, y: 30 }}
@@ -442,39 +521,47 @@ export function DailyRewardChest() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 40, scale: 0.9 }}
               transition={{ type: "spring", stiffness: 200, damping: 25 }}
-              className="relative w-full max-w-sm overflow-hidden rounded-3xl border bg-card shadow-2xl"
+              className="relative w-full max-w-sm overflow-hidden rounded-3xl bg-gradient-to-br from-amber-300/70 via-amber-500/40 to-indigo-400/50 p-[1.5px] shadow-2xl"
               style={{ pointerEvents: "none" }}
             >
-              <div className="flex flex-col items-center px-8 pt-14 pb-12">
-                <GiftBox phase={phase} fadingOut={boxFading} />
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: boxFading ? 0 : 1 }}
-                  className="mt-6 text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground"
-                >
-                  {phase === "idle" && "Preparing your gift..."}
-                  {phase === "shaking" && "Shaking..."}
-                  {phase === "opening" && "Opening..."}
-                </motion.p>
-              </div>
+              <div className="relative overflow-hidden rounded-[calc(1.5rem-1.5px)] bg-card/95 backdrop-blur-2xl">
+                {/* Ambient gold bloom */}
+                <div
+                  className="pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2"
+                  style={{ width: 320, height: 320, background: "radial-gradient(circle, rgba(245,158,11,0.18), transparent 70%)" }}
+                />
 
-              {showBeams && <LightBeams />}
-
-              <AnimatePresence mode="wait">
-                {reward && (
-                  <motion.div
-                    key="reward"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ delay: 0.05, type: "spring", stiffness: 100, damping: 15 }}
-                    className="absolute inset-0 flex items-center justify-center px-8 pt-12 pb-10"
+                <div className="relative flex flex-col items-center px-8 pt-12 pb-12">
+                  <EnergyOrb phase={phase} fadingOut={boxFading} />
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: boxFading ? 0 : 1 }}
+                    className="mt-6 text-center text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground"
                   >
-                    <ConfettiExplosion />
-                    <RewardReveal reward={reward} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    {phase === "idle" && "A Reward Awaits"}
+                    {phase === "shaking" && "Charging…"}
+                    {phase === "opening" && "Unlocking…"}
+                  </motion.p>
+                </div>
+
+                {showBeams && <LightBeams />}
+
+                <AnimatePresence mode="wait">
+                  {reward && (
+                    <motion.div
+                      key="reward"
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ delay: 0.05, type: "spring", stiffness: 100, damping: 15 }}
+                      className="absolute inset-0 flex items-center justify-center px-8 pt-12 pb-10"
+                    >
+                      <ConfettiExplosion />
+                      <RewardReveal reward={reward} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </motion.div>
           </motion.div>
         )}

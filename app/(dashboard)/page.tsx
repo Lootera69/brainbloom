@@ -6,47 +6,80 @@ import {
   categories,
 } from "@/constants/home";
 
-import { DailyChallengeCard } from "@/features/home/components/DailyChallengeCard";
+import { DailySetCard } from "@/features/home/components/DailySetCard";
 import { CategoryCard } from "@/features/home/components/CategoryCard";
 import { StreakBar } from "@/features/home/components/StreakBar";
 import { ContinueLearning } from "@/features/home/components/ContinueLearning";
 import { RecentActivity } from "@/features/home/components/RecentActivity";
-import { DailyGoalCard } from "@/features/home/components/DailyGoalCard";
 import { DailyRewardChest } from "@/features/home/components/DailyRewardChest";
 import { WeeklyInsights } from "@/features/home/components/WeeklyInsights";
 import { LeaderboardCard } from "@/features/home/components/LeaderboardCard";
 import { SectionHeader } from "@/features/home/components/SectionHeader";
 import { DailyQuests } from "@/features/home/components/DailyQuests";
-import { PushReminderBanner } from "@/features/home/components/PushReminderBanner";
 import { WeeklyCipherCard } from "@/features/home/components/WeeklyCipherCard";
-import { getDailyPuzzle } from "@/services/daily-puzzle";
+import { getDailySet } from "@/services/daily-set";
 import { motion } from "framer-motion";
-import { Play, Heart } from "lucide-react";
+import { MonitorPlay, PlayCircle } from "lucide-react";
+import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
 import { AdModal } from "@/components/paywall/AdModal";
-import { AdBanner } from "@/components/ads/AdBanner";
 import { type Puzzle } from "@/types/puzzle";
 import { hasPremiumAccess } from "@/services/entitlement-service";
-import { REWARDED_AD_HEART_AMOUNT } from "@/lib/subscription";
+import { REWARDED_AD_HEART_AMOUNT, ADS_MAX_PER_DAY } from "@/lib/subscription";
+import { useActiveMoment } from "@/hooks/use-active-moment";
+import { EventBanner } from "@/features/home/components/EventBanner";
+import { EventAmbientLayer } from "@/features/home/components/EventAmbientLayer";
+import { EventSpecialPuzzle } from "@/features/home/components/EventSpecialPuzzle";
+import { EventStringLights } from "@/features/home/components/EventStringLights";
+import { EventCornerDecor } from "@/features/home/components/EventCornerDecor";
+import { fromArgb, rgba, type Rgba } from "@/lib/events/event-colors";
 
 export default function HomePage() {
-  const [dailyPuzzle, setDailyPuzzle] = useState<Puzzle | null>(null);
-  const [dailyLoading, setDailyLoading] = useState(true);
+  const [dailySet, setDailySet] = useState<Puzzle[]>([]);
+  const [dailySetLoading, setDailySetLoading] = useState(true);
+  const [dailySetCategories, setDailySetCategories] = useState<string[]>([]);
   const [showAd, setShowAd] = useState(false);
   const hearts = useUserStore((s) => s.hearts);
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
   const canWatchAd = useUserStore((s) => s.canWatchAd);
   const incrementAdWatched = useUserStore((s) => s.incrementAdWatched);
+  const adsWatchedToday = useUserStore((s) => s.adsWatchedToday);
+  const adsWatchDate = useUserStore((s) => s.adsWatchDate);
   const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
+  const today = new Date().toDateString();
+  const adsLeftToday = ADS_MAX_PER_DAY - (adsWatchDate === today ? adsWatchedToday : 0);
+
+  // Active Moment palette recolours the ambient aurora when a seasonal event is
+  // live; falls back to the default violet/pink (light) & indigo/fuchsia (dark).
+  const { palette } = useActiveMoment();
+  const orb = (core: Rgba, mid: Rgba, a1: number, a2: number) =>
+    `radial-gradient(circle, ${rgba(core, a1)}, ${rgba(mid, a2)}, transparent 70%)`;
+  const acc = palette ? fromArgb(palette.accent) : null;
+  const o1 = palette ? fromArgb(palette.orb1) : null;
+  const o3 = palette ? fromArgb(palette.orb3) : null;
+  const bTo = palette ? fromArgb(palette.bannerTo) : null;
+  const lightOrb1 = acc && o1 ? orb(acc, o1, 0.35, 0.15)
+    : "radial-gradient(circle, rgba(167,139,250,0.35), rgba(139,92,246,0.15), transparent 70%)";
+  const lightOrb2 = bTo && o3 ? orb(bTo, o3, 0.3, 0.12)
+    : "radial-gradient(circle, rgba(244,114,182,0.3), rgba(236,72,153,0.12), transparent 70%)";
+  const darkOrb1 = acc && o1 ? orb(acc, o1, 0.5, 0.22)
+    : "radial-gradient(circle, rgba(99,102,241,0.5), rgba(79,70,229,0.22), transparent 70%)";
+  const darkOrb2 = bTo && o3 ? orb(bTo, o3, 0.42, 0.18)
+    : "radial-gradient(circle, rgba(217,70,239,0.42), rgba(168,85,247,0.18), transparent 70%)";
 
   useEffect(() => {
+    let cancelled = false;
     (async () => {
-      const puzzle = await getDailyPuzzle();
-      setDailyPuzzle(puzzle);
-      setDailyLoading(false);
+      setDailySetLoading(true);
+      const set = await getDailySet(dailySetCategories);
+      if (!cancelled) {
+        setDailySet(set);
+        setDailySetLoading(false);
+      }
     })();
-  }, []);
+    return () => { cancelled = true; };
+  }, [dailySetCategories]);
 
   return (
     <main className="relative mx-auto min-h-screen max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
@@ -56,13 +89,13 @@ export default function HomePage() {
           animate={{ y: [0, -40, 0], x: [0, 30, 0], scale: [1, 1.15, 1] }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -top-48 -left-48 size-[600px] rounded-full opacity-70 blur-[50px]"
-          style={{ background: "radial-gradient(circle, rgba(167,139,250,0.35), rgba(139,92,246,0.15), transparent 70%)" }}
+          style={{ background: lightOrb1 }}
         />
         <motion.div
           animate={{ y: [0, 35, 0], x: [0, -25, 0], scale: [1, 1.1, 1] }}
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           className="absolute -bottom-40 -right-40 size-[500px] rounded-full opacity-60 blur-[45px]"
-          style={{ background: "radial-gradient(circle, rgba(244,114,182,0.3), rgba(236,72,153,0.12), transparent 70%)" }}
+          style={{ background: lightOrb2 }}
         />
       </div>
 
@@ -72,13 +105,13 @@ export default function HomePage() {
           animate={{ y: [0, -45, 0], x: [0, 35, 0], scale: [1, 1.18, 1] }}
           transition={{ duration: 19, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -top-52 -left-52 size-[640px] rounded-full opacity-70 blur-[55px]"
-          style={{ background: "radial-gradient(circle, rgba(99,102,241,0.5), rgba(79,70,229,0.22), transparent 70%)" }}
+          style={{ background: darkOrb1 }}
         />
         <motion.div
           animate={{ y: [0, 40, 0], x: [0, -30, 0], scale: [1, 1.12, 1] }}
           transition={{ duration: 23, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           className="absolute -bottom-44 -right-44 size-[540px] rounded-full opacity-60 blur-[50px]"
-          style={{ background: "radial-gradient(circle, rgba(217,70,239,0.42), rgba(168,85,247,0.18), transparent 70%)" }}
+          style={{ background: darkOrb2 }}
         />
         {/* Top vignette for OLED depth */}
         <div
@@ -87,19 +120,27 @@ export default function HomePage() {
         />
       </div>
 
-      <StreakBar />
+      {/* Event "Moments" ambient particle field — behind cards, above the orbs. */}
+      <EventAmbientLayer />
 
-      <PushReminderBanner />
+      <div className="relative">
+        <StreakBar />
+        <EventStringLights />
+      </div>
+
+      <EventBanner />
 
       <DailyRewardChest />
 
-      <div className="mb-6 grid gap-6 sm:mb-8 md:grid-cols-3">
-        <div className="md:col-span-1">
-          <DailyGoalCard />
-        </div>
-        <div className="md:col-span-2">
-          <DailyChallengeCard puzzle={dailyPuzzle} loading={dailyLoading} />
-        </div>
+      <EventSpecialPuzzle />
+
+      <div className="mb-6 sm:mb-8">
+        <DailySetCard
+          set={dailySet}
+          loading={dailySetLoading}
+          categories={dailySetCategories}
+          onCategoriesChange={setDailySetCategories}
+        />
       </div>
 
       <div className="mb-6">
@@ -114,14 +155,23 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-6"
         >
-          <button
+          <GlassCard
+            hover
+            intensity="light"
             onClick={() => setShowAd(true)}
-            className="flex w-full items-center justify-center gap-2 rounded-xl border border-rose-200 dark:border-rose-500/30 bg-gradient-to-r from-rose-50 to-pink-50 dark:from-rose-500/5 dark:to-pink-500/5 px-4 py-3 text-sm font-medium text-rose-600 dark:text-rose-400 transition-all hover:from-rose-100 hover:to-pink-100 dark:hover:from-rose-500/10 dark:hover:to-pink-500/10 active:scale-[0.98] shadow-sm"
+            className="flex cursor-pointer items-center gap-3 p-4"
           >
-            <Play className="size-4" />
-            Watch an Ad for 1 Free Heart
-            <Heart className="size-4 fill-rose-400 text-rose-400" />
-          </button>
+            <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-rose-500/10">
+              <MonitorPlay className="size-[22px] text-rose-500" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-bold">Watch an Ad for 1 Free Heart</p>
+              <p className="text-xs text-muted-foreground">
+                Hearts left today: {adsLeftToday}
+              </p>
+            </div>
+            <PlayCircle className="size-[26px] shrink-0 text-rose-500" />
+          </GlassCard>
         </motion.div>
       )}
 
@@ -139,9 +189,7 @@ export default function HomePage() {
       )}
 
       <div className="mb-8 sm:mb-10">
-        <Link href="/learn">
-          <ContinueLearning />
-        </Link>
+        <ContinueLearning />
       </div>
 
       <section className="mb-8 sm:mb-10">
@@ -170,7 +218,8 @@ export default function HomePage() {
         </div>
       </div>
 
-      <AdBanner className="mt-4" />
+      {/* Event "Moments" signature corner flourish — on top, scrolls with content. */}
+      <EventCornerDecor />
     </main>
   );
 }
