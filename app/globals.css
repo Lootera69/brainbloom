@@ -175,7 +175,17 @@
   50% { box-shadow: 0 0 22px rgba(129,140,248,0.45), 0 0 60px rgba(129,140,248,0.15); }
 }
 
-/* Drive-world backdrop: twinkling stars + drifting clouds */
+/* Drive-world backdrop: twinkling stars (clouds move on scroll only) */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 .dw-star {
   animation-name: dw-twinkle;
   animation-iteration-count: infinite;
@@ -187,20 +197,27 @@
   50% { opacity: 1; transform: scale(1.15); }
 }
 
-.dw-cloud {
-  animation-name: dw-drift;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  will-change: transform;
-}
-
-@keyframes dw-drift {
-  0%, 100% { transform: translateX(-16px); }
-  50% { transform: translateX(16px); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .dw-star, .dw-cloud { animation: none; }
+  .dw-star { animation: none; }
+  .dw-bird, .dw-bird-rev, .dw-bob { display: none; }
+}
+
+/* DriveWorld birds — slow horizontal crossing + gentle bob (see Backdrop.tsx) */
+.dw-bird { animation: dw-fly var(--dur, 36s) linear var(--delay, 0s) infinite; }
+.dw-bird-rev { animation: dw-fly-rev var(--dur, 36s) linear var(--delay, 0s) infinite; }
+.dw-bob { animation: dw-bob var(--bdur, 3s) ease-in-out var(--delay, 0s) infinite; }
+
+@keyframes dw-fly {
+  from { transform: translateX(-14vw); }
+  to { transform: translateX(114vw); }
+}
+@keyframes dw-fly-rev {
+  from { transform: translateX(114vw); }
+  to { transform: translateX(-14vw); }
+}
+@keyframes dw-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
 }
 
 html,

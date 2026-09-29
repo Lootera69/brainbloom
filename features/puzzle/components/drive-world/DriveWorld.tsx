@@ -6,8 +6,8 @@ import { useTheme } from "next-themes";
 import { BookOpen, BookX, Zap, ArrowRight, CheckCircle2 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { EmptyState } from "@/components/ui/empty-state";
-import { SkeletonCurriculum } from "@/components/ui/skeleton";
-import { getPublishedByCategory, categoryHasLessons } from "@/services/puzzle-service";
+import { SkeletonRoad } from "@/components/ui/skeleton";
+import { getPublishedByCategory } from "@/services/puzzle-service";
 import { useUserStore } from "@/store/user-store";
 import { hasPremiumAccess } from "@/services/entitlement-service";
 import { type Puzzle } from "@/types/puzzle";
@@ -49,8 +49,6 @@ interface Props {
   onStartPuzzle: (puzzle: Puzzle, progress?: LessonProgress) => void;
 }
 
-// PLACEHOLDER_BODY
-
 export function DriveWorld({ category, onStartPuzzle }: Props) {
   const [puzzles, setPuzzles] = useState<Puzzle[]>([]);
   const [loading, setLoading] = useState(true);
@@ -69,15 +67,68 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
   const isDark = mounted && resolvedTheme === "dark";
-  const hour = useMemo(() => (mounted ? new Date().getHours() : 12), [mounted]);
+  // TEMP DEV OVERRIDE: localStorage.setItem("brainbloom-drive-hour","6"|"12"|"18"|"23")
+  // REVERT: remove the localStorage check to restore real clock time.
+  const hour = useMemo(() => {
+    if (typeof window !== "undefined") {
+      const forced = localStorage.getItem("brainbloom-drive-hour");
+      if (forced != null && forced !== "") return Number(forced);
+    }
+    return mounted ? new Date().getHours() : 12;
+  }, [mounted]);
 
-  // Scroll container measurements + parallax scroll position.
+  // Scroll container measurements + scroll-linked refs. Scroll position never
+  // sets React state — it feeds refs/rigs, so gliding never re-renders the
+  // world (only the rare banner-crossing set below does).
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const [width, setWidth] = useState(0);
   const [viewH, setViewH] = useState(0);
-  const [scrollY, setScrollY] = useState(0);
-  const rafPending = useRef(false);
+  const scrollYRef = useRef(0);
   const didAutoScroll = useRef(false);
+  // Virtual smooth scroll: wheel deltas accumulate into `target`, a rAF loop
+  // lerps scrollTop toward it (frame-rate normalised exponential easing).
+  const smooth = useRef({ target: 0, last: 0, raf: 0, lastT: 0 });
+  const scrollApi = useRef<{ scrollTo: (y: number, tau?: number) => void } | null>(null);
+  const centersRef = useRef<Pt[]>([]);
+  const [hiddenBanners, setHiddenBanners] = useState<ReadonlySet<number>>(() => new Set());
+
+  // Full-bleed + fill metrics: the road escapes the centred page container to
+  // span the whole main scroller (sidebar-aware), and fills every remaining
+  // pixel of height so the world covers the screen instead of sitting in a box.
+  const [box, setBox] = useState<{ h: number; ml: number; mr: number } | null>(null);
+  const measure = useCallback(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const scroller = root.closest("main");
+    if (!scroller) return;
+    const sRect = scroller.getBoundingClientRect();
+    const rRect = root.getBoundingClientRect();
+    const padB = parseFloat(getComputedStyle(scroller).paddingBottom) || 0;
+    const ml = Math.max(0, rRect.left - sRect.left);
+    const mr = Math.max(0, sRect.left + scroller.clientWidth - rRect.right);
+    // Desktop (nav hidden via md:) paints into main's vestigial 4rem nav pad
+    // — the browse view's negative bottom margin absorbs it so no scroll
+    // appears. Mobile reserves the pad so the road stops above BottomNav.
+    const navHidden =
+      typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches;
+    const reserve = navHidden ? 0 : padB;
+    const road = scrollRef.current;
+    const topInContent = road
+      ? road.getBoundingClientRect().top - sRect.top + scroller.scrollTop
+      : rRect.top - sRect.top + scroller.scrollTop + 34; // label row + gap (skeleton)
+    const h = Math.max(320, scroller.clientHeight - reserve - topInContent);
+    setBox((prev) =>
+      prev && prev.h === h && prev.ml === ml && prev.mr === mr ? prev : { h, ml, mr },
+    );
+  }, []);
+
+  useEffect(() => {
+    measure();
+    const onResize = () => measure();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [measure, loading, hasLessons]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -85,33 +136,25 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
     const ro = new ResizeObserver(() => {
       setWidth(el.clientWidth);
       setViewH(el.clientHeight);
+      measure();
     });
     ro.observe(el);
     setWidth(el.clientWidth);
     setViewH(el.clientHeight);
     return () => ro.disconnect();
-  }, [loading, hasLessons]);
-
-  const onScroll = useCallback(() => {
-    if (rafPending.current) return;
-    rafPending.current = true;
-    requestAnimationFrame(() => {
-      rafPending.current = false;
-      setScrollY(scrollRef.current?.scrollTop ?? 0);
-    });
-  }, []);
+  }, [loading, hasLessons, measure]);
 
   useEffect(() => {
     let cancelled = false;
     didAutoScroll.current = false;
     (async () => {
       setLoading(true);
-      const [all, h] = await Promise.all([
-        getPublishedByCategory(category),
-        categoryHasLessons(category),
-      ]);
+      // One cached read per open — the category service serves memory /
+      // persisted data with zero server reads inside its TTL, so reopening
+      // a category never refetches the bank.
+      const all = await getPublishedByCategory(category);
       if (cancelled) return;
-      setHasLessons(h);
+      setHasLessons(all.some((p) => p.lessonOrder != null));
       setPuzzles(all.filter((p) => p.type !== "cipher"));
       setLoading(false);
     })();
@@ -140,6 +183,7 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
     () => (width > 0 ? nodes.map((_, i) => nodeCenter(i, width)) : []),
     [nodes, width],
   );
+  centersRef.current = centers;
   const samples = useMemo(() => sampleRoad(centers), [centers]);
   const wh = useMemo(() => worldHeight(nodes.length), [nodes.length]);
   const paths = useMemo(
@@ -156,14 +200,145 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
   const allCompleted =
     groups.length > 0 && groups.every((g) => g.puzzles.every(isCompleted));
 
-  // Centre the frontier once the world is measured (native scroll, no camera).
+  // Group banners hide as their node slides under the sticky section pill —
+  // a rare threshold set, so ordinary scrolling never triggers a re-render.
+  const recomputeHiddenBanners = useCallback((y: number) => {
+    const cs = centersRef.current;
+    const next = new Set<number>();
+    for (let i = 0; i < cs.length; i++) {
+      if (cs[i].y - y < 96) next.add(i);
+    }
+    setHiddenBanners((prev) => {
+      if (prev.size === next.size) {
+        let same = true;
+        next.forEach((i) => {
+          if (!prev.has(i)) same = false;
+        });
+        if (same) return prev;
+      }
+      return next;
+    });
+  }, []);
+
+  // ── Ultra-smooth virtual scroll ──────────────────────────────────────────
+  // Wheel input accumulates into a target the rAF loop eases toward (buttery
+  // on desktop mouse + trackpad); touch keeps native momentum; at the road's
+  // edges the wheel is handed to the page scroller so nothing dead-ends.
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const s = smooth.current;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    s.target = el.scrollTop;
+    s.last = el.scrollTop;
+    s.raf = 0;
+    s.lastT = 0;
+    let tau = 90;
+
+    const maxScroll = () => Math.max(0, el.scrollHeight - el.clientHeight);
+
+    const tick = (now: number) => {
+      const raw = now - s.lastT;
+      const dt = raw > 0 && raw < 64 ? raw : 16;
+      s.lastT = now;
+      const cur = el.scrollTop;
+      if (Math.abs(cur - s.last) > 1) {
+        // External scroll (keyboard, find-in-page, native touch) → adopt it.
+        s.target = cur;
+        s.last = cur;
+      }
+      const diff = s.target - cur;
+      if (Math.abs(diff) < 0.35) {
+        el.scrollTop = s.target;
+        s.last = s.target;
+        s.raf = 0;
+        return;
+      }
+      el.scrollTop = cur + diff * (1 - Math.exp(-dt / tau));
+      s.last = el.scrollTop;
+      s.raf = requestAnimationFrame(tick);
+    };
+
+    const kick = () => {
+      if (s.raf) return;
+      s.lastT = performance.now();
+      s.raf = requestAnimationFrame(tick);
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      if (e.ctrlKey || reduced) return; // pinch-zoom / reduced motion → native
+      let dy = e.deltaY;
+      if (e.deltaMode === 1) dy *= 16; // lines (Firefox)
+      else if (e.deltaMode === 2) dy *= el.clientHeight; // pages
+      if (!dy) return;
+      const max = maxScroll();
+      const atLimit =
+        (dy > 0 && s.target >= max - 0.5) || (dy < 0 && s.target <= 0.5);
+      e.preventDefault();
+      if (atLimit) {
+        // Road is at its edge — keep the page moving under the cursor.
+        if (Math.abs(s.target - el.scrollTop) < 2) {
+          const main = el.closest("main");
+          if (main) main.scrollTop += dy;
+        }
+        return;
+      }
+      s.target = Math.max(0, Math.min(max, s.target + dy));
+      tau = 90;
+      kick();
+    };
+
+    const onScroll = () => {
+      const y = el.scrollTop;
+      scrollYRef.current = y;
+      if (!s.raf) {
+        s.target = y;
+        s.last = y;
+      }
+      recomputeHiddenBanners(y);
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("scroll", onScroll);
+    const initRaf = requestAnimationFrame(() => recomputeHiddenBanners(el.scrollTop));
+
+    scrollApi.current = {
+      scrollTo(y, smoothTau = 90) {
+        const target = Math.max(0, Math.min(maxScroll(), y));
+        if (reduced) {
+          el.scrollTop = target;
+          s.target = target;
+          s.last = target;
+          scrollYRef.current = target;
+          recomputeHiddenBanners(target);
+          return;
+        }
+        tau = smoothTau;
+        s.target = target;
+        recomputeHiddenBanners(target);
+        kick();
+      },
+    };
+
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(initRaf);
+      if (s.raf) cancelAnimationFrame(s.raf);
+      s.raf = 0;
+      scrollApi.current = null;
+    };
+  }, [showRoad, recomputeHiddenBanners]);
+
+  // Glide the frontier into view once the world is measured — never a hard
+  // jump, so arriving on the road always feels like pulling up to your car.
   useEffect(() => {
     if (didAutoScroll.current) return;
     const el = scrollRef.current;
     if (!el || !centers.length || !viewH) return;
-    const target = centers[frontierIdx]?.y ?? 0;
-    el.scrollTop = Math.max(0, target - viewH * 0.55);
-    setScrollY(el.scrollTop);
+    const target = Math.max(0, (centers[frontierIdx]?.y ?? 0) - viewH * 0.55);
+    if (scrollApi.current) scrollApi.current.scrollTo(target, 220);
+    else el.scrollTop = target;
     didAutoScroll.current = true;
   }, [centers, frontierIdx, viewH]);
 
@@ -191,7 +366,7 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
         : `Lesson ${gi + 1}`;
       const labelRight = center.x <= width / 2;
       const entranceDelay = Math.min(i, 10) * 0.03;
-      const base = { center, isFrontier: i === frontierIdx, labelRight, entranceDelay, bannerHidden: false };
+      const base = { center, isFrontier: i === frontierIdx, labelRight, entranceDelay };
 
       if (n.kind === "groupDone") {
         return {
@@ -252,7 +427,18 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
     });
   }, [nodes, centers, groups, isCompleted, frontierIdx, width, palette, onStartPuzzle, progressFor]);
 
-  if (loading) return <SkeletonCurriculum />;
+  // Full-bleed box: spans the main scroller edge-to-edge and fills the height
+  // down to the nav pad — falls back to a viewport calc before first measure.
+  const bleedStyle: React.CSSProperties = box
+    ? { height: box.h, marginLeft: -box.ml, marginRight: -box.mr }
+    : { height: "calc(100dvh - 190px)" };
+
+  if (loading)
+    return (
+      <div ref={rootRef}>
+        <SkeletonRoad style={bleedStyle} />
+      </div>
+    );
   if (puzzles.length === 0) {
     return (
       <EmptyState
@@ -272,7 +458,7 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
     : 0;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4" ref={rootRef}>
       <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
         <BookOpen className="size-3.5" />
         {hasLessons ? "Learning Path" : "Puzzles"}
@@ -281,11 +467,10 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
       {showRoad && (
         <div
           ref={scrollRef}
-          onScroll={onScroll}
-          className="relative overflow-y-auto overflow-x-hidden overscroll-contain rounded-3xl border border-border/60"
-          style={{ height: "min(720px, calc(100dvh - 210px))" }}
+          className="scrollbar-none relative overflow-y-auto overflow-x-hidden overscroll-contain"
+          style={bleedStyle}
         >
-          <Backdrop scrollY={scrollY} viewH={viewH} isDark={isDark} hour={hour} />
+          <Backdrop scrollRef={scrollYRef} viewH={viewH} isDark={isDark} hour={hour} />
 
           <div className="relative z-10" style={{ width, height: wh }}>
             {/* SECTION · UNIT banner */}
@@ -362,10 +547,7 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
 
             {/* Checkpoints */}
             {visuals.map((v, i) => (
-              <CheckpointNode
-                key={i}
-                v={{ ...v, bannerHidden: v.center.y - scrollY < 96 }}
-              />
+              <CheckpointNode key={i} v={v} bannerHidden={hiddenBanners.has(i)} />
             ))}
 
             {/* Player car at the frontier */}
@@ -385,16 +567,18 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
               </motion.div>
             )}
 
-            {/* Bouncing START flag over the frontier */}
+            {/* Bouncing START flag just below the frontier (mirrors Flutter's Go
+                prompt — placing it above collided with the section pill at the
+                top of the world) */}
             {frontierCenter && !allCompleted && nodes[frontierIdx]?.kind === "subLesson" && (
               <motion.div
                 className="pointer-events-none absolute z-30 -translate-x-1/2 rounded-full bg-white px-3 py-1 text-[11px] font-black uppercase tracking-widest text-primary shadow-lg"
-                style={{ left: frontierCenter.x, top: frontierCenter.y - NODE_RADIUS - 60 }}
+                style={{ left: frontierCenter.x, top: frontierCenter.y + NODE_RADIUS + 14 }}
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
               >
+                <span className="absolute left-1/2 bottom-full h-0 w-0 -translate-x-1/2 border-x-[6px] border-b-[7px] border-x-transparent border-b-white" />
                 Start
-                <span className="absolute left-1/2 top-full h-0 w-0 -translate-x-1/2 border-x-[6px] border-t-[7px] border-x-transparent border-t-white" />
               </motion.div>
             )}
           </div>

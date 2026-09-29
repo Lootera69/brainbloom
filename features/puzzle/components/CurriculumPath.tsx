@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Lock, CheckCircle2, Zap, ArrowRight, ChevronDown, BookX } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
-import { getPublishedByCategory, categoryHasLessons } from "@/services/puzzle-service";
+import { getPublishedByCategory } from "@/services/puzzle-service";
 import { useUserStore } from "@/store/user-store";
 import { type Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";
@@ -52,12 +52,20 @@ export function CurriculumPath({ category, onStartPuzzle }: Props) {
   }
 
   useEffect(() => {
+    let cancelled = false;
     (async () => {
-      const [all, h] = await Promise.all([getPublishedByCategory(category), categoryHasLessons(category)]);
-      setHasLessons(h);
+      setLoading(true);
+      // One cached read per open — the category service serves memory /
+      // persisted data with zero server reads inside its TTL.
+      const all = await getPublishedByCategory(category);
+      if (cancelled) return;
+      setHasLessons(all.some((p) => p.lessonOrder != null));
       setPuzzles(all.filter((p) => p.type !== "cipher"));
       setLoading(false);
     })();
+    return () => {
+      cancelled = true;
+    };
   }, [category]);
 
   const lessonPuzzles = useMemo(() =>

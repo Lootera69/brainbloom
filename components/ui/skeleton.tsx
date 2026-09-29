@@ -280,6 +280,105 @@ function SkeletonCurriculum({ className }: { className?: string }) {
   );
 }
 
+// Loading preview for the DriveWorld road — same full-bleed geometry as the
+// real screen: sky + hills + winding ghost road + pulsing checkpoints + sweep.
+const ROAD_GHOST_NODES = [
+  { x: 50, y: 14, d: 0 },
+  { x: 30, y: 36, d: 0.15 },
+  { x: 62, y: 58, d: 0.3 },
+  { x: 38, y: 80, d: 0.45 },
+];
+
+function SkeletonRoad({ style }: { style?: React.CSSProperties }) {
+  return (
+    <div className="space-y-4">
+      <Skeleton className="h-4 w-32 rounded-full" />
+      <div
+        className="relative overflow-hidden"
+        style={{ height: "calc(100dvh - 190px)", ...style }}
+      >
+        {/* Sky */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#7EC8E3] to-[#BFE3F0] dark:from-[#10233A] dark:to-[#17324D]" />
+
+        {/* Cloud ghosts */}
+        <span className="absolute left-[10%] top-[7%] h-5 w-16 rounded-full bg-white/50 blur-[2px]" />
+        <span className="absolute right-[12%] top-[15%] h-6 w-24 rounded-full bg-white/40 blur-[2px]" />
+        <span className="absolute left-[30%] top-[24%] h-4 w-14 rounded-full bg-white/35 blur-[2px]" />
+
+        {/* Hills pinned to the ground */}
+        <svg
+          className="absolute inset-x-0 bottom-0 h-[42%] w-full dark:hidden"
+          viewBox="0 0 100 40"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <path d="M0 20 C 22 8, 38 26, 58 18 S 86 8, 100 18 L100 40 L0 40 Z" fill="#9BD6A0" opacity="0.85" />
+          <path d="M0 28 C 25 18, 45 32, 65 26 S 90 18, 100 26 L100 40 L0 40 Z" fill="#7BC48A" opacity="0.9" />
+        </svg>
+        <svg
+          className="absolute inset-x-0 bottom-0 hidden h-[42%] w-full dark:block"
+          viewBox="0 0 100 40"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <path d="M0 20 C 22 8, 38 26, 58 18 S 86 8, 100 18 L100 40 L0 40 Z" fill="#16324A" opacity="0.85" />
+          <path d="M0 28 C 25 18, 45 32, 65 26 S 90 18, 100 26 L100 40 L0 40 Z" fill="#1E4258" opacity="0.9" />
+        </svg>
+
+        {/* Winding ghost road */}
+        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden>
+          <path
+            d="M50 8 C 32 20, 68 30, 44 44 S 26 62, 60 74 S 46 90, 42 97"
+            fill="none"
+            stroke="rgba(0,0,0,0.14)"
+            strokeWidth="7"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
+          <path
+            d="M50 8 C 32 20, 68 30, 44 44 S 26 62, 60 74 S 46 90, 42 97"
+            fill="none"
+            stroke="rgba(255,255,255,0.14)"
+            strokeWidth="5"
+            strokeDasharray="10 14"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+
+        {/* Section pill ghost */}
+        <div className="absolute left-1/2 top-3 h-11 w-44 -translate-x-1/2 rounded-full bg-white/25 dark:bg-white/10" />
+
+        {/* Checkpoint ghosts */}
+        {ROAD_GHOST_NODES.map((n) => (
+          <div
+            key={`${n.x}-${n.y}`}
+            className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-slate-700/35 ring-4 ring-white/15 dark:bg-slate-900/60 dark:ring-white/10"
+            style={{
+              left: `${n.x}%`,
+              top: `${n.y}%`,
+              width: 68,
+              height: 68,
+              animation: "breathe 1.6s ease-in-out infinite",
+              animationDelay: `${n.d}s`,
+            }}
+          />
+        ))}
+
+        {/* Sweep */}
+        <div
+          className="pointer-events-none absolute inset-0 animate-shimmer"
+          style={{
+            backgroundImage:
+              "linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.28) 50%, transparent 70%)",
+            backgroundSize: "200% 100%",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export {
   Skeleton,
   SkeletonCard,
@@ -298,4 +397,5 @@ export {
   SkeletonForm,
   SkeletonFilterBar,
   SkeletonCurriculum,
+  SkeletonRoad,
 };

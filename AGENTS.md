@@ -278,7 +278,7 @@ Stored in Zustand with persist middleware. Key fields:
 
 ### 1. Puzzle Engine
 - **8 types**: multiple-choice, true-false, crossword, type-answer, sudoku, riddle, wonder, cipher
-- **Data service** (`services/puzzle-service.ts`): CRUD with Firestore + localStorage fallback
+- **Data service** (`services/puzzle-service.ts`): CRUD with Firestore + localStorage fallback. Player category opens use a per-category path — one auto-indexed `where("category", ...)` query (published-filtered + sorted in memory), served from memory/localStorage cache for 30 min (`brainbloom-cat-{cat}` + `brainbloom-cat-ts`), single-flight dedup. Road components fetch once per open and derive `hasLessons` locally (never `Promise.all` two reads). Full-collection `getPuzzles()` is Studio/browse-only, also single-flight + persisted (`brainbloom-puzzles-ts`). `clearPuzzlesCache()` (Studio mutations only) drops memory + persisted timestamps.
 - **Play components**: `PuzzlePlay`, `CrosswordPlay`, `TypeAnswerPlay`, `SudokuPlay`, `RiddlePlay`, `WonderPlay`, `CipherPlay`
   - All show inline result card after answer (green=correct, red=wrong) with explanation fields
   - Hearts deducted only on wrong answer (not on start/retry). `onWrongAttempt` callback fires.

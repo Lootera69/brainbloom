@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { NODE_RADIUS } from "./constants";
 import { type Pt } from "./geometry";
@@ -13,7 +14,6 @@ export interface NodeVisual {
   banner?: { text: string; locked: boolean };
   subLabel?: { text: string; dim: boolean };
   disabled: boolean;
-  bannerHidden: boolean;
   labelRight: boolean;
   entranceDelay: number;
   onActivate: () => void;
@@ -21,18 +21,27 @@ export interface NodeVisual {
 
 const SIZE = NODE_RADIUS * 2;
 
-export function CheckpointNode({ v }: { v: NodeVisual }) {
+export const CheckpointNode = memo(function CheckpointNode({
+  v,
+  bannerHidden,
+}: {
+  v: NodeVisual;
+  /** Fade the group banner as its node slides under the sticky section pill. */
+  bannerHidden: boolean;
+}) {
   const { center } = v;
   return (
     <>
       {/* Group banner */}
-      {v.banner && !v.bannerHidden && (
+      {v.banner && (
         <div
-          className="absolute z-10 -translate-x-1/2 truncate rounded-xl px-2.5 py-1 text-center text-[12px] font-extrabold tracking-tight text-white shadow-md"
+          className="absolute z-10 -translate-x-1/2 truncate rounded-xl px-2.5 py-1 text-center text-[12px] font-extrabold tracking-tight text-white shadow-md transition-opacity duration-300 ease-out"
           style={{
             left: center.x,
             top: center.y - NODE_RADIUS - 30,
             maxWidth: 160,
+            opacity: bannerHidden ? 0 : 1,
+            pointerEvents: bannerHidden ? "none" : undefined,
             background: v.banner.locked ? "rgba(58,65,82,0.85)" : "color-mix(in oklab, var(--primary) 95%, transparent)",
           }}
         >
@@ -137,4 +146,4 @@ export function CheckpointNode({ v }: { v: NodeVisual }) {
       </motion.button>
     </>
   );
-}
+});

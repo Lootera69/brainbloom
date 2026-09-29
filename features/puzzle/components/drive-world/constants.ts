@@ -61,22 +61,25 @@ export interface SkyPalette {
   sky: [string, string];
   /** Back + front rolling-hill layers. */
   hills: [string, string];
-  /** "night" draws stars, "day" draws clouds, "dusk" draws neither. */
-  phase: "night" | "dusk" | "day";
+  /** night = moon + stars; dawn/dusk = low sun + birds; day = clouds + sun. */
+  phase: "night" | "dawn" | "day" | "dusk";
 }
 
 /**
- * Time-of-day + theme → backdrop palette, mirroring `_BackdropPainter`.
- * night = h<6 || h>=20; dusk = 17≤h<20 || 5≤h<7; else day. In dark mode a
+ * Time-of-day + theme → backdrop palette.
+ * night = h<5 || h>=21 (moon + stars); dawn = 5≤h<9 (early-morning sun +
+ * birds); dusk = 17≤h<21 (setting sun + birds); else day. In dark mode a
  * daytime sky is swapped for a deep teal so the near-black canvas is preserved.
  */
 export function skyPalette(hour: number, isDark: boolean): SkyPalette {
-  const night = hour < 6 || hour >= 20;
-  const dusk = (hour >= 17 && hour < 20) || (hour >= 5 && hour < 7);
+  const night = hour < 5 || hour >= 21;
+  const dawn = hour >= 5 && hour < 9;
+  const dusk = hour >= 17 && hour < 21;
   const hills: [string, string] =
     isDark || night ? ["#16324A", "#1E4258"] : ["#9BD6A0", "#7BC48A"];
   if (night) return { sky: ["#0B1026", "#141B3A"], hills, phase: "night" };
-  if (dusk) return { sky: ["#3A2E5A", "#B56576"], hills, phase: "dusk" };
+  if (dawn) return { sky: ["#AFC4E6", "#FFD4A8"], hills, phase: "dawn" };
+  if (dusk) return { sky: ["#3A2E5A", "#D97A55"], hills, phase: "dusk" };
   if (isDark) return { sky: ["#10233A", "#17324D"], hills, phase: "day" };
   return { sky: ["#7EC8E3", "#BFE3F0"], hills, phase: "day" };
 }

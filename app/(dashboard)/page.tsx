@@ -19,7 +19,7 @@ import { DailyQuests } from "@/features/home/components/DailyQuests";
 import { WeeklyCipherCard } from "@/features/home/components/WeeklyCipherCard";
 import { getDailySet } from "@/services/daily-set";
 import { motion } from "framer-motion";
-import { MonitorPlay, PlayCircle } from "lucide-react";
+import { MonitorPlay, PlayCircle, ArrowRight } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
 import { AdModal } from "@/components/paywall/AdModal";
@@ -193,10 +193,22 @@ export default function HomePage() {
       </div>
 
       <section className="mb-8 sm:mb-10">
-        <SectionHeader title="Explore Categories" subtitle="Pick a category to start learning" />
+        <SectionHeader
+          title="Explore Categories"
+          subtitle="Pick a category to start learning"
+          action={
+            <Link
+              href="/learn"
+              className="group flex items-center gap-1.5 rounded-full border border-white/60 bg-white/70 px-3.5 py-1.5 text-xs font-semibold text-muted-foreground shadow-sm backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:text-foreground hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.03]"
+            >
+              See all
+              <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </Link>
+          }
+        />
 
-        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {categories.map((category, i) => (
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
+          {categories.filter((category) => category.id !== "wonders").map((category, i) => (
             <Link key={category.id} href={`/learn?category=${category.id}`}>
               <CategoryCard
                 {...category}

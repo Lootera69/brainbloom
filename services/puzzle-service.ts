@@ -9,6 +9,7 @@ import {
   updateDoc,
   deleteDoc,
   query,
+  where,
   orderBy,
   Timestamp,
   increment,
@@ -30,13 +31,15 @@ function getLocalPuzzles(): Puzzle[] {
   }
 }
 
-function saveLocalPuzzles(puzzles: Puzzle[]) {
-  if (typeof window === "undefined") return;
+function saveLocalPuzzles(puzzles: Puzzle[]): boolean {
+  if (typeof window === "undefined") return false;
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(puzzles));
+    return true;
   } catch {
     // Large banks exceed the ~5MB quota — Firestore stays source of truth.
     console.warn("Local puzzle cache skipped (storage quota).");
+    return false;
   }
 }
 
@@ -152,6 +155,66 @@ const CACHE_TTL = 1_800_000;
 // 30 minutes — players never mutate puzzles, and every Studio mutation calls
 // clearPuzzlesCache(), so longer TTL only cuts full-collection refetches.
 // At ~5k docs per fetch this is the single biggest free-tier lever.
+const PUZZLES_TS_KEY = "brainbloom-puzzles-ts";
+let puzzlesInflight: Promise<Puzzle[]> | null = null;
+
+// Player category path: opening one category must never refetch the whole
+// bank. One auto-indexed `where("category", ...)` query reads only that
+// category's docs; memory + localStorage caches (30 min) make repeat opens
+// — even across reloads — cost zero reads.
+const CAT_KEY_PREFIX = "brainbloom-cat-";
+const CAT_TS_KEY = "brainbloom-cat-ts";
+const categoryCache = new Map<string, { data: Puzzle[]; ts: number }>();
+const categoryInflight = new Map<string, Promise<Puzzle[]>>();
+
+function sortCategory(list: Puzzle[]): Puzzle[] {
+  return list.sort((a, b) => {
+    const go = (a.lessonGroupOrder ?? 999) - (b.lessonGroupOrder ?? 999);
+    if (go !== 0) return go;
+    return (a.lessonOrder ?? 999) - (b.lessonOrder ?? 999);
+  });
+}
+
+function getCategoryTsMap(): Record<string, number> {
+  if (typeof window === "undefined") return {};
+  try {
+    return JSON.parse(localStorage.getItem(CAT_TS_KEY) ?? "{}") as Record<string, number>;
+  } catch {
+    return {};
+  }
+}
+
+function setCategoryTs(category: string, ts: number) {
+  if (typeof window === "undefined") return;
+  try {
+    const map = getCategoryTsMap();
+    map[category] = ts;
+    localStorage.setItem(CAT_TS_KEY, JSON.stringify(map));
+  } catch {
+    // Quota pressure — memory cache still covers this session.
+  }
+}
+
+function getLocalCategory(category: string): Puzzle[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(`${CAT_KEY_PREFIX}${category}`);
+    if (raw) return JSON.parse(raw) as Puzzle[];
+  } catch {
+    // Corrupt entry — fall through to the shared bank.
+  }
+  return getLocalPuzzles().filter((p) => p.category === category);
+}
+
+function saveLocalCategory(category: string, puzzles: Puzzle[]): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    localStorage.setItem(`${CAT_KEY_PREFIX}${category}`, JSON.stringify(puzzles));
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 async function getFirestorePuzzles(): Promise<Puzzle[]> {
   const { db } = getFirebase();
@@ -161,35 +224,86 @@ async function getFirestorePuzzles(): Promise<Puzzle[]> {
   return snap.docs.map((d) => puzzleFromFirestore(d.id, d.data() as Record<string, unknown>));
 }
 
+async function getFirestoreCategory(category: string): Promise<Puzzle[]> {
+  const { db } = getFirebase();
+  if (!db) return [];
+  const q = query(collection(db, "puzzles"), where("category", "==", category));
+  const snap = await getDocs(q);
+  return snap.docs.map((d) => puzzleFromFirestore(d.id, d.data() as Record<string, unknown>));
+}
+
 export function clearPuzzlesCache() {
   puzzlesCache = null;
+  puzzlesInflight = null;
   puzzleByIdCache.clear();
+  categoryCache.clear();
+  categoryInflight.clear();
+  if (typeof window !== "undefined") {
+    try {
+      localStorage.removeItem(PUZZLES_TS_KEY);
+      localStorage.removeItem(CAT_TS_KEY);
+    } catch {
+      // Storage unavailable — memory caches are already cleared.
+    }
+  }
+}
+
+function mergeByUpdatedAt(base: Puzzle[], extra: Puzzle[]): Puzzle[] {
+  const merged = [...base];
+  for (const lp of extra) {
+    const idx = merged.findIndex((p) => p.id === lp.id);
+    if (idx >= 0) {
+      if (lp.updatedAt > merged[idx].updatedAt) merged[idx] = lp;
+    } else {
+      merged.push(lp);
+    }
+  }
+  return merged;
 }
 
 export async function getPuzzles(): Promise<Puzzle[]> {
   if (puzzlesCache && Date.now() - puzzlesCache.ts < CACHE_TTL) {
     return puzzlesCache.data;
   }
-  const local = getLocalPuzzles();
-  if (!isFirestoreAvailable()) return local;
-
-  try {
-    const firestore = await getFirestorePuzzles();
-    // Merge: prefer whichever version is newer by updatedAt
-    const merged = [...firestore];
-    for (const lp of local) {
-      const idx = merged.findIndex((p) => p.id === lp.id);
-      if (idx >= 0) {
-        if (lp.updatedAt > merged[idx].updatedAt) merged[idx] = lp;
-      } else {
-        merged.push(lp);
-      }
+  // Single-flight: concurrent callers (StrictMode, parallel components)
+  // share one full-collection read instead of each firing their own.
+  if (puzzlesInflight) return puzzlesInflight;
+  puzzlesInflight = (async () => {
+    const local = getLocalPuzzles();
+    if (!isFirestoreAvailable()) return local;
+    // Cold boot with a fresh persisted bank — zero server reads.
+    let savedTs = 0;
+    try {
+      savedTs = Number(localStorage.getItem(PUZZLES_TS_KEY)) || 0;
+    } catch {
+      savedTs = 0;
     }
-    puzzlesCache = { data: merged, ts: Date.now() };
-    return merged;
-  } catch (e) {
-    console.error("Firestore getPuzzles failed:", e);
-    return local;
+    if (local.length > 0 && Date.now() - savedTs < CACHE_TTL) {
+      puzzlesCache = { data: local, ts: savedTs };
+      return local;
+    }
+    try {
+      const firestore = await getFirestorePuzzles();
+      // Merge: prefer whichever version is newer by updatedAt
+      const merged = mergeByUpdatedAt(firestore, local);
+      puzzlesCache = { data: merged, ts: Date.now() };
+      if (saveLocalPuzzles(merged)) {
+        try {
+          localStorage.setItem(PUZZLES_TS_KEY, String(Date.now()));
+        } catch {
+          // Quota pressure — memory cache still covers this session.
+        }
+      }
+      return merged;
+    } catch (e) {
+      console.error("Firestore getPuzzles failed:", e);
+      return local;
+    }
+  })();
+  try {
+    return await puzzlesInflight;
+  } finally {
+    puzzlesInflight = null;
   }
 }
 
@@ -204,13 +318,40 @@ export async function categoryHasLessons(category: string): Promise<boolean> {
 }
 
 export async function getPublishedByCategory(category: string): Promise<Puzzle[]> {
-  const all = await getPublishedPuzzles();
-  return all.filter((p) => p.category === category)
-    .sort((a, b) => {
-      const go = (a.lessonGroupOrder ?? 999) - (b.lessonGroupOrder ?? 999);
-      if (go !== 0) return go;
-      return (a.lessonOrder ?? 999) - (b.lessonOrder ?? 999);
-    });
+  const now = Date.now();
+  const mem = categoryCache.get(category);
+  if (mem && now - mem.ts < CACHE_TTL) return mem.data;
+  const inflight = categoryInflight.get(category);
+  if (inflight) return inflight;
+  const p = (async () => {
+    const local = getLocalCategory(category);
+    const savedTs = getCategoryTsMap()[category] ?? 0;
+    // Fresh persisted category — serve it with zero server reads.
+    if (local.length > 0 && now - savedTs < CACHE_TTL) {
+      const published = sortCategory(local.filter((q) => q.published));
+      categoryCache.set(category, { data: published, ts: savedTs });
+      return published;
+    }
+    if (!isFirestoreAvailable()) return sortCategory(local.filter((q) => q.published));
+    try {
+      const server = await getFirestoreCategory(category);
+      // Merge: prefer whichever version is newer by updatedAt
+      const merged = mergeByUpdatedAt(server, local);
+      const published = sortCategory(merged.filter((q) => q.published));
+      categoryCache.set(category, { data: published, ts: Date.now() });
+      if (saveLocalCategory(category, published)) setCategoryTs(category, Date.now());
+      return published;
+    } catch (e) {
+      console.error("Firestore getPublishedByCategory failed:", e);
+      return sortCategory(local.filter((q) => q.published));
+    }
+  })();
+  categoryInflight.set(category, p);
+  try {
+    return await p;
+  } finally {
+    categoryInflight.delete(category);
+  }
 }
 
 export async function getPuzzle(id: string): Promise<Puzzle | null> {

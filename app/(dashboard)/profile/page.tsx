@@ -282,6 +282,14 @@ export default function ProfilePage() {
           </>
         )}
         <GlassCard className={`relative p-6 sm:p-8 ${isPremium ? "shadow-lg shadow-amber-500/10" : ""}`}>
+          <button
+            onClick={() => setShowShare(true)}
+            aria-label="Share stats"
+            title="Share stats"
+            className="absolute right-3 top-3 z-10 flex size-9 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary transition-all hover:bg-primary/20 active:scale-95"
+          >
+            <Share2 className="size-4" />
+          </button>
           <div className="flex flex-col items-center text-center">
             <motion.div
               initial={{ scale: 0 }}
@@ -389,18 +397,6 @@ export default function ProfilePage() {
               <TrendingUp className="size-3" />
               {xp.toLocaleString()} XP earned
             </motion.p>
-
-            {/* Share Stats button */}
-            <motion.button
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              onClick={() => setShowShare(true)}
-              className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl border border-primary/20 bg-primary/10 px-4 text-sm font-semibold text-primary transition-all hover:bg-primary/20 active:scale-[0.98]"
-            >
-              <Share2 className="size-4" />
-              Share Stats
-            </motion.button>
           </div>
         </GlassCard>
       </motion.section>
@@ -461,26 +457,26 @@ export default function ProfilePage() {
                   intensity="light"
                   hover={isClickable}
                   className={cn(
-                    "relative flex h-full flex-col items-center justify-center gap-2.5 p-4 text-center overflow-hidden",
+                    "relative flex h-full items-center gap-2.5 overflow-hidden p-3 sm:gap-3 sm:p-3.5",
                     isClickable && "cursor-pointer",
                   )}
                   onClick={isClickable ? () => setProfileShop(label.toLowerCase() as "gems" | "hearts") : undefined}
                 >
                   <div className={cn("absolute inset-0 bg-gradient-to-b opacity-60", gradient)} />
-                  <span className={cn("relative flex size-11 items-center justify-center rounded-2xl ring-1", bg, ring)}>
-                    <Icon className={cn("size-5", color)} />
+                  <span className={cn("relative flex size-8 shrink-0 items-center justify-center rounded-xl ring-1 sm:size-9", bg, ring)}>
+                    <Icon className={cn("size-4", color)} />
                   </span>
-                  <div className="relative">
-                    <p className="text-[11px] font-medium text-muted-foreground">{label}</p>
-                    <p className="font-heading text-xl font-bold tabular-nums leading-tight mt-0.5">
+                  <div className="relative min-w-0 flex-1">
+                    <p className="truncate text-[10px] font-medium leading-none text-muted-foreground sm:text-[11px]">{label}</p>
+                    <p className="mt-1 flex items-center gap-1 truncate font-heading text-sm font-bold leading-none tabular-nums sm:text-base">
                       {label === "Streak" ? `${streak}d` : label === "Hearts" ? (isPremium ? "∞" : hearts) : label === "Total XP" ? xp.toLocaleString() : gems}
+                      {label === "Streak" && streakFreezes > 0 && (
+                        <span className="flex shrink-0 items-center gap-0.5 text-[10px] font-medium text-blue-400/70">
+                          <Snowflake className="size-3" />
+                          {streakFreezes}
+                        </span>
+                      )}
                     </p>
-                    {label === "Streak" && streakFreezes > 0 && (
-                      <span className="flex items-center justify-center gap-1 text-[10px] font-medium text-blue-400/70 mt-0.5">
-                        <Snowflake className="size-3" />
-                        {streakFreezes} freeze{streakFreezes !== 1 ? "s" : ""}
-                      </span>
-                    )}
                   </div>
                 </GlassCard>
               </motion.div>
