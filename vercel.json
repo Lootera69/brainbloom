@@ -1,4 +1,7 @@
 {
+  "env": {
+    "NODE_OPTIONS": "--experimental-require-module"
+  },
   "crons": [
     {
       "path": "/api/cron/hourly",
