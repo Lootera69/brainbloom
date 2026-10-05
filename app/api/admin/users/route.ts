@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getAdminApp } from "@/lib/push-send";
+import { NextRequest } from "next/server";
+import { privateJson, requireAdmin } from "@/lib/server/staff-auth";
 import { getFirestore } from "firebase-admin/firestore";
 
 export const runtime = "nodejs";
@@ -28,41 +28,9 @@ export interface AdminUserSummary {
 }
 
 export async function GET(req: NextRequest) {
-  // Fail closed: no secret = no access.
-  const secret = process.env.CRON_SECRET;
-  if (!secret) {
-    return NextResponse.json({ ok: false, error: "Server not configured." }, { status: 500 });
-  }
-
-  // Verify the caller is an admin via the invite code.
-  const code = req.nextUrl.searchParams.get("code");
-  if (!code) {
-    return NextResponse.json({ ok: false, error: "Missing code." }, { status: 401 });
-  }
-
-  const app = getAdminApp();
-  if (!app) {
-    return NextResponse.json({ ok: false, error: "Firebase Admin not configured." }, { status: 500 });
-  }
-
-  const db = getFirestore(app);
-
-  // Verify the code is an admin code.
-  try {
-    const settingsSnap = await db.doc("settings/studio").get();
-    if (settingsSnap.exists) {
-      const codes = (settingsSnap.data()?.codes ?? []) as { code?: string; role?: string }[];
-      const entry = codes.find((c) => c.code === code);
-      if (!entry || entry.role !== "admin") {
-        return NextResponse.json({ ok: false, error: "Forbidden." }, { status: 403 });
-      }
-    } else {
-      return NextResponse.json({ ok: false, error: "Forbidden." }, { status: 403 });
-    }
-  } catch (e) {
-    console.error("Failed to verify admin code:", e);
-    return NextResponse.json({ ok: false, error: "Auth verification failed." }, { status: 500 });
-  }
+  const admin = await requireAdmin(req);
+  if (!admin.ok) return admin.response;
+  const db = getFirestore(admin.app);
 
   // Fetch all user documents.
   try {
@@ -98,9 +66,9 @@ export async function GET(req: NextRequest) {
       });
     });
 
-    return NextResponse.json({ ok: true, users, total: users.length });
+    return privateJson({ ok: true, users, total: users.length });
   } catch (e) {
     console.error("Failed to fetch users:", e);
-    return NextResponse.json({ ok: false, error: "Failed to fetch users." }, { status: 500 });
+    return privateJson({ ok: false, error: "Failed to fetch users." }, 500);
   }
 }

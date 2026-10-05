@@ -1,7 +1,7 @@
 "use client";
 
 import { getFirebase } from "@/services/firebase";
-import { doc, getDoc, setDoc, runTransaction, Timestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
 import { getPublishedPuzzles, getPuzzle } from "@/services/puzzle-service";
 import type { Puzzle } from "@/types/puzzle";
 
@@ -77,17 +77,7 @@ async function rememberCipherWeek(entry: CipherHistoryEntry) {
   }
   const merged = mergeHistory([entry], local);
   saveLocalHistory(merged);
-  if (isFirestoreAvailable()) {
-    try {
-      const { db } = getFirebase();
-      if (db) {
-        const ref = doc(db, "settings", "cipher-history");
-        await setDoc(ref, { weeks: merged, updatedAt: Timestamp.fromMillis(Date.now()) }, { merge: true });
-      }
-    } catch (e) {
-      console.error("Firestore rememberCipherWeek failed:", e);
-    }
-  }
+
 }
 
 export async function getCipherHistory(): Promise<CipherHistoryEntry[]> {
@@ -188,23 +178,6 @@ async function autoPickWeeklyCipher(weekStart: string): Promise<Puzzle | null> {
     weekStart,
     setBy: "auto",
   };
-
-  if (isFirestoreAvailable()) {
-    try {
-      const { db } = getFirebase();
-      if (db) {
-        const ref = doc(db, "settings", "weekly-cipher");
-        await runTransaction(db, async (transaction) => {
-          const snap = await transaction.get(ref);
-          if (!snap.exists() || (snap.data() as WeeklyCipherDoc).weekStart !== weekStart) {
-            transaction.set(ref, { ...docData, updatedAt: Timestamp.fromMillis(Date.now()) }, { merge: true });
-          }
-        });
-      }
-    } catch (e) {
-      console.error("Firestore autoPick weekly cipher failed:", e);
-    }
-  }
 
   saveLocalWeekly(docData);
   rememberCipherWeek(docData);

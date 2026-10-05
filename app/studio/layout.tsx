@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight, Eye, EyeOff, XCircle, Loader2, Users, KeyRound, CalendarDays } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getStudioSession, setStudioSession, clearStudioSession } from "@/services/puzzle-service";
-import { verifyStudioCredentials } from "@/services/studio-settings";
-import { setStudioRole, getStudioRole, clearStudioRole } from "@/services/puzzle-service";
+import { signInStaff, signInStaffWithGoogle, signOutStaff, watchStaffSession } from "@/services/staff-session";
+import { setStudioRole, clearStudioRole } from "@/services/puzzle-service";
 import { Toaster } from "sonner";
 
 const navItems = [
@@ -26,7 +26,8 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   const [authed, setAuthed] = useState(false);
   const [inviteCode, setInviteCode] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
   const [mounted, setMounted] = useState(false);
   const [role, setRole] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -43,47 +44,50 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   }, []);
 
   useEffect(() => {
-    setMounted(true);
-    const session = getStudioSession();
-    if (session) {
-      setAuthed(true);
-      setRole(getStudioRole());
-    }
+    clearStudioSession();
+    clearStudioRole();
+    return watchStaffSession((session) => {
+      clearStudioSession();
+      clearStudioRole();
+      if (session) {
+        setStudioSession(session.uid);
+        setStudioRole(session.role);
+      }
+      setRole(session?.role ?? null);
+      setAuthed(!!session);
+      setMounted(true);
+    });
   }, []);
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const authenticate = async (google: boolean) => {
+    if (loading) return;
     setLoading(true);
-    setError(false);
-    const entry = await verifyStudioCredentials(inviteCode, password);
-    setLoading(false);
-    if (entry) {
-      setStudioSession(inviteCode);
-      setStudioRole(entry.role);
-      setAuthed(true);
-      setRole(entry.role);
-      setError(false);
-    } else {
-      setError(true);
+    setError("");
+    try {
+      if (google) await signInStaffWithGoogle(inviteCode);
+      else await signInStaff(email, password, inviteCode);
+      setPassword("");
+      setInviteCode("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Sign-in failed. Try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleLogout = () => {
-    clearStudioSession();
-    clearStudioRole();
-    setAuthed(false);
-    setRole(null);
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    void authenticate(false);
+  };
+
+  const handleLogout = async () => {
+    try { await signOutStaff(); }
+    catch { setError("Could not sign out. Try again."); }
   };
 
   if (!mounted) return null;
 
   if (!authed) {
-    // Premium Studio Login — theme-aware glassmorphism, luxury feel
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-      if (e.key === "Enter") handleLogin(e);
-      if (e.key === "Escape") setError(false);
-    };
-
     return (
       <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-background dark:bg-gradient-to-br dark:from-[#0c0c18] dark:to-[#0a0a14] p-6">
         {/* Layered background: base → noise → slow orbs → dot grid */}
@@ -159,12 +163,18 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
             >
               <h1 className="font-heading text-2xl font-bold tracking-tight text-foreground">Puzzle Studio</h1>
               <p className="mt-1.5 text-sm text-muted-foreground">
-                Authorized access only. Enter your credentials to continue.
+                Invite-only access. Sign in with the account your invitation was sent to.
               </p>
             </motion.div>
 
             {/* Form */}
-            <form onSubmit={handleLogin} onKeyDown={handleKeyDown} className="space-y-5" noValidate>
+            <form onSubmit={handleLogin} className="space-y-5" noValidate>
+              <div className="space-y-2">
+                <label htmlFor="staff-email" className="text-xs font-medium text-muted-foreground">Email</label>
+                <input id="staff-email" type="email" autoComplete="username" value={email}
+                  onChange={(e) => { setEmail(e.target.value); setError(""); }}
+                  className="w-full rounded-xl border bg-muted/30 px-4 py-3 text-sm outline-none focus:border-primary" />
+              </div>
               {/* Invite Code Field */}
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
@@ -187,12 +197,11 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
                     id="invite-code"
                     type="text"
                     value={inviteCode}
-                    onChange={(e) => { setInviteCode(e.target.value); setError(false); }}
+                    onChange={(e) => { setInviteCode(e.target.value); setError(""); }}
                     onFocus={() => setInputFocus("code")}
                     onBlur={() => setInputFocus(null)}
-                    placeholder="Enter your invite code"
-                    autoComplete="username"
-                    autoFocus
+                    placeholder="Required when joining Studio"
+                    autoComplete="off"
                     className={cn(
                       "w-full rounded-xl border bg-muted/30 px-4 py-3 pl-10 pr-4 text-sm text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/40",
                       "focus:border-primary focus:bg-muted/50 focus:ring-4 focus:ring-primary/15 focus:ring-offset-0",
@@ -224,7 +233,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
                     id="password"
                     type={showPassword ? "text" : "password"}
                     value={password}
-                    onChange={(e) => { setPassword(e.target.value); setError(false); }}
+                    onChange={(e) => { setPassword(e.target.value); setError(""); }}
                     onFocus={() => setInputFocus("password")}
                     onBlur={() => setInputFocus(null)}
                     placeholder="Enter your password"
@@ -268,7 +277,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
                     <span className="flex size-5 items-center justify-center rounded-full bg-destructive/20">
                       <XCircle className="size-3" />
                     </span>
-                    Invalid invite code or password. Please try again.
+                    {error}
                   </motion.span>
                 </motion.div>
               )}
@@ -309,6 +318,11 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
                   />
                 </button>
               </motion.div>
+              <button type="button" disabled={loading} onClick={() => void authenticate(true)}
+                className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm font-semibold disabled:opacity-50">
+                Continue with Google
+              </button>
+              <p className="text-xs text-muted-foreground">Joining requires an administrator-issued invite code. Already joined? Sign in with your approved account.</p>
             </form>
 
             {/* Divider + version badge */}

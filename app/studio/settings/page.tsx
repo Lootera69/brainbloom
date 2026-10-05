@@ -3,14 +3,13 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Plus, Trash2, Key, Eye, EyeOff, Shield, PenTool, BookOpen, Edit3, Layers, Users, GripVertical, AlertTriangle, DollarSign, Sparkles, Gem } from "lucide-react";
-import { getInviteCodes, addInviteCode, removeInviteCode, type InviteCodeEntry } from "@/services/studio-settings";
+import { ArrowLeft, Plus, Trash2, Key, BookOpen, Edit3, Layers, GripVertical, AlertTriangle, DollarSign, Sparkles, Gem } from "lucide-react";
+import { InviteManager } from "@/components/studio/invite-manager";
 import { getStudioSession, getStudioRole, CATEGORIES } from "@/services/puzzle-service";
 import { getAllLessonGroups, addLessonGroup, removeLessonGroup, updateLessonGroup, reorderLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
-import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { SkeletonLessonGroup } from "@/components/ui/skeleton";
 import { getPricingConfig, savePricingConfig } from "@/services/pricing-service";
 import type { PricingConfig } from "@/lib/subscription";
@@ -30,20 +29,11 @@ export default function StudioSettingsPage() {
   const isAdmin = role === "admin";
   const [activeTab, setActiveTab] = useState<SettingsTab>("lessons");
 
-  // Invite codes state
-  const [codes, setCodes] = useState<InviteCodeEntry[]>([]);
   const [pricing, setPricing] = useState<PricingConfig>(DEFAULT_PRICING);
   const [pricingInitial, setPricingInitial] = useState<PricingConfig | null>(null);
   const [pricingLoaded, setPricingLoaded] = useState(false);
   const [pricingSaving, setPricingSaving] = useState(false);
-  const [newCode, setNewCode] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [newRole, setNewRole] = useState<"admin" | "contributor">("contributor");
-  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
-  const [codesLoading, setCodesLoading] = useState(true);
-  const [deleteTarget, setDeleteTarget] = useState<InviteCodeEntry | null>(null);
   const [savingGroup, setSavingGroup] = useState(false);
-  const [savingCode, setSavingCode] = useState(false);
 
   // Lesson groups state
   const [groups, setGroups] = useState<LessonGroupEntry[]>([]);
@@ -56,15 +46,6 @@ export default function StudioSettingsPage() {
   const [editOrder, setEditOrder] = useState("");
   const [dragIdx, setDragIdx] = useState<number | null>(null);
   const dragOverIdx = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (isAdmin) {
-      getInviteCodes().then((c) => {
-        setCodes(c);
-        setCodesLoading(false);
-      });
-    }
-  }, [isAdmin]);
 
   useEffect(() => {
     getAllLessonGroups().then((g) => { setGroups(g); setGroupsLoading(false); });
@@ -83,43 +64,9 @@ export default function StudioSettingsPage() {
     setGroups(g);
   };
 
-  const refreshCodes = async () => {
-    const c = await getInviteCodes();
-    setCodes(c);
-  };
-
   useEffect(() => {
     getPricingConfig().then((cfg) => { setPricing(cfg); setPricingInitial(cfg); setPricingLoaded(true); });
   }, []);
-
-  const handleAddCode = async () => {
-    if (!newCode.trim() || !newPassword.trim()) {
-      toast.error("Fill in both code and password.");
-      return;
-    }
-    setSavingCode(true);
-    const ok = await addInviteCode(newCode.trim(), newPassword.trim(), newRole, getStudioSession() ?? undefined);
-    if (!ok) {
-      toast.error("That invite code already exists.");
-      setSavingCode(false);
-      return;
-    }
-    toast.success("Invite code added.");
-    setNewCode("");
-    setNewPassword("");
-    setNewRole("contributor");
-    await refreshCodes();
-    setSavingCode(false);
-  };
-
-  const handleRemoveCode = async (code: string) => {
-    setSavingCode(true);
-    await removeInviteCode(code);
-    toast.success("Invite code removed.");
-    setDeleteTarget(null);
-    await refreshCodes();
-    setSavingCode(false);
-  };
 
   const catGroups = groups.filter((g) => g.category === selectedCat).sort((a, b) => a.order - b.order);
 
@@ -190,7 +137,7 @@ export default function StudioSettingsPage() {
       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary to-[#8b5cf6] bg-clip-text text-transparent">Studio Settings</h1>
         <p className="text-sm text-muted-foreground">
-          {isAdmin ? "Manage invite codes and lesson hierarchy." : "Manage lesson hierarchy."}
+          {isAdmin ? "Manage invitations and lesson hierarchy." : "Manage lesson hierarchy."}
         </p>
       </motion.div>
 
@@ -426,148 +373,7 @@ export default function StudioSettingsPage() {
           </motion.div>
         )}
 
-        {/* Invite Codes Tab */}
-        {activeTab === "invites" && isAdmin && (
-          <motion.div
-            key="invites"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="mt-6 space-y-5"
-          >
-            <GlassCard className="p-5">
-              <div className="mb-4 flex items-center gap-2">
-                <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10">
-                  <Users className="size-4 text-primary" />
-                </div>
-                <div>
-                  <h2 className="text-sm font-semibold">Invite Codes ({codes.length})</h2>
-                  <p className="text-xs text-muted-foreground">
-                    Manage who can access the Puzzle Studio.
-                  </p>
-                </div>
-              </div>
-
-              {codesLoading ? (
-                <div className="flex items-center justify-center py-8">
-                  <div className="size-5 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-                </div>
-              ) : codes.length === 0 ? (
-                <div className="rounded-xl border border-dashed border-border py-10 text-center">
-                  <Key className="mx-auto mb-2 size-6 text-muted-foreground/40" />
-                  <p className="text-sm text-muted-foreground">No invite codes yet.</p>
-                  <p className="text-xs text-muted-foreground/60">Add one below to grant studio access.</p>
-                </div>
-              ) : (
-                <div className="space-y-2">
-                  {codes.map((entry, i) => (
-                    <motion.div
-                      key={entry.code}
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.03 }}
-                      className="flex items-center gap-3 rounded-xl border bg-card px-4 py-3 transition-all hover:border-primary/20"
-                    >
-                      <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/5">
-                        <Key className="size-4 text-primary" />
-                      </div>
-                      <span className="font-mono text-sm font-medium">{entry.code}</span>
-                      <span className={cn(
-                        "flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase",
-                        entry.role === "admin"
-                          ? "bg-primary/10 text-primary"
-                          : "bg-muted text-muted-foreground",
-                      )}>
-                        {entry.role === "admin" ? <Shield className="size-3" /> : <PenTool className="size-3" />}
-                        {entry.role}
-                      </span>
-                      <div className="ml-auto flex items-center gap-1.5">
-                        <button
-                          onClick={() => setRevealed((r) => ({ ...r, [entry.code]: !r[entry.code] }))}
-                          className="flex size-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted"
-                        >
-                          {revealed[entry.code] ? <EyeOff className="size-3.5" /> : <Eye className="size-3.5" />}
-                        </button>
-                        <span className="font-mono text-xs text-muted-foreground">
-                          {revealed[entry.code] ? entry.password : "••••••••"}
-                        </span>
-                        <button
-                          onClick={() => setDeleteTarget(entry)}
-                          disabled={entry.role === "admin"}
-                          className="flex size-7 items-center justify-center rounded-lg text-destructive/60 hover:bg-destructive/10 hover:text-destructive disabled:cursor-not-allowed disabled:opacity-30"
-                          title={entry.role === "admin" ? "Cannot delete admin credentials" : "Delete"}
-                        >
-                          <Trash2 className="size-3.5" />
-                        </button>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-            </GlassCard>
-
-            <GlassCard className="p-5" intensity="light">
-              <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold">
-                <Plus className="size-4 text-primary" />
-                Add New Invite Code
-              </h3>
-              <div className="space-y-3">
-                <div>
-                  <label className="mb-1 text-xs font-medium text-muted-foreground">Invite code</label>
-                  <input
-                    value={newCode}
-                    onChange={(e) => setNewCode(e.target.value)}
-                    placeholder="e.g. delta-2026"
-                    className="w-full rounded-xl border bg-background px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
-                  />
-                </div>
-                <div>
-                  <label className="mb-1 text-xs font-medium text-muted-foreground">Password</label>
-                  <input
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    placeholder="e.g. bloom@000"
-                    className="w-full rounded-xl border bg-background px-4 py-2.5 text-sm outline-none transition-colors focus:border-primary"
-                  />
-                </div>
-                <div>
-                  <label className="mb-1 text-xs font-medium text-muted-foreground">Role</label>
-                  <div className="flex gap-2">
-                    {(["contributor", "admin"] as const).map((r) => (
-                      <button
-                        key={r}
-                        onClick={() => setNewRole(r)}
-                        className={cn(
-                          "flex-1 rounded-xl border px-3 py-2 text-xs font-medium transition-all",
-                          newRole === r
-                            ? "border-primary bg-primary/10 text-primary"
-                            : "hover:bg-muted",
-                        )}
-                      >
-                        {r === "admin" ? <Shield className="mr-1 inline size-3" /> : <PenTool className="mr-1 inline size-3" />}
-                        {r.charAt(0).toUpperCase() + r.slice(1)}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <button
-                  onClick={handleAddCode}
-                  disabled={savingCode}
-                  className="flex h-10 w-full items-center justify-center gap-1.5 rounded-xl bg-primary text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-50"
-                >
-                  {savingCode ? (
-                    <span className="relative flex size-4">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40" />
-                      <span className="relative inline-flex size-4 rounded-full bg-white" />
-                    </span>
-                  ) : <Plus className="size-4" />}
-                  Add Code
-                </button>
-              </div>
-            </GlassCard>
-          </motion.div>
-        )}
+        {activeTab === "invites" && isAdmin && <InviteManager />}
 
         {/* Pricing Tab */}
         {activeTab === "pricing" && isAdmin && (
@@ -949,16 +755,6 @@ export default function StudioSettingsPage() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Delete invite code confirmation */}
-      <ConfirmDialog
-        open={deleteTarget !== null}
-        onClose={() => setDeleteTarget(null)}
-        onConfirm={() => handleRemoveCode(deleteTarget!.code)}
-        title="Delete Invite Code"
-        description={`Are you sure you want to delete the invite code "${deleteTarget?.code}"? Users with this code will no longer be able to access the studio.`}
-        confirmLabel="Delete"
-        loading={savingCode}
-      />
     </main>
   );
 }

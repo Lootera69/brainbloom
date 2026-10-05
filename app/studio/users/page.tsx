@@ -1,4 +1,5 @@
 "use client";
+import { staffHeaders } from "@/services/staff-session";
 
 import { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
@@ -290,13 +291,12 @@ function UsersContent() {
   const timedOut = useLoadingTimeout(10000);
 
   useEffect(() => {
-    const code = getStudioSession();
-    if (!code || !isAdmin()) {
+    if (!getStudioSession() || !isAdmin()) {
       router.replace("/studio");
       return;
     }
 
-    fetch(`/api/admin/users?code=${encodeURIComponent(code)}`)
+    staffHeaders().then((headers) => fetch("/api/admin/users", { headers, cache: "no-store" }))
       .then(async (r) => {
         const data = await r.json();
         if (!data.ok) throw new Error(data.error || "Failed to load");

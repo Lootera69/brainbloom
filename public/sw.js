@@ -1,4 +1,4 @@
-const CACHE = "brainbloom-v6";
+const CACHE = "brainbloom-v7";
 const PRECACHE_URLS = ["/"];
 
 self.addEventListener("install", (event) => {
@@ -16,6 +16,10 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin || url.pathname.startsWith("/api/")
+    || url.pathname === "/studio" || url.pathname.startsWith("/studio/")
+    || event.request.headers.has("authorization")) return;
   const isNavigation = event.request.mode === "navigate";
 
   if (isNavigation) {

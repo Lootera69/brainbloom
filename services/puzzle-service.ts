@@ -12,7 +12,6 @@ import {
   where,
   orderBy,
   Timestamp,
-  increment,
 } from "firebase/firestore";
 
 const STORAGE_KEY = "brainbloom-puzzles";
@@ -433,6 +432,7 @@ export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
 }
 
 export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): Promise<Puzzle | null> {
+  if (getStudioRole() !== "admin") data = { ...data, reviewStatus: "draft" };
   const user = getStudioSession() || "unknown";
   const now = Date.now();
   let updated: Puzzle | null = null;
@@ -537,17 +537,6 @@ export async function togglePublish(id: string): Promise<Puzzle | null> {
 }
 
 export async function incrementCompleted(id: string): Promise<void> {
-  if (isFirestoreAvailable()) {
-    try {
-      const { db } = getFirebase();
-      if (db) {
-        const ref = doc(db, "puzzles", id);
-        await updateDoc(ref, { completedBy: increment(1) });
-      }
-    } catch (e) {
-      console.error("Firestore incrementCompleted failed:", e);
-    }
-  }
   const local = getLocalPuzzles();
   const idx = local.findIndex((p) => p.id === id);
   if (idx >= 0) {
@@ -682,9 +671,9 @@ export function getStudioSession(): string | null {
   return sessionStorage.getItem("studio-authed");
 }
 
-export function setStudioSession(inviteCode: string) {
+export function setStudioSession(uid: string) {
   if (typeof sessionStorage === "undefined") return;
-  sessionStorage.setItem("studio-authed", inviteCode);
+  sessionStorage.setItem("studio-authed", uid);
 }
 
 export function clearStudioSession() {

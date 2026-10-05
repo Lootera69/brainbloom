@@ -12,6 +12,9 @@
 
 # testing
 /coverage
+/.private-invites/
+firebase-debug.log
+firestore-debug.log
 
 # next.js
 /.next/

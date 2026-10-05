@@ -1,7 +1,7 @@
 "use client";
 
 import { getFirebase } from "@/services/firebase";
-import { doc, getDoc, setDoc, runTransaction, Timestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
 import { getPublishedPuzzles, getPuzzle } from "@/services/puzzle-service";
 import type { Puzzle } from "@/types/puzzle";
 
@@ -102,24 +102,6 @@ async function autoPickAndSave(today: string): Promise<Puzzle | null> {
     date: today,
     setBy: "auto",
   };
-
-  // Save to Firestore (transaction to avoid race conditions)
-  if (isFirestoreAvailable()) {
-    try {
-      const { db } = getFirebase();
-      if (db) {
-        const ref = doc(db, "settings", "daily-puzzle");
-        await runTransaction(db, async (transaction) => {
-          const snap = await transaction.get(ref);
-          if (!snap.exists() || (snap.data() as DailyPuzzleDoc).date !== today) {
-            transaction.set(ref, { ...docData, updatedAt: Timestamp.fromMillis(Date.now()) }, { merge: true });
-          }
-        });
-      }
-    } catch (e) {
-      console.error("Firestore autoPick daily puzzle failed:", e);
-    }
-  }
 
   saveLocalDaily(docData);
   return pick;

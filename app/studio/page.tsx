@@ -1,4 +1,5 @@
 "use client";
+import { staffHeaders } from "@/services/staff-session";
 
 import { useEffect, useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
@@ -177,7 +178,6 @@ export default function StudioPage() {
   const [bcastTitle, setBcastTitle] = useState("");
   const [bcastBody, setBcastBody] = useState("");
   const [bcastUrl, setBcastUrl] = useState("/");
-  const [bcastPassword, setBcastPassword] = useState("");
   const [sending, setSending] = useState(false);
   const { timedOut: loadTimedOut, reset: resetLoadTimeout } = useLoadingTimeout(20000);
 
@@ -287,15 +287,13 @@ export default function StudioPage() {
       toast.error("Only admins can send broadcasts.");
       return;
     }
-    if (!bcastTitle.trim() || !bcastPassword) return;
+    if (!bcastTitle.trim()) return;
     setSending(true);
     try {
       const res = await fetch("/api/notify", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { ...await staffHeaders(), "Content-Type": "application/json" },
         body: JSON.stringify({
-          code: getStudioSession() ?? "",
-          password: bcastPassword,
           title: bcastTitle.trim(),
           message: bcastBody,
           url: bcastUrl || "/",
@@ -309,7 +307,6 @@ export default function StudioPage() {
         setBcastTitle("");
         setBcastBody("");
         setBcastUrl("/");
-        setBcastPassword("");
       } else {
         toast.error(data.error ?? "Broadcast failed");
       }
@@ -944,19 +941,12 @@ export default function StudioPage() {
                       placeholder="/learn"
                       className="w-full rounded-xl border border-border/50 bg-white/60 px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-muted-foreground/30 focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-white/[0.06] dark:bg-white/[0.03]" />
                   </div>
-                  <div>
-                    <p className="mb-1.5 text-xs font-medium text-muted-foreground/60">Studio password (confirm identity)</p>
-                    <input value={bcastPassword} onChange={(e) => setBcastPassword(e.target.value)}
-                      type="password"
-                      placeholder="Your studio password"
-                      className="w-full rounded-xl border border-border/50 bg-white/60 px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:text-muted-foreground/30 focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-white/[0.06] dark:bg-white/[0.03]" />
-                  </div>
                 </div>
 
                 <div className="mt-5 flex gap-3">
                   <button onClick={() => { if (!sending) setBroadcastOpen(false); }}
                     className="flex h-11 flex-1 items-center justify-center rounded-xl border border-border/50 text-sm font-medium transition-all duration-200 hover:bg-muted/50 dark:border-white/[0.06]">Cancel</button>
-                  <button onClick={sendBroadcast} disabled={!bcastTitle.trim() || !bcastPassword || sending}
+                  <button onClick={sendBroadcast} disabled={!bcastTitle.trim() || sending}
                     className="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary to-violet-500 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-300 hover:brightness-110 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-40 dark:shadow-primary/15">
                     {sending ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
                     Broadcast

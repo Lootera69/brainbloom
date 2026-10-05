@@ -60,21 +60,6 @@ function configureVapid(): boolean {
   }
 }
 
-export async function verifyAdminCredentials(code: string, password: string): Promise<boolean> {
-  const app = getAdminApp();
-  if (!app) return false;
-  try {
-    const snap = await getFirestore(app).doc("settings/studio").get();
-    if (!snap.exists) return false;
-    const codes = (snap.data()?.codes ?? []) as { code?: string; password?: string; role?: string }[];
-    const entry = codes.find((c) => c.code === code && c.password === password);
-    return entry?.role === "admin";
-  } catch (e) {
-    console.error("verifyAdminCredentials failed:", e);
-    return false;
-  }
-}
-
 async function readUserSubscriptions(userRef: DocumentReference, seen: Set<string>, uid: string): Promise<PushSubscriptionDoc[]> {
   const subs: PushSubscriptionDoc[] = [];
   try {

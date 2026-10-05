@@ -1,18 +1,71 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Puzzles: public content, readable by all. Studio writes are
-    // invite-code gated client-side (existing app design).
-    match /puzzles/{id} {
-      allow read: if true;
-      allow write: if true;
+    function isStaff() {
+      return request.auth != null
+        && request.auth.token.get('email_verified', false) == true
+        && exists(/databases/$(database)/documents/staffAccess/$(request.auth.uid))
+        && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.enabled == true
+        && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.role in ['admin', 'contributor'];
     }
 
-    // Settings: studio config, pricing, weekly cipher — readable by all,
-    // writes gated client-side by studio invite codes.
-    match /settings/{doc} {
+    function isAdmin() {
+      return isStaff()
+        && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isOwnDraft(data) {
+      return isStaff() && data.createdBy == request.auth.uid && data.published == false;
+    }
+
+    function validCommentUpdate() {
+      let old = resource.data.get('reviewComments', null) == null ? [] : resource.data.reviewComments;
+      let next = request.resource.data.get('reviewComments', null) == null ? [] : request.resource.data.reviewComments;
+      return next == old || (next is list && next.size() == old.size() + 1
+        && next.removeAll([next[next.size() - 1]]) == old
+        && next[next.size() - 1].keys().hasOnly(['text', 'author', 'timestamp'])
+        && next[next.size() - 1].author == request.auth.uid
+        && next[next.size() - 1].text is string
+        && next[next.size() - 1].text.size() > 0
+        && next[next.size() - 1].text.size() <= 5000
+        && next[next.size() - 1].timestamp is number);
+    }
+
+    match /puzzles/{id} {
       allow read: if true;
-      allow write: if true;
+      allow create: if isAdmin() || (isOwnDraft(request.resource.data)
+        && request.resource.data.reviewStatus in ['draft', 'pending']
+        && request.resource.data.get('reviewedBy', null) == null
+        && request.resource.data.get('reviewNote', null) == null
+        && request.resource.data.get('reviewComments', null) in [null, []]
+        && request.resource.data.get('completedBy', 0) == 0);
+      allow update: if isAdmin() || (isOwnDraft(resource.data)
+        && isOwnDraft(request.resource.data)
+        && (request.resource.data.reviewStatus in ['draft', 'pending']
+          || (request.resource.data.reviewStatus == resource.data.reviewStatus
+            && request.resource.data.diff(resource.data).affectedKeys()
+              .hasOnly(['reviewComments', 'lastModifiedBy', 'updatedAt'])))
+        && !request.resource.data.diff(resource.data).affectedKeys()
+          .hasAny(['createdBy', 'createdAt', 'completedBy', 'reviewNote'])
+        && (request.resource.data.get('reviewedBy', null) == resource.data.get('reviewedBy', null)
+          || request.resource.data.get('reviewedBy', null) == null)
+        && validCommentUpdate());
+      allow delete: if isAdmin() || isOwnDraft(resource.data);
+    }
+
+    match /settings/{id} {
+      allow read: if id in ['pricing', 'lesson-groups', 'daily-puzzle', 'weekly-cipher', 'cipher-history', 'events'];
+      allow write: if (isAdmin() && id in ['pricing', 'lesson-groups', 'daily-puzzle', 'weekly-cipher', 'cipher-history', 'events'])
+        || (isStaff() && id == 'lesson-groups');
+    }
+
+    match /staffAccess/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow list, write: if false;
+    }
+
+    match /staffInvites/{id} {
+      allow read, write: if false;
     }
 
     // Users: owner-only. Protects profiles and push tokens from
