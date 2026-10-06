@@ -1,7 +1,7 @@
 import { beforeEach, afterEach, expect, it, vi } from "vitest";
 import { signInStaff, staffHeaders, watchStaffSession } from "@/services/staff-session";
 const mocks = vi.hoisted(() => ({
-  user: { uid: "person", emailVerified: true, getIdToken: vi.fn(async () => "signed-token") },
+  user: { uid: "person", displayName: "Ada", email: "ada@example.test", emailVerified: true, getIdToken: vi.fn(async () => "signed-token") },
   data: undefined as Record<string, unknown> | undefined,
   onAuth: vi.fn(), onSnapshot: vi.fn(), unsubscribeAuth: vi.fn(), unsubscribeAccess: vi.fn(), fetch: vi.fn(),
 }));
@@ -30,7 +30,7 @@ it("requires verified email before membership lookup or API calls", async () => 
 });
 it("restores a joined account's actual role", async () => {
   mocks.data = { role: "contributor", enabled: true };
-  expect(await signInStaff("person@example.test", "password", "")).toEqual({ uid: "person", role: "contributor" });
+  expect(await signInStaff("person@example.test", "password", "")).toEqual({ uid: "person", role: "contributor", displayName: "Ada" });
   expect(mocks.fetch).not.toHaveBeenCalled();
 });
 it("does not redeem invitations to reactivate a disabled member", async () => {
@@ -50,7 +50,7 @@ it("clears UI authority on token changes and registry revocation and unsubscribe
   mocks.onSnapshot.mockImplementation((_ref, fn) => { snapshot = fn; return mocks.unsubscribeAccess; });
   const callback = vi.fn(); const stop = watchStaffSession(callback);
   changed(mocks.user); expect(callback).toHaveBeenLastCalledWith(null);
-  snapshot({ data: () => ({ role: "admin", enabled: true }) }); expect(callback).toHaveBeenLastCalledWith({ uid: "person", role: "admin" });
+  snapshot({ data: () => ({ role: "admin", enabled: true }) }); expect(callback).toHaveBeenLastCalledWith({ uid: "person", role: "admin", displayName: "Ada" });
   snapshot({ data: () => ({ role: "admin", enabled: false }) }); expect(callback).toHaveBeenLastCalledWith(null);
   changed(null); expect(mocks.unsubscribeAccess).toHaveBeenCalled();
   stop(); expect(mocks.unsubscribeAuth).toHaveBeenCalled();

@@ -9,7 +9,6 @@ import {
   sendPasswordResetEmail,
   updateProfile,
   sendEmailVerification,
-  deleteUser,
   reauthenticateWithPopup,
   reauthenticateWithCredential,
   EmailAuthProvider,
@@ -98,7 +97,17 @@ export async function deleteAccount(): Promise<{ success: boolean; error?: strin
     return { success: false, error: "No signed-in account found." };
   }
   try {
-    await deleteUser(fbAuth.currentUser);
+    const token = await fbAuth.currentUser.getIdToken();
+    const response = await fetch("/api/account", {
+      method: "DELETE", headers: { Authorization: `Bearer ${token}` },
+      cache: "no-store", signal: AbortSignal.timeout(60000),
+    });
+    const result = await response.json();
+    if (!response.ok || result.ok !== true) {
+      return { success: false, needsReauth: result.needsReauth === true,
+        error: result.error ?? "Account deletion failed. Please try again." };
+    }
+    await firebaseSignOut(fbAuth);
     return { success: true };
   } catch (e) {
     const code = (e as { code?: string }).code;
@@ -261,7 +270,7 @@ export async function sendPasswordReset(email: string): Promise<{ success: boole
     return { success: true };
   } catch (e: unknown) {
     const code = (e as { code?: string }).code;
-    if (code === "auth/user-not-found") return { success: false, error: "No account found with this email" };
+    if (code === "auth/user-not-found") return { success: true };
     if (code === "auth/invalid-email") return { success: false, error: "Invalid email address" };
     if (code === "auth/too-many-requests") return { success: false, error: "Too many attempts. Try again later" };
     return { success: false, error: "Something went wrong. Please try again" };

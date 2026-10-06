@@ -28,6 +28,9 @@ export async function requireAdmin(request: Request) {
   const user = await requireVerifiedUser(request);
   if (!user.ok) return user;
   try {
+    if ((await getFirestore(user.app).doc(`accountDeletions/${user.uid}`).get()).exists) {
+      return { ok: false as const, response: privateJson({ ok: false, error: "Account deletion is in progress." }, 403) };
+    }
     const access = await getFirestore(user.app).doc(`staffAccess/${user.uid}`).get();
     if (staffRole(access.data()) !== "admin") {
       return { ok: false as const, response: privateJson({ ok: false, error: "Administrator access required." }, 403) };

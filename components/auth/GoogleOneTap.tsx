@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useUserStore, type AuthUserInput } from "@/store/user-store";
 import { initOneTap, cancelOneTap } from "@/services/one-tap";
+import { toast } from "sonner";
 
 const firebaseConfigured =
   typeof process !== "undefined" &&
@@ -39,7 +40,7 @@ export function GoogleOneTap({ onBeforeSetUser }: GoogleOneTapProps) {
     calledRef.current = true;
 
     initOneTap({
-      onSuccess: (user) => {
+      onSuccess: async (user) => {
         const payload: AuthUserInput = {
           uid: user.uid,
           displayName: user.displayName ?? "User",
@@ -50,8 +51,14 @@ export function GoogleOneTap({ onBeforeSetUser }: GoogleOneTapProps) {
           onBeforeSetUser(payload);
           return;
         }
-        setUser(payload);
-        router.replace("/");
+        try {
+          const { loadUserData } = await import("@/services/user-service");
+          const cloudData = await loadUserData(user.uid);
+          setUser(payload, { cloudData });
+          router.replace("/");
+        } catch {
+          toast.error("Could not load your cloud progress. Please try signing in again.");
+        }
       },
       onError: () => {},
     });

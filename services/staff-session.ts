@@ -5,7 +5,23 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { getFirebase } from "@/services/firebase";
 import { staffRole, type StaffRole } from "@/lib/staff-access";
 
-export interface StaffSession { uid: string; role: StaffRole }
+export interface StaffSession { uid: string; role: StaffRole; displayName: string }
+
+function staffName(user: User) {
+  return user.displayName?.trim() || user.email?.trim() || "Studio member";
+}
+
+export function staffSignInError(error: unknown) {
+  const code = (error as { code?: string })?.code;
+  if (["auth/invalid-credential", "auth/wrong-password", "auth/user-not-found"].includes(code ?? "")) {
+    return "Email or password is incorrect. If you joined with Google, choose Continue with Google.";
+  }
+  if (code === "auth/invalid-email") return "Enter a valid account email, or choose Continue with Google.";
+  if (code === "auth/popup-closed-by-user") return "Google sign-in was closed. Please try again.";
+  if (code === "auth/too-many-requests") return "Too many sign-in attempts. Please wait a moment and try again.";
+  if (code?.startsWith("auth/")) return "Sign-in could not finish. Please try again.";
+  return error instanceof Error ? error.message : "Sign-in failed. Try again.";
+}
 
 export async function staffHeaders(): Promise<Record<string, string>> {
   const user = getFirebase().auth?.currentUser;
@@ -18,7 +34,7 @@ async function enterStudio(user: User, code: string): Promise<StaffSession> {
   if (!db || !user.emailVerified) throw new Error("Verify your email before entering Studio.");
   const existing = await getDoc(doc(db, "staffAccess", user.uid));
   const role = staffRole(existing.data());
-  if (role) return { uid: user.uid, role };
+  if (role) return { uid: user.uid, role, displayName: staffName(user) };
   if (existing.exists()) throw new Error("Studio access is disabled. Contact the administrator.");
   if (!code.trim()) throw new Error("An invitation code is required to join Studio.");
   const response = await fetch("/api/studio/access", {
@@ -29,7 +45,7 @@ async function enterStudio(user: User, code: string): Promise<StaffSession> {
   if (!response.ok) throw new Error(result.error ?? "Could not verify your invitation.");
   const accepted = staffRole((await getDoc(doc(db, "staffAccess", user.uid))).data());
   if (!accepted) throw new Error("Studio access could not be confirmed.");
-  return { uid: user.uid, role: accepted };
+  return { uid: user.uid, role: accepted, displayName: staffName(user) };
 }
 
 export async function signInStaff(email: string, password: string, code: string) {
@@ -57,7 +73,7 @@ export function watchStaffSession(callback: (session: StaffSession | null) => vo
     unsubscribeAccess = onSnapshot(doc(db, "staffAccess", user.uid), (snap) => {
       if (auth.currentUser?.uid !== user.uid) return;
       const role = staffRole(snap.data());
-      callback(role ? { uid: user.uid, role } : null);
+      callback(role ? { uid: user.uid, role, displayName: staffName(user) } : null);
     }, () => callback(null));
   });
   return () => { unsubscribeAuth(); unsubscribeAccess(); };

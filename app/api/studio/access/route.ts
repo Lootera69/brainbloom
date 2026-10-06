@@ -17,9 +17,11 @@ export async function POST(request: Request) {
   const access = db.doc(`staffAccess/${user.uid}`);
   try {
     const accepted = await db.runTransaction(async (tx) => {
-      const [invite, member] = await Promise.all([tx.get(invitation), tx.get(access)]);
+      const [invite, member, deletion] = await Promise.all([
+        tx.get(invitation), tx.get(access), tx.get(db.doc(`accountDeletions/${user.uid}`)),
+      ]);
       const data = invite.data();
-      if (!canRedeemInvite(data, user.email, user.uid) || member.exists) return false;
+      if (deletion.exists || !canRedeemInvite(data, user.email, user.uid) || member.exists) return false;
       tx.set(access, { email: user.email, role: data!.role, enabled: true, inviteId: invitation.id, createdAt: Date.now() });
       tx.update(invitation, { redeemedBy: user.uid, redeemedAt: Date.now() });
       return true;

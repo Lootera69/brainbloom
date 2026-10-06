@@ -174,7 +174,9 @@ export default function LoginPage() {
         }
       }
     } catch (e) {
-      console.warn("completeAuth cloud check failed — falling back to merge prompt:", e);
+      console.warn("Could not confirm cloud progress:", e);
+      setError("Could not load your cloud progress. Your local progress is safe. Check your connection and try again.");
+      return;
     }
     if (guest) {
       setMergeCandidate({ user, guest, cloud: cloudData });

@@ -1,6 +1,6 @@
 "use client";
 
-import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
+import { doc, getDocFromServer, setDoc } from "firebase/firestore";
 import type { Activity, Achievement, DailyQuest } from "@/store/user-store";
 import { getFirebase } from "@/services/firebase";
 
@@ -16,7 +16,6 @@ function getDb() {
     return null;
   }
 }
-
 export interface UserDocument {
   displayName: string;
   email: string | null;
@@ -87,10 +86,10 @@ export async function saveUserData(uid: string, data: UserDocument): Promise<voi
 }
 
 export async function loadUserData(uid: string): Promise<Partial<UserDocument> | null> {  const db = getDb();
-  if (!db) return null;
+  if (!db) throw new Error("Cloud progress is unavailable.");
   try {
     const ref = doc(db, "users", uid);
-    const snap = await getDoc(ref);
+    const snap = await getDocFromServer(ref);
     if (!snap.exists()) return null;
     const d = snap.data() as Record<string, unknown>;
     return {
@@ -144,17 +143,6 @@ export async function loadUserData(uid: string): Promise<Partial<UserDocument> |
     };
   } catch (e) {
     console.error("Failed to load user data from Firestore:", e);
-    return null;
-  }
-}
-
-export async function deleteUserData(uid: string): Promise<void> {
-  const db = getDb();
-  if (!db) return;
-  try {
-    const ref = doc(db, "users", uid);
-    await deleteDoc(ref);
-  } catch (e) {
-    console.error("Failed to delete user data from Firestore:", e);
+    throw e;
   }
 }

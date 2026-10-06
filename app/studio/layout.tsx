@@ -6,10 +6,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight, Eye, EyeOff, XCircle, Loader2, Users, KeyRound, CalendarDays } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { getStudioSession, setStudioSession, clearStudioSession } from "@/services/puzzle-service";
-import { signInStaff, signInStaffWithGoogle, signOutStaff, watchStaffSession } from "@/services/staff-session";
+import { setStudioSession, clearStudioSession } from "@/services/puzzle-service";
+import { signInStaff, signInStaffWithGoogle, signOutStaff, watchStaffSession, staffSignInError } from "@/services/staff-session";
 import { setStudioRole, clearStudioRole } from "@/services/puzzle-service";
 import { Toaster } from "sonner";
+import { sendPasswordReset } from "@/services/firebase";
 
 const navItems = [
   { href: "/studio", label: "Dashboard", icon: LayoutDashboard },
@@ -28,8 +29,10 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
   const [mounted, setMounted] = useState(false);
   const [role, setRole] = useState<string | null>(null);
+  const [displayName, setDisplayName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [inputFocus, setInputFocus] = useState<"code" | "password" | null>(null);
   const [loading, setLoading] = useState(false);
@@ -54,6 +57,9 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
         setStudioRole(session.role);
       }
       setRole(session?.role ?? null);
+      setDisplayName(session?.displayName ?? "");
+      setError("");
+      setNotice("");
       setAuthed(!!session);
       setMounted(true);
     });
@@ -61,15 +67,20 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
 
   const authenticate = async (google: boolean) => {
     if (loading) return;
+    if (!google && (!email.trim() || !password)) {
+      setError("Enter your account email and password, or choose Continue with Google.");
+      return;
+    }
     setLoading(true);
     setError("");
+    setNotice("");
     try {
       if (google) await signInStaffWithGoogle(inviteCode);
       else await signInStaff(email, password, inviteCode);
       setPassword("");
       setInviteCode("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Sign-in failed. Try again.");
+      setError(staffSignInError(err));
     } finally {
       setLoading(false);
     }
@@ -81,8 +92,32 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   };
 
   const handleLogout = async () => {
-    try { await signOutStaff(); }
+    setError("");
+    setNotice("");
+    setPassword("");
+    setInviteCode("");
+    try { await signOutStaff(); setError(""); }
     catch { setError("Could not sign out. Try again."); }
+  };
+
+  const handlePasswordReset = async () => {
+    if (loading) return;
+    setError("");
+    setNotice("");
+    if (!email.trim()) {
+      setError("Enter your account email above to receive a password link.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const result = await sendPasswordReset(email.trim());
+      if (result.success) setNotice("If this email has an account, a password link has been sent. Check your inbox and spam folder.");
+      else setError(result.error ?? "Could not send the password link. Please try again.");
+    } catch {
+      setError("Could not send the password link. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!mounted) return null;
@@ -219,7 +254,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
                 className="space-y-2"
               >
                 <label htmlFor="password" className="text-xs font-medium text-muted-foreground">
-                  Password
+                  Account password
                 </label>
                 <div className="relative">
                   <Lock
@@ -322,7 +357,13 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
                 className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm font-semibold disabled:opacity-50">
                 Continue with Google
               </button>
+              <button type="button" disabled={loading} onClick={() => void handlePasswordReset()}
+                className="w-full text-sm text-primary underline underline-offset-4 disabled:opacity-50">
+                Set or reset account password
+              </button>
+              {notice && <p role="status" className="text-sm text-muted-foreground">{notice}</p>}
               <p className="text-xs text-muted-foreground">Joining requires an administrator-issued invite code. Already joined? Sign in with your approved account.</p>
+              <p className="text-xs text-muted-foreground">Google accounts can continue with Google. To use email sign-in, first set an account password.</p>
             </form>
 
             {/* Divider + version badge */}
@@ -372,7 +413,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <User className="size-3.5" />
-              {getStudioSession()}
+              {displayName}
             </span>
             {role && (
               <span className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase ${

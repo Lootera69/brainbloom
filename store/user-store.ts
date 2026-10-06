@@ -112,6 +112,7 @@ interface UserState {
   cipherRevealed: boolean;
   cipherSolvedWeeks: string[];
   updatedAt: number;
+  cloudRestoreBase: Record<string, unknown> | null;
   _lastEvalDate: string;
 
   loginAsGuest: () => void;
@@ -244,6 +245,79 @@ function getRefreshedQuests(): DailyQuest[] {
 }
 
 let _loadPromise: Promise<void> | null = null;
+let cloudReadyUid: string | null = null;
+let sessionVersion = 0;
+
+function mergeRestoreChanges(base: UserState, current: UserState, cloud: Partial<UserState>): Partial<UserState> {
+  const before = base as unknown as Record<string, unknown>;
+  const local = current as unknown as Record<string, unknown>;
+  const remote = cloud as Record<string, unknown>;
+  const changes: Record<string, unknown> = {};
+  const counters = new Set(["xp", "gems", "hearts", "streakFreezes", "cipherSolveCount"]);
+  const periods: Record<string, keyof UserState> = {
+    xpToday: "lastQuestRefresh", weeklyXp: "weeklyStartDate",
+    puzzlesPlayedToday: "puzzlesPlayedDate", adsWatchedToday: "adsWatchDate",
+    practiceHeartsToday: "lastPracticeDate",
+    dailyQuests: "lastQuestRefresh", questsRewarded: "lastQuestRefresh",
+    dailySetCompletedIds: "dailySetDate", dailySetHeartLost: "dailySetDate",
+    currentCipherSolved: "currentCipherWeek", cipherRevealed: "currentCipherWeek",
+  };
+  const samePeriod = (key: string, a: unknown, b: unknown) => key === "weeklyStartDate"
+    ? getWeekStart(Number(a)) === getWeekStart(Number(b)) : a === b;
+  const itemKey = (item: unknown) => typeof item === "object" && item !== null && "id" in item
+    ? item.id : item;
+  for (const key of Object.keys(remote)) {
+    const periodChanged = periods[key] && !samePeriod(periods[key], local[periods[key]], before[periods[key]]);
+    if (key === "updatedAt" || key === "level" || !periodChanged && JSON.stringify(local[key]) === JSON.stringify(before[key])) continue;
+    if (counters.has(key) && typeof local[key] === "number" && typeof before[key] === "number" && typeof remote[key] === "number") {
+      const value = Math.max(0, remote[key] + local[key] - before[key]);
+      changes[key] = key === "hearts" ? Math.min(5, value) : value;
+    } else if (periods[key] && typeof local[key] === "number" && typeof before[key] === "number" && typeof remote[key] === "number") {
+      const period = periods[key];
+      const delta = local[key] - (samePeriod(period, local[period], before[period]) ? before[key] : 0);
+      changes[key] = Math.max(0, delta + (samePeriod(period, local[period], remote[period]) ? remote[key] : 0));
+    } else if (periods[key] && typeof local[key] === "boolean" && typeof remote[key] === "boolean") {
+      changes[key] = local[key] || samePeriod(periods[key], local[periods[key]], remote[periods[key]]) && remote[key];
+    } else if (key === "dailyQuests") {
+      const previous = new Map(base.dailyQuests.map(quest => [quest.id, quest]));
+      const incoming = current.lastQuestRefresh === cloud.lastQuestRefresh ? cloud.dailyQuests ?? [] : [];
+      changes[key] = current.dailyQuests.map(quest => {
+        const oldProgress = base.lastQuestRefresh === current.lastQuestRefresh ? previous.get(quest.id)?.progress ?? 0 : 0;
+        const remoteQuest = incoming.find(other => other.id === quest.id);
+        return { ...quest, progress: Math.min(quest.target, (remoteQuest?.progress ?? 0) + Math.max(0, quest.progress - oldProgress)) };
+      });
+    } else if (Array.isArray(local[key]) && Array.isArray(before[key]) && Array.isArray(remote[key])) {
+      const period = key === "dailySetCompletedIds" ? "dailySetDate" : key === "questsRewarded" ? "lastQuestRefresh" : null;
+      const priorKeys = new Set(period && local[period] !== before[period] ? [] : before[key].map(itemKey));
+      const additions = local[key].filter(item => !priorKeys.has(itemKey(item)));
+      const incoming = key === "dailySetCompletedIds" && current.dailySetDate !== cloud.dailySetDate
+        || key === "questsRewarded" && current.lastQuestRefresh !== cloud.lastQuestRefresh ? [] : remote[key];
+      const merged = new Map([...incoming, ...additions].map(item => [itemKey(item), item]));
+      changes[key] = key === "history"
+        ? [...merged.values()].sort((a, b) => (b as Activity).timestamp - (a as Activity).timestamp).slice(0, 20)
+        : [...merged.values()];
+    } else if (["streak", "dailyPuzzleStreak", "dailyGoalStreak"].includes(key) && typeof local[key] === "number" && typeof remote[key] === "number") {
+      const period = key === "streak" ? "lastActiveDate" : key === "dailyPuzzleStreak" ? "dailyPuzzleLastDate" : "dailyGoalLastHitDate";
+      changes[key] = remote[period] === before[period] ? local[key] : Math.max(local[key], remote[key]);
+    } else {
+      changes[key] = local[key];
+    }
+  }
+  if (typeof changes.xp === "number") changes.level = calcLevel(changes.xp);
+  if (typeof changes.hearts === "number") {
+    const timers = [current.nextHeartAt, cloud.nextHeartAt].filter((value): value is number => typeof value === "number");
+    changes.nextHeartAt = changes.hearts === 5 ? null : timers.length ? Math.min(...timers) : Date.now() + 5 * 60 * 60 * 1000;
+  }
+  if (Object.keys(changes).length) changes.updatedAt = Date.now();
+  return changes as Partial<UserState>;
+}
+
+export async function retryCloudRestore() {
+  const state = useUserStore.getState();
+  if (state.isAuthenticated && !state.isGuest && state.userId && cloudReadyUid !== state.userId) {
+    await state.loadFromFirestore();
+  }
+}
 
 export const useUserStore = create<UserState>()(
   persist(
@@ -309,9 +383,13 @@ export const useUserStore = create<UserState>()(
       cipherRevealed: false,
       cipherSolvedWeeks: [],
       updatedAt: 0,
+      cloudRestoreBase: null,
       _lastEvalDate: "",
 
       loginAsGuest: () => {
+        sessionVersion++;
+        cloudReadyUid = null;
+        _loadPromise = null;
         set({
           userId: generateId(),
           displayName: "Guest",
@@ -320,11 +398,16 @@ export const useUserStore = create<UserState>()(
           avatarId: null,
           isGuest: true,
           isAuthenticated: true,
+          cloudRestoreBase: null,
         });
       },
 
       setUser: (user, opts) => {
+        const version = ++sessionVersion;
+        cloudReadyUid = opts?.cloudData ? user.uid : null;
+        _loadPromise = null;
         const prevUserId = get().userId;
+        set({ cloudRestoreBase: null });
         if (opts?.cloudData) {
           const cd = opts.cloudData as Record<string, unknown>;
           set({
@@ -389,6 +472,7 @@ export const useUserStore = create<UserState>()(
             updatedAt: (cd.updatedAt as number) ?? Date.now(),
           });
           setTimeout(async () => {
+            if (version !== sessionVersion) return;
             if (opts?.guestData) {
               const s = get();
               set({ ...mergeGuestProgress(opts.guestData, s), updatedAt: Date.now() });
@@ -462,7 +546,9 @@ export const useUserStore = create<UserState>()(
             updatedAt: 0,
           });
           setTimeout(async () => {
+            if (version !== sessionVersion) return;
             await get().loadFromFirestore();
+            if (version !== sessionVersion || cloudReadyUid !== user.uid) return;
             if (opts?.guestData) {
               const s = get();
               set({ ...mergeGuestProgress(opts.guestData, s), updatedAt: Date.now() });
@@ -487,10 +573,12 @@ export const useUserStore = create<UserState>()(
 
       syncToFirestore: () => {
         const s = get();
-        if (!s.userId || s.isGuest) return;
+        if (!s.userId || s.isGuest || cloudReadyUid !== s.userId) return;
+        const version = sessionVersion;
         set({ updatedAt: Date.now() });
-        import("@/services/user-service").then(({ saveUserData }) =>
-          saveUserData(s.userId, {
+        import("@/services/user-service").then(({ saveUserData }) => {
+          if (version !== sessionVersion || cloudReadyUid !== s.userId) return;
+          return saveUserData(s.userId, {
             displayName: s.displayName,
             email: s.email,
             photoURL: s.photoURL,
@@ -546,22 +634,34 @@ export const useUserStore = create<UserState>()(
             cipherRevealed: s.cipherRevealed,
             cipherSolvedWeeks: s.cipherSolvedWeeks,
             updatedAt: Date.now(),
-          }),
-        );
+          });
+        });
       },
 
       loadFromFirestore: async () => {
-        const s = get();
-        if (!s.userId || s.isGuest) return;
+        const initial = get();
+        if (!initial.userId || initial.isGuest) return;
         if (_loadPromise) return _loadPromise;
+        const baseline = initial.cloudRestoreBase?.userId === initial.userId ? initial.cloudRestoreBase
+          : Object.fromEntries(Object.entries(initial).filter(([key, value]) => key !== "cloudRestoreBase" && typeof value !== "function"));
+        const s = { ...initial, ...baseline } as UserState;
+        set({ cloudRestoreBase: baseline });
+        const version = sessionVersion;
+        cloudReadyUid = null;
 
         _loadPromise = (async () => {
           try {
             const { loadUserData } = await import("@/services/user-service");
             const data = await loadUserData(s.userId);
+            if (version !== sessionVersion || get().userId !== s.userId) return;
+            cloudReadyUid = s.userId;
             if (data) {
-              if (data.updatedAt && s.updatedAt && data.updatedAt < s.updatedAt) return;
-              set({
+              if (data.updatedAt && s.updatedAt && data.updatedAt < s.updatedAt) {
+                set({ cloudRestoreBase: null });
+                get().syncToFirestore();
+                return;
+              }
+              const restored: Partial<UserState> = {
                 displayName: data.displayName ?? s.displayName,
                 email: data.email ?? s.email,
                 photoURL: data.photoURL ?? s.photoURL,
@@ -617,21 +717,28 @@ export const useUserStore = create<UserState>()(
                 cipherRevealed: data.cipherRevealed ?? s.cipherRevealed,
                 cipherSolvedWeeks: data.cipherSolvedWeeks ?? s.cipherSolvedWeeks,
                 updatedAt: data.updatedAt ?? s.updatedAt,
-              });
+              };
+              const changes = mergeRestoreChanges(s, get(), restored);
+              set({ ...restored, ...changes, cloudRestoreBase: null });
               get().checkWeeklyReset();
               get().checkStreak(false);
+              if (Object.keys(changes).length) get().syncToFirestore();
             } else {
+              set({ cloudRestoreBase: null });
               get().syncToFirestore();
             }
           } catch (e) {
             console.warn("loadFromFirestore failed — keeping local state:", e);
           } finally {
-            _loadPromise = null;
+            if (version === sessionVersion) _loadPromise = null;
           }
         })();
+        return _loadPromise;
       },
 
       logout: () => {
+        sessionVersion++;
+        cloudReadyUid = null;
         _loadPromise = null;
         set({
           userId: "",
@@ -691,6 +798,7 @@ export const useUserStore = create<UserState>()(
       cipherRevealed: false,
       cipherSolvedWeeks: [],
       updatedAt: 0,
+      cloudRestoreBase: null,
 
         });
       },
@@ -1427,10 +1535,11 @@ export const useUserStore = create<UserState>()(
         cipherRevealed: state.cipherRevealed,
         cipherSolvedWeeks: state.cipherSolvedWeeks,
         updatedAt: state.updatedAt,
+        cloudRestoreBase: state.cloudRestoreBase,
         _lastEvalDate: state._lastEvalDate,
       }),
-      onRehydrateStorage: () => () => {
-        const state = useUserStore.getState();
+      onRehydrateStorage: () => (state) => {
+        if (!state) return;
         if (!state.userId || state.isGuest) {
           state.checkStreak(false);
           state.checkWeeklyReset();

@@ -137,3 +137,19 @@ test('owner profile and push token writes remain available; other accounts are b
   await assertFails(getDoc(doc(dbFor('writer'), 'users/player')));
   await assertFails(setDoc(doc(dbFor('writer'), 'users/player/pushTokens/device'), { token: 'attack' }));
 });
+
+for (const status of ['pending', 'complete']) {
+  test(`a ${status} deletion blocks profile recreation, token writes and staff changes`, async () => {
+    await env.withSecurityRulesDisabled(async (context) => {
+      await setDoc(doc(context.firestore(), 'accountDeletions/admin'), { status });
+      await setDoc(doc(context.firestore(), 'accountDeletions/player'), { status });
+    });
+    const db = dbFor('player');
+    await assertFails(setDoc(doc(db, 'users/player'), { xp: 5 }));
+    await assertFails(setDoc(doc(db, 'users/player/pushTokens/new'), { token: 'test' }));
+    await assertFails(deleteDoc(doc(db, 'accountDeletions/player')));
+    await assertFails(getDoc(doc(db, 'accountDeletions/player')));
+    await assertFails(updateDoc(doc(dbFor('admin'), 'settings/pricing'), { version: 2 }));
+    await assertFails(updateDoc(doc(dbFor('admin'), 'puzzles/published'), { title: 'Changed' }));
+  });
+}

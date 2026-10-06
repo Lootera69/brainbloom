@@ -6,8 +6,8 @@ import { Trash2, X, Heart, Shield } from "lucide-react";
 import { AvatarDisplay } from "@/components/avatars/AvatarDisplay";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { deleteUserData } from "@/services/user-service";
 import { toast } from "sonner";
+import { useUserStore } from "@/store/user-store";
 
 const SOFT_MESSAGES = [
   "Are you sure? Your avatar will miss you!",
@@ -45,7 +45,6 @@ type Step = "soft" | "final" | "reauth" | "processing" | "done";
 export function DeleteAccountDialog({
   open,
   onClose,
-  userId,
   isGuest,
   avatarId,
   photoURL,
@@ -100,10 +99,7 @@ export function DeleteAccountDialog({
   }, [open]);
 
   const cleanupAfterDelete = useCallback(async () => {
-    try {
-      await deleteUserData(userId);
-    } catch { /* Auth user deleted — Firestore orphan is acceptable */ }
-
+    useUserStore.getState().logout();
     const keys = Object.keys(localStorage);
     for (const key of keys) {
       if (key.startsWith("brainbloom")) localStorage.removeItem(key);
@@ -111,7 +107,7 @@ export function DeleteAccountDialog({
     setStep("done");
     toast.success("Your account was deleted. Sorry to see you go!", { position: "top-center" });
     setTimeout(() => { window.location.href = "/login"; }, 1200);
-  }, [userId]);
+  }, []);
 
   const performDelete = useCallback(async () => {
     setDeleting(true);

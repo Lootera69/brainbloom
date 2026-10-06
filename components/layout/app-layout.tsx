@@ -7,7 +7,7 @@ import { BottomNav } from "@/components/navigation/bottom-nav";
 import { PageTransition } from "@/components/common/page-transition";
 import { AnimatedBackground } from "@/features/home/components/AnimatedBackground";
 import { XPToast } from "@/features/home/components/XPToast";
-import { useUserStore } from "@/store/user-store";
+import { useUserStore, retryCloudRestore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
 import { Toaster, toast } from "sonner";
 import { Heart } from "lucide-react";
@@ -87,11 +87,16 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const onVisible = () => {
       if (document.visibilityState === "visible") {
+        void retryCloudRestore();
         useUserStore.getState().checkStreak(false);
       }
     };
     document.addEventListener("visibilitychange", onVisible);
-    return () => document.removeEventListener("visibilitychange", onVisible);
+    window.addEventListener("online", retryCloudRestore);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("online", retryCloudRestore);
+    };
   }, []);
 
   useEffect(() => {
