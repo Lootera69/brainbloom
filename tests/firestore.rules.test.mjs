@@ -20,11 +20,15 @@ beforeEach(async () => {
     const seed = {
       'staffAccess/admin': { role: 'admin', enabled: true },
       'staffAccess/writer': { role: 'contributor', enabled: true },
+      'staffAccess/reviewer': { role: 'reviewer', enabled: true, status: 'active' },
       'staffAccess/disabled': { role: 'admin', enabled: false },
       'staffInvites/private': { email: 'person@example.test', role: 'admin' },
       'settings/studio': { codes: [{ code: 'legacy-code', password: 'exposed' }] },
       'settings/cron-hourly': { delivered: true },
       'puzzles/draft': draft,
+      'puzzles/pending': { ...draft, reviewStatus: 'pending' },
+      'puzzles/discussion': { ...draft, reviewStatus: 'needs-discussion' },
+      'puzzles/approved': { ...draft, reviewStatus: 'approved' },
       'puzzles/published': { ...draft, published: true, reviewStatus: 'approved' },
       'users/player': { xp: 20 },
       ...Object.fromEntries(publicSettings.map((id) => [`settings/${id}`, { version: 1 }])),
@@ -55,7 +59,7 @@ test('public reads remain available while credentials and cron markers are priva
   await assertFails(getDocs(query(collection(db, 'settings'), where('codes', '!=', null))));
 });
 
-for (const uid of ['player', 'writer', 'admin']) {
+for (const uid of ['player', 'writer', 'reviewer', 'admin']) {
   test(`${uid} cannot issue invitations or change membership through Firestore`, async () => {
     const db = dbFor(uid);
     await assertFails(setDoc(doc(db, 'staffAccess', uid), { enabled: true, role: 'admin' }));
@@ -66,6 +70,77 @@ for (const uid of ['player', 'writer', 'admin']) {
     await assertFails(getDoc(doc(db, 'staffAccess/disabled')));
     await assertSucceeds(getDoc(doc(db, 'staffAccess', uid)));
     await assertFails(getDoc(doc(db, 'settings/studio')));
+  });
+}
+
+const review = (reviewStatus = 'approved') => ({ reviewStatus, reviewedBy: 'reviewer', lastModifiedBy: 'reviewer', updatedAt: 123 });
+
+for (const status of ['approved', 'rejected', 'needs-discussion']) {
+  test(`reviewer can mark submitted puzzles ${status} without changing content`, async () => {
+    const db = dbFor('reviewer');
+    for (const id of ['pending', 'discussion']) {
+      await assertSucceeds(updateDoc(doc(db, 'puzzles', id), {
+        ...review(status), reviewNote: 'Reviewed for clarity',
+        reviewComments: [{ author: 'reviewer', text: 'Reviewed for clarity', timestamp: 123 }],
+      }));
+      const saved = (await getDoc(doc(db, 'puzzles', id))).data();
+      if (saved.title !== draft.title || saved.published !== false) throw new Error('Review changed content.');
+    }
+  });
+}
+
+test('reviewer can query submissions but cannot create, delete, publish or edit content', async () => {
+  const db = dbFor('reviewer');
+  await assertSucceeds(getDocs(query(collection(db, 'puzzles'), where('published', '==', false), where('reviewStatus', 'in', ['pending', 'needs-discussion']))));
+  await assertFails(setDoc(doc(db, 'puzzles/new'), { ...draft, createdBy: 'reviewer' }));
+  await assertFails(deleteDoc(doc(db, 'puzzles/pending')));
+  for (const change of [{ title: 'Changed' }, { correctAnswer: 'Changed' }, { published: true }, { createdBy: 'reviewer' }, { completedBy: 999 }]) {
+    await assertFails(updateDoc(doc(db, 'puzzles/pending'), { ...review(), ...change }));
+  }
+  for (const id of publicSettings) await assertFails(updateDoc(doc(db, 'settings', id), { version: 2 }));
+});
+
+for (const id of ['draft', 'approved', 'published']) {
+  test(`reviewer cannot review ${id} puzzles`, async () => {
+    await assertFails(updateDoc(doc(dbFor('reviewer'), 'puzzles', id), review()));
+  });
+}
+
+test('reviewer cannot forge the actor or replace another review comment', async () => {
+  const previous = { author: 'writer', text: 'Please review', timestamp: 1 };
+  await env.withSecurityRulesDisabled((context) => updateDoc(doc(context.firestore(), 'puzzles/pending'), { reviewComments: [previous] }));
+  const db = dbFor('reviewer');
+  for (const change of [
+    { reviewedBy: 'admin' }, { lastModifiedBy: 'admin' }, { reviewStatus: 'draft' },
+    { reviewComments: [{ author: 'admin', text: 'Approved', timestamp: 123 }] },
+    { reviewComments: [] }, { reviewNote: 'x'.repeat(2001) },
+    { reviewComments: [previous, { author: 'reviewer', text: 'Approved', timestamp: 'bad' }] },
+  ]) await assertFails(updateDoc(doc(db, 'puzzles/pending'), { ...review(), ...change }));
+  await assertSucceeds(updateDoc(doc(db, 'puzzles/pending'), {
+    ...review(), reviewComments: [previous, { author: 'reviewer', text: 'Approved', timestamp: 123 }],
+  }));
+});
+
+for (const status of ['frozen', 'removed']) {
+  test(`${status} membership denies contributor and reviewer writes while preserving player access`, async () => {
+    const reviewerDb = dbFor('reviewer');
+    const writerDb = dbFor('writer');
+    await assertSucceeds(updateDoc(doc(reviewerDb, 'puzzles/pending'), review('needs-discussion')));
+    await assertSucceeds(updateDoc(doc(writerDb, 'puzzles/draft'), { title: 'Before freeze' }));
+    await env.withSecurityRulesDisabled(async (context) => {
+      for (const uid of ['writer', 'reviewer']) await updateDoc(doc(context.firestore(), 'staffAccess', uid), { status, enabled: false });
+    });
+    await assertFails(updateDoc(doc(reviewerDb, 'puzzles/pending'), review()));
+    await assertFails(updateDoc(doc(writerDb, 'puzzles/draft'), { title: 'After freeze' }));
+    await assertSucceeds(setDoc(doc(writerDb, 'users/writer'), { xp: 20 }));
+    await assertSucceeds(getDoc(doc(writerDb, 'staffAccess/writer')));
+    if (status === 'frozen') {
+      await env.withSecurityRulesDisabled(async (context) => {
+        for (const uid of ['writer', 'reviewer']) await updateDoc(doc(context.firestore(), 'staffAccess', uid), { status: 'active', enabled: true });
+      });
+      await assertSucceeds(updateDoc(doc(reviewerDb, 'puzzles/pending'), review()));
+      await assertSucceeds(updateDoc(doc(writerDb, 'puzzles/draft'), { title: 'After unfreeze' }));
+    }
   });
 }
 
@@ -94,7 +169,8 @@ test('revocation blocks an already signed-in admin immediately', async () => {
 test('contributor can create, edit, submit and delete own unpublished draft', async () => {
   const db = dbFor('writer');
   await assertSucceeds(setDoc(doc(db, 'puzzles/new'), draft));
-  await assertSucceeds(updateDoc(doc(db, 'puzzles/new'), { title: 'Edited', reviewStatus: 'pending' }));
+  await assertSucceeds(updateDoc(doc(db, 'puzzles/new'), { title: 'Edited' }));
+  await assertSucceeds(updateDoc(doc(db, 'puzzles/new'), { reviewStatus: 'pending' }));
   await assertSucceeds(deleteDoc(doc(db, 'puzzles/new')));
   await assertSucceeds(updateDoc(doc(db, 'settings/lesson-groups'), { version: 2 }));
 });
@@ -128,6 +204,13 @@ test('editing an approved unpublished draft requires a fresh review', async () =
   const db = dbFor('writer');
   await assertFails(updateDoc(doc(db, 'puzzles/draft'), { title: 'Unreviewed edit' }));
   await assertSucceeds(updateDoc(doc(db, 'puzzles/draft'), { title: 'Fresh draft', reviewStatus: 'draft' }));
+});
+
+test('changing submitted content sends it back to draft even if timestamps are forged', async () => {
+  const db = dbFor('writer');
+  await assertFails(updateDoc(doc(db, 'puzzles/pending'), { title: 'Unreviewed replacement', updatedAt: 1 }));
+  await assertSucceeds(updateDoc(doc(db, 'puzzles/pending'), { title: 'Revised draft', reviewStatus: 'draft', updatedAt: 1 }));
+  await assertSucceeds(updateDoc(doc(db, 'puzzles/pending'), { reviewStatus: 'pending', updatedAt: 1 }));
 });
 
 test('owner profile and push token writes remain available; other accounts are blocked', async () => {

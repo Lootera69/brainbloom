@@ -7,7 +7,8 @@ service cloud.firestore {
         && request.auth.token.get('email_verified', false) == true
         && exists(/databases/$(database)/documents/staffAccess/$(request.auth.uid))
         && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.enabled == true
-        && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.role in ['admin', 'contributor'];
+        && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.get('status', 'active') == 'active'
+        && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.role in ['admin', 'contributor', 'reviewer'];
     }
 
     function isAdmin() {
@@ -16,7 +17,25 @@ service cloud.firestore {
     }
 
     function isOwnDraft(data) {
-      return isStaff() && data.createdBy == request.auth.uid && data.published == false;
+      return isStaff()
+        && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.role == 'contributor'
+        && data.createdBy == request.auth.uid && data.published == false;
+    }
+
+    function isReviewUpdate() {
+      return isStaff()
+        && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.role == 'reviewer'
+        && resource.data.published == false
+        && resource.data.reviewStatus in ['pending', 'needs-discussion']
+        && request.resource.data.reviewStatus in ['approved', 'rejected', 'needs-discussion']
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['reviewStatus', 'reviewedBy', 'reviewNote', 'reviewComments', 'lastModifiedBy', 'updatedAt'])
+        && request.resource.data.reviewedBy == request.auth.uid
+        && request.resource.data.lastModifiedBy == request.auth.uid
+        && (request.resource.data.updatedAt is timestamp || request.resource.data.updatedAt is number)
+        && (request.resource.data.get('reviewNote', null) == null
+          || (request.resource.data.reviewNote is string && request.resource.data.reviewNote.size() <= 2000))
+        && validCommentUpdate();
     }
 
     function validCommentUpdate() {
@@ -40,9 +59,12 @@ service cloud.firestore {
         && request.resource.data.get('reviewNote', null) == null
         && request.resource.data.get('reviewComments', null) in [null, []]
         && request.resource.data.get('completedBy', 0) == 0);
-      allow update: if isAdmin() || (isOwnDraft(resource.data)
+      allow update: if isAdmin() || isReviewUpdate() || (isOwnDraft(resource.data)
         && isOwnDraft(request.resource.data)
-        && (request.resource.data.reviewStatus in ['draft', 'pending']
+        && (request.resource.data.reviewStatus == 'draft'
+          || (request.resource.data.reviewStatus == 'pending'
+            && request.resource.data.diff(resource.data).affectedKeys()
+              .hasOnly(['reviewStatus', 'reviewedBy', 'reviewComments', 'lastModifiedBy', 'updatedAt']))
           || (request.resource.data.reviewStatus == resource.data.reviewStatus
             && request.resource.data.diff(resource.data).affectedKeys()
               .hasOnly(['reviewComments', 'lastModifiedBy', 'updatedAt'])))
@@ -57,7 +79,8 @@ service cloud.firestore {
     match /settings/{id} {
       allow read: if id in ['pricing', 'lesson-groups', 'daily-puzzle', 'weekly-cipher', 'cipher-history', 'events'];
       allow write: if (isAdmin() && id in ['pricing', 'lesson-groups', 'daily-puzzle', 'weekly-cipher', 'cipher-history', 'events'])
-        || (isStaff() && id == 'lesson-groups');
+        || (isStaff() && id == 'lesson-groups'
+          && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.role == 'contributor');
     }
 
     match /staffAccess/{uid} {

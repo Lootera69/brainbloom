@@ -1,6 +1,6 @@
 import { getFirestore } from "firebase-admin/firestore";
 import { privateJson, requireVerifiedUser } from "@/lib/server/staff-auth";
-import { canRedeemInvite, inviteId } from "@/lib/server/staff-invites";
+import { canJoinMembership, canRedeemInvite, inviteId } from "@/lib/server/staff-invites";
 
 export const runtime = "nodejs";
 
@@ -21,9 +21,10 @@ export async function POST(request: Request) {
         tx.get(invitation), tx.get(access), tx.get(db.doc(`accountDeletions/${user.uid}`)),
       ]);
       const data = invite.data();
-      if (deletion.exists || !canRedeemInvite(data, user.email, user.uid) || member.exists) return false;
-      tx.set(access, { email: user.email, role: data!.role, enabled: true, inviteId: invitation.id, createdAt: Date.now() });
-      tx.update(invitation, { redeemedBy: user.uid, redeemedAt: Date.now() });
+      if (deletion.exists || !canRedeemInvite(data, user.email, user.uid)
+        || !canJoinMembership(member.data(), data)) return false;
+      tx.set(access, { email: user.email, role: data!.role, enabled: true, status: "active", inviteId: invitation.id, createdAt: Date.now() });
+      tx.update(invitation, { enabled: false, redeemedBy: user.uid, redeemedAt: Date.now() });
       return true;
     });
     return accepted ? privateJson({ ok: true })

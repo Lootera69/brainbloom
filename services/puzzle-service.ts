@@ -42,7 +42,7 @@ function saveLocalPuzzles(puzzles: Puzzle[]): boolean {
   }
 }
 
-function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle {
+export function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle {
   const puzzle: Puzzle = {
     id,
     type: data.type as Puzzle["type"],

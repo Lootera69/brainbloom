@@ -11,7 +11,7 @@ export async function GET(request: Request) {
     const snap = await getFirestore(admin.app).collection("staffInvites").orderBy("createdAt", "desc").limit(100).get();
     return privateJson({ ok: true, invites: snap.docs.map((doc) => {
       const d = doc.data();
-      return { id: doc.id, email: d.email, role: d.role, enabled: d.enabled === true, expiresAt: d.expiresAt, redeemed: !!d.redeemedBy };
+      return { id: doc.id, email: d.email, role: d.role, enabled: d.enabled === true && d.redeemedBy === undefined, expiresAt: d.expiresAt, redeemed: d.redeemedBy !== undefined };
     }) });
   } catch { return privateJson({ ok: false, error: "Could not load invitations." }, 503); }
 }
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
   if (body && typeof body === "object" && body.role === undefined) body.role = "contributor";
   if (!body || typeof body.email !== "string" || body.email.length > 254
     || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email.trim())
-    || !["admin", "contributor"].includes(body.role)) {
+    || !["admin", "contributor", "reviewer"].includes(body.role)) {
     return privateJson({ ok: false, error: "Enter an email and a valid role." }, 400);
   }
   try {

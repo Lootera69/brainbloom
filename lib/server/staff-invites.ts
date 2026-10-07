@@ -15,9 +15,16 @@ export function newInvite(email: string, role: StaffRole, createdBy: string, now
 }
 
 export function canRedeemInvite(data: Record<string, unknown> | undefined, email: string, uid: string, now = Date.now()) {
-  return data?.enabled === true
-    && (data.role === "admin" || data.role === "contributor")
+  return uid.length > 0 && data?.enabled === true
+    && (data.role === "admin" || data.role === "contributor" || data.role === "reviewer")
     && data.email === normalizedEmail(email)
     && typeof data.expiresAt === "number" && data.expiresAt > now
-    && (data.redeemedBy === undefined || data.redeemedBy === uid);
+    && data.redeemedBy === undefined;
+}
+
+export function canJoinMembership(member: Record<string, unknown> | undefined, invite: Record<string, unknown> | undefined): boolean {
+  if (!member) return true;
+  return member.status === "removed" && member.enabled === false
+    && typeof member.removedAt === "number" && typeof invite?.createdAt === "number"
+    && invite.createdAt > member.removedAt && invite.redeemedBy === undefined;
 }

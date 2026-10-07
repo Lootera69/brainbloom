@@ -11,9 +11,12 @@ import { signInStaff, signInStaffWithGoogle, signOutStaff, watchStaffSession, st
 import { setStudioRole, clearStudioRole } from "@/services/puzzle-service";
 import { Toaster } from "sonner";
 import { sendPasswordReset } from "@/services/firebase";
+import type { StaffRole } from "@/lib/staff-access";
+import { canVisitStudioPath } from "@/lib/studio-ui-access";
 
 const navItems = [
   { href: "/studio", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/studio/review", label: "Review Queue", icon: Eye },
   { href: "/studio/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/studio/events", label: "Moments", icon: CalendarDays },
   { href: "/studio/users", label: "Users", icon: Users, adminOnly: true },
@@ -31,7 +34,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [mounted, setMounted] = useState(false);
-  const [role, setRole] = useState<string | null>(null);
+  const [role, setRole] = useState<StaffRole | null>(null);
   const [displayName, setDisplayName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [inputFocus, setInputFocus] = useState<"code" | "password" | null>(null);
@@ -398,7 +401,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
   }
 
   // Admin-only nav entries (e.g. Seed Data) are hidden from contributors.
-  const visibleNavItems = navItems.filter((item) => !item.adminOnly || role === "admin");
+  const visibleNavItems = navItems.filter((item) => (!item.adminOnly || role === "admin") && canVisitStudioPath(role, item.href));
 
   return (
     <div className="flex min-h-dvh flex-col bg-background">
@@ -421,7 +424,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
                   ? "bg-primary/10 text-primary"
                   : "bg-muted text-muted-foreground"
               }`}>
-                {role === "admin" ? <Shield className="size-3" /> : <PenTool className="size-3" />}
+                {role === "admin" ? <Shield className="size-3" /> : role === "reviewer" ? <Eye className="size-3" /> : <PenTool className="size-3" />}
                 {role}
               </span>
             )}
@@ -438,9 +441,9 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
 
       <div className="flex flex-1">
         <StudioSidebar />
-        <div className="flex flex-1 flex-col min-w-0">
+        <div key={role} className="flex flex-1 flex-col min-w-0">
           <Toaster position="top-center" />
-          {children}
+          {canVisitStudioPath(role, pathname) ? children : <main className="mx-auto w-full max-w-2xl p-8"><h1 className="text-xl font-semibold">This page is not available for your Studio role</h1><p className="mt-2 text-sm text-muted-foreground">{role === "reviewer" ? "Use the review queue to inspect submissions and leave decisions." : "An administrator manages this page."}</p><Link href={role === "reviewer" ? "/studio/review" : "/studio"} className="mt-5 inline-flex rounded-xl bg-primary px-4 py-2 text-sm text-primary-foreground">{role === "reviewer" ? "Open review queue" : "Back to dashboard"}</Link></main>}
         </div>
       </div>
 

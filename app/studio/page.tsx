@@ -6,7 +6,8 @@ import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "
 import { Plus, Edit3, Trash2, Play, Globe, Lock, Loader2, Calendar, User, AlertTriangle, X, CheckCircle2, XCircle, MessageSquare, Send, Filter, Sparkles, BarChart3, Search, ArrowUpDown, Database, Eye, Zap, LayoutGrid, Megaphone, ChevronLeft, ChevronRight } from "lucide-react";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { useRouter } from "next/navigation";
-import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
+import { getPuzzles, deletePuzzle, togglePublish, updatePuzzleReview, isAdmin, getStudioSession, getStudioRole, CATEGORIES, DIFFICULTIES } from "@/services/puzzle-service";
+import { ReviewQueue } from "@/components/studio/review-queue";
 import { type Puzzle, type ReviewStatus } from "@/types/puzzle";
 import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 import { getTodayDailyPuzzleId, setDailyPuzzle } from "@/services/daily-puzzle";
@@ -152,6 +153,10 @@ const TYPE_ICONS: Record<string, string> = {
 };
 
 export default function StudioPage() {
+  return getStudioRole() === "reviewer" ? <ReviewQueue /> : <StudioAuthorDashboard />;
+}
+
+function StudioAuthorDashboard() {
   const router = useRouter();
   const [puzzles, setPuzzles] = useState<Puzzle[]>([]);
   const [loading, setLoading] = useState(true);

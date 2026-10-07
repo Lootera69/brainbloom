@@ -35,7 +35,9 @@ async function enterStudio(user: User, code: string): Promise<StaffSession> {
   const existing = await getDoc(doc(db, "staffAccess", user.uid));
   const role = staffRole(existing.data());
   if (role) return { uid: user.uid, role, displayName: staffName(user) };
-  if (existing.exists()) throw new Error("Studio access is disabled. Contact the administrator.");
+  if (existing.exists() && existing.data()?.status !== "removed") {
+    throw new Error("Studio access is frozen. Contact an administrator to unfreeze it.");
+  }
   if (!code.trim()) throw new Error("An invitation code is required to join Studio.");
   const response = await fetch("/api/studio/access", {
     method: "POST", headers: { ...await staffHeaders(), "Content-Type": "application/json" },

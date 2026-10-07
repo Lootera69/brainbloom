@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getFirestore } from "firebase-admin/firestore";
+import { FieldPath, getFirestore } from "firebase-admin/firestore";
 import { getAdminApp } from "@/lib/push-send";
 
 export const maxDuration = 60;
@@ -14,10 +14,9 @@ export interface LeaderboardEntry {
   tier: "free" | "premium";
 }
 
-const FETCH_LIMIT = 200;
 const TOP_N = 10;
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
-// Monday 00:00 UTC — matches the client's weekly reset boundary (getWeekStart in user-store).
 function currentWeekStartUtc(): number {
   const now = new Date();
   const day = now.getUTCDay();
@@ -28,58 +27,63 @@ function currentWeekStartUtc(): number {
   return weekStart.getTime();
 }
 
+function respond(data: { leaders: LeaderboardEntry[]; rank: number | null; unavailable?: boolean }) {
+  return NextResponse.json(data, { headers: { "Cache-Control": "no-store" } });
+}
+
 export async function GET(request: NextRequest) {
   const app = getAdminApp();
-  if (!app) {
-    return NextResponse.json({ leaders: [], rank: null, unavailable: true });
-  }
+  if (!app) return respond({ leaders: [], rank: null, unavailable: true });
 
-  const params = request.nextUrl.searchParams;
-  const uid = params.get("uid");
+  const requestedUid = request.nextUrl.searchParams.get("uid");
+  const uid = requestedUid && requestedUid.length <= 128 && !requestedUid.includes("/")
+    ? requestedUid : null;
   const weekStart = currentWeekStartUtc();
-
-  const db = getFirestore(app);
-  const usersRef = db.collection("users");
+  const weekEnd = weekStart + WEEK_MS;
+  const usersRef = getFirestore(app).collection("users");
 
   try {
-    // Single-field query (automatic index) — no composite index required.
-    const snap = await usersRef.orderBy("weeklyXp", "desc").limit(FETCH_LIMIT).get();
+    const currentWeek = usersRef
+      .where("weeklyStartDate", ">=", weekStart)
+      .where("weeklyStartDate", "<", weekEnd)
+      .where("weeklyXp", ">", 0)
+      .orderBy("weeklyXp", "desc")
+      .orderBy("weeklyStartDate", "asc")
+      .orderBy(FieldPath.documentId(), "asc");
 
-    // Rank every fetched user against the same week-filtered set that produces
-    // the leaderboard, so a user's rank always matches their listed position.
-    const ranked: { uid: string; entry: LeaderboardEntry }[] = [];
-    for (const doc of snap.docs) {
+    const [snap, own] = await Promise.all([
+      currentWeek.limit(TOP_N).select("displayName", "avatarId", "photoURL", "weeklyXp", "level", "tier").get(),
+      uid ? usersRef.doc(uid).get() : null,
+    ]);
+    const leaders: LeaderboardEntry[] = snap.docs.map((doc) => {
       const d = doc.data();
-      const wxp = typeof d.weeklyXp === "number" ? d.weeklyXp : 0;
-      const ws = typeof d.weeklyStartDate === "number" ? d.weeklyStartDate : 0;
-      // Skip inactive weeks and empty scores.
-      if (wxp <= 0 || ws < weekStart) continue;
-
-      ranked.push({
+      return {
         uid: doc.id,
-        entry: {
-          uid: doc.id,
-          displayName: typeof d.displayName === "string" && d.displayName.trim() ? d.displayName : "Anonymous",
-          avatarId: typeof d.avatarId === "string" ? d.avatarId : null,
-          photoURL: typeof d.photoURL === "string" ? d.photoURL : null,
-          weeklyXp: wxp,
-          level: typeof d.level === "number" ? d.level : 1,
-          tier: d.tier === "premium" ? "premium" : "free",
-        },
-      });
-    }
-
-    const leaders = ranked.slice(0, TOP_N).map((r) => r.entry);
+        displayName: typeof d.displayName === "string" && d.displayName.trim() ? d.displayName : "Anonymous",
+        avatarId: typeof d.avatarId === "string" ? d.avatarId : null,
+        photoURL: typeof d.photoURL === "string" ? d.photoURL : null,
+        weeklyXp: d.weeklyXp,
+        level: typeof d.level === "number" && Number.isFinite(d.level) ? d.level : 1,
+        tier: d.tier === "premium" ? "premium" : "free",
+      };
+    });
 
     let rank: number | null = null;
-    if (uid) {
-      const index = ranked.findIndex((r) => r.uid === uid);
-      if (index !== -1) rank = index + 1;
+    const listedIndex = leaders.findIndex((entry) => entry.uid === uid);
+    if (listedIndex !== -1) {
+      rank = listedIndex + 1;
+    } else if (own?.exists) {
+      const data = own.data();
+      if (typeof data?.weeklyXp === "number" && Number.isFinite(data.weeklyXp) && data.weeklyXp > 0
+        && typeof data.weeklyStartDate === "number" && data.weeklyStartDate >= weekStart && data.weeklyStartDate < weekEnd) {
+        const ahead = await currentWeek.endBefore(own).count().get();
+        rank = ahead.data().count + 1;
+      }
     }
 
-    return NextResponse.json({ leaders, rank });
+    return respond({ leaders, rank });
   } catch (e) {
     console.error("Leaderboard query failed:", e);
-    return NextResponse.json({ leaders: [], rank: null, unavailable: true });
+    return respond({ leaders: [], rank: null, unavailable: true });
   }
 }
