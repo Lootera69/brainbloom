@@ -7,7 +7,7 @@ import { BookOpen, BookX, Zap, ArrowRight, CheckCircle2 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { SkeletonRoad } from "@/components/ui/skeleton";
-import { getPublishedByCategory } from "@/services/puzzle-service";
+import { getPublishedByCategory } from "@/services/player-content";
 import { useUserStore } from "@/store/user-store";
 import { hasPremiumAccess } from "@/services/entitlement-service";
 import { type Puzzle } from "@/types/puzzle";
@@ -183,7 +183,7 @@ export function DriveWorld({ category, onStartPuzzle }: Props) {
     () => (width > 0 ? nodes.map((_, i) => nodeCenter(i, width)) : []),
     [nodes, width],
   );
-  centersRef.current = centers;
+  useEffect(() => { centersRef.current = centers; }, [centers]);
   const samples = useMemo(() => sampleRoad(centers), [centers]);
   const wh = useMemo(() => worldHeight(nodes.length), [nodes.length]);
   const paths = useMemo(

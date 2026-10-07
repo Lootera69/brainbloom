@@ -9,17 +9,17 @@ import {
   argbToCss,
   scheduleSummary,
   type EventDay,
-  type EventQuestion,
+  type AuthoredEventQuestion,
   type EventSchedule,
-  type EventTheme,
+  type AuthoredEventTheme,
 } from "@/lib/events/event-theme";
 
 interface Props {
   open: boolean;
-  event: EventTheme | null;
+  event: AuthoredEventTheme | null;
   canEdit: boolean;
   onClose: () => void;
-  onSave: (updated: EventTheme) => void;
+  onSave: (updated: AuthoredEventTheme) => void;
 }
 
 const MONTH_OPTS = Array.from({ length: 12 }, (_, i) => ({
@@ -48,7 +48,7 @@ function dayFromIso(iso: string): EventDay | null {
 }
 
 export function EventEditorDialog({ open, event, canEdit, onClose, onSave }: Props) {
-  const [draft, setDraft] = useState<EventTheme | null>(event);
+  const [draft, setDraft] = useState<AuthoredEventTheme | null>(event);
 
   useEffect(() => {
     // Reset the working copy whenever a different event is opened.
@@ -58,7 +58,7 @@ export function EventEditorDialog({ open, event, canEdit, onClose, onSave }: Pro
 
   if (!draft) return null;
 
-  const patch = (p: Partial<EventTheme>) => setDraft({ ...draft, ...p });
+  const patch = (p: Partial<AuthoredEventTheme>) => setDraft({ ...draft, ...p });
   const patchSchedule = (s: EventSchedule) => setDraft({ ...draft, schedule: s });
 
   const field = (label: string, node: React.ReactNode) => (
@@ -341,9 +341,9 @@ function QuestionEditor({
   canEdit,
   onChange,
 }: {
-  question?: EventQuestion;
+  question?: AuthoredEventQuestion;
   canEdit: boolean;
-  onChange: (q: EventQuestion | undefined) => void;
+  onChange: (q: AuthoredEventQuestion | undefined) => void;
 }) {
   const q = question;
 
@@ -373,7 +373,7 @@ function QuestionEditor({
     );
   }
 
-  const set = (p: Partial<EventQuestion>) => onChange({ ...q, ...p });
+  const set = (p: Partial<AuthoredEventQuestion>) => onChange({ ...q, ...p });
 
   return (
     <section className="space-y-3">

@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
 import { categories } from "@/constants/home";
-import { getPublishedByCategory } from "@/services/puzzle-service";
+import { getPublishedByCategory } from "@/services/player-content";
 
 const iconByKey: Record<string, LucideIcon> = {
   brain: Brain,

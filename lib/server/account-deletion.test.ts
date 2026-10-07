@@ -133,3 +133,20 @@ describe("account deletion", () => {
     expect(state.events).toEqual([]);
   });
 });
+
+it('allows an old anonymous session to delete only its own cloud progress without a password', async () => {
+  state.verify.mockResolvedValue({ uid: 'owner', auth_time: 1, firebase: { sign_in_provider: 'anonymous' } });
+  expect((await DELETE(request())).status).toBe(200);
+  expect(state.verify).toHaveBeenCalledWith('valid', true);
+  expect(state.docs.has('users/owner')).toBe(false);
+  expect(state.docs.has('users/victim')).toBe(true);
+});
+
+it('does not allow a revoked anonymous session to delete data', async () => {
+  state.verify.mockImplementation(async (_token, revoked) => {
+    if (revoked) throw { code: 'auth/id-token-revoked' };
+    return { uid: 'owner', auth_time: 1, firebase: { sign_in_provider: 'anonymous' } };
+  });
+  expect((await DELETE(request())).status).toBe(401);
+  expect(state.events).toEqual([]);
+});

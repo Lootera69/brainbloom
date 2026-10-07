@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Zap, ArrowRight, Info, Star, Sparkles, Brain } from "lucide-react";
 import { type Puzzle } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
-import { cn, checkAnswer } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { useVerifiedPuzzle } from '@/features/puzzle/use-verified-puzzle';
 
 interface Props {
   puzzle: Puzzle;
@@ -30,22 +31,25 @@ function ThinkingDots() {
   );
 }
 
-export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
+export function TypeAnswerPlay({ puzzle: source, onComplete, onWrongAttempt, isRepeat }: Props) {
+  const { puzzle, submit, busy, result: confirmed } = useVerifiedPuzzle(source);
   const [input, setInput] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const result = checkAnswer(input, puzzle.correctAnswer, puzzle.acceptedAnswers);
-  const earned = result.correct && !isRepeat ? puzzle.xpReward : 0;
+  const result = confirmed ?? { correct: false, close: false };
+  const earned = confirmed?.xpEarned ?? 0;
   const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (submitted) resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [submitted]);
 
-  const handleSubmit = () => {
-    if (!input.trim() || submitted) return;
+  const handleSubmit = async () => {
+    if (!input.trim() || submitted || busy) return;
+    const reply = await submit(input);
+    if (!reply) return;
     setSubmitted(true);
-    if (!result.correct) {
+    if (!reply.correct) {
       onWrongAttempt?.();
     } else {
       import("@/services/sound-service").then(({ playCorrect }) => playCorrect());
@@ -137,7 +141,7 @@ export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }:
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(); }}
           placeholder="Type your answer..."
-          disabled={submitted}
+          disabled={submitted || busy}
           className="w-full rounded-2xl border bg-card px-5 py-4 text-center text-lg font-medium outline-none transition-all focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
           autoFocus
         />
@@ -202,7 +206,9 @@ export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }:
                       className="mt-1 text-sm text-muted-foreground"
                     >
                       {result.close ? "You were quite close! " : ""}
-                      The correct answer is <span className="font-semibold text-foreground">{puzzle.correctAnswer}</span>
+                      {confirmed?.completed
+                        ? <>The correct answer is <span className="font-semibold text-foreground">{puzzle.correctAnswer}</span></>
+                        : 'Try another answer.'}
                     </motion.p>
                   )}
                   {result.correct && !isRepeat && (
@@ -246,7 +252,7 @@ export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }:
                   {puzzle.correctExplanation}
                 </motion.div>
               )}
-              {!result.correct && puzzle.incorrectExplanation && (
+              {!result.correct && confirmed?.completed && puzzle.incorrectExplanation && (
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -258,10 +264,10 @@ export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }:
               )}
             </motion.div>
 
-            <motion.button onClick={() => onComplete(result.correct, earned)}
+            <motion.button onClick={() => confirmed?.completed ? onComplete(result.correct, earned) : setSubmitted(false)}
               whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
               className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]">
-              Continue <ArrowRight className="size-4" />
+              {confirmed?.completed ? 'Continue' : 'Try again'} <ArrowRight className="size-4" />
             </motion.button>
           </motion.div>
         )}
@@ -269,7 +275,7 @@ export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }:
 
       {/* Submit button */}
       {!submitted && (
-        <motion.button onClick={handleSubmit} disabled={!input.trim()}
+        <motion.button onClick={handleSubmit} disabled={!input.trim() || busy}
           whileHover={!input.trim() ? {} : { scale: 1.02 }}
           whileTap={!input.trim() ? {} : { scale: 0.97 }}
           className="relative mt-4 flex h-14 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-40">
@@ -280,7 +286,7 @@ export function TypeAnswerPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }:
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
             />
           )}
-          <Zap className="size-5" /> Submit Answer
+          <Zap className="size-5" /> {busy ? "Checking…" : "Submit Answer"}
         </motion.button>
       )}
     </div>

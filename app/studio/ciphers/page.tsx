@@ -15,7 +15,8 @@ import {
 import { GlassCard } from "@/components/ui/glass-card";
 import { isAdmin, clearPuzzlesCache } from "@/services/puzzle-service";
 import { upsertCiphers, deleteCiphersByIds } from "@/scripts/seed-data/importer";
-import cipherSeeds from "@/scripts/seed-data/ciphers.generated";
+import { getCipherSeeds, getSeedMetadata } from "@/services/seed-content";
+import type { SeedMetadata } from "@/types/seed-content";
 
 export default function CiphersPage() {
   const router = useRouter();
@@ -28,11 +29,14 @@ export default function CiphersPage() {
   const [elapsed, setElapsed] = useState(0);
   const [strays, setStrays] = useState<string[]>([]);
   const [cleaning, setCleaning] = useState(false);
+  const [metadata, setMetadata] = useState<SeedMetadata["ciphers"] | null>(null);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     setAdmin(isAdmin());
+    getSeedMetadata().then((data) => setMetadata(data.ciphers))
+      .catch((error: unknown) => setFailed(error instanceof Error ? error.message : "Could not load cipher details."));
   }, []);
 
   useEffect(() => {
@@ -57,9 +61,11 @@ export default function CiphersPage() {
     setStrays([]);
     setElapsed(0);
     setProgress([]);
-    addLog(`Loading ${cipherSeeds.length} ciphers (additive upsert by id)...`);
+    addLog("Downloading cipher data...");
 
     try {
+      const cipherSeeds = await getCipherSeeds();
+      addLog(`Loading ${cipherSeeds.length} ciphers (additive upsert by id)...`);
       const result = await upsertCiphers(cipherSeeds, addLog);
       clearPuzzlesCache();
       setStrays(result.strays);
@@ -94,12 +100,7 @@ export default function CiphersPage() {
     setCleaning(false);
   };
 
-  // Group counts by cipher family for the preview.
-  const familyCounts = cipherSeeds.reduce<Record<string, number>>((acc, c) => {
-    const label = c.cipherData?.cipherType ?? "Other";
-    acc[label] = (acc[label] ?? 0) + 1;
-    return acc;
-  }, {});
+  const familyCounts = metadata?.families ?? {};
 
   if (mounted && !admin) {
     return (
@@ -155,7 +156,7 @@ export default function CiphersPage() {
             Cipher set
           </p>
           <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-            {cipherSeeds.length} puzzles
+            {metadata ? `${metadata.count} puzzles` : "Loading..."}
           </span>
         </div>
         <div className="mt-3 flex flex-wrap gap-1.5">
@@ -190,7 +191,7 @@ export default function CiphersPage() {
           ) : (
             <KeyRound className="size-5" />
           )}
-          {loading ? "Loading..." : `Load ${cipherSeeds.length} Ciphers`}
+          {loading ? "Loading..." : `Load ${metadata?.count ?? ""} Ciphers`}
         </motion.button>
       )}
 
@@ -260,7 +261,7 @@ export default function CiphersPage() {
                   <Sparkles className="mx-auto mb-3 size-10 text-success" />
                   <h2 className="text-lg font-bold">Ciphers Loaded</h2>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    {cipherSeeds.length} ciphers are live in the bank and ready
+                    {metadata?.count ?? "The curated"} ciphers are live in the bank and ready
                     for the weekly rotation.
                   </p>
                   <div className="mt-4 flex gap-3">

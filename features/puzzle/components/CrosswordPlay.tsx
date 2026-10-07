@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, XCircle, ArrowRight, ChevronDown, ChevronUp, Zap, Sparkles } from "lucide-react";
 import { type Puzzle, type CrosswordClue } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
+import { useVerifiedPuzzle } from "@/features/puzzle/use-verified-puzzle";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -31,9 +32,9 @@ function clueNumbers(grid: (string | null)[][]): number[][] {
   return nums;
 }
 
-function ShimmerCheckButton({ onClick }: { onClick: () => void }) {
+function ShimmerCheckButton({ onClick, busy }: { onClick: () => void; busy: boolean }) {
   return (
-    <motion.button onClick={onClick}
+    <motion.button onClick={onClick} disabled={busy}
       whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
       className="relative mt-6 flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]">
       <motion.span
@@ -42,12 +43,13 @@ function ShimmerCheckButton({ onClick }: { onClick: () => void }) {
         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
       />
       <Zap className="size-5" />
-      Check Answers
+      {busy ? "Checking…" : "Check Answers"}
     </motion.button>
   );
 }
 
-export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
+export function CrosswordPlay({ puzzle: source, onComplete, onWrongAttempt, isRepeat }: Props) {
+  const { puzzle, submit, busy, result: confirmed } = useVerifiedPuzzle(source);
   const cd = puzzle.crosswordData;
   if (!cd) return null;
 
@@ -60,7 +62,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
   const clueCells = useMemo(() => {
     const set = new Set<string>();
     for (const clue of cd.clues) {
-      for (let i = 0; i < clue.answer.length; i++) {
+      for (let i = 0; i < (clue.length ?? clue.answer.length); i++) {
         const r = clue.direction === "across" ? clue.startRow : clue.startRow + i;
         const c = clue.direction === "across" ? clue.startCol + i : clue.startCol;
         set.add(`${r},${c}`);
@@ -118,7 +120,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
     if (selectedRow < 0 || selectedCol < 0) return null;
     const across = cd.clues.find((c) => {
       if (c.direction !== "across") return false;
-      for (let i = 0; i < c.answer.length; i++) {
+      for (let i = 0; i < (c.length ?? c.answer.length); i++) {
         if (c.startRow === selectedRow && c.startCol + i === selectedCol) return true;
       }
       return false;
@@ -126,7 +128,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
     if (across) return across;
     return cd.clues.find((c) => {
       if (c.direction !== "down") return false;
-      for (let i = 0; i < c.answer.length; i++) {
+      for (let i = 0; i < (c.length ?? c.answer.length); i++) {
         if (c.startRow + i === selectedRow && c.startCol === selectedCol) return true;
       }
       return false;
@@ -137,7 +139,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
   const highlightCells = useMemo(() => {
     if (!activeClue) return new Set<string>();
     const set = new Set<string>();
-    for (let i = 0; i < activeClue.answer.length; i++) {
+    for (let i = 0; i < (activeClue.length ?? activeClue.answer.length); i++) {
       const r = activeClue.direction === "across" ? activeClue.startRow : activeClue.startRow + i;
       const c = activeClue.direction === "across" ? activeClue.startCol + i : activeClue.startCol;
       set.add(`${r},${c}`);
@@ -147,7 +149,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const handleCellClick = useCallback((r: number, c: number) => {
-    if (submitted) return;
+    if (submitted || busy) return;
     if (!isActiveCell(r, c)) return;
     if (selectedRow === r && selectedCol === c) {
       setSelectedRow(-1);
@@ -156,11 +158,11 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
       setSelectedRow(r);
       setSelectedCol(c);
     }
-  }, [submitted, isActiveCell, selectedRow, selectedCol]);
+  }, [submitted, busy, isActiveCell, selectedRow, selectedCol]);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const handleKeyDown = useCallback((e: React.KeyboardEvent, r: number, c: number) => {
-    if (submitted) return;
+    if (submitted || busy) return;
     if (e.key === "ArrowRight") {
       e.preventDefault();
       for (let nc = c + 1; nc < size; nc++) {
@@ -218,32 +220,19 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
         }
       }
     }
-  }, [submitted, isActiveCell, size, playerGrid, activeClue, setPlayerGrid, setSelectedRow, setSelectedCol]);
+  }, [submitted, busy, isActiveCell, size, playerGrid, activeClue, setPlayerGrid, setSelectedRow, setSelectedCol]);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const handleCheck = useCallback(() => {
-    const newResults = playerGrid.map((row, r) =>
-      row.map((cell, c) => {
-        if (answerGrid[r]?.[c] === null) return true;
-        for (const clue of cd.clues) {
-          for (let i = 0; i < clue.answer.length; i++) {
-            const cr = clue.direction === "across" ? clue.startRow : clue.startRow + i;
-            const cc = clue.direction === "across" ? clue.startCol + i : clue.startCol;
-            if (cr === r && cc === c) {
-              return cell.toUpperCase() === clue.answer[i].toUpperCase();
-            }
-          }
-        }
-        return true;
-      }),
-    );
-    setResults(newResults);
+  const handleCheck = useCallback(async () => {
+    if (busy || submitted) return;
+    const answer = Object.fromEntries(playerGrid.flatMap((row, r) => row.flatMap((cell, c) =>
+      answerGrid[r]?.[c] === null ? [] : [[`${r},${c}`, cell]])));
+    const reply = await submit(answer);
+    if (!reply?.cellResults) return;
+    setResults(playerGrid.map((row, r) => row.map((_, c) => answerGrid[r]?.[c] === null || reply.cellResults?.[`${r},${c}`] === true)));
     setSubmitted(true);
-    const hasWrong = newResults.some((row, r) =>
-      row.some((result, c) => !result && clueCells.has(`${r},${c}`)),
-    );
-    if (hasWrong) onWrongAttempt?.();
-  }, [playerGrid, answerGrid, cd.clues, clueCells, onWrongAttempt]);
+    if (!reply.correct) onWrongAttempt?.();
+  }, [busy, submitted, playerGrid, answerGrid, submit, onWrongAttempt]);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const allCorrect = useMemo(() => {
@@ -256,7 +245,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
   }, [submitted, clueCells, results]);
 
   const handleContinue = () => {
-    onComplete(allCorrect, allCorrect && !isRepeat ? puzzle.xpReward : 0);
+    onComplete(allCorrect, confirmed?.xpEarned ?? 0);
   };
 
   const cellSize = size <= 10 ? "2.5rem" : "2rem";
@@ -327,7 +316,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
                   className="relative mt-2 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-success/20 to-emerald-500/20 px-3 py-1"
                 >
                   <Zap className="size-3.5 text-success" />
-                  <span className="text-sm font-bold text-success">+{puzzle.xpReward} XP</span>
+                  <span className="text-sm font-bold text-success">+{confirmed?.xpEarned ?? 0} XP</span>
                 </motion.div>
               )}
               {allCorrect && isRepeat && (
@@ -412,7 +401,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
             </p>
             <p className="mt-0.5 text-sm font-medium">{activeClue.clue}</p>
             <p className="mt-0.5 font-mono text-xs text-muted-foreground">
-              {activeClue.answer.length} letters
+              {(activeClue.length ?? activeClue.answer.length)} letters
             </p>
           </GlassCard>
         )}
@@ -455,7 +444,7 @@ export function CrosswordPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: 
         </div>
 
         {/* Buttons */}
-        {!submitted && <ShimmerCheckButton onClick={handleCheck} />}
+        {!submitted && <ShimmerCheckButton onClick={handleCheck} busy={busy} />}
         {submitted && !allCorrect && (
           <motion.button
             onClick={() => setSubmitted(false)}

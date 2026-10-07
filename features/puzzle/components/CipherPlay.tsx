@@ -7,6 +7,7 @@ import { type Puzzle } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
 import { getCipherPhase } from "@/services/weekly-cipher";
 import { cn } from "@/lib/utils";
+import { useVerifiedPuzzle } from "@/features/puzzle/use-verified-puzzle";
 import { haptic } from "@/lib/haptics";
 
 interface Props {
@@ -17,7 +18,8 @@ interface Props {
   practice?: boolean;
 }
 
-function CipherPlay({ puzzle, onComplete, onWrongAttempt, practice = false }: Props) {
+function CipherPlay({ puzzle: source, onComplete, onWrongAttempt, practice = false }: Props) {
+  const { puzzle, submit, busy, result } = useVerifiedPuzzle(source, practice ? "practice" : "challenge");
   // Friday unlocks cipherData.hint as the sole hint (see getCipherPhase).
   // Practice (archive replay) always shows the hint.
   const hintUnlocked = practice || getCipherPhase() === "hint";
@@ -26,8 +28,7 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt, practice = false }: Pr
   const [revealPhase, setRevealPhase] = useState<"idle" | "decoding" | "result">("idle");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const isCorrect = input.trim().toLowerCase() === puzzle.correctAnswer.trim().toLowerCase() ||
-    (puzzle.acceptedAnswers?.some((a) => a.trim().toLowerCase() === input.trim().toLowerCase()) ?? false);
+  const isCorrect = result?.correct === true;
   const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,19 +39,18 @@ function CipherPlay({ puzzle, onComplete, onWrongAttempt, practice = false }: Pr
     inputRef.current?.focus();
   }, []);
 
-  const handleSubmit = () => {
-    if (!input.trim() || submitted) return;
-    setRevealPhase("decoding");
-    setTimeout(() => {
-      setSubmitted(true);
-      setRevealPhase("result");
-      if (!isCorrect) {
-        onWrongAttempt?.();
-      } else {
-        haptic([60]);
-        import("@/services/sound-service").then(({ playCipherSolve }) => playCipherSolve());
-      }
-    }, 1800);
+  const handleSubmit = async () => {
+    if (!input.trim() || submitted || busy || revealPhase === 'decoding') return;
+    setRevealPhase('decoding');
+    const [reply] = await Promise.all([submit(input), new Promise((resolve) => setTimeout(resolve, 1800))]);
+    if (!reply) { setRevealPhase('idle'); return; }
+    setSubmitted(true);
+    setRevealPhase('result');
+    if (!reply.correct) onWrongAttempt?.();
+    else {
+      haptic([60]);
+      import('@/services/sound-service').then(({ playCipherSolve }) => playCipherSolve());
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

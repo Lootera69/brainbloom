@@ -54,6 +54,8 @@ export function GoogleOneTap({ onBeforeSetUser }: GoogleOneTapProps) {
         try {
           const { loadUserData } = await import("@/services/user-service");
           const cloudData = await loadUserData(user.uid);
+          const { preserveGuestHistory } = await import('@/services/guest-history');
+          preserveGuestHistory();
           setUser(payload, { cloudData });
           router.replace("/");
         } catch {

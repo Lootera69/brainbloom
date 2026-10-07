@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, BookOpen, Brain, Sparkles, CheckCheck } from "lucide-react";
 import { type Puzzle } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
+import { useVerifiedPuzzle } from "@/features/puzzle/use-verified-puzzle";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -36,6 +37,7 @@ const slideVariants = {
 };
 
 export function StoryPlay({ puzzle, onComplete }: Props) {
+  const { submit, busy, result } = useVerifiedPuzzle(puzzle);
   const slides = puzzle.storyData;
   const totalQuestion = slides?.questionSlides?.length ?? 0;
   const totalAnswer = slides?.answerSlides?.length ?? 0;
@@ -112,8 +114,10 @@ export function StoryPlay({ puzzle, onComplete }: Props) {
     }
   };
 
-  const handleFinish = () => {
-    onComplete();
+  const handleFinish = async () => {
+    if (busy) return;
+    const reply = result?.completed ? result : await submit('read');
+    if (reply?.correct) onComplete();
   };
 
   const renderDots = (current: number, total: number) => (
@@ -297,7 +301,7 @@ export function StoryPlay({ puzzle, onComplete }: Props) {
                   You have finished this story. Reflect on what you have learned.
                 </p>
                 <motion.button
-                  onClick={handleFinish}
+                  onClick={handleFinish} disabled={busy}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"

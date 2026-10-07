@@ -1,7 +1,9 @@
 "use client";
 
+import { GuestHistory } from '@/features/profile/components/GuestHistory';
 import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   User,
@@ -234,6 +236,8 @@ export default function ProfilePage() {
   const { level, progress, xpToNext } = useMemo(() => getLevel(xp), [xp]);
 
   const handleLogout = async () => {
+    const { preserveGuestHistory } = await import('@/services/guest-history');
+    preserveGuestHistory();
     const uid = userId;
     await cleanupPushTokens(uid);
     await signOutUser();
@@ -400,6 +404,8 @@ export default function ProfilePage() {
           </div>
         </GlassCard>
       </motion.section>
+
+      <GuestHistory />
 
       {/* Guest sign-in CTA — only show when guest has real progress */}
       {isGuest && level > 1 && (
@@ -983,7 +989,7 @@ export default function ProfilePage() {
 
       {/* Footer links */}
       <div className="mt-8 flex items-center justify-center gap-4 text-xs text-muted-foreground/50">
-        <a href="/blog" className="transition-colors hover:text-foreground">Blog</a>
+        <Link href="/blog" className="transition-colors hover:text-foreground">Blog</Link>
         <span className="text-muted-foreground/30">|</span>
         <a href="/about" className="transition-colors hover:text-foreground">About</a>
         <span className="text-muted-foreground/30">|</span>

@@ -1,5 +1,4 @@
 // Forge bundle builder: validated forge items + verbatim legacy keepers
-// → public/seed/forge-bundle.json (+ forge-manifest.json).
 // Usage: node scripts/seed-data/ai-batch/build-bundle.mjs
 import fs from 'node:fs';
 import path from 'node:path';
@@ -9,7 +8,7 @@ const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '..',
 const batchDir = path.join(root, 'scripts', 'seed-data', 'ai-batch');
 const validatedDir = path.join(batchDir, 'output', 'validated');
 const dataTsPath = path.join(root, 'scripts', 'seed-data', 'data.ts');
-const outDir = path.join(root, 'public', 'seed');
+const outDir = path.join(root, 'scripts', 'seed-data', 'private');
 
 const KEEPER_TITLES = ['Truth Tellers', 'The Missing Dollar'];
 

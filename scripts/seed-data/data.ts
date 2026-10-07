@@ -1,5 +1,7 @@
 ﻿import type { SeedData } from "./importer";
 
+import "server-only";
+
 const seedData: SeedData = {
   lessonGroups: [
     // ===== LOGIC =====

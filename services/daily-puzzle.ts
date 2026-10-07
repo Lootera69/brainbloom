@@ -2,7 +2,7 @@
 
 import { getFirebase } from "@/services/firebase";
 import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
-import { getPublishedPuzzles, getPuzzle } from "@/services/puzzle-service";
+import { getPublishedPuzzles, getPuzzle } from "@/services/player-content";
 import type { Puzzle } from "@/types/puzzle";
 
 const DAILY_PUZZLE_KEY = "brainbloom-daily-puzzle";

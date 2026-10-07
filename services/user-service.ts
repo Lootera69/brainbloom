@@ -1,8 +1,11 @@
 "use client";
 
 import { doc, getDocFromServer, setDoc } from "firebase/firestore";
-import type { Activity, Achievement, DailyQuest } from "@/store/user-store";
+import { getUserSessionVersion, type Activity, type Achievement, type DailyQuest } from "@/store/user-store";
 import { getFirebase } from "@/services/firebase";
+import { playerApi } from "@/services/player-service";
+import { rememberPlayerProgress } from "@/lib/verified-player-progress";
+import { editableProfile } from "@/lib/player-profile";
 
 let firestore: ReturnType<typeof import("firebase/firestore").getFirestore> | null = null;
 
@@ -17,6 +20,8 @@ function getDb() {
   }
 }
 export interface UserDocument {
+  progressVersion?: number;
+  revision?: number;
   displayName: string;
   email: string | null;
   photoURL: string | null;
@@ -79,70 +84,23 @@ export async function saveUserData(uid: string, data: UserDocument): Promise<voi
   if (!db) return;
   try {
     const ref = doc(db, "users", uid);
-    await setDoc(ref, { ...data, updatedAt: Date.now() }, { merge: true });
+    await setDoc(ref, editableProfile({ ...data, profileUpdatedAt: Date.now() }), { merge: true });
   } catch (e) {
     console.error("Failed to save user data to Firestore:", e);
   }
 }
 
-export async function loadUserData(uid: string): Promise<Partial<UserDocument> | null> {  const db = getDb();
-  if (!db) throw new Error("Cloud progress is unavailable.");
-  try {
-    const ref = doc(db, "users", uid);
-    const snap = await getDocFromServer(ref);
-    if (!snap.exists()) return null;
-    const d = snap.data() as Record<string, unknown>;
-    return {
-      displayName: d.displayName as string ?? "",
-      email: d.email as string | null ?? null,
-      photoURL: d.photoURL as string | null ?? null,
-      avatarId: d.avatarId as string | null ?? null,
-      xp: (d.xp as number) ?? 0,
-      xpToday: (d.xpToday as number) ?? 0,
-      streak: (d.streak as number) ?? 0,
-      lastActiveDate: d.lastActiveDate as string | null ?? null,
-      hearts: (d.hearts as number) ?? 5,
-      nextHeartAt: d.nextHeartAt as number | null ?? null,
-      level: (d.level as number) ?? 1,
-      gems: (d.gems as number) ?? 0,
-      dailyGoal: (d.dailyGoal as number) ?? 100,
-      lastPlayedCategory: d.lastPlayedCategory as string | null ?? null,
-      history: (d.history as Activity[]) ?? [],
-      achievements: (d.achievements as Achievement[]) ?? [],
-      lastRewardClaim: d.lastRewardClaim as string | null ?? null,
-      streakFreezes: (d.streakFreezes as number) ?? 0,
-      practiceHeartsToday: (d.practiceHeartsToday as number) ?? 0,
-      lastPracticeDate: d.lastPracticeDate as string | null ?? null,
-      dailyQuests: (d.dailyQuests as DailyQuest[]) ?? [],
-      lastQuestRefresh: d.lastQuestRefresh as string | null ?? null,
-      completedPuzzleIds: (d.completedPuzzleIds as string[]) ?? [],
-      questsRewarded: (d.questsRewarded as string[]) ?? [],
-      dailyPuzzleCompletedDate: d.dailyPuzzleCompletedDate as string | null ?? null,
-      dailyPuzzleStreak: (d.dailyPuzzleStreak as number) ?? 0,
-      dailyPuzzleLastDate: d.dailyPuzzleLastDate as string | null ?? null,
-      dailySetDate: d.dailySetDate as string | null ?? null,
-      dailySetCompletedIds: (d.dailySetCompletedIds as string[]) ?? [],
-      dailySetHeartLost: (d.dailySetHeartLost as boolean) ?? false,
-      soundEnabled: (d.soundEnabled as boolean) ?? true,
-      theme: (d.theme as "light" | "dark" | "system") ?? "system",
-      streakStartDate: d.streakStartDate as string | null ?? null,
-      activeDates: (d.activeDates as string[]) ?? [],
-      tier: (d.tier as "free" | "premium") ?? "free",
-      subscriptionExpiry: (d.subscriptionExpiry as number | null) ?? null,
-      puzzlesPlayedToday: (d.puzzlesPlayedToday as number) ?? 0,
-      puzzlesPlayedDate: (d.puzzlesPlayedDate as string | null) ?? null,
-      adsWatchedToday: (d.adsWatchedToday as number) ?? 0,
-      adsWatchDate: (d.adsWatchDate as string | null) ?? null,
-      experiencedWonderIds: (d.experiencedWonderIds as string[]) ?? [],
-      currentCipherWeek: (d.currentCipherWeek as string | null) ?? null,
-      currentCipherSolved: (d.currentCipherSolved as boolean) ?? false,
-      cipherSolveCount: (d.cipherSolveCount as number) ?? 0,
-      cipherRevealed: (d.cipherRevealed as boolean) ?? false,
-      cipherSolvedWeeks: (d.cipherSolvedWeeks as string[]) ?? [],
-      updatedAt: d.updatedAt as number | undefined,
-    };
-  } catch (e) {
-    console.error("Failed to load user data from Firestore:", e);
-    throw e;
-  }
+export async function loadUserData(uid: string): Promise<Partial<UserDocument> | null> {
+  const db = getDb();
+  const auth = getFirebase().auth;
+  const session = getUserSessionVersion();
+  if (!db || !auth) throw new Error('Sign in to restore progress.');
+  await auth.authStateReady();
+  if (getUserSessionVersion() !== session || auth.currentUser?.uid !== uid) throw new Error('Sign in to restore progress.');
+  const [profile, snapshot] = await Promise.all([
+    getDocFromServer(doc(db, 'users', uid)),
+    playerApi.send({ action: 'snapshot', timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
+  ]);
+  if (getUserSessionVersion() !== session || auth.currentUser?.uid !== uid) throw new Error('Your sign-in changed.');
+  return { ...editableProfile(profile.data() ?? {}), ...rememberPlayerProgress(uid, snapshot.progress), progressVersion: 1 };
 }

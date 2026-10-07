@@ -6,6 +6,7 @@ import { Lightbulb, Zap, ArrowRight, CheckCircle2, XCircle, Sparkles, Eye, Info,
 import { type Puzzle } from "@/types/puzzle";
 import { GlassCard } from "@/components/ui/glass-card";
 import { cn } from "@/lib/utils";
+import { useVerifiedPuzzle } from "@/features/puzzle/use-verified-puzzle";
 import { haptic } from "@/lib/haptics";
 
 interface Props {
@@ -102,7 +103,9 @@ function SparkleBurst() {
   );
 }
 
-export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
+export function RiddlePlay({ puzzle: source, onComplete, onWrongAttempt, isRepeat }: Props) {
+  const { puzzle, submit, busy, result } = useVerifiedPuzzle(source);
+  const [input, setInput] = useState("");
   const [state, setState] = useState<RiddleState>("thinking");
   const [hintIndex, setHintIndex] = useState(0);
   const [revealDone, setRevealDone] = useState(false);
@@ -110,7 +113,7 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
   const [showCelebration, setShowCelebration] = useState(false);
   const revealDoneRef = useRef(false);
 
-  const earned = correct && !isRepeat ? puzzle.xpReward : 0;
+  const earned = result?.xpEarned ?? 0;
   const hints = puzzle.hintText?.split("\n").filter(Boolean) ?? [];
   const resultRef = useRef<HTMLDivElement>(null);
 
@@ -125,10 +128,15 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
     setTimeout(() => setShowCelebration(false), 800);
   }, []);
 
-  const handleReveal = () => {
-    setState("revealing");
+  const handleReveal = async (revealOnly = false) => {
+    if (busy || (!revealOnly && !input.trim())) return;
+    const reply = await submit(revealOnly ? '' : input);
+    if (!reply?.solution) return;
+    setCorrect(reply.correct);
+    if (!reply.correct) onWrongAttempt?.();
+    setState('revealing');
     haptic([50]);
-    import("@/services/sound-service").then(({ playRiddleReveal }) => playRiddleReveal());
+    import('@/services/sound-service').then(({ playRiddleReveal }) => playRiddleReveal());
   };
 
   const handleHint = () => {
@@ -136,23 +144,6 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
       setHintIndex((i) => i + 1);
     }
     import("@/services/sound-service").then(({ playClick }) => playClick());
-  };
-
-  const handleAssess = (gotIt: boolean) => {
-    setCorrect(gotIt);
-    setState("result");
-    if (!gotIt) {
-      onWrongAttempt?.();
-      import("@/services/sound-service").then(({ playWrong, playHeartbreak }) => {
-        playWrong();
-        playHeartbreak();
-      });
-    } else {
-      import("@/services/sound-service").then(({ playRiddleCorrect }) => {
-        playRiddleCorrect();
-        setTimeout(() => import("@/services/sound-service").then(({ playComplete }) => playComplete()), 500);
-      });
-    }
   };
 
   const handleContinue = () => {
@@ -332,8 +323,17 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
               </motion.button>
             )}
 
+            <input aria-label="Your answer" value={input} disabled={busy}
+              onChange={(event) => setInput(event.target.value)}
+              onKeyDown={(event) => { if (event.key === 'Enter') void handleReveal(); }}
+              className="w-full rounded-2xl border bg-card px-5 py-4 text-center" placeholder="Your answer" />
+            <button onClick={() => handleReveal()} disabled={busy || !input.trim()}
+              className="flex h-12 w-full items-center justify-center rounded-2xl bg-primary text-primary-foreground disabled:opacity-50">
+              {busy ? 'Checking…' : 'Check answer'}
+            </button>
             <motion.button
-              onClick={handleReveal}
+              onClick={() => handleReveal(true)}
+              disabled={busy}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               className="relative flex h-14 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"
@@ -344,7 +344,7 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               />
               <Eye className="size-5" />
-              Reveal Answer
+              Reveal without reward
             </motion.button>
           </motion.div>
         )}
@@ -427,70 +427,6 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
                   </motion.span>
                 </motion.div>
               )}
-            </GlassCard>
-          </motion.div>
-        )}
-
-        {/* Self-assessment phase */}
-        {state === "assessing" && (
-          <motion.div
-            key="assessing"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ type: "spring", stiffness: 200, damping: 20 }}
-          >
-            <GlassCard className="p-6 text-center sm:p-8">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-              >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 200, delay: 0.05 }}
-                  className="mb-4 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary/10 to-purple-500/10 px-4 py-1.5"
-                >
-                  <Sparkles className="size-3.5 text-primary" />
-                  <span className="text-sm font-semibold">{puzzle.correctAnswer}</span>
-                  <Sparkles className="size-3.5 text-primary" />
-                </motion.div>
-
-                <p className="mb-6 text-base text-muted-foreground">
-                  Did you get it right?
-                </p>
-                <div className="flex gap-3">
-                  <motion.button
-                    onClick={() => handleAssess(true)}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="group relative flex flex-1 flex-col items-center gap-1.5 overflow-hidden rounded-2xl border-2 border-success/20 bg-gradient-to-b from-success/10 to-success/5 p-5 text-sm font-semibold text-success transition-all hover:border-success/40 hover:shadow-lg hover:shadow-success/10"
-                  >
-                    <motion.span
-                      className="absolute inset-0 bg-gradient-to-t from-success/10 to-transparent"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                    />
-                    <CheckCircle2 className="relative size-7 transition-transform group-hover:scale-110" />
-                    <span className="relative">I got it</span>
-                  </motion.button>
-                  <motion.button
-                    onClick={() => handleAssess(false)}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="group relative flex flex-1 flex-col items-center gap-1.5 overflow-hidden rounded-2xl border-2 border-destructive/20 bg-gradient-to-b from-destructive/10 to-destructive/5 p-5 text-sm font-semibold text-destructive transition-all hover:border-destructive/40 hover:shadow-lg hover:shadow-destructive/10"
-                  >
-                    <motion.span
-                      className="absolute inset-0 bg-gradient-to-t from-destructive/10 to-transparent"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                    />
-                    <XCircle className="relative size-7 transition-transform group-hover:scale-110" />
-                    <span className="relative">Nope</span>
-                  </motion.button>
-                </div>
-              </motion.div>
             </GlassCard>
           </motion.div>
         )}
@@ -639,7 +575,7 @@ export function RiddlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
           className="mt-4"
         >
           <motion.button
-            onClick={() => setState("assessing")}
+            onClick={() => setState("result")}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
             className="flex h-12 w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"

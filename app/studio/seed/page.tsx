@@ -14,15 +14,9 @@ import {
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { isAdmin } from "@/services/puzzle-service";
-import { resetAndSeed, type SeedData } from "@/scripts/seed-data/importer";
-import seedData from "@/scripts/seed-data/data";
-
-interface BundleManifest {
-  version: number;
-  generatedAt: string;
-  counts: { puzzles: number; lessonGroups: number };
-  categories: string[];
-}
+import { resetAndSeed } from "@/scripts/seed-data/importer";
+import { getSeedData, getSeedMetadata } from "@/services/seed-content";
+import type { SeedMetadata } from "@/types/seed-content";
 
 const STEPS = [
   { key: "idle", label: "Ready" },
@@ -42,7 +36,9 @@ export default function SeedPage() {
   const [mounted, setMounted] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [source, setSource] = useState<"legacy" | "forge">("forge");
-  const [manifest, setManifest] = useState<BundleManifest | null>(null);
+  const [metadata, setMetadata] = useState<SeedMetadata | null>(null);
+  const manifest = metadata?.forge;
+  const legacy = metadata?.legacy;
   const [manifestError, setManifestError] = useState(false);
   const [failed, setFailed] = useState<string | null>(null);
   const [elapsed, setElapsed] = useState(0);
@@ -52,13 +48,8 @@ export default function SeedPage() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     setAdmin(isAdmin());
-    // Manifest is tiny (counts only); the multi-MB bundle loads on Start.
-    fetch("/seed/forge-manifest.json")
-      .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
-      .then((m: BundleManifest) => setManifest(m))
+    getSeedMetadata()
+      .then(setMetadata)
       .catch(() => setManifestError(true));
   }, []);
 
@@ -88,23 +79,9 @@ export default function SeedPage() {
     addLog("Starting seed process...");
 
     try {
-      let data: SeedData = seedData;
-      if (source === "forge") {
-        setStep("clearing");
-        addLog("Downloading forge bundle (~5MB)...");
-        const res = await fetch("/seed/forge-bundle.json");
-        if (!res.ok) throw new Error(`Bundle download failed (HTTP ${res.status}).`);
-        const bundle = (await res.json()) as SeedData & {
-          counts?: { puzzles: number; lessonGroups: number };
-        };
-        if (!Array.isArray(bundle.puzzles) || bundle.puzzles.length === 0) {
-          throw new Error("Bundle is empty or invalid — aborting before any wipe.");
-        }
-        addLog(
-          `Bundle ready: ${bundle.puzzles.length} puzzles, ${bundle.lessonGroups.length} groups.`,
-        );
-        data = bundle;
-      }
+      addLog("Downloading seed data...");
+      const data = await getSeedData(source);
+      addLog(`Bundle ready: ${data.puzzles.length} puzzles, ${data.lessonGroups.length} groups.`);
 
       let groupsImported = 0;
       let puzzlesImported = 0;
@@ -209,9 +186,9 @@ export default function SeedPage() {
                 source === "legacy" ? "border-primary bg-primary/10" : "hover:border-primary/50"
               }`}
             >
-              <p className="font-semibold">Legacy seed ({seedData.puzzles.length})</p>
+              <p className="font-semibold">Legacy seed {legacy ? `(${legacy.counts.puzzles})` : ""}</p>
               <p className="text-xs text-muted-foreground">
-                {seedData.puzzles.length} hand-written puzzles across {seedData.lessonGroups.length} groups
+                {legacy ? `${legacy.counts.puzzles} hand-written puzzles across ${legacy.counts.lessonGroups} groups` : "Loading seed info..."}
               </p>
             </button>
           </div>
@@ -231,8 +208,8 @@ export default function SeedPage() {
               </p>
               <p className="mt-2 text-xs text-muted-foreground">
                 {source === "forge" && manifest
-                  ? `Forge bundle holds ${manifest.counts.puzzles.toLocaleString()} puzzles across ${manifest.counts.lessonGroups} lesson groups in ${manifest.categories.length} categories (built ${new Date(manifest.generatedAt).toLocaleDateString()}).`
-                  : `Seed data includes ${seedData.puzzles.length} puzzles across ${seedData.lessonGroups.length} lesson groups in ${new Set(seedData.lessonGroups.map((g) => g.category)).size} categories.`}
+                  ? `Forge bundle holds ${manifest.counts.puzzles.toLocaleString()} puzzles across ${manifest.counts.lessonGroups} lesson groups in ${manifest.categories.length} categories${manifest.generatedAt ? ` (built ${new Date(manifest.generatedAt).toLocaleDateString()})` : ""}.`
+                  : legacy ? `Seed data includes ${legacy.counts.puzzles} puzzles across ${legacy.counts.lessonGroups} lesson groups in ${legacy.categories.length} categories.` : "Loading seed info..."}
               </p>
               <p className="mt-2 text-xs text-muted-foreground">
                 Seeding wipes first, then loads — if it fails halfway, just run

@@ -1,8 +1,6 @@
 "use client";
 
-import { getPublishedPuzzles, getPuzzle } from "@/services/puzzle-service";
-import { getTodayDailyPuzzleId } from "@/services/daily-puzzle";
-import { DAILY_SET_SIZE } from "@/lib/subscription";
+import { playerCommand } from "@/services/player-progress";
 import type { Puzzle, PuzzleType } from "@/types/puzzle";
 
 // A puzzle can complete the daily flow only when it is a scored type. Cipher,
@@ -121,42 +119,7 @@ export function pickDailySetMixed(
 // pin. If the filter yields nothing it falls back to the shared pool so the
 // card is never empty.
 export async function getDailySet(categories: string[] = []): Promise<Puzzle[]> {
-  const all = await getPublishedPuzzles();
-  const allEligible = all
-    .filter((p) => isDailySetEligible(p))
-    .sort((a, b) => a.id.localeCompare(b.id));
-  if (allEligible.length === 0) return [];
-
-  // Apply the premium category filter, falling back to the full pool when the
-  // chosen categories have no eligible puzzles.
-  const wanted = new Set(categories);
-  const filtered = wanted.size === 0
-    ? allEligible
-    : allEligible.filter((p) => wanted.has(p.category));
-  const eligible = filtered.length === 0 ? allEligible : filtered;
-
-  const dayIndex = dailyUtcDayIndex();
-
-  // A premium category pick is a personal set, so it skips the shared pin and
-  // spreads the slots evenly across the chosen categories.
-  if (wanted.size > 0 && filtered.length > 0) {
-    return pickDailySetMixed(eligible, categories, dayIndex, DAILY_SET_SIZE);
-  }
-
-  // Optional admin pin takes slot 0 when valid for today.
-  let pinned: Puzzle | null = null;
-  const pinnedId = await getTodayDailyPuzzleId();
-  if (pinnedId) {
-    const p = await getPuzzle(pinnedId);
-    if (p && p.published && isDailySetEligible(p)) pinned = p;
-  }
-
-  if (!pinned) {
-    return pickDailyPuzzles(eligible, dayIndex, DAILY_SET_SIZE);
-  }
-
-  // Pin leads; fill the remaining slots from the pool minus the pin.
-  const rest = eligible.filter((p) => p.id !== pinned!.id);
-  const filled = pickDailyPuzzles(rest, dayIndex, DAILY_SET_SIZE - 1);
-  return [pinned, ...filled];
+  const reply = await playerCommand({ action: 'daily-set', categories });
+  if (!Array.isArray(reply.puzzles)) throw new Error("Today's puzzles could not be loaded.");
+  return reply.puzzles as Puzzle[];
 }

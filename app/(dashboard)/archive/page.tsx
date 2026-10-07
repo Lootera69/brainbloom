@@ -7,7 +7,7 @@ import { Archive, BadgeCheck, ChevronLeft, Ghost, Lock, Play, Shield, Swords } f
 import { toast } from "sonner";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
-import { getPuzzle } from "@/services/puzzle-service";
+import { getPuzzle } from "@/services/player-content";
 import { getCipherHistory, getCipherPhase, getWeekEnd, getWeekStart, type CipherHistoryEntry } from "@/services/weekly-cipher";
 import { CipherPlay } from "@/features/puzzle/components/CipherPlay";
 import type { Puzzle } from "@/types/puzzle";

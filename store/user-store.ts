@@ -1,9 +1,11 @@
+import type { PlayerProgress } from "@/lib/player-contract";
+import { rememberPlayerProgress } from "@/lib/verified-player-progress";
 import { create } from "zustand";
 import { persist, type PersistStorage } from "zustand/middleware";
 import { questTemplates } from "@/constants/quests";
 import { achievementsList } from "@/constants/achievements";
 import { ADS_MAX_PER_DAY, DAILY_SET_SIZE, DAILY_SET_PERFECT_XP_BONUS, DAILY_SET_PERFECT_GEM_BONUS } from "@/lib/subscription";
-import { mergeGuestProgress, type GuestMergeData } from "@/lib/user-merge";
+import { editableProfile, editableProfileFields } from "@/lib/player-profile";
 import { remainingFreePlays, canPlayPuzzleFree, isPremiumActive } from "@/lib/daily-limit";
 
 let heartsLostThisSession = false;
@@ -38,6 +40,7 @@ export interface DailyQuest {
 }
 
 export interface AuthUserInput {
+  isAnonymous?: boolean;
   uid: string;
   displayName: string;
   email: string | null;
@@ -45,12 +48,13 @@ export interface AuthUserInput {
 }
 
 export interface SetUserOptions {
-  guestData?: GuestMergeData;
-  dropGuest?: boolean;
   cloudData?: Record<string, unknown> | null;
 }
 
 interface UserState {
+  revision: number;
+  dailySetPuzzleIds: string[];
+  answeredEventTokens: string[];
   userId: string;
   displayName: string;
   email: string | null;
@@ -247,69 +251,21 @@ function getRefreshedQuests(): DailyQuest[] {
 let _loadPromise: Promise<void> | null = null;
 let cloudReadyUid: string | null = null;
 let sessionVersion = 0;
+export function getUserSessionVersion() { return sessionVersion; }
 
-function mergeRestoreChanges(base: UserState, current: UserState, cloud: Partial<UserState>): Partial<UserState> {
-  const before = base as unknown as Record<string, unknown>;
-  const local = current as unknown as Record<string, unknown>;
-  const remote = cloud as Record<string, unknown>;
-  const changes: Record<string, unknown> = {};
-  const counters = new Set(["xp", "gems", "hearts", "streakFreezes", "cipherSolveCount"]);
-  const periods: Record<string, keyof UserState> = {
-    xpToday: "lastQuestRefresh", weeklyXp: "weeklyStartDate",
-    puzzlesPlayedToday: "puzzlesPlayedDate", adsWatchedToday: "adsWatchDate",
-    practiceHeartsToday: "lastPracticeDate",
-    dailyQuests: "lastQuestRefresh", questsRewarded: "lastQuestRefresh",
-    dailySetCompletedIds: "dailySetDate", dailySetHeartLost: "dailySetDate",
-    currentCipherSolved: "currentCipherWeek", cipherRevealed: "currentCipherWeek",
-  };
-  const samePeriod = (key: string, a: unknown, b: unknown) => key === "weeklyStartDate"
-    ? getWeekStart(Number(a)) === getWeekStart(Number(b)) : a === b;
-  const itemKey = (item: unknown) => typeof item === "object" && item !== null && "id" in item
-    ? item.id : item;
-  for (const key of Object.keys(remote)) {
-    const periodChanged = periods[key] && !samePeriod(periods[key], local[periods[key]], before[periods[key]]);
-    if (key === "updatedAt" || key === "level" || !periodChanged && JSON.stringify(local[key]) === JSON.stringify(before[key])) continue;
-    if (counters.has(key) && typeof local[key] === "number" && typeof before[key] === "number" && typeof remote[key] === "number") {
-      const value = Math.max(0, remote[key] + local[key] - before[key]);
-      changes[key] = key === "hearts" ? Math.min(5, value) : value;
-    } else if (periods[key] && typeof local[key] === "number" && typeof before[key] === "number" && typeof remote[key] === "number") {
-      const period = periods[key];
-      const delta = local[key] - (samePeriod(period, local[period], before[period]) ? before[key] : 0);
-      changes[key] = Math.max(0, delta + (samePeriod(period, local[period], remote[period]) ? remote[key] : 0));
-    } else if (periods[key] && typeof local[key] === "boolean" && typeof remote[key] === "boolean") {
-      changes[key] = local[key] || samePeriod(periods[key], local[periods[key]], remote[periods[key]]) && remote[key];
-    } else if (key === "dailyQuests") {
-      const previous = new Map(base.dailyQuests.map(quest => [quest.id, quest]));
-      const incoming = current.lastQuestRefresh === cloud.lastQuestRefresh ? cloud.dailyQuests ?? [] : [];
-      changes[key] = current.dailyQuests.map(quest => {
-        const oldProgress = base.lastQuestRefresh === current.lastQuestRefresh ? previous.get(quest.id)?.progress ?? 0 : 0;
-        const remoteQuest = incoming.find(other => other.id === quest.id);
-        return { ...quest, progress: Math.min(quest.target, (remoteQuest?.progress ?? 0) + Math.max(0, quest.progress - oldProgress)) };
-      });
-    } else if (Array.isArray(local[key]) && Array.isArray(before[key]) && Array.isArray(remote[key])) {
-      const period = key === "dailySetCompletedIds" ? "dailySetDate" : key === "questsRewarded" ? "lastQuestRefresh" : null;
-      const priorKeys = new Set(period && local[period] !== before[period] ? [] : before[key].map(itemKey));
-      const additions = local[key].filter(item => !priorKeys.has(itemKey(item)));
-      const incoming = key === "dailySetCompletedIds" && current.dailySetDate !== cloud.dailySetDate
-        || key === "questsRewarded" && current.lastQuestRefresh !== cloud.lastQuestRefresh ? [] : remote[key];
-      const merged = new Map([...incoming, ...additions].map(item => [itemKey(item), item]));
-      changes[key] = key === "history"
-        ? [...merged.values()].sort((a, b) => (b as Activity).timestamp - (a as Activity).timestamp).slice(0, 20)
-        : [...merged.values()];
-    } else if (["streak", "dailyPuzzleStreak", "dailyGoalStreak"].includes(key) && typeof local[key] === "number" && typeof remote[key] === "number") {
-      const period = key === "streak" ? "lastActiveDate" : key === "dailyPuzzleStreak" ? "dailyPuzzleLastDate" : "dailyGoalLastHitDate";
-      changes[key] = remote[period] === before[period] ? local[key] : Math.max(local[key], remote[key]);
-    } else {
-      changes[key] = local[key];
-    }
+function requireVerifiedProgress(data: Record<string, unknown> | null | undefined): PlayerProgress {
+  if (data?.progressVersion !== 1 || data.version !== 1 || !Number.isSafeInteger(data.revision)
+    || Number(data.revision) < 0
+    || !["xp", "gems", "hearts", "weeklyXp"].every(key => Number.isSafeInteger(data[key]) && Number(data[key]) >= 0)) {
+    throw new Error("Connect to the internet to restore verified progress.");
   }
-  if (typeof changes.xp === "number") changes.level = calcLevel(changes.xp);
-  if (typeof changes.hearts === "number") {
-    const timers = [current.nextHeartAt, cloud.nextHeartAt].filter((value): value is number => typeof value === "number");
-    changes.nextHeartAt = changes.hearts === 5 ? null : timers.length ? Math.min(...timers) : Date.now() + 5 * 60 * 60 * 1000;
-  }
-  if (Object.keys(changes).length) changes.updatedAt = Date.now();
-  return changes as Partial<UserState>;
+  const profileKeys = new Set<string>(editableProfileFields);
+  return Object.fromEntries(Object.entries(data).filter(([key]) => key === "timeZone" || !profileKeys.has(key))) as unknown as PlayerProgress;
+}
+
+function pendingProfileChanges(base: Record<string, unknown>, current: UserState): Partial<UserState> {
+  return Object.fromEntries(Object.entries(editableProfile(current as unknown as Record<string, unknown>))
+    .filter(([key, value]) => JSON.stringify(value) !== JSON.stringify(base[key]))) as Partial<UserState>;
 }
 
 export async function retryCloudRestore() {
@@ -322,6 +278,7 @@ export async function retryCloudRestore() {
 export const useUserStore = create<UserState>()(
   persist(
     (set, get) => ({
+      revision: -1, dailySetPuzzleIds: [], answeredEventTokens: [],
       userId: "",
       displayName: "",
       email: null,
@@ -403,166 +360,32 @@ export const useUserStore = create<UserState>()(
       },
 
       setUser: (user, opts) => {
+        const incoming = requireVerifiedProgress(opts?.cloudData);
+        const progress = rememberPlayerProgress(user.uid, incoming);
         const version = ++sessionVersion;
-        cloudReadyUid = opts?.cloudData ? user.uid : null;
-        _loadPromise = null;
         const prevUserId = get().userId;
-        set({ cloudRestoreBase: null });
-        if (opts?.cloudData) {
-          const cd = opts.cloudData as Record<string, unknown>;
-          set({
-            userId: user.uid,
-            displayName: user.displayName,
-            email: user.email,
-            photoURL: user.photoURL,
-            avatarId: (cd.avatarId as string | null) ?? null,
-            isGuest: false,
-            isAuthenticated: true,
-            xp: (cd.xp as number) ?? 0,
-            xpToday: (cd.xpToday as number) ?? 0,
-            lastXpGain: (cd.lastXpGain as number) ?? 0,
-            streak: (cd.streak as number) ?? 0,
-            lastActiveDate: (cd.lastActiveDate as string | null) ?? null,
-            hearts: (cd.hearts as number) ?? 5,
-            nextHeartAt: (cd.nextHeartAt as number | null) ?? null,
-            level: (cd.level as number) ?? 1,
-            gems: (cd.gems as number) ?? 0,
-            dailyGoal: (cd.dailyGoal as number) ?? 100,
-            lastPlayedCategory: (cd.lastPlayedCategory as string | null) ?? null,
-            history: (cd.history as Activity[]) ?? [],
-            achievements: (cd.achievements as Achievement[]) ?? [],
-            lastRewardClaim: (cd.lastRewardClaim as string | null) ?? null,
-            streakFreezes: (cd.streakFreezes as number) ?? 0,
-            practiceHeartsToday: (cd.practiceHeartsToday as number) ?? 0,
-            lastPracticeDate: (cd.lastPracticeDate as string | null) ?? null,
-            dailyQuests: (cd.dailyQuests as DailyQuest[]) ?? [],
-            lastQuestRefresh: (cd.lastQuestRefresh as string | null) ?? null,
-            completedPuzzleIds: (cd.completedPuzzleIds as string[]) ?? [],
-            questsRewarded: (cd.questsRewarded as string[]) ?? [],
-            dailyPuzzleCompletedDate: (cd.dailyPuzzleCompletedDate as string | null) ?? null,
-            dailyPuzzleStreak: (cd.dailyPuzzleStreak as number) ?? 0,
-            dailyPuzzleLastDate: (cd.dailyPuzzleLastDate as string | null) ?? null,
-            dailySetDate: (cd.dailySetDate as string | null) ?? null,
-            dailySetCompletedIds: (cd.dailySetCompletedIds as string[]) ?? [],
-            dailySetHeartLost: (cd.dailySetHeartLost as boolean) ?? false,
-            soundEnabled: (cd.soundEnabled as boolean) ?? true,
-            hapticsEnabled: (cd.hapticsEnabled as boolean) ?? true,
-            theme: (cd.theme as "light" | "dark" | "system") ?? "system",
-            timeZone: (cd.timeZone as string | null) ?? null,
-            weeklyXp: (cd.weeklyXp as number) ?? 0,
-            weeklyStartDate: (cd.weeklyStartDate as number) ?? Date.now(),
-            frozenDays: (cd.frozenDays as string[]) ?? [],
-            brokenDays: (cd.brokenDays as string[]) ?? [],
-            dailyGoalStreak: (cd.dailyGoalStreak as number) ?? 0,
-            dailyGoalLastHitDate: (cd.dailyGoalLastHitDate as string | null) ?? null,
-            streakStartDate: (cd.streakStartDate as string | null) ?? null,
-            activeDates: (cd.activeDates as string[]) ?? [],
-            tier: (cd.tier as "free" | "premium") ?? "free",
-            subscriptionExpiry: (cd.subscriptionExpiry as number | null) ?? null,
-            puzzlesPlayedToday: (cd.puzzlesPlayedToday as number) ?? 0,
-            puzzlesPlayedDate: (cd.puzzlesPlayedDate as string | null) ?? null,
-            adsWatchedToday: (cd.adsWatchedToday as number) ?? 0,
-            adsWatchDate: (cd.adsWatchDate as string | null) ?? null,
-            experiencedWonderIds: (cd.experiencedWonderIds as string[]) ?? [],
-            currentCipherWeek: (cd.currentCipherWeek as string | null) ?? null,
-            currentCipherSolved: (cd.currentCipherSolved as boolean) ?? false,
-            cipherSolveCount: (cd.cipherSolveCount as number) ?? 0,
-            cipherRevealed: (cd.cipherRevealed as boolean) ?? false,
-            cipherSolvedWeeks: (cd.cipherSolvedWeeks as string[]) ?? [],
-            updatedAt: (cd.updatedAt as number) ?? Date.now(),
-          });
-          setTimeout(async () => {
-            if (version !== sessionVersion) return;
-            if (opts?.guestData) {
-              const s = get();
-              set({ ...mergeGuestProgress(opts.guestData, s), updatedAt: Date.now() });
-            }
-            get().checkWeeklyReset();
-            get().checkStreak(false);
-            // Account switch: clean up old uid's push tokens and re-register
-            // under the new uid so reminders target the correct identity.
-            if (prevUserId && prevUserId !== user.uid) {
-              const { cleanupPushTokens, subscribeToPush } = await import("@/services/notification-service");
-              cleanupPushTokens(prevUserId);
-              subscribeToPush({ uid: user.uid });
-            }
-          }, 50);
-        } else {
-          set({
-            ...(opts?.dropGuest
-              ? {
-                  xp: 0,
-                  xpToday: 0,
-                  lastXpGain: 0,
-                  streak: 0,
-                  lastActiveDate: null,
-                  hearts: 5,
-                  level: 1,
-                  gems: 0,
-                  history: [],
-                  achievements: [],
-                  lastRewardClaim: null,
-                  streakFreezes: 0,
-                  practiceHeartsToday: 0,
-                  lastPracticeDate: null,
-                  dailyQuests: [],
-                  lastQuestRefresh: null,
-                  completedPuzzleIds: [],
-                  questsRewarded: [],
-                  dailyPuzzleCompletedDate: null,
-                  dailyPuzzleStreak: 0,
-                  dailyPuzzleLastDate: null,
-                  dailySetDate: null,
-                  dailySetCompletedIds: [],
-                  dailySetHeartLost: false,
-                  weeklyXp: 0,
-                  weeklyStartDate: Date.now(),
-                  frozenDays: [],
-                  brokenDays: [],
-                  dailyGoalStreak: 0,
-                  dailyGoalLastHitDate: null,
-                  streakStartDate: null,
-                  activeDates: [],
-                  puzzlesPlayedToday: 0,
-                  puzzlesPlayedDate: null,
-                  adsWatchedToday: 0,
-                  adsWatchDate: null,
-                  experiencedWonderIds: [],
-                  currentCipherWeek: null,
-                  currentCipherSolved: false,
-                  cipherSolveCount: 0,
-                  cipherRevealed: false,
-                  cipherSolvedWeeks: [],
-                  nextHeartAt: null,
-                }
-              : {}),
-            userId: user.uid,
-            displayName: user.displayName,
-            email: user.email,
-            photoURL: user.photoURL,
-            avatarId: null,
-            isGuest: false,
-            isAuthenticated: true,
-            updatedAt: 0,
-          });
-          setTimeout(async () => {
-            if (version !== sessionVersion) return;
-            await get().loadFromFirestore();
-            if (version !== sessionVersion || cloudReadyUid !== user.uid) return;
-            if (opts?.guestData) {
-              const s = get();
-              set({ ...mergeGuestProgress(opts.guestData, s), updatedAt: Date.now() });
-              get().checkWeeklyReset();
-              get().checkStreak(false);
-            }
-            // Account switch: clean up old uid's push tokens and re-register
-            // under the new uid so reminders target the correct identity.
-            if (prevUserId && prevUserId !== user.uid) {
-              const { cleanupPushTokens, subscribeToPush } = await import("@/services/notification-service");
-              cleanupPushTokens(prevUserId);
-              subscribeToPush({ uid: user.uid });
-            }
-          }, 100);
+        cloudReadyUid = user.uid;
+        _loadPromise = null;
+        set({
+          ...useUserStore.getInitialState(),
+          ...editableProfile(opts!.cloudData!),
+          ...progress,
+          userId: user.uid,
+          displayName: typeof opts?.cloudData?.displayName === "string" ? opts.cloudData.displayName : user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          isGuest: user.isAnonymous === true,
+          isAuthenticated: true,
+          cloudRestoreBase: null,
+          _lastEvalDate: progress.lastEvalDate ?? "",
+        });
+        if (prevUserId && prevUserId !== user.uid) {
+          void import("@/services/notification-service").then(async ({ cleanupPushTokens, subscribeToPush }) => {
+            if (version !== sessionVersion || get().userId !== user.uid) return;
+            await cleanupPushTokens(prevUserId);
+            if (version !== sessionVersion || get().userId !== user.uid) return;
+            await subscribeToPush({ uid: user.uid });
+          }).catch(() => undefined);
         }
       },
 
@@ -573,7 +396,7 @@ export const useUserStore = create<UserState>()(
 
       syncToFirestore: () => {
         const s = get();
-        if (!s.userId || s.isGuest || cloudReadyUid !== s.userId) return;
+        if (!s.userId || cloudReadyUid !== s.userId) return;
         const version = sessionVersion;
         set({ updatedAt: Date.now() });
         import("@/services/user-service").then(({ saveUserData }) => {
@@ -642,9 +465,8 @@ export const useUserStore = create<UserState>()(
         const initial = get();
         if (!initial.userId || initial.isGuest) return;
         if (_loadPromise) return _loadPromise;
-        const baseline = initial.cloudRestoreBase?.userId === initial.userId ? initial.cloudRestoreBase
-          : Object.fromEntries(Object.entries(initial).filter(([key, value]) => key !== "cloudRestoreBase" && typeof value !== "function"));
-        const s = { ...initial, ...baseline } as UserState;
+        const previous = initial.cloudRestoreBase?.userId === initial.userId ? initial.cloudRestoreBase : initial;
+        const baseline = { ...editableProfile(previous as unknown as Record<string, unknown>), userId: initial.userId };
         set({ cloudRestoreBase: baseline });
         const version = sessionVersion;
         cloudReadyUid = null;
@@ -652,81 +474,15 @@ export const useUserStore = create<UserState>()(
         _loadPromise = (async () => {
           try {
             const { loadUserData } = await import("@/services/user-service");
-            const data = await loadUserData(s.userId);
-            if (version !== sessionVersion || get().userId !== s.userId) return;
-            cloudReadyUid = s.userId;
-            if (data) {
-              if (data.updatedAt && s.updatedAt && data.updatedAt < s.updatedAt) {
-                set({ cloudRestoreBase: null });
-                get().syncToFirestore();
-                return;
-              }
-              const restored: Partial<UserState> = {
-                displayName: data.displayName ?? s.displayName,
-                email: data.email ?? s.email,
-                photoURL: data.photoURL ?? s.photoURL,
-                avatarId: data.avatarId ?? s.avatarId,
-                xp: data.xp ?? s.xp,
-                xpToday: data.xpToday ?? s.xpToday,
-                streak: data.streak ?? s.streak,
-                lastActiveDate: data.lastActiveDate ?? s.lastActiveDate,
-                hearts: data.hearts !== undefined ? Math.min(5, data.hearts) : s.hearts,
-                nextHeartAt: data.nextHeartAt ?? s.nextHeartAt,
-                level: data.level ?? s.level,
-                gems: data.gems ?? s.gems,
-                dailyGoal: data.dailyGoal ?? s.dailyGoal,
-                lastPlayedCategory: data.lastPlayedCategory ?? s.lastPlayedCategory,
-                history: data.history ?? s.history,
-                achievements: data.achievements ?? s.achievements,
-                lastRewardClaim: data.lastRewardClaim ?? s.lastRewardClaim,
-                streakFreezes: data.streakFreezes ?? s.streakFreezes,
-                practiceHeartsToday: data.practiceHeartsToday ?? s.practiceHeartsToday,
-                lastPracticeDate: data.lastPracticeDate ?? s.lastPracticeDate,
-                dailyQuests: data.dailyQuests ?? s.dailyQuests,
-                lastQuestRefresh: data.lastQuestRefresh ?? s.lastQuestRefresh,
-                completedPuzzleIds: data.completedPuzzleIds ?? s.completedPuzzleIds,
-                questsRewarded: data.questsRewarded ?? s.questsRewarded,
-                dailyPuzzleCompletedDate: data.dailyPuzzleCompletedDate ?? s.dailyPuzzleCompletedDate,
-                dailyPuzzleStreak: data.dailyPuzzleStreak ?? s.dailyPuzzleStreak,
-                dailyPuzzleLastDate: data.dailyPuzzleLastDate ?? s.dailyPuzzleLastDate,
-                dailySetDate: data.dailySetDate ?? s.dailySetDate,
-                dailySetCompletedIds: data.dailySetCompletedIds ?? s.dailySetCompletedIds,
-                dailySetHeartLost: data.dailySetHeartLost ?? s.dailySetHeartLost,
-                soundEnabled: data.soundEnabled ?? s.soundEnabled,
-                hapticsEnabled: data.hapticsEnabled ?? s.hapticsEnabled,
-                theme: data.theme ?? s.theme,
-                timeZone: data.timeZone ?? s.timeZone,
-                weeklyXp: data.weeklyXp ?? s.weeklyXp,
-                weeklyStartDate: data.weeklyStartDate ?? s.weeklyStartDate,
-                frozenDays: data.frozenDays ?? s.frozenDays,
-                brokenDays: data.brokenDays ?? s.brokenDays,
-                dailyGoalStreak: data.dailyGoalStreak ?? s.dailyGoalStreak,
-                dailyGoalLastHitDate: data.dailyGoalLastHitDate ?? s.dailyGoalLastHitDate,
-                streakStartDate: data.streakStartDate ?? s.streakStartDate,
-                activeDates: data.activeDates ?? s.activeDates,
-                tier: data.tier ?? s.tier,
-                subscriptionExpiry: data.subscriptionExpiry ?? s.subscriptionExpiry,
-                puzzlesPlayedToday: data.puzzlesPlayedToday ?? s.puzzlesPlayedToday,
-                puzzlesPlayedDate: data.puzzlesPlayedDate ?? s.puzzlesPlayedDate,
-                adsWatchedToday: data.adsWatchedToday ?? s.adsWatchedToday,
-                adsWatchDate: data.adsWatchDate ?? s.adsWatchDate,
-                experiencedWonderIds: data.experiencedWonderIds ?? s.experiencedWonderIds,
-                currentCipherWeek: data.currentCipherWeek ?? s.currentCipherWeek,
-                currentCipherSolved: data.currentCipherSolved ?? s.currentCipherSolved,
-                cipherSolveCount: data.cipherSolveCount ?? s.cipherSolveCount,
-                cipherRevealed: data.cipherRevealed ?? s.cipherRevealed,
-                cipherSolvedWeeks: data.cipherSolvedWeeks ?? s.cipherSolvedWeeks,
-                updatedAt: data.updatedAt ?? s.updatedAt,
-              };
-              const changes = mergeRestoreChanges(s, get(), restored);
-              set({ ...restored, ...changes, cloudRestoreBase: null });
-              get().checkWeeklyReset();
-              get().checkStreak(false);
-              if (Object.keys(changes).length) get().syncToFirestore();
-            } else {
-              set({ cloudRestoreBase: null });
-              get().syncToFirestore();
-            }
+            const data = await loadUserData(initial.userId);
+            if (version !== sessionVersion || get().userId !== initial.userId) return;
+            const incoming = requireVerifiedProgress(data as Record<string, unknown> | null);
+            const progress = rememberPlayerProgress(initial.userId, incoming);
+            const changes = pendingProfileChanges(baseline, get());
+            cloudReadyUid = initial.userId;
+            set({ ...editableProfile(data as Record<string, unknown>), ...progress, ...changes,
+              lastXpGain: 0, pendingCelebration: null, _lastEvalDate: progress.lastEvalDate ?? "", cloudRestoreBase: null });
+            if (Object.keys(changes).length) get().syncToFirestore();
           } catch (e) {
             console.warn("loadFromFirestore failed — keeping local state:", e);
           } finally {
@@ -740,67 +496,9 @@ export const useUserStore = create<UserState>()(
         sessionVersion++;
         cloudReadyUid = null;
         _loadPromise = null;
-        set({
-          userId: "",
-          displayName: "",
-          email: null,
-          photoURL: null,
-          avatarId: null,
-          isGuest: false,
-          isAuthenticated: false,
-          xp: 0,
-          xpToday: 0,
-          lastXpGain: 0,
-          streak: 0,
-          lastActiveDate: null,
-          hearts: 5,
-          level: 1,
-          gems: 0,
-          dailyGoal: 100,
-          lastPlayedCategory: null,
-          history: [],
-          achievements: [],
-          lastRewardClaim: null,
-          streakFreezes: 0,
-          practiceHeartsToday: 0,
-          lastPracticeDate: null,
-          dailyQuests: [],
-          lastQuestRefresh: null,
-          completedPuzzleIds: [],
-          questsRewarded: [],
-          nextHeartAt: null,
-          dailyPuzzleCompletedDate: null,
-          dailyPuzzleStreak: 0,
-          dailyPuzzleLastDate: null,
-          dailySetDate: null,
-          dailySetCompletedIds: [],
-          dailySetHeartLost: false,
-          soundEnabled: true,
-          hapticsEnabled: true,
-          weeklyXp: 0,
-          weeklyStartDate: Date.now(),
-          frozenDays: [],
-          brokenDays: [],
-      dailyGoalStreak: 0,
-      dailyGoalLastHitDate: null,
-      pendingCelebration: null,
-      streakStartDate: null,
-      activeDates: [],
-      tier: "free",
-      subscriptionExpiry: null,
-      puzzlesPlayedToday: 0,
-      puzzlesPlayedDate: null,
-      adsWatchedToday: 0,
-      adsWatchDate: null,
-      currentCipherWeek: null,
-      currentCipherSolved: false,
-      cipherSolveCount: 0,
-      cipherRevealed: false,
-      cipherSolvedWeeks: [],
-      updatedAt: 0,
-      cloudRestoreBase: null,
-
-        });
+        heartsLostThisSession = false;
+        currentPuzzleHasLesson = false;
+        set(useUserStore.getInitialState());
       },
 
       addXp: (amount) => {
@@ -1539,16 +1237,7 @@ export const useUserStore = create<UserState>()(
         _lastEvalDate: state._lastEvalDate,
       }),
       onRehydrateStorage: () => (state) => {
-        if (!state) return;
-        if (!state.userId || state.isGuest) {
-          state.checkStreak(false);
-          state.checkWeeklyReset();
-        } else {
-          state.loadFromFirestore().then(() => {
-            useUserStore.getState().checkStreak(false);
-            useUserStore.getState().checkWeeklyReset();
-          });
-        }
+        if (state?.userId && !state.isGuest) void state.loadFromFirestore();
       },
     },
   ),

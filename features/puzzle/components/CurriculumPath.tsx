@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Lock, CheckCircle2, Zap, ArrowRight, ChevronDown, BookX } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
-import { getPublishedByCategory } from "@/services/puzzle-service";
+import { getPublishedByCategory } from "@/services/player-content";
 import { useUserStore } from "@/store/user-store";
 import { type Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";

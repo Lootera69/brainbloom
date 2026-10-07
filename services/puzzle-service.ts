@@ -42,6 +42,28 @@ function saveLocalPuzzles(puzzles: Puzzle[]): boolean {
   }
 }
 
+type StoredCrosswordData = Omit<CrosswordData, "grid"> & { grid: Record<string, CrosswordData["grid"][number]> };
+
+function crosswordToFirestore(data: CrosswordData): StoredCrosswordData {
+  return { ...data, grid: Object.fromEntries(data.grid.map((row, index) => [String(index), row])) };
+}
+
+function crosswordFromFirestore(value: unknown): CrosswordData | undefined {
+  if (!value || typeof value !== "object") return undefined;
+  const data = value as Record<string, unknown>;
+  const size = data.size;
+  if (typeof size !== "number" || !Number.isInteger(size) || size < 1 || size > 15) return undefined;
+  const rawGrid = data.grid;
+  const rows = Array.isArray(rawGrid) ? rawGrid : rawGrid && typeof rawGrid === "object" && Object.keys(rawGrid).length === size
+    ? Array.from({ length: size }, (_, row) => (rawGrid as Record<string, unknown>)[String(row)]) : [];
+  if (rows.length !== size || rows.some(row => !Array.isArray(row) || row.length !== size || row.some(cell => cell !== null && typeof cell !== "string"))) return undefined;
+  if (!Array.isArray(data.clues) || data.clues.some(clue => !clue || typeof clue !== "object" || typeof clue.answer !== "string" || typeof clue.clue !== "string"
+    || !Number.isInteger(clue.number) || !Number.isInteger(clue.startRow) || !Number.isInteger(clue.startCol)
+    || clue.startRow < 0 || clue.startRow >= size || clue.startCol < 0 || clue.startCol >= size
+    || !["across", "down"].includes(clue.direction))) return undefined;
+  return { size, grid: rows as CrosswordData["grid"], clues: data.clues as CrosswordData["clues"] };
+}
+
 export function puzzleFromFirestore(id: string, data: Record<string, unknown>): Puzzle {
   const puzzle: Puzzle = {
     id,
@@ -82,7 +104,7 @@ export function puzzleFromFirestore(id: string, data: Record<string, unknown>): 
     sharePrompt: (data.sharePrompt as string) ?? undefined,
   };
   if (data.crosswordData) {
-    puzzle.crosswordData = data.crosswordData as CrosswordData;
+    puzzle.crosswordData = crosswordFromFirestore(data.crosswordData);
   }
   if (data.sudokuData) {
     puzzle.sudokuData = data.sudokuData as SudokuData;
@@ -129,7 +151,7 @@ function puzzleToFirestore(puzzle: Puzzle) {
     sharePrompt: puzzle.sharePrompt ?? null,
   };
   if (puzzle.crosswordData) {
-    data.crosswordData = puzzle.crosswordData;
+    data.crosswordData = crosswordToFirestore(puzzle.crosswordData);
   }
   if (puzzle.sudokuData) {
     data.sudokuData = puzzle.sudokuData;
@@ -444,7 +466,8 @@ export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): P
         const ref = doc(db, "puzzles", id);
         const snap = await getDoc(ref);
         if (snap.exists()) {
-          const clean = Object.fromEntries(Object.entries(data).map(([k, v]) => [k, v === undefined ? null : v]));
+          const clean: Record<string, unknown> = Object.fromEntries(Object.entries(data).map(([k, v]) => [k, v === undefined ? null : v]));
+          if (data.crosswordData) clean.crosswordData = crosswordToFirestore(data.crosswordData);
           await updateDoc(ref, { ...clean, lastModifiedBy: user, updatedAt: Timestamp.fromMillis(now) });
           const snap2 = await getDoc(ref);
           updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);

@@ -38,7 +38,6 @@ export function PricingCard({ onClose }: PricingCardProps) {
   const [purchasing, setPurchasing] = useState<string | null>(null);
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
-  const setTier = useUserStore((s) => s.setTier);
   const alreadyPremium = hasPremiumAccess(tier, subscriptionExpiry);
 
   useEffect(() => {
@@ -52,18 +51,15 @@ export function PricingCard({ onClose }: PricingCardProps) {
 
     const result = await purchaseProduct(id);
     if (!result.success) {
-      toast.error("Purchase failed. Please try again.", { position: "top-center" });
+      toast.error(result.error ?? "Purchase failed. Please try again.", { position: "top-center" });
       setPurchasing(null);
       return;
     }
 
-    const days = plan === "monthly" ? 30 : 365;
-    const expiry = Date.now() + days * 86400000;
-    setTier("premium", expiry, plan === "yearly" ? 3 : undefined);
     toast.success("Welcome to Premium! 🎉", { position: "top-center" });
     setPurchasing(null);
     onClose();
-  }, [plan, purchasing, setTier, onClose]);
+  }, [plan, purchasing, onClose]);
 
   if (!pricing) {
     return (

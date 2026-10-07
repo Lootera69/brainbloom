@@ -63,8 +63,11 @@ export interface EventQuestion {
   kicker: string;
   prompt: string;
   options: string[];
-  correctIndex: number;
   xp: number;
+}
+
+export interface AuthoredEventQuestion extends EventQuestion {
+  correctIndex: number;
   factoid: string;
 }
 
@@ -87,9 +90,11 @@ export interface EventTheme {
 }
 
 // The published document at Firestore `settings/events`.
+export type AuthoredEventTheme = Omit<EventTheme, "question"> & { question?: AuthoredEventQuestion };
+
 export interface EventConfigDoc {
   seasonalThemesEnabled: boolean;
-  events: EventTheme[];
+  events: AuthoredEventTheme[];
   updatedAt: number;
 }
 

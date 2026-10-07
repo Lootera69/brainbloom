@@ -25,6 +25,7 @@ export interface ReviewComment {
 }
 
 export interface CrosswordClue {
+  length?: number;
   number: number;
   clue: string;
   answer: string;

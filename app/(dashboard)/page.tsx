@@ -19,13 +19,9 @@ import { DailyQuests } from "@/features/home/components/DailyQuests";
 import { WeeklyCipherCard } from "@/features/home/components/WeeklyCipherCard";
 import { getDailySet } from "@/services/daily-set";
 import { motion } from "framer-motion";
-import { MonitorPlay, PlayCircle, ArrowRight } from "lucide-react";
-import { GlassCard } from "@/components/ui/glass-card";
+import { ArrowRight } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
-import { AdModal } from "@/components/paywall/AdModal";
 import { type Puzzle } from "@/types/puzzle";
-import { hasPremiumAccess } from "@/services/entitlement-service";
-import { REWARDED_AD_HEART_AMOUNT, ADS_MAX_PER_DAY } from "@/lib/subscription";
 import { useActiveMoment } from "@/hooks/use-active-moment";
 import { EventBanner } from "@/features/home/components/EventBanner";
 import { EventAmbientLayer } from "@/features/home/components/EventAmbientLayer";
@@ -36,19 +32,11 @@ import { fromArgb, rgba, type Rgba } from "@/lib/events/event-colors";
 
 export default function HomePage() {
   const [dailySet, setDailySet] = useState<Puzzle[]>([]);
+  const uid = useUserStore((state) => state.userId);
+  const [dailySetError, setDailySetError] = useState<string | null>(null);
+  const [retry, setRetry] = useState(0);
   const [dailySetLoading, setDailySetLoading] = useState(true);
   const [dailySetCategories, setDailySetCategories] = useState<string[]>([]);
-  const [showAd, setShowAd] = useState(false);
-  const hearts = useUserStore((s) => s.hearts);
-  const tier = useUserStore((s) => s.tier);
-  const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
-  const canWatchAd = useUserStore((s) => s.canWatchAd);
-  const incrementAdWatched = useUserStore((s) => s.incrementAdWatched);
-  const adsWatchedToday = useUserStore((s) => s.adsWatchedToday);
-  const adsWatchDate = useUserStore((s) => s.adsWatchDate);
-  const isPremium = hasPremiumAccess(tier, subscriptionExpiry);
-  const today = new Date().toDateString();
-  const adsLeftToday = ADS_MAX_PER_DAY - (adsWatchDate === today ? adsWatchedToday : 0);
 
   // Active Moment palette recolours the ambient aurora when a seasonal event is
   // live; falls back to the default violet/pink (light) & indigo/fuchsia (dark).
@@ -72,14 +60,18 @@ export default function HomePage() {
     let cancelled = false;
     (async () => {
       setDailySetLoading(true);
-      const set = await getDailySet(dailySetCategories);
-      if (!cancelled) {
-        setDailySet(set);
-        setDailySetLoading(false);
+      setDailySetError(null);
+      try {
+        const set = await getDailySet(dailySetCategories);
+        if (!cancelled) setDailySet(set);
+      } catch (error) {
+        if (!cancelled) setDailySetError(error instanceof Error ? error.message : 'Connect and retry.');
+      } finally {
+        if (!cancelled) setDailySetLoading(false);
       }
     })();
     return () => { cancelled = true; };
-  }, [dailySetCategories]);
+  }, [dailySetCategories, uid, retry]);
 
   return (
     <main className="relative mx-auto min-h-screen max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
@@ -135,6 +127,9 @@ export default function HomePage() {
       <EventSpecialPuzzle />
 
       <div className="mb-6 sm:mb-8">
+        {dailySetError && <div role="alert" className="mb-3 rounded-xl border p-3 text-sm">
+          <p>{dailySetError}</p><button className="mt-2 font-semibold text-primary" onClick={() => setRetry((value) => value + 1)}>Retry Daily Set</button>
+        </div>}
         <DailySetCard
           set={dailySet}
           loading={dailySetLoading}
@@ -148,45 +143,6 @@ export default function HomePage() {
       </div>
 
       <DailyQuests />
-
-      {!isPremium && hearts < 5 && canWatchAd() && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6"
-        >
-          <GlassCard
-            hover
-            intensity="light"
-            onClick={() => setShowAd(true)}
-            className="flex cursor-pointer items-center gap-3 p-4"
-          >
-            <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-rose-500/10">
-              <MonitorPlay className="size-[22px] text-rose-500" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-bold">Watch an Ad for 1 Free Heart</p>
-              <p className="text-xs text-muted-foreground">
-                Hearts left today: {adsLeftToday}
-              </p>
-            </div>
-            <PlayCircle className="size-[26px] shrink-0 text-rose-500" />
-          </GlassCard>
-        </motion.div>
-      )}
-
-      {showAd && (
-        <AdModal
-          onComplete={(rewarded) => {
-            setShowAd(false);
-            if (rewarded) {
-              incrementAdWatched();
-              useUserStore.setState((s) => ({ hearts: Math.min(5, s.hearts + REWARDED_AD_HEART_AMOUNT) }));
-            }
-          }}
-          onClose={() => setShowAd(false)}
-        />
-      )}
 
       <div className="mb-8 sm:mb-10">
         <ContinueLearning />

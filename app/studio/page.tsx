@@ -896,7 +896,7 @@ function StudioAuthorDashboard() {
               <div className="relative p-6">
                 <button onClick={() => setTestPuzzle(null)}
                   className="absolute right-4 top-4 flex size-8 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-muted/60"><X className="size-4" /></button>
-                <PuzzlePlay puzzle={testPuzzle} onComplete={() => setTestPuzzle(null)} />
+                <PuzzlePlay preview puzzle={testPuzzle} onComplete={() => setTestPuzzle(null)} />
               </div>
             </motion.div>
           </motion.div>

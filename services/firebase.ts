@@ -91,31 +91,17 @@ export async function signOutUser(): Promise<void> {
   await firebaseSignOut(fbAuth);
 }
 
-export async function deleteAccount(): Promise<{ success: boolean; error?: string; needsReauth?: boolean }> {
+export async function deleteAccount(expectedUid?: string): Promise<{ success: boolean; error?: string; needsReauth?: boolean }> {
   const { auth: fbAuth } = initFirebase();
-  if (!fbAuth || !fbAuth.currentUser) {
-    return { success: false, error: "No signed-in account found." };
+  const user = fbAuth?.currentUser;
+  if (!fbAuth || !user || (expectedUid && user.uid !== expectedUid)) {
+    return { success: false, error: 'Sign in to the account you want to delete.' };
   }
-  try {
-    const token = await fbAuth.currentUser.getIdToken();
-    const response = await fetch("/api/account", {
-      method: "DELETE", headers: { Authorization: `Bearer ${token}` },
-      cache: "no-store", signal: AbortSignal.timeout(60000),
-    });
-    const result = await response.json();
-    if (!response.ok || result.ok !== true) {
-      return { success: false, needsReauth: result.needsReauth === true,
-        error: result.error ?? "Account deletion failed. Please try again." };
-    }
-    await firebaseSignOut(fbAuth);
-    return { success: true };
-  } catch (e) {
-    const code = (e as { code?: string }).code;
-    if (code === "auth/requires-recent-login") {
-      return { success: false, needsReauth: true };
-    }
-    return { success: false, error: "Account deletion failed. Please try again." };
-  }
+  const [{ deleteVerifiedAccount }, { getUserSessionVersion }] = await Promise.all([
+    import('@/services/account-deletion'), import('@/store/user-store'),
+  ]);
+  return deleteVerifiedAccount({ user, currentUser: () => fbAuth.currentUser,
+    session: getUserSessionVersion, signOut: () => firebaseSignOut(fbAuth) });
 }
 
 export function isGoogleUser(): boolean {

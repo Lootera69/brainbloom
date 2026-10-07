@@ -13,10 +13,14 @@ import { RiddlePlay } from "./RiddlePlay";
 import { WonderPlay } from "./WonderPlay";
 import { CipherPlay } from "./CipherPlay";
 import { StoryPlay } from "./StoryPlay";
-import { setHeartsLostFlag, setPuzzleHasLesson } from "@/store/user-store";
+import { setHeartsLostFlag, setPuzzleHasLesson, useUserStore } from "@/store/user-store";
 import { haptic } from "@/lib/haptics";
+import { PlayModeContext, PreviewContext, useVerifiedPuzzle } from '@/features/puzzle/use-verified-puzzle';
+import type { PlayMode } from '@/lib/player-contract';
 
 interface Props {
+  preview?: boolean;
+  mode?: PlayMode;
   puzzle: Puzzle;
   onComplete: (correct: boolean, xpEarned: number) => void;
   onWrongAttempt?: () => void;
@@ -39,12 +43,13 @@ function ThinkingDots() {
   );
 }
 
-function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
+function QuizPlay({ puzzle: source, onComplete, onWrongAttempt, isRepeat }: Props) {
+  const { puzzle, submit, busy, result } = useVerifiedPuzzle(source);
   const [selected, setSelected] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
-  const isCorrect = selected === puzzle.correctAnswer;
-  const earned = isCorrect && !isRepeat ? puzzle.xpReward : 0;
+  const isCorrect = result?.correct === true;
+  const earned = result?.xpEarned ?? 0;
   const resultRef = useRef<HTMLDivElement>(null);
   const submitRef = useRef<HTMLDivElement>(null);
 
@@ -56,10 +61,12 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
     if (selected !== null && !submitted) submitRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [selected, submitted]);
 
-  const handleSubmit = () => {
-    if (!selected || submitted) return;
+  const handleSubmit = async () => {
+    if (!selected || submitted || busy) return;
+    const reply = await submit(selected);
+    if (!reply) return;
     setSubmitted(true);
-    if (selected !== puzzle.correctAnswer) {
+    if (!reply.correct) {
       onWrongAttempt?.();
     } else {
       import("@/services/sound-service").then(({ playCorrect }) => playCorrect());
@@ -67,7 +74,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
   };
 
   const handleChoicePick = (choice: string) => {
-    if (submitted) return;
+    if (submitted || busy) return;
     setSelected(choice);
   };
 
@@ -328,7 +335,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
       {/* Submit button */}
       <div ref={submitRef}>
         {!submitted && (
-          <motion.button onClick={handleSubmit} disabled={!selected}
+          <motion.button onClick={handleSubmit} disabled={!selected || busy}
             className="relative mt-6 flex h-14 w-full items-center justify-center gap-2 overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-[#8b5cf6] text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] disabled:opacity-40">
             {selected && (
               <motion.span
@@ -337,7 +344,7 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               />
             )}
-            <Zap className="size-5" /> Submit Answer
+            <Zap className="size-5" /> {busy ? 'Checking…' : 'Submit Answer'}
           </motion.button>
         )}
       </div>
@@ -345,8 +352,8 @@ function QuizPlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
   );
 }
 
-export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
-  useEffect(() => { setPuzzleHasLesson(!!puzzle.lessonContent); }, [puzzle.id]);
+function PuzzlePlayInner({ puzzle, onComplete, onWrongAttempt, isRepeat }: Props) {
+  useEffect(() => { setPuzzleHasLesson(!!puzzle.lessonContent); }, [puzzle.id, puzzle.lessonContent]);
 
   const handleComplete = (correct: boolean, xpEarned: number) => {
     if (correct) {
@@ -390,4 +397,10 @@ export function PuzzlePlay({ puzzle, onComplete, onWrongAttempt, isRepeat }: Pro
     return <RiddlePlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
   }
   return <QuizPlay puzzle={puzzle} onComplete={handleComplete} onWrongAttempt={handleWrongAttempt} isRepeat={isRepeat} />;
+}
+
+export function PuzzlePlay(props: Props) {
+  const uid = useUserStore((state) => state.userId);
+  const mode = props.mode ?? 'challenge';
+  return <PreviewContext.Provider value={props.preview === true}><PlayModeContext.Provider value={mode}><PuzzlePlayInner key={`${uid}:${props.puzzle.id}:${mode}`} {...props} /></PlayModeContext.Provider></PreviewContext.Provider>;
 }

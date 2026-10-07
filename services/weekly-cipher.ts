@@ -2,14 +2,14 @@
 
 import { getFirebase } from "@/services/firebase";
 import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
-import { getPublishedPuzzles, getPuzzle } from "@/services/puzzle-service";
+import { getPuzzle, getWeeklyContent } from "@/services/player-content";
 import type { Puzzle } from "@/types/puzzle";
 
 const WEEKLY_CIPHER_KEY = "brainbloom-weekly-cipher";
 const CIPHER_HISTORY_KEY = "brainbloom-cipher-history";
 const CIPHER_HISTORY_MAX = 26;
 
-let weeklyCipherCache: { puzzle: Puzzle | null; weekStart: string } | null = null;
+let serverPhase: CipherPhase | null = null;
 
 export interface CipherHistoryEntry {
   weekStart: string;
@@ -110,78 +110,15 @@ export function getWeekEnd(weekStart: string): string {
   return d.toISOString().split("T")[0];
 }
 
-function weeksSinceEpoch(weekStart: string): number {
-  return Math.floor(new Date(weekStart + "T00:00:00Z").getTime() / 604800000);
-}
-
 export async function getWeeklyCipher(): Promise<Puzzle | null> {
-  const weekStart = getWeekStart();
-
-  if (weeklyCipherCache && weeklyCipherCache.weekStart === weekStart) {
-    return weeklyCipherCache.puzzle;
+  const result = await getWeeklyContent();
+  serverPhase = result.phase;
+  if (result.puzzle) {
+    const entry = { puzzleId: result.puzzle.id, weekStart: result.weekStart, setBy: result.setBy };
+    saveLocalWeekly(entry);
+    await rememberCipherWeek(entry);
   }
-
-  let result: Puzzle | null = null;
-
-  const local = getLocalWeekly();
-  if (local && local.weekStart === weekStart) {
-    const puzzle = await getPuzzle(local.puzzleId);
-    if (puzzle?.published && puzzle.type === "cipher") result = puzzle;
-  }
-
-  if (!result && isFirestoreAvailable()) {
-    try {
-      const { db } = getFirebase();
-      if (db) {
-        const ref = doc(db, "settings", "weekly-cipher");
-        const snap = await getDoc(ref);
-        if (snap.exists()) {
-          const data = snap.data() as WeeklyCipherDoc & { updatedAt?: Timestamp };
-          if (data.weekStart === weekStart) {
-            const puzzle = await getPuzzle(data.puzzleId);
-            if (puzzle?.published && puzzle.type === "cipher") {
-              saveLocalWeekly({ puzzleId: data.puzzleId, weekStart: data.weekStart, setBy: data.setBy, setByUser: data.setByUser });
-              result = puzzle;
-            }
-          }
-        }
-      }
-    } catch (e) {
-      console.error("Firestore getWeeklyCipher failed:", e);
-    }
-  }
-
-  if (!result) {
-    result = await autoPickWeeklyCipher(weekStart);
-  }
-
-  if (result) {
-    const local = getLocalWeekly();
-    rememberCipherWeek({ puzzleId: result.id, weekStart, setBy: local?.setBy ?? "auto" });
-  }
-
-  weeklyCipherCache = { puzzle: result, weekStart };
-  return result;
-}
-
-async function autoPickWeeklyCipher(weekStart: string): Promise<Puzzle | null> {
-  const all = await getPublishedPuzzles();
-  const ciphers = all.filter((p) => p.type === "cipher");
-  if (ciphers.length === 0) return null;
-
-  const sorted = [...ciphers].sort((a, b) => a.id.localeCompare(b.id));
-  const idx = weeksSinceEpoch(weekStart) % sorted.length;
-  const pick = sorted[idx];
-
-  const docData: WeeklyCipherDoc = {
-    puzzleId: pick.id,
-    weekStart,
-    setBy: "auto",
-  };
-
-  saveLocalWeekly(docData);
-  rememberCipherWeek(docData);
-  return pick;
+  return result.puzzle;
 }
 
 export async function setWeeklyCipher(puzzleId: string, setByUser?: string): Promise<boolean> {
@@ -210,7 +147,7 @@ export async function setWeeklyCipher(puzzleId: string, setByUser?: string): Pro
 
   saveLocalWeekly(docData);
   rememberCipherWeek(docData);
-  weeklyCipherCache = null;
+  serverPhase = null;
   return true;
 }
 
@@ -235,49 +172,19 @@ export async function getCurrentWeekCipherId(): Promise<string | null> {
   return null;
 }
 
-// TEMP DEV OVERRIDE: localStorage.setItem("brainbloom-force-sunday","true") to force Sunday mode
-// REVERT: remove the localStorage check below to restore real date detection
 export function isSunday(): boolean {
-  if (typeof window !== "undefined" && localStorage.getItem("brainbloom-force-sunday")) return true;
   return new Date().getUTCDay() === 0;
 }
 
-/**
- * Weekly cipher lifecycle (all boundaries in UTC):
- *   Sun–Thu → "active"  : solving open, no hint shown (recognition only)
- *   Fri      → "hint"    : solving still open, the descriptive question is shown as a hint
- *   Sat      → "closed"  : solving disabled, answer + explanation revealed to everyone
- * A new cipher is picked each Sunday (see autoPickWeeklyCipher).
- *
- * TEMP DEV OVERRIDE: localStorage.setItem("brainbloom-cipher-phase","active|hint|closed")
- * to force a phase, or "brainbloom-force-sunday" to force the Sunday/active start.
- * REVERT: remove the localStorage checks below to restore real date detection.
- */
 export type CipherPhase = "active" | "hint" | "closed";
 
 export function getCipherPhase(): CipherPhase {
-  if (typeof window !== "undefined") {
-    const forced = localStorage.getItem("brainbloom-cipher-phase");
-    if (forced === "active" || forced === "hint" || forced === "closed") return forced;
-    if (localStorage.getItem("brainbloom-force-sunday")) return "active";
-  }
-  const day = new Date().getUTCDay(); // 0=Sun … 6=Sat
-  if (day === 6) return "closed"; // Saturday
-  if (day === 5) return "hint";   // Friday
-  return "active";                // Sunday–Thursday
+  return serverPhase ?? 'active';
 }
 
-// TEMP DEV OVERRIDE: also override getWeekStart so the auto-pick uses today as the "Sunday"
-// REVERT: remove the localStorage check to restore real week calculation
 export function getWeekStart(ts?: number): string {
-  if (typeof window !== "undefined" && localStorage.getItem("brainbloom-force-sunday")) {
-    const d = ts ? new Date(ts) : new Date();
-    return d.toISOString().split("T")[0];
-  }
-  const d = ts ? new Date(ts) : new Date();
-  const day = d.getUTCDay();
-  const diff = day === 0 ? 0 : -day;
-  d.setUTCDate(d.getUTCDate() + diff);
+  const d = ts === undefined ? new Date() : new Date(ts);
+  d.setUTCDate(d.getUTCDate() - d.getUTCDay());
   d.setUTCHours(0, 0, 0, 0);
   return d.toISOString().split("T")[0];
 }

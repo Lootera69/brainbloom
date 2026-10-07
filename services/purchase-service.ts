@@ -1,5 +1,7 @@
 "use client";
 
+import { playerCommand, refreshPlayerProgress } from "@/services/player-progress";
+
 export interface PurchaseResult {
   success: boolean;
   productId: string;
@@ -23,41 +25,16 @@ export async function purchaseProduct(productId: string): Promise<PurchaseResult
     return { success: false, productId, error: "Stripe not yet configured" };
   }
 
-  console.log(`[MOCK PURCHASE] Processing purchase: ${productId}`);
-
-  await new Promise((r) => setTimeout(r, 1500));
-
-  const purchase = {
-    id: crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-    productId,
-    timestamp: Date.now(),
-  };
-
   try {
-    const existing = JSON.parse(localStorage.getItem("brainbloom-purchases") || "[]");
-    existing.push(purchase);
-    localStorage.setItem("brainbloom-purchases", JSON.stringify(existing));
-  } catch {
-    console.warn("Failed to save purchase to localStorage");
+    const reply = await playerCommand({ action: 'shop', productId });
+    if (reply.productId !== productId) throw new Error('The purchase could not be confirmed. Please retry.');
+    return { success: true, productId };
+  } catch (error) {
+    return { success: false, productId, error: error instanceof Error ? error.message : 'Connect and retry.' };
   }
-
-  console.log(`[MOCK PURCHASE] Completed: ${productId}`);
-  return { success: true, productId };
 }
 
 export async function restorePurchases(): Promise<PurchaseResult[]> {
-  if (currentProvider === "stripe") {
-    return [];
-  }
-
-  try {
-    const raw = localStorage.getItem("brainbloom-purchases");
-    if (!raw) return [];
-    return JSON.parse(raw).map((p: { productId: string }) => ({
-      success: true,
-      productId: p.productId,
-    }));
-  } catch {
-    return [];
-  }
+  await refreshPlayerProgress();
+  return [];
 }

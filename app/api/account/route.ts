@@ -30,7 +30,7 @@ export async function DELETE(request: Request) {
         return privateJson({ ok: false, error: "Sign in again." }, 401);
       }
     }
-    if (!previous.exists && (!Number.isFinite(token.auth_time) ||
+    if (!previous.exists && token.firebase?.sign_in_provider !== 'anonymous' && (!Number.isFinite(token.auth_time) ||
         Date.now() / 1000 - token.auth_time > 300 || token.auth_time > Date.now() / 1000 + 60)) {
       return privateJson({ ok: false, needsReauth: true, error: "Please sign in again to confirm account deletion." }, 401);
     }
@@ -41,6 +41,7 @@ export async function DELETE(request: Request) {
       }
     });
     await db.recursiveDelete(db.doc(`users/${token.uid}`));
+    await db.recursiveDelete(db.doc(`playerProgress/${token.uid}`));
     await db.doc(`staffAccess/${token.uid}`).delete();
     if (token.email && token.email_verified === true) {
       const invitations = await db.collection("staffInvites")

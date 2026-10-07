@@ -9,20 +9,17 @@ import { AnimatedBackground } from "@/features/home/components/AnimatedBackgroun
 import { XPToast } from "@/features/home/components/XPToast";
 import { useUserStore, retryCloudRestore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
-import { Toaster, toast } from "sonner";
-import { Heart } from "lucide-react";
-import { motion } from "framer-motion";
+import { Toaster } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CelebrationProvider } from "@/components/ui/celebration-provider";
 import { ShopModal } from "@/components/shop/ShopModal";
 import { InstallPrompt } from "@/components/layout/InstallPrompt";
 import { AnimatePresence } from "framer-motion";
+import { refreshPlayerProgressIfDue } from "@/services/player-progress";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
-  const processHeartRefill = useUserStore((s) => s.processHeartRefill);
-  const checkStreak = useUserStore((s) => s.checkStreak);
   const setTimeZone = useUserStore((s) => s.setTimeZone);
   const pathname = usePathname();
   const focusMode = useUIStore((s) => s.focusMode);
@@ -46,8 +43,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
-    checkStreak(false);
-    processHeartRefill();
+    void refreshPlayerProgressIfDue();
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
       if (tz && tz !== useUserStore.getState().timeZone) setTimeZone(tz);
@@ -55,40 +51,16 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       // timezone detection unavailable
     }
     import("@/services/sound-service").then(({ initSounds }) => initSounds());
-    const interval = setInterval(() => {
-      const state = useUserStore.getState();
-      const { tier, subscriptionExpiry } = state;
-      if (tier === "premium" && (!subscriptionExpiry || Date.now() < subscriptionExpiry)) return;
-      const prev = state.hearts;
-      processHeartRefill();
-      const next = useUserStore.getState().hearts;
-      if (next > prev && prev < 5) {
-        toast.custom(
-          () => (
-            <motion.div initial={{ opacity: 0, scale: 0.8, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.8, y: -10 }}
-              className="flex items-center gap-3 rounded-xl border border-success/20 bg-card px-4 py-3 shadow-lg">
-              <span className="flex size-8 items-center justify-center rounded-lg bg-success/10">
-                <Heart className="size-4 fill-success text-success" />
-              </span>
-              <div>
-                <p className="text-sm font-semibold text-success">Heart Refilled</p>
-                <p className="text-xs text-muted-foreground">{next}/{5} hearts</p>
-              </div>
-            </motion.div>
-          ),
-          { duration: 3000, position: "top-center" },
-        );
-      }
-    }, 30_000);
+    const interval = setInterval(() => { void refreshPlayerProgressIfDue(); }, 30_000);
     return () => clearInterval(interval);
-  }, [processHeartRefill, checkStreak, setTimeZone]);
+  }, [setTimeZone]);
 
   // Re-evaluate streak when the user returns to the tab (e.g. left open past midnight)
   useEffect(() => {
     const onVisible = () => {
       if (document.visibilityState === "visible") {
         void retryCloudRestore();
-        useUserStore.getState().checkStreak(false);
+        void refreshPlayerProgressIfDue();
       }
     };
     document.addEventListener("visibilitychange", onVisible);
@@ -110,11 +82,12 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     const unsub = useUserStore.subscribe((state, prev) => {
       if (state.isGuest || !state.userId) return;
       const changed =
-        state.xp !== prev.xp ||
-        state.streak !== prev.streak ||
-        state.hearts !== prev.hearts ||
-        state.gems !== prev.gems ||
-        state.completedPuzzleIds.length !== prev.completedPuzzleIds.length;
+        state.displayName !== prev.displayName ||
+        state.avatarId !== prev.avatarId ||
+        state.theme !== prev.theme ||
+        state.soundEnabled !== prev.soundEnabled ||
+        state.hapticsEnabled !== prev.hapticsEnabled ||
+        state.timeZone !== prev.timeZone;
       if (changed) {
         if (syncTimer.current) clearTimeout(syncTimer.current);
         syncTimer.current = setTimeout(() => state.syncToFirestore(), 3000);

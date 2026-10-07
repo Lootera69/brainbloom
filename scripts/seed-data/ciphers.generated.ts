@@ -8,6 +8,7 @@
 // which upserts each entry into Firestore by its stable `id` (additive: it
 // never wipes the puzzle bank).
 
+import "server-only";
 import type { SeedPuzzleInput } from "./importer";
 
 export interface CipherSeedInput extends SeedPuzzleInput {

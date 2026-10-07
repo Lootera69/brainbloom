@@ -17,7 +17,6 @@ export function GemsTab({ onPurchaseSuccess }: GemsTabProps) {
   const [purchasing, setPurchasing] = useState<string | null>(null);
   const [purchased, setPurchased] = useState<string | null>(null);
   const [pricing, setPricing] = useState<PricingConfig | null>(null);
-  const addGems = useUserStore((s) => s.addGems);
   const gems = useUserStore((s) => s.gems);
 
   useEffect(() => {
@@ -29,11 +28,10 @@ export function GemsTab({ onPurchaseSuccess }: GemsTabProps) {
     setPurchasing(productId);
     const result = await purchaseProduct(productId);
     if (!result.success) {
-      toast.error("Purchase failed. Please try again.", { position: "top-center" });
+      toast.error(result.error ?? "Purchase failed. Please try again.", { position: "top-center" });
       setPurchasing(null);
       return;
     }
-    addGems(gemAmount);
     setPurchased(productId);
     onPurchaseSuccess?.("gems", gemAmount);
     toast.custom(
@@ -51,7 +49,7 @@ export function GemsTab({ onPurchaseSuccess }: GemsTabProps) {
       { duration: 2000, position: "top-center" },
     );
     setTimeout(() => { setPurchased(null); setPurchasing(null); }, 2000);
-  }, [purchasing, addGems, onPurchaseSuccess]);
+  }, [purchasing, onPurchaseSuccess]);
 
   const gems_products = SHOP_PRODUCTS.filter((p) => p.category === "gems");
 

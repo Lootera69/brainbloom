@@ -47,46 +47,35 @@ export function ShopModal({ onClose }: ShopModalProps) {
     return () => { if (rainTimer.current) clearTimeout(rainTimer.current); };
   }, []);
 
-  const addGems = useUserStore((s) => s.addGems);
-  const restoreHearts = useUserStore((s) => s.restoreHearts);
-  const addStreakFreezes = useUserStore((s) => s.addStreakFreezes);
-  const setTier = useUserStore((s) => s.setTier);
 
   const handleProductPurchase = useCallback(async (product: typeof SHOP_PRODUCTS[number]) => {
     if (purchasing) return;
     setPurchasing(product.id);
     const result = await purchaseProduct(product.id);
     if (!result.success) {
-      toast.error("Purchase failed. Please try again.", { position: "top-center" });
+      toast.error(result.error ?? "Purchase failed. Please try again.", { position: "top-center" });
       setPurchasing(null);
       return;
     }
     if (product.effect.gems) {
-      addGems(product.effect.gems);
       setRainParams({ type: "gems", amount: product.effect.gems });
       if (rainTimer.current) clearTimeout(rainTimer.current);
       rainTimer.current = setTimeout(() => setRainParams(null), 3000);
     }
     if (product.effect.hearts) {
-      restoreHearts();
       setRainParams({ type: "hearts", amount: 0 });
       if (rainTimer.current) clearTimeout(rainTimer.current);
       rainTimer.current = setTimeout(() => setRainParams(null), 3000);
     }
     if (product.effect.streakFreezes) {
-      addStreakFreezes(product.effect.streakFreezes);
       setRainParams({ type: "snowflakes", amount: 0 });
       if (rainTimer.current) clearTimeout(rainTimer.current);
       rainTimer.current = setTimeout(() => setRainParams(null), 3000);
     }
-    if (product.effect.tier === "premium" && product.effect.days) {
-      const expiry = Date.now() + product.effect.days * 86400000;
-      setTier("premium", expiry);
-    }
     setPurchased(product.id);
     setTimeout(() => setPurchased(null), 2000);
     setPurchasing(null);
-  }, [purchasing, addGems, restoreHearts, setTier, addStreakFreezes]);
+  }, [purchasing]);
 
   const nonPremiumProducts = SHOP_PRODUCTS.filter((p) => p.category !== "premium");
 

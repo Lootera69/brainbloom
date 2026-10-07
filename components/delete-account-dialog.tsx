@@ -42,10 +42,15 @@ interface DeleteAccountDialogProps {
 
 type Step = "soft" | "final" | "reauth" | "processing" | "done";
 
-export function DeleteAccountDialog({
+export function DeleteAccountDialog(props: DeleteAccountDialogProps) {
+  if (!props.open) return null;
+  return <DeleteAccountDialogContent key={props.userId} {...props} />;
+}
+
+function DeleteAccountDialogContent({
   open,
   onClose,
-  isGuest,
+  userId,
   avatarId,
   photoURL,
   displayName,
@@ -63,7 +68,6 @@ export function DeleteAccountDialog({
 
   useEffect(() => {
     if (!open || step !== "soft") return;
-    setSoftTimer(5);
     const id = setInterval(() => {
       setSoftTimer((t) => (t <= 1 ? (clearInterval(id), 0) : t - 1));
     }, 1000);
@@ -72,7 +76,6 @@ export function DeleteAccountDialog({
 
   useEffect(() => {
     if (!open || step !== "final") return;
-    setFinalTimer(10);
     const id = setInterval(() => {
       setFinalTimer((t) => (t <= 1 ? (clearInterval(id), 0) : t - 1));
     }, 1000);
@@ -87,27 +90,18 @@ export function DeleteAccountDialog({
     return () => clearInterval(id);
   }, [open, step]);
 
-  useEffect(() => {
-    if (!open) {
-      setStep("soft");
-      setError(null);
-      setDeleting(false);
-      setMessageIdx(0);
-      setReauthPassword("");
-      setReauthError(null);
-    }
-  }, [open]);
-
   const cleanupAfterDelete = useCallback(async () => {
+    if (useUserStore.getState().userId !== userId) return;
     useUserStore.getState().logout();
     const keys = Object.keys(localStorage);
     for (const key of keys) {
       if (key.startsWith("brainbloom")) localStorage.removeItem(key);
     }
+    localStorage.removeItem("guest_history_archive");
     setStep("done");
     toast.success("Your account was deleted. Sorry to see you go!", { position: "top-center" });
     setTimeout(() => { window.location.href = "/login"; }, 1200);
-  }, []);
+  }, [userId]);
 
   const performDelete = useCallback(async () => {
     setDeleting(true);
@@ -121,20 +115,9 @@ export function DeleteAccountDialog({
       return;
     }
 
-    if (isGuest) {
-      const keys = Object.keys(localStorage);
-      for (const key of keys) {
-        if (key.startsWith("brainbloom")) localStorage.removeItem(key);
-      }
-      setStep("done");
-      toast.success("Guest data cleared. See you next time!", { position: "top-center" });
-      setTimeout(() => { window.location.href = "/login"; }, 1200);
-      return;
-    }
-
     try {
       const { deleteAccount, isGoogleUser } = await import("@/services/firebase");
-      const result = await deleteAccount();
+      const result = await deleteAccount(userId);
 
       if (!result.success) {
         if (result.needsReauth) {
@@ -156,7 +139,7 @@ export function DeleteAccountDialog({
       setStep("final");
       setError("An unexpected error occurred. Please try again.");
     }
-  }, [isGuest, cleanupAfterDelete]);
+  }, [userId, cleanupAfterDelete]);
 
   const handleReauthGoogle = useCallback(async () => {
     setReauthError(null);
@@ -168,14 +151,14 @@ export function DeleteAccountDialog({
       setReauthError("Google sign-in was cancelled or failed. Try again.");
       return;
     }
-    const result = await deleteAccount();
+    const result = await deleteAccount(userId);
     if (!result.success) {
       setDeleting(false);
       setReauthError("Deletion still failed after re-authentication. Please try again later.");
       return;
     }
     await cleanupAfterDelete();
-  }, [cleanupAfterDelete]);
+  }, [userId, cleanupAfterDelete]);
 
   const handleReauthEmail = useCallback(async () => {
     setReauthError(null);
@@ -191,14 +174,14 @@ export function DeleteAccountDialog({
       setReauthError("Wrong password. Please try again.");
       return;
     }
-    const result = await deleteAccount();
+    const result = await deleteAccount(userId);
     if (!result.success) {
       setDeleting(false);
       setReauthError("Deletion still failed after re-authentication. Please try again later.");
       return;
     }
     await cleanupAfterDelete();
-  }, [email, reauthPassword, cleanupAfterDelete]);
+  }, [email, reauthPassword, userId, cleanupAfterDelete]);
 
   if (!open) return null;
 

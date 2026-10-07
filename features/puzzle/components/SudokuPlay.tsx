@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Zap, Sparkles, Clock, Pencil } from "lucide-react";
 import type { Puzzle } from "@/types/puzzle";
 import { cn } from "@/lib/utils";
-import { useUserStore } from "@/store/user-store";
+import { useVerifiedPuzzle } from "@/features/puzzle/use-verified-puzzle";
 
 interface SudokuPlayProps {
   puzzle: Puzzle;
@@ -52,9 +52,9 @@ const MistakeDots = ({ count }: { count: number }) => {
   );
 };
 
-export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayProps) {
-  const sudokuData = puzzle.sudokuData;
-  if (!sudokuData || !Array.isArray(sudokuData.puzzle) || sudokuData.puzzle.length !== SIZE * SIZE || !Array.isArray(sudokuData.solution)) {
+export function SudokuPlay(props: SudokuPlayProps) {
+  const sudokuData = props.puzzle.sudokuData;
+  if (!sudokuData || !Array.isArray(sudokuData.puzzle) || sudokuData.puzzle.length !== SIZE * SIZE) {
     return (
       <div className="flex min-h-64 flex-col items-center justify-center gap-3 rounded-2xl border border-border/50 bg-card/60 p-8 text-center backdrop-blur-xl">
         <span className="text-4xl">🧩</span>
@@ -63,8 +63,12 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
       </div>
     );
   }
-  const initialClues = sudokuData.puzzle;
-  const solution = sudokuData.solution;
+  return <VerifiedSudokuPlay {...props} />;
+}
+
+function VerifiedSudokuPlay({ puzzle: source, onComplete, onWrongAttempt }: SudokuPlayProps) {
+  const { puzzle, submit, busy, result } = useVerifiedPuzzle(source);
+  const initialClues = source.sudokuData!.puzzle;
 
   const freshCells = initialClues.map((v) => (v > 0 ? v : null));
 
@@ -122,7 +126,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
     if (showResult) resultRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [showResult]);
 
-  const isClue = (index: number) => initialClues[index] > 0;
+  const isClue = useCallback((index: number) => initialClues[index] > 0, [initialClues]);
 
   const selected = selectedCell;
   const selectedRow = selected !== null ? Math.floor(selected / SIZE) : -1;
@@ -146,7 +150,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
     return cells[index] === cells[selected];
   };
 
-  function findConflicts(index: number, num: number): Conflict[] {
+  const findConflicts = useCallback((index: number, num: number): Conflict[] => {
     const row = Math.floor(index / SIZE);
     const col = index % SIZE;
     const boxRow = Math.floor(row / 3) * 3;
@@ -167,7 +171,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
           found.push({ index: idx, number: num });
       }
     return found;
-  }
+  }, [cells]);
 
   useEffect(() => {
     if (completed) return;
@@ -189,40 +193,28 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
     localStorage.setItem(SAVE_KEY(puzzle.id), JSON.stringify(data));
   }, [cells, notes, mistakeCount, elapsed, completed, puzzle.id]);
 
-  const checkCompletion = useCallback(
-    (currentCells: CellValue[]) => {
-      const allFilled = currentCells.every((c) => c !== null);
-      if (!allFilled) return;
-      const allCorrect = currentCells.every((c, i) => c === solution[i]);
-      if (allCorrect) {
-        localStorage.removeItem(SAVE_KEY(puzzle.id));
-        setCompleted(true);
-        setTimeout(() => {
-          setShowResult(true);
-          onComplete(true, puzzle.xpReward);
-        }, 600);
-      }
-    },
-    [solution, onComplete, puzzle.xpReward],
-  );
+  const checkCompletion = useCallback(async (currentCells: CellValue[], force = false) => {
+    if (busy || completed || (!force && currentCells.some((cell) => cell === null))) return;
+    const reply = await submit(currentCells.map((cell) => cell ?? 0));
+    if (!reply) return;
+    if (reply.correct) {
+      localStorage.removeItem(SAVE_KEY(puzzle.id));
+      setCompleted(true);
+      setShowResult(true);
+    } else {
+      onWrongAttempt?.();
+    }
+  }, [busy, completed, submit, puzzle.id, onWrongAttempt]);
 
-  const doMistake = useCallback(() => {
+  const doMistake = useCallback((attemptedCells: CellValue[]) => {
     const newCount = mistakeCount + 1;
     setMistakeCount(newCount);
-    if (newCount % MISTAKE_LIMIT === 0) {
-      onWrongAttempt?.();
-      const hearts = useUserStore.getState().hearts;
-      if (hearts <= 0) {
-        localStorage.removeItem(SAVE_KEY(puzzle.id));
-        setCompleted(true);
-        setTimeout(() => onComplete(false, 0), 400);
-      }
-    }
-  }, [mistakeCount, onWrongAttempt, onComplete]);
+    if (newCount % MISTAKE_LIMIT === 0) void checkCompletion(attemptedCells, true);
+  }, [mistakeCount, checkCompletion]);
 
   const fillCell = useCallback(
     (num: number) => {
-      if (completed) return;
+      if (completed || busy) return;
 
       let target = selected;
       if (target === null) {
@@ -235,8 +227,9 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
       if (isClue(target)) return;
 
       const conflicts = findConflicts(target, num);
-      const isWrong = !noteMode && num !== solution[target];
-      const isError = !noteMode && (conflicts.length > 0 || isWrong);
+      const isError = !noteMode && conflicts.length > 0;
+      const attemptedCells = [...cells];
+      attemptedCells[target] = num;
 
       if (conflicts.length > 0) {
         setShakeIndex(target);
@@ -247,7 +240,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
         }, 600);
         if (noteMode) return;
         if (isError) {
-          doMistake();
+          doMistake(attemptedCells);
           return;
         }
       }
@@ -255,7 +248,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
       if (isError) {
         setShakeIndex(target);
         setTimeout(() => setShakeIndex(null), 600);
-        doMistake();
+        doMistake(attemptedCells);
         return;
       }
 
@@ -305,11 +298,11 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
 
       checkCompletion(next);
     },
-    [completed, selected, cells, isClue, noteMode, solution, doMistake, checkCompletion],
+    [completed, busy, selected, cells, isClue, findConflicts, noteMode, doMistake, checkCompletion],
   );
 
   const eraseCell = useCallback(() => {
-    if (selected === null || completed) return;
+    if (selected === null || completed || busy) return;
     if (isClue(selected)) return;
     setCells((prev) => {
       const next = [...prev];
@@ -321,7 +314,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
       next[selected] = new Set();
       return next;
     });
-  }, [selected, completed, isClue]);
+  }, [selected, completed, busy, isClue]);
 
   const handleCellClick = useCallback((index: number) => {
     setSelectedCell((prev) => (prev === index ? null : index));
@@ -461,7 +454,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
             <motion.button
               key={num}
               onClick={() => fillCell(num)}
-              disabled={completed}
+              disabled={completed || busy}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.9 }}
               className="flex aspect-square items-center justify-center rounded-xl bg-card text-lg font-semibold shadow-sm transition-all hover:bg-primary/20 hover:shadow-md hover:shadow-primary/10 active:scale-90 disabled:opacity-40"
@@ -471,7 +464,7 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
           ))}
           <motion.button
             onClick={eraseCell}
-            disabled={completed}
+            disabled={completed || busy}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.9 }}
             className="flex aspect-square items-center justify-center rounded-xl bg-card text-lg shadow-sm transition-all hover:bg-destructive/20 hover:shadow-md hover:shadow-destructive/10 active:scale-90 disabled:opacity-40"
@@ -493,6 +486,13 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
           </motion.button>
         </div>
       </div>
+
+      {!completed && cells.every((cell) => cell !== null) && (
+        <button onClick={() => void checkCompletion(cells)} disabled={busy}
+          className="w-full max-w-md rounded-xl bg-primary py-3 font-semibold text-primary-foreground disabled:opacity-50">
+          {busy ? 'Checking...' : 'Check puzzle'}
+        </button>
+      )}
 
       {/* Completion modal */}
       <AnimatePresence>
@@ -545,11 +545,11 @@ export function SudokuPlay({ puzzle, onComplete, onWrongAttempt }: SudokuPlayPro
                 className="relative mb-6 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-success/20 to-emerald-500/20 px-4 py-2"
               >
                 <Zap className="size-5 text-success" />
-                <span className="text-lg font-bold text-success">+{puzzle.xpReward} XP</span>
+                <span className="text-lg font-bold text-success">+{result?.xpEarned ?? 0} XP</span>
               </motion.div>
 
               <motion.button
-                onClick={() => { setShowResult(false); onComplete(true, puzzle.xpReward); }}
+                onClick={() => { setShowResult(false); onComplete(true, result?.xpEarned ?? 0); }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
                 className="relative w-full rounded-xl bg-gradient-to-br from-primary to-[#8b5cf6] py-3 font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30"

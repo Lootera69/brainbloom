@@ -7,6 +7,8 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { useUserStore } from "@/store/user-store";
 import { cn } from "@/lib/utils";
 import { haptic } from "@/lib/haptics";
+import { claimDailyReward } from "@/services/player-actions";
+import { toast } from "sonner";
 
 const rewardIcons: Record<string, typeof Zap> = {
   xp: Zap,
@@ -393,7 +395,6 @@ function RewardReveal({ reward }: { reward: Reward }) {
 
 export function DailyRewardChest() {
   const canClaim = useUserStore((s) => s.canClaimDailyBonus);
-  const claim = useUserStore((s) => s.claimDailyBonus);
   const [open, setOpen] = useState(false);
   const [phase, setPhase] = useState<"idle" | "shaking" | "opening">("idle");
   const [reward, setReward] = useState<Reward | null>(null);
@@ -401,10 +402,13 @@ export function DailyRewardChest() {
   const [boxFading, setBoxFading] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const unlocking = useRef(false);
+  const alive = useRef(true);
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
+    alive.current = true;
     return () => {
+      alive.current = false;
       timeoutsRef.current.forEach(clearTimeout);
     };
   }, []);
@@ -415,42 +419,44 @@ export function DailyRewardChest() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  const handleOpen = useCallback(() => {
+  const handleOpen = useCallback(async () => {
     if (unlocking.current) return;
     unlocking.current = true;
     setOpen(true);
-    setPhase("idle");
+    setReward(null);
+    setPhase('idle');
     setBoxFading(false);
-
     timeoutsRef.current.forEach(clearTimeout);
-    timeoutsRef.current = [];
-
-    const t1 = setTimeout(() => setPhase("shaking"), 300);
-    const t2 = setTimeout(() => {
-      setPhase("opening");
+    timeoutsRef.current = [setTimeout(() => setPhase('shaking'), 300)];
+    try {
+      const [result] = await Promise.all([claimDailyReward(), new Promise((done) => setTimeout(done, 900))]);
+      if (!alive.current) return;
+      if (!result) {
+        setOpen(false);
+        unlocking.current = false;
+        toast.info("Today's gift has already been claimed.");
+        return;
+      }
+      setPhase('opening');
       setShowBeams(true);
-      haptic([40, 60, 40]);
-      const result = claim();
-      if (result) setReward(result);
-    }, 900);
-    const t3 = setTimeout(() => {
       setBoxFading(true);
-      cardRef.current?.classList.add("animate-pulse-scale");
-    }, 1000);
-    const t4 = setTimeout(() => setShowBeams(false), 1500);
-    const t5 = setTimeout(() => {
-      cardRef.current?.classList.remove("animate-pulse-scale");
-    }, 1500);
-    const t6 = setTimeout(() => {
+      setReward(result);
+      haptic([40, 60, 40]);
+      timeoutsRef.current.push(setTimeout(() => setShowBeams(false), 600));
+      timeoutsRef.current.push(setTimeout(() => {
+        setOpen(false);
+        setPhase('idle');
+        setReward(null);
+        setBoxFading(false);
+        unlocking.current = false;
+      }, 3500));
+    } catch (error) {
+      if (!alive.current) return;
       setOpen(false);
-      setPhase("idle");
-      setReward(null);
-      setBoxFading(false);
       unlocking.current = false;
-    }, 4500);
-
-    timeoutsRef.current = [t1, t2, t3, t4, t5, t6];
-  }, [claim]);
+      toast.error(error instanceof Error ? error.message : 'Connect and retry.');
+    }
+  }, []);
 
   if (!canClaim() && !open) return null;
 

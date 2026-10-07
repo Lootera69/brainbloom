@@ -5,7 +5,7 @@ import { doc, setDoc, getDoc, getDocs, collection, updateDoc, deleteDoc, query, 
 
 let env;
 const draft = { createdBy: 'writer', createdAt: 1, published: false, reviewStatus: 'draft', title: 'Draft', completedBy: 0, reviewedBy: null, reviewComments: null };
-const publicSettings = ['pricing', 'lesson-groups', 'daily-puzzle', 'weekly-cipher', 'cipher-history', 'events'];
+const publicSettings = ['pricing', 'lesson-groups', 'daily-puzzle', 'weekly-cipher', 'cipher-history'];
 const dbFor = (uid, verified = true, extra = {}) => env.authenticatedContext(uid, { email: `${uid}@example.test`, email_verified: verified, ...extra }).firestore();
 
 before(async () => {
@@ -25,6 +25,7 @@ beforeEach(async () => {
       'staffInvites/private': { email: 'person@example.test', role: 'admin' },
       'settings/studio': { codes: [{ code: 'legacy-code', password: 'exposed' }] },
       'settings/cron-hourly': { delivered: true },
+      'settings/events': { version: 1, events: [{ question: { correctIndex: 1, factoid: 'Private answer' } }] },
       'puzzles/draft': draft,
       'puzzles/pending': { ...draft, reviewStatus: 'pending' },
       'puzzles/discussion': { ...draft, reviewStatus: 'needs-discussion' },
@@ -52,7 +53,8 @@ for (const identity of ['guest', 'player', 'disabled', 'unverified', 'forged']) 
 test('public reads remain available while credentials and cron markers are private', async () => {
   const db = env.unauthenticatedContext().firestore();
   for (const id of publicSettings) await assertSucceeds(getDoc(doc(db, 'settings', id)));
-  await assertSucceeds(getDoc(doc(db, 'puzzles/published')));
+  await assertFails(getDoc(doc(db, 'puzzles/published')));
+  await assertFails(getDoc(doc(db, 'puzzles/draft')));
   await assertFails(getDoc(doc(db, 'settings/studio')));
   await assertFails(getDoc(doc(db, 'settings/cron-hourly')));
   await assertFails(getDocs(collection(db, 'settings')));
@@ -132,7 +134,7 @@ for (const status of ['frozen', 'removed']) {
     });
     await assertFails(updateDoc(doc(reviewerDb, 'puzzles/pending'), review()));
     await assertFails(updateDoc(doc(writerDb, 'puzzles/draft'), { title: 'After freeze' }));
-    await assertSucceeds(setDoc(doc(writerDb, 'users/writer'), { xp: 20 }));
+    await assertSucceeds(setDoc(doc(writerDb, 'users/writer'), { displayName: 'Writer' }));
     await assertSucceeds(getDoc(doc(writerDb, 'staffAccess/writer')));
     if (status === 'frozen') {
       await env.withSecurityRulesDisabled(async (context) => {
@@ -146,7 +148,7 @@ for (const status of ['frozen', 'removed']) {
 
 test('profile role forgery grants no authority', async () => {
   const db = dbFor('player');
-  await assertSucceeds(updateDoc(doc(db, 'users/player'), { role: 'admin', admin: true }));
+  await assertFails(updateDoc(doc(db, 'users/player'), { role: 'admin', admin: true }));
   await assertFails(updateDoc(doc(db, 'settings/pricing'), { version: 2 }));
 });
 
@@ -215,10 +217,34 @@ test('changing submitted content sends it back to draft even if timestamps are f
 
 test('owner profile and push token writes remain available; other accounts are blocked', async () => {
   const db = dbFor('player');
-  await assertSucceeds(updateDoc(doc(db, 'users/player'), { xp: 30 }));
+  await assertSucceeds(updateDoc(doc(db, 'users/player'), { displayName: 'Player', theme: 'dark' }));
   await assertSucceeds(setDoc(doc(db, 'users/player/pushTokens/device'), { token: 'test' }));
   await assertFails(getDoc(doc(dbFor('writer'), 'users/player')));
   await assertFails(setDoc(doc(dbFor('writer'), 'users/player/pushTokens/device'), { token: 'attack' }));
+});
+
+for (const uid of ['player', 'writer', 'reviewer', 'admin']) {
+  test(`${uid} cannot assign rewards, forge server receipts, or reset progress`, async () => {
+    const db = dbFor(uid);
+    for (const data of [{ xp: 9999 }, { gems: 9999 }, { hearts: 5 }, { tier: 'premium' }, { subscriptionExpiry: 9999999999999 },
+      { weeklyXp: 9999 }, { completedPuzzleIds: ['injected'] }, { lastRewardClaim: null }, { timeZone: 'UTC', xp: 5 }]) {
+      await assertFails(setDoc(doc(db, 'users', uid), data, { merge: true }));
+    }
+    for (const path of [`playerProgress/${uid}`, `playerProgress/${uid}/sessions/fake`, `playerProgress/${uid}/awards/fake`,
+      `playerProgress/${uid}/receipts/fake`, `playerMigrations/fake`, 'settings/player-security']) {
+      await assertFails(setDoc(doc(db, path), { xp: 9999, enabled: true, migrationComplete: true }));
+      await assertFails(getDoc(doc(db, path)));
+    }
+    await assertFails(deleteDoc(doc(db, 'users', uid)));
+    await assertSucceeds(setDoc(doc(db, 'users', uid), { displayName: 'Learner', soundEnabled: false }, { merge: true }));
+  });
+}
+
+test('profile-only updates reject oversized and ill-typed fields', async () => {
+  const db = dbFor('player');
+  for (const value of [{ displayName: 'a'.repeat(101) }, { theme: 'injected' }, { soundEnabled: 'false' }, { avatarId: { admin: true } }]) {
+    await assertFails(updateDoc(doc(db, 'users/player'), value));
+  }
 });
 
 for (const status of ['pending', 'complete']) {
@@ -236,3 +262,38 @@ for (const status of ['pending', 'complete']) {
     await assertFails(updateDoc(doc(dbFor('admin'), 'puzzles/published'), { title: 'Changed' }));
   });
 }
+
+for (const identity of ['guest', 'player', 'disabled', 'unverified', 'forged']) {
+  test(`${identity} cannot download puzzle answers or drafts`, async () => {
+    const db = identity === 'guest' ? env.unauthenticatedContext().firestore()
+      : identity === 'unverified' ? dbFor('admin', false)
+      : identity === 'forged' ? dbFor('player', true, { admin: true, role: 'admin' }) : dbFor(identity);
+    for (const id of ['published', 'draft', 'pending']) await assertFails(getDoc(doc(db, 'puzzles', id)));
+    await assertFails(getDocs(query(collection(db, 'puzzles'), where('published', '==', true))));
+  });
+}
+
+for (const uid of ['writer', 'reviewer', 'admin']) {
+  test(`${uid} retains authorized Studio content reads`, async () => {
+    const db = dbFor(uid);
+    await assertSucceeds(getDoc(doc(db, 'puzzles/published')));
+    await assertSucceeds(getDoc(doc(db, 'puzzles/draft')));
+    await assertSucceeds(getDocs(collection(db, 'puzzles')));
+  });
+}
+
+for (const identity of ['guest', 'player', 'writer', 'reviewer', 'disabled', 'unverified', 'forged']) {
+  test(`${identity} cannot read or modify raw Moment answers`, async () => {
+    const db = identity === 'guest' ? env.unauthenticatedContext().firestore()
+      : identity === 'unverified' ? dbFor('admin', false)
+      : identity === 'forged' ? dbFor('player', true, { admin: true, role: 'admin' }) : dbFor(identity);
+    await assertFails(getDoc(doc(db, 'settings/events')));
+    await assertFails(setDoc(doc(db, 'settings/events'), { events: [] }));
+  });
+}
+
+test('active verified admin retains access to authored Moment answers', async () => {
+  const db = dbFor('admin');
+  await assertSucceeds(getDoc(doc(db, 'settings/events')));
+  await assertSucceeds(updateDoc(doc(db, 'settings/events'), { version: 2 }));
+});

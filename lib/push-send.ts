@@ -2,6 +2,7 @@ import { cert, getApps, initializeApp, type App } from "firebase-admin/app";
 import { getFirestore, type DocumentReference } from "firebase-admin/firestore";
 import { getMessaging } from "firebase-admin/messaging";
 import webpush from "web-push";
+import { readServiceAccount } from "@/lib/server/service-account";
 
 // Web Push is one HTTP request per subscription, so cap how many are in
 // flight at once rather than batching them into a single multicast call.
@@ -33,11 +34,10 @@ export function getAdminApp(): App | null {
   const raw = process.env.FIREBASE_SERVICE_ACCOUNT ?? "";
   if (!raw) return null;
   try {
-    const json = raw.trim().startsWith("{") ? raw : Buffer.from(raw, "base64").toString("utf8");
-    const serviceAccount = JSON.parse(json);
+    const serviceAccount = readServiceAccount(raw);
     return initializeApp({ credential: cert(serviceAccount) }, "brainbloom");
-  } catch (e) {
-    console.error("Failed to initialize Firebase Admin:", e);
+  } catch {
+    console.error("Failed to initialize Firebase Admin. Check the service-account configuration.");
     return null;
   }
 }

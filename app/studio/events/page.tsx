@@ -10,11 +10,11 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { getStudioRole } from "@/services/puzzle-service";
 import {
-  getEventConfig, isPublished, saveEventConfig, clearEventConfigCache,
+  getAdminEventConfig, saveEventConfig, clearEventConfigCache,
 } from "@/services/event-service";
 import {
   isActiveToday, nextOccurrence, perYearMissing, scheduleSummary,
-  type EventTheme,
+  type AuthoredEventTheme,
 } from "@/lib/events/event-theme";
 import { EventEditorDialog } from "@/components/studio/EventEditorDialog";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
@@ -49,7 +49,7 @@ function accentRgba(argb: number, alpha: number): string {
 }
 
 /** Events that need a person's attention before they'll fire correctly. */
-function needsAttention(e: EventTheme, year: number): boolean {
+function needsAttention(e: AuthoredEventTheme, year: number): boolean {
   return perYearMissing(e.schedule, year) || perYearMissing(e.schedule, year + 1);
 }
 
@@ -57,7 +57,7 @@ export default function StudioEventsPage() {
   const role = getStudioRole();
   const isAdmin = role === "admin";
 
-  const [events, setEvents] = useState<EventTheme[]>([]);
+  const [events, setEvents] = useState<AuthoredEventTheme[]>([]);
   const [initial, setInitial] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [published, setPublished] = useState(false);
@@ -67,7 +67,7 @@ export default function StudioEventsPage() {
 
   const [filter, setFilter] = useState<Filter>("all");
   const [query, setQuery] = useState("");
-  const [editing, setEditing] = useState<EventTheme | null>(null);
+  const [editing, setEditing] = useState<AuthoredEventTheme | null>(null);
 
   const year = new Date().getFullYear();
 
@@ -75,14 +75,18 @@ export default function StudioEventsPage() {
     let alive = true;
     (async () => {
       clearEventConfigCache();
-      const [cfg, pub] = await Promise.all([getEventConfig(), isPublished()]);
+      const cfg = await getAdminEventConfig();
       if (!alive) return;
       setEvents(cfg.events);
       setUpdatedAt(cfg.updatedAt);
-      setPublished(pub);
+      setPublished(cfg.published);
       setInitial(JSON.stringify(cfg.events));
       setLoading(false);
-    })();
+    })().catch((error) => {
+      if (!alive) return;
+      setLoading(false);
+      toast.error(error instanceof Error ? error.message : "Could not load Moments.");
+    });
     return () => { alive = false; };
   }, []);
 
@@ -93,7 +97,7 @@ export default function StudioEventsPage() {
 
   // Admins can publish when there are edits to push, or when the calendar has
   // never been published yet (so the seeded 60 can go live without any edit).
-  const canPublish = isAdmin && !loading && (dirty || !published);
+  const canPublish = isAdmin && !loading && events.length > 0 && (dirty || !published);
 
   const sorted = useMemo(() => {
     const withNext = events.map((e) => ({ e, next: nextOccurrence(e), active: isActiveToday(e) }));
@@ -121,7 +125,7 @@ export default function StudioEventsPage() {
   const questionCount = events.filter((e) => e.question).length;
   const attentionCount = events.filter((e) => needsAttention(e, year)).length;
 
-  const applyEdit = (updated: EventTheme) => {
+  const applyEdit = (updated: AuthoredEventTheme) => {
     setEvents((prev) => prev.map((e) => (e.id === updated.id ? updated : e)));
     setEditing(null);
     toast.success(`Updated “${updated.title}”. Publish to go live.`);
@@ -325,7 +329,7 @@ export default function StudioEventsPage() {
             <div className="flex gap-2">
               {dirty && (
                 <button
-                  onClick={() => setEvents(JSON.parse(initial) as EventTheme[])}
+                  onClick={() => setEvents(JSON.parse(initial) as AuthoredEventTheme[])}
                   className="rounded-xl border px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
                 >
                   Discard

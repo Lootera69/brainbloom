@@ -57,3 +57,6 @@ repomix-output.xml
 
 # forge batch pipeline: cross-batch duplicate memory is derived state
 scripts/seed-data/ai-batch/output/.registry.json
+
+.vercel
+.env*

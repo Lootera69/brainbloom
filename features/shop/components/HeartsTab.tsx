@@ -18,8 +18,6 @@ interface HeartsTabProps {
 export function HeartsTab({ onPurchaseSuccess }: HeartsTabProps) {
   const [purchasing, setPurchasing] = useState<string | null>(null);
   const [purchased, setPurchased] = useState<string | null>(null);
-  const restoreHearts = useUserStore((s) => s.restoreHearts);
-  const addStreakFreezes = useUserStore((s) => s.addStreakFreezes);
   const hearts = useUserStore((s) => s.hearts);
   const streakFreezes = useUserStore((s) => s.streakFreezes);
   const tier = useUserStore((s) => s.tier);
@@ -31,16 +29,14 @@ export function HeartsTab({ onPurchaseSuccess }: HeartsTabProps) {
     setPurchasing(product.id);
     const result = await purchaseProduct(product.id);
     if (!result.success) {
-      toast.error("Purchase failed. Please try again.", { position: "top-center" });
+      toast.error(result.error ?? "Purchase failed. Please try again.", { position: "top-center" });
       setPurchasing(null);
       return;
     }
     if (product.effect.hearts) {
-      restoreHearts();
       onPurchaseSuccess?.("hearts", 0);
     }
     if (product.effect.streakFreezes) {
-      addStreakFreezes(product.effect.streakFreezes);
       onPurchaseSuccess?.("snowflakes", 0);
     }
     setPurchased(product.id);
@@ -63,7 +59,7 @@ export function HeartsTab({ onPurchaseSuccess }: HeartsTabProps) {
       { duration: 2000, position: "top-center" },
     );
     setTimeout(() => { setPurchased(null); setPurchasing(null); }, 2000);
-  }, [purchasing, restoreHearts, addStreakFreezes, onPurchaseSuccess]);
+  }, [purchasing, onPurchaseSuccess]);
 
   const products = useMemo(
     () => SHOP_PRODUCTS.filter((p) => {

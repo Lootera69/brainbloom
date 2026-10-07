@@ -5,17 +5,19 @@
 // question in a dark, palette-tinted card; grades on tap, awards XP once, then
 // shows its factoid. Answered state persists per event per day.
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Zap, Check, X, CheckCircle2 } from "lucide-react";
 import { useActiveMoment } from "@/hooks/use-active-moment";
 import { useUserStore } from "@/store/user-store";
 import { playCorrect, playWrong } from "@/services/sound-service";
 import {
-  SPECIAL_ANSWERED_KEY, addToken, eventDayToken, readTokenSet,
+  eventDayToken,
 } from "@/lib/events/event-runtime";
 import { type Rgba, rgba, lerp, hex, WHITE, fromArgb } from "@/lib/events/event-colors";
 import type { EventTheme } from "@/lib/events/event-theme";
+import { answerMoment, readMomentResult } from "@/services/player-actions";
+import { toast } from "sonner";
 
 const GREEN = hex(0x22c55e);
 const RED = hex(0xef4444);
@@ -39,45 +41,81 @@ function skinFor(event: EventTheme): Skin {
 
 export function EventSpecialPuzzle() {
   const { event } = useActiveMoment();
-  const addXp = useUserStore((s) => s.addXp);
+  const tokens = useUserStore((s) => s.answeredEventTokens);
+  const uid = useUserStore((s) => s.userId);
+  const [busy, setBusy] = useState(false);
+  const [confirmedIndex, setConfirmedIndex] = useState<number | null>(null);
+  const [explanation, setExplanation] = useState<string | null>(null);
+  const [earned, setEarned] = useState<number | null>(null);
+  const generation = useRef(0);
   const question = event?.question ?? null;
   const token = event ? eventDayToken(event.id, new Date()) : "";
   const [picked, setPicked] = useState<number | null>(null);
-  const [answeredStore, setAnsweredStore] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
+    const scope = ++generation.current;
     Promise.resolve().then(() => {
       if (cancelled) return;
       setPicked(null);
-      setAnsweredStore(token ? readTokenSet(SPECIAL_ANSWERED_KEY).has(token) : false);
+      setBusy(false);
+      setConfirmedIndex(null);
+      setExplanation(null);
+      setEarned(null);
     });
+    return () => { cancelled = true; generation.current = scope + 1; };
+  }, [token, uid]);
+
+  const saved = tokens.includes(token);
+  const eventId = event?.id;
+  useEffect(() => {
+    if (!saved || !eventId || confirmedIndex !== null) return;
+    let cancelled = false;
+    const attempt = generation.current;
+    void readMomentResult(eventId).then((result) => {
+      if (cancelled || generation.current !== attempt || !result || result.token !== token) return;
+      setConfirmedIndex(result.correctIndex);
+      setPicked(result.choice ?? null);
+      setExplanation(result.explanation);
+      setEarned(result.xpEarned);
+    }).catch(() => undefined);
     return () => { cancelled = true; };
-  }, [token]);
+  }, [saved, eventId, token, uid, confirmedIndex]);
 
   const skin = useMemo(() => (event ? skinFor(event) : null), [event]);
 
   if (!event || !question || !skin) return null;
 
-  const answered = answeredStore || picked === question.correctIndex;
+  const answered = tokens.includes(token) || confirmedIndex !== null;
   const { accent, ink } = skin;
 
-  const answer = (i: number) => {
-    if (answered) return;
+  const answer = async (i: number) => {
+    if (answered || busy) return;
+    const attempt = generation.current;
+    setBusy(true);
     setPicked(i);
-    if (i === question.correctIndex) {
-      playCorrect();
-      addXp(question.xp);
-      setAnsweredStore(true);
-      addToken(SPECIAL_ANSWERED_KEY, token);
-    } else {
-      playWrong();
+    try {
+      const result = await answerMoment(event.id, i);
+      if (generation.current !== attempt) return;
+      if (result.token !== token) return;
+      setConfirmedIndex(result.correctIndex);
+      setPicked(result.choice ?? i);
+      setExplanation(result.explanation);
+      setEarned(result.xpEarned);
+      if (result.correct) playCorrect();
+      else playWrong();
+    } catch (error) {
+      if (generation.current !== attempt) return;
+      setPicked(null);
+      toast.error(error instanceof Error ? error.message : 'Connect and retry.');
+    } finally {
+      if (generation.current === attempt) setBusy(false);
     }
   };
 
   const stateFor = (i: number): "idle" | "correct" | "wrong" | "dimmed" => {
-    if (!answered && picked === null) return "idle";
-    if (i === question.correctIndex) return "correct";
+    if (!answered) return "idle";
+    if (i === confirmedIndex) return "correct";
     if (i === picked) return "wrong";
     return "dimmed";
   };
@@ -120,7 +158,7 @@ export function EventSpecialPuzzle() {
             </div>
             <span className="flex shrink-0 items-center gap-[3px] rounded-full px-[9px] py-[5px]" style={{ background: rgba(accent, 0.16) }}>
               <Zap className="size-[13px]" style={{ color: rgba(accent) }} fill="currentColor" />
-              <span className="text-[12px] font-black" style={{ color: rgba(accent) }}>+{question.xp}</span>
+              <span className="text-[12px] font-black" style={{ color: rgba(accent) }}>+{earned ?? (answered ? 0 : question.xp)}</span>
             </span>
           </div>
 
@@ -132,9 +170,11 @@ export function EventSpecialPuzzle() {
           {/* Options. */}
           <div className="mt-3.5 flex flex-col gap-2.5">
             {question.options.map((opt, i) => (
-              <OptionTile key={i} label={opt} state={stateFor(i)} ink={ink} onClick={() => answer(i)} />
+              <OptionTile key={i} label={opt} state={stateFor(i)} ink={ink} onClick={() => void answer(i)} disabled={busy || answered} />
             ))}
           </div>
+
+          {busy && <p className="mt-2 text-sm" aria-live="polite">Checking...</p>}
 
           {/* Factoid footer. */}
           <AnimatePresence>
@@ -145,7 +185,7 @@ export function EventSpecialPuzzle() {
                 className="mt-3.5 flex items-start gap-2.5"
               >
                 <CheckCircle2 className="mt-px size-5 shrink-0" style={{ color: rgba(accent) }} />
-                <p className="text-[13px] font-semibold" style={{ color: rgba(ink, 0.9) }}>{question.factoid}</p>
+                <p className="text-[13px] font-semibold" style={{ color: rgba(ink, 0.9) }}>{explanation ?? "Answered today. Connect to view your result."}</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -155,8 +195,8 @@ export function EventSpecialPuzzle() {
   );
 }
 
-function OptionTile({ label, state, ink, onClick }: {
-  label: string; state: "idle" | "correct" | "wrong" | "dimmed"; ink: Rgba; onClick: () => void;
+function OptionTile({ label, state, ink, onClick, disabled }: {
+  label: string; state: "idle" | "correct" | "wrong" | "dimmed"; ink: Rgba; onClick: () => void; disabled: boolean;
 }) {
   const border = state === "correct" ? GREEN : state === "wrong" ? RED
     : state === "dimmed" ? rgba(ink, 0.12) : rgba(ink, 0.22);
@@ -167,6 +207,7 @@ function OptionTile({ label, state, ink, onClick }: {
   return (
     <button
       onClick={onClick}
+      disabled={disabled}
       className="flex w-full items-center justify-between gap-3 rounded-[14px] px-3.5 py-[13px] text-left transition-transform active:scale-[0.99]"
       style={{ background: fill, border: `${state === "idle" || state === "dimmed" ? 1 : 1.6}px solid ${borderCss}` }}
     >

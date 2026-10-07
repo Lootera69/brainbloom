@@ -8,9 +8,9 @@ import { useRouter } from "next/navigation";
 import { useUserStore, type AuthUserInput } from "@/store/user-store";
 import { signInWithGoogle, signUpWithEmailFull, signInWithEmailFull, sendPasswordReset, resendVerificationEmail } from "@/services/firebase";
 import { GoogleOneTap } from "@/components/auth/GoogleOneTap";
-import { GuestMergeDialog } from "@/components/auth/GuestMergeDialog";
 import { rePromptOneTap } from "@/services/one-tap";
-import { hasMeaningfulGuestData, guestMergeSummary, type GuestMergeData } from "@/lib/user-merge";
+import { preserveGuestHistory } from "@/services/guest-history";
+import { ensureGuestSession } from "@/services/guest-session";
 
 import { Toaster, toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -52,11 +52,7 @@ export default function LoginPage() {
   const [ready, setReady] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [selectedAvatarId, setSelectedAvatarId] = useState<string | null>(null);
-  const [mergeCandidate, setMergeCandidate] = useState<{
-    user: AuthUserInput;
-    guest: GuestMergeData;
-    cloud: Record<string, unknown> | null;
-  } | null>(null);
+
 
   useEffect(() => {
     const complete = localStorage.getItem("brainbloom-onboarding-complete") === "true";
@@ -67,7 +63,6 @@ export default function LoginPage() {
     if (avatarId) setSelectedAvatarId(avatarId);
   }, []);
 
-  const loginAsGuest = useUserStore((s) => s.loginAsGuest);
   const setUser = useUserStore((s) => s.setUser);
   const setAvatarId = useUserStore((s) => s.setAvatarId);
   const isAuthenticated = useUserStore((s) => s.isAuthenticated);
@@ -109,90 +104,30 @@ export default function LoginPage() {
     if (avatarId) setSelectedAvatarId(avatarId);
   };
 
-  const captureGuestData = (): GuestMergeData | null => {
-    const s = useUserStore.getState();
-    if (!s.isGuest) return null;
-    const data: GuestMergeData = {
-      xp: s.xp,
-      gems: s.gems,
-      streak: s.streak,
-      streakFreezes: s.streakFreezes,
-      level: s.level,
-      weeklyXp: s.weeklyXp,
-      dailyPuzzleStreak: s.dailyPuzzleStreak,
-      cipherSolveCount: s.cipherSolveCount,
-      xpToday: s.xpToday,
-      puzzlesPlayedToday: s.puzzlesPlayedToday,
-      hearts: s.hearts,
-      nextHeartAt: s.nextHeartAt,
-      completedPuzzleIds: s.completedPuzzleIds,
-      experiencedWonderIds: s.experiencedWonderIds,
-      questsRewarded: s.questsRewarded,
-      activeDates: s.activeDates,
-      frozenDays: s.frozenDays,
-      brokenDays: s.brokenDays,
-      history: s.history,
-      achievements: s.achievements,
-    };
-    return hasMeaningfulGuestData(data) ? data : null;
-  };
-
-  const finishAuth = (user: AuthUserInput, guest: GuestMergeData | null, merge: boolean, cloud?: Record<string, unknown> | null) => {
-    setUser(
-      user,
-      guest ? (merge ? { guestData: guest, cloudData: cloud } : { dropGuest: true, cloudData: cloud }) : { cloudData: cloud },
-    );
-    if (guest && merge) {
-      toast.success("Guest progress merged into your account", { position: "top-center" });
-    } else if (guest) {
-      toast.info("Signed in — guest progress discarded", { position: "top-center" });
-    }
-    router.push("/");
-  };
-
   const completeAuth = async (user: AuthUserInput) => {
-    const guest = captureGuestData();
-    let cloudData: Record<string, unknown> | null = null;
     try {
-      const { loadUserData } = await import("@/services/user-service");
+      const { loadUserData } = await import('@/services/user-service');
       const cloud = await loadUserData(user.uid);
-      if (cloud) {
-        cloudData = cloud as unknown as Record<string, unknown>;
-        const cloudHasProgress = hasMeaningfulGuestData({
-          xp: cloud.xp ?? 0,
-          gems: cloud.gems ?? 0,
-          streak: cloud.streak ?? 0,
-          streakFreezes: cloud.streakFreezes ?? 0,
-          cipherSolveCount: cloud.cipherSolveCount ?? 0,
-          completedPuzzleIds: cloud.completedPuzzleIds ?? [],
-          experiencedWonderIds: cloud.experiencedWonderIds ?? [],
-          achievements: cloud.achievements ?? [],
-        });
-        if (cloudHasProgress) {
-          finishAuth(user, guest, false, cloudData);
-          return;
-        }
-      }
-    } catch (e) {
-      console.warn("Could not confirm cloud progress:", e);
-      setError("Could not load your cloud progress. Your local progress is safe. Check your connection and try again.");
-      return;
+      preserveGuestHistory();
+      setUser(user, { cloudData: cloud as Record<string, unknown> });
+      router.push('/');
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Could not restore progress. Please retry.');
     }
-    if (guest) {
-      setMergeCandidate({ user, guest, cloud: cloudData });
-      return;
-    }
-    finishAuth(user, null, false, cloudData);
   };
 
-  const handleGuest = () => {
-    loginAsGuest();
-    // Apply avatar from onboarding if selected
-    const avatarId = localStorage.getItem("brainbloom-selected-avatar");
-    if (avatarId) {
-      setAvatarId(avatarId);
-    }
-    router.push("/");
+  const handleGuest = async () => {
+    if (loading) return;
+    setLoading(true);
+    setError('');
+    try {
+      await ensureGuestSession(true);
+      const avatarId = localStorage.getItem('brainbloom-selected-avatar');
+      if (avatarId) setAvatarId(avatarId);
+      router.push('/');
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Connect and retry.');
+    } finally { setLoading(false); }
   };
 
   const handleGoogle = async () => {
@@ -795,21 +730,6 @@ export default function LoginPage() {
         )}
       </motion.div>
 
-      {mergeCandidate && (
-        <GuestMergeDialog
-          summary={guestMergeSummary(mergeCandidate.guest)}
-          onMerge={() => {
-            const { user, guest, cloud } = mergeCandidate;
-            setMergeCandidate(null);
-            finishAuth(user, guest, true, cloud);
-          }}
-          onSkip={() => {
-            const { user, guest, cloud } = mergeCandidate;
-            setMergeCandidate(null);
-            finishAuth(user, guest, false, cloud);
-          }}
-        />
-      )}
     </main>
   );
 }

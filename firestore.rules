@@ -52,7 +52,7 @@ service cloud.firestore {
     }
 
     match /puzzles/{id} {
-      allow read: if true;
+      allow read: if isStaff();
       allow create: if isAdmin() || (isOwnDraft(request.resource.data)
         && request.resource.data.reviewStatus in ['draft', 'pending']
         && request.resource.data.get('reviewedBy', null) == null
@@ -77,7 +77,8 @@ service cloud.firestore {
     }
 
     match /settings/{id} {
-      allow read: if id in ['pricing', 'lesson-groups', 'daily-puzzle', 'weekly-cipher', 'cipher-history', 'events'];
+      allow read: if id in ['pricing', 'lesson-groups', 'daily-puzzle', 'weekly-cipher', 'cipher-history']
+        || (id == 'events' && isAdmin());
       allow write: if (isAdmin() && id in ['pricing', 'lesson-groups', 'daily-puzzle', 'weekly-cipher', 'cipher-history', 'events'])
         || (isStaff() && id == 'lesson-groups'
           && get(/databases/$(database)/documents/staffAccess/$(request.auth.uid)).data.role == 'contributor');
@@ -96,12 +97,45 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    // Users: owner-only. Protects profiles and push tokens from
-    // other users reading/writing them.
+    match /playerProgress/{uid}/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /playerMigrations/{document=**} {
+      allow read, write: if false;
+    }
+
+    function profileFields() {
+      return ['displayName', 'email', 'photoURL', 'avatarId', 'soundEnabled', 'hapticsEnabled', 'theme', 'timeZone', 'profileUpdatedAt'];
+    }
+
+    function optionalText(data, key, max) {
+      return data.get(key, null) == null || (data[key] is string && data[key].size() <= max);
+    }
+
+    function validProfile(data) {
+      return optionalText(data, 'displayName', 100)
+        && optionalText(data, 'email', 320)
+        && optionalText(data, 'photoURL', 2000)
+        && optionalText(data, 'avatarId', 100)
+        && optionalText(data, 'timeZone', 100)
+        && data.get('theme', 'system') in ['light', 'dark', 'system']
+        && data.get('soundEnabled', true) is bool
+        && data.get('hapticsEnabled', true) is bool
+        && data.get('profileUpdatedAt', 0) is number;
+    }
+
     match /users/{uid} {
       allow read: if request.auth != null && request.auth.uid == uid;
-      allow write: if request.auth != null && request.auth.uid == uid
-        && !exists(/databases/$(database)/documents/accountDeletions/$(uid));
+      allow create: if request.auth != null && request.auth.uid == uid
+        && !exists(/databases/$(database)/documents/accountDeletions/$(uid))
+        && request.resource.data.keys().hasOnly(profileFields())
+        && validProfile(request.resource.data);
+      allow update: if request.auth != null && request.auth.uid == uid
+        && !exists(/databases/$(database)/documents/accountDeletions/$(uid))
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(profileFields())
+        && validProfile(request.resource.data);
+      allow delete: if false;
 
       match /pushTokens/{tokenId} {
         allow read: if request.auth != null && request.auth.uid == uid;
