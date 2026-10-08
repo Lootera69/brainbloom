@@ -8,6 +8,12 @@ export function playerDatabase(db: Firestore): PlayerDatabase {
       const writes: { path: string; data: Data; merge: boolean }[] = [];
       const view: PlayerTransaction = {
         get: async (path) => (await transaction.get(db.doc(path))).data(),
+        getAll: async (paths) => {
+          const refs = paths.flatMap((path) => path === null ? [] : [db.doc(path)]);
+          const snapshots = refs.length ? await transaction.getAll(...refs) : [];
+          let index = 0;
+          return paths.map((path) => path === null ? undefined : snapshots[index++].data());
+        },
         publishedPuzzles: async () => {
           const snapshot = await transaction.get(db.collection("puzzles").where("published", "==", true));
           return snapshot.docs.map((doc) => readScoringPuzzle(doc.id, doc.data())).filter((puzzle) => puzzle !== null);

@@ -31,6 +31,7 @@ it("requires a valid non-revoked Firebase token and never uses a submitted uid",
   expect(mocks.verify).toHaveBeenLastCalledWith("valid", true);
   expect(mocks.execute.mock.calls[0][1]).toMatchObject({ uid: "verified-player", anonymous: false });
   expect(response.headers.get("cache-control")).toBe("no-store");
+  expect(response.headers.get("server-timing")).toMatch(/^auth;dur=\d+\.\d, database;dur=\d+\.\d, total;dur=\d+\.\d$/);
 });
 
 it("rejects excessive bodies even when Content-Length is absent or dishonest", async () => {

@@ -10,17 +10,29 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
 export async function POST(request: Request) {
+  const started = performance.now();
   const identity = await requirePlayer(request);
-  if (!identity.ok) return identity.response;
+  const authenticated = performance.now();
+  const timed = (response: Response, databaseStarted?: number) => {
+    const finished = performance.now();
+    response.headers.set("Server-Timing", [
+      `auth;dur=${(authenticated - started).toFixed(1)}`,
+      ...(databaseStarted === undefined ? [] : [`database;dur=${(finished - databaseStarted).toFixed(1)}`]),
+      `total;dur=${(finished - started).toFixed(1)}`,
+    ].join(", "));
+    return response;
+  };
+  if (!identity.ok) return timed(identity.response);
   let command;
   try { command = playerCommandSchema.parse(await smallJson(request)); }
-  catch { return privateJson({ error: "Invalid player request.", code: "invalid-request" }, 400); }
+  catch { return timed(privateJson({ error: "Invalid player request.", code: "invalid-request" }, 400)); }
+  const databaseStarted = performance.now();
   try {
     const result = await executePlayerCommand(playerDatabase(getFirestore(identity.app)), identity, command,
       Date.now(), randomInt(0, 1000000) / 1000000);
-    return privateJson({ ok: true, ...result });
+    return timed(privateJson({ ok: true, ...result }), databaseStarted);
   } catch (error) {
-    if (error instanceof PlayerError) return privateJson({ error: error.message, code: error.code }, error.status);
-    return privateJson({ error: "Your reward could not be confirmed. Please retry.", code: "rewards-unavailable" }, 503);
+    if (error instanceof PlayerError) return timed(privateJson({ error: error.message, code: error.code }, error.status), databaseStarted);
+    return timed(privateJson({ error: "Your reward could not be confirmed. Please retry.", code: "rewards-unavailable" }, 503), databaseStarted);
   }
 }

@@ -16,6 +16,7 @@ const database: PlayerDatabase = {
       const copy = new Map([...docs].map(([key, value]) => [key, structuredClone(value)]));
       const result = await work({
         get: async (path) => copy.get(path),
+        getAll: async (paths) => paths.map((path) => path === null ? undefined : copy.get(path)),
         publishedPuzzles: async () => [...copy].filter(([path]) => path.startsWith("puzzles/")).map(([path, raw]) =>
           readScoringPuzzle(path.split("/")[1], raw)).filter((p) => p !== null),
         put: (path, value, merge = false) => { copy.set(path, { ...(merge ? copy.get(path) : {}), ...structuredClone(value) }); },
@@ -295,6 +296,7 @@ it('loads only the established Daily Set on repeat visits', async () => {
   const paths: string[] = [];
   const db: PlayerDatabase = { transaction: (work) => database.transaction((tx) => work({ ...tx,
     get: async (path) => { paths.push(path); return tx.get(path); },
+    getAll: async (batch) => { paths.push(...batch.filter((path) => path !== null)); return tx.getAll(batch); },
     publishedPuzzles: async () => { throw new Error('Catalog should not be reloaded'); },
   })) };
   const reply = await executePlayerCommand(db, { uid: 'player', anonymous: false }, { action: 'daily-set', categories: [] }, now, 0.5);

@@ -28,6 +28,7 @@ export type PlayerCommand = z.infer<typeof playerCommandSchema>;
 export type Data = Record<string, unknown>;
 export interface PlayerTransaction {
   get(path: string): Promise<Data | undefined>;
+  getAll(paths: (string | null)[]): Promise<(Data | undefined)[]>;
   publishedPuzzles(): Promise<ScoringPuzzle[]>;
   put(path: string, data: Data, merge?: boolean): void;
 }
@@ -54,11 +55,10 @@ export async function executePlayerCommand(database: PlayerDatabase, identity: {
     const receiptPath = "requestId" in command ? `${base}/receipts/${digest([command.action, command.requestId])}` : null;
     const fingerprint = digest(command);
     const ratePath = `${base}/limits/actions`;
-    const [config, deletion, saved, receipt, rate, loadedSession] = await Promise.all([
-      tx.get("settings/player-security"), tx.get(`accountDeletions/${identity.uid}`), tx.get(base),
-      receiptPath ? tx.get(receiptPath) : undefined,
-      tx.get(ratePath),
-      command.action === 'answer' ? tx.get(`${base}/sessions/${command.sessionId}`) : undefined,
+    const [config, deletion, saved, receipt, rate, loadedSession] = await tx.getAll([
+      "settings/player-security", `accountDeletions/${identity.uid}`, base,
+      receiptPath, ratePath,
+      command.action === 'answer' ? `${base}/sessions/${command.sessionId}` : null,
     ]);
     if (deletion) failure("account-deleting", "Account deletion is in progress.", 403);
     if (config?.enabled !== true || config?.migrationComplete !== true || config?.version !== 1) {
@@ -97,7 +97,8 @@ export async function executePlayerCommand(database: PlayerDatabase, identity: {
         state.dailySetPuzzleIds = selectDailySet(puzzles, now, pin, hasServerPremium(state, now) ? command.categories : []);
         return finish({ puzzles: state.dailySetPuzzleIds.map((value) => puzzles.find((p) => p.id === value)).filter((p) => p !== undefined).map(publicPuzzle) });
       }
-      const puzzles = await Promise.all(state.dailySetPuzzleIds.map(async (id) => readScoringPuzzle(id, await tx.get(`puzzles/${id}`))));
+      const records = await tx.getAll(state.dailySetPuzzleIds.map((id) => `puzzles/${id}`));
+      const puzzles = records.map((record, index) => readScoringPuzzle(state.dailySetPuzzleIds[index], record));
       return finish({ puzzles: puzzles.filter((p) => p !== null).map(publicPuzzle) });
     }
 
@@ -162,9 +163,7 @@ export async function executePlayerCommand(database: PlayerDatabase, identity: {
       const rewardKey = daily ? ["daily", today, puzzle!.id] : practice ? ["practice", today, puzzle!.id]
         : puzzle!.type === "cipher" ? ["cipher", session!.cipherWeek] : ["challenge", puzzle!.id];
       const awardPath = `${base}/awards/${digest(rewardKey)}`;
-      const [live, award] = await Promise.all([
-        tx.get(`puzzles/${puzzle!.id}`), correct ? tx.get(awardPath) : undefined,
-      ]);
+      const [live, award] = await tx.getAll([`puzzles/${puzzle!.id}`, correct ? awardPath : null]);
       if (live?.published !== true) failure("puzzle-unavailable", "This puzzle is no longer available.", 404);
       const beforeXp = state.xp;
       const beforeGems = state.gems;
