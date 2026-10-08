@@ -1,6 +1,8 @@
 import { getAuth } from "firebase-admin/auth";
+import { getAppCheck } from "firebase-admin/app-check";
 import { getAdminApp } from "@/lib/push-send";
 import { privateJson } from "@/lib/server/staff-auth";
+import { guestNetwork } from "@/lib/server/player-abuse";
 
 export async function requirePlayer(request: Request) {
   const bearer = /^Bearer ([^\s]{1,8192})$/i.exec(request.headers.get("authorization") ?? "");
@@ -12,7 +14,30 @@ export async function requirePlayer(request: Request) {
     if (token.firebase?.sign_in_provider === 'password' && token.email_verified !== true) {
       return { ok: false as const, response: privateJson({ error: 'Verify your email to earn rewards.' }, 403) };
     }
-    return { ok: true as const, app, uid: token.uid, anonymous: token.firebase?.sign_in_provider === "anonymous" };
+    const proof = request.headers.get('x-firebase-appcheck');
+    const mode = process.env.PLAYER_APP_CHECK_MODE ?? 'compatible';
+    if (!['compatible', 'required'].includes(mode)) {
+      return { ok: false as const, response: privateJson({ error: 'Request verification is unavailable.', code: 'verification-unavailable' }, 503) };
+    }
+    if (!proof && mode === 'required') {
+      return { ok: false as const, response: privateJson({ error: 'Update or refresh the app to verify this request.', code: 'app-verification-required' }, 403) };
+    }
+    let attested = false;
+    if (proof) {
+      try {
+        if (proof.length > 8192 || /\s/.test(proof)) throw new Error();
+        await getAppCheck(app).verifyToken(proof);
+        attested = true;
+      } catch {
+        return { ok: false as const, response: privateJson({ error: 'App verification failed. Refresh or reopen the app and retry.', code: 'app-verification-failed' }, 403) };
+      }
+    }
+    const anonymous = token.firebase?.sign_in_provider === 'anonymous';
+    try {
+      return { ok: true as const, app, uid: token.uid, anonymous, network: anonymous ? guestNetwork(request, attested) : undefined };
+    } catch {
+      return { ok: false as const, response: privateJson({ error: 'Guest protection is temporarily unavailable. Please retry.', code: 'guest-protection-unavailable' }, 503) };
+    }
   } catch {
     return { ok: false as const, response: privateJson({ error: "Sign in again to continue." }, 401) };
   }

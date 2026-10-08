@@ -38,6 +38,31 @@ beforeEach(async () => {
   });
 });
 
+test('anonymous clients cannot create profiles or push registrations before server admission', async () => {
+  const db = env.authenticatedContext('new-guest', { firebase: { sign_in_provider: 'anonymous' } }).firestore();
+  await assertFails(setDoc(doc(db, 'users/new-guest'), { displayName: 'Guest' }));
+  await assertFails(setDoc(doc(db, 'users/new-guest/pushTokens/device'), { token: 'test' }));
+  await env.withSecurityRulesDisabled(async (context) => {
+    await setDoc(doc(context.firestore(), 'users/new-guest'), { displayName: 'Old profile' });
+  });
+  await assertFails(updateDoc(doc(db, 'users/new-guest'), { displayName: 'Changed' }));
+  await env.withSecurityRulesDisabled(async (context) => {
+    await setDoc(doc(context.firestore(), 'playerProgress/new-guest'), { version: 1, xp: 0 });
+  });
+  await assertSucceeds(updateDoc(doc(db, 'users/new-guest'), { displayName: 'Guest' }));
+  await assertSucceeds(setDoc(doc(db, 'users/new-guest/pushTokens/device'), { token: 'test' }));
+});
+
+for (const identity of ['guest', 'player', 'admin']) {
+  test(`${identity} cannot read, modify or reset guest abuse counters`, async () => {
+    const db = identity === 'guest' ? env.unauthenticatedContext().firestore() : dbFor(identity);
+    await assertFails(getDoc(doc(db, 'playerAbuse/network')));
+    await assertFails(getDocs(collection(db, 'playerAbuse')));
+    await assertFails(setDoc(doc(db, 'playerAbuse/network'), { tokens: 100000 }));
+    await assertFails(deleteDoc(doc(db, 'playerAbuse/network')));
+  });
+}
+
 for (const identity of ['guest', 'player', 'disabled', 'unverified', 'forged']) {
   test(`${identity} cannot modify global content or settings`, async () => {
     const db = identity === 'guest' ? env.unauthenticatedContext().firestore()

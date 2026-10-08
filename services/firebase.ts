@@ -17,7 +17,7 @@ import {
 import { getFirestore, collection, doc, type Firestore } from "firebase/firestore";
 import {
   initializeAppCheck,
-  ReCaptchaV3Provider,
+  ReCaptchaEnterpriseProvider,
   type AppCheck,
 } from "firebase/app-check";
 
@@ -54,7 +54,7 @@ function initFirebase() {
       db = getFirestore(app);
       if (recaptchaSiteKey) {
         appCheck = initializeAppCheck(app, {
-          provider: new ReCaptchaV3Provider(recaptchaSiteKey),
+          provider: new ReCaptchaEnterpriseProvider(recaptchaSiteKey),
           isTokenAutoRefreshEnabled: true,
         });
       }

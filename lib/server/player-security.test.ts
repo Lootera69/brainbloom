@@ -314,3 +314,51 @@ it('rate limits snapshots and already committed retries as well as new commands'
   expect(progress().xp).toBe(previous);
   await expect(call({ action: 'snapshot' }, now + 600001)).resolves.toHaveProperty('progress');
 });
+
+describe('shared guest abuse protection', () => {
+  const guest = (uid: string, command: PlayerCommand = { action: 'snapshot' }, at = now, attested = false) =>
+    executePlayerCommand(database, { uid, anonymous: true, network: { key: 'shared-network', attested } }, command, at, 0.5);
+  beforeEach(() => { docs.set('settings/player-security', { ...docs.get('settings/player-security'), allowAnonymous: true }); });
+
+  it('counts new identities together and keeps existing guests available when the creation limit is reached', async () => {
+    await Promise.all(Array.from({ length: 12 }, (_, index) => guest(`guest-${index}`)));
+    await expect(guest('guest-13')).rejects.toMatchObject({ code: 'guest-creation-limit', status: 429, retryAfter: 3600 });
+    expect(docs.has('playerProgress/guest-13')).toBe(false);
+    expect(docs.has('users/guest-13')).toBe(false);
+    await expect(guest('guest-0')).resolves.toHaveProperty('progress');
+    expect(docs.get('playerAbuse/shared-network')?.admissions).toHaveLength(12);
+    await expect(guest('guest-13', { action: 'snapshot' }, now + 3600001)).resolves.toHaveProperty('progress');
+  });
+
+  it('does not let another first action bypass the guest admission limit', async () => {
+    docs.set('playerAbuse/shared-network', { version: 1, tokens: 60, updatedAt: now, admissions: Array(12).fill(now), expiresAt: now + day });
+    await expect(guest('new', { action: 'shop', productId: 'premium_monthly', requestId: request() }))
+      .rejects.toMatchObject({ code: 'guest-creation-limit' });
+    expect(docs.has('playerProgress/new')).toBe(false);
+    expect([...docs.keys()].some((key) => key.startsWith('playerProgress/new/'))).toBe(false);
+    await expect(guest('new', { action: 'snapshot' }, now, true)).resolves.toHaveProperty('progress');
+  });
+
+  it('charges failed business operations to the network budget without committing partial player data', async () => {
+    const command = { action: 'exchange' as const, item: 'hearts' as const, requestId: request() };
+    await expect(guest('new', command)).rejects.toMatchObject({ code: 'insufficient-gems' });
+    expect(docs.get('playerAbuse/shared-network')).toMatchObject({ tokens: 59, admissions: [] });
+    expect(docs.has('playerProgress/new')).toBe(false);
+    expect(docs.has('users/new')).toBe(false);
+    expect([...docs.keys()].some((key) => key.startsWith('playerProgress/new/'))).toBe(false);
+    for (let index = 0; index < 59; index++) await expect(guest('new', command)).rejects.toMatchObject({ code: 'insufficient-gems' });
+    await expect(guest('new', command)).rejects.toMatchObject({ code: 'guest-rate-limit' });
+  });
+
+  it('counts receipt replays and snapshots and never awards again when a network is throttled', async () => {
+    const command = { action: 'daily-bonus' as const, requestId: request() };
+    await guest('existing', command);
+    const original = docs.get('playerProgress/existing');
+    docs.set('playerAbuse/shared-network', { ...docs.get('playerAbuse/shared-network'), tokens: 0 });
+    await expect(guest('existing', command)).rejects.toMatchObject({ code: 'guest-rate-limit' });
+    await expect(guest('existing')).rejects.toMatchObject({ code: 'guest-rate-limit' });
+    expect(docs.get('playerProgress/existing')).toEqual(original);
+    await expect(guest('existing', command, now + 1000)).resolves.toHaveProperty('replayed', true);
+    expect(docs.get('playerAbuse/shared-network')?.admissions).toHaveLength(1);
+  });
+});

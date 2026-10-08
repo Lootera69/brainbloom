@@ -9,6 +9,17 @@ const actor = () => uid ? { uid, getIdToken: async () => "test-token" } : null;
 beforeEach(() => { uid = "player"; requests = []; });
 afterEach(() => vi.unstubAllGlobals());
 
+it('attaches attestation when available and preserves guest compatibility when verification is unavailable', async () => {
+  const fetcher = vi.fn(async (_url: Parameters<typeof fetch>[0], options?: RequestInit) => {
+    requests.push(options?.headers as Record<string, unknown>);
+    return success();
+  });
+  await new PlayerApi(actor, fetcher, async () => 'verified-app-token').send({ action: 'snapshot' });
+  expect(requests[0]).toMatchObject({ 'X-Firebase-AppCheck': 'verified-app-token', Authorization: 'Bearer test-token' });
+  await new PlayerApi(actor, fetcher, async () => { throw Error('Provider unavailable'); }).send({ action: 'snapshot' });
+  expect(requests[1]).not.toHaveProperty('X-Firebase-AppCheck');
+});
+
 it('preserves the browser fetch receiver during guest and Google progress restoration', async () => {
   const browserFetch = vi.fn(function(this: unknown) {
     if (this !== globalThis) throw new TypeError('Illegal invocation');

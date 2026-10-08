@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendPushForLocalHour, sendEveningPushForLocalHour, sendWidgetTickForLocalHour } from "@/lib/push-send";
+import { getAdminApp, sendPushForLocalHour, sendEveningPushForLocalHour, sendWidgetTickForLocalHour } from "@/lib/push-send";
+import { getFirestore } from 'firebase-admin/firestore';
+import { removeExpiredGuestLimits } from '@/lib/server/player-abuse';
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -17,6 +19,9 @@ export async function GET(req: NextRequest) {
   if (auth !== `Bearer ${secret}`) {
     return NextResponse.json({ ok: false, error: "Unauthorized." }, { status: 401 });
   }
+
+  const app = getAdminApp();
+  const cleanup = app ? removeExpiredGuestLimits(getFirestore(app)).catch(() => null) : Promise.resolve(null);
 
   // The bucket is derived from the server clock, so a single scheduled job
   // (hourly, e.g. cron-job.org) covers every timezone without parameters.
@@ -42,5 +47,5 @@ export async function GET(req: NextRequest) {
   // Same test override applies (filters by that local hour instead of 0).
   const tick = await sendWidgetTickForLocalHour(utcHour, testHour);
 
-  return NextResponse.json({ ok: true, morning, evening, tick });
+  return NextResponse.json({ ok: true, morning, evening, tick, guestLimitsRemoved: await cleanup });
 }

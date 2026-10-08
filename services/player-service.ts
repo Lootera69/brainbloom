@@ -2,6 +2,7 @@
 
 import { getFirebase } from "@/services/firebase";
 import type { PlayerAction, PlayerResponse } from "@/lib/player-contract";
+import { requestVerification } from "@/services/app-verification";
 
 export class PlayerRequestError extends Error {
   constructor(message: string, public code = "unavailable") { super(message); }
@@ -11,7 +12,8 @@ export class PlayerApi {
   private pending = new Map<string, Record<string, unknown>>();
 
   constructor(private identity: () => { uid: string; getIdToken: () => Promise<string> } | null,
-    private request: typeof fetch = (input, init) => globalThis.fetch(input, init)) {}
+    private request: typeof fetch = (input, init) => globalThis.fetch(input, init),
+    private verification: () => Promise<string | null> = requestVerification) {}
 
   send(action: PlayerAction): Promise<PlayerResponse> {
     return this.execute(action);
@@ -21,7 +23,10 @@ export class PlayerApi {
     const user = this.identity();
     if (!user) throw new PlayerRequestError("Sign in to earn rewards.", "sign-in-required");
     let token: string;
-    try { token = await user.getIdToken(); }
+    let proof: string | null;
+    try {
+      [token, proof] = await Promise.all([user.getIdToken(), Promise.resolve().then(() => this.verification()).catch(() => null)]);
+    }
     catch { throw new PlayerRequestError("Connect to the internet and sign in to earn rewards.", "sign-in-required"); }
     if (this.identity()?.uid !== user.uid) throw new PlayerRequestError("Your sign-in changed. Please retry.", "identity-changed");
     const key = `${user.uid}:${action.action === "answer" ? `answer:${action.sessionId}` : JSON.stringify(action)}`;
@@ -36,7 +41,7 @@ export class PlayerApi {
     let body;
     try {
       response = await this.request("/api/player", {
-        method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+        method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", ...(proof ? { 'X-Firebase-AppCheck': proof } : {}) },
         body: JSON.stringify(command), cache: "no-store", signal: AbortSignal.timeout(20000),
       });
       body = await response.json();

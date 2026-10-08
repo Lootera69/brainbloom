@@ -12,7 +12,7 @@ const sections = [
   {
     title: "II. What We Collect and Why",
     content:
-      "We collect only that information which is instrumental to delivering and improving our cognitive enrichment services. This includes: (a) information you voluntarily provide — your name, email address, and avatar preference; (b) behavioural telemetry — puzzle completion rates, streak patterns, category preferences, and session duration, which help us refine the learning path; (c) technical metadata — browser type, device characteristics, and anonymised IP addresses, used solely for platform optimisation and abuse prevention. We do not collect sensitive biometric data, political or religious affiliations, or any information beyond what is demonstrably necessary for our pedagogical mission.",
+      "We collect information needed to provide and improve the app: your account details and preferences, puzzle progress, and technical information used for reliability and abuse prevention. Guest abuse controls use a keyed hash of your network address, request counters, and guest-start timestamps. These counters do not store your raw IP address. They expire after 48 hours without activity and are removed by scheduled cleanup. Browser request verification uses Firebase App Check with Google reCAPTCHA Enterprise, which processes browser and device signals to identify automated abuse.",
   },
   {
     title: "III. The Philosophical Basis of Processing",

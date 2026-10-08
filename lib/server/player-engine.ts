@@ -7,6 +7,7 @@ import { cipherWeek, closeAnswer, crosswordFeedback, gradeAnswer, publicPuzzle, 
   selectCipher, selectDailySet, type ScoringPuzzle } from "@/lib/server/player-puzzles";
 import { authoredEventConfig } from "@/lib/server/event-config";
 import { scheduleOccursOn } from "@/lib/events/event-theme";
+import { admitGuest, takeGuestRequest, type GuestNetwork } from "@/lib/server/player-abuse";
 
 const id = z.string().min(1).max(128).regex(/^[A-Za-z0-9_-]+$/);
 const requestId = z.string().uuid();
@@ -36,7 +37,7 @@ export interface PlayerDatabase {
   transaction<T>(work: (transaction: PlayerTransaction) => Promise<T>): Promise<T>;
 }
 export class PlayerError extends Error {
-  constructor(public code: string, message: string, public status = 409) { super(message); }
+  constructor(public code: string, message: string, public status = 409, public retryAfter?: number) { super(message); }
 }
 
 const digest = (value: unknown) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
@@ -48,24 +49,42 @@ const freeProducts = {
   premium_monthly: { days: 30 }, premium_yearly: { days: 365, freezes: 3 },
 };
 
-export async function executePlayerCommand(database: PlayerDatabase, identity: { uid: string; anonymous: boolean },
+export async function executePlayerCommand(database: PlayerDatabase, identity: { uid: string; anonymous: boolean; network?: GuestNetwork },
   command: PlayerCommand, now: number, random: number): Promise<Data> {
-  return database.transaction(async (tx) => {
+  const result = await database.transaction(async (transaction): Promise<Data | PlayerError> => {
+    const writes: { path: string; data: Data; merge?: boolean }[] = [];
+    const tx: PlayerTransaction = { ...transaction, put: (path, data, merge) => { writes.push({ path, data, merge }); } };
     const base = `playerProgress/${identity.uid}`;
     const receiptPath = "requestId" in command ? `${base}/receipts/${digest([command.action, command.requestId])}` : null;
     const fingerprint = digest(command);
     const ratePath = `${base}/limits/actions`;
-    const [config, deletion, saved, receipt, rate, loadedSession] = await tx.getAll([
+    const network = identity.anonymous ? identity.network : undefined;
+    const abusePath = network ? `playerAbuse/${network.key}` : null;
+    const [config, deletion, saved, receipt, rate, loadedSession, abuse] = await tx.getAll([
       "settings/player-security", `accountDeletions/${identity.uid}`, base,
       receiptPath, ratePath,
       command.action === 'answer' ? `${base}/sessions/${command.sessionId}` : null,
+      abusePath,
     ]);
+    const budget = network ? takeGuestRequest(abuse, now, network.attested) : null;
+    if (budget && !budget.allowed) {
+      return new PlayerError('guest-rate-limit', 'Too many guest requests from this network. Please wait briefly and retry.', 429, budget.retryAfter);
+    }
+    if (budget?.allowed && abusePath) transaction.put(abusePath, budget.record);
+    const perform = async () => {
     if (deletion) failure("account-deleting", "Account deletion is in progress.", 403);
     if (config?.enabled !== true || config?.migrationComplete !== true || config?.version !== 1) {
       failure("rewards-unavailable", "Rewards are temporarily unavailable. Please try again later.", 503);
     }
     if (identity.anonymous && config?.allowAnonymous !== true) failure("sign-in-required", "Sign in to earn rewards.", 403);
     if (saved && saved.version !== 1) failure("progress-version", "Please update the app to continue.", 409);
+    if (!saved && network && budget?.allowed && abusePath) {
+      const admission = admitGuest(budget.record, now, network.attested);
+      if (!admission.allowed) {
+        throw new PlayerError('guest-creation-limit', 'Too many new guests from this network. Try again later or sign in with Google.', 429, admission.retryAfter);
+      }
+      tx.put(abusePath, admission.record);
+    }
     let state = refreshProgress(saved as unknown as PlayerProgress ?? initialProgress(now, command.action === "snapshot" ? command.timeZone : "UTC"), now);
     const today = serverDay(now, state.timeZone);
     const snapshot = (extra: Data = {}) => ({ ...extra, progress: state, serverTime: now });
@@ -258,5 +277,16 @@ export async function executePlayerCommand(database: PlayerDatabase, identity: {
       return finish({ productId: command.productId });
     }
     return failure("unsupported-action", "This action is unavailable.", 400);
+    };
+    try {
+      const value = await perform();
+      for (const write of writes) transaction.put(write.path, write.data, write.merge);
+      return value;
+    } catch (error) {
+      if (error instanceof PlayerError) return error;
+      throw error;
+    }
   });
+  if (result instanceof PlayerError) throw result;
+  return result;
 }

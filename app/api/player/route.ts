@@ -32,7 +32,11 @@ export async function POST(request: Request) {
       Date.now(), randomInt(0, 1000000) / 1000000);
     return timed(privateJson({ ok: true, ...result }), databaseStarted);
   } catch (error) {
-    if (error instanceof PlayerError) return timed(privateJson({ error: error.message, code: error.code }, error.status), databaseStarted);
+    if (error instanceof PlayerError) {
+      const response = privateJson({ error: error.message, code: error.code }, error.status);
+      if (error.retryAfter) response.headers.set('Retry-After', String(error.retryAfter));
+      return timed(response, databaseStarted);
+    }
     return timed(privateJson({ error: "Your reward could not be confirmed. Please retry.", code: "rewards-unavailable" }, 503), databaseStarted);
   }
 }

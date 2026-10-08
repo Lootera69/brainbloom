@@ -105,12 +105,21 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    match /playerAbuse/{document=**} {
+      allow read, write: if false;
+    }
+
     function profileFields() {
       return ['displayName', 'email', 'photoURL', 'avatarId', 'soundEnabled', 'hapticsEnabled', 'theme', 'timeZone', 'profileUpdatedAt'];
     }
 
     function optionalText(data, key, max) {
       return data.get(key, null) == null || (data[key] is string && data[key].size() <= max);
+    }
+
+    function admittedPlayer() {
+      return request.auth.token.get('firebase', {}).get('sign_in_provider', '') != 'anonymous'
+        || exists(/databases/$(database)/documents/playerProgress/$(request.auth.uid));
     }
 
     function validProfile(data) {
@@ -128,10 +137,12 @@ service cloud.firestore {
     match /users/{uid} {
       allow read: if request.auth != null && request.auth.uid == uid;
       allow create: if request.auth != null && request.auth.uid == uid
+        && admittedPlayer()
         && !exists(/databases/$(database)/documents/accountDeletions/$(uid))
         && request.resource.data.keys().hasOnly(profileFields())
         && validProfile(request.resource.data);
       allow update: if request.auth != null && request.auth.uid == uid
+        && admittedPlayer()
         && !exists(/databases/$(database)/documents/accountDeletions/$(uid))
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(profileFields())
         && validProfile(request.resource.data);
@@ -140,6 +151,7 @@ service cloud.firestore {
       match /pushTokens/{tokenId} {
         allow read: if request.auth != null && request.auth.uid == uid;
         allow write: if request.auth != null && request.auth.uid == uid
+          && admittedPlayer()
           && !exists(/databases/$(database)/documents/accountDeletions/$(uid));
       }
     }

@@ -19,6 +19,11 @@ describe.skipIf(!process.env.FIRESTORE_EMULATOR_HOST)("player transactions in th
     await db.recursiveDelete(db.doc(`playerProgress/${uid}`));
     await db.doc(`accountDeletions/${uid}`).delete();
     await db.doc(`users/${uid}`).delete();
+    await db.doc('playerAbuse/emulator-network').delete();
+    await Promise.all(['admission-one', 'admission-two'].map(async (guest) => {
+      await db.recursiveDelete(db.doc(`playerProgress/${guest}`));
+      await db.doc(`users/${guest}`).delete();
+    }));
     await db.doc("settings/player-security").set({ version: 1, enabled: true, migrationComplete: true, paymentsEnabled: false });
     await db.doc("puzzles/transaction-puzzle").set({ type: "multiple-choice", title: "A question", category: "logic", difficulty: "easy",
       question: "Pick two", choices: ["one", "two"], correctAnswer: "two", xpReward: 20, published: true });
@@ -67,5 +72,31 @@ describe.skipIf(!process.env.FIRESTORE_EMULATOR_HOST)("player transactions in th
     await db.doc(`users/${uid}`).delete();
     await expect(run(command)).rejects.toMatchObject({ code: "account-deleting" });
     expect((await db.doc(`users/${uid}`).get()).exists).toBe(false);
+  });
+
+  it('atomically admits only one of two new guests competing for the final network allowance', async () => {
+    await db.doc('settings/player-security').update({ allowAnonymous: true });
+    await db.doc('playerAbuse/emulator-network').set({ version: 1, tokens: 60, updatedAt: now, admissions: Array(11).fill(now), expiresAt: now + 86400000 });
+    const enter = (guest: string) => executePlayerCommand(playerDatabase(db), {
+      uid: guest, anonymous: true, network: { key: 'emulator-network', attested: false },
+    }, { action: 'snapshot' }, now, 0.5);
+    const outcomes = await Promise.allSettled([enter('admission-one'), enter('admission-two')]);
+    expect(outcomes.filter((outcome) => outcome.status === 'fulfilled')).toHaveLength(1);
+    const denied = outcomes.find((outcome) => outcome.status === 'rejected');
+    expect(denied?.status === 'rejected' && denied.reason.code).toBe('guest-creation-limit');
+    expect((await db.doc('playerAbuse/emulator-network').get()).data()).toMatchObject({ tokens: 58, admissions: Array(12).fill(now) });
+    const profiles = await db.getAll(db.doc('playerProgress/admission-one'), db.doc('playerProgress/admission-two'));
+    expect(profiles.filter((profile) => profile.exists)).toHaveLength(1);
+  }, 20000);
+
+  it('persists only abuse accounting when an operation fails after guest admission', async () => {
+    await db.doc('settings/player-security').update({ allowAnonymous: true });
+    await expect(executePlayerCommand(playerDatabase(db), {
+      uid: 'admission-one', anonymous: true, network: { key: 'emulator-network', attested: false },
+    }, { action: 'exchange', item: 'hearts', requestId: randomUUID() }, now, 0.5)).rejects.toMatchObject({ code: 'insufficient-gems' });
+    expect((await db.doc('playerAbuse/emulator-network').get()).data()).toMatchObject({ tokens: 59, admissions: [] });
+    expect((await db.doc('playerProgress/admission-one').get()).exists).toBe(false);
+    expect((await db.doc('users/admission-one').get()).exists).toBe(false);
+    expect((await db.collection('playerProgress/admission-one/limits').get()).empty).toBe(true);
   });
 });
