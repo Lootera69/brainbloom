@@ -35,7 +35,7 @@ export function getAdminApp(): App | null {
   if (!raw) return null;
   try {
     const serviceAccount = readServiceAccount(raw);
-    return initializeApp({ credential: cert(serviceAccount) }, "brainbloom");
+    return initializeApp({ credential: cert(serviceAccount), projectId: serviceAccount.project_id }, "brainbloom");
   } catch {
     console.error("Failed to initialize Firebase Admin. Check the service-account configuration.");
     return null;

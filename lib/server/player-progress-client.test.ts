@@ -1,5 +1,5 @@
-import { beforeEach, expect, it, vi } from 'vitest';
-import { applyPlayerResponse, playerCommand } from '@/services/player-progress';
+import { afterEach, beforeEach, expect, it, vi } from 'vitest';
+import { applyPlayerResponse, playerCommand, refreshPlayerProgressIfDue } from '@/services/player-progress';
 import { playerApi } from '@/services/player-service';
 import { rememberPlayerProgress } from '@/lib/verified-player-progress';
 import { initialProgress } from '@/lib/server/player-progress';
@@ -26,9 +26,11 @@ beforeEach(() => {
   vi.restoreAllMocks();
   mock.uid = `player-${++mock.count}`;
   mock.session = 0;
-  mock.state = { userId: mock.uid, revision: 999999999, xp: 999999999 };
+  mock.state = { userId: mock.uid, isAuthenticated: true, revision: 999999999, xp: 999999999 };
   mock.ready.mockReset().mockResolvedValue(undefined);
 });
+
+afterEach(() => vi.unstubAllGlobals());
 
 it('waits for a saved login to restore before requesting the Daily Set on a page reload', async () => {
   const restoredUid = mock.uid;
@@ -96,4 +98,67 @@ it('cannot apply another account response or request rewards under mismatched id
   mock.uid = 'other';
   await expect(playerCommand({ action: 'daily-bonus' })).rejects.toMatchObject({ code: 'sign-in-required' });
   expect(mock.state.xp).toBe(999999999);
+});
+
+it('uses a five-minute background interval and skips hidden, offline and signed-out sessions', async () => {
+  let elapsed = 0;
+  vi.spyOn(performance, 'now').mockImplementation(() => elapsed);
+  const document = { visibilityState: 'visible' };
+  const navigator = { onLine: true };
+  vi.stubGlobal('document', document);
+  vi.stubGlobal('navigator', navigator);
+  const send = vi.spyOn(playerApi, 'send').mockResolvedValue(reply(2, 20));
+  applyPlayerResponse(mock.uid, reply(1, 20));
+  elapsed = 299999;
+  await refreshPlayerProgressIfDue();
+  expect(send).not.toHaveBeenCalled();
+  elapsed = 300001;
+  document.visibilityState = 'hidden';
+  await refreshPlayerProgressIfDue();
+  document.visibilityState = 'visible';
+  navigator.onLine = false;
+  await refreshPlayerProgressIfDue();
+  navigator.onLine = true;
+  mock.state.isAuthenticated = false;
+  await refreshPlayerProgressIfDue();
+  expect(send).not.toHaveBeenCalled();
+  mock.state.isAuthenticated = true;
+  await refreshPlayerProgressIfDue();
+  expect(send).toHaveBeenCalledOnce();
+});
+
+it('refreshes a due heart before five minutes and avoids repeatedly polling premium hearts', async () => {
+  let elapsed = 0;
+  vi.spyOn(performance, 'now').mockImplementation(() => elapsed);
+  const first = reply(1, 20);
+  first.progress.hearts = 4;
+  first.progress.nextHeartAt = first.serverTime + 60000;
+  applyPlayerResponse(mock.uid, first);
+  const next = reply(2, 20);
+  next.progress.tier = 'premium';
+  next.progress.nextHeartAt = first.serverTime;
+  const send = vi.spyOn(playerApi, 'send').mockResolvedValue(next);
+  elapsed = 60001;
+  await refreshPlayerProgressIfDue();
+  expect(send).toHaveBeenCalledOnce();
+  elapsed = 90002;
+  await refreshPlayerProgressIfDue();
+  expect(send).toHaveBeenCalledOnce();
+});
+
+it('refreshes across local midnight and uses recent answer confirmations instead of extra snapshots', async () => {
+  let elapsed = 0;
+  vi.spyOn(performance, 'now').mockImplementation(() => elapsed);
+  const at = Date.parse('2026-10-08T18:29:59Z');
+  const first = { progress: { ...initialProgress(at, 'Asia/Kolkata'), revision: 1 }, serverTime: at };
+  const send = vi.spyOn(playerApi, 'send').mockResolvedValue({ progress: { ...first.progress, revision: 2 }, serverTime: at + 30000 });
+  applyPlayerResponse(mock.uid, first);
+  elapsed = 30000;
+  await refreshPlayerProgressIfDue();
+  expect(send).toHaveBeenCalledOnce();
+  elapsed = 300000;
+  applyPlayerResponse(mock.uid, { progress: { ...first.progress, revision: 3 }, serverTime: at + elapsed });
+  elapsed = 350000;
+  await refreshPlayerProgressIfDue();
+  expect(send).toHaveBeenCalledOnce();
 });

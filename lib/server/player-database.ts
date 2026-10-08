@@ -1,8 +1,8 @@
 import type { Firestore } from "firebase-admin/firestore";
 import type { Data, PlayerDatabase, PlayerTransaction } from "@/lib/server/player-engine";
-import { readScoringPuzzle } from "@/lib/server/player-puzzles";
+import { publishedCandidates } from "@/lib/server/puzzle-catalogue";
 
-export function playerDatabase(db: Firestore): PlayerDatabase {
+export function playerDatabase(db: Firestore, projectId: string): PlayerDatabase {
   return {
     transaction: (work) => db.runTransaction(async (transaction) => {
       const writes: { path: string; data: Data; merge: boolean }[] = [];
@@ -14,10 +14,7 @@ export function playerDatabase(db: Firestore): PlayerDatabase {
           let index = 0;
           return paths.map((path) => path === null ? undefined : snapshots[index++].data());
         },
-        publishedPuzzles: async () => {
-          const snapshot = await transaction.get(db.collection("puzzles").where("published", "==", true));
-          return snapshot.docs.map((doc) => readScoringPuzzle(doc.id, doc.data())).filter((puzzle) => puzzle !== null);
-        },
+        publishedPuzzles: () => publishedCandidates(db, projectId),
         put: (path, data, merge = false) => { writes.push({ path, data, merge }); },
       };
       const result = await work(view);

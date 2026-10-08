@@ -1,6 +1,6 @@
-import { randomUUID } from "node:crypto";
+import { generateKeyPairSync, randomUUID } from "node:crypto";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
-import { initializeApp, deleteApp, type App } from "firebase-admin/app";
+import { initializeApp, deleteApp, cert, type App } from "firebase-admin/app";
 import { getFirestore, type Firestore } from "firebase-admin/firestore";
 import { executePlayerCommand } from "@/lib/server/player-engine";
 import { playerDatabase } from "@/lib/server/player-database";
@@ -12,7 +12,10 @@ describe.skipIf(!process.env.FIRESTORE_EMULATOR_HOST)("player transactions in th
   const uid = "transaction-player";
   beforeAll(() => {
     if (!/^(127\.0\.0\.1|localhost):\d+$/.test(process.env.FIRESTORE_EMULATOR_HOST ?? "")) throw new Error("Only a local emulator is allowed.");
-    app = initializeApp({ projectId: "demo-security" }, "player-tests");
+    const { privateKey } = generateKeyPairSync('rsa', { modulusLength: 2048,
+      privateKeyEncoding: { type: 'pkcs8', format: 'pem' }, publicKeyEncoding: { type: 'spki', format: 'pem' } });
+    app = initializeApp({ projectId: "demo-security", credential: cert({ projectId: 'demo-security',
+      clientEmail: 'emulator@demo-security.iam.gserviceaccount.com', privateKey }) }, "player-tests");
     db = getFirestore(app);
   });
   beforeEach(async () => {
@@ -29,7 +32,7 @@ describe.skipIf(!process.env.FIRESTORE_EMULATOR_HOST)("player transactions in th
       question: "Pick two", choices: ["one", "two"], correctAnswer: "two", xpReward: 20, published: true });
   });
   afterAll(async () => { await deleteApp(app); });
-  const run = (command: Parameters<typeof executePlayerCommand>[2]) => executePlayerCommand(playerDatabase(db), { uid, anonymous: false }, command, now, 0.5);
+  const run = (command: Parameters<typeof executePlayerCommand>[2]) => executePlayerCommand(playerDatabase(db, 'demo-security'), { uid, anonymous: false }, command, now, 0.5);
 
   it("retries concurrent transactions and commits exactly one completion reward", async () => {
     const sessions = [randomUUID(), randomUUID()];
@@ -77,7 +80,7 @@ describe.skipIf(!process.env.FIRESTORE_EMULATOR_HOST)("player transactions in th
   it('atomically admits only one of two new guests competing for the final network allowance', async () => {
     await db.doc('settings/player-security').update({ allowAnonymous: true });
     await db.doc('playerAbuse/emulator-network').set({ version: 1, tokens: 60, updatedAt: now, admissions: Array(11).fill(now), expiresAt: now + 86400000 });
-    const enter = (guest: string) => executePlayerCommand(playerDatabase(db), {
+    const enter = (guest: string) => executePlayerCommand(playerDatabase(db, 'demo-security'), {
       uid: guest, anonymous: true, network: { key: 'emulator-network', attested: false },
     }, { action: 'snapshot' }, now, 0.5);
     const outcomes = await Promise.allSettled([enter('admission-one'), enter('admission-two')]);
@@ -91,7 +94,7 @@ describe.skipIf(!process.env.FIRESTORE_EMULATOR_HOST)("player transactions in th
 
   it('persists only abuse accounting when an operation fails after guest admission', async () => {
     await db.doc('settings/player-security').update({ allowAnonymous: true });
-    await expect(executePlayerCommand(playerDatabase(db), {
+    await expect(executePlayerCommand(playerDatabase(db, 'demo-security'), {
       uid: 'admission-one', anonymous: true, network: { key: 'emulator-network', attested: false },
     }, { action: 'exchange', item: 'hearts', requestId: randomUUID() }, now, 0.5)).rejects.toMatchObject({ code: 'insufficient-gems' });
     expect((await db.doc('playerAbuse/emulator-network').get()).data()).toMatchObject({ tokens: 59, admissions: [] });

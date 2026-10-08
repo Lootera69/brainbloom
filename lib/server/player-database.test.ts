@@ -9,7 +9,7 @@ function fixture() {
   const set = vi.fn();
   const tx = {getAll, get, set};
   const db = {doc: (path:string) => ({path}), runTransaction: async (work: (value:typeof tx) => Promise<unknown>) => work(tx)};
-  return {db, tx, adapter: playerDatabase(db as unknown as Firestore)};
+  return {db, tx, adapter: playerDatabase(db as unknown as Firestore, 'demo-security')};
 }
 
 it('reads a document group with one database call while preserving optional and missing slots', async () => {
@@ -40,7 +40,7 @@ it('reads fresh data on each Firestore transaction retry', async () => {
   const {db, tx} = fixture();
   tx.getAll.mockResolvedValueOnce([{data:()=>({path:'original'})}]).mockResolvedValueOnce([{data:()=>({path:'retry'})}]);
   const retryDb = {...db, runTransaction: async (work: (value:typeof tx) => Promise<unknown>) => {await work(tx); return work(tx);}};
-  const adapter = playerDatabase(retryDb as unknown as Firestore);
+  const adapter = playerDatabase(retryDb as unknown as Firestore, 'demo-security');
   const result = await adapter.transaction((view:PlayerTransaction) => view.getAll(['items/first']));
   expect(result).toEqual([{path:'retry'}]);
   expect(tx.getAll).toHaveBeenCalledTimes(2);

@@ -8,6 +8,11 @@ import { rememberPlayerProgress } from '@/lib/verified-player-progress';
 
 let refreshStarted = -Infinity;
 let refreshing: Promise<void> | null = null;
+let refreshIdentity = '';
+let confirmedAt = -Infinity;
+let serverTime = 0;
+
+const identityKey = () => `${useUserStore.getState().userId}:${getUserSessionVersion()}`;
 
 export function applyPlayerResponse(uid: string, reply: PlayerResponse) {
   const current = useUserStore.getState();
@@ -15,6 +20,13 @@ export function applyPlayerResponse(uid: string, reply: PlayerResponse) {
     throw new PlayerRequestError('Your sign-in changed. Please retry.', 'identity-changed');
   }
   if (rememberPlayerProgress(uid, reply.progress) !== reply.progress) return;
+  if (refreshIdentity !== identityKey()) {
+    refreshStarted = -Infinity;
+    refreshing = null;
+  }
+  refreshIdentity = identityKey();
+  confirmedAt = performance.now();
+  serverTime = reply.serverTime;
   useUserStore.setState({ ...reply.progress, _lastEvalDate: reply.progress.lastEvalDate ?? '',
     lastXpGain: typeof reply.xpEarned === 'number' ? reply.xpEarned : 0,
   });
@@ -51,9 +63,33 @@ export async function refreshPlayerProgress() {
 }
 
 export function refreshPlayerProgressIfDue(): Promise<void> {
+  const state = useUserStore.getState();
+  if (!state.isAuthenticated || !state.userId || getFirebase().auth?.currentUser?.uid !== state.userId
+    || (typeof document !== 'undefined' && document.visibilityState !== 'visible')
+    || (typeof navigator !== 'undefined' && navigator.onLine === false)) return Promise.resolve();
+  const identity = identityKey();
+  const now = performance.now();
+  if (refreshIdentity !== identity) {
+    refreshIdentity = identity;
+    refreshStarted = confirmedAt = -Infinity;
+    serverTime = 0;
+    refreshing = null;
+  }
   if (refreshing) return refreshing;
-  if (performance.now() - refreshStarted < 30000) return Promise.resolve();
-  refreshStarted = performance.now();
-  refreshing = refreshPlayerProgress().catch(() => undefined).finally(() => { refreshing = null; });
+  if (now - refreshStarted < 30000) return Promise.resolve();
+  const currentServerTime = serverTime + now - confirmedAt;
+  let dayChanged = false;
+  if (serverTime) {
+    try {
+      const day = new Intl.DateTimeFormat('en-CA', { timeZone: state.timeZone ?? 'UTC', year: 'numeric', month: '2-digit', day: '2-digit' });
+      dayChanged = day.format(serverTime) !== day.format(currentServerTime);
+    } catch { dayChanged = new Date(serverTime).getUTCDate() !== new Date(currentServerTime).getUTCDate(); }
+  }
+  const heartDue = state.tier !== 'premium' && state.nextHeartAt !== null && state.nextHeartAt <= currentServerTime;
+  const premiumExpired = state.tier === 'premium' && state.subscriptionExpiry !== null && state.subscriptionExpiry <= currentServerTime;
+  if (now - confirmedAt < 300000 && !dayChanged && !heartDue && !premiumExpired) return Promise.resolve();
+  refreshStarted = now;
+  const work = refreshPlayerProgress().catch(() => undefined).finally(() => { if (refreshing === work) refreshing = null; });
+  refreshing = work;
   return refreshing;
 }

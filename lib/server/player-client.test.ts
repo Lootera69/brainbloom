@@ -60,3 +60,10 @@ it("fails closed on an invalid success payload or a server rejection", async () 
   const denied = new PlayerApi(actor, vi.fn(async () => Response.json({ error: "No hearts", code: "no-hearts" }, { status: 409 })));
   await expect(denied.send({ action: "snapshot" })).rejects.toMatchObject({ code: "no-hearts" });
 });
+
+it('distinguishes a Daily Set or login load failure from an unconfirmed reward', async () => {
+  const api = new PlayerApi(actor, vi.fn(async () => { throw new Error('Service timeout'); }));
+  await expect(api.send({ action: 'daily-set', categories: [] })).rejects.toThrow('Your Daily Set could not be loaded');
+  await expect(api.send({ action: 'snapshot' })).rejects.toThrow('The service could not be reached');
+  await expect(api.send({ action: 'daily-bonus' })).rejects.toThrow('Your reward could not be confirmed');
+});

@@ -1,0 +1,13 @@
+# Catalogue reads and daily play
+
+The public puzzle catalogue is shared through the Next.js Data Cache for 24 hours. Category requests filter the same cached catalogue instead of issuing a new Firestore query for every category or visitor. Published puzzles are validated and projected to player-visible fields before caching. Solutions for scored puzzles, draft content and Studio metadata are excluded.
+
+Pages contain up to 250 Firestore documents and are compressed. If a page exceeds 1.5 MB after encoding, it is split at a document boundary. This stays below the Data Cache entry limit without silently dropping content. Keys include the Firebase project, database and cursor. Concurrent loads in one server instance share a promise; pages can be reused across instances. Cold starts with an empty shared cache, cache eviction, daily revalidation and publishing changes can still cause database reads.
+
+Daily selection uses only cached IDs, types and categories. The three selected puzzle records are read fresh in the reward transaction. Withdrawn or invalid entries are removed and replacement reads are bounded to three selection rounds. A current administrator pin is read fresh even when it is absent from the cache. Weekly cipher selection follows the same pattern. Opening and grading a puzzle, account deletion, guest limits and reward receipts continue to use current database records.
+
+Administrator Studio mutations invalidate the published catalogue through `POST /api/admin/catalogue`. This endpoint uses the existing verified administrator authorization, including frozen access and deletion checks. A contributor, reviewer or guest cannot use it to force expensive cache rebuilds. Direct database maintenance outside Studio should call this endpoint afterwards using a current administrator session. Otherwise catalogue changes can wait for the daily cache refresh; direct puzzle access and grading still check current publication status.
+
+Background web progress refreshes use a five-minute interval and skip hidden, offline or signed-out sessions. A due heart refill, expired subscription or local day change can refresh earlier. Any successful player response refreshes the local confirmation time, avoiding another snapshot immediately after play. Explicit user actions still send their requests immediately.
+
+Firestore's free daily read limit remains a hard service limit. Caching reduces repeated reads; it cannot restore a quota already exhausted or guarantee capacity for unlimited traffic. Keep live verification small, use local emulators for load/concurrency testing, and never enable paid billing without the owner's authorization.

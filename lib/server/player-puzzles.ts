@@ -29,6 +29,7 @@ export const scoringPuzzleSchema = z.object({
 });
 
 export type ScoringPuzzle = z.infer<typeof scoringPuzzleSchema> & { id: string };
+export type PuzzleCandidate = Pick<ScoringPuzzle, 'id' | 'type' | 'category'>;
 
 export function readScoringPuzzle(id: string, raw: unknown): ScoringPuzzle | null {
   if (raw && typeof raw === 'object' && !Array.isArray(raw)) {
@@ -173,7 +174,7 @@ export function gradeAnswer(puzzle: ScoringPuzzle, answer: PlayerAnswer): boolea
 }
 
 export const scoredType = (type: string) => !["cipher", "wonder", "story"].includes(type);
-export const dailyEligible = (puzzle: ScoringPuzzle) => scoredType(puzzle.type) && !["sudoku", "crossword"].includes(puzzle.type);
+export const dailyEligible = (puzzle: PuzzleCandidate) => scoredType(puzzle.type) && !["sudoku", "crossword"].includes(puzzle.type);
 
 export function pickPuzzles<T>(pool: T[], day: number, count: number): T[] {
   if (pool.length <= count) return [...pool];
@@ -190,7 +191,7 @@ export function pickPuzzles<T>(pool: T[], day: number, count: number): T[] {
   return chosen;
 }
 
-export function selectDailySet(puzzles: ScoringPuzzle[], now: number, pin: Record<string, unknown> | undefined, categories: string[] = []): string[] {
+export function selectDailySet(puzzles: PuzzleCandidate[], now: number, pin: Record<string, unknown> | undefined, categories: string[] = []): string[] {
   const pool = puzzles.filter(dailyEligible).sort((a, b) => a.id.localeCompare(b.id));
   const day = Math.floor(now / 86400000);
   const wanted = [...new Set(categories)].filter((category) => pool.some((p) => p.category === category)).sort();
@@ -211,7 +212,7 @@ export function cipherWeek(now: number): string {
   return date.toISOString().slice(0, 10);
 }
 
-export function selectCipher(puzzles: ScoringPuzzle[], now: number, pin: Record<string, unknown> | undefined): string | null {
+export function selectCipher(puzzles: PuzzleCandidate[], now: number, pin: Record<string, unknown> | undefined): string | null {
   const pool = puzzles.filter((p) => p.type === "cipher").sort((a, b) => a.id.localeCompare(b.id));
   const pinned = pin?.weekStart === cipherWeek(now) ? pool.find((p) => p.id === pin.puzzleId) : undefined;
   return pinned?.id ?? pool[Math.floor(Date.parse(`${cipherWeek(now)}T00:00:00Z`) / 604800000) % pool.length]?.id ?? null;

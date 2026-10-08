@@ -13,7 +13,7 @@ import {
   ShieldAlert,
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
-import { isAdmin } from "@/services/puzzle-service";
+import { clearPuzzlesCache, isAdmin } from "@/services/puzzle-service";
 import { resetAndSeed } from "@/scripts/seed-data/importer";
 import { getSeedData, getSeedMetadata } from "@/services/seed-content";
 import type { SeedMetadata } from "@/types/seed-content";
@@ -111,6 +111,8 @@ export default function SeedPage() {
       setFailed(message);
       setStep("idle");
       setImporting(false);
+    } finally {
+      clearPuzzlesCache();
     }
   };
 

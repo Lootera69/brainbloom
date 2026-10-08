@@ -3,7 +3,7 @@ import { POST } from "@/app/api/player/route";
 import { smallJson } from "@/lib/server/player-http";
 
 const mocks = vi.hoisted(() => ({ verify: vi.fn(), appCheck: vi.fn(), execute: vi.fn(), configured: true }));
-vi.mock("@/lib/push-send", () => ({ getAdminApp: () => mocks.configured ? {} : null }));
+vi.mock("@/lib/push-send", () => ({ getAdminApp: () => mocks.configured ? { options: { projectId: 'demo-security' } } : null }));
 vi.mock("firebase-admin/auth", () => ({ getAuth: () => ({ verifyIdToken: mocks.verify }) }));
 vi.mock('firebase-admin/app-check', () => ({ getAppCheck: () => ({ verifyToken: mocks.appCheck }) }));
 vi.mock("firebase-admin/firestore", () => ({ getFirestore: () => ({}) }));

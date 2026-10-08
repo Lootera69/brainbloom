@@ -2,8 +2,9 @@ import { beforeEach, expect, it, vi } from 'vitest';
 import { GET } from '@/app/api/puzzles/route';
 import { publicPuzzle, readScoringPuzzle } from '@/lib/server/player-puzzles';
 
-const mocks = vi.hoisted(() => ({ get: vi.fn(), where: vi.fn(), doc: vi.fn() }));
-vi.mock('@/lib/push-send', () => ({ getAdminApp: () => ({}) }));
+const mocks = vi.hoisted(() => ({ get: vi.fn(), where: vi.fn(), doc: vi.fn(), catalogue: vi.fn() }));
+vi.mock('@/lib/server/puzzle-catalogue', () => ({ publishedCatalogue: mocks.catalogue }));
+vi.mock('@/lib/push-send', () => ({ getAdminApp: () => ({ options: { projectId: 'demo-catalogue' } }) }));
 vi.mock('firebase-admin/firestore', () => ({ getFirestore: () => ({
   collection: () => ({ where: mocks.where, doc: mocks.doc }),
 }) }));
@@ -17,6 +18,11 @@ beforeEach(() => {
   vi.clearAllMocks();
   mocks.where.mockReturnValue({ get: mocks.get });
   mocks.doc.mockReturnValue({ get: mocks.get });
+  mocks.catalogue.mockImplementation(async () => {
+    const snapshot = await mocks.get();
+    return snapshot.docs.map((doc: {id: string; data: () => unknown}) => readScoringPuzzle(doc.id, doc.data()))
+      .filter((p: ReturnType<typeof readScoringPuzzle>) => p !== null).map(publicPuzzle);
+  });
 });
 
 it('delivers only published projections without answers or review information', async () => {
@@ -27,7 +33,8 @@ it('delivers only published projections without answers or review information', 
   const response = await GET(new Request('https://example.test/api/puzzles'));
   const body = await response.json();
   expect(response.status).toBe(200);
-  expect(mocks.where).toHaveBeenCalledWith('published', '==', true);
+  expect(mocks.catalogue).toHaveBeenCalledOnce();
+  expect(mocks.where).not.toHaveBeenCalled();
   expect(body.puzzles).toHaveLength(1);
   expect(body.puzzles[0]).toMatchObject({ id: 'published', choices: ['one', 'two'], xpReward: 20 });
   for (const key of ['correctAnswer', 'acceptedAnswers', 'correctExplanation', 'reviewedBy', 'reviewComments']) {

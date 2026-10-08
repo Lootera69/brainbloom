@@ -1,5 +1,6 @@
 import { type Puzzle, type PuzzleFormData, type CrosswordData, type SudokuData, type CipherData, type StoryData, type ReviewStatus, type ReviewComment } from "@/types/puzzle";
 import { getFirebase } from "@/services/firebase";
+import { refreshPublishedCatalogue } from "@/services/catalogue-refresh";
 import {
   collection,
   doc,
@@ -254,6 +255,7 @@ async function getFirestoreCategory(category: string): Promise<Puzzle[]> {
 }
 
 export function clearPuzzlesCache() {
+  if (isAdmin()) void refreshPublishedCatalogue();
   puzzlesCache = null;
   puzzlesInflight = null;
   puzzleByIdCache.clear();

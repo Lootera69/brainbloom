@@ -1,7 +1,9 @@
 import { createHash } from 'node:crypto';
 import { getFirestore } from 'firebase-admin/firestore';
 import { getAdminApp } from '@/lib/push-send';
-import { cipherPhase, cipherWeek, publicWeeklyCipher, readScoringPuzzle, selectCipher } from '@/lib/server/player-puzzles';
+import { cipherPhase, cipherWeek, publicWeeklyCipher } from '@/lib/server/player-puzzles';
+import { currentWeeklyCipher } from '@/lib/server/puzzle-selection';
+import { playerDatabase } from '@/lib/server/player-database';
 import { requirePlayer } from '@/lib/server/player-http';
 import { privateJson } from '@/lib/server/staff-auth';
 
@@ -14,13 +16,8 @@ export async function GET(request: Request) {
   try {
     const now = Date.now();
     const db = getFirestore(app);
-    const [records, pin] = await Promise.all([
-      db.collection('puzzles').where('type', '==', 'cipher').get(),
-      db.doc('settings/weekly-cipher').get(),
-    ]);
-    const puzzles = records.docs.map((doc) => readScoringPuzzle(doc.id, doc.data())).filter((p) => p !== null);
+    const { puzzle, pin } = await playerDatabase(db, app.options.projectId!).transaction((reader) => currentWeeklyCipher(reader, now));
     const weekStart = cipherWeek(now);
-    const puzzle = puzzles.find((p) => p.id === selectCipher(puzzles, now, pin.data()));
     let solved = false;
     if (puzzle && cipherPhase(now) !== 'closed' && request.headers.has('authorization')) {
       const actor = await requirePlayer(request);
@@ -33,7 +30,7 @@ export async function GET(request: Request) {
       solved = award.data()?.puzzleId === puzzle.id;
     }
     return privateJson({ version: 1, serverTime: now, phase: cipherPhase(now), weekStart,
-      setBy: pin.data()?.weekStart === weekStart && pin.data()?.puzzleId === puzzle?.id ? 'admin' : 'auto',
+      setBy: pin?.weekStart === weekStart && pin?.puzzleId === puzzle?.id ? 'admin' : 'auto',
       puzzle: puzzle ? publicWeeklyCipher(puzzle, now, solved) : null,
     });
   } catch {

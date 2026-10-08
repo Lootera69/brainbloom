@@ -28,7 +28,7 @@ export async function POST(request: Request) {
   catch { return timed(privateJson({ error: "Invalid player request.", code: "invalid-request" }, 400)); }
   const databaseStarted = performance.now();
   try {
-    const result = await executePlayerCommand(playerDatabase(getFirestore(identity.app)), identity, command,
+    const result = await executePlayerCommand(playerDatabase(getFirestore(identity.app), identity.app.options.projectId!), identity, command,
       Date.now(), randomInt(0, 1000000) / 1000000);
     return timed(privateJson({ ok: true, ...result }), databaseStarted);
   } catch (error) {
@@ -37,6 +37,6 @@ export async function POST(request: Request) {
       if (error.retryAfter) response.headers.set('Retry-After', String(error.retryAfter));
       return timed(response, databaseStarted);
     }
-    return timed(privateJson({ error: "Your reward could not be confirmed. Please retry.", code: "rewards-unavailable" }, 503), databaseStarted);
+    return timed(privateJson({ error: "The service is temporarily unavailable. Please try again shortly.", code: "rewards-unavailable" }, 503), databaseStarted);
   }
 }

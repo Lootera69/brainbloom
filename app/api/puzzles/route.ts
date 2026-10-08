@@ -2,6 +2,7 @@ import { getFirestore } from 'firebase-admin/firestore';
 import { getAdminApp } from '@/lib/push-send';
 import { publicPuzzle, readScoringPuzzle } from '@/lib/server/player-puzzles';
 import { privateJson } from '@/lib/server/staff-auth';
+import { publishedCatalogue } from '@/lib/server/puzzle-catalogue';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -20,12 +21,14 @@ export async function GET(request: Request) {
   if (!app) return privateJson({ error: 'Puzzles are unavailable.' }, 503);
   try {
     const db = getFirestore(app);
-    const documents = id === null
-      ? (await db.collection('puzzles').where(category === null ? 'published' : 'category', '==', category ?? true).get()).docs
-      : [await db.collection('puzzles').doc(id).get()];
-    const puzzles = documents.map((doc) => readScoringPuzzle(doc.id, doc.data()))
-      .filter((puzzle) => puzzle !== null).map(publicPuzzle);
-    if (id !== null && puzzles.length === 0) return privateJson({ error: 'Puzzle not found.' }, 404);
+    if (id !== null) {
+      const document = await db.collection('puzzles').doc(id).get();
+      const puzzle = readScoringPuzzle(document.id, document.data());
+      return puzzle ? privateJson({ version: 1, puzzles: [publicPuzzle(puzzle)] })
+        : privateJson({ error: 'Puzzle not found.' }, 404);
+    }
+    const catalogue = await publishedCatalogue(db, app.options.projectId!);
+    const puzzles = category === null ? catalogue : catalogue.filter((puzzle) => puzzle.category === category);
     return privateJson({ version: 1, puzzles }, 200);
   } catch {
     return privateJson({ error: 'Puzzles are unavailable. Please retry.' }, 503);

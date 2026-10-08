@@ -4,7 +4,8 @@ import type { PlayerProgress, PlayResult } from "@/lib/player-contract";
 import { applyDailyReward, applyPuzzleResult, grantXp, hasServerPremium, initialProgress, markActive, pickDailyReward,
   refreshProgress, serverDay, unlockAchievements } from "@/lib/server/player-progress";
 import { cipherWeek, closeAnswer, crosswordFeedback, gradeAnswer, publicPuzzle, puzzleSolution, readScoringPuzzle, scoredType,
-  selectCipher, selectDailySet, type ScoringPuzzle } from "@/lib/server/player-puzzles";
+  type PuzzleCandidate } from "@/lib/server/player-puzzles";
+import { currentDailyPuzzles, currentWeeklyCipher } from "@/lib/server/puzzle-selection";
 import { authoredEventConfig } from "@/lib/server/event-config";
 import { scheduleOccursOn } from "@/lib/events/event-theme";
 import { admitGuest, takeGuestRequest, type GuestNetwork } from "@/lib/server/player-abuse";
@@ -30,7 +31,7 @@ export type Data = Record<string, unknown>;
 export interface PlayerTransaction {
   get(path: string): Promise<Data | undefined>;
   getAll(paths: (string | null)[]): Promise<(Data | undefined)[]>;
-  publishedPuzzles(): Promise<ScoringPuzzle[]>;
+  publishedPuzzles(): Promise<PuzzleCandidate[]>;
   put(path: string, data: Data, merge?: boolean): void;
 }
 export interface PlayerDatabase {
@@ -112,9 +113,9 @@ export async function executePlayerCommand(database: PlayerDatabase, identity: {
 
     if (command.action === "daily-set") {
       if (!state.dailySetPuzzleIds.length) {
-        const [puzzles, pin] = await Promise.all([tx.publishedPuzzles(), tx.get("settings/daily-puzzle")]);
-        state.dailySetPuzzleIds = selectDailySet(puzzles, now, pin, hasServerPremium(state, now) ? command.categories : []);
-        return finish({ puzzles: state.dailySetPuzzleIds.map((value) => puzzles.find((p) => p.id === value)).filter((p) => p !== undefined).map(publicPuzzle) });
+        const puzzles = await currentDailyPuzzles(tx, now, hasServerPremium(state, now) ? command.categories : []);
+        state.dailySetPuzzleIds = puzzles.map((puzzle) => puzzle.id);
+        return finish({ puzzles: puzzles.map(publicPuzzle) });
       }
       const records = await tx.getAll(state.dailySetPuzzleIds.map((id) => `puzzles/${id}`));
       const puzzles = records.map((record, index) => readScoringPuzzle(state.dailySetPuzzleIds[index], record));
@@ -126,8 +127,7 @@ export async function executePlayerCommand(database: PlayerDatabase, identity: {
       if (!puzzle) failure("puzzle-unavailable", "This puzzle is no longer available.", 404);
       if (command.mode === "daily") {
         if (!state.dailySetPuzzleIds.length) {
-          const [puzzles, pin] = await Promise.all([tx.publishedPuzzles(), tx.get("settings/daily-puzzle")]);
-          state.dailySetPuzzleIds = selectDailySet(puzzles, now, pin);
+          state.dailySetPuzzleIds = (await currentDailyPuzzles(tx, now)).map((puzzle) => puzzle.id);
         }
         if (!state.dailySetPuzzleIds.includes(puzzle!.id)) failure("not-daily", "Choose a puzzle from today's Daily Set.");
         if (state.dailySetCompletedIds.includes(puzzle!.id)) failure("already-completed", "This daily puzzle is already complete.");
@@ -145,8 +145,8 @@ export async function executePlayerCommand(database: PlayerDatabase, identity: {
       }
       let week: string | null = null;
       if (puzzle!.type === "cipher" && command.mode !== "practice") {
-        const [puzzles, pin] = await Promise.all([tx.publishedPuzzles(), tx.get("settings/weekly-cipher")]);
-        if (selectCipher(puzzles, now, pin) === puzzle!.id && new Date(now).getUTCDay() !== 6) week = cipherWeek(now);
+        const selected = await currentWeeklyCipher(tx, now);
+        if (selected.puzzle?.id === puzzle!.id && new Date(now).getUTCDay() !== 6) week = cipherWeek(now);
       }
       const session = { id: command.requestId, puzzleId: puzzle!.id, mode: command.mode, expiresAt: now + sessionLifetime };
       tx.put(`${base}/sessions/${session.id}`, {

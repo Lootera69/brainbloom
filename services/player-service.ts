@@ -39,20 +39,25 @@ export class PlayerApi {
     if (mutates) this.pending.set(key, command);
     let response: Response;
     let body;
+    const unavailable = action.action === 'daily-set'
+      ? 'Your Daily Set could not be loaded. Please try again shortly.'
+      : action.action === 'snapshot' || action.action === 'event-result' || action.action === 'start'
+        ? 'The service could not be reached. Please try again shortly.'
+        : 'Your reward could not be confirmed. Please retry to check its status.';
     try {
       response = await this.request("/api/player", {
         method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", ...(proof ? { 'X-Firebase-AppCheck': proof } : {}) },
         body: JSON.stringify(command), cache: "no-store", signal: AbortSignal.timeout(20000),
       });
       body = await response.json();
-    } catch { throw new PlayerRequestError("Your reward could not be confirmed. Connect to the internet and retry."); }
+    } catch { throw new PlayerRequestError(unavailable); }
     if (this.identity()?.uid !== user.uid) {
       this.pending.delete(key);
       throw new PlayerRequestError("Your sign-in changed. Please retry.", "identity-changed");
     }
     if (!response.ok || body?.ok !== true) {
       if (response.status >= 400 && response.status < 500) this.pending.delete(key);
-      throw new PlayerRequestError(typeof body?.error === "string" ? body.error : "Your reward could not be confirmed. Please retry.", body?.code);
+      throw new PlayerRequestError(typeof body?.error === "string" ? body.error : unavailable, body?.code);
     }
     const progress = body.progress;
     if (progress?.version !== 1 || !Number.isSafeInteger(progress.revision) || !Number.isFinite(body.serverTime)
