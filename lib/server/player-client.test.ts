@@ -1,4 +1,4 @@
-import { beforeEach, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { PlayerApi } from "@/services/player-service";
 
 vi.mock("@/services/firebase", () => ({ getFirebase: () => ({ auth: null }) }));
@@ -7,6 +7,20 @@ let requests: Record<string, unknown>[];
 const success = () => Response.json({ ok: true, progress: { version: 1, revision: 1, xp: 20, gems: 5, hearts: 4, weeklyXp: 20 }, serverTime: Date.now() });
 const actor = () => uid ? { uid, getIdToken: async () => "test-token" } : null;
 beforeEach(() => { uid = "player"; requests = []; });
+afterEach(() => vi.unstubAllGlobals());
+
+it('preserves the browser fetch receiver during guest and Google progress restoration', async () => {
+  const browserFetch = vi.fn(function(this: unknown) {
+    if (this !== globalThis) throw new TypeError('Illegal invocation');
+    return Promise.resolve(success());
+  });
+  vi.stubGlobal('fetch', browserFetch);
+  for (const account of ['guest', 'google']) {
+    uid = account;
+    await expect(new PlayerApi(actor).send({action:'snapshot'})).resolves.toHaveProperty('progress.xp', 20);
+  }
+  expect(browserFetch).toHaveBeenCalledTimes(2);
+});
 
 it("retries the same request id after a lost connection and rejects a changed pending answer", async () => {
   const api = new PlayerApi(actor, vi.fn(async (_url, options) => {

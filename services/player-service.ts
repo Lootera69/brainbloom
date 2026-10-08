@@ -11,7 +11,7 @@ export class PlayerApi {
   private pending = new Map<string, Record<string, unknown>>();
 
   constructor(private identity: () => { uid: string; getIdToken: () => Promise<string> } | null,
-    private request: typeof fetch = fetch) {}
+    private request: typeof fetch = (input, init) => globalThis.fetch(input, init)) {}
 
   send(action: PlayerAction): Promise<PlayerResponse> {
     return this.execute(action);
