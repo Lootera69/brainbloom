@@ -127,12 +127,11 @@ export default function HomePage() {
       <EventSpecialPuzzle />
 
       <div className="mb-6 sm:mb-8">
-        {dailySetError && <div role="alert" className="mb-3 rounded-xl border p-3 text-sm">
-          <p>{dailySetError}</p><button className="mt-2 font-semibold text-primary" onClick={() => setRetry((value) => value + 1)}>Retry Daily Set</button>
-        </div>}
         <DailySetCard
           set={dailySet}
           loading={dailySetLoading}
+          error={dailySetError}
+          onRetry={() => setRetry((value) => value + 1)}
           categories={dailySetCategories}
           onCategoriesChange={setDailySetCategories}
         />

@@ -18,6 +18,8 @@ import { cn } from "@/lib/utils";
 interface Props {
   set: Puzzle[];
   loading?: boolean;
+  error?: string | null;
+  onRetry?: () => void;
   categories: string[];
   onCategoriesChange: (categories: string[]) => void;
 }
@@ -33,7 +35,7 @@ const SPARKLES = Array.from({ length: 8 }).map((_, i) => ({
   duration: 2.5 + (i % 2),
 }));
 
-export function DailySetCard({ set, loading, categories, onCategoriesChange }: Props) {
+export function DailySetCard({ set, loading, error, onRetry, categories, onCategoriesChange }: Props) {
   const router = useRouter();
   const tier = useUserStore((s) => s.tier);
   const subscriptionExpiry = useUserStore((s) => s.subscriptionExpiry);
@@ -114,7 +116,7 @@ export function DailySetCard({ set, loading, categories, onCategoriesChange }: P
               <Sparkles className="size-3" />
               DAILY SET
             </span>
-            <span className="ml-auto text-sm font-extrabold tabular-nums">{done}/{total}</span>
+            <span className="ml-auto text-sm font-extrabold tabular-nums">{!loading && !error && total > 0 ? `${done}/${total}` : null}</span>
             <button
               onClick={handlePickCategory}
               aria-label="Choose your set"
@@ -130,6 +132,12 @@ export function DailySetCard({ set, loading, categories, onCategoriesChange }: P
               <div className="h-14 animate-pulse rounded-2xl bg-current opacity-10" />
               <div className="h-14 animate-pulse rounded-2xl bg-current opacity-10" />
               <div className="h-14 animate-pulse rounded-2xl bg-current opacity-10" />
+            </div>
+          ) : error ? (
+            <div role="alert" className="mt-5">
+              <h2 className="font-heading text-lg font-bold">Couldn&apos;t load your Daily Set</h2>
+              <p className="mt-1 text-sm opacity-80">{error}</p>
+              <button type="button" onClick={onRetry} className={cn("mt-3 rounded-xl px-4 py-2 text-sm font-bold", pill)}>Retry Daily Set</button>
             </div>
           ) : total === 0 ? (
             <div className="mt-5">

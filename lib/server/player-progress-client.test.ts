@@ -5,9 +5,11 @@ import { rememberPlayerProgress } from '@/lib/verified-player-progress';
 import { initialProgress } from '@/lib/server/player-progress';
 
 const mock = vi.hoisted(() => ({
-  state: {} as Record<string, unknown>, uid: '', session: 0, count: 0,
+  state: {} as Record<string, unknown>, uid: '', session: 0, count: 0, ready: vi.fn(),
 }));
-vi.mock('@/services/firebase', () => ({ getFirebase: () => ({ auth: { currentUser: { uid: mock.uid } } }) }));
+vi.mock('@/services/firebase', () => ({ getFirebase: () => ({ auth: {
+  get currentUser() { return mock.uid ? { uid: mock.uid } : null; }, authStateReady: mock.ready,
+} }) }));
 vi.mock('@/store/user-store', () => ({
   getUserSessionVersion: () => mock.session,
   useUserStore: {
@@ -25,6 +27,48 @@ beforeEach(() => {
   mock.uid = `player-${++mock.count}`;
   mock.session = 0;
   mock.state = { userId: mock.uid, revision: 999999999, xp: 999999999 };
+  mock.ready.mockReset().mockResolvedValue(undefined);
+});
+
+it('waits for a saved login to restore before requesting the Daily Set on a page reload', async () => {
+  const restoredUid = mock.uid;
+  mock.uid = '';
+  let finish!: () => void;
+  mock.ready.mockReturnValue(new Promise<void>((resolve) => { finish = resolve; }));
+  const send = vi.spyOn(playerApi, 'send').mockResolvedValue(reply(1, 20));
+  const pending = playerCommand({ action: 'daily-set', categories: [] }).then(
+    value => ({ value, error: undefined }), error => ({ value: undefined, error }),
+  );
+  await Promise.resolve();
+  expect(send).not.toHaveBeenCalled();
+  mock.uid = restoredUid;
+  finish();
+  const result = await pending;
+  expect(result.error).toBeUndefined();
+  expect(result.value?.progress.xp).toBe(20);
+  expect(mock.ready).toHaveBeenCalledOnce();
+  expect(send).toHaveBeenCalledExactlyOnceWith({ action: 'daily-set', categories: [] });
+});
+
+it('does not send a pending command when sign-out happens while the saved login restores', async () => {
+  let finish!: () => void;
+  mock.ready.mockReturnValue(new Promise<void>((resolve) => { finish = resolve; }));
+  const send = vi.spyOn(playerApi, 'send').mockResolvedValue(reply(1, 20));
+  const pending = playerCommand({ action: 'daily-bonus' }).then(
+    value => ({ value, error: undefined }), error => ({ value: undefined, error }),
+  );
+  await Promise.resolve();
+  mock.session++;
+  finish();
+  expect((await pending).error).toMatchObject({ code: 'identity-changed' });
+  expect(send).not.toHaveBeenCalled();
+});
+
+it('requires sign-in when authentication finishes without the saved account', async () => {
+  mock.uid = '';
+  const send = vi.spyOn(playerApi, 'send');
+  await expect(playerCommand({ action: 'daily-set', categories: [] })).rejects.toMatchObject({ code: 'sign-in-required' });
+  expect(send).not.toHaveBeenCalled();
 });
 
 it('replaces forged cached balances and ignores older responses after a verified restoration', () => {

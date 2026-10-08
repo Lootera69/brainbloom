@@ -21,13 +21,20 @@ export function applyPlayerResponse(uid: string, reply: PlayerResponse) {
 }
 
 export async function playerCommand(command: PlayerAction): Promise<PlayerResponse> {
+  const auth = getFirebase().auth;
+  const restoringSession = getUserSessionVersion();
+  if (!auth) throw new PlayerRequestError('Sign in to continue.', 'sign-in-required');
+  await auth.authStateReady();
+  if (getUserSessionVersion() !== restoringSession) {
+    throw new PlayerRequestError('Your sign-in changed. Please retry.', 'identity-changed');
+  }
   if (useUserStore.getState().isGuest) {
     const { ensureGuestSession } = await import('@/services/guest-session');
     await ensureGuestSession();
   }
   const uid = useUserStore.getState().userId;
   const session = getUserSessionVersion();
-  if (!uid || getFirebase().auth?.currentUser?.uid !== uid) {
+  if (!uid || auth.currentUser?.uid !== uid) {
     throw new PlayerRequestError('Connect to the internet and sign in to earn rewards.', 'sign-in-required');
   }
   const reply = await playerApi.send(command);
