@@ -65,6 +65,7 @@ function DeleteAccountDialogContent({
   const [reauthPassword, setReauthPassword] = useState("");
   const [reauthError, setReauthError] = useState<string | null>(null);
   const [isGoogle, setIsGoogle] = useState(true);
+  const premium = useUserStore((state) => state.tier === "premium");
 
   useEffect(() => {
     if (!open || step !== "soft") return;
@@ -415,6 +416,16 @@ function DeleteAccountDialogContent({
                         <span>• Account data</span>
                       </div>
                     </motion.div>
+
+                    {premium && (
+                      <p className="mt-3 text-xs text-muted-foreground">
+                        Deleting your account does not cancel a store subscription. Cancel it in{" "}
+                        <a className="underline" href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener noreferrer">Google Play</a>
+                        {" "}or the{" "}
+                        <a className="underline" href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener noreferrer">App Store</a>
+                        {" "}to stop future renewals.
+                      </p>
+                    )}
 
                     {error && (
                       <motion.div

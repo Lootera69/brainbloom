@@ -47,7 +47,7 @@ export function LegalLayout({ children }: LegalLayoutProps) {
                 {isTerms ? "Terms of Service" : "Privacy Policy"}
               </h1>
               <p className="text-xs text-muted-foreground">
-                Last updated: July 20, 2026
+                Last updated: October 8, 2026
               </p>
             </div>
           </div>

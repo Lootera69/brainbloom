@@ -32,7 +32,7 @@ const sections = [
   {
     title: "VI. Economic Architecture",
     content:
-      "BrainBloom operates on a freemium model. Core features are accessible without charge; premium tiers, virtual currencies (gems, hearts, streak freezes), and subscription-based offerings are subject to separate pricing terms as displayed within the platform. All purchases are final and non-refundable except where mandated by applicable consumer protection law. We reserve the right to modify pricing structures, product offerings, or the allocation of virtual goods upon reasonable notice. Virtual goods hold no monetary value and are not redeemable for currency.",
+      "Core features are free. Where paid checkout is enabled, digital goods and Premium subscriptions are purchased through Google Play on Android or the App Store on iOS at the price and billing period shown before confirmation. Subscriptions renew automatically unless canceled in the relevant store settings. Cancellation stops future renewals; access continues until the paid period ends unless the store revokes it. Deleting an app account does not cancel a store subscription. Refund requests are handled under the relevant store policies and applicable consumer law. Refunded benefits and virtual items, including subscription bonuses, may be removed; if refunded items have already been spent, future virtual earnings may first repay that balance. Purchases are linked to the registered app account used at checkout and cannot be transferred to a new account after deletion. Virtual goods have no cash value. Simulated purchases explicitly marked as free do not charge money.",
   },
   {
     title: "VII. Limitation of Liability",

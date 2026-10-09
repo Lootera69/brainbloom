@@ -109,6 +109,26 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    match /billingAccounts/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /billingTokens/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /storeOrders/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /storeSubscriptions/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /storeNotifications/{document=**} {
+      allow read, write: if false;
+    }
+
     function profileFields() {
       return ['displayName', 'email', 'photoURL', 'avatarId', 'soundEnabled', 'hapticsEnabled', 'theme', 'timeZone', 'profileUpdatedAt'];
     }

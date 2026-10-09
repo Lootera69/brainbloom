@@ -12,7 +12,7 @@ const sections = [
   {
     title: "II. What We Collect and Why",
     content:
-      "We collect information needed to provide and improve the app: your account details and preferences, puzzle progress, and technical information used for reliability and abuse prevention. Guest abuse controls use a keyed hash of your network address, request counters, and guest-start timestamps. These counters do not store your raw IP address. They expire after 48 hours without activity and are removed by scheduled cleanup. Browser request verification uses Firebase App Check with Google reCAPTCHA Enterprise, which processes browser and device signals to identify automated abuse.",
+      "We collect information needed to provide and improve the app: your account details and preferences, puzzle progress, and technical information used for reliability and abuse prevention. Guest abuse controls use a keyed hash of your network address, request counters, and guest-start timestamps. These counters do not store your raw IP address. They expire after 48 hours without activity and are removed by scheduled cleanup. Browser request verification uses Firebase App Check with Google reCAPTCHA Enterprise, which processes browser and device signals to identify automated abuse. For store purchases, Google or Apple processes your payment details. We receive product and transaction identifiers, purchase tokens, purchase and expiry times, refund status, and a random identifier linked to your app account. We use these records to verify payment, deliver purchases, restore access, and prevent duplicate or fraudulent claims. We do not receive your full payment card details.",
   },
   {
     title: "III. The Philosophical Basis of Processing",
@@ -42,7 +42,7 @@ const sections = [
   {
     title: "VIII. Data Retention and Erasure",
     content:
-      "We retain your personal information only as long as it serves the purpose for which it was collected — namely, the operation of your account and the delivery of our services. Upon account deletion, your data is purged within 90 days, except where limited retention is required by law or for the establishment, exercise, or defence of legal claims. Anonymised and aggregated data — stripped of all identifying markers — may be retained indefinitely for analytical purposes.",
+      "Account deletion removes your active profile, synced progress, and active billing profile. Minimal purchase, refund, account-deletion, and purchase-account mapping records remain restricted to the server for fraud prevention, refund handling, purchase support, and legal obligations. These retained records cannot be used to restore a deleted app account or move its purchases to a different account. Other personal information is retained only while needed to operate the service or meet applicable legal obligations. Anonymised and aggregated data may be retained for analysis.",
   },
   {
     title: "IX. International Data Transfers",

@@ -61,6 +61,15 @@ for (const identity of ['guest', 'player', 'admin']) {
     await assertFails(setDoc(doc(db, 'playerAbuse/network'), { tokens: 100000 }));
     await assertFails(deleteDoc(doc(db, 'playerAbuse/network')));
   });
+  test(`${identity} cannot inspect or tamper with store billing records`, async () => {
+    const db = identity === 'guest' ? env.unauthenticatedContext().firestore() : dbFor(identity);
+    for (const name of ['billingAccounts', 'billingTokens', 'storeOrders', 'storeSubscriptions', 'storeNotifications']) {
+      await assertFails(getDoc(doc(db, name, 'player')));
+      await assertFails(getDocs(collection(db, name)));
+      await assertFails(setDoc(doc(db, name, 'player'), { uid: 'player', deliveredQuantity: 1000 }));
+      await assertFails(deleteDoc(doc(db, name, 'player')));
+    }
+  });
 }
 
 for (const identity of ['guest', 'player', 'disabled', 'unverified', 'forged']) {

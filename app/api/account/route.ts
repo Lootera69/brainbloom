@@ -42,6 +42,7 @@ export async function DELETE(request: Request) {
     });
     await db.recursiveDelete(db.doc(`users/${token.uid}`));
     await db.recursiveDelete(db.doc(`playerProgress/${token.uid}`));
+    await db.doc(`billingAccounts/${token.uid}`).delete();
     await db.doc(`staffAccess/${token.uid}`).delete();
     if (token.email && token.email_verified === true) {
       const invitations = await db.collection("staffInvites")

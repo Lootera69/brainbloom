@@ -265,7 +265,7 @@ export async function executePlayerCommand(database: PlayerDatabase, identity: {
     }
 
     if (command.action === "shop") {
-      if (config?.paymentsEnabled !== false) failure("purchase-verification-required", "Verified store purchases are not available yet.", 503);
+      if (config?.paymentsEnabled !== false) failure("purchase-verification-required", "Use the latest Android or iPhone app to purchase through Google Play or the App Store.", 503);
       const product = freeProducts[command.productId];
       if ("gems" in product) state.gems += product.gems;
       if ("hearts" in product) { state.hearts = 5; state.nextHeartAt = null; }
