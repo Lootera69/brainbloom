@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Direct sunlight concentrates energy</title><desc id="desc">Equal-width bundles of sunlight hit a surface directly or obliquely. Oblique light spreads over a wider area. Summer also has longer daylight.</desc>
+<defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#244258"/></pattern><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#fbbf24"/></marker></defs>
+<rect width="1200" height="800" fill="#081522"/><rect width="1200" height="800" fill="url(#grid)" opacity=".4"/>
+<g font-family="Arial, sans-serif" fill="#edf6ff"><text x="70" y="92" font-size="46" font-weight="700">Same light, different footprint</text><text x="70" y="145" font-size="27" fill="#a9c3d8">A lower Sun spreads the same incoming energy over more ground.</text>
+<text x="240" y="235" font-size="32" fill="#fbbf24">More direct</text><text x="760" y="235" font-size="32" fill="#7dd3fc">More oblique</text>
+<path d="M90 525H555M640 525H1130" stroke="#a9c3d8" stroke-width="5"/><path d="M240 275V515M300 275V515M360 275V515M680 310L895 515M745 310L960 515M810 310L1025 515" stroke="#fbbf24" stroke-width="5" marker-end="url(#a)"/>
+<path d="M235 540H365M880 540H1070" stroke="#fbbf24" stroke-width="14"/><text x="300" y="595" text-anchor="middle" font-size="27">Smaller lit area</text><text x="960" y="595" text-anchor="middle" font-size="27">Larger lit area</text>
+<path d="M160 671H440" stroke="#fbbf24" stroke-width="18"/><path d="M750 671H900" stroke="#7dd3fc" stroke-width="18"/><text x="300" y="725" text-anchor="middle" font-size="27">Longer summer days</text><text x="915" y="725" text-anchor="middle" font-size="27">Shorter winter days</text></g></svg>

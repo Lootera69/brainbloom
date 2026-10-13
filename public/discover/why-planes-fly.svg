@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Wings turn moving air into lift</title><desc id="desc">A wing cross-section turns airflow downward. Lift points upward while weight points down; thrust and drag point in opposite horizontal directions.</desc>
+<defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#244258"/></pattern><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#7dd3fc"/></marker></defs>
+<rect width="1200" height="800" fill="#081522"/><rect width="1200" height="800" fill="url(#grid)" opacity=".4"/>
+<g font-family="Arial, sans-serif" fill="#edf6ff"><text x="70" y="92" font-size="46" font-weight="700">Flight is a balance of forces</text><text x="70" y="145" font-size="27" fill="#a9c3d8">The wing turns air downwards; the air pushes the wing upwards.</text>
+<g fill="none" stroke="#3b86b4" stroke-width="4" marker-end="url(#a)"><path d="M90 310C310 310 390 210 600 290S960 375 1110 450"/><path d="M90 370C270 370 280 310 430 330S900 410 1110 490"/><path d="M90 490C380 490 750 460 1110 580"/></g>
+<path d="M300 421C270 330 480 324 900 442C600 448 400 475 300 421Z" fill="#173c54" stroke="#edf6ff" stroke-width="4"/>
+<path d="M580 375V230M580 470V660M405 443H210M810 450H1010" stroke="#7dd3fc" stroke-width="6" marker-end="url(#a)"/>
+<text x="610" y="253" font-size="33" fill="#7dd3fc">Lift</text><text x="610" y="653" font-size="33" fill="#7dd3fc">Weight</text><text x="160" y="414" font-size="32" fill="#7dd3fc">Thrust</text><text x="950" y="417" font-size="32" fill="#7dd3fc">Drag</text>
+<text x="600" y="746" text-anchor="middle" font-size="27" fill="#a9c3d8">In steady level flight: lift = weight · thrust = drag</text></g></svg>

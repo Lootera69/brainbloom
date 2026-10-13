@@ -833,3 +833,13 @@ Renaming the prefix **orphans existing users' data** unless a one-time migration
 4. **GitHub** (F): rename repo → update remote + issue URL
 5. **Firebase** (F): renaming `brainbloom-40` is the heaviest (data + auth + service account + rules + console) — only worth it if the name change is permanent
 6. Bump SW cache to `v4` and clear-cache on activate so old shells don't linger
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

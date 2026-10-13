@@ -20,6 +20,12 @@ describe("Studio role navigation", () => {
     expect(canVisitStudioPath("admin", "/studio/review")).toBe(true);
     expect(canVisitStudioPath(null, "/studio")).toBe(false);
   });
+  it("reserves Discover publishing and direct editor URLs for administrators", () => {
+    for (const path of ["/studio/discover", "/studio/discover/create", "/studio/discover/jet-engine"]) {
+      expect(canVisitStudioPath("admin", path)).toBe(true);
+      for (const role of ["contributor", "reviewer", null] as const) expect(canVisitStudioPath(role, path)).toBe(false);
+    }
+  });
 });
 
 describe("Studio membership controls", () => {

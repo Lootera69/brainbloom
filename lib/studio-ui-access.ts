@@ -12,7 +12,7 @@ export function canVisitStudioPath(role: StaffRole | null, pathname: string): bo
   if (!role) return false;
   if (role === "reviewer") return pathname === "/studio" || pathname === "/studio/review";
   if (pathname === "/studio/review" || pathname.startsWith("/studio/review/")) return role === "admin";
-  const adminPaths = ["/studio/users", "/studio/ciphers", "/studio/seed"];
+  const adminPaths = ["/studio/users", "/studio/ciphers", "/studio/seed", "/studio/discover"];
   if (adminPaths.some((path) => pathname === path || pathname.startsWith(`${path}/`))) return role === "admin";
   return true;
 }

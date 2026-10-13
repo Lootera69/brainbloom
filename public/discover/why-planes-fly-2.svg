@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Pressure and momentum describe lift</title><desc id="desc">Flow curves over the wing and leaves downward. Lower pressure above and higher pressure below contribute to an upward force on the wing.</desc>
+<defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#244258"/></pattern><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#7dd3fc"/></marker></defs>
+<rect width="1200" height="800" fill="#081522"/><rect width="1200" height="800" fill="url(#grid)" opacity=".4"/>
+<g font-family="Arial, sans-serif" fill="#edf6ff"><text x="70" y="92" font-size="46" font-weight="700">Air down. Wing up.</text><text x="70" y="145" font-size="27" fill="#a9c3d8">Pressure forces and changing air momentum tell the same story.</text>
+<g fill="none" stroke="#3b86b4" stroke-width="4" marker-end="url(#a)"><path d="M80 330C350 330 320 220 560 285S900 410 1120 530"/><path d="M80 380C320 380 330 285 540 333S900 450 1120 580"/><path d="M80 510C350 510 680 455 1120 630"/></g>
+<path d="M300 440C265 342 430 345 865 450C555 457 390 478 300 440Z" fill="#173c54" stroke="#edf6ff" stroke-width="4"/>
+<path d="M565 412V230M1060 535L1120 690M430 577V490M550 577V490M670 577V490" stroke="#7dd3fc" stroke-width="5" marker-end="url(#a)"/>
+<text x="595" y="235" font-size="32" fill="#7dd3fc">Lift on wing</text><text x="310" y="300" font-size="28">Lower pressure above</text><text x="295" y="630" font-size="28">Higher pressure below</text><text x="865" y="725" font-size="28" fill="#7dd3fc">Air gains downward momentum</text></g></svg>

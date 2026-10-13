@@ -1,3 +1,5 @@
+import type { WorkshopImportMetadata } from "@/types/workshop";
+
 export type PuzzleType = "multiple-choice" | "true-false" | "crossword" | "type-answer" | "sudoku" | "riddle" | "wonder" | "cipher" | "story";
 
 export interface StorySlide {
@@ -47,6 +49,8 @@ export interface SudokuData {
 
 export interface Puzzle {
   id: string;
+  localOnly?: boolean;
+  workshopImport?: WorkshopImportMetadata;
   type: PuzzleType;
   category: string;
   difficulty: Difficulty;
@@ -83,6 +87,7 @@ export interface Puzzle {
 }
 
 export interface PuzzleFormData {
+  workshopImport?: WorkshopImportMetadata;
   type: PuzzleType;
   category: string;
   difficulty: Difficulty;

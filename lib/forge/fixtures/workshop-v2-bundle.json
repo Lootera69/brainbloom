@@ -1,0 +1,555 @@
+{
+  "dictionary": {
+    "subject": "machine learning",
+    "sense": "combined:e714fefcda7ad2552840e441b179a45cdfac9f96e1cee5ab486811cabaf8795b",
+    "label": "machine learning",
+    "definition": "A puzzle combining all the selected topic meanings.",
+    "topics": [
+      {
+        "term": "machine learning",
+        "sense": "coverage-v2:machine-learning",
+        "definition": "Statistical and computing vocabulary",
+        "words": [
+          "ALGORITHM",
+          "DATA",
+          "CLASSIFICATION",
+          "REGRESSION",
+          "MODEL",
+          "FEATURE",
+          "CLUSTERING",
+          "NEURALNETWORK",
+          "PREDICTION",
+          "SAMPLE",
+          "PARAMETER",
+          "ACCURACY",
+          "OPTIMIZER",
+          "EMBEDDING",
+          "LATENT",
+          "EPOCH",
+          "BATCH",
+          "GRADIENT",
+          "INFERENCE",
+          "TOKENIZER",
+          "CALIBRATION",
+          "REGULARIZATION"
+        ],
+        "anchor": null,
+        "source_sha256": "dd4f342d17e528ecf4950140e087aadfaf4c465f87cd92d3ce18a06f1654622d"
+      }
+    ],
+    "entries": [
+      {
+        "word": "ALGORITHM",
+        "definition": "A precise sequence of rules for solving a problem",
+        "sense": "coverage-v2:machine-learning:algorithm",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-05855965-n"
+        ]
+      },
+      {
+        "word": "DATA",
+        "definition": "A collection of recorded facts or observations",
+        "sense": "coverage-v2:machine-learning:data",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-08479331-n"
+        ]
+      },
+      {
+        "word": "CLASSIFICATION",
+        "definition": "The act of assigning things to categories",
+        "sense": "coverage-v2:machine-learning:classification",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-01014654-n"
+        ]
+      },
+      {
+        "word": "REGRESSION",
+        "definition": "Statistical modelling of a response in relation to explanatory variables",
+        "sense": "coverage-v2:machine-learning:regression",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-06036794-n"
+        ]
+      },
+      {
+        "word": "MODEL",
+        "definition": "A simplified representation of a system or process",
+        "sense": "coverage-v2:machine-learning:model",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-05898856-n"
+        ]
+      },
+      {
+        "word": "FEATURE",
+        "definition": "An attribute used to describe an observation",
+        "sense": "coverage-v2:machine-learning:feature",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-05858316-n"
+        ]
+      },
+      {
+        "word": "CLUSTERING",
+        "definition": "The grouping of similar observations",
+        "sense": "coverage-v2:machine-learning:clustering",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-07976557-n"
+        ]
+      },
+      {
+        "word": "NEURALNETWORK",
+        "definition": "A computing model with connected units inspired by neurons",
+        "sense": "coverage-v2:machine-learning:neuralnetwork",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-06738216-n"
+        ]
+      },
+      {
+        "word": "PREDICTION",
+        "definition": "An estimate of an unknown or future outcome",
+        "sense": "coverage-v2:machine-learning:prediction",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-05783078-n"
+        ]
+      },
+      {
+        "word": "SAMPLE",
+        "definition": "A selection of observations from a population",
+        "sense": "coverage-v2:machine-learning:sample",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-06036061-n"
+        ]
+      },
+      {
+        "word": "PARAMETER",
+        "definition": "A numerical quantity characterising a statistical population",
+        "sense": "coverage-v2:machine-learning:parameter",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-05867861-n"
+        ]
+      },
+      {
+        "word": "ACCURACY",
+        "definition": "Closeness of a result to the correct or true value",
+        "sense": "coverage-v2:machine-learning:accuracy",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:oewn2024:oewn-04810156-n"
+        ]
+      },
+      {
+        "word": "OPTIMIZER",
+        "definition": "A procedure that adjusts model parameters to reduce error",
+        "sense": "coverage-v2:machine-learning:optimizer",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:authored-v2:optimizer"
+        ]
+      },
+      {
+        "word": "EMBEDDING",
+        "definition": "A representation that places related items near one another",
+        "sense": "coverage-v2:machine-learning:embedding",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:authored-v2:embedding"
+        ]
+      },
+      {
+        "word": "LATENT",
+        "definition": "Present but not directly observed in a model",
+        "sense": "coverage-v2:machine-learning:latent",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:authored-v2:latent"
+        ]
+      },
+      {
+        "word": "EPOCH",
+        "definition": "One complete pass through a training collection",
+        "sense": "coverage-v2:machine-learning:epoch",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:authored-v2:epoch"
+        ]
+      },
+      {
+        "word": "BATCH",
+        "definition": "A group of examples processed together",
+        "sense": "coverage-v2:machine-learning:batch",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:authored-v2:batch"
+        ]
+      },
+      {
+        "word": "GRADIENT",
+        "definition": "A direction of steepest increase in a function",
+        "sense": "coverage-v2:machine-learning:gradient",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:authored-v2:gradient"
+        ]
+      },
+      {
+        "word": "INFERENCE",
+        "definition": "The act of producing a model result from input",
+        "sense": "coverage-v2:machine-learning:inference",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:authored-v2:inference"
+        ]
+      },
+      {
+        "word": "TOKENIZER",
+        "definition": "A component that divides text into model units",
+        "sense": "coverage-v2:machine-learning:tokenizer",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:authored-v2:tokenizer"
+        ]
+      },
+      {
+        "word": "CALIBRATION",
+        "definition": "Adjustment of outputs so confidence matches observed frequency",
+        "sense": "coverage-v2:machine-learning:calibration",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:authored-v2:calibration"
+        ]
+      },
+      {
+        "word": "REGULARIZATION",
+        "definition": "A method that discourages overly complex model parameters",
+        "sense": "coverage-v2:machine-learning:regularization",
+        "path": [
+          "coverage-v2:machine-learning",
+          "editorial-topic-member:authored-v2:regularization"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "name": "Coverage topic packs v2 / machine learning",
+        "version": "coverage-packs-v2",
+        "sha256": "dd4f342d17e528ecf4950140e087aadfaf4c465f87cd92d3ce18a06f1654622d",
+        "url": "https://en-word.net/static/english-wordnet-2024.xml.gz",
+        "license": "This resource is derived from Princeton WordNet under the WordNet License\nand further developed under the Creative Commons Attribution 4.0 International License.\nYou may share and adapt this resource providing attribution is given to both\nPrinceton WordNet and the Open English Wordnet team.\n\nCreative Commons Attribution 4.0 International\n\n=======================================================================\n\nCreative Commons Corporation (\"Creative Commons\") is not a law firm and\ndoes not provide legal services or legal advice. Distribution of\nCreative Commons public licenses does not create a lawyer-client or\nother relationship. Creative Commons makes its licenses and related\ninformation available on an \"as-is\" basis. Creative Commons gives no\nwarranties regarding its licenses, any material licensed under their\nterms and conditions, or any related information. Creative Commons\ndisclaims all liability for damages resulting from their use to the\nfullest extent possible.\n\nUsing Creative Commons Public Licenses\n\nCreative Commons public licenses provide a standard set of terms and\nconditions that creators and other rights holders may use to share\noriginal works of authorship and other material subject to copyright\nand certain other rights specified in the public license below. The\nfollowing considerations are for informational purposes only, are not\nexhaustive, and do not form part of our licenses.\n\n     Considerations for licensors: Our public licenses are\n     intended for use by those authorized to give the public\n     permission to use material in ways otherwise restricted by\n     copyright and certain other rights. Our licenses are\n     irrevocable. Licensors should read and understand the terms\n     and conditions of the license they choose before applying it.\n     Licensors should also secure all rights necessary before\n     applying our licenses so that the public can reuse the\n     material as expected. Licensors should clearly mark any\n     material not subject to the license. This includes other CC-\n     licensed material, or material used under an exception or\n     limitation to copyright. More considerations for licensors:\n\twiki.creativecommons.org/Considerations_for_licensors\n\n     Considerations for the public: By using one of our public\n     licenses, a licensor grants the public permission to use the\n     licensed material under specified terms and conditions. If\n     the licensor's permission is not necessary for any reason--for\n     example, because of any applicable exception or limitation to\n     copyright--then that use is not regulated by the license. Our\n     licenses grant only permissions under copyright and certain\n     other rights that a licensor has authority to grant. Use of\n     the licensed material may still be restricted for other\n     reasons, including because others have copyright or other\n     rights in the material. A licensor may make special requests,\n     such as asking that all changes be marked or described.\n     Although not required by our licenses, you are encouraged to\n     respect those requests where reasonable. More_considerations\n     for the public:\n\twiki.creativecommons.org/Considerations_for_licensees\n\n=======================================================================\n\nCreative Commons Attribution 4.0 International Public License\n\nBy exercising the Licensed Rights (defined below), You accept and agree\nto be bound by the terms and conditions of this Creative Commons\nAttribution 4.0 International Public License (\"Public License\"). To the\nextent this Public License may be interpreted as a contract, You are\ngranted the Licensed Rights in consideration of Your acceptance of\nthese terms and conditions, and the Licensor grants You such rights in\nconsideration of benefits the Licensor receives from making the\nLicensed Material available under these terms and conditions.\n\n\nSection 1 -- Definitions.\n\n  a. Adapted Material means material subject to Copyright and Similar\n     Rights that is derived from or based upon the Licensed Material\n     and in which the Licensed Material is translated, altered,\n     arranged, transformed, or otherwise modified in a manner requiring\n     permission under the Copyright and Similar Rights held by the\n     Licensor. For purposes of this Public License, where the Licensed\n     Material is a musical work, performance, or sound recording,\n     Adapted Material is always produced where the Licensed Material is\n     synched in timed relation with a moving image.\n\n  b. Adapter's License means the license You apply to Your Copyright\n     and Similar Rights in Your contributions to Adapted Material in\n     accordance with the terms and conditions of this Public License.\n\n  c. Copyright and Similar Rights means copyright and/or similar rights\n     closely related to copyright including, without limitation,\n     performance, broadcast, sound recording, and Sui Generis Database\n     Rights, without regard to how the rights are labeled or\n     categorized. For purposes of this Public License, the rights\n     specified in Section 2(b)(1)-(2) are not Copyright and Similar\n     Rights.\n\n  d. Effective Technological Measures means those measures that, in the\n     absence of proper authority, may not be circumvented under laws\n     fulfilling obligations under Article 11 of the WIPO Copyright\n     Treaty adopted on December 20, 1996, and/or similar international\n     agreements.\n\n  e. Exceptions and Limitations means fair use, fair dealing, and/or\n     any other exception or limitation to Copyright and Similar Rights\n     that applies to Your use of the Licensed Material.\n\n  f. Licensed Material means the artistic or literary work, database,\n     or other material to which the Licensor applied this Public\n     License.\n\n  g. Licensed Rights means the rights granted to You subject to the\n     terms and conditions of this Public License, which are limited to\n     all Copyright and Similar Rights that apply to Your use of the\n     Licensed Material and that the Licensor has authority to license.\n\n  h. Licensor means the individual(s) or entity(ies) granting rights\n     under this Public License.\n\n  i. Share means to provide material to the public by any means or\n     process that requires permission under the Licensed Rights, such\n     as reproduction, public display, public performance, distribution,\n     dissemination, communication, or importation, and to make material\n     available to the public including in ways that members of the\n     public may access the material from a place and at a time\n     individually chosen by them.\n\n  j. Sui Generis Database Rights means rights other than copyright\n     resulting from Directive 96/9/EC of the European Parliament and of\n     the Council of 11 March 1996 on the legal protection of databases,\n     as amended and/or succeeded, as well as other essentially\n     equivalent rights anywhere in the world.\n\n  k. You means the individual or entity exercising the Licensed Rights\n     under this Public License. Your has a corresponding meaning.\n\n\nSection 2 -- Scope.\n\n  a. License grant.\n\n       1. Subject to the terms and conditions of this Public License,\n          the Licensor hereby grants You a worldwide, royalty-free,\n          non-sublicensable, non-exclusive, irrevocable license to\n          exercise the Licensed Rights in the Licensed Material to:\n\n            a. reproduce and Share the Licensed Material, in whole or\n               in part; and\n\n            b. produce, reproduce, and Share Adapted Material.\n\n       2. Exceptions and Limitations. For the avoidance of doubt, where\n          Exceptions and Limitations apply to Your use, this Public\n          License does not apply, and You do not need to comply with\n          its terms and conditions.\n\n       3. Term. The term of this Public License is specified in Section\n          6(a).\n\n       4. Media and formats; technical modifications allowed. The\n          Licensor authorizes You to exercise the Licensed Rights in\n          all media and formats whether now known or hereafter created,\n          and to make technical modifications necessary to do so. The\n          Licensor waives and/or agrees not to assert any right or\n          authority to forbid You from making technical modifications\n          necessary to exercise the Licensed Rights, including\n          technical modifications necessary to circumvent Effective\n          Technological Measures. For purposes of this Public License,\n          simply making modifications authorized by this Section 2(a)\n          (4) never produces Adapted Material.\n\n       5. Downstream recipients.\n\n            a. Offer from the Licensor -- Licensed Material. Every\n               recipient of the Licensed Material automatically\n               receives an offer from the Licensor to exercise the\n               Licensed Rights under the terms and conditions of this\n               Public License.\n\n            b. No downstream restrictions. You may not offer or impose\n               any additional or different terms or conditions on, or\n               apply any Effective Technological Measures to, the\n               Licensed Material if doing so restricts exercise of the\n               Licensed Rights by any recipient of the Licensed\n               Material.\n\n       6. No endorsement. Nothing in this Public License constitutes or\n          may be construed as permission to assert or imply that You\n          are, or that Your use of the Licensed Material is, connected\n          with, or sponsored, endorsed, or granted official status by,\n          the Licensor or others designated to receive attribution as\n          provided in Section 3(a)(1)(A)(i).\n\n  b. Other rights.\n\n       1. Moral rights, such as the right of integrity, are not\n          licensed under this Public License, nor are publicity,\n          privacy, and/or other similar personality rights; however, to\n          the extent possible, the Licensor waives and/or agrees not to\n          assert any such rights held by the Licensor to the limited\n          extent necessary to allow You to exercise the Licensed\n          Rights, but not otherwise.\n\n       2. Patent and trademark rights are not licensed under this\n          Public License.\n\n       3. To the extent possible, the Licensor waives any right to\n          collect royalties from You for the exercise of the Licensed\n          Rights, whether directly or through a collecting society\n          under any voluntary or waivable statutory or compulsory\n          licensing scheme. In all other cases the Licensor expressly\n          reserves any right to collect such royalties.\n\n\nSection 3 -- License Conditions.\n\nYour exercise of the Licensed Rights is expressly made subject to the\nfollowing conditions.\n\n  a. Attribution.\n\n       1. If You Share the Licensed Material (including in modified\n          form), You must:\n\n            a. retain the following if it is supplied by the Licensor\n               with the Licensed Material:\n\n                 i. identification of the creator(s) of the Licensed\n                    Material and any others designated to receive\n                    attribution, in any reasonable manner requested by\n                    the Licensor (including by pseudonym if\n                    designated);\n\n                ii. a copyright notice;\n\n               iii. a notice that refers to this Public License;\n\n                iv. a notice that refers to the disclaimer of\n                    warranties;\n\n                 v. a URI or hyperlink to the Licensed Material to the\n                    extent reasonably practicable;\n\n            b. indicate if You modified the Licensed Material and\n               retain an indication of any previous modifications; and\n\n            c. indicate the Licensed Material is licensed under this\n               Public License, and include the text of, or the URI or\n               hyperlink to, this Public License.\n\n       2. You may satisfy the conditions in Section 3(a)(1) in any\n          reasonable manner based on the medium, means, and context in\n          which You Share the Licensed Material. For example, it may be\n          reasonable to satisfy the conditions by providing a URI or\n          hyperlink to a resource that includes the required\n          information.\n\n       3. If requested by the Licensor, You must remove any of the\n          information required by Section 3(a)(1)(A) to the extent\n          reasonably practicable.\n\n       4. If You Share Adapted Material You produce, the Adapter's\n          License You apply must not prevent recipients of the Adapted\n          Material from complying with this Public License.\n\n\nSection 4 -- Sui Generis Database Rights.\n\nWhere the Licensed Rights include Sui Generis Database Rights that\napply to Your use of the Licensed Material:\n\n  a. for the avoidance of doubt, Section 2(a)(1) grants You the right\n     to extract, reuse, reproduce, and Share all or a substantial\n     portion of the contents of the database;\n\n  b. if You include all or a substantial portion of the database\n     contents in a database in which You have Sui Generis Database\n     Rights, then the database in which You have Sui Generis Database\n     Rights (but not its individual contents) is Adapted Material; and\n\n  c. You must comply with the conditions in Section 3(a) if You Share\n     all or a substantial portion of the contents of the database.\n\nFor the avoidance of doubt, this Section 4 supplements and does not\nreplace Your obligations under this Public License where the Licensed\nRights include other Copyright and Similar Rights.\n\n\nSection 5 -- Disclaimer of Warranties and Limitation of Liability.\n\n  a. UNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE\n     EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS\n     AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF\n     ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS,\n     IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION,\n     WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR\n     PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS,\n     ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT\n     KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT\n     ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.\n\n  b. TO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE\n     TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION,\n     NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT,\n     INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES,\n     COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR\n     USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN\n     ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR\n     DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR\n     IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.\n\n  c. The disclaimer of warranties and limitation of liability provided\n     above shall be interpreted in a manner that, to the extent\n     possible, most closely approximates an absolute disclaimer and\n     waiver of all liability.\n\n\nSection 6 -- Term and Termination.\n\n  a. This Public License applies for the term of the Copyright and\n     Similar Rights licensed here. However, if You fail to comply with\n     this Public License, then Your rights under this Public License\n     terminate automatically.\n\n  b. Where Your right to use the Licensed Material has terminated under\n     Section 6(a), it reinstates:\n\n       1. automatically as of the date the violation is cured, provided\n          it is cured within 30 days of Your discovery of the\n          violation; or\n\n       2. upon express reinstatement by the Licensor.\n\n     For the avoidance of doubt, this Section 6(b) does not affect any\n     right the Licensor may have to seek remedies for Your violations\n     of this Public License.\n\n  c. For the avoidance of doubt, the Licensor may also offer the\n     Licensed Material under separate terms or conditions or stop\n     distributing the Licensed Material at any time; however, doing so\n     will not terminate this Public License.\n\n  d. Sections 1, 5, 6, 7, and 8 survive termination of this Public\n     License.\n\n\nSection 7 -- Other Terms and Conditions.\n\n  a. The Licensor shall not be bound by any additional or different\n     terms or conditions communicated by You unless expressly agreed.\n\n  b. Any arrangements, understandings, or agreements regarding the\n     Licensed Material not stated herein are separate from and\n     independent of the terms and conditions of this Public License.\n\n\nSection 8 -- Interpretation.\n\n  a. For the avoidance of doubt, this Public License does not, and\n     shall not be interpreted to, reduce, limit, restrict, or impose\n     conditions on any use of the Licensed Material that could lawfully\n     be made without permission under this Public License.\n\n  b. To the extent possible, if any provision of this Public License is\n     deemed unenforceable, it shall be automatically reformed to the\n     minimum extent necessary to make it enforceable. If the provision\n     cannot be reformed, it shall be severed from this Public License\n     without affecting the enforceability of the remaining terms and\n     conditions.\n\n  c. No term or condition of this Public License will be waived and no\n     failure to comply consented to unless expressly agreed to by the\n     Licensor.\n\n  d. Nothing in this Public License constitutes or may be interpreted\n     as a limitation upon, or waiver of, any privileges and immunities\n     that apply to the Licensor or You, including from the legal\n     processes of any jurisdiction or authority.\n\n\n=======================================================================\n\nCreative Commons is not a party to its public\nlicenses. Notwithstanding, Creative Commons may elect to apply one of\nits public licenses to material it publishes and in those instances\nwill be considered the “Licensor.” The text of the Creative Commons\npublic licenses is dedicated to the public domain under the CC0 Public\nDomain Dedication. Except for the limited purpose of indicating that\nmaterial is shared under a Creative Commons public license or as\notherwise permitted by the Creative Commons policies published at\ncreativecommons.org/policies, Creative Commons does not authorize the\nuse of the trademark \"Creative Commons\" or any other trademark or logo\nof Creative Commons without its prior written consent including,\nwithout limitation, in connection with any unauthorized modifications\nto any of its public licenses or any other arrangements,\nunderstandings, or agreements concerning use of licensed material. For\nthe avoidance of doubt, this paragraph does not form part of the\npublic licenses.\n\nCreative Commons may be contacted at creativecommons.org.\n\n\n\nWordNet 3.0 license\n-------------------\n\nWordNet Release 3.0 This software and database is being provided to you, the LICENSEE, by Princeton University under the following license. By obtaining, using and/or copying this software and database, you agree that you have read, understood, and will comply with these terms and conditions.: Permission to use, copy, modify and distribute this software and database and its documentation for any purpose and without fee or royalty is hereby granted, provided that you agree to comply with the following copyright notice and statements, including the disclaimer, and that the same appear on ALL copies of the software, database and documentation, including modifications that you make for internal use or for distribution. WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved. THIS SOFTWARE AND DATABASE IS PROVIDED \"AS IS\" AND PRINCETON UNIVERSITY MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED. BY WAY OF EXAMPLE, BUT NOT LIMITATION, PRINCETON UNIVERSITY MAKES NO REPRESENTATIONS OR WARRANTIES OF MERCHANT- ABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE, DATABASE OR DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS. The name of Princeton University or Princeton may not be used in advertising or publicity pertaining to distribution of the software and/or database. Title to copyright in this software, database and any associated documentation shall at all times remain with Princeton University and LICENSEE agrees to preserve same.\n",
+        "attribution": "Princeton WordNet and the Open English Wordnet team",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+        "license_sha256": "5d02a553699c4841d8b33cc5a1313cff1f96264e36e9dc98be829dfc94a6cc73",
+        "license_source_url": "https://raw.githubusercontent.com/globalwordnet/english-wordnet/2024-edition/LICENSE.md",
+        "transformations": "Selected authored lexical meanings; source-qualified pack IDs; editorial topic memberships; spaces and hyphens removed in answers",
+        "snapshot_sha256": "f6bffdfde85e40dfcc6748fdf348f624022174cbe2fff631735bcbafc2931dad",
+        "upstream_sha256": "e1f633b0a93758cae34ea27c44c4dad310a8af2467b155f99dd6673af697e875",
+        "review": {
+          "date": "2026-09-30",
+          "reviewer": "Repository editorial review",
+          "human_review": false,
+          "scope": "Sense selection topic relevance clue wording answer leakage length",
+          "limits": "Authored static extension; not independent subject expert review or player study"
+        },
+        "entry_sources": [
+          {
+            "word": "ALGORITHM",
+            "lemma": "algorithm",
+            "definition": "A precise sequence of rules for solving a problem",
+            "source_sense": "oewn2024:oewn-05855965-n",
+            "source_definition": "a precise rule (or set of rules) specifying how to solve some problem"
+          },
+          {
+            "word": "DATA",
+            "lemma": "data",
+            "definition": "A collection of recorded facts or observations",
+            "source_sense": "oewn2024:oewn-08479331-n",
+            "source_definition": "a collection of facts from which conclusions may be drawn"
+          },
+          {
+            "word": "CLASSIFICATION",
+            "lemma": "classification",
+            "definition": "The act of assigning things to categories",
+            "source_sense": "oewn2024:oewn-01014654-n",
+            "source_definition": "the act of distributing things into classes or categories of the same type"
+          },
+          {
+            "word": "REGRESSION",
+            "lemma": "regression",
+            "definition": "Statistical modelling of a response in relation to explanatory variables",
+            "source_sense": "oewn2024:oewn-06036794-n",
+            "source_definition": "the relation between selected values of x and observed values of y (from which the most probable value of y can be predicted for any value of x)"
+          },
+          {
+            "word": "MODEL",
+            "lemma": "model",
+            "definition": "A simplified representation of a system or process",
+            "source_sense": "oewn2024:oewn-05898856-n",
+            "source_definition": "a hypothetical description of a complex entity or process"
+          },
+          {
+            "word": "FEATURE",
+            "lemma": "feature",
+            "definition": "An attribute used to describe an observation",
+            "source_sense": "oewn2024:oewn-05858316-n",
+            "source_definition": "a prominent attribute or aspect of something"
+          },
+          {
+            "word": "CLUSTERING",
+            "lemma": "clustering",
+            "definition": "The grouping of similar observations",
+            "source_sense": "oewn2024:oewn-07976557-n",
+            "source_definition": "a grouping of a number of similar things"
+          },
+          {
+            "word": "NEURALNETWORK",
+            "lemma": "neural network",
+            "definition": "A computing model with connected units inspired by neurons",
+            "source_sense": "oewn2024:oewn-06738216-n",
+            "source_definition": "computer architecture in which processors are connected in a manner suggestive of connections between neurons; can learn by trial and error"
+          },
+          {
+            "word": "PREDICTION",
+            "lemma": "prediction",
+            "definition": "An estimate of an unknown or future outcome",
+            "source_sense": "oewn2024:oewn-05783078-n",
+            "source_definition": "the act of predicting (as by reasoning about the future)"
+          },
+          {
+            "word": "SAMPLE",
+            "lemma": "sample",
+            "definition": "A selection of observations from a population",
+            "source_sense": "oewn2024:oewn-06036061-n",
+            "source_definition": "items selected at random from a population and used to test hypotheses about the population"
+          },
+          {
+            "word": "PARAMETER",
+            "lemma": "parameter",
+            "definition": "A numerical quantity characterising a statistical population",
+            "source_sense": "oewn2024:oewn-05867861-n",
+            "source_definition": "a quantity (such as the mean or variance) that characterizes a statistical population and that can be estimated by calculations from sample data"
+          },
+          {
+            "word": "ACCURACY",
+            "lemma": "accuracy",
+            "definition": "Closeness of a result to the correct or true value",
+            "source_sense": "oewn2024:oewn-04810156-n",
+            "source_definition": "the quality of being near to the true value"
+          },
+          {
+            "word": "OPTIMIZER",
+            "lemma": "optimizer",
+            "definition": "A procedure that adjusts model parameters to reduce error",
+            "source_sense": "authored-v2:optimizer",
+            "source_definition": "A procedure that adjusts model parameters to reduce error"
+          },
+          {
+            "word": "EMBEDDING",
+            "lemma": "embedding",
+            "definition": "A representation that places related items near one another",
+            "source_sense": "authored-v2:embedding",
+            "source_definition": "A representation that places related items near one another"
+          },
+          {
+            "word": "LATENT",
+            "lemma": "latent",
+            "definition": "Present but not directly observed in a model",
+            "source_sense": "authored-v2:latent",
+            "source_definition": "Present but not directly observed in a model"
+          },
+          {
+            "word": "EPOCH",
+            "lemma": "epoch",
+            "definition": "One complete pass through a training collection",
+            "source_sense": "authored-v2:epoch",
+            "source_definition": "One complete pass through a training collection"
+          },
+          {
+            "word": "BATCH",
+            "lemma": "batch",
+            "definition": "A group of examples processed together",
+            "source_sense": "authored-v2:batch",
+            "source_definition": "A group of examples processed together"
+          },
+          {
+            "word": "GRADIENT",
+            "lemma": "gradient",
+            "definition": "A direction of steepest increase in a function",
+            "source_sense": "authored-v2:gradient",
+            "source_definition": "A direction of steepest increase in a function"
+          },
+          {
+            "word": "INFERENCE",
+            "lemma": "inference",
+            "definition": "The act of producing a model result from input",
+            "source_sense": "authored-v2:inference",
+            "source_definition": "The act of producing a model result from input"
+          },
+          {
+            "word": "TOKENIZER",
+            "lemma": "tokenizer",
+            "definition": "A component that divides text into model units",
+            "source_sense": "authored-v2:tokenizer",
+            "source_definition": "A component that divides text into model units"
+          },
+          {
+            "word": "CALIBRATION",
+            "lemma": "calibration",
+            "definition": "Adjustment of outputs so confidence matches observed frequency",
+            "source_sense": "authored-v2:calibration",
+            "source_definition": "Adjustment of outputs so confidence matches observed frequency"
+          },
+          {
+            "word": "REGULARIZATION",
+            "lemma": "regularization",
+            "definition": "A method that discourages overly complex model parameters",
+            "source_sense": "authored-v2:regularization",
+            "source_definition": "A method that discourages overly complex model parameters"
+          }
+        ]
+      }
+    ],
+    "source": {
+      "name": "Coverage topic packs v2 / machine learning",
+      "sha256": "52c98df1bebca4e62724d4960214e9a069bedec53b07a218caa27de7214d2d67",
+      "license": "This resource is derived from Princeton WordNet under the WordNet License\nand further developed under the Creative Commons Attribution 4.0 International License.\nYou may share and adapt this resource providing attribution is given to both\nPrinceton WordNet and the Open English Wordnet team.\n\nCreative Commons Attribution 4.0 International\n\n=======================================================================\n\nCreative Commons Corporation (\"Creative Commons\") is not a law firm and\ndoes not provide legal services or legal advice. Distribution of\nCreative Commons public licenses does not create a lawyer-client or\nother relationship. Creative Commons makes its licenses and related\ninformation available on an \"as-is\" basis. Creative Commons gives no\nwarranties regarding its licenses, any material licensed under their\nterms and conditions, or any related information. Creative Commons\ndisclaims all liability for damages resulting from their use to the\nfullest extent possible.\n\nUsing Creative Commons Public Licenses\n\nCreative Commons public licenses provide a standard set of terms and\nconditions that creators and other rights holders may use to share\noriginal works of authorship and other material subject to copyright\nand certain other rights specified in the public license below. The\nfollowing considerations are for informational purposes only, are not\nexhaustive, and do not form part of our licenses.\n\n     Considerations for licensors: Our public licenses are\n     intended for use by those authorized to give the public\n     permission to use material in ways otherwise restricted by\n     copyright and certain other rights. Our licenses are\n     irrevocable. Licensors should read and understand the terms\n     and conditions of the license they choose before applying it.\n     Licensors should also secure all rights necessary before\n     applying our licenses so that the public can reuse the\n     material as expected. Licensors should clearly mark any\n     material not subject to the license. This includes other CC-\n     licensed material, or material used under an exception or\n     limitation to copyright. More considerations for licensors:\n\twiki.creativecommons.org/Considerations_for_licensors\n\n     Considerations for the public: By using one of our public\n     licenses, a licensor grants the public permission to use the\n     licensed material under specified terms and conditions. If\n     the licensor's permission is not necessary for any reason--for\n     example, because of any applicable exception or limitation to\n     copyright--then that use is not regulated by the license. Our\n     licenses grant only permissions under copyright and certain\n     other rights that a licensor has authority to grant. Use of\n     the licensed material may still be restricted for other\n     reasons, including because others have copyright or other\n     rights in the material. A licensor may make special requests,\n     such as asking that all changes be marked or described.\n     Although not required by our licenses, you are encouraged to\n     respect those requests where reasonable. More_considerations\n     for the public:\n\twiki.creativecommons.org/Considerations_for_licensees\n\n=======================================================================\n\nCreative Commons Attribution 4.0 International Public License\n\nBy exercising the Licensed Rights (defined below), You accept and agree\nto be bound by the terms and conditions of this Creative Commons\nAttribution 4.0 International Public License (\"Public License\"). To the\nextent this Public License may be interpreted as a contract, You are\ngranted the Licensed Rights in consideration of Your acceptance of\nthese terms and conditions, and the Licensor grants You such rights in\nconsideration of benefits the Licensor receives from making the\nLicensed Material available under these terms and conditions.\n\n\nSection 1 -- Definitions.\n\n  a. Adapted Material means material subject to Copyright and Similar\n     Rights that is derived from or based upon the Licensed Material\n     and in which the Licensed Material is translated, altered,\n     arranged, transformed, or otherwise modified in a manner requiring\n     permission under the Copyright and Similar Rights held by the\n     Licensor. For purposes of this Public License, where the Licensed\n     Material is a musical work, performance, or sound recording,\n     Adapted Material is always produced where the Licensed Material is\n     synched in timed relation with a moving image.\n\n  b. Adapter's License means the license You apply to Your Copyright\n     and Similar Rights in Your contributions to Adapted Material in\n     accordance with the terms and conditions of this Public License.\n\n  c. Copyright and Similar Rights means copyright and/or similar rights\n     closely related to copyright including, without limitation,\n     performance, broadcast, sound recording, and Sui Generis Database\n     Rights, without regard to how the rights are labeled or\n     categorized. For purposes of this Public License, the rights\n     specified in Section 2(b)(1)-(2) are not Copyright and Similar\n     Rights.\n\n  d. Effective Technological Measures means those measures that, in the\n     absence of proper authority, may not be circumvented under laws\n     fulfilling obligations under Article 11 of the WIPO Copyright\n     Treaty adopted on December 20, 1996, and/or similar international\n     agreements.\n\n  e. Exceptions and Limitations means fair use, fair dealing, and/or\n     any other exception or limitation to Copyright and Similar Rights\n     that applies to Your use of the Licensed Material.\n\n  f. Licensed Material means the artistic or literary work, database,\n     or other material to which the Licensor applied this Public\n     License.\n\n  g. Licensed Rights means the rights granted to You subject to the\n     terms and conditions of this Public License, which are limited to\n     all Copyright and Similar Rights that apply to Your use of the\n     Licensed Material and that the Licensor has authority to license.\n\n  h. Licensor means the individual(s) or entity(ies) granting rights\n     under this Public License.\n\n  i. Share means to provide material to the public by any means or\n     process that requires permission under the Licensed Rights, such\n     as reproduction, public display, public performance, distribution,\n     dissemination, communication, or importation, and to make material\n     available to the public including in ways that members of the\n     public may access the material from a place and at a time\n     individually chosen by them.\n\n  j. Sui Generis Database Rights means rights other than copyright\n     resulting from Directive 96/9/EC of the European Parliament and of\n     the Council of 11 March 1996 on the legal protection of databases,\n     as amended and/or succeeded, as well as other essentially\n     equivalent rights anywhere in the world.\n\n  k. You means the individual or entity exercising the Licensed Rights\n     under this Public License. Your has a corresponding meaning.\n\n\nSection 2 -- Scope.\n\n  a. License grant.\n\n       1. Subject to the terms and conditions of this Public License,\n          the Licensor hereby grants You a worldwide, royalty-free,\n          non-sublicensable, non-exclusive, irrevocable license to\n          exercise the Licensed Rights in the Licensed Material to:\n\n            a. reproduce and Share the Licensed Material, in whole or\n               in part; and\n\n            b. produce, reproduce, and Share Adapted Material.\n\n       2. Exceptions and Limitations. For the avoidance of doubt, where\n          Exceptions and Limitations apply to Your use, this Public\n          License does not apply, and You do not need to comply with\n          its terms and conditions.\n\n       3. Term. The term of this Public License is specified in Section\n          6(a).\n\n       4. Media and formats; technical modifications allowed. The\n          Licensor authorizes You to exercise the Licensed Rights in\n          all media and formats whether now known or hereafter created,\n          and to make technical modifications necessary to do so. The\n          Licensor waives and/or agrees not to assert any right or\n          authority to forbid You from making technical modifications\n          necessary to exercise the Licensed Rights, including\n          technical modifications necessary to circumvent Effective\n          Technological Measures. For purposes of this Public License,\n          simply making modifications authorized by this Section 2(a)\n          (4) never produces Adapted Material.\n\n       5. Downstream recipients.\n\n            a. Offer from the Licensor -- Licensed Material. Every\n               recipient of the Licensed Material automatically\n               receives an offer from the Licensor to exercise the\n               Licensed Rights under the terms and conditions of this\n               Public License.\n\n            b. No downstream restrictions. You may not offer or impose\n               any additional or different terms or conditions on, or\n               apply any Effective Technological Measures to, the\n               Licensed Material if doing so restricts exercise of the\n               Licensed Rights by any recipient of the Licensed\n               Material.\n\n       6. No endorsement. Nothing in this Public License constitutes or\n          may be construed as permission to assert or imply that You\n          are, or that Your use of the Licensed Material is, connected\n          with, or sponsored, endorsed, or granted official status by,\n          the Licensor or others designated to receive attribution as\n          provided in Section 3(a)(1)(A)(i).\n\n  b. Other rights.\n\n       1. Moral rights, such as the right of integrity, are not\n          licensed under this Public License, nor are publicity,\n          privacy, and/or other similar personality rights; however, to\n          the extent possible, the Licensor waives and/or agrees not to\n          assert any such rights held by the Licensor to the limited\n          extent necessary to allow You to exercise the Licensed\n          Rights, but not otherwise.\n\n       2. Patent and trademark rights are not licensed under this\n          Public License.\n\n       3. To the extent possible, the Licensor waives any right to\n          collect royalties from You for the exercise of the Licensed\n          Rights, whether directly or through a collecting society\n          under any voluntary or waivable statutory or compulsory\n          licensing scheme. In all other cases the Licensor expressly\n          reserves any right to collect such royalties.\n\n\nSection 3 -- License Conditions.\n\nYour exercise of the Licensed Rights is expressly made subject to the\nfollowing conditions.\n\n  a. Attribution.\n\n       1. If You Share the Licensed Material (including in modified\n          form), You must:\n\n            a. retain the following if it is supplied by the Licensor\n               with the Licensed Material:\n\n                 i. identification of the creator(s) of the Licensed\n                    Material and any others designated to receive\n                    attribution, in any reasonable manner requested by\n                    the Licensor (including by pseudonym if\n                    designated);\n\n                ii. a copyright notice;\n\n               iii. a notice that refers to this Public License;\n\n                iv. a notice that refers to the disclaimer of\n                    warranties;\n\n                 v. a URI or hyperlink to the Licensed Material to the\n                    extent reasonably practicable;\n\n            b. indicate if You modified the Licensed Material and\n               retain an indication of any previous modifications; and\n\n            c. indicate the Licensed Material is licensed under this\n               Public License, and include the text of, or the URI or\n               hyperlink to, this Public License.\n\n       2. You may satisfy the conditions in Section 3(a)(1) in any\n          reasonable manner based on the medium, means, and context in\n          which You Share the Licensed Material. For example, it may be\n          reasonable to satisfy the conditions by providing a URI or\n          hyperlink to a resource that includes the required\n          information.\n\n       3. If requested by the Licensor, You must remove any of the\n          information required by Section 3(a)(1)(A) to the extent\n          reasonably practicable.\n\n       4. If You Share Adapted Material You produce, the Adapter's\n          License You apply must not prevent recipients of the Adapted\n          Material from complying with this Public License.\n\n\nSection 4 -- Sui Generis Database Rights.\n\nWhere the Licensed Rights include Sui Generis Database Rights that\napply to Your use of the Licensed Material:\n\n  a. for the avoidance of doubt, Section 2(a)(1) grants You the right\n     to extract, reuse, reproduce, and Share all or a substantial\n     portion of the contents of the database;\n\n  b. if You include all or a substantial portion of the database\n     contents in a database in which You have Sui Generis Database\n     Rights, then the database in which You have Sui Generis Database\n     Rights (but not its individual contents) is Adapted Material; and\n\n  c. You must comply with the conditions in Section 3(a) if You Share\n     all or a substantial portion of the contents of the database.\n\nFor the avoidance of doubt, this Section 4 supplements and does not\nreplace Your obligations under this Public License where the Licensed\nRights include other Copyright and Similar Rights.\n\n\nSection 5 -- Disclaimer of Warranties and Limitation of Liability.\n\n  a. UNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE\n     EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS\n     AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF\n     ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS,\n     IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION,\n     WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR\n     PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS,\n     ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT\n     KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT\n     ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.\n\n  b. TO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE\n     TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION,\n     NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT,\n     INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES,\n     COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR\n     USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN\n     ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR\n     DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR\n     IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.\n\n  c. The disclaimer of warranties and limitation of liability provided\n     above shall be interpreted in a manner that, to the extent\n     possible, most closely approximates an absolute disclaimer and\n     waiver of all liability.\n\n\nSection 6 -- Term and Termination.\n\n  a. This Public License applies for the term of the Copyright and\n     Similar Rights licensed here. However, if You fail to comply with\n     this Public License, then Your rights under this Public License\n     terminate automatically.\n\n  b. Where Your right to use the Licensed Material has terminated under\n     Section 6(a), it reinstates:\n\n       1. automatically as of the date the violation is cured, provided\n          it is cured within 30 days of Your discovery of the\n          violation; or\n\n       2. upon express reinstatement by the Licensor.\n\n     For the avoidance of doubt, this Section 6(b) does not affect any\n     right the Licensor may have to seek remedies for Your violations\n     of this Public License.\n\n  c. For the avoidance of doubt, the Licensor may also offer the\n     Licensed Material under separate terms or conditions or stop\n     distributing the Licensed Material at any time; however, doing so\n     will not terminate this Public License.\n\n  d. Sections 1, 5, 6, 7, and 8 survive termination of this Public\n     License.\n\n\nSection 7 -- Other Terms and Conditions.\n\n  a. The Licensor shall not be bound by any additional or different\n     terms or conditions communicated by You unless expressly agreed.\n\n  b. Any arrangements, understandings, or agreements regarding the\n     Licensed Material not stated herein are separate from and\n     independent of the terms and conditions of this Public License.\n\n\nSection 8 -- Interpretation.\n\n  a. For the avoidance of doubt, this Public License does not, and\n     shall not be interpreted to, reduce, limit, restrict, or impose\n     conditions on any use of the Licensed Material that could lawfully\n     be made without permission under this Public License.\n\n  b. To the extent possible, if any provision of this Public License is\n     deemed unenforceable, it shall be automatically reformed to the\n     minimum extent necessary to make it enforceable. If the provision\n     cannot be reformed, it shall be severed from this Public License\n     without affecting the enforceability of the remaining terms and\n     conditions.\n\n  c. No term or condition of this Public License will be waived and no\n     failure to comply consented to unless expressly agreed to by the\n     Licensor.\n\n  d. Nothing in this Public License constitutes or may be interpreted\n     as a limitation upon, or waiver of, any privileges and immunities\n     that apply to the Licensor or You, including from the legal\n     processes of any jurisdiction or authority.\n\n\n=======================================================================\n\nCreative Commons is not a party to its public\nlicenses. Notwithstanding, Creative Commons may elect to apply one of\nits public licenses to material it publishes and in those instances\nwill be considered the “Licensor.” The text of the Creative Commons\npublic licenses is dedicated to the public domain under the CC0 Public\nDomain Dedication. Except for the limited purpose of indicating that\nmaterial is shared under a Creative Commons public license or as\notherwise permitted by the Creative Commons policies published at\ncreativecommons.org/policies, Creative Commons does not authorize the\nuse of the trademark \"Creative Commons\" or any other trademark or logo\nof Creative Commons without its prior written consent including,\nwithout limitation, in connection with any unauthorized modifications\nto any of its public licenses or any other arrangements,\nunderstandings, or agreements concerning use of licensed material. For\nthe avoidance of doubt, this paragraph does not form part of the\npublic licenses.\n\nCreative Commons may be contacted at creativecommons.org.\n\n\n\nWordNet 3.0 license\n-------------------\n\nWordNet Release 3.0 This software and database is being provided to you, the LICENSEE, by Princeton University under the following license. By obtaining, using and/or copying this software and database, you agree that you have read, understood, and will comply with these terms and conditions.: Permission to use, copy, modify and distribute this software and database and its documentation for any purpose and without fee or royalty is hereby granted, provided that you agree to comply with the following copyright notice and statements, including the disclaimer, and that the same appear on ALL copies of the software, database and documentation, including modifications that you make for internal use or for distribution. WordNet 3.0 Copyright 2006 by Princeton University. All rights reserved. THIS SOFTWARE AND DATABASE IS PROVIDED \"AS IS\" AND PRINCETON UNIVERSITY MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED. BY WAY OF EXAMPLE, BUT NOT LIMITATION, PRINCETON UNIVERSITY MAKES NO REPRESENTATIONS OR WARRANTIES OF MERCHANT- ABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE LICENSED SOFTWARE, DATABASE OR DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS. The name of Princeton University or Princeton may not be used in advertising or publicity pertaining to distribution of the software and/or database. Title to copyright in this software, database and any associated documentation shall at all times remain with Princeton University and LICENSEE agrees to preserve same.\n"
+    }
+  },
+  "version": 5,
+  "generator": "brainbloom-topics-v5",
+  "request": {
+    "topic": "dictionary",
+    "qtype": "multiple-choice",
+    "difficulty": "medium",
+    "count": 1,
+    "seed": 0,
+    "category": "logic",
+    "subject": "machine learning",
+    "sense": "",
+    "variation": "auto",
+    "search_effort": "balanced",
+    "topic_mode": "combined",
+    "meanings": {
+      "machine learning": "coverage-v2:machine-learning"
+    },
+    "instructions": "",
+    "grid": null,
+    "crossword_size": null,
+    "engine_revision": 3
+  },
+  "items": [
+    {
+      "type": "multiple-choice",
+      "category": "logic",
+      "difficulty": "medium",
+      "title": "Machine Learning · multiple-choice",
+      "choices": [
+        "CLUSTERING",
+        "ALGORITHM",
+        "PREDICTION",
+        "PARAMETER"
+      ],
+      "lessonGroup": "Solve It",
+      "xpReward": 25,
+      "lessonContent": "Read the stated letter rule and the supplied word bank before solving.\nUse the dictionary clue as support, keeping the selected meaning in mind.\nCheck every letter and every position rather than relying on a guess.\nThe uniqueness check applies to the supplied words; definitions come from the cited source.\nShare this: explain which constraint ruled out the closest alternative.",
+      "question": "Topic: machine learning. For compound entries, spaces and hyphens are omitted.\nWord bank: CLUSTERING, PARAMETER, FEATURE, ALGORITHM, DATA, BATCH, REGULARIZATION, PREDICTION.\nSort the word bank alphabetically (A to Z). Which word is in position 6?",
+      "correctAnswer": "PARAMETER",
+      "correctExplanation": "PARAMETER is the only word in this bank satisfying the stated rule. Dictionary meaning: A numerical quantity characterising a statistical population.",
+      "incorrectExplanation": "Check the complete rule. PARAMETER is the only word in this bank satisfying the stated rule. Dictionary meaning: A numerical quantity characterising a statistical population."
+    }
+  ],
+  "proofs": [
+    {
+      "dictionary_sha256": "fb20a04ef082ea1996ba5a6fd4dc7bc1b33fd5fb41aaebe483d130fde87a8fba",
+      "selected_sense": "combined:e714fefcda7ad2552840e441b179a45cdfac9f96e1cee5ab486811cabaf8795b",
+      "source": "Coverage topic packs v2 / machine learning",
+      "scope": "letter constraints within the supplied word bank; dictionary meanings are sourced, not formally proven",
+      "method": "dictionary-and-independent-finite-constraint-checks",
+      "variation": "word-order",
+      "word_bank": [
+        "CLUSTERING",
+        "PARAMETER",
+        "FEATURE",
+        "ALGORITHM",
+        "DATA",
+        "BATCH",
+        "REGULARIZATION",
+        "PREDICTION"
+      ],
+      "constraints": {
+        "position": 6
+      },
+      "survivors": [
+        "PARAMETER"
+      ],
+      "independent_survivors": [
+        "PARAMETER"
+      ],
+      "answer_sense": "coverage-v2:machine-learning:parameter",
+      "relationship_path": [
+        "coverage-v2:machine-learning",
+        "editorial-topic-member:oewn2024:oewn-05867861-n"
+      ],
+      "steps": [
+        "Sort the word bank alphabetically (A to Z). Which word is in position 6?",
+        "PARAMETER is the only word in this bank satisfying the stated rule. Dictionary meaning: A numerical quantity characterising a statistical population."
+      ],
+      "topic_coverage": [
+        {
+          "term": "machine learning",
+          "sense": "coverage-v2:machine-learning",
+          "used_words": [
+            "ALGORITHM",
+            "BATCH",
+            "CLUSTERING",
+            "DATA",
+            "FEATURE",
+            "PARAMETER",
+            "PREDICTION",
+            "REGULARIZATION"
+          ]
+        }
+      ],
+      "seed": 0,
+      "item_sha256": "5f0565df6672119d18fa45f55985ac8b178ff7a1b45781e9a4e7236b76c5ecd0",
+      "family": "dictionary",
+      "difficulty_measure": "Longer words, fewer revealed letters, more candidates or crossword entries",
+      "difficulty_scope": "structural heuristic; not calibrated on players"
+    }
+  ],
+  "rejected": [],
+  "intendedImport": {
+    "createdBy": "symbolic-generator",
+    "reviewStatus": "draft",
+    "published": false
+  },
+  "checks": {
+    "contract": "BrainBloom quiz and native crossword/Wonder fields",
+    "answer_correctness": "see each item's proof and scope",
+    "human_review": "required",
+    "platform_verifier": "not-run",
+    "duplicates": "lexical bank comparison; structural keys within reasoning batches; grid keys ignore labels, group order and left/right reflection"
+  },
+  "provenance": {
+    "learned_model_used": false,
+    "bank_items_compared": 0,
+    "bank_items_sha256": null,
+    "bank_compare_scope": "lexical question comparison",
+    "duplicate_candidates_skipped": 0,
+    "bank": null
+  },
+  "summary": {
+    "requested": 1,
+    "accepted": 1,
+    "rejected": 0,
+    "complete": true,
+    "published": false
+  }
+}

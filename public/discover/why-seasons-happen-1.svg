@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Earth leans as it travels</title><desc id="desc">The axis is tilted 23.5 degrees from the perpendicular to the orbital plane. Four positions around the orbit show axes pointing in the same direction.</desc>
+<defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#244258"/></pattern></defs>
+<rect width="1200" height="800" fill="#081522"/><rect width="1200" height="800" fill="url(#grid)" opacity=".4"/>
+<g font-family="Arial, sans-serif" fill="#edf6ff"><text x="70" y="92" font-size="46" font-weight="700">A tilted axis, a steady direction</text><text x="70" y="142" font-size="27" fill="#a9c3d8">One orbit changes which hemisphere leans towards the Sun.</text>
+<ellipse cx="470" cy="450" rx="310" ry="180" fill="none" stroke="#59788d" stroke-width="3" stroke-dasharray="10 12"/><circle cx="470" cy="450" r="57" fill="#fbbf24"/>
+<g fill="#155b83" stroke="#7dd3fc" stroke-width="3"><circle cx="160" cy="450" r="52"/><circle cx="780" cy="450" r="52"/><circle cx="470" cy="270" r="52"/><circle cx="470" cy="630" r="52"/></g>
+<path d="M128 524L192 376M748 524L812 376M438 344L502 196M438 704L502 556" stroke="#edf6ff" stroke-width="4"/>
+<text x="110" y="570" font-size="27" fill="#fbbf24">June</text><text x="690" y="570" font-size="27" fill="#7dd3fc">December</text>
+<circle cx="1010" cy="438" r="80" fill="#155b83" stroke="#7dd3fc" stroke-width="3"/><path d="M1010 260V595" stroke="#59788d" stroke-width="3" stroke-dasharray="9 9"/><path d="M950 576L1070 300" stroke="#edf6ff" stroke-width="5"/>
+<path d="M1010 312Q1035 312 1060 327" fill="none" stroke="#fbbf24" stroke-width="4"/><text x="1055" y="278" font-size="31" fill="#fbbf24">23.5°</text><text x="886" y="654" font-size="26">Tilt from upright</text><text x="70" y="753" font-size="27" fill="#a9c3d8">Axes drawn parallel; distances and sizes are schematic.</text></g></svg>

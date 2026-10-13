@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Forward motion supplies airflow</title><desc id="desc">Air flows from left to right over a wing with a small angle of attack. Thrust moves the aircraft the opposite way through the surrounding air.</desc>
+<defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#244258"/></pattern><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#7dd3fc"/></marker></defs>
+<rect width="1200" height="800" fill="#081522"/><rect width="1200" height="800" fill="url(#grid)" opacity=".4"/>
+<g font-family="Arial, sans-serif" fill="#edf6ff"><text x="70" y="92" font-size="46" font-weight="700">Give the wing air to work with</text><text x="70" y="145" font-size="27" fill="#a9c3d8">Engine thrust creates forward speed through the surrounding air.</text>
+<path d="M600 245H230" stroke="#7dd3fc" stroke-width="7" marker-end="url(#a)"/><text x="620" y="255" font-size="30" fill="#7dd3fc">Aircraft moves forwards</text>
+<g stroke="#7dd3fc" stroke-width="5" marker-end="url(#a)"><path d="M80 350H285"/><path d="M80 440H285"/><path d="M80 535H285"/></g>
+<path d="M340 410C300 300 510 310 1020 480C660 470 420 473 340 410Z" fill="#173c54" stroke="#edf6ff" stroke-width="4"/>
+<path d="M340 410H1050M340 410L1020 480" fill="none" stroke="#fbbf24" stroke-width="3" stroke-dasharray="9 9"/><path d="M690 410Q690 431 686 445" fill="none" stroke="#fbbf24" stroke-width="4"/>
+<text x="750" y="365" font-size="29" fill="#fbbf24">Small angle of attack</text><text x="70" y="615" font-size="30" fill="#7dd3fc">Relative airflow →</text><text x="70" y="725" font-size="27" fill="#a9c3d8">Both wing shape and angle help turn the airflow.</text></g></svg>

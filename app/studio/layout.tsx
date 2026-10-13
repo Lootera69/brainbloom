@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight, Eye, EyeOff, XCircle, Loader2, Users, KeyRound, CalendarDays } from "lucide-react";
+import { Sparkles, Lock, LogOut, Key, User, Shield, PenTool, LayoutDashboard, Plus, BarChart3, Settings, Database, ChevronRight, Eye, EyeOff, XCircle, Loader2, Users, KeyRound, CalendarDays, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { setStudioSession, clearStudioSession } from "@/services/puzzle-service";
 import { signInStaff, signInStaffWithGoogle, signOutStaff, watchStaffSession, staffSignInError } from "@/services/staff-session";
@@ -19,8 +19,10 @@ const navItems = [
   { href: "/studio/review", label: "Review Queue", icon: Eye },
   { href: "/studio/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/studio/events", label: "Moments", icon: CalendarDays },
+  { href: "/studio/discover", label: "Discover", icon: Compass, adminOnly: true },
   { href: "/studio/users", label: "Users", icon: Users, adminOnly: true },
   { href: "/studio/create", label: "Create Puzzle", icon: Plus },
+  { href: "/studio/import", label: "Import Drafts", icon: PenTool },
   { href: "/studio/ciphers", label: "Load Ciphers", icon: KeyRound, adminOnly: true },
   { href: "/studio/seed", label: "Seed Data", icon: Database, adminOnly: true },
   { href: "/studio/settings", label: "Settings", icon: Settings },
@@ -448,16 +450,16 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
       </div>
 
       {/* Mobile bottom nav */}
-      <nav className="sticky bottom-0 z-40 flex items-center border-t bg-card/70 backdrop-blur-xl px-1 pb-safe md:hidden">
+      <nav className="sticky bottom-0 z-40 flex items-center overflow-x-auto border-t bg-card/70 backdrop-blur-xl px-1 pb-safe md:hidden">
         {visibleNavItems.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive = pathname === item.href || (item.href === "/studio/discover" && pathname.startsWith("/studio/discover/"));
           const Icon = item.icon;
           const isCreate = item.href === "/studio/create";
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-[10px] font-medium transition-all ${
+              className={`flex min-w-16 flex-1 shrink-0 flex-col items-center gap-0.5 py-2 text-[10px] font-medium transition-all ${
                 isCreate
                   ? "relative -mt-3"
                   : isActive
@@ -487,7 +489,7 @@ export default function StudioLayout({ children }: { children: React.ReactNode }
       <aside className="sticky top-14 z-40 hidden h-[calc(100dvh-3.5rem)] w-72 shrink-0 border-r bg-card/30 backdrop-blur-sm md:block">
         <nav className="flex flex-col gap-1 p-3 pt-4">
           {visibleNavItems.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = pathname === item.href || (item.href === "/studio/discover" && pathname.startsWith("/studio/discover/"));
             const Icon = item.icon;
             return (
               <Link

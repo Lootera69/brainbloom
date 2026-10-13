@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { House, Brain, Trophy, User, Sparkles, Heart, Zap, Gem } from "lucide-react";
+import { House, Brain, Trophy, User, Sparkles, Heart, Zap, Gem, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/store/user-store";
 import { useUIStore } from "@/store/ui-store";
@@ -13,6 +13,7 @@ import { hasPremiumAccess } from "@/services/entitlement-service";
 const navItems = [
   { href: "/", label: "Home", icon: House },
   { href: "/learn", label: "Learn", icon: Brain },
+  { href: "/discover", label: "Discover", icon: Compass },
   { href: "/achievements", label: "Achievements", icon: Trophy },
   { href: "/profile", label: "Profile", icon: User },
 ];
@@ -45,12 +46,13 @@ export function Sidebar() {
       {/* Nav */}
       <nav className="relative flex flex-1 flex-col gap-1.5 px-4">
         {navItems.map(({ href, label, icon: Icon }) => {
-          const isActive = pathname === href;
+          const isActive = pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 
           return (
             <Link
               key={href}
               href={href}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
                 "group relative flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-all",
                 isActive

@@ -8,6 +8,7 @@ import { publicEventConfig, type PublicEventConfig } from "@/lib/events/public-e
 const STORAGE_KEY = "event_public_config_v1";
 const CACHE_TTL = 300_000;
 let configCache: { data: PublicEventConfig; ts: number } | null = null;
+let inFlightPublicRequest: Promise<PublicEventConfig | null> | null = null;
 
 export function seedConfig(): PublicEventConfig {
   return { seasonalThemesEnabled: true, events: SEED_EVENTS, updatedAt: 0 };
@@ -37,19 +38,26 @@ async function fetchPublic(): Promise<PublicEventConfig | null> {
   } catch { return null; }
 }
 
+function fetchPublicOnce(): Promise<PublicEventConfig | null> {
+  if (!inFlightPublicRequest) {
+    inFlightPublicRequest = fetchPublic().finally(() => { inFlightPublicRequest = null; });
+  }
+  return inFlightPublicRequest;
+}
+
 export async function getEventConfig(): Promise<PublicEventConfig> {
   if (configCache && Date.now() - configCache.ts < CACHE_TTL) return configCache.data;
   const local = readLocal();
   if (local) {
     configCache = { data: local, ts: Date.now() };
-    void fetchPublic().then((remote) => {
+    void fetchPublicOnce().then((remote) => {
       if (!remote) return;
       configCache = { data: remote, ts: Date.now() };
       writeLocal(remote);
     });
     return local;
   }
-  const remote = await fetchPublic();
+  const remote = await fetchPublicOnce();
   const data = remote ?? seedConfig();
   configCache = { data, ts: Date.now() };
   if (remote) writeLocal(remote);

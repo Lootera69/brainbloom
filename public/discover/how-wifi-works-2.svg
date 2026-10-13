@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">The router receives and forwards data</title><desc id="desc">Radio waves enter a router antenna, become checked digital packets, and leave through a wired network connection.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#23435b"/></pattern><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10" fill="#67e8f9"/></marker><style>text{font-family:system-ui,sans-serif;fill:#e2f2ff;font-size:30px}.head{font-size:44px;font-weight:700}.sub{font-size:25px;fill:#93b8d0}.line{fill:none;stroke:#67e8f9;stroke-width:4;stroke-linejoin:round}.flow{fill:none;stroke:#67e8f9;stroke-width:3;marker-end:url(#a)}</style></defs>
+<path fill="#0b1325" d="M0 0h1200v800H0z"/><path fill="url(#grid)" opacity=".45" d="M0 0h1200v800H0z"/><text x="70" y="95" class="head">The router listens</text><text x="70" y="142" class="sub">Radio pattern → checked data → network route</text>
+<path d="M90 405q20-55 40 0t40 0t40 0t40 0" class="line"/><text x="90" y="505" class="sub">Radio input</text><path d="M260 405h95" class="flow"/>
+<rect x="380" y="280" width="510" height="310" rx="24" fill="#10273b" stroke="#67e8f9" stroke-width="3"/><path d="M415 280V210M855 280V210" class="line"/><text x="555" y="340">Router</text>
+<path d="M430 390h115v95H430zM450 415h75M450 443h45" class="line"/><text x="418" y="541" class="sub">Decode</text><path d="M565 440h78" class="flow"/>
+<circle cx="725" cy="437" r="55" class="line"/><path d="M698 437l20 21 35-42" class="line"/><text x="660" y="541" class="sub">Check</text><path d="M785 438h155" class="flow"/>
+<rect x="970" y="355" width="115" height="145" rx="10" class="line"/><path d="M992 385h70M992 415h70M992 445h40" class="line"/><text x="935" y="559" class="sub">Wired data</text>
+<path d="M635 590v75h315" class="flow"/><text x="100" y="686" class="sub">Forward to the internet</text><text x="720" y="737" class="sub">…or a local device</text>
+</svg>

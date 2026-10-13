@@ -1,0 +1,404 @@
+[
+  {
+    "version": 7,
+    "generator": "brainbloom-autopilot-v7",
+    "items": [
+      {
+        "type": "multiple-choice",
+        "category": "logic",
+        "difficulty": "medium",
+        "title": "Space, Ocean · clue challenge",
+        "question": "Topics: space, ocean. These words label fictional cards and objects; their pairings do not describe real-world facts.\nThis is an invented logic grid. Each position contains exactly one value from each group, and each value is used once. Positions run from 1 to 3, left to right. Values in the same position are paired.\nCards: ECLIPSE, NEBULA, OCTOPUS.\nBadges: TELESCOPE, REEF, CRATER.\nClues:\n1. TELESCOPE is before ECLIPSE.\n2. ECLIPSE is before NEBULA.\n3. OCTOPUS is next to REEF.\nWhich value from Badges is paired with OCTOPUS?",
+        "choices": [
+          "None of these",
+          "CRATER",
+          "TELESCOPE",
+          "REEF"
+        ],
+        "correctAnswer": "TELESCOPE",
+        "correctExplanation": "The unique complete arrangement gives TELESCOPE. Every stated rule holds.",
+        "incorrectExplanation": "Check the clue combinations. The unique complete arrangement gives TELESCOPE. Every stated rule holds.",
+        "lessonGroup": "Solve It",
+        "xpReward": 25,
+        "lessonContent": "Place each group value exactly once.\nTranslate each clue into positions or pairings.\nCombine clues across groups to eliminate impossible arrangements.\nCheck all clues against the completed table.\nShare this: explain which combination of clues fixed the answer."
+      }
+    ],
+    "proofs": [
+      {
+        "item_sha256": "47ee6e6e6c0675fb337d8e7ff5b87f1e83823a8f99ade1395091a501bfe7cb0b",
+        "method": "custom-grid-z3-and-exhaustive-permutations",
+        "scope": "the stated fictional groups and rules; complete-grid uniqueness and checked deductions; no human difficulty or enjoyment claim"
+      }
+    ],
+    "intendedImport": {
+      "createdBy": "symbolic-generator",
+      "reviewStatus": "draft",
+      "published": false
+    }
+  },
+  {
+    "version": 8,
+    "generator": "brainbloom-activities-v8",
+    "items": [
+      {
+        "type": "true-false",
+        "category": "logic",
+        "difficulty": "medium",
+        "title": "Discover the rule",
+        "question": "An invented machine uses exactly one of these four rules for every input. The labels name observation cards.\nRule A: 1 × input + 7\nRule B: 2 × input + 2\nRule C: 1 × input + 8\nRule D: 3 × input + 4\nExamples:\nCORAL: input 2 → output 10\nGALAXY: input 3 → output 11\nCRATER: input 7 → output 15\nCURRENT: input 8 → output 16\nOCTOPUS: input 12 → output 20\nInfer which rule fits every example. What output will it give for input 13?\nTrue or False: the answer is 21.",
+        "choices": [
+          "True",
+          "False"
+        ],
+        "correctAnswer": "True",
+        "correctExplanation": "The claim is true. Only Rule C matches every example. Applying it to 13 gives 21.",
+        "incorrectExplanation": "The answer is 21. Only Rule C matches every example. Applying it to 13 gives 21.",
+        "lessonGroup": "Solve It",
+        "xpReward": 25,
+        "lessonContent": "Look for the rule shared by every example.\nTest the rule on the next case, rather than guessing from one example.\nReject a rule that fails any stated example.\nCheck the answer with exact arithmetic or finite enumeration.\nShare this: explain which example gave the decisive clue."
+      }
+    ],
+    "proofs": [
+      {
+        "item_sha256": "39b158a42cb8cac17319d4002011d7ad3637f5aed6948c2b58c28f69f0e103c9",
+        "method": "finite-rule-enumeration-and-z3",
+        "scope": "the four displayed candidate rules; unrestricted sequences are not unique"
+      }
+    ],
+    "intendedImport": {
+      "createdBy": "symbolic-generator",
+      "reviewStatus": "draft",
+      "published": false
+    }
+  },
+  {
+    "version": 8,
+    "generator": "brainbloom-activities-v8",
+    "items": [
+      {
+        "type": "type-answer",
+        "category": "logic",
+        "difficulty": "medium",
+        "title": "Space, Ocean · Find the impossible clue",
+        "question": "Topic labels: space, ocean.\nArrange these cards once each from left to right: TELESCOPE, KELP, COAST, ORBIT, REEF.\nBase clues:\nTELESCOPE is somewhere to the left of COAST.\nREEF is somewhere to the left of KELP.\nKELP is somewhere to the left of ORBIT.\nCOAST is somewhere to the left of REEF.\nTest these statements:\nStatement A: REEF is somewhere to the left of KELP.\nStatement B: COAST is somewhere to the left of REEF.\nStatement C: ORBIT is somewhere to the left of COAST.\nStatement D: KELP is somewhere to the left of ORBIT.\nWhich statement is impossible together with the base clues? Answer A, B, C or D.",
+        "choices": [],
+        "correctAnswer": "Statement C",
+        "correctExplanation": "Statement C contradicts the order forced by the base clues. The other three statements are compatible.",
+        "incorrectExplanation": "Statement C contradicts the order forced by the base clues. The other three statements are compatible.",
+        "lessonGroup": "Solve It",
+        "xpReward": 25,
+        "lessonContent": "Connect the stated before-relations into a chain.\nCheck each candidate statement against the forced order.\nOne statement must fail while the others remain possible.\nUse the contradiction, not a real-world fact about a label.\nShare this: identify the chain that made the impossible clue fail.",
+        "acceptedAnswers": [
+          "Statement C",
+          "C",
+          "answer: C"
+        ]
+      }
+    ],
+    "proofs": [
+      {
+        "item_sha256": "12f84ead1ae140f373dc6f311bd114263685ae4e9da8182a5a5aeb9dcd2992f4",
+        "method": "z3-and-exhaustive-option-consistency",
+        "scope": "only the stated fictional ordering clues"
+      }
+    ],
+    "intendedImport": {
+      "createdBy": "symbolic-generator",
+      "reviewStatus": "draft",
+      "published": false
+    }
+  },
+  {
+    "version": 8,
+    "generator": "brainbloom-activities-v8",
+    "items": [
+      {
+        "type": "riddle",
+        "category": "logic",
+        "difficulty": "medium",
+        "title": "Cheapest next stop",
+        "question": "Travel from ORBIT to GALAXY. This invented map has one-way routes; numbers are travel costs. Only listed routes are allowed.\nORBIT → PLANET: 2\nORBIT → REEF: 2\nORBIT → TELESCOPE: 10\nORBIT → GALAXY: 5\nPLANET → REEF: 4\nREEF → TELESCOPE: 1\nTELESCOPE → SALT: 4\nSALT → GALAXY: 3\nREEF → SALT: 2\nPossible first stops: PLANET, REEF, TELESCOPE, GALAXY.\nWhich first stop minimizes the full trip's cost?",
+        "choices": [],
+        "correctAnswer": "GALAXY",
+        "correctExplanation": "Start with GALAXY. Its cheapest complete trip costs 5, lower than any other first stop's best complete trip.",
+        "incorrectExplanation": "The answer is GALAXY. Start with GALAXY. Its cheapest complete trip costs 5, lower than any other first stop's best complete trip.",
+        "lessonGroup": "Solve It",
+        "xpReward": 25,
+        "lessonContent": "Read every route in its stated direction.\nAdd the costs along a complete trip to the destination.\nCompare the best complete trip through each possible first stop.\nA cheap first leg can lead to an expensive full trip.\nShare this: explain why the chosen first stop minimizes the total cost.",
+        "acceptedAnswers": [
+          "GALAXY",
+          "the answer is GALAXY",
+          "answer: GALAXY"
+        ],
+        "hintText": "Compare the full trip through each possible first stop.\nAdd every route cost through to the destination; the cheapest first leg need not give the cheapest whole trip."
+      }
+    ],
+    "proofs": [
+      {
+        "item_sha256": "46e09ae57db009c21095b96612e7ed53431fb1555e88b65501a63603b5e46202",
+        "method": "dijkstra-and-exhaustive-route-replay",
+        "scope": "the displayed directed routes and positive travel costs"
+      }
+    ],
+    "intendedImport": {
+      "createdBy": "symbolic-generator",
+      "reviewStatus": "draft",
+      "published": false
+    }
+  },
+  {
+    "version": 5,
+    "generator": "brainbloom-topics-v5",
+    "items": [
+      {
+        "type": "crossword",
+        "category": "logic",
+        "difficulty": "medium",
+        "title": "Space, Ocean · crossword",
+        "choices": [],
+        "lessonGroup": "Solve It",
+        "xpReward": 25,
+        "lessonContent": "Read the stated letter rule and the supplied word bank before solving.\nUse the dictionary clue as support, keeping the selected meaning in mind.\nCheck every letter and every position rather than relying on a guess.\nThe uniqueness check applies to the supplied words; definitions come from the cited source.\nShare this: explain which constraint ruled out the closest alternative.",
+        "question": "Topic: space, ocean. For compound entries, spaces and hyphens are omitted.\nUse the dictionary clues to fill this 5-entry connected crossword.",
+        "crosswordData": {
+          "size": 11,
+          "grid": [
+            [
+              null,
+              null,
+              null,
+              null,
+              "C",
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              null,
+              "O",
+              null,
+              "R",
+              null,
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              null,
+              "R",
+              null,
+              "E",
+              null,
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              "P",
+              "L",
+              "A",
+              "N",
+              "E",
+              "T",
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              "L",
+              null,
+              "L",
+              null,
+              "F",
+              null,
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              "A",
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              "N",
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              "K",
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            [
+              "A",
+              "S",
+              "T",
+              "E",
+              "R",
+              "O",
+              "I",
+              "D",
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              "O",
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              null,
+              "N",
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          ],
+          "clues": [
+            {
+              "answer": "CORAL",
+              "clue": "A marine animal whose colonies may build a limestone skeleton",
+              "startRow": 0,
+              "startCol": 4,
+              "direction": "down",
+              "number": 1
+            },
+            {
+              "answer": "REEF",
+              "clue": "A ridge of rock or coral close to the sea surface",
+              "startRow": 1,
+              "startCol": 6,
+              "direction": "down",
+              "number": 2
+            },
+            {
+              "answer": "PLANET",
+              "clue": "A rounded body orbiting a star that has cleared its orbital neighbourhood",
+              "startRow": 3,
+              "startCol": 2,
+              "direction": "across",
+              "number": 3
+            },
+            {
+              "answer": "PLANKTON",
+              "clue": "Organisms that drift in water and cannot swim against the currents",
+              "startRow": 3,
+              "startCol": 2,
+              "direction": "down",
+              "number": 3
+            },
+            {
+              "answer": "ASTEROID",
+              "clue": "A small rocky body orbiting the Sun",
+              "startRow": 8,
+              "startCol": 0,
+              "direction": "across",
+              "number": 4
+            }
+          ]
+        },
+        "correctAnswer": "CORAL, REEF, PLANET, PLANKTON, ASTEROID",
+        "correctExplanation": "The dictionary entries fill every clued run with matching crossing letters.",
+        "incorrectExplanation": "Compare each clue and word length, then check the crossing letters."
+      }
+    ],
+    "proofs": [
+      {
+        "item_sha256": "67ebe9a1c398b53379a26e9fabdbc764355b6be96c46cc66c8567d37f17287ac",
+        "method": "dictionary-and-independent-crossword-reconstruction",
+        "scope": "connected grid, numbering and crossings; clue meanings come from the cited dictionary"
+      }
+    ],
+    "intendedImport": {
+      "createdBy": "symbolic-generator",
+      "reviewStatus": "draft",
+      "published": false
+    }
+  },
+  {
+    "version": 5,
+    "generator": "brainbloom-topics-v5",
+    "items": [
+      {
+        "type": "wonder",
+        "category": "wonders",
+        "difficulty": "medium",
+        "title": "Space, Ocean · wonder",
+        "choices": [],
+        "lessonGroup": "Think Deeper",
+        "xpReward": 0,
+        "lessonContent": "TELESCOPE has 60,480 distinct letter arrangements, after accounting for repeated letters. OCTOPUS has 2,520 distinct letter arrangements, after accounting for repeated letters. Choosing one arrangement per word gives 152,409,600 combinations: multiply the individual counts. These need not be meaningful words.",
+        "question": "Topic: space, ocean. For compound entries, spaces and hyphens are omitted.\nTake one word from each topic: TELESCOPE, OCTOPUS. Rearrange each word's letters independently, keeping words separate. How many combinations result if you choose one arrangement for each word? How much do repeated letters reduce the number?",
+        "correctAnswer": "TELESCOPE has 60,480 distinct letter arrangements, after accounting for repeated letters. OCTOPUS has 2,520 distinct letter arrangements, after accounting for repeated letters. Choosing one arrangement per word gives 152,409,600 combinations: multiply the individual counts. These need not be meaningful words.",
+        "correctExplanation": "TELESCOPE has 60,480 distinct letter arrangements, after accounting for repeated letters. OCTOPUS has 2,520 distinct letter arrangements, after accounting for repeated letters. Choosing one arrangement per word gives 152,409,600 combinations: multiply the individual counts. These need not be meaningful words.",
+        "incorrectExplanation": "This is an unscored reflection. TELESCOPE has 60,480 distinct letter arrangements, after accounting for repeated letters. OCTOPUS has 2,520 distinct letter arrangements, after accounting for repeated letters. Choosing one arrangement per word gives 152,409,600 combinations: multiply the individual counts. These need not be meaningful words.",
+        "sharePrompt": "Which word contributes the most possibilities? Explain why."
+      }
+    ],
+    "proofs": [
+      {
+        "item_sha256": "ccc7e270d7f387bba5bb3ef3b6c0936b300fcc2f22c30386d5300621cee46816",
+        "method": "factorials-and-independent-binomial-counting",
+        "scope": "independent letter arrangements of every supplied topic word"
+      }
+    ],
+    "intendedImport": {
+      "createdBy": "symbolic-generator",
+      "reviewStatus": "draft",
+      "published": false
+    }
+  }
+]

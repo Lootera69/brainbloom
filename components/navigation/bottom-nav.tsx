@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, useMotionValue, animate } from "framer-motion";
-import { House, Brain, Trophy, User } from "lucide-react";
+import { House, Brain, Trophy, User, Compass } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { EventHangingBats } from "@/features/home/components/EventHangingBats";
@@ -11,6 +11,7 @@ import { EventHangingBats } from "@/features/home/components/EventHangingBats";
 const navItems = [
   { href: "/", label: "Home", icon: House },
   { href: "/learn", label: "Learn", icon: Brain },
+  { href: "/discover", label: "Discover", icon: Compass },
   { href: "/achievements", label: "Achievements", icon: Trophy },
   { href: "/profile", label: "Profile", icon: User },
 ];
@@ -31,7 +32,7 @@ export function BottomNav() {
   const [dragging, setDragging] = useState(false);
   const x = useMotionValue(0);
 
-  const routeIndex = navItems.findIndex((it) => it.href === pathname);
+  const routeIndex = navItems.findIndex((it) => it.href === pathname || (it.href !== "/" && pathname.startsWith(`${it.href}/`)));
   const onNav = routeIndex !== -1;
   const activeIndex = onNav ? routeIndex : 0;
   const [displayIndex, setDisplayIndex] = useState(activeIndex);
@@ -107,14 +108,14 @@ export function BottomNav() {
               href={href}
               aria-current={onNav && i === activeIndex ? "page" : undefined}
               className={cn(
-                "relative z-0 flex min-h-11 flex-1 flex-col items-center justify-center gap-0.5 rounded-xl text-xs transition-colors duration-200",
+                "relative z-0 flex min-h-11 min-w-0 flex-1 flex-col items-center justify-center gap-0.5 rounded-xl text-[10px] transition-colors duration-200 sm:text-xs",
                 isTarget ? "text-transparent" : "text-muted-foreground",
               )}
             >
               <span className="flex size-8 items-center justify-center">
                 <Icon className="size-5" />
               </span>
-              <span className="truncate px-0.5">{label}</span>
+              <span className="max-w-full truncate px-0.5">{label}</span>
             </Link>
           );
         })}
@@ -161,7 +162,7 @@ export function BottomNav() {
                   className="relative flex flex-col items-center gap-0.5"
                 >
                   <PillIcon className="size-5" />
-                  <span className="truncate px-1 text-xs font-medium">
+                  <span className="max-w-full truncate px-1 text-[10px] font-medium sm:text-xs">
                     {navItems[displayIndex].label}
                   </span>
                 </motion.div>

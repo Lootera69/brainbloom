@@ -8,7 +8,8 @@ import { BackNavigation } from "@/components/studio/back-navigation";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
 import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import { ImageUploader } from "@/components/ui/image-uploader";
-import { getPuzzle, updatePuzzle, deletePuzzle, updatePuzzleReview, updatePuzzleNote, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
+import { getPuzzle, updatePuzzleWithReceipt, deletePuzzle, updatePuzzleReview, updatePuzzleNote, togglePublish, isAdmin, getStudioSession, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
+import { WorkshopProvenance } from "@/components/studio/workshop-provenance";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
 import { type PuzzleFormData, type CrosswordData, type ReviewStatus, type ReviewComment } from "@/types/puzzle";
 import { CopyPromptButton } from "@/components/ui/copy-prompt-button";
@@ -60,6 +61,7 @@ export default function EditPuzzlePage() {
   const [notFound, setNotFound] = useState(false);
   const [puzzleStatus, setPuzzleStatus] = useState<ReviewStatus | null>(null);
   const [puzzlePublished, setPuzzlePublished] = useState(false);
+  const [puzzleLocalOnly, setPuzzleLocalOnly] = useState(false);
   const [puzzleReviewedBy, setPuzzleReviewedBy] = useState<string | undefined>();
   const [puzzleReviewComments, setPuzzleReviewComments] = useState<ReviewComment[]>([]);
   const [reviewNoteInput, setReviewNoteInput] = useState("");
@@ -96,6 +98,7 @@ export default function EditPuzzlePage() {
       const puzzle = await getPuzzle(id);
       if (!puzzle) { setNotFound(true); setLoading(false); return; }
       setForm({
+        workshopImport: puzzle.workshopImport,
         type: puzzle.type,
         category: puzzle.category,
         difficulty: puzzle.difficulty,
@@ -118,10 +121,12 @@ export default function EditPuzzlePage() {
         lessonGroup: puzzle.lessonGroup ?? undefined,
         lessonGroupOrder: puzzle.lessonGroupOrder ?? undefined,
         hintText: puzzle.hintText ?? undefined,
+        sharePrompt: puzzle.sharePrompt ?? undefined,
       });
       setAcceptedRaw((puzzle.acceptedAnswers ?? []).join(", "));
       setPuzzleStatus(puzzle.reviewStatus ?? "draft");
       setPuzzlePublished(puzzle.published);
+      setPuzzleLocalOnly(puzzle.localOnly ?? false);
       setPuzzleReviewedBy(puzzle.reviewedBy);
       setPuzzleReviewComments(puzzle.reviewComments ?? []);
       setLoading(false);
@@ -183,13 +188,19 @@ export default function EditPuzzlePage() {
       return;
     }
     setSaving(true);
-    const updated = await updatePuzzle(id, form);
-    if (updated) {
-      setPuzzleStatus(updated.reviewStatus ?? puzzleStatus);
+    try {
+      const result = await updatePuzzleWithReceipt(id, form);
+      if (!result) throw new Error("The draft was not found. Your changes have not been saved.");
+      setPuzzleStatus(result.puzzle.reviewStatus ?? puzzleStatus);
+      setPuzzleLocalOnly(!result.persistence.cloud);
       setDirty(false);
+      if (result.persistence.cloud) toast.success(result.persistence.local ? "Saved to the cloud and this browser." : "Saved to the cloud. A browser copy could not be stored.", { position: "top-center" });
+      else toast.warning("Saved only in this browser. These changes do not sync automatically.", { position: "top-center" });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "The draft could not be saved.", { position: "top-center" });
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
-    toast.success("Saved.");
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -285,6 +296,9 @@ export default function EditPuzzlePage() {
       </motion.div>
 
       <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="mt-6 space-y-7 rounded-xl border bg-card p-6">
+
+        {puzzleLocalOnly && <p role="status" className="rounded-xl border border-border p-4 text-sm">This draft or its latest changes are saved only in this browser. They do not sync automatically and can be lost when browser data is cleared. Keep a copy of your work.</p>}
+        {form.workshopImport && <WorkshopProvenance metadata={form.workshopImport} />}
 
         {/* Section: Puzzle Type (read-only on edit) */}
         <div>

@@ -103,6 +103,7 @@ export function puzzleFromFirestore(id: string, data: Record<string, unknown>): 
     lessonGroupOrder: (data.lessonGroupOrder as number) ?? undefined,
     hintText: (data.hintText as string) ?? undefined,
     sharePrompt: (data.sharePrompt as string) ?? undefined,
+    workshopImport: (data.workshopImport as Puzzle["workshopImport"]) ?? undefined,
   };
   if (data.crosswordData) {
     puzzle.crosswordData = crosswordFromFirestore(data.crosswordData);
@@ -150,6 +151,7 @@ function puzzleToFirestore(puzzle: Puzzle) {
     lessonGroupOrder: puzzle.lessonGroupOrder ?? null,
     hintText: puzzle.hintText ?? null,
     sharePrompt: puzzle.sharePrompt ?? null,
+    workshopImport: puzzle.workshopImport ?? null,
   };
   if (puzzle.crosswordData) {
     data.crosswordData = crosswordToFirestore(puzzle.crosswordData);
@@ -173,16 +175,16 @@ function isFirestoreAvailable() {
 
 let puzzlesCache: { data: Puzzle[]; ts: number } | null = null;
 const puzzleByIdCache: Map<string, { data: Puzzle | null; ts: number }> = new Map();
-const CACHE_TTL = 1_800_000;
-// 30 minutes — players never mutate puzzles, and every Studio mutation calls
-// clearPuzzlesCache(), so longer TTL only cuts full-collection refetches.
-// At ~5k docs per fetch this is the single biggest free-tier lever.
+const CACHE_TTL = 86_400_000;
+// 24 hours — players never mutate puzzles, and every Studio mutation calls
+// clearPuzzlesCache(), so a long persisted TTL cuts repeated 5k-document
+// Studio reloads without keeping a known mutation stale.
 const PUZZLES_TS_KEY = "brainbloom-puzzles-ts";
 let puzzlesInflight: Promise<Puzzle[]> | null = null;
 
 // Player category path: opening one category must never refetch the whole
 // bank. One auto-indexed `where("category", ...)` query reads only that
-// category's docs; memory + localStorage caches (30 min) make repeat opens
+// category's docs; memory + localStorage caches (24 hours) make repeat opens
 // — even across reloads — cost zero reads.
 const CAT_KEY_PREFIX = "brainbloom-cat-";
 const CAT_TS_KEY = "brainbloom-cat-ts";
@@ -276,7 +278,7 @@ function mergeByUpdatedAt(base: Puzzle[], extra: Puzzle[]): Puzzle[] {
   for (const lp of extra) {
     const idx = merged.findIndex((p) => p.id === lp.id);
     if (idx >= 0) {
-      if (lp.updatedAt > merged[idx].updatedAt) merged[idx] = lp;
+      if (lp.updatedAt > merged[idx].updatedAt || (lp.localOnly && lp.updatedAt === merged[idx].updatedAt)) merged[idx] = lp;
     } else {
       merged.push(lp);
     }
@@ -383,9 +385,14 @@ export async function getPuzzle(id: string): Promise<Puzzle | null> {
     return cached.data;
   }
 
-  // Check local first — avoids Firestore read for already-known puzzles
   const local = getLocalPuzzles().find((p) => p.id === id);
-  if (local) {
+  let localBankFresh = false;
+  try {
+    localBankFresh = Date.now() - Number(localStorage.getItem(PUZZLES_TS_KEY) ?? 0) < CACHE_TTL;
+  } catch {
+    localBankFresh = false;
+  }
+  if (local && ((!local.localOnly && localBankFresh) || !isFirestoreAvailable())) {
     puzzleByIdCache.set(id, { data: local, ts: Date.now() });
     return local;
   }
@@ -393,11 +400,12 @@ export async function getPuzzle(id: string): Promise<Puzzle | null> {
   if (isFirestoreAvailable()) {
     try {
       const { db } = getFirebase();
-      if (!db) return null;
+      if (!db) return local ?? null;
       const ref = doc(db, "puzzles", id);
       const snap = await getDoc(ref);
       if (snap.exists()) {
-        const puzzle = puzzleFromFirestore(snap.id, snap.data() as Record<string, unknown>);
+        const cloudPuzzle = puzzleFromFirestore(snap.id, snap.data() as Record<string, unknown>);
+        const puzzle = local?.localOnly && local.updatedAt >= cloudPuzzle.updatedAt ? local : cloudPuzzle;
         puzzleByIdCache.set(id, { data: puzzle, ts: Date.now() });
         return puzzle;
       }
@@ -405,22 +413,43 @@ export async function getPuzzle(id: string): Promise<Puzzle | null> {
       console.error("Firestore getPuzzle failed:", e);
     }
   }
-  puzzleByIdCache.set(id, { data: null, ts: Date.now() });
-  return null;
+  puzzleByIdCache.set(id, { data: local ?? null, ts: Date.now() });
+  return local ?? null;
 }
 
-function syncToLocal(puzzle: Puzzle) {
-  const local = getLocalPuzzles();
-  const idx = local.findIndex((p) => p.id === puzzle.id);
-  if (idx >= 0) {
-    local[idx] = puzzle;
-  } else {
-    local.unshift(puzzle);
+function syncToLocal(puzzle: Puzzle): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    const local: Puzzle[] = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(local)) return false;
+    const idx = local.findIndex((p) => p.id === puzzle.id);
+    if (idx >= 0) local[idx] = puzzle;
+    else local.unshift(puzzle);
+    return saveLocalPuzzles(local);
+  } catch {
+    return false;
   }
-  saveLocalPuzzles(local);
 }
 
-export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
+export interface PuzzleSaveResult {
+  puzzle: Puzzle;
+  persistence: { cloud: boolean; local: boolean };
+}
+
+function finishPuzzleSave(puzzle: Puzzle, cloud: boolean): PuzzleSaveResult {
+  const saved = { ...puzzle, localOnly: !cloud };
+  const local = syncToLocal(saved);
+  if (!cloud && !local) throw new Error("The puzzle could not be saved to the cloud or this browser. Keep the draft and try again after restoring access or freeing browser storage.");
+  clearPuzzlesCache();
+  return { puzzle: saved, persistence: { cloud, local } };
+}
+
+export async function createPuzzle(data: PuzzleFormData, options?: { forceDraft?: boolean }): Promise<Puzzle> {
+  return (await createPuzzleWithReceipt(data, options)).puzzle;
+}
+
+export async function createPuzzleWithReceipt(data: PuzzleFormData, options?: { forceDraft?: boolean }): Promise<PuzzleSaveResult> {
   const user = getStudioSession() || "unknown";
   const role = getStudioRole() || "contributor";
   const now = Date.now();
@@ -428,7 +457,7 @@ export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
     id: generateId(),
     ...data,
     published: false,
-    reviewStatus: role === "admin" ? "approved" : "draft",
+    reviewStatus: options?.forceDraft ? "draft" : role === "admin" ? "approved" : "draft",
     completedBy: 0,
     correctExplanation: data.correctExplanation ?? undefined,
     incorrectExplanation: data.incorrectExplanation ?? undefined,
@@ -438,27 +467,33 @@ export async function createPuzzle(data: PuzzleFormData): Promise<Puzzle> {
     updatedAt: now,
   };
 
+  let cloudSaved = false;
   if (isFirestoreAvailable()) {
     try {
       const { db } = getFirebase();
       if (db) {
         const ref = await addDoc(collection(db, "puzzles"), puzzleToFirestore(puzzle));
         puzzle = { ...puzzle, id: ref.id };
+        cloudSaved = true;
       }
     } catch (e) {
       console.error("Firestore createPuzzle failed:", e);
     }
   }
 
-  syncToLocal(puzzle);
-  clearPuzzlesCache();
-  return puzzle;
+  return finishPuzzleSave(puzzle, cloudSaved);
 }
 
 export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): Promise<Puzzle | null> {
+  return (await updatePuzzleWithReceipt(id, data))?.puzzle ?? null;
+}
+
+export async function updatePuzzleWithReceipt(id: string, data: Partial<PuzzleFormData>): Promise<PuzzleSaveResult | null> {
   if (getStudioRole() !== "admin") data = { ...data, reviewStatus: "draft" };
   const user = getStudioSession() || "unknown";
-  const now = Date.now();
+  const local = getLocalPuzzles();
+  const idx = local.findIndex((p) => p.id === id);
+  let now = Math.max(Date.now(), (local[idx]?.updatedAt ?? 0) + 1);
   let updated: Puzzle | null = null;
 
   if (isFirestoreAvailable()) {
@@ -468,11 +503,12 @@ export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): P
         const ref = doc(db, "puzzles", id);
         const snap = await getDoc(ref);
         if (snap.exists()) {
+          const existing = puzzleFromFirestore(snap.id, snap.data() as Record<string, unknown>);
+          now = Math.max(now, existing.updatedAt + 1);
           const clean: Record<string, unknown> = Object.fromEntries(Object.entries(data).map(([k, v]) => [k, v === undefined ? null : v]));
           if (data.crosswordData) clean.crosswordData = crosswordToFirestore(data.crosswordData);
           await updateDoc(ref, { ...clean, lastModifiedBy: user, updatedAt: Timestamp.fromMillis(now) });
-          const snap2 = await getDoc(ref);
-          updated = puzzleFromFirestore(snap2.id, snap2.data() as Record<string, unknown>);
+          updated = { ...existing, ...data, lastModifiedBy: user, updatedAt: now };
         }
       }
     } catch (e) {
@@ -481,18 +517,12 @@ export async function updatePuzzle(id: string, data: Partial<PuzzleFormData>): P
   }
 
   if (updated) {
-    syncToLocal(updated);
-    clearPuzzlesCache();
-    return updated;
+    return finishPuzzleSave(updated, true);
   }
 
-  const local = getLocalPuzzles();
-  const idx = local.findIndex((p) => p.id === id);
   if (idx === -1) return null;
   local[idx] = { ...local[idx], ...data, lastModifiedBy: user, updatedAt: now };
-  saveLocalPuzzles(local);
-  clearPuzzlesCache();
-  return local[idx];
+  return finishPuzzleSave(local[idx], false);
 }
 
 export async function deletePuzzle(id: string): Promise<boolean> {

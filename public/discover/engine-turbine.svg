@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Let the gas do work.</title><desc id="desc">Hot gas flows through the turbine blades and turns the turbine. Coaxial shafts carry this rotation forward to drive the compressor and fan.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081d2c"/><stop offset=".55" stop-color="#07131f"/><stop offset="1" stop-color="#102538"/></linearGradient>
+  <radialGradient id="halo"><stop stop-color="#247b94" stop-opacity=".22"/><stop offset="1" stop-color="#247b94" stop-opacity="0"/></radialGradient>
+  <linearGradient id="shell" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#91b5c8"/><stop offset=".22" stop-color="#3a6177"/><stop offset=".5" stop-color="#173548"/><stop offset="1" stop-color="#4f788c"/></linearGradient>
+  <linearGradient id="metal" x1="0" y1="0" x2="1" y2=".2"><stop stop-color="#486d80"/><stop offset=".45" stop-color="#cae4ed"/><stop offset=".7" stop-color="#759cac"/><stop offset="1" stop-color="#29475c"/></linearGradient>
+  <linearGradient id="shaft" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b5d0df"/><stop offset=".45" stop-color="#5d8499"/><stop offset="1" stop-color="#1c3c51"/></linearGradient>
+  <linearGradient id="heat" x1="0" x2="1"><stop stop-color="#fb9d69" stop-opacity=".08"/><stop offset=".4" stop-color="#ff754e"/><stop offset=".7" stop-color="#ffcb7a"/><stop offset="1" stop-color="#ff8457" stop-opacity=".06"/></linearGradient>
+  <linearGradient id="jet" x1="0" x2="1"><stop stop-color="#66d8eb" stop-opacity=".02"/><stop offset=".2" stop-color="#8ce4ed" stop-opacity=".55"/><stop offset="1" stop-color="#8ce4ed" stop-opacity="0"/></linearGradient>
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#b1e7f4" stroke-opacity=".045"/></pattern>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1 9 5 1 9" fill="none" stroke="#79d9e9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  <marker id="hot-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1 9 5 1 9" fill="none" stroke="#ffb486" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="8"/></filter>
+</defs>
+<rect width="1200" height="800" fill="url(#bg)"/><rect width="1200" height="800" fill="url(#grid)"/>
+<ellipse cx="610" cy="410" rx="650" ry="400" fill="url(#halo)"/>
+<g font-family="Arial, Helvetica, sans-serif">
+ <text x="72" y="69" font-size="13" fill="#80c6d4" letter-spacing="4">04 / TURBINE</text>
+ <text x="72" y="121" font-size="42" font-weight="500" fill="#e8f3f7" letter-spacing="-1">Let the gas do work.</text>
+ <text x="1128" y="75" font-size="12" text-anchor="end" fill="#688c9f" letter-spacing="2">TURBOFAN / CUTAWAY</text>
+ <path d="M72 155H1128" stroke="#688c9f" stroke-opacity=".2"/>
+ <g fill="none" stroke="#7cabbc" stroke-opacity=".1"><circle cx="292" cy="400" r="231"/><circle cx="292" cy="400" r="217"/><path d="M73 400H1127" stroke-dasharray="3 8"/></g>
+ <g opacity="0.42"><path d="M860 350 Q980 340 1165 375 L1165 425 Q982 460 860 450Z" fill="url(#jet)"/>
+ <path d="M974 366 Q1060 366 1140 371" fill="none" stroke="#79d9e9" stroke-width="3" opacity="1" stroke-linecap="round" marker-end="url(#arrow)"/>
+ <path d="M1010 400H1153" fill="none" stroke="#79d9e9" stroke-width="3" opacity="1" stroke-linecap="round" marker-end="url(#arrow)"/>
+ <path d="M974 434 Q1060 434 1140 429" fill="none" stroke="#79d9e9" stroke-width="3" opacity="1" stroke-linecap="round" marker-end="url(#arrow)"/>
+ </g>
+ <g opacity="0.47">
+ <path d="M220 227 C385 172 657 202 832 273 L1001 348 968 361 C773 280 500 238 231 279Z" fill="url(#shell)" stroke="#9cc4d7" stroke-opacity=".65" stroke-width="1.5"/>
+ <path d="M220 573 C385 628 657 598 832 527 L1001 452 968 439 C773 520 500 562 231 521Z" fill="url(#shell)" stroke="#9cc4d7" stroke-opacity=".65" stroke-width="1.5"/>
+ <path d="M247 234 C441 193 697 228 866 292M247 566 C441 607 697 572 866 508" fill="none" stroke="#b0d1e0" stroke-opacity=".25" stroke-width="2"/>
+ <ellipse cx="224" cy="400" rx="36" ry="173" fill="#17384b" stroke="#739bab" stroke-width="3"/>
+ <ellipse cx="225" cy="400" rx="22" ry="145" fill="#0a1c29" stroke="#2b5569" stroke-width="3"/>
+ </g>
+ <g opacity="0.23">
+ <path d="M293 275C500 249 742 287 963 354L954 369C690 304 491 287 311 314Z" fill="#4fb4cf" fill-opacity=".12"/>
+ <path d="M293 525C500 551 742 513 963 446L954 431C690 496 491 513 311 486Z" fill="#4fb4cf" fill-opacity=".12"/>
+ <path d="M103 291H190" fill="none" stroke="#79d9e9" stroke-width="3" opacity="1" stroke-linecap="round" marker-end="url(#arrow)"/><path d="M91 336H192" fill="none" stroke="#79d9e9" stroke-width="3" opacity="1" stroke-linecap="round" marker-end="url(#arrow)"/><path d="M91 464H192" fill="none" stroke="#79d9e9" stroke-width="3" opacity="1" stroke-linecap="round" marker-end="url(#arrow)"/><path d="M103 509H190" fill="none" stroke="#79d9e9" stroke-width="3" opacity="1" stroke-linecap="round" marker-end="url(#arrow)"/>
+ <path d="M319 285C526 270 704 292 913 350" fill="none" stroke="#79d9e9" stroke-width="3.5" opacity="1" stroke-linecap="round" marker-end="url(#arrow)"/>
+ <path d="M319 515C526 530 704 508 913 450" fill="none" stroke="#79d9e9" stroke-width="3.5" opacity="1" stroke-linecap="round" marker-end="url(#arrow)"/>
+ </g>
+ <g opacity="0.5">
+ <path d="M314 312 C407 302 501 324 547 329 L655 318 797 320 955 362 1020 388 1010 400H831C760 359 726 360 656 365H540C460 344 399 331 320 338Z" fill="#1c3a4b" stroke="#91b6c6" stroke-opacity=".6" stroke-width="1.5"/>
+ <path d="M314 488 C407 498 501 476 547 471 L655 482 797 480 955 438 1020 412 1010 400H831C760 441 726 440 656 435H540C460 456 399 469 320 462Z" fill="#1c3a4b" stroke="#91b6c6" stroke-opacity=".6" stroke-width="1.5"/>
+ <path d="M320 320C418 314 480 332 541 339M320 480C418 486 480 468 541 461" fill="none" stroke="#bad8df" stroke-opacity=".2" stroke-width="2"/>
+ </g>
+ <g opacity="0.35">
+ <path d="M550 339Q607 324 659 339L686 360Q628 371 550 360Z" fill="#713e33" stroke="#b98167" stroke-width="1.2"/>
+ <path d="M550 461Q607 476 659 461L686 440Q628 429 550 440Z" fill="#713e33" stroke="#b98167" stroke-width="1.2"/>
+ <ellipse cx="610" cy="352" rx="57" ry="11" fill="#ff965f" opacity=".45" filter="url(#glow)"/><ellipse cx="610" cy="448" rx="57" ry="11" fill="#ff965f" opacity=".45" filter="url(#glow)"/>
+ <path d="M558 349 576 340 587 346 610 336 620 344 655 349 625 358 610 354 591 362 577 353 558 357Z" fill="url(#heat)"/>
+ <path d="M558 451 576 460 587 454 610 464 620 456 655 451 625 442 610 446 591 438 577 447 558 443Z" fill="url(#heat)"/>
+ <path d="M553 334 565 346M553 466 565 454" stroke="#eac7a9" stroke-width="5" stroke-linecap="round"/>
+ <path d="M648 351H687" fill="none" stroke="#ffb486" stroke-width="2.5" opacity="1" stroke-linecap="round" marker-end="url(#hot-arrow)"/><path d="M648 449H687" fill="none" stroke="#ffb486" stroke-width="2.5" opacity="1" stroke-linecap="round" marker-end="url(#hot-arrow)"/>
+ </g>
+ <g opacity="0.35"><path d="M355 388 343 333 Q355 322 373 324 L369 388Z" fill="url(#metal)" stroke="#c3e2eb" stroke-opacity=".25"/><path d="M355 412 343 467 Q355 478 373 476 L369 412Z" fill="url(#metal)" stroke="#c3e2eb" stroke-opacity=".25"/><path d="M379 328 390 372" stroke="#41677b" stroke-width="6"/><path d="M379 472 390 428" stroke="#41677b" stroke-width="6"/><path d="M391 388 379 340 Q391 329 409 331 L405 388Z" fill="url(#metal)" stroke="#c3e2eb" stroke-opacity=".25"/><path d="M391 412 379 460 Q391 471 409 469 L405 412Z" fill="url(#metal)" stroke="#c3e2eb" stroke-opacity=".25"/><path d="M415 335 426 372" stroke="#41677b" stroke-width="6"/><path d="M415 465 426 428" stroke="#41677b" stroke-width="6"/><path d="M427 388 415 347 Q427 336 445 338 L441 388Z" fill="url(#metal)" stroke="#c3e2eb" stroke-opacity=".25"/><path d="M427 412 415 453 Q427 464 445 462 L441 412Z" fill="url(#metal)" stroke="#c3e2eb" stroke-opacity=".25"/><path d="M451 342 462 372" stroke="#41677b" stroke-width="6"/><path d="M451 458 462 428" stroke="#41677b" stroke-width="6"/><path d="M463 388 451 354 Q463 343 481 345 L477 388Z" fill="url(#metal)" stroke="#c3e2eb" stroke-opacity=".25"/><path d="M463 412 451 446 Q463 457 481 455 L477 412Z" fill="url(#metal)" stroke="#c3e2eb" stroke-opacity=".25"/><path d="M487 349 498 372" stroke="#41677b" stroke-width="6"/><path d="M487 451 498 428" stroke="#41677b" stroke-width="6"/><path d="M499 388 487 361 Q499 350 517 352 L513 388Z" fill="url(#metal)" stroke="#c3e2eb" stroke-opacity=".25"/><path d="M499 412 487 439 Q499 450 517 448 L513 412Z" fill="url(#metal)" stroke="#c3e2eb" stroke-opacity=".25"/><path d="M523 356 534 372" stroke="#41677b" stroke-width="6"/><path d="M523 444 534 428" stroke="#41677b" stroke-width="6"/>
+ <path d="M335 361C385 358 440 369 533 374M335 439C385 442 440 431 533 426" fill="none" stroke="#74cbdc" stroke-opacity=".45" stroke-width="1.5" stroke-dasharray="7 9"/>
+ </g>
+ <g opacity="1"><path d="M702 386 697 343 Q714 338 726 348 L718 386Z" fill="url(#metal)" stroke="#d5e5de" stroke-opacity=".4"/><path d="M702 414 697 457 Q714 462 726 452 L718 414Z" fill="url(#metal)" stroke="#d5e5de" stroke-opacity=".4"/><path d="M734 386 729 336 Q746 331 758 341 L750 386Z" fill="url(#metal)" stroke="#d5e5de" stroke-opacity=".4"/><path d="M734 414 729 464 Q746 469 758 459 L750 414Z" fill="url(#metal)" stroke="#d5e5de" stroke-opacity=".4"/><path d="M766 386 761 329 Q778 324 790 334 L782 386Z" fill="url(#metal)" stroke="#d5e5de" stroke-opacity=".4"/><path d="M766 414 761 471 Q778 476 790 466 L782 414Z" fill="url(#metal)" stroke="#d5e5de" stroke-opacity=".4"/></g>
+ <g opacity="1"><path d="M255 389H818L907 400 818 411H255Z" fill="url(#shaft)" stroke="#9bbccb" stroke-opacity=".4"/>
+ <path d="M259 399H786" stroke="#bbe6ee" stroke-width="3" opacity=".75"/><path d="M361 404H707" stroke="#365969" stroke-width="2"/>
+ <path d="M168 400Q210 366 261 371L300 390V410L261 429Q210 434 168 400Z" fill="url(#metal)" stroke="#9ec3d1" stroke-opacity=".45"/>
+ <path d="M822 389Q882 380 953 400Q882 420 822 411Z" fill="url(#shaft)" stroke="#8fb4c2" stroke-opacity=".5"/></g>
+ <g opacity="0.35">
+ <path d="M260 385 246 252Q270 233 296 247L286 385Z" fill="url(#metal)" stroke="#cff1f4" stroke-opacity=".45" stroke-width="1.5"/>
+ <path d="M260 415 246 548Q270 567 296 553L286 415Z" fill="url(#metal)" stroke="#cff1f4" stroke-opacity=".45" stroke-width="1.5"/>
+ <path d="M278 260 272 377M278 540 272 423" stroke="#dbf5f6" stroke-opacity=".35" stroke-width="3"/>
+ <path d="M305 269 318 378M305 531 318 422" stroke="#3f6a80" stroke-width="9"/>
+ <ellipse cx="276" cy="400" rx="29" ry="23" fill="url(#shaft)" stroke="#b3d9e3" stroke-opacity=".4"/>
+ <ellipse cx="276" cy="400" rx="10" ry="8" fill="#243e52" stroke="#789fb1"/>
+ </g>
+ <rect x="686" y="309" width="119" height="182" rx="23" fill="#79d9e9" fill-opacity=".05" stroke="#79d9e9" stroke-opacity=".5" stroke-dasharray="5 8"/><path d="M710 545 C591 573 389 565 282 540" fill="none" stroke="#79d9e9" stroke-width="2.5" marker-end="url(#arrow)"/><text x="506" y="598" fill="#a8e8ef" font-size="15" text-anchor="middle" letter-spacing="2">ROTATION TRAVELS ALONG THE SHAFTS</text>
+ <rect x="72" y="642" width="1056" height="98" rx="18" fill="#0e2738" stroke="#548097" stroke-opacity=".28"/>
+ <circle cx="116" cy="691" r="21" fill="#82d8e6" fill-opacity=".12" stroke="#82d8e6" stroke-opacity=".5"/>
+ <text x="116" y="697" text-anchor="middle" fill="#daf4f5" font-size="17">04</text>
+ <text x="160" y="687" fill="#e2f2f7" font-size="22">The turbine powers the front fan.</text>
+ <text x="160" y="714" fill="#91b1c3" font-size="16">Shafts connect the rotating parts of the engine.</text>
+ <text x="1128" y="770" text-anchor="end" fill="#466e84" font-size="11" letter-spacing="2">SCHEMATIC · NOT TO SCALE</text></g></svg>

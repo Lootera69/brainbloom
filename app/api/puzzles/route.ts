@@ -27,8 +27,20 @@ export async function GET(request: Request) {
       return puzzle ? privateJson({ version: 1, puzzles: [publicPuzzle(puzzle)] })
         : privateJson({ error: 'Puzzle not found.' }, 404);
     }
-    const catalogue = await publishedCatalogue(db, app.options.projectId!);
-    const puzzles = category === null ? catalogue : catalogue.filter((puzzle) => puzzle.category === category);
+    if (category !== null) {
+      // Category browsing is the normal player path. Keep this query scoped to
+      // the requested category instead of materialising the entire published
+      // bank and filtering it in memory. `readScoringPuzzle` also enforces the
+      // published/schema contract, so this stays on a single auto-indexed
+      // category field without requiring a composite index.
+      const snapshot = await db.collection('puzzles').where('category', '==', category).get();
+      const puzzles = snapshot.docs.flatMap((document) => {
+        const puzzle = readScoringPuzzle(document.id, document.data());
+        return puzzle ? [publicPuzzle(puzzle)] : [];
+      });
+      return privateJson({ version: 1, puzzles }, 200);
+    }
+    const puzzles = await publishedCatalogue(db, app.options.projectId!);
     return privateJson({ version: 1, puzzles }, 200);
   } catch {
     return privateJson({ error: 'Puzzles are unavailable. Please retry.' }, 503);

@@ -7,7 +7,7 @@ import { Save, Loader2, ChevronDown } from "lucide-react";
 import { BackNavigation } from "@/components/studio/back-navigation";
 import { CopyPromptButton } from "@/components/ui/copy-prompt-button";
 import { ImageUploader } from "@/components/ui/image-uploader";
-import { createPuzzle, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
+import { createPuzzleWithReceipt, CATEGORIES, DIFFICULTIES, getUsedLessonOrders } from "@/services/puzzle-service";
 import { getLessonGroups, type LessonGroupEntry } from "@/services/lesson-service";
 import { type PuzzleFormData, type PuzzleType, type CrosswordData } from "@/types/puzzle";
 import { CrosswordForm } from "@/features/puzzle/components/CrosswordForm";
@@ -106,10 +106,16 @@ export default function CreatePuzzlePage() {
       return;
     }
     setSaving(true);
-    await createPuzzle(form);
-    setSaving(false);
-    setDirty(false);
-    router.push("/studio");
+    try {
+      const result = await createPuzzleWithReceipt(form);
+      setDirty(false);
+      if (!result.persistence.cloud) toast.warning("Saved only in this browser. It will not sync automatically; keep a copy before clearing browser data.", { position: "top-center" });
+      router.push("/studio");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "The puzzle could not be saved.", { position: "top-center" });
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

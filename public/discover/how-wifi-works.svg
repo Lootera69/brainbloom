@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Wi-Fi: from radio to the internet</title><desc id="desc">A phone exchanges radio signals with a router, which forwards packets through a wired connection to the internet.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#23435b" stroke-width="1"/></pattern><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10" fill="#67e8f9"/></marker><style>text{font-family:system-ui,sans-serif;fill:#e2f2ff;font-size:30px}.head{font-size:44px;font-weight:700}.sub{font-size:25px;fill:#93b8d0}.line{fill:none;stroke:#67e8f9;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.flow{fill:none;stroke:#67e8f9;stroke-width:3;marker-end:url(#arrow)}</style></defs>
+<path fill="#0b1325" d="M0 0h1200v800H0z"/><path fill="url(#grid)" opacity=".45" d="M0 0h1200v800H0z"/>
+<text x="70" y="95" class="head">Data rides on radio</text><text x="70" y="142" class="sub">Device → local network → internet</text>
+<rect x="110" y="280" width="170" height="280" rx="25" class="line"/><path d="M165 310h60M180 530h30" class="line"/><text x="155" y="420">1010</text><text x="150" y="640">Phone</text>
+<path d="M340 350q80 70 0 140M380 315q125 110 0 210M420 280q170 145 0 280" class="line" opacity=".75"/><text x="324" y="665" class="sub">Radio link</text>
+<rect x="550" y="405" width="200" height="100" rx="15" class="line"/><path d="M575 405V315M725 405V315M580 470h80" class="line"/><circle cx="705" cy="470" r="7" fill="#67e8f9"/><text x="599" y="640">Router</text>
+<path d="M755 430H875" class="flow"/><path d="M875 485H755" class="flow"/><text x="783" y="373" class="sub">Cable</text>
+<path d="M900 475c-45-5-48-80 0-95 0-80 110-100 145-35 75-22 113 100 35 130z" class="line"/><text x="920" y="437">Web</text><text x="917" y="640">Internet</text>
+<path d="M320 710H1080" stroke="#23435b" stroke-width="2"/><text x="330" y="758" class="sub">Packets carry requests and replies in both directions.</text>
+</svg>

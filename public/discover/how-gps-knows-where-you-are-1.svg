@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Signal travel time becomes a distance</title><desc id="desc">A satellite broadcasts its position and transmit time. The receiver records arrival time; travel time times the speed of light estimates distance, with clock correction needed.</desc>
+<defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#23435b"/></pattern><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10" fill="#a78bfa"/></marker><style>text{font-family:system-ui,sans-serif;fill:#e2f2ff;font-size:30px}.head{font-size:44px;font-weight:700}.sub{font-size:25px;fill:#93b8d0}.line{fill:none;stroke:#a78bfa;stroke-width:4}.flow{fill:none;stroke:#a78bfa;stroke-width:3;marker-end:url(#a)}</style></defs>
+<path fill="#0b1325" d="M0 0h1200v800H0z"/><path fill="url(#g)" opacity=".45" d="M0 0h1200v800H0z"/><text x="70" y="95" class="head">A tiny delay, a large distance</text><text x="70" y="142" class="sub">Each broadcast carries a time and satellite position.</text>
+<path d="M135 280h100v100H135zM55 295h65v70H55zM250 295h65v70h-65z" class="line"/><circle cx="185" cy="330" r="29" class="line"/><path d="M185 308v22h17" class="line"/><text x="80" y="447">Transmit time</text>
+<path d="M335 330H855" class="flow"/><path d="M375 310q30-45 60 0t60 0t60 0t60 0t60 0t60 0" fill="none" stroke="#67e8f9" stroke-width="3"/><text x="467" y="405" class="sub">One-way radio signal</text>
+<rect x="930" y="235" width="120" height="200" rx="18" class="line"/><circle cx="990" cy="330" r="30" class="line"/><path d="M990 308v22l18 15" class="line"/><text x="875" y="490">Arrival time</text>
+<path d="M185 510v45h805v-35M185 555v20M990 555v20" class="line"/><text x="435" y="610">Signal travel time</text>
+<rect x="145" y="655" width="910" height="90" rx="18" fill="#152a43" stroke="#23435b"/><text x="214" y="711">Distance ≈ travel time × speed of light</text><text x="385" y="773" class="sub">Receiver clock error must also be solved.</text>
+</svg>

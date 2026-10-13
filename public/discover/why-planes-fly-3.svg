@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Level flight and stall</title><desc id="desc">Balanced lift, weight, thrust, and drag surround a side-view aeroplane. A separate steeply angled wing shows separated airflow during a stall.</desc>
+<defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#244258"/></pattern><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#7dd3fc"/></marker></defs>
+<rect width="1200" height="800" fill="#081522"/><rect width="1200" height="800" fill="url(#grid)" opacity=".4"/>
+<g font-family="Arial, sans-serif" fill="#edf6ff"><text x="70" y="92" font-size="46" font-weight="700">Balance changes when the angle changes</text>
+<path d="M250 350Q170 370 250 390H690L755 320L720 385H775V405H250Z" fill="#173c54" stroke="#edf6ff" stroke-width="3"/><path d="M470 370L570 310H610L550 380" fill="#173c54" stroke="#edf6ff" stroke-width="3"/>
+<path d="M475 320V185M475 435V570M285 405H125M650 440H810" stroke="#7dd3fc" stroke-width="6" marker-end="url(#a)"/>
+<text x="510" y="210" font-size="29" fill="#7dd3fc">Lift</text><text x="510" y="565" font-size="29" fill="#7dd3fc">Weight</text><text x="75" y="365" font-size="29" fill="#7dd3fc">Thrust</text><text x="740" y="485" font-size="29" fill="#7dd3fc">Drag</text>
+<path d="M915 315Q895 270 1075 475Q965 408 915 315Z" fill="#173c54" stroke="#fda4af" stroke-width="3"/><path d="M850 265Q990 195 1100 280T1090 340T1150 405" fill="none" stroke="#fda4af" stroke-width="4"/>
+<text x="910" y="545" font-size="31" fill="#fda4af">Stall</text><text x="855" y="590" font-size="25">Too steep:</text><text x="855" y="627" font-size="25">flow separates</text><text x="70" y="741" font-size="27" fill="#a9c3d8">Steady level flight needs balanced forces and attached airflow.</text></g></svg>
