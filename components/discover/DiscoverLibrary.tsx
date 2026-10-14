@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowRight, Bookmark, Check, Clock3, Compass, Layers3, Search, Sparkles, X } from "lucide-react";
 import { getDiscoverLessons } from "@/services/discover-service";
@@ -9,6 +9,7 @@ import { useUserStore } from "@/store/user-store";
 import { EMPTY_DISCOVER_PROGRESS, useDiscoverStore } from "@/store/discover-store";
 import { DiscoverImage } from "./DiscoverImage";
 import { discoverAccent } from "./discover-theme";
+import { getDiscoverReadingStatus, sortDiscoverLessonsForReader } from "@/lib/discover/reading-order";
 import { cn } from "@/lib/utils";
 import type { DiscoverLesson } from "@/types/discover";
 
@@ -36,9 +37,11 @@ export function DiscoverLibrary() {
   }, [retry]);
 
   const categories = ["All topics", ...Array.from(new Set(lessons.map((lesson) => lesson.category)))];
-  const featured = lessons.find((lesson) => lesson.featured) ?? lessons[0];
+  const orderedLessons = useMemo(() => sortDiscoverLessonsForReader(lessons, progress), [lessons, progress]);
+  const featured = orderedLessons.find((lesson) => getDiscoverReadingStatus(lesson, progress?.[lesson.id]) !== "completed");
+  const featuredStatus = featured ? getDiscoverReadingStatus(featured, progress?.[featured.id]) : null;
   const query = search.trim().toLowerCase();
-  const filtered = lessons.filter((lesson) =>
+  const filtered = orderedLessons.filter((lesson) =>
     (category === "All topics" || lesson.category === category) &&
     (!savedOnly || progress?.[lesson.id]?.bookmarked) &&
     (!query || `${lesson.title} ${lesson.summary} ${lesson.category}`.toLowerCase().includes(query)),
@@ -72,17 +75,17 @@ export function DiscoverLibrary() {
         <>
           {showFeatured && (
             <motion.section initial={reducedMotion ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45 }} aria-label="Featured discovery"
+              transition={{ duration: 0.45 }} aria-label="Your next discovery"
               className="group relative mb-9 overflow-hidden rounded-[2rem] border border-primary/15 bg-card shadow-xl shadow-primary/5">
               <div className="grid lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="relative z-10 flex min-w-0 flex-col items-start p-6 sm:p-9 lg:pr-5">
-                  <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-primary"><span className="size-1.5 rounded-full bg-primary" /> In the spotlight</span>
+                  <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-primary"><span className="size-1.5 rounded-full bg-primary" /> Up next for you</span>
                   <p className="mb-2 min-w-0 max-w-full text-xs font-medium text-muted-foreground">{featured.category} <span className="mx-1.5 opacity-40">/</span> A visual exploration</p>
                   <h2 className="w-full min-w-0 max-w-md font-heading text-3xl font-bold leading-[1.13] tracking-tight sm:text-4xl xl:text-[2.8rem]">{featured.title}</h2>
                   <p className="mt-4 w-full min-w-0 max-w-sm text-sm leading-7 text-muted-foreground">{featured.summary}</p>
                   <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-muted-foreground"><span className="flex items-center gap-1.5"><Clock3 className="size-3.5" /> {featured.durationMinutes} min</span><span className="flex items-center gap-1.5"><Layers3 className="size-3.5" /> {featured.steps.length} visual steps</span><span>{featured.difficulty === "intermediate" ? "Deep Dive" : "Beginner"}</span></div>
                   <Link href={`/discover/${featured.id}`} className="mt-7 inline-flex min-h-12 min-w-11 max-w-full items-center gap-5 rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/15 transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
-                    <span className="min-w-0">{progress?.[featured.id]?.completed ? "Explore again" : progress?.[featured.id]?.stepIndex ? "Continue exploring" : "Let's explore"}</span><ArrowRight className="size-4 shrink-0 transition-transform motion-safe:group-hover:translate-x-1" />
+                    <span className="min-w-0">{featuredStatus === "in-progress" ? "Continue exploring" : "Let's explore"}</span><ArrowRight className="size-4 shrink-0 transition-transform motion-safe:group-hover:translate-x-1" />
                   </Link>
                 </div>
                 <Link href={`/discover/${featured.id}`} aria-label={`Explore ${featured.title}`} className="relative block min-h-64 min-w-0 overflow-hidden bg-muted lg:min-h-[440px]">
@@ -100,7 +103,7 @@ export function DiscoverLibrary() {
 
           <section aria-labelledby="discover-explore-heading" className="min-w-0">
             <div className="mb-5 flex flex-col justify-between gap-4 xl:flex-row xl:items-center">
-              <div><p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-primary">There’s more to everything</p><h2 id="discover-explore-heading" className="font-heading text-2xl font-bold tracking-tight">Find your next “aha”.</h2></div>
+              <div><p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-primary">There’s more to everything</p><h2 id="discover-explore-heading" className="font-heading text-2xl font-bold tracking-tight">Find your next “aha”.</h2><p className="mt-2 text-xs text-muted-foreground">Unexplored first, from beginner to deep dive.</p></div>
               <div className="relative w-full min-w-0 xl:w-72"><Search className="pointer-events-none absolute left-4 top-3.5 size-4 text-muted-foreground" /><input type="search" aria-label="Search discoveries" placeholder="What makes you curious?" value={search} onChange={(event) => setSearch(event.target.value)} className="h-11 w-full min-w-0 rounded-xl border border-border bg-card pl-11 pr-4 text-base outline-none transition focus:border-primary/50 focus:ring-2 focus:ring-primary/10 sm:text-sm" /></div>
             </div>
             <div className="mb-6 flex flex-wrap items-center gap-2">
@@ -121,9 +124,9 @@ export function DiscoverLibrary() {
               <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                 {filtered.map((lesson, index) => {
                   const saved = progress?.[lesson.id] ?? EMPTY_DISCOVER_PROGRESS;
-                  const current = saved.lessonUpdatedAt === lesson.updatedAt;
-                  const complete = current && saved.completed;
-                  const inProgress = current && !complete && saved.stepIndex > 0;
+                  const status = getDiscoverReadingStatus(lesson, saved);
+                  const complete = status === "completed";
+                  const inProgress = status === "in-progress";
                   const accent = discoverAccent[lesson.accent];
                   return (
                     <motion.article key={lesson.id} initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: Math.min(index * 0.07, 0.3) }}
